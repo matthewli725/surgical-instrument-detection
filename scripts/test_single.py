@@ -2,9 +2,12 @@ from pathlib import Path
 import cv2
 from ultralytics import YOLO
 
+# Ran:
+# yolo task=segment mode=train model=yolov8n-seg.pt data=<data_path>/data.yaml imgsz=1024 epochs=150 batch=8
+
 MODEL_PATH = "runs/segment/general/weights/best.pt"
 IMAGE_PATH = "dataset/overlap/4938_jpg.rf.821b3b0159f1445a436faf098c033271.jpg"
-OUT_PATH = "test_pred_overlay.jpg"
+OUT_PATH = "test_images/test_pred_overlay_w_general.jpg"
 CONF = 0.25
 IMGSZ = 1024
 
