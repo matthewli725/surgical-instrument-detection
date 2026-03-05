@@ -1,3 +1,8 @@
 /dataset
 /DS_Store
 /README.md
+/seed_data
+/seed_data_coarse
+/yolo26n.pt
+/yolov8n-seg.pt
+/yolov8s-seg.pt
