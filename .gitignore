@@ -16,3 +16,144 @@ yolo11l.pt
 yolo26n.pt
 rtdetr-l.pt
 rtdetr-x.pt
+/demo
+
+# ---------------------------
+
+# macOS system files
+
+# ---------------------------
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ---------------------------
+
+# Python
+
+# ---------------------------
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Virtual environments
+
+.env
+.venv
+env/
+venv/
+ENV/
+
+# ---------------------------
+
+# Jupyter
+
+# ---------------------------
+
+.ipynb_checkpoints
+
+# ---------------------------
+
+# Logs
+
+# ---------------------------
+
+logs/
+*.log
+
+# ---------------------------
+
+# ML experiment tracking
+
+# ---------------------------
+
+mlruns/
+wandb/
+tensorboard/
+runs/
+
+# ---------------------------
+
+# Model artifacts
+
+# ---------------------------
+
+models/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.onnx
+*.joblib
+*.pkl
+
+# ---------------------------
+
+# Data (often large)
+
+# ---------------------------
+
+data/
+datasets/
+*.csv
+*.tsv
+*.parquet
+*.hdf5
+*.h5
+
+# ---------------------------
+
+# IDE / editor
+
+# ---------------------------
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---------------------------
+
+# Environment / secrets
+
+# ---------------------------
+
+.env
+.env.*
+*.env
+
+# ---------------------------
+
+# Testing / coverage
+
+# ---------------------------
+
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# ---------------------------
+
+# Packaging / cache
+
+# ---------------------------
+
+.cache/
+*.cache
+tmp/
+temp/
