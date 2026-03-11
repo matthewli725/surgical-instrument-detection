@@ -1,0 +1,5 @@
+run:
+  dir: ${trainer.project}/${trainer.name}
+
+job:
+  chdir: false

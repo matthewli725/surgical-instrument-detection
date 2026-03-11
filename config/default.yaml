@@ -1,0 +1,9 @@
+defaults:
+  - _self_
+  - data: object_detection
+  - model: yolo11s
+  - trainer: default
+  - hydra: default
+
+project_name: trayguard
+task: detect

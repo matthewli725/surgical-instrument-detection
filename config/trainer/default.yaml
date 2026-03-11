@@ -1,0 +1,24 @@
+epochs: 100
+batch: 16
+imgsz: 640
+
+device: 0
+workers: 8
+patience: 20
+
+optimizer: auto
+lr0: 0.01
+lrf: 0.01
+weight_decay: 0.0005
+
+project: runs
+name: ${model.name}_${data.name}
+
+pretrained: true
+save: true
+plots: true
+exist_ok: true
+verbose: true
+resume: false
+multi_scale: false
+deterministic: false

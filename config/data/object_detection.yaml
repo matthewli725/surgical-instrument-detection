@@ -1,0 +1,10 @@
+name: surgical_object_detection
+root: datasets/dataset_obj_detection
+yolo_data: ${data.root}/data.yaml
+
+num_classes: 4
+names:
+  - Scalpel n4
+  - Straight Dissection Clamp
+  - Straight Mayo Scissor
+  - Curved Mayo Scissor
