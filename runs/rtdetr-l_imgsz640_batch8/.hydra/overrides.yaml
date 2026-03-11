@@ -1,0 +1,5 @@
+- model=rtdetr-l
+- trainer.imgsz=640
+- trainer.batch=8
+- trainer.name=rtdetr-l_imgsz640_batch8
+- trainer.lr0=0.003
