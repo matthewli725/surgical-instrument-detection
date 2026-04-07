@@ -1,6 +1,7 @@
 from pathlib import Path
 import cv2
 from ultralytics import YOLO
+from src.utils import process_image
 
 MODEL_PATH = "runs/detect/runs/yolo11s_imgsz960_batch16/weights/best.pt"
 
@@ -55,47 +56,6 @@ def draw_overlap(img: cv2.Mat, txt_path: Path) -> cv2.Mat:
         cv2.putText(img,f"Actual: {class_name}", text_pos, cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2, cv2.LINE_AA)
     
     return img
-
-def process_image(model: YOLO, image_path: Path) -> None:
-
-    # Assumes label file has same name as image but with .txt extension
-    label_path = LABEL_DIR / f"{image_path.stem}.txt"
-    result_out_path = RESULT_DIR / image_path.name
-    overlay_out_path = OVERLAY_DIR / image_path.name
-
-    # Run inference
-    results = model.predict(
-        source=str(image_path),
-        imgsz=IMGSZ,
-        conf=CONF,
-        save=False,
-        verbose=False
-    )
-    r = results[0]
-
-    # Print detected classes and confidences
-    names = model.names
-    if r.boxes is not None and len(r.boxes) > 0:
-        for cls, conf in zip(r.boxes.cls.tolist(), r.boxes.conf.tolist()):
-            print(f"  {names[int(cls)]}: {conf:.3f}")
-    else:
-        print("  No detections.")
-
-    # Draw predictions on image
-    img_with_preds = r.plot()
-    cv2.imwrite(str(result_out_path), img_with_preds)
-
-    # Draw ground truth boxes and save overlay
-    overlay_with_gt = draw_overlap(img_with_preds, label_path)
-    cv2.imwrite(str(overlay_out_path), overlay_with_gt)
-
-    # Print latency information
-    print("  Latency (ms):")
-    total = 0
-    for stage, latency in r.speed.items():
-        print(f"    {stage}: {latency:.4f}")
-        total += latency
-    print(f"  Total: {total:.4f} ms")
 
 def main():
     # Load model
