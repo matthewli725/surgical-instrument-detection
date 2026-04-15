@@ -8,11 +8,15 @@ dependencies = [
     "cv2-enumerate-cameras>=1.3.3",
     "ffmpeg>=1.4",
     "hydra-core>=1.3.2",
+    "ipykernel>=7.2.0",
     "kagglehub>=1.0.0",
     "omegaconf>=2.3.0",
     "streamlit>=1.56.0",
     "ultralytics>=8.4.21",
 ]
+
+[project.scripts]
+trayguard = "micro_design_project.cli:main"
 
 [build-system]
 requires = ["setuptools>=61"]

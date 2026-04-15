@@ -1,0 +1,66 @@
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+from typing import Sequence
+
+from hydra import compose, initialize_config_dir
+from omegaconf import DictConfig, OmegaConf
+from ultralytics import YOLO
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+CONFIG_DIR = PROJECT_ROOT / "config"
+
+
+def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog="trayguard train",
+        description="Train one object detection model using Hydra-style overrides.",
+    )
+    parser.add_argument(
+        "overrides",
+        nargs="*",
+        help="Hydra overrides, e.g. model=yolo11m trainer.imgsz=960 trainer.batch=8",
+    )
+    return parser.parse_args(argv)
+
+
+def load_config(overrides: Sequence[str]) -> DictConfig:
+    with initialize_config_dir(config_dir=str(CONFIG_DIR), version_base=None):
+        return compose(config_name="default", overrides=list(overrides))
+
+
+def train_model(cfg: DictConfig) -> None:
+    print(OmegaConf.to_yaml(cfg))
+
+    model = YOLO(cfg.model.weights)
+    model.train(
+        data=cfg.data.yolo_data,
+        epochs=cfg.trainer.epochs,
+        batch=cfg.trainer.batch,
+        imgsz=cfg.trainer.imgsz,
+        device=cfg.trainer.device,
+        workers=cfg.trainer.workers,
+        patience=cfg.trainer.patience,
+        optimizer=cfg.trainer.optimizer,
+        lr0=cfg.trainer.lr0,
+        lrf=cfg.trainer.lrf,
+        weight_decay=cfg.trainer.weight_decay,
+        project=cfg.trainer.project,
+        name=cfg.trainer.name,
+        pretrained=cfg.trainer.pretrained,
+        save=cfg.trainer.save,
+        plots=cfg.trainer.plots,
+        exist_ok=cfg.trainer.exist_ok,
+        verbose=cfg.trainer.verbose,
+        resume=cfg.trainer.resume,
+        multi_scale=cfg.trainer.multi_scale,
+        deterministic=cfg.trainer.deterministic,
+    )
+
+
+def main(argv: Sequence[str] | None = None) -> None:
+    args = parse_args(argv)
+    cfg = load_config(args.overrides)
+    train_model(cfg)

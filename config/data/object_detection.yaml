@@ -1,10 +1,6 @@
-name: surgical_object_detection
-root: datasets/dataset_obj_detection
+# name: surgical_object_detection
+# root: data/collected_yolo
+# yolo_data: ${data.root}/data.yaml
+name: lavado
+root: data/lavado
 yolo_data: ${data.root}/data.yaml
-
-num_classes: 4
-names:
-  - Scalpel n4
-  - Straight Dissection Clamp
-  - Straight Mayo Scissor
-  - Curved Mayo Scissor

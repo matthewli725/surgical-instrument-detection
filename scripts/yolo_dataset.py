@@ -1,88 +1,245 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
 from pathlib import Path
 import random
 import shutil
+from typing import Iterable
 
-DATASET_ROOT = Path("dataset/Surgical-Dataset")
-OUTPUT_ROOT = Path("datasets/dataset_obj_detection")
+# =========================
+# Configuration
+# =========================
 
-IMAGES_DIR = DATASET_ROOT / "Images" / "All" / "images"
-LABEL_DIR = DATASET_ROOT / "Labels" / "label object names"
+@dataclass(frozen=True)
+class DatasetConfig:
+    dataset_root: Path
+    output_root: Path
 
-TRAIN_LIST = DATASET_ROOT / "Test-Train Groups" / "train-obj_detector.txt"
-TEST_LIST = DATASET_ROOT / "Test-Train Groups" / "test-obj_detector.txt"
+    images_dir: Path
+    labels_dir: Path
 
-VAL_RATIO = 0.2
-SEED = 42
+    class_names: list[str]
 
-CLASS_NAMES = [
-    "Scalpel n4",
-    "Straight Dissection Clamp",
-    "Straight Mayo Scissor",
-    "Curved Mayo Scissor",
-]
+    image_extensions: tuple[str, ...] = (".jpg", ".jpeg", ".png", ".bmp", ".webp")
+    label_extension: str = ".txt"
 
-random.seed(SEED)
+    train_ratio: float = 0.7
+    val_ratio: float = 0.2
+    test_ratio: float = 0.1
 
+    seed: int = 42
 
-def read_image_names(txt_path: Path):
-    """
-    Reads lines like:
-    /home/roboticslab/darknet/Dataset/images/bisturi216.jpg
+    # If True, create empty label files when an image has no label file.
+    # This is valid for YOLO object detection when the image truly has no objects.
+    create_empty_labels_for_missing: bool = True
 
-    Returns:
-    ['bisturi216.jpg', ...]
-    """
-    image_names = []
-    with open(txt_path, "r") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                image_names.append(Path(line).name)
+    # If True, overwrite files already present in the output dataset.
+    overwrite_output: bool = True
 
-    return image_names
+    # Optional manifest files listing image paths inside the YOLO dataset.
+    write_split_manifests: bool = True
 
 
-def make_dirs(base: Path):
-    for split in ["train", "val", "test"]:
-        (base / "images" / split).mkdir(parents=True, exist_ok=True)
-        (base / "labels" / split).mkdir(parents=True, exist_ok=True)
+CONFIG = DatasetConfig(
+    dataset_root=Path("data/Surgical-Dataset"),
+    output_root=Path("data/lavado"),
+    images_dir=Path("data/Surgical-Dataset/Images/All/images"),
+    labels_dir=Path("data/Surgical-Dataset/Labels/label object names"),
+    class_names=[
+        "Scalpel n4",
+        "Straight Dissection Clamp",
+        "Straight Mayo Scissor",
+        "Curved Mayo Scissor",
+    ],
+    train_ratio=0.7,
+    val_ratio=0.2,
+    test_ratio=0.1,
+    seed=42,
+    create_empty_labels_for_missing=True,
+    overwrite_output=True,
+    write_split_manifests=True,
+)
 
-    (base / "split").mkdir(parents=True, exist_ok=True)
+# =========================
+# Data model
+# =========================
+
+@dataclass(frozen=True)
+class Sample:
+    image_path: Path
+    label_path: Path | None
+
+    @property
+    def image_name(self) -> str:
+        return self.image_path.name
+
+    @property
+    def stem(self) -> str:
+        return self.image_path.stem
 
 
-def copy_one_sample(image_name: str, split: str):
-    stem = Path(image_name).stem
+# =========================
+# Validation helpers
+# =========================
 
-    src_img = IMAGES_DIR / image_name
-    src_lbl = LABEL_DIR / f"{stem}.txt"
+def validate_config(config: DatasetConfig) -> None:
+    total = config.train_ratio + config.val_ratio + config.test_ratio
+    if abs(total - 1.0) > 1e-9:
+        raise ValueError(
+            f"Split ratios must sum to 1.0, got {total:.6f} "
+            f"(train={config.train_ratio}, val={config.val_ratio}, test={config.test_ratio})"
+        )
 
-    dst_img = OUTPUT_ROOT / "images" / split / image_name
-    dst_lbl = OUTPUT_ROOT / "labels" / split / f"{stem}.txt"
+    if not config.images_dir.exists():
+        raise FileNotFoundError(f"Images directory not found: {config.images_dir}")
 
-    if not src_img.exists():
-        print(f"[WARNING] Missing image: {src_img}")
+    if not config.labels_dir.exists():
+        raise FileNotFoundError(f"Labels directory not found: {config.labels_dir}")
+
+
+def ensure_output_dirs(output_root: Path) -> None:
+    for split in ("train", "val", "test"):
+        (output_root / "images" / split).mkdir(parents=True, exist_ok=True)
+        (output_root / "labels" / split).mkdir(parents=True, exist_ok=True)
+
+    (output_root / "manifests").mkdir(parents=True, exist_ok=True)
+
+
+# =========================
+# Discovery
+# =========================
+
+def is_image_file(path: Path, allowed_exts: Iterable[str]) -> bool:
+    return path.is_file() and path.suffix.lower() in set(ext.lower() for ext in allowed_exts)
+
+
+def discover_image_files(images_dir: Path, image_extensions: tuple[str, ...]) -> list[Path]:
+    files = [p for p in images_dir.iterdir() if is_image_file(p, image_extensions)]
+    return sorted(files, key=lambda p: p.name)
+
+
+def build_samples(config: DatasetConfig) -> list[Sample]:
+    image_files = discover_image_files(config.images_dir, config.image_extensions)
+    samples: list[Sample] = []
+
+    for image_path in image_files:
+        candidate_label = config.labels_dir / f"{image_path.stem}{config.label_extension}"
+        label_path = candidate_label if candidate_label.exists() else None
+        samples.append(Sample(image_path=image_path, label_path=label_path))
+
+    return samples
+
+
+# =========================
+# Reporting
+# =========================
+
+def summarize_samples(samples: list[Sample]) -> None:
+    total = len(samples)
+    with_labels = sum(1 for s in samples if s.label_path is not None)
+    without_labels = total - with_labels
+
+    print("=== Dataset Summary ===")
+    print(f"Discovered images: {total}")
+    print(f"Images with labels: {with_labels}")
+    print(f"Images without labels: {without_labels}")
+
+
+# =========================
+# Split logic
+# =========================
+
+def split_samples(
+    samples: list[Sample],
+    train_ratio: float,
+    val_ratio: float,
+    test_ratio: float,
+    seed: int,
+) -> tuple[list[Sample], list[Sample], list[Sample]]:
+    rng = random.Random(seed)
+    shuffled = samples[:]
+    rng.shuffle(shuffled)
+
+    total = len(shuffled)
+    train_count = int(total * train_ratio)
+    val_count = int(total * val_ratio)
+    test_count = total - train_count - val_count
+
+    train_samples = shuffled[:train_count]
+    val_samples = shuffled[train_count:train_count + val_count]
+    test_samples = shuffled[train_count + val_count:]
+
+    assert len(train_samples) + len(val_samples) + len(test_samples) == total
+    assert len(test_samples) == test_count
+
+    return train_samples, val_samples, test_samples
+
+
+def print_split_summary(
+    train_samples: list[Sample],
+    val_samples: list[Sample],
+    test_samples: list[Sample],
+) -> None:
+    print("\n=== Split Summary ===")
+    print(f"Train: {len(train_samples)}")
+    print(f"Val:   {len(val_samples)}")
+    print(f"Test:  {len(test_samples)}")
+
+
+# =========================
+# Copy/export
+# =========================
+
+def copy_file(src: Path, dst: Path, overwrite: bool) -> None:
+    if dst.exists() and not overwrite:
         return
-
-    shutil.copy2(src_img, dst_img)
-
-    if src_lbl.exists():
-        shutil.copy2(src_lbl, dst_lbl)
-    else:
-        # empty label file if image has no object
-        dst_lbl.touch()
-        print(f"[WARNING] Missing label: {src_lbl} -> created empty label file")
+    shutil.copy2(src, dst)
 
 
-def copy_split(image_names, split: str):
-    for image_name in image_names:
-        copy_one_sample(image_name, split)
+def write_empty_file(path: Path, overwrite: bool) -> None:
+    if path.exists() and not overwrite:
+        return
+    path.touch()
 
 
-def write_yaml():
-    yaml_path = OUTPUT_ROOT / "data.yaml"
+def export_split(
+    samples: list[Sample],
+    split_name: str,
+    config: DatasetConfig,
+) -> None:
+    dst_images_dir = config.output_root / "images" / split_name
+    dst_labels_dir = config.output_root / "labels" / split_name
+
+    missing_label_count = 0
+
+    for sample in samples:
+        dst_image = dst_images_dir / sample.image_name
+        dst_label = dst_labels_dir / f"{sample.stem}{config.label_extension}"
+
+        copy_file(sample.image_path, dst_image, overwrite=config.overwrite_output)
+
+        if sample.label_path is not None:
+            copy_file(sample.label_path, dst_label, overwrite=config.overwrite_output)
+        elif config.create_empty_labels_for_missing:
+            write_empty_file(dst_label, overwrite=config.overwrite_output)
+            missing_label_count += 1
+
+    if missing_label_count:
+        print(
+            f"[INFO] {split_name}: created {missing_label_count} empty label files "
+            f"for images without annotation files"
+        )
+
+
+# =========================
+# Manifest / YAML
+# =========================
+
+def write_data_yaml(config: DatasetConfig) -> None:
+    yaml_path = config.output_root / "data.yaml"
 
     lines = [
-        f"path: {OUTPUT_ROOT.as_posix()}",
+        f"path: {config.output_root.as_posix()}",
         "train: images/train",
         "val: images/val",
         "test: images/test",
@@ -90,53 +247,54 @@ def write_yaml():
         "names:",
     ]
 
-    for i, name in enumerate(CLASS_NAMES):
-        lines.append(f"  {i}: {name}")
+    for idx, class_name in enumerate(config.class_names):
+        lines.append(f"  {idx}: {class_name}")
 
-    with open(yaml_path, "w") as f:
-        f.write("\n".join(lines) + "\n")
-
-
-def write_rewritten_path_lists(train_names, val_names, test_names):
-    """
-    Writes txt files with rewritten paths like:
-    dataset/images/all/bisturi216.jpg
-    """
-    def write_list(file_path: Path, names):
-        with open(file_path, "w") as f:
-            for name in names:
-                f.write(f"dataset/images/all/{name}\n")
-
-    write_list(OUTPUT_ROOT / "split_lists" / "train.txt", train_names)
-    write_list(OUTPUT_ROOT / "split_lists" / "val.txt", val_names)
-    write_list(OUTPUT_ROOT / "split_lists" / "test.txt", test_names)
+    yaml_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def main():
-    make_dirs(OUTPUT_ROOT)
+def write_manifest(split_name: str, samples: list[Sample], output_root: Path) -> None:
+    manifest_path = output_root / "manifests" / f"{split_name}.txt"
+    lines = [f"images/{split_name}/{sample.image_name}" for sample in samples]
+    manifest_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    train_full = read_image_names(TRAIN_LIST)
-    test_images = read_image_names(TEST_LIST)
 
-    random.shuffle(train_full)
-    val_count = int(len(train_full) * VAL_RATIO)
+# =========================
+# Orchestration
+# =========================
 
-    val_images = train_full[:val_count]
-    train_images = train_full[val_count:]
+def build_yolo_dataset(config: DatasetConfig) -> None:
+    validate_config(config)
+    ensure_output_dirs(config.output_root)
 
-    print(f"Total original train images: {len(train_full)}")
-    print(f"Train split: {len(train_images)}")
-    print(f"Val split: {len(val_images)}")
-    print(f"Test split: {len(test_images)}")
+    samples = build_samples(config)
+    summarize_samples(samples)
 
-    copy_split(train_images, "train")
-    copy_split(val_images, "val")
-    copy_split(test_images, "test")
+    train_samples, val_samples, test_samples = split_samples(
+        samples=samples,
+        train_ratio=config.train_ratio,
+        val_ratio=config.val_ratio,
+        test_ratio=config.test_ratio,
+        seed=config.seed,
+    )
+    print_split_summary(train_samples, val_samples, test_samples)
 
-    write_rewritten_path_lists(train_images, val_images, test_images)
-    write_yaml()
+    export_split(train_samples, "train", config)
+    export_split(val_samples, "val", config)
+    export_split(test_samples, "test", config)
+
+    write_data_yaml(config)
+
+    if config.write_split_manifests:
+        write_manifest("train", train_samples, config.output_root)
+        write_manifest("val", val_samples, config.output_root)
+        write_manifest("test", test_samples, config.output_root)
 
     print("\nDone")
+
+
+def main() -> None:
+    build_yolo_dataset(CONFIG)
 
 
 if __name__ == "__main__":
