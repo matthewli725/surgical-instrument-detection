@@ -1,5 +1,7 @@
-from micro_design_project.dataset_tools.export_collected_yolo import main
+import sys
+
+from micro_design_project.cli import main
 
 
 if __name__ == "__main__":
-    main()
+    main(["export-yolo", *sys.argv[1:]])

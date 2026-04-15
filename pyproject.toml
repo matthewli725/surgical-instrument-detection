@@ -1,7 +1,7 @@
 [project]
 name = "micro-design-project"
 version = "0.1.0"
-description = "Add your description here"
+description = "Computer vision prototype for detecting and counting surgical tray instruments."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -17,6 +17,7 @@ dependencies = [
 
 [project.scripts]
 trayguard = "micro_design_project.cli:main"
+trayguard-app = "micro_design_project.app.streamlit_runner:main"
 
 [build-system]
 requires = ["setuptools>=61"]

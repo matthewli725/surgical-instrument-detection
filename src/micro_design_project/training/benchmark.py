@@ -59,7 +59,7 @@ def build_run_name(model: str, imgsz: int, batch: int) -> str:
     return f"{model}_imgsz{imgsz}_batch{batch}"
 
 
-def run_train(model: str, imgsz: int, batch: int, extra_overrides: Sequence[str]) -> str:
+def run_train(model: str, imgsz: int, batch: int, extra_overrides: Sequence[str]) -> Path:
     run_name = build_run_name(model, imgsz, batch)
     overrides = [
         f"model={model}",
@@ -74,14 +74,13 @@ def run_train(model: str, imgsz: int, batch: int, extra_overrides: Sequence[str]
 
     print("\nRunning training overrides:")
     print(" ".join(overrides))
-    train_model(load_config(overrides))
-    return run_name
+    return train_model(load_config(overrides))
 
 
-def evaluate_model(run_name: str, imgsz: int, data_yaml: str) -> dict[str, float | str]:
-    weights = PROJECT_ROOT / "runs" / "detect" / "runs" / run_name / "weights" / "best.pt"
+def evaluate_model(save_dir: Path, imgsz: int, data_yaml: str) -> dict[str, float | str]:
+    weights = save_dir / "weights" / "best.pt"
 
-    print("\nEvaluating test set:", run_name)
+    print("\nEvaluating test set:", save_dir.name)
     model = YOLO(str(weights))
     metrics = model.val(data=data_yaml, split="test", imgsz=imgsz, plots=False, verbose=False)
 
@@ -124,9 +123,10 @@ def main(argv: Sequence[str] | None = None) -> None:
         }
 
         try:
-            run_name = run_train(model, imgsz, batch, args.extra_override)
-            entry.update(evaluate_model(run_name, imgsz, data_yaml))
-            entry["run_name"] = run_name
+            save_dir = run_train(model, imgsz, batch, args.extra_override)
+            entry.update(evaluate_model(save_dir, imgsz, data_yaml))
+            entry["run_name"] = save_dir.name
+            entry["save_dir"] = str(save_dir)
             entry["status"] = "completed"
         except Exception as exc:
             entry["status"] = "error"

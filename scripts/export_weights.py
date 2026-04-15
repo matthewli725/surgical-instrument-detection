@@ -4,4 +4,4 @@ from micro_design_project.cli import main
 
 
 if __name__ == "__main__":
-    main(["train", *sys.argv[1:]])
+    main(["export-weights", *sys.argv[1:]])

@@ -1,4 +1,0 @@
-- model=yolo11m
-- trainer.imgsz=960
-- trainer.batch=8
-- trainer.name=yolo11m_imgsz960_batch8

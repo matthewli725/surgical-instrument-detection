@@ -1,0 +1,1 @@
+"""Interactive TrayGuard applications."""

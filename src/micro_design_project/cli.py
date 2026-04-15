@@ -4,8 +4,9 @@ from collections.abc import Callable, Sequence
 import sys
 
 from micro_design_project.data_collection import collect
-from micro_design_project.dataset_tools import export_collected_yolo
-from micro_design_project.training import benchmark, train
+from micro_design_project.app import streamlit_runner
+from micro_design_project.dataset_tools import download_lavado, export_collected_yolo
+from micro_design_project.training import benchmark, export_weights, train
 
 
 Command = Callable[[Sequence[str]], None]
@@ -14,8 +15,11 @@ Command = Callable[[Sequence[str]], None]
 COMMANDS: dict[str, tuple[Command, str]] = {
     "collect": (collect.main, "Capture setup sessions and lighting variants."),
     "export-yolo": (export_collected_yolo.main, "Flatten collected sessions into a YOLO dataset."),
+    "download-lavado": (download_lavado.main, "Download the Lavado Kaggle dataset and export YOLO data."),
+    "export-weights": (export_weights.main, "Copy trained best.pt weights into the TrayGuard demo path."),
     "train": (train.main, "Train one object detection model."),
     "benchmark": (benchmark.main, "Train and evaluate standard model variants."),
+    "app": (streamlit_runner.main, "Launch the Streamlit tray detection UI."),
 }
 
 

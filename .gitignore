@@ -1,6 +1,4 @@
 /mendeley_dataset/dataset
-/DS_Store
-/README.md
 /mendeley_dataset/seed_data
 /mendeley_dataset/seed_data_coarse
 /mendeley_dataset/yolo26n.pt
@@ -37,7 +35,8 @@ rtdetr-x.pt
 
 # ---------------------------
 
-**pycache**/
+__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -83,7 +82,7 @@ logs/
 mlruns/
 wandb/
 tensorboard/
-runs/
+/runs/
 
 # ---------------------------
 
@@ -95,6 +94,9 @@ models/
 checkpoints/
 *.ckpt
 *.pt
+!/weights/
+!/weights/.gitkeep
+!/weights/trayguard.pt
 *.pth
 *.h5
 *.onnx
