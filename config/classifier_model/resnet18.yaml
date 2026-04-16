@@ -1,0 +1,6 @@
+name: resnet18
+arch: resnet18
+pretrained: true
+image_size: 224
+dropout: 0.0
+freeze_backbone: false

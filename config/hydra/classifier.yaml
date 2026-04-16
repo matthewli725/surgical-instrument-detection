@@ -1,0 +1,5 @@
+run:
+  dir: ${classifier_trainer.project}/${classifier_trainer.name}
+
+job:
+  chdir: false

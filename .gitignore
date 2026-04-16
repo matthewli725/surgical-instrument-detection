@@ -109,6 +109,8 @@ checkpoints/
 
 data/
 datasets/
+multi_bbox_3000/
+single_bbox_6000/
 *.csv
 *.tsv
 *.parquet

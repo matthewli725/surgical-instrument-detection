@@ -1,0 +1,6 @@
+name: efficientnet_b0
+arch: efficientnet_b0
+pretrained: true
+image_size: 224
+dropout: 0.2
+freeze_backbone: false

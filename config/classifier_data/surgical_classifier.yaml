@@ -1,0 +1,14 @@
+name: surgical_classifier
+root: datasets/dataset_classifier
+
+train_dir: ${classifier_data.root}/train
+val_dir: ${classifier_data.root}/val
+test_dir: ${classifier_data.root}/test
+
+num_classes: 4
+
+class_names:
+  - curved_mayo_scissor
+  - scalpel_n4
+  - straight_dissection_clamp
+  - straight_mayo_scissor

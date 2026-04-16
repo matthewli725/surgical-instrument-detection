@@ -1,0 +1,9 @@
+defaults:
+  - _self_
+  - classifier_data: surgical_classifier
+  - classifier_model: efficientnet_b0
+  - classifier_trainer: default
+  - hydra: classifier
+
+project_name: trayguard_classifier
+task: classify
