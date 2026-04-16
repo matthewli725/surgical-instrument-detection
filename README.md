@@ -181,6 +181,36 @@ uv run trayguard export-yolo --overwrite
 
 The exporter writes a train, validation, and test YOLO dataset to `data/collected_yolo`, splitting by setup session so lighting variants from the same object placement stay in the same split.
 
+### Export staged spoon lighting experiments
+
+For the metal-spoon lighting robustness test, export one YOLO dataset per training stage:
+
+```bash
+uv run trayguard export-lighting-yolo --overwrite
+```
+
+This writes staged datasets under `data/spoon_lighting_yolo`:
+
+- `reference_only`: trains on the reference image from each spoon arrangement and tests on all non-reference lighting conditions.
+- `reference_plus_45`: trains on reference plus the 45 degree flashlight captures, then tests on right light, both lights, phone-above, and 90 degree captures.
+- `reference_plus_45_90`: trains on reference plus all 45 and 90 degree flashlight captures, then tests on right light, both lights, and phone-above captures.
+
+Each stage includes `manifests/conditions.csv` and `manifests/samples.csv` so the exact lighting split is auditable. The validation split is a copy of the training split by default because the first stage only has six reference images; use the test split for the lighting robustness result.
+
+Train a stage by overriding the YOLO data path:
+
+```bash
+uv run trayguard train data.yolo_data=data/spoon_lighting_yolo/reference_only/data.yaml trainer.name=spoons_reference_only
+uv run trayguard train data.yolo_data=data/spoon_lighting_yolo/reference_plus_45/data.yaml trainer.name=spoons_reference_plus_45
+uv run trayguard train data.yolo_data=data/spoon_lighting_yolo/reference_plus_45_90/data.yaml trainer.name=spoons_reference_plus_45_90
+```
+
+To train and immediately evaluate the held-out lighting conditions with one model variant:
+
+```bash
+uv run trayguard benchmark --tests yolo11s:640:16 --extra-override data.yolo_data=data/spoon_lighting_yolo/reference_only/data.yaml
+```
+
 ### Train one model
 
 ```bash

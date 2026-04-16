@@ -227,3 +227,17 @@ At the end, we should be able to answer:
 > Clean experimental design is more valuable than more data.
 
 Focus on controlled variation, not volume.
+
+
+
+| Dataset              | Class  | Images | Instances | Precision (P) | Recall (R) | mAP50 | mAP50-95 |
+|----------------------|--------|--------|-----------|---------------|------------|-------|----------|
+| reference            | spoon1 | 97     | 97        | 0.890         | 0.938      | 0.967 | 0.840    |
+| reference            | spoon2 | 97     | 97        | 1.000         | 0.944      | 0.991 | 0.863    |
+| reference            | spoon3 | 97     | 97        | 0.950         | 0.982      | 0.993 | 0.804    |
+| reference_plus_45    | spoon1 | 73     | 73        | 0.983         | 0.986      | 0.994 | 0.917    |
+| reference_plus_45    | spoon2 | 73     | 73        | 1.000         | 0.983      | 0.994 | 0.965    |
+| reference_plus_45    | spoon3 | 73     | 73        | 0.996         | 1.000      | 0.995 | 0.953    |
+| reference_plus_45_90 | spoon1 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.902    |
+| reference_plus_45_90 | spoon2 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.972    |
+| reference_plus_45_90 | spoon3 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.980    |
