@@ -2,7 +2,9 @@
 
 ## Objective
 
-Evaluate whether the object detection model can detect and count tools when objects are close together, touching, overlapping, or partially hidden. This experiment supports the TrayGuard goal of reliable tray inspection in realistic layouts rather than ideal isolated-object images.
+Evaluate whether the object detection model can detect and count tools when objects are close together, touching, overlapping, or partially hidden. This experiment supports reliable tray inspection in realistic layouts. Instrument oversupply, large trays, and tray-design complexity all increase the visual burden in OR and SPD workflows (Hill et al., 2022, Rubak et al., 2024, Eussen et al., 2026).
+
+This is one of the clearest workflow risks. A technician may not want to stage every instrument carefully for the camera. A pile or hopper-style workflow may create occlusion that makes vision unreliable. Sterile-processing improvement research shows that workflow design and physical environment are defect drivers (Natarus et al., 2025). The experiment should measure the cost of asking users to spread, separate, or rescan instruments.
 
 ## Core Question
 
@@ -14,13 +16,13 @@ We will run a controlled clutter experiment with increasing scene difficulty. Th
 
 ### Key Principle
 
-Change clutter level systematically:
+Change clutter level systematically.
 
-- Level 0: separated objects
-- Level 1: close but not touching
-- Level 2: touching or slightly overlapping
-- Level 3: moderate overlap
-- Level 4: heavy occlusion
+- Level 0 means separated objects
+- Level 1 means close but not touching
+- Level 2 means touching or slightly overlapping
+- Level 3 means moderate overlap
+- Level 4 means heavy occlusion
 
 This allows us to measure graceful degradation instead of simply asking whether the model works in one messy scene.
 
@@ -28,14 +30,14 @@ This allows us to measure graceful degradation instead of simply asking whether 
 
 ### Classes
 
-Use the same classes as the main prototype where possible:
+Use the same classes as the main prototype where possible.
 
 - Scalpel n4
 - Straight Dissection Clamp
 - Straight Mayo Scissor
 - Curved Mayo Scissor
 
-If surgical instruments are unavailable, use proxy objects:
+If surgical instruments are unavailable, use proxy objects.
 
 - Spoon
 - Fork
@@ -46,28 +48,28 @@ If surgical instruments are unavailable, use proxy objects:
 
 ## Clutter Levels
 
-### Level 0: Separated
+### Level 0 Separated
 
 - Objects are clearly separated.
 - No touching or overlap.
 - This gives a baseline for ideal detection and counting.
 
-### Level 1: Close
+### Level 1 Close
 
 - Objects are close together but still visually distinct.
 - Bounding boxes may be near each other but should not overlap much.
 
-### Level 2: Touching / Slight Overlap
+### Level 2 Touching / Slight Overlap
 
 - Objects touch or overlap at small regions.
 - Most of each object remains visible.
 
-### Level 3: Moderate Occlusion
+### Level 3 Moderate Occlusion
 
 - One object partly covers another.
 - Important features such as handles, tips, or blades may be partially hidden.
 
-### Level 4: Heavy Occlusion
+### Level 4 Heavy Occlusion
 
 - Objects are significantly hidden.
 - Detection may become ambiguous.
@@ -103,7 +105,7 @@ If time is tight, collect fewer clutter levels but keep them clearly separated, 
 
 ## Annotation Rules
 
-Use consistent annotation rules:
+Use consistent annotation rules.
 
 - Label every object that is visible enough for a human to identify.
 - Draw boxes around the visible extent if full extent is ambiguous.
@@ -116,13 +118,13 @@ The goal is camera-visible detection and counting, not guessing from memory that
 
 Use a split that tests clutter generalization.
 
-Example:
+Example split
 
-- Train: Level 0, Level 1, and Level 2
-- Validation: Level 3
-- Test: Level 4
+- Train on Level 0, Level 1, and Level 2
+- Validate on Level 3
+- Test on Level 4
 
-Alternative:
+Alternative split
 
 - Train on all clutter levels from one setup.
 - Test on a second setup with different object arrangement.
@@ -131,30 +133,30 @@ The first split tests whether the model handles worse clutter than it saw during
 
 ## Experiment Steps
 
-### 0:00-0:30 Setup
+### First 30 Minutes Setup
 
 - Choose object classes.
 - Fix camera, lighting, and tray position.
 - Define clutter levels before collecting images.
 
-### 0:30-1:30 Data Collection
+### Next 60 Minutes Data Collection
 
 - Capture images for each clutter level.
 - Save notes about clutter level for each group.
 - Avoid changing lighting while changing clutter.
 
-### 1:30-2:15 Labeling
+### Next 45 Minutes Labeling
 
 - Label all visible objects.
 - Apply occlusion rules consistently.
 - Review heavy-occlusion examples as a team if possible.
 
-### 2:15-3:15 Training
+### Next 60 Minutes Training
 
 - Train one detector using the selected split.
 - Keep validation and test clutter levels fixed.
 
-### 3:15-4:00 Evaluation
+### Final 45 Minutes Evaluation
 
 - Evaluate performance by clutter level.
 - Compare predicted counts against true visible counts.
@@ -162,7 +164,7 @@ The first split tests whether the model handles worse clutter than it saw during
 
 ## Evaluation Metrics
 
-Track:
+Track these metrics.
 
 - Precision
 - Recall
@@ -171,6 +173,8 @@ Track:
 - False negatives caused by occlusion
 - False positives caused by overlapping edges
 - Duplicate detections on a single object
+- Number of scenes where the system should ask the user to spread objects out
+- Count accuracy before and after a simple rescan or re-spread instruction
 
 ## Required Analysis
 
@@ -178,11 +182,11 @@ Track:
 
 | Clutter Level | Precision | Recall | Count Error | Notes |
 | --- | --- | --- | --- | --- |
-| Level 0: separated | | | | |
-| Level 1: close | | | | |
-| Level 2: touching / slight overlap | | | | |
-| Level 3: moderate occlusion | | | | |
-| Level 4: heavy occlusion | | | | |
+| Level 0 separated | | | | |
+| Level 1 close | | | | |
+| Level 2 touching / slight overlap | | | | |
+| Level 3 moderate occlusion | | | | |
+| Level 4 heavy occlusion | | | | |
 
 ### Counting Accuracy
 
@@ -200,6 +204,25 @@ Track:
 | Merged objects | | Touching edges | Better annotations or segmentation |
 | Double-counted object | | Reflections or overlapping boxes | Confidence/NMS tuning |
 
+### Workflow Burden
+
+| Clutter Level | Extra User Action Needed? | Time Cost | Error Reduction After Action | Notes |
+| --- | --- | --- | --- | --- |
+| Level 0 separated | | | | |
+| Level 1 close | | | | |
+| Level 2 touching / slight overlap | | | | |
+| Level 3 moderate occlusion | | | | |
+| Level 4 heavy occlusion | | | | |
+
+### Customer-Risk Interpretation
+
+| Result Pattern | What It Means For Adoption | Response |
+| --- | --- | --- |
+| Works only with fully separated objects | May add too much tray-staging labor | Position as final verification, not bulk sorting |
+| Heavy clutter creates confident wrong counts | Unsafe for hopper-style use | Add hard stop for cluttered scenes |
+| Heavy clutter lowers confidence | Safer if the UI requests a spread/rescan | Make the rescan workflow fast |
+| Moderate clutter works reliably | Supports practical tray-check usage | Use as pilot operating range |
+
 ## What Counts as Success
 
 - Strong baseline performance on separated and close objects
@@ -207,6 +230,7 @@ Track:
 - Predictable degradation as occlusion increases
 - Clear identification of the clutter level where the system becomes unreliable
 - Low-confidence or missed detections are understandable from the image
+- Clear instructions for when users must spread out instruments or rescan
 
 ## What Not To Do
 
@@ -218,7 +242,7 @@ Track:
 
 ## Optional Extension
 
-Add a second tray arrangement:
+Add a second tray arrangement.
 
 - Same object classes
 - Different object order
@@ -229,15 +253,23 @@ Use this as a robustness test for generalization to new clutter layouts.
 
 ## Key Takeaways Expected
 
-At the end, we should be able to answer:
+At the end, we should be able to answer these questions.
 
 1. How does clutter affect detection performance?
 2. How does clutter affect tool counting accuracy?
 3. What level of occlusion causes the system to fail?
 4. Does the model fail safely by lowering confidence or fail dangerously by producing confident wrong counts?
+5. Would the necessary tray-staging steps feel acceptable in a real SPD workflow?
 
 ## Guiding Principle
 
 > Counting is only useful if the system knows when visibility is too poor.
 
-The goal is not perfect detection under impossible occlusion; the goal is to understand and communicate the reliable operating range.
+The goal is not perfect detection under impossible occlusion. The goal is to understand and communicate the reliable operating range.
+
+## References
+
+- Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
+- Hill et al., ["Measuring intraoperative surgical instrument use with radio-frequency identification"](https://doi.org/10.1093/jamiaopen/ooac003), JAMIA Open, 2022.
+- Rubak et al., ["Surgical instrument tray optimization process at a university hospital: A comprehensive overview"](https://doi.org/10.1016/j.sopen.2024.09.007), Surgery Open Science, 2024.
+- Eussen et al., ["Surgical tray optimization: a prospective and survey-based evaluation of environmental and economic outcomes"](https://doi.org/10.1007/s00464-025-12499-2), Surgical Endoscopy, 2026.
