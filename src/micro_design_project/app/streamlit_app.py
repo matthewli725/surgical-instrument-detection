@@ -66,23 +66,23 @@ def render_controls(state: AppState) -> tuple[str, int]:
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Start", use_container_width=True):
+        if st.button("Start", width='stretch'):
             with state.lock:
                 if not state.worker_started and not state.worker_alive:
                     state.stop_requested = False
                 state.running = True
                 state.paused = False
     with col2:
-        if st.button("Pause / Resume", use_container_width=True):
+        if st.button("Pause / Resume", width='stretch'):
             with state.lock:
                 if state.running:
                     state.paused = not state.paused
     with col3:
-        if st.button("Toggle Complete", use_container_width=True):
+        if st.button("Toggle Complete", width='stretch'):
             with state.lock:
                 state.completed = not state.completed
     with col4:
-        if st.button("Stop", use_container_width=True):
+        if st.button("Stop", width='stretch'):
             with state.lock:
                 state.stop_requested = True
                 state.running = False
@@ -144,7 +144,7 @@ def render_live_view(state: AppState, requirements: list[TrayRequirement]) -> No
         if annotated_frame is None:
             st.info("Press Start to begin detection.")
         else:
-            st.image(annotated_frame, channels="BGR", use_container_width=True)
+            st.image(annotated_frame, channels="BGR", width='stretch')
     with right:
         render_checklist(requirements, counts)
 
