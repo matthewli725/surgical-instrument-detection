@@ -4,6 +4,9 @@ Practical setup and command reference for collecting data, exporting YOLO datase
 
 Project background and experiment motivation live in [docs/project_background.md](docs/project_background.md).
 
+Reproduce lighting experiments in
+[docs/experiments/lighting_yolo_reproducibility.md](docs/experiments/lighting_yolo_reproducibility.md).
+
 ## 1. Install
 
 ### Install `uv`
