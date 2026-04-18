@@ -1,247 +1,115 @@
-# Reflectivity & Lighting Experiment Plan
+# Lighting Robustness
 
-## Objective
+TrayGuard needs to work when metal tools reflect light, cast shadows, or create
+glare. This page explains what we tested and how to interpret the results.
 
-Evaluate how reflective materials affect object detection under different lighting conditions. Use metal utensils as proxy objects if surgical instruments are unavailable. This experiment tests two questions.
+## What This Test Answers
 
-1. Increasing training data diversity improves robustness
-2. Preprocessing, such as reflection or glare reduction, provides measurable benefit
+Lighting can make the same tray look very different to a camera. A tool may be
+easy to detect under soft light and harder to detect when a bright reflection
+covers part of the object.
 
-This experiment supports the broader TrayGuard goal of reliable visual assistance. Sterile-processing errors are strongly tied to visual inspection, identification, and function checks. Recent research also argues that camera and AI technologies may help with these visualization tasks (Nichol and Saari, 2023, Nichol et al., 2024, Fayad et al., 2025).
+## Why This Is A Risk
 
-It also tests a deployment risk. Sterile-processing defects can occur across cleaning, inspection, packaging, and sterilization links. A camera-based assistant needs to surface image-quality problems as review or rescan states (Chen et al., 2023, Nichol et al., 2024).
+Computer vision systems often assume that object appearance is mostly diffuse
+and stable, but shiny metal creates specular highlights that change with the
+light and camera angle. Specular reflection is described as a longstanding
+problem for segmentation, recognition, image analysis, and tracking because it
+creates appearance changes that do not belong to the object itself
+([Wang et al., 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/)).
+Other CV work makes the same point more directly: many algorithms assume
+Lambertian surfaces, and specular highlights can hide texture details, create
+surface discontinuities, and reduce robustness
+([Wei et al., 2018](https://www.sciencedirect.com/science/article/pii/S107731421730173X)).
 
-## Core Question
+This matters for TrayGuard because sterile processing relies heavily on visual
+identification and inspection. In observed surgical cases, visualization-related
+instrument errors accounted for most errors in the study's taxonomy
+([Nichol et al., 2024](https://bmcsurg.biomedcentral.com/articles/10.1186/s12893-024-02407-1)).
 
-> How much do lighting and reflections degrade detection performance? What helps more, data diversity or preprocessing?
+This test answers:
 
-## Experimental Design Overview
+- Does performance drop when lighting changes?
+- Does adding more lighting variety during training improve the result?
+- When should the product ask the user to reduce glare and scan again?
 
-We will run a controlled lighting experiment with minimal confounding variables.
+## Dataset
 
-### Key Principle
+We used spoon images as reflective proxy objects. Spoons are not surgical
+instruments, but they are useful for testing glare because they have shiny metal
+surfaces.
 
-Only one factor changes at a time within a setup.
+The data is organized into three training stages:
 
-- Within a setup, vary lighting only
-- Across setups, allow small variations such as background, tray pose, or object placement
+| Dataset | What The Model Saw During Training |
+| --- | --- |
+| `reference_only` | Reference lighting only |
+| `reference_plus_45` | Reference lighting plus 45 degree flashlight views |
+| `reference_plus_45_90` | Reference lighting plus 45 and 90 degree flashlight views |
 
-This keeps the experiment focused on image-space effects of specular reflection, including saturated highlights, glare shape, contrast distortion, and shadow changes. We are not attempting to physically model reflectance or estimate material properties.
+Each stage is evaluated on lighting conditions that were not included in that
+stage's training set. This is more useful than a random split because it tests
+whether the model handles new lighting, not whether it memorized similar images.
 
-## Dataset Structure
+## How To Read The Results
 
-### Classes
+Use precision, recall, mAP50, and mAP50-95 together.
 
-Keep the class list small so errors are easy to interpret.
+- Precision: when TrayGuard detects a tool, how often is it right?
+- Recall: how often does TrayGuard find the tools that are actually present?
+- mAP50: general detection quality with a forgiving box-overlap threshold.
+- mAP50-95: stricter detection quality across multiple box-overlap thresholds.
 
-- Spoon
-- Fork
-- Knife
-- Tongs, optional
+For this experiment, recall matters a lot because missed instruments can create
+false confidence that a tray is complete.
 
-These kitchen objects are accessible proxy objects for metallic surgical instruments. They are not perfect substitutes, but they reproduce the reflective surface problem that can degrade detector performance.
+## Results
 
-## Lighting Conditions
+| Dataset | Class | Images | Instances | Precision | Recall | mAP50 | mAP50-95 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `reference_only` | spoon1 | 97 | 97 | 0.890 | 0.938 | 0.967 | 0.840 |
+| `reference_only` | spoon2 | 97 | 97 | 1.000 | 0.944 | 0.991 | 0.863 |
+| `reference_only` | spoon3 | 97 | 97 | 0.950 | 0.982 | 0.993 | 0.804 |
+| `reference_plus_45` | spoon1 | 73 | 73 | 0.983 | 0.986 | 0.994 | 0.917 |
+| `reference_plus_45` | spoon2 | 73 | 73 | 1.000 | 0.983 | 0.994 | 0.965 |
+| `reference_plus_45` | spoon3 | 73 | 73 | 0.996 | 1.000 | 0.995 | 0.953 |
+| `reference_plus_45_90` | spoon1 | 49 | 49 | 0.999 | 1.000 | 0.995 | 0.902 |
+| `reference_plus_45_90` | spoon2 | 49 | 49 | 0.999 | 1.000 | 0.995 | 0.972 |
+| `reference_plus_45_90` | spoon3 | 49 | 49 | 0.999 | 1.000 | 0.995 | 0.980 |
 
-Define simple, repeatable categories.
+## Interpretation
 
-1. Diffuse overhead light
-2. Left-side angled light, roughly 30-45 degrees
-3. Right-side angled light, roughly 30-45 degrees
-4. Low-angle harsh light with strong glare
+Adding lighting variety improved the results. The model trained only on the
+reference condition still performed well, but the models trained with additional
+45 degree and 90 degree lighting were more stable across the held-out lighting
+conditions.
 
-Exact angle measurement is not required. Consistency and documentation matter more than precision.
+The practical takeaway is simple: TrayGuard should not rely on one clean camera
+setup. The training data should include realistic lighting variation, especially
+glare and hard shadows.
 
-## Data Collection Plan
+## Product Implications
 
-### Fixed Setup
-
-- Fixed object placement
-- Fixed camera position, taped down if possible
-- Fixed background
-- Same framing
-- Same object identities across all lighting conditions
-
-### Capture Targets
-
-- About 30 images per lighting condition
-- About 120 images total
-
-### Procedure
-
-1. Arrange objects in a tray-like layout.
-2. Capture one reference image.
-3. Annotate bounding boxes.
-4. Lock the setup.
-5. Change lighting condition.
-6. Capture multiple images per condition using the same labels.
-
-Avoid near-duplicate spam. Small natural variations are useful, but repeated identical frames make the dataset look larger without adding much information.
-
-## Train / Val / Test Split
-
-Split by lighting condition, not randomly.
-
-Example split
-
-- Train on diffuse overhead light and left-side angled light
-- Validate on right-side angled light
-- Test on low-angle harsh glare
-
-This tests generalization to unseen lighting. Random splitting would leak nearly identical object setups across train and test, making the results look better than they really are.
-
-## Experiment Steps
-
-### First 30 Minutes Setup
-
-- Define lighting conditions.
-- Fix camera and tray position.
-- Prepare objects.
-- Confirm that glare is visible in at least one harsh-light condition.
-
-### Next 75 Minutes Data Collection
-
-- Capture all lighting conditions.
-- Keep framing consistent.
-- Record the lighting condition for each image.
-- Avoid changing object placement within the setup.
-
-### Next 45 Minutes Labeling
-
-If time is tight, label a balanced subset first.
-
-- About 80 train images
-- About 20 validation images
-- About 20 test images
-
-### Next 60 Minutes Training
-
-Train one detector under three training data sizes.
-
-- 25% of training set
-- 50% of training set
-- 100% of training set
-
-Keep validation and test fixed.
-
-### Final 30 Minutes Optional Ablation
-
-Try preprocessing only if it is quick to set up.
-
-- Run glare or reflection reduction.
-- Apply it to validation and test first.
-- Compare raw images against preprocessed images.
-
-If preprocessing setup takes too long, skip it. A clean data-diversity result is more valuable than an unfinished preprocessing experiment.
-
-## Evaluation Metrics
-
-Track these metrics.
-
-- Precision
-- Recall
-- mAP, if available
-- Detection confidence
-- Number of detections per image
-- False negatives, especially on reflective surfaces
-- False positives caused by glare or reflected edges
-- High-confidence wrong detections under glare
-- Rate of images that should trigger a rescan or lighting warning
-
-## Specularity Measurements
-
-To connect performance degradation to reflectivity, compute simple image-based metrics inside each object bounding box.
-
-- Percentage of saturated pixels
-- Bright highlight area fraction above a chosen threshold
-- Top percentile brightness, such as 95th or 99th percentile
-- Mean and standard deviation of pixel intensity
-
-Then compare model performance against these specularity measurements. The goal is to answer whether failures correlate with visible glare, saturation, or contrast distortion.
-
-## Required Analysis
-
-### By Lighting Condition
-
-| Condition | Precision | Recall | mAP | Notes |
-| --- | --- | --- | --- | --- |
-| Seen lighting | | | | |
-| Unseen lighting | | | | |
-| Harsh glare | | | | |
-
-### By Training Size
-
-| Train Size | Precision | Recall | mAP | Notes |
-| --- | --- | --- | --- | --- |
-| 25% | | | | |
-| 50% | | | | |
-| 100% | | | | |
-
-### With vs Without Preprocessing
-
-| Setup | Precision | Recall | mAP | Notes |
-| --- | --- | --- | --- | --- |
-| Raw images | | | | |
-| Preprocessed images | | | | |
-
-### Performance vs Specularity
-
-| Specularity Level | Example Definition | Performance Notes |
+| Observation | What It Means | Product Response |
 | --- | --- | --- |
-| Low | Few saturated pixels | |
-| Medium | Visible highlights but object shape remains clear | |
-| High | Strong glare or saturated regions obscure object shape | |
+| Performance improves with lighting diversity | Lighting variation belongs in training data | Keep collecting examples under different lighting |
+| Glare can still obscure object shape | Some images are not safe for automatic confirmation | Ask users to reduce glare and rescan |
+| Low confidence under harsh light is safer than confident mistakes | Uncertainty should be visible to the user | Use review or rescan language instead of silent failure |
 
-### Customer-Risk Interpretation
+## What We Are Not Claiming
 
-| Result Pattern | What It Means For Adoption | Response |
-| --- | --- | --- |
-| Good results only under diffuse light | Demo is fragile outside controlled lighting | Add lighting guidance or more lighting data |
-| Glare causes false positives | The system may count reflections as instruments | Tune thresholds and add glare-specific negatives |
-| Glare causes false negatives | The system may incorrectly mark required tools missing | Add rescan prompt or alternate camera angle |
-| Low-confidence under harsh light | Safer failure if the UI explains what to fix | Add "spread tray / reduce glare / rescan" state |
+- Spoon data does not prove surgical-instrument readiness.
+- This experiment does not measure sterility, cleanliness, sharpness, or tool
+  function.
+- We are not using a dedicated specularity measurement pipeline right now.
 
-## What Counts as Success
+## Note On Specularity Pixels
 
-- Stable performance on unseen lighting
-- Improvement with increased lighting diversity
-- Clear evidence whether preprocessing helps enough to justify the added complexity
-- Documented failure cases when glare causes uncertainty or missed detections
-- A practical rule for when the image quality is too poor for automatic confirmation
+There are research methods for estimating highlights and separating diffuse from
+specular reflection, but this project does not currently implement a validated
+specularity-pixel algorithm. Simple saturated-pixel counts or brightness
+thresholds would be custom heuristics, not a reliable product metric.
 
-## What Not To Do
-
-- Do not randomly split images.
-- Do not change multiple variables at once within a setup.
-- Do not spend excessive time on preprocessing tools.
-- Do not aim for perfect surgical realism yet.
-- Do not claim silverware fully replaces surgical instrument testing.
-
-## Optional Extension
-
-Collect a second setup.
-
-- Slightly different background, or
-- Slight rotation of tray, or
-- Different arrangement of the same objects
-
-Use this as a robustness test set.
-
-## Key Takeaways Expected
-
-At the end, we should be able to answer these questions.
-
-1. Does lighting significantly affect detection?
-2. Does more diverse training data fix it?
-3. Is preprocessing worth the added complexity?
-4. Do failures correlate with measurable glare or saturation?
-5. When should the product ask for a rescan instead of showing a confident result?
-
-## Guiding Principle
-
-> Clean experimental design is more valuable than more data.
-
-Focus on controlled variation, not volume.
 
 ## References
 
@@ -249,17 +117,5 @@ Focus on controlled variation, not volume.
 - Fayad et al., ["Traceability of Surgical Instruments: A Systematic Review"](https://doi.org/10.3390/app15031592), Applied Sciences, 2025.
 - Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), Perioperative Care and Operating Room Management, 2023.
 - Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
-
-
-
-| Dataset              | Class  | Images | Instances | Precision (P) | Recall (R) | mAP50 | mAP50-95 |
-|----------------------|--------|--------|-----------|---------------|------------|-------|----------|
-| reference            | spoon1 | 97     | 97        | 0.890         | 0.938      | 0.967 | 0.840    |
-| reference            | spoon2 | 97     | 97        | 1.000         | 0.944      | 0.991 | 0.863    |
-| reference            | spoon3 | 97     | 97        | 0.950         | 0.982      | 0.993 | 0.804    |
-| reference_plus_45    | spoon1 | 73     | 73        | 0.983         | 0.986      | 0.994 | 0.917    |
-| reference_plus_45    | spoon2 | 73     | 73        | 1.000         | 0.983      | 0.994 | 0.965    |
-| reference_plus_45    | spoon3 | 73     | 73        | 0.996         | 1.000      | 0.995 | 0.953    |
-| reference_plus_45_90 | spoon1 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.902    |
-| reference_plus_45_90 | spoon2 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.972    |
-| reference_plus_45_90 | spoon3 | 49     | 49        | 0.999         | 1.000      | 0.995 | 0.980    |
+- Wang et al., ["Light Field Imaging Based Accurate Image Specular Highlight Removal"](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/), PLOS One, 2016.
+- ["Specular highlight reduction with known surface geometry"](https://www.sciencedirect.com/science/article/pii/S107731421730173X), Computer Vision and Image Understanding, 2018.

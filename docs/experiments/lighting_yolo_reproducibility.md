@@ -1,5 +1,10 @@
-# Reproducing Lighting YOLO Experiment
+# Reproduce The Lighting YOLO Results
 
+Machine-learning results are hard to trust if the data, code, and trained model
+are not shared together. Reproducibility guidance for ML in the life sciences
+specifically recommends sharing data, code, workflow details, and trained models
+because retraining can be expensive and can produce different results
+([Heil et al., 2021](https://www.nature.com/articles/s41592-021-01256-7)).
 
 ## Unzip Data and Weights
 
@@ -50,8 +55,7 @@ conditions are train vs test for a stage. The `manifests/samples.csv` file maps
 every exported image back to its session and lighting condition.
 
 
-## Validate The Shared Weights
-
+## Validate Shared Weights
 
 ```bash
 uv sync
@@ -59,17 +63,17 @@ uv sync
 uv run python scripts/print_yolo_metrics.py \
   --model weights/spoons_reference_only.pt \
   --data data/spoon_lighting_yolo/reference_only/data.yaml \
-  --split test 
+  --split test
 
 uv run python scripts/print_yolo_metrics.py \
   --model weights/spoons_reference_plus_45.pt \
   --data data/spoon_lighting_yolo/reference_plus_45/data.yaml \
-  --split test 
+  --split test
 
 uv run python scripts/print_yolo_metrics.py \
   --model weights/spoons_reference_plus_45_90.pt \
   --data data/spoon_lighting_yolo/reference_plus_45_90/data.yaml \
-  --split test 
+  --split test
 ```
 
 Use the printed precision, recall, mAP50, and mAP50-95 values as the validation

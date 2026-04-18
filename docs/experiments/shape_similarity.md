@@ -1,220 +1,97 @@
-# Shape Similarity Experiment Plan
+# Similar-Looking Tools
 
-## Objective
+TrayGuard needs to distinguish tools that look almost the same. This page
+explains why that matters and how to interpret results for visually similar
+classes.
 
-Evaluate whether the object detection model can distinguish between objects with similar shapes, outlines, and proportions. This experiment targets a documented sterile-processing risk. Wrong-specification instruments were the largest packaging-error category in Zhu et al.'s study. Identification and sorting failures are also part of the visualization-related error burden described by Nichol and Saari and Nichol et al. (Zhu et al., 2019, Nichol and Saari, 2023, Nichol et al., 2024).
+## What This Test Answers
 
-This is also a customer-trust experiment. A hospital buyer will worry less about obvious objects. They will care more about near-neighbor specifications. Straight vs curved instruments are a good example. A wrong instrument can create both an extra item and a missing item in the same tray (Nichol et al., 2024, Zhu et al., 2019).
+Some tray errors are not obvious. A wrong tool may have the same general shape
+as the correct one, such as a straight instrument instead of a curved one.
 
-## Core Question
+## Why This Is A Risk
 
-> Can the model reliably differentiate between visually similar tools, or does it confuse objects that share the same general shape?
+Computer vision research treats fine-grained recognition as a hard problem
+because the model must distinguish categories with small inter-class differences
+and sometimes large variation within the same class
+([Zhao et al., 2017](https://link.springer.com/article/10.1007/s11633-017-1053-3)).
+Recent fine-grained recognition work makes the same point: subtle differences
+between otherwise similar categories are difficult for generic classifiers
+([Wang et al., 2021](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254054)).
 
-## Experimental Design Overview
+This is directly relevant to sterile processing. In a packaging-error study,
+wrong instrument specification was the largest category, and the authors note
+that instruments in the same category can have very small structural
+differences
+([Zhu et al., 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6425664/)).
+That is exactly the kind of visual problem this experiment is meant to test.
 
-We will run a controlled shape-differentiation experiment where lighting, background, and camera position are kept as stable as possible while object identity changes.
+This test answers:
 
-### Key Principle
+- Can TrayGuard tell similar tools apart?
+- Which pairs are most often confused?
+- Are wrong labels low confidence or high confidence?
+- Which pairs should require human review before confirmation?
 
-Only one factor should be emphasized.
+## Similarity Examples
 
-- Within a setup, keep lighting, background, camera, and tray position fixed
-- Across classes, choose objects that are intentionally similar in silhouette
+Useful pairs include:
 
-This isolates whether the model is learning fine-grained shape cues rather than relying on easy differences such as color, size, or background.
+- Straight vs curved scissors.
+- Straight vs curved clamps.
+- Similar tools with different jaw, tip, or handle shapes.
+- Long narrow instruments that share the same silhouette.
+- Proxy objects such as similar scissors, pliers, tweezers, pens, or utensils.
 
-## Dataset Structure
+The test should be challenging enough that success means something. If the
+objects are visually obvious, the result does not tell us much about real tray
+verification risk.
 
-### Preferred Classes
+## How To Read The Results
 
-Use real or proxy objects with similar outlines.
+Aggregate accuracy is not enough. Look at class-level and pair-level outcomes.
 
-- Straight Mayo Scissor
-- Curved Mayo Scissor
-- Straight Dissection Clamp
-- Scalpel n4
+- Per-class precision: when the model predicts this class, how often is it
+  right?
+- Per-class recall: how often does the model find this class when it is present?
+- Pair confusion: which specific class pairs get mixed up?
+- High-confidence wrong class: the riskiest failure mode.
 
-If real surgical instruments are unavailable, use accessible substitutes.
+The most important result is the worst similar pair, not the average score.
 
-- Similar scissors with different tip shapes
-- Similar pliers or clamps
-- Similar pens, tweezers, or craft tools
-- Utensils with similar long narrow silhouettes
+## Product Interpretation
 
-## Shape Variables To Test
-
-Focus on differences that resemble surgical instrument recognition.
-
-1. Straight vs curved tips
-2. Different handle shapes
-3. Different jaw or blade shapes
-4. Slight length or width differences
-5. Similar hinge or grip structures
-
-## Data Collection Plan
-
-### Fixed Setup
-
-- Fixed camera position
-- Fixed lighting
-- Fixed background
-- Tray-like layout
-- Similar scale across objects
-- Similar object orientation distribution across classes
-
-### Capture Targets
-
-- About 30-50 images per class
-- About 120-200 images total for a four-class test
-
-If time is tight, prioritize balanced class counts over total volume.
-
-## Procedure
-
-1. Select visually similar object classes.
-2. Place one or more objects in a tray-like layout.
-3. Capture images with varied rotations and positions.
-4. Keep lighting and background stable.
-5. Annotate bounding boxes and class labels.
-6. Train one detector on the collected shape classes.
-7. Evaluate confusion between similar classes.
-
-## Train / Val / Test Split
-
-Split by setup or object instance where possible, not by random near-duplicate frames.
-
-Example split
-
-- Train on most object poses and rotations
-- Validate on held-out poses
-- Test on unseen rotations or a second physical instance of a similar object
-
-The strongest version uses a held-out object instance, such as a second pair of similar scissors, to test whether the model learns the category rather than memorizing one object.
-
-## Experiment Steps
-
-### First 30 Minutes Setup
-
-- Select object classes.
-- Confirm the classes are visually similar enough to be challenging.
-- Fix lighting, camera, and background.
-
-### Next 60 Minutes Data Collection
-
-- Capture balanced images for each class.
-- Vary pose and rotation.
-- Keep lighting fixed.
-- Avoid making one class visually easier because of a unique background or location.
-
-### Next 45 Minutes Labeling
-
-- Label all visible objects.
-- Check that class names are consistent.
-- Review examples of the most similar pairs before training.
-
-### Next 60 Minutes Training
-
-- Train one detector on the full shape dataset.
-- If time allows, train a second version with fewer examples to test data sensitivity.
-
-### Final 45 Minutes Evaluation
-
-- Evaluate per-class precision and recall.
-- Review confusion matrix or class-level mistakes.
-- Save example images where the model confuses similar tools.
-
-## Evaluation Metrics
-
-Track these metrics.
-
-- Per-class precision
-- Per-class recall
-- mAP, if available
-- Confusion between similar class pairs
-- False positives between same-shape classes
-- Detection confidence for correct vs incorrect predictions
-- High-confidence wrong-class predictions
-- Cases where a family-level label would be safer than a specific label
-
-## Required Analysis
-
-### Per-Class Performance
-
-| Class | Precision | Recall | mAP | Notes |
-| --- | --- | --- | --- | --- |
-| Class 1 | | | | |
-| Class 2 | | | | |
-| Class 3 | | | | |
-| Class 4 | | | | |
-
-### Similar-Pair Confusion
-
-| Pair | Common Mistake | Frequency | Notes |
-| --- | --- | --- | --- |
-| Straight vs curved instrument | | | |
-| Clamp vs scissor | | | |
-| Long narrow tool vs long narrow tool | | | |
-
-### Customer-Risk Interpretation
-
-| Result Pattern | What It Means For Adoption | Response |
+| Result Pattern | What It Means | Product Response |
 | --- | --- | --- |
-| Low aggregate mAP | Model is not ready even for controlled use | Collect more balanced data or simplify classes |
-| Good mAP but one bad pair | The system may fail on exactly the cases technicians care about | Add targeted examples and UI review for that pair |
-| High-confidence wrong class | Dangerous because the UI may falsely reassure the user | Add confidence calibration or needs-review state |
-| Low confidence on similar pair | Safer failure if the UI asks for review | Make review workflow fast and clear |
+| Similar pairs are separated reliably | TrayGuard can support more specific tray checks | Keep class labels specific |
+| One similar pair fails often | That pair needs special handling | Add targeted data or review prompts |
+| Wrong similar-class labels are high confidence | The product may falsely reassure the user | Add confidence review for that pair |
+| Similar tools are low confidence | The system is failing more safely | Ask the user to confirm the class |
 
-### Pose Robustness
+## User-Facing Guidance
 
-| Pose Type | Performance | Notes |
-| --- | --- | --- |
-| Horizontal | | |
-| Vertical | | |
-| Diagonal | | |
-| Partially rotated | | |
+When TrayGuard flags a similar-looking item for review, the user should compare:
 
-## What Counts as Success
+- Tip shape.
+- Curve direction.
+- Handle shape.
+- Jaw or blade profile.
+- Size and length.
+- Any printed or etched markings visible in the image.
 
-- The model separates similar classes better than chance.
-- The worst confusions are explainable and visually plausible.
-- Per-class recall remains acceptable across different rotations.
-- Similar-shape mistakes decrease when more class-balanced data is added.
-- High-confidence wrong-specification predictions are rare enough to be caught by a review threshold.
+The product should make review fast instead of pretending that every similar
+tool can be automatically confirmed.
 
-## What Not To Do
+## What We Are Not Claiming
 
-- Do not use classes that are too visually different.
-- Do not let background or object location reveal the class.
-- Do not collect many near-identical frames from one pose.
-- Do not report only aggregate mAP if one class pair is failing badly.
-
-## Optional Extension
-
-Use a held-out physical object instance.
-
-- Train on one object instance per class.
-- Test on a different instance with similar shape.
-
-This better approximates the real surgical setting, where the system may see instruments of the same type with slight manufacturing or wear differences.
-
-## Key Takeaways Expected
-
-At the end, we should be able to answer these questions.
-
-1. Can the model distinguish similar object shapes?
-2. Which shape pairs are most commonly confused?
-3. Does pose variation improve shape recognition?
-4. Is the model learning object identity or memorizing one visual instance?
-5. Which class pairs would need human confirmation before a hospital pilot?
-
-## Guiding Principle
-
-> Similar-looking classes are the point of the experiment.
-
-Make the task challenging enough that success means something.
+- A few proxy classes do not prove coverage of all surgical instruments.
+- High aggregate mAP does not mean every important pair is safe.
+- Tool identification is not the same thing as functional inspection.
 
 ## References
 
 - Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), Perioperative Care and Operating Room Management, 2023.
 - Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
+- Wang et al., ["Fine-grained classification based on multi-scale pyramid convolution networks"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254054), PLOS One, 2021.
+- Zhao et al., ["A survey on deep learning-based fine-grained object classification and semantic segmentation"](https://link.springer.com/article/10.1007/s11633-017-1053-3), Machine Intelligence Research, 2017.
 - Zhu et al., ["Errors in packaging surgical instruments based on a surgical instrument tracking system: an observational study"](https://link.springer.com/article/10.1186/s12913-019-4007-3), BMC Health Services Research, 2019.
