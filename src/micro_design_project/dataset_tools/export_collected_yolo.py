@@ -1,14 +1,25 @@
 from __future__ import annotations
 
 import argparse
+import json
 import random
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Sequence
 
+from micro_design_project.data_collection.models import Box
+
 
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp", ".webp")
+
+
+@dataclass(frozen=True)
+class SessionAnnotation:
+    class_names: list[str]
+    boxes: list[Box]
+    image_width: int
+    image_height: int
 
 
 @dataclass(frozen=True)
@@ -16,6 +27,7 @@ class CollectedSample:
     session_id: str
     image_path: Path
     label_path: Path
+    annotation: SessionAnnotation | None = None
 
     @property
     def output_stem(self) -> str:
@@ -49,6 +61,80 @@ def load_class_names(input_dir: Path) -> list[str]:
     return class_names
 
 
+def load_session_annotation(session_dir: Path) -> SessionAnnotation | None:
+    metadata_path = session_dir / "metadata.json"
+    if not metadata_path.exists():
+        return None
+
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    image_width = metadata.get("image_width")
+    image_height = metadata.get("image_height")
+    raw_boxes = metadata.get("boxes")
+    if not isinstance(image_width, int) or not isinstance(image_height, int) or not isinstance(raw_boxes, list):
+        return None
+
+    boxes: list[Box] = []
+    for raw_box in raw_boxes:
+        if not isinstance(raw_box, dict):
+            return None
+        label = raw_box.get("label")
+        x1 = raw_box.get("x1")
+        y1 = raw_box.get("y1")
+        x2 = raw_box.get("x2")
+        y2 = raw_box.get("y2")
+        if not isinstance(label, str) or not all(isinstance(value, int) for value in (x1, y1, x2, y2)):
+            return None
+        boxes.append(Box(label=label, x1=x1, y1=y1, x2=x2, y2=y2))
+
+    raw_class_names = metadata.get("class_names")
+    class_names = [name for name in raw_class_names if isinstance(name, str)] if isinstance(raw_class_names, list) else []
+    return SessionAnnotation(
+        class_names=class_names,
+        boxes=boxes,
+        image_width=image_width,
+        image_height=image_height,
+    )
+
+
+def resolve_export_class_names(input_dir: Path) -> list[str]:
+    classes_from_metadata: list[str] = []
+
+    sessions_dir = input_dir / "sessions"
+    if sessions_dir.exists():
+        for session_dir in sorted(path for path in sessions_dir.iterdir() if path.is_dir()):
+            annotation = load_session_annotation(session_dir)
+            if annotation is None:
+                continue
+
+            used_labels = {box.label for box in annotation.boxes}
+            ordered_labels = [label for label in annotation.class_names if label in used_labels]
+            for box in annotation.boxes:
+                if box.label not in ordered_labels:
+                    ordered_labels.append(box.label)
+
+            for label in ordered_labels:
+                if label not in classes_from_metadata:
+                    classes_from_metadata.append(label)
+
+    if classes_from_metadata:
+        return classes_from_metadata
+
+    return load_class_names(input_dir)
+
+
+def render_annotation_labels(annotation: SessionAnnotation, class_names: list[str]) -> str:
+    class_to_id = {name: idx for idx, name in enumerate(class_names)}
+    lines = [
+        box.normalized_yolo(
+            image_width=annotation.image_width,
+            image_height=annotation.image_height,
+            class_id=class_to_id[box.label],
+        )
+        for box in annotation.boxes
+    ]
+    return "\n".join(lines) + ("\n" if lines else "")
+
+
 def validate_ratios(train_ratio: float, val_ratio: float, test_ratio: float) -> None:
     total = train_ratio + val_ratio + test_ratio
     if abs(total - 1.0) > 1e-9:
@@ -67,6 +153,7 @@ def discover_samples(input_dir: Path) -> dict[str, list[CollectedSample]]:
         labels_dir = session_dir / "labels"
         if not images_dir.exists() or not labels_dir.exists():
             continue
+        annotation = load_session_annotation(session_dir)
 
         session_samples: list[CollectedSample] = []
         for image_path in sorted(images_dir.iterdir()):
@@ -82,6 +169,7 @@ def discover_samples(input_dir: Path) -> dict[str, list[CollectedSample]]:
                     session_id=session_dir.name,
                     image_path=image_path,
                     label_path=label_path,
+                    annotation=annotation,
                 )
             )
 
@@ -148,7 +236,10 @@ def copy_samples(
             label_dst = output_dir / "labels" / split_name / f"{sample.output_stem}.txt"
 
             shutil.copy2(sample.image_path, image_dst)
-            shutil.copy2(sample.label_path, label_dst)
+            if sample.annotation is None:
+                shutil.copy2(sample.label_path, label_dst)
+            else:
+                label_dst.write_text(render_annotation_labels(sample.annotation, class_names), encoding="utf-8")
             manifest_lines.append(f"images/{split_name}/{image_dst.name}")
             copied_count += 1
 
@@ -177,7 +268,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
     validate_ratios(args.train_ratio, args.val_ratio, args.test_ratio)
 
-    class_names = load_class_names(args.input_dir)
+    class_names = resolve_export_class_names(args.input_dir)
     samples_by_session = discover_samples(args.input_dir)
     session_splits = split_sessions(
         session_ids=sorted(samples_by_session),

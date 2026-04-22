@@ -16,15 +16,15 @@ Most standard classifiers are evaluated as closed-set systems, where every test
 class is known during training. Open-set recognition research argues that this
 is unrealistic for real vision applications because unknown classes can appear
 at inference time
-([Scheirer et al., 2013](https://pubmed.ncbi.nlm.nih.gov/23682001/)).
+([Scheirer et al., 2013](../../bibliography.md#scheirer-et-al-2013)).
 Deep open-set work states the practical requirement plainly: a recognizer must
 classify known samples and reject unknown samples, while conventional deep
 models assume a closed environment
-([Schlachter et al., 2020](https://link.springer.com/article/10.1007/s42979-020-0086-9)).
+([Schlachter et al., 2020](../../bibliography.md#schlachter-et-al-2020)).
 
 This matters for TrayGuard because tray errors include missing, extra, and wrong
 instruments, and a wrong instrument can look similar to the expected one
-([Zhu et al., 2019](https://bmchealthservres.biomedcentral.com/articles/10.1186/s12913-019-4007-3)).
+([Zhu et al., 2019](../../bibliography.md#zhu-et-al-2019)).
 If an unknown object is confidently labeled as a known tool, the product could
 make a bad tray look complete.
 
@@ -82,12 +82,6 @@ When TrayGuard marks an item for review, the user should check whether it is:
 - A model trained on a few classes cannot identify every surgical instrument.
 - A review flag is a support tool, not a substitute for technician judgment.
 
-## References
+## Bibliography
 
-- Chen et al., ["Incidence of Adverse Events in Central Sterile Supply Department: A Single-Center Retrospective Study"](https://doi.org/10.2147/RMHP.S423108), Risk Management and Healthcare Policy, 2023.
-- Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
-- Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
-- Rubak et al., ["Surgical instrument tray optimization process at a university hospital: A comprehensive overview"](https://doi.org/10.1016/j.sopen.2024.09.007), Surgery Open Science, 2024.
-- Scheirer et al., ["Toward open set recognition"](https://pubmed.ncbi.nlm.nih.gov/23682001/), IEEE Transactions on Pattern Analysis and Machine Intelligence, 2013.
-- Schlachter et al., ["Deep Open Set Recognition Using Dynamic Intra-class Splitting"](https://link.springer.com/article/10.1007/s42979-020-0086-9), SN Computer Science, 2020.
-- Zhu et al., ["Errors in packaging surgical instruments based on a surgical instrument tracking system: an observational study"](https://link.springer.com/article/10.1186/s12913-019-4007-3), BMC Health Services Research, 2019.
+See the [central bibliography](../../bibliography.md) for full source details.

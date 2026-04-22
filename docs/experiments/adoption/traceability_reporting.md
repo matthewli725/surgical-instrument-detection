@@ -14,10 +14,10 @@ Instrument errors are difficult to improve if they are not recorded in a useful
 way. A direct-observation study notes that staff reporting can be burdensome,
 incomplete, delayed, and can underreport the real rate and cost of instrument
 errors
-([Nichol et al., 2024](https://bmcsurg.biomedcentral.com/articles/10.1186/s12893-024-02407-1)).
+([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
 Traceability research frames surgical instrument tracking as important for
 patient safety, cost, logistics, environmental impact, and risk analysis
-([Fayad et al., 2025](https://www.mdpi.com/2076-3417/15/3/1592)).
+([Fayad et al., 2025](../../bibliography.md#fayad-et-al-2025)).
 
 This matters for TrayGuard because a camera assistant that only shows a live
 prediction and then forgets it cannot help managers see repeated missing-item,
@@ -82,8 +82,6 @@ A good report should include:
 - A quality report supports human review; it does not replace departmental
   quality processes.
 
-## References
+## Bibliography
 
-- Fayad et al., ["Traceability of Surgical Instruments: A Systematic Review"](https://www.mdpi.com/2076-3417/15/3/1592), Applied Sciences, 2025.
-- Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
-- Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
+See the [central bibliography](../../bibliography.md) for full source details.

@@ -16,14 +16,14 @@ and occluded scenes are repeatedly identified as challenging because important
 features are hidden, which can create missed detections or merged objects. A
 survey of challenging detection environments treats occlusion, illumination, and
 scale as major stressors for deep object detectors
-([Ahmed et al., 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8348086/)).
+([Ahmed et al., 2021](../../bibliography.md#ahmed-et-al-2021)).
 Another occlusion-focused survey notes that detection accuracy decreases when
 objects are deformed or occluded
-([Ning et al., 2021](https://link.springer.com/article/10.1007/s40747-020-00206-8)).
+([Ning et al., 2021](../../bibliography.md#ning-et-al-2021)).
 
 This is a tray-checking risk because missing, extra, and wrong instruments are
 documented surgical-instrument error categories
-([Nichol et al., 2024](https://bmcsurg.biomedcentral.com/articles/10.1186/s12893-024-02407-1/tables/2)).
+([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
 If instruments overlap, TrayGuard may undercount visible tools or produce a
 confident count from a bad view.
 
@@ -82,11 +82,6 @@ If TrayGuard cannot confidently count the tray:
 - A good score on separated objects does not prove cluttered-tray readiness.
 - A fast result is not useful if the count is wrong.
 
-## References
+## Bibliography
 
-- Ahmed et al., ["Survey and Performance Analysis of Deep Learning Based Object Detection in Challenging Environments"](https://pmc.ncbi.nlm.nih.gov/articles/PMC8348086/), Sensors, 2021.
-- Eussen et al., ["Surgical tray optimization: a prospective and survey-based evaluation of environmental and economic outcomes"](https://doi.org/10.1007/s00464-025-12499-2), Surgical Endoscopy, 2026.
-- Hill et al., ["Measuring intraoperative surgical instrument use with radio-frequency identification"](https://doi.org/10.1093/jamiaopen/ooac003), JAMIA Open, 2022.
-- Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
-- Ning et al., ["Survey of pedestrian detection with occlusion"](https://link.springer.com/article/10.1007/s40747-020-00206-8), Complex & Intelligent Systems, 2021.
-- Rubak et al., ["Surgical instrument tray optimization process at a university hospital: A comprehensive overview"](https://doi.org/10.1016/j.sopen.2024.09.007), Surgery Open Science, 2024.
+See the [central bibliography](../../bibliography.md) for full source details.

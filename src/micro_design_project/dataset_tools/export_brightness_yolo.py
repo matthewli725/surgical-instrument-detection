@@ -7,7 +7,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Sequence
 
-from micro_design_project.dataset_tools.export_collected_yolo import IMAGE_EXTENSIONS, load_class_names
+from micro_design_project.dataset_tools.export_collected_yolo import (
+    IMAGE_EXTENSIONS,
+    SessionAnnotation,
+    load_class_names,
+    load_session_annotation,
+    render_annotation_labels,
+    resolve_export_class_names,
+)
 
 
 BRIGHTNESS_STEMS: tuple[str, ...] = tuple(f"variant_{index:04d}" for index in range(1, 12))
@@ -28,6 +35,7 @@ class BrightnessSample:
     brightness_stem: str
     image_path: Path
     label_path: Path
+    annotation: SessionAnnotation | None = None
 
     @property
     def output_stem(self) -> str:
@@ -161,9 +169,10 @@ def resolve_class_names(input_dir: Path, classes_file: Path | None) -> list[str]
             raise FileNotFoundError(f"Classes file not found: {classes_file}")
         return load_class_names(classes_file.parent)
 
-    direct_classes = input_dir / "classes.txt"
-    if direct_classes.exists():
-        return load_class_names(input_dir)
+    try:
+        return resolve_export_class_names(input_dir)
+    except FileNotFoundError:
+        pass
 
     sibling_matches = sorted(input_dir.parent.glob("*/classes.txt"))
     if len(sibling_matches) == 1:
@@ -200,6 +209,7 @@ def discover_brightness_samples(
         labels_dir = session_dir / "labels"
         if not images_dir.exists() or not labels_dir.exists():
             continue
+        annotation = load_session_annotation(session_dir)
 
         session_samples: list[BrightnessSample] = []
         seen_stems: set[str] = set()
@@ -224,6 +234,7 @@ def discover_brightness_samples(
                     brightness_stem=image_path.stem,
                     image_path=image_path,
                     label_path=label_path,
+                    annotation=annotation,
                 )
             )
 
@@ -260,11 +271,14 @@ def sample_matches(sample: BrightnessSample, *, backgrounds: set[str], layouts: 
     )
 
 
-def copy_sample(sample: BrightnessSample, stage_dir: Path, split: str) -> str:
+def copy_sample(sample: BrightnessSample, stage_dir: Path, split: str, class_names: list[str]) -> str:
     image_dst = stage_dir / "images" / split / f"{sample.output_stem}{sample.image_path.suffix.lower()}"
     label_dst = stage_dir / "labels" / split / f"{sample.output_stem}.txt"
     shutil.copy2(sample.image_path, image_dst)
-    shutil.copy2(sample.label_path, label_dst)
+    if sample.annotation is None:
+        shutil.copy2(sample.label_path, label_dst)
+    else:
+        label_dst.write_text(render_annotation_labels(sample.annotation, class_names), encoding="utf-8")
     return f"images/{split}/{image_dst.name}"
 
 
@@ -361,17 +375,17 @@ def export_stage(
     for session_id in sorted(samples_by_session):
         for sample in samples_by_session[session_id]:
             if sample_matches(sample, backgrounds=train_backgrounds, layouts=train_layouts, ranks=train_ranks):
-                relative_path = copy_sample(sample, stage_dir, "train")
+                relative_path = copy_sample(sample, stage_dir, "train", class_names)
                 manifest_paths["train"].append(relative_path)
                 rows.append(sample_manifest_row(stage.name, "train", relative_path, sample))
 
                 if val_mode == "train-copy":
-                    relative_val_path = copy_sample(sample, stage_dir, "val")
+                    relative_val_path = copy_sample(sample, stage_dir, "val", class_names)
                     manifest_paths["val"].append(relative_val_path)
                     rows.append(sample_manifest_row(stage.name, "val", relative_val_path, sample))
 
             elif sample_matches(sample, backgrounds=test_backgrounds, layouts=test_layouts, ranks=test_ranks):
-                relative_path = copy_sample(sample, stage_dir, "test")
+                relative_path = copy_sample(sample, stage_dir, "test", class_names)
                 manifest_paths["test"].append(relative_path)
                 rows.append(sample_manifest_row(stage.name, "test", relative_path, sample))
 

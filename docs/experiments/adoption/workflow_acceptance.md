@@ -12,16 +12,16 @@ A hospital does not buy a detector. It buys a workflow change.
 Healthcare decision-support tools can fail when they interrupt workflow or
 create too many low-value alerts. A clinical decision-support review highlights
 that inappropriate alerts can interrupt clinical workflow
-([Olakotan and Yusof, 2021](https://pubmed.ncbi.nlm.nih.gov/33853395/)), and
+([Olakotan and Yusof, 2021](../../bibliography.md#olakotan-and-yusof-2021)), and
 another review ties alert burden to alert fatigue and reduced usability and
 acceptance
-([Cánovas-Segura et al., 2023](https://pubmed.ncbi.nlm.nih.gov/37245656/)).
+([Cánovas-Segura et al., 2023](../../bibliography.md#canovas-segura-et-al-2023)).
 
 SPD improvement work also shows that missing and unusable instrumentation is not
 only a detection problem. Successful improvement involved staffing, training,
 inventory, equipment, physical environment, workflows, communication, and
 governance
-([Natarus et al., 2025](https://www.sciencedirect.com/science/article/abs/pii/S1553725024003003)).
+([Natarus et al., 2025](../../bibliography.md#natarus-et-al-2025)).
 TrayGuard therefore has to fit the human workflow, not just produce boxes on an
 image.
 
@@ -110,8 +110,6 @@ Ask one open-ended question:
 - Low hardware cost alone does not prove adoption.
 - A good offline accuracy number alone does not prove workflow value.
 
-## References
+## Bibliography
 
-- Cánovas-Segura et al., ["Meaningful time-related aspects of alerts in Clinical Decision Support Systems. A unified framework"](https://pubmed.ncbi.nlm.nih.gov/37245656/), Journal of Biomedical Informatics, 2023.
-- Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
-- Olakotan and Yusof, ["The appropriateness of clinical decision support systems alerts in supporting clinical workflows: A systematic review"](https://pubmed.ncbi.nlm.nih.gov/33853395/), Health Informatics Journal, 2021.
+See the [central bibliography](../../bibliography.md) for full source details.

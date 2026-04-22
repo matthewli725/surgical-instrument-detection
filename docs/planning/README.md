@@ -1,25 +1,15 @@
 # Planning
 
-This folder tracks progress over time and keeps future-work planning separate
-from the background and experiment writeups.
+This folder contains the project execution plan, current task backlog, and
+weekly progress snapshots.
 
-## Contents
+## Planning Files
 
-- `weekly_updates/`: one file per week so progress can be edited incrementally
-- `future_work/`: forward-looking plans for the rest of the quarter and FDR prep
-
-
-## Current Planning Horizon
-
-- Current week: week 4
-- Forward plan covered in `future_work/remainder_of_quarter.md`: weeks 4-10
-
-## Issue Planning
-
-- Flat unit-task list for GitLab issue creation:
-  `future_work/unit_task_list.md`
-- Table view for GitLab and Gantt planning:
-  `future_work/gitlab_issue_table.md`
+- `future_work/gitlab_epic_map.md`: epic and milestone structure
+- `future_work/unit_task_list.md`: task list grouped by milestone
+- `future_work/gitlab_issue_table.md`: tabular issue view
+- `TODO.md`: consolidated action list
+- `weekly_updates/`: weekly progress logs
 
 ## Weekly Update Files
 

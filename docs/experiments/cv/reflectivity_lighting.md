@@ -16,16 +16,16 @@ and stable, but shiny metal creates specular highlights that change with the
 light and camera angle. Specular reflection is described as a longstanding
 problem for segmentation, recognition, image analysis, and tracking because it
 creates appearance changes that do not belong to the object itself
-([Wang et al., 2016](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/)).
+([Wang et al., 2016](../../bibliography.md#wang-et-al-2016)).
 Other CV work makes the same point more directly: many algorithms assume
 Lambertian surfaces, and specular highlights can hide texture details, create
 surface discontinuities, and reduce robustness
-([Wei et al., 2018](https://www.sciencedirect.com/science/article/pii/S107731421730173X)).
+([Wei et al., 2018](../../bibliography.md#wei-et-al-2018)).
 
 This matters for TrayGuard because sterile processing relies heavily on visual
 identification and inspection. In observed surgical cases, visualization-related
 instrument errors accounted for most errors in the study's taxonomy
-([Nichol et al., 2024](https://bmcsurg.biomedcentral.com/articles/10.1186/s12893-024-02407-1)).
+([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
 
 This test answers:
 
@@ -111,11 +111,6 @@ specularity-pixel algorithm. Simple saturated-pixel counts or brightness
 thresholds would be custom heuristics, not a reliable product metric.
 
 
-## References
+## Bibliography
 
-- Chen et al., ["Incidence of Adverse Events in Central Sterile Supply Department: A Single-Center Retrospective Study"](https://doi.org/10.2147/RMHP.S423108), Risk Management and Healthcare Policy, 2023.
-- Fayad et al., ["Traceability of Surgical Instruments: A Systematic Review"](https://doi.org/10.3390/app15031592), Applied Sciences, 2025.
-- Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), Perioperative Care and Operating Room Management, 2023.
-- Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
-- Wang et al., ["Light Field Imaging Based Accurate Image Specular Highlight Removal"](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/), PLOS One, 2016.
-- ["Specular highlight reduction with known surface geometry"](https://www.sciencedirect.com/science/article/pii/S107731421730173X), Computer Vision and Image Understanding, 2018.
+See the [central bibliography](../../bibliography.md) for full source details.

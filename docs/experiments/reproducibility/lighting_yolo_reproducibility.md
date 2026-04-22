@@ -4,7 +4,7 @@ Machine-learning results are hard to trust if the data, code, and trained model
 are not shared together. Reproducibility guidance for ML in the life sciences
 specifically recommends sharing data, code, workflow details, and trained models
 because retraining can be expensive and can produce different results
-([Heil et al., 2021](https://www.nature.com/articles/s41592-021-01256-7)).
+([Heil et al., 2021](../../bibliography.md#heil-et-al-2021)).
 
 ## Unzip Data and Weights
 

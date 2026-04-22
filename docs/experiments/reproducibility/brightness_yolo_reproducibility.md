@@ -196,9 +196,32 @@ uv run trayguard train \
   --export-weights weights/separated_train_overlay_test.pt
 ```
 
-## Validate Trained Weights
+## Validate Trained Weights And Generate Plots
 
-After training, evaluate each model on its own test split:
+To run all matching validations, save stage metrics, save per-image outcomes,
+and generate the experiment plots in one pass:
+
+```bash
+uv run python scripts/validate_brightness_experiments.py
+```
+
+By default, this looks for:
+
+- datasets under `data/brightness_yolo/`
+- weights under `weights/<stage>.pt`
+- outputs under `reports/brightness_validation/`
+
+If your trained weights live elsewhere, pass `--weights-dir /path/to/weights`.
+
+The script writes:
+
+- `stage_metrics.csv`: aggregate YOLO metrics per stage
+- `image_outcomes.csv`: per-image counts and matched detection outcomes
+- `grouped_metrics.csv`: aggregated metrics by stage, brightness rank,
+  background, and layout
+- `plots/`: experiment-ready PNG figures
+
+If you want to evaluate each model manually on its own test split instead:
 
 ```bash
 uv run python scripts/print_yolo_metrics.py \

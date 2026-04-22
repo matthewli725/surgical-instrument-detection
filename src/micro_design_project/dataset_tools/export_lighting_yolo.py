@@ -7,7 +7,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Sequence
 
-from micro_design_project.dataset_tools.export_collected_yolo import IMAGE_EXTENSIONS, load_class_names
+from micro_design_project.dataset_tools.export_collected_yolo import (
+    IMAGE_EXTENSIONS,
+    SessionAnnotation,
+    load_session_annotation,
+    render_annotation_labels,
+    resolve_export_class_names,
+)
 
 
 @dataclass(frozen=True)
@@ -38,6 +44,7 @@ class LightingSample:
     condition: LightingCondition
     image_path: Path
     label_path: Path
+    annotation: SessionAnnotation | None = None
 
     @property
     def output_stem(self) -> str:
@@ -122,6 +129,7 @@ def discover_lighting_samples(input_dir: Path) -> tuple[dict[str, list[LightingS
         labels_dir = session_dir / "labels"
         if not images_dir.exists() or not labels_dir.exists():
             continue
+        annotation = load_session_annotation(session_dir)
 
         session_samples: list[LightingSample] = []
         for image_path in sorted(images_dir.iterdir()):
@@ -143,6 +151,7 @@ def discover_lighting_samples(input_dir: Path) -> tuple[dict[str, list[LightingS
                     condition=condition,
                     image_path=image_path,
                     label_path=label_path,
+                    annotation=annotation,
                 )
             )
 
@@ -171,11 +180,14 @@ def prepare_stage_output(stage_dir: Path, overwrite: bool) -> None:
     (stage_dir / "manifests").mkdir(parents=True, exist_ok=True)
 
 
-def copy_sample(sample: LightingSample, stage_dir: Path, split: str) -> str:
+def copy_sample(sample: LightingSample, stage_dir: Path, split: str, class_names: list[str]) -> str:
     image_dst = stage_dir / "images" / split / f"{sample.output_stem}{sample.image_path.suffix.lower()}"
     label_dst = stage_dir / "labels" / split / f"{sample.output_stem}.txt"
     shutil.copy2(sample.image_path, image_dst)
-    shutil.copy2(sample.label_path, label_dst)
+    if sample.annotation is None:
+        shutil.copy2(sample.label_path, label_dst)
+    else:
+        label_dst.write_text(render_annotation_labels(sample.annotation, class_names), encoding="utf-8")
     return f"images/{split}/{image_dst.name}"
 
 
@@ -219,12 +231,12 @@ def export_stage(
             else:
                 continue
 
-            relative_image_path = copy_sample(sample, stage_dir, split)
+            relative_image_path = copy_sample(sample, stage_dir, split, class_names)
             manifest_paths[split].append(relative_image_path)
             rows.append(sample_manifest_row(stage.name, split, relative_image_path, sample))
 
             if split == "train" and val_mode == "train-copy":
-                relative_val_path = copy_sample(sample, stage_dir, "val")
+                relative_val_path = copy_sample(sample, stage_dir, "val", class_names)
                 manifest_paths["val"].append(relative_val_path)
                 rows.append(sample_manifest_row(stage.name, "val", relative_val_path, sample))
 
@@ -310,7 +322,7 @@ def print_condition_plan(stage: LightingStage) -> None:
 
 def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
-    class_names = load_class_names(args.input_dir)
+    class_names = resolve_export_class_names(args.input_dir)
     samples_by_session, ignored_images = discover_lighting_samples(args.input_dir)
     stages = selected_stages(args.stage)
 
@@ -340,4 +352,3 @@ def main(argv: Sequence[str] | None = None) -> None:
         print(f"  wrote: train={counts['train']}, val={counts['val']}, test={counts['test']}")
         print(f"  data:  {args.output_dir / stage.name / 'data.yaml'}")
         print()
-

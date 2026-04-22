@@ -14,16 +14,16 @@ as the correct one, such as a straight instrument instead of a curved one.
 Computer vision research treats fine-grained recognition as a hard problem
 because the model must distinguish categories with small inter-class differences
 and sometimes large variation within the same class
-([Zhao et al., 2017](https://link.springer.com/article/10.1007/s11633-017-1053-3)).
+([Zhao et al., 2017](../../bibliography.md#zhao-et-al-2017)).
 Recent fine-grained recognition work makes the same point: subtle differences
 between otherwise similar categories are difficult for generic classifiers
-([Wang et al., 2021](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254054)).
+([Wang et al., 2021](../../bibliography.md#wang-et-al-2021)).
 
 This is directly relevant to sterile processing. In a packaging-error study,
 wrong instrument specification was the largest category, and the authors note
 that instruments in the same category can have very small structural
 differences
-([Zhu et al., 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6425664/)).
+([Zhu et al., 2019](../../bibliography.md#zhu-et-al-2019)).
 That is exactly the kind of visual problem this experiment is meant to test.
 
 This test answers:
@@ -88,10 +88,6 @@ tool can be automatically confirmed.
 - High aggregate mAP does not mean every important pair is safe.
 - Tool identification is not the same thing as functional inspection.
 
-## References
+## Bibliography
 
-- Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), Perioperative Care and Operating Room Management, 2023.
-- Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
-- Wang et al., ["Fine-grained classification based on multi-scale pyramid convolution networks"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254054), PLOS One, 2021.
-- Zhao et al., ["A survey on deep learning-based fine-grained object classification and semantic segmentation"](https://link.springer.com/article/10.1007/s11633-017-1053-3), Machine Intelligence Research, 2017.
-- Zhu et al., ["Errors in packaging surgical instruments based on a surgical instrument tracking system: an observational study"](https://link.springer.com/article/10.1186/s12913-019-4007-3), BMC Health Services Research, 2019.
+See the [central bibliography](../../bibliography.md) for full source details.
