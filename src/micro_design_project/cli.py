@@ -5,7 +5,12 @@ import sys
 
 from micro_design_project.data_collection import collect
 from micro_design_project.app import streamlit_runner
-from micro_design_project.dataset_tools import download_lavado, export_collected_yolo, export_lighting_yolo
+from micro_design_project.dataset_tools import (
+    download_lavado,
+    export_brightness_yolo,
+    export_collected_yolo,
+    export_lighting_yolo,
+)
 from micro_design_project.training import benchmark, export_weights, train
 
 
@@ -15,6 +20,10 @@ Command = Callable[[Sequence[str]], None]
 COMMANDS: dict[str, tuple[Command, str]] = {
     "collect": (collect.main, "Capture setup sessions and lighting variants."),
     "export-yolo": (export_collected_yolo.main, "Flatten collected sessions into a YOLO dataset."),
+    "export-brightness-yolo": (
+        export_brightness_yolo.main,
+        "Export staged YOLO datasets for brightness-order robustness experiments.",
+    ),
     "export-lighting-yolo": (export_lighting_yolo.main, "Export staged lighting robustness YOLO datasets."),
     "download-lavado": (download_lavado.main, "Download the Lavado Kaggle dataset and export YOLO data."),
     "export-weights": (export_weights.main, "Copy trained best.pt weights into the TrayGuard demo path."),

@@ -32,6 +32,28 @@ This test answers:
 - Do users understand uncertainty and review prompts?
 - Does the tool feel like an assistant instead of an obstacle?
 
+## Design Assumptions For This Test
+
+This page focuses on how to test workflow acceptance, not on re-arguing the
+full adoption case. The background narrative and detailed appendix already cover
+the broader evidence base:
+
+- `docs/background/project_background.md`
+- `docs/experiments/adoption/formal_risk_analysis.md`
+
+For this experiment, we assume the product is being evaluated as a guided
+verification assistant rather than as a fully autonomous tray-approval system.
+That means the workflow test should focus on whether TrayGuard helps users catch
+issues, recover from uncertainty, and finish the task with acceptable time and
+correction burden.
+
+The main workflow hypotheses are:
+
+- Assistant-mode review is more acceptable than automation-style language.
+- Users will tolerate imperfect detections if corrections are fast and obvious.
+- Trust will depend more on uncertainty handling and correction burden than on raw detector accuracy alone.
+- False alarms and rescans will hurt adoption quickly.
+
 ## Tray Issues To Include
 
 Use tray-like tasks that include realistic problems:
@@ -85,12 +107,11 @@ Ask one open-ended question:
 - Classmate or team-member feedback does not prove SPD technician adoption.
 - Speed alone is not success.
 - TrayGuard should support technician judgment, not replace it.
+- Low hardware cost alone does not prove adoption.
+- A good offline accuracy number alone does not prove workflow value.
 
 ## References
 
-- Bridges, ["The Real Costs of Surgical Instrument Training in Sterile Processing Revisited"](https://doi.org/10.1016/j.aorn.2009.10.025), AORN Journal, 2010.
 - Cánovas-Segura et al., ["Meaningful time-related aspects of alerts in Clinical Decision Support Systems. A unified framework"](https://pubmed.ncbi.nlm.nih.gov/37245656/), Journal of Biomedical Informatics, 2023.
-- Hu et al., ["Improvement and implementation of central sterile supply department training program based on action research"](https://link.springer.com/article/10.1186/s12912-024-01809-z), BMC Nursing, 2024.
 - Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
-- Ofstead et al., ["Improving mastery and retention of knowledge and complex skills among sterile processing professionals: A pilot study on borescope training and competency testing"](https://doi.org/10.1016/j.ajic.2023.03.002), American Journal of Infection Control, 2023.
 - Olakotan and Yusof, ["The appropriateness of clinical decision support systems alerts in supporting clinical workflows: A systematic review"](https://pubmed.ncbi.nlm.nih.gov/33853395/), Health Informatics Journal, 2021.

@@ -78,7 +78,7 @@ uv run python scripts/print_yolo_metrics.py \
 
 Use the printed precision, recall, mAP50, and mAP50-95 values as the validation
 results for each shared model. The experiment summary table is in
-`docs/experiments/reflectivity_lighting.md`.
+`docs/experiments/cv/reflectivity_lighting.md`.
 
 ## Retrain The Three Models
 

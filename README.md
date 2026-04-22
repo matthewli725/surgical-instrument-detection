@@ -2,10 +2,20 @@
 
 Practical setup and command reference for collecting data, exporting YOLO datasets, training models, and running the demo.
 
-Project background and experiment motivation live in [docs/project_background.md](docs/project_background.md).
+Project background and experiment motivation live in
+[docs/background/project_background.md](docs/background/project_background.md).
 
 Reproduce lighting experiments in
-[docs/experiments/lighting_yolo_reproducibility.md](docs/experiments/lighting_yolo_reproducibility.md).
+[docs/experiments/reproducibility/lighting_yolo_reproducibility.md](docs/experiments/reproducibility/lighting_yolo_reproducibility.md).
+
+Workflow adoption risks and adjacent-industry CV evidence live in
+[docs/experiments/adoption/workflow_acceptance.md](docs/experiments/adoption/workflow_acceptance.md).
+
+Detailed appendix for system-level and CV-specific adoption risks lives in
+[docs/experiments/adoption/formal_risk_analysis.md](docs/experiments/adoption/formal_risk_analysis.md).
+
+Planning materials and weekly updates live in
+[docs/planning/README.md](docs/planning/README.md).
 
 ## 1. Install
 
@@ -156,6 +166,8 @@ config/                         training config
 data/                           local datasets, ignored by git
 runs/                           training outputs, ignored by git
 weights/                        local model weights
-docs/project_background.md      motivation and experiment background
-docs/experiments/               experiment writeups
+docs/README.md                  docs index
+docs/background/                problem framing and design background
+docs/experiments/               experiment writeups by theme
+docs/planning/                  weekly updates and forward plans
 ```

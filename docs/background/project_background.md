@@ -30,29 +30,111 @@ The cost-benefit hypothesis for TrayGuard is narrow. CV is not a replacement for
 | RFID or barcode tracking | Strong traceability and utilization data | Requires item-level tags, engraving, readers, antennas, scanning workflow, integration, and ROI justification | CV can pilot visual assistance without modifying every tool (Olivere et al., 2021, Kusuda et al., 2024, Ting et al., 2013) |
 | Computer vision assistant | Low physical-infrastructure burden, rapid pilot, visual verification, uncertainty flags, screenshot/log evidence | Needs image-quality controls, confidence calibration, and human confirmation | Matches the visualization failure mode that dominates observed errors (Nichol et al., 2024, Fayad et al., 2025) |
 
+## Existing Product and Research Landscape
+
+This is no longer just an adjacent-field thought experiment. There is now
+enough direct evidence to say surgical tray verification and packaging
+assistance with computer vision is an active product and research space, even if
+broad adoption still appears early.
+
+The closest conceptual precedent is a 2018 patent from Aga Khan University for
+"Detection of surgical instruments on surgical tray." It describes a camera-
+plus-database workflow that detects what instruments are present, retrieves what
+instruments should be present, compares the two, and identifies missing items.
+That is very close to TrayGuard's core concept of visual verification against an
+expected set rather than generic object detection (Sayani et al., 2018).
+
+The closest visible commercial analog is SteelcoBelimed's SUIS system. Their
+product page says SUIS guides staff step-by-step through set packing procedures,
+identifies instruments by shape, outlines extraneous items, reduces procedure
+time, and is especially useful for complex loan sets. That means the core
+motivation behind TrayGuard already exists in the market as guided packaging
+assistance. The most important design implication is that operator guidance, not
+autonomous replacement, is the product framing that appears to have made it to
+commercialization (SteelcoBelimed, accessed 2026).
+
+There is also direct hospital-side pilot activity. In 2023, the American
+Hospital Association reported that Wellstar invested in RIF Robotics and ran a
+pilot to refine the technology with feedback from sterile processing staff. The
+reported goal was automated assembly of a basic surgical tray using AI, computer
+vision, and robotics. That is strong evidence that health systems see this as a
+real operational problem, but it also reinforces that frontline workflow
+feedback is part of the product, not an afterthought (American Hospital
+Association, 2023).
+
+The academic literature is moving in the same direction. A 2026 arXiv paper,
+"Towards Autonomous Instrument Tray Assembly for Sterile Processing
+Applications," presents a robotic tray assembly system using a custom dataset of
+31 instruments and 6,975 annotated images, along with structured tray fixtures
+that reduce collisions during transport. The paper explicitly describes this as
+a first step toward automating SPD workflows. That matters because it suggests
+the field is real, but still early and often dependent on semi-structured
+layouts rather than fully unconstrained pile-of-instruments scenes (da Silva et
+al., 2026).
+
+Direct academic evidence is somewhat broader in intraoperative counting than in
+SPD tray assembly. A 2024 proof-of-concept study on automated surgical
+instrument detection and counting found that deep-learning-based counting is
+feasible and could reduce manual burden, but it still called for further
+clinical validation. This supports technical plausibility while leaving workflow
+adoption as an open question (Deol et al., 2024).
+
+Taken together, the market signal is clear enough to matter. TrayGuard is not
+inventing the general idea of visual tray verification from scratch. It is
+entering an early product space where patents, commercial assistance systems,
+startup pilots, and early robotic assembly papers already exist. The closest
+commercial overlap appears to be SteelcoBelimed's SUIS. That does not make the
+project irrelevant. It sharpens the question. The important issue is not
+whether computer vision could be used for tray verification, but what
+motivations, constraints, and limitations shape how such a system should be
+positioned, evaluated, and differentiated.
+
 ### Failure Modes and Customer Hesitations
 
-The main risks fall into two groups.
+The main risks fall into two connected groups: system-level adoption risks and
+computer-vision-specific risks.
 
-**Computer vision failure modes**
+At the system level, a hospital may reject an apparently strong automation
+product if it removes too much human agency, creates a single point of failure,
+handles exceptions poorly, slows peak workflow, or creates unclear liability.
+Evidence from healthcare AI implementation, radiology deployment, and pharmacy
+verification suggests that high-risk organizations adopt AI more readily when it
+preserves human sign-off, makes the workflow easier to recover from, and keeps
+accountability legible rather than hidden inside a black box. Radiology market
+reviews also show that commercial availability often outpaces evidence of real
+clinical or economic impact (Steenhuis et al., 2022, van Leeuwen et al., 2021,
+Jiang et al., 2025, Zheng et al., 2023). That matters for TrayGuard
+because sterile processing depends on technician expertise, exception handling,
+and auditability, not just correct object recognition.
 
-- Similar-looking instruments may be confused. This matters because wrong-specification instruments were the largest packaging-error category in Zhu et al. (2019).
-- Reflective metal, glare, shadows, water, residue, and tray surfaces may change the visible appearance. Visual inspection is a known weak point in sterile processing (Nichol and Saari, 2023, Nichol et al., 2024).
-- Clutter and overlap may cause missed instruments, merged detections, or double counts. Large trays and oversupplied trays increase workload and visual complexity (Hill et al., 2022, Rubak et al., 2024, Eussen et al., 2026).
-- Unknown instruments may be forced into the closest known class. This matters because hospital tray inventories include many tray types and specialty-specific variants (Rubak et al., 2024).
-- Damaged, wet, contaminated, or partially assembled instruments may look different from training images. Broken instruments and bioburden are documented error categories (Nichol et al., 2024, Chen et al., 2023).
-- Confidence scores may be poorly calibrated. A wrong prediction can look certain. A correct prediction can look uncertain. This motivates confidence and review experiments (Nichol et al., 2024, Natarus et al., 2025).
-- The system detects visual identity. It cannot prove sterility, sharpness, internal cleanliness, or function. The prototype should stay framed as decision support (Ofstead et al., 2023, Nichol et al., 2024).
+At the computer-vision level, strong lab performance does not guarantee strong
+live performance. Tray verification involves reflective metal, occlusion,
+similar-looking instruments, residue, tray variation, and unfamiliar tools. The
+medical-imaging literature shows that AI performance often degrades under
+real-world distribution shift, and the pharmacy literature shows that trust
+depends strongly on uncertainty communication and human-centered review paths
+(Yang et al., 2024, Tikhomirov et al., 2026, Kim et al., 2025). For TrayGuard,
+that means the product should be framed as guided visual verification rather
+than autonomous tray approval. It should surface missing items, low-confidence
+items, and corrections clearly enough that a technician can make the final
+decision quickly and defensibly.
 
-**Hospital deployment and workflow risks**
+The resulting design stance is intentionally narrow. TrayGuard should not try to
+replace SPD judgment, prove sterility, or make policy decisions about unusual
+substitutions. It should reduce visual search burden, highlight likely misses,
+structure review, and create a better audit trail. That stance is also more
+consistent with what adjacent industries actually adopt: manufacturing uses CV
+for first-pass screening, radiology uses AI for triage and second-read support,
+and pharmacy verification work favors uncertainty-aware hybrid review rather
+than full replacement. The economics literature points in the same direction:
+buyers need evidence of system-level value, not just model performance, and that
+evidence is still limited in healthcare AI (Vithlani et al., 2023, Kastrup et
+al., 2024).
 
-- Technicians may see the tool as slower than the current process. We should measure time and correction burden directly (Huang et al., 2025, Natarus et al., 2025).
-- The system may require camera setup, tray staging, rescans, label correction, or exception handling. These extra steps matter because workflow design is a known driver of SPD defects (Natarus et al., 2025).
-- The system may not integrate with tray count sheets, preference cards, barcode workflows, instrument tracking systems, or quality reporting. Tracking and tray-optimization studies depend on structured instrument records (Zhu et al., 2019, Olivere et al., 2021, Rubak et al., 2024).
-- Hospital leaders may question ROI because staff-reported instrument-error systems can underreport events and lose delay information (Nichol et al., 2024).
-- Audit and infection-control concerns require logs and human confirmation. Sterile-processing defects affect patient safety and operating-room readiness (Chen et al., 2023, Natarus et al., 2025).
-- Camera drift, lighting changes, dirty lenses, software downtime, and model drift could create new risks. Deployment should include quality checks and not only model accuracy (Natarus et al., 2025).
-- A fully automated replacement narrative may threaten technician trust. A decision-support framing better matches the literature on training, human expertise, and quality improvement (Hu et al., 2024, Ofstead et al., 2023, Natarus et al., 2025).
+For the detailed evidence base and source-backed breakdown, see:
+
+- `docs/experiments/adoption/workflow_acceptance.md`
+- `docs/experiments/adoption/formal_risk_analysis.md`
 
 ## Current Focus
 
@@ -71,12 +153,13 @@ The current system supports these functions.
 
 Detailed experiment plans live in `docs/experiments/`.
 
-- `docs/experiments/shape_similarity.md`
-- `docs/experiments/reflectivity_lighting.md`
-- `docs/experiments/clutter_occlusion.md`
-- `docs/experiments/open_set_confidence.md`
-- `docs/experiments/workflow_acceptance.md`
-- `docs/experiments/traceability_reporting.md`
+- `docs/experiments/cv/shape_similarity.md`
+- `docs/experiments/cv/reflectivity_lighting.md`
+- `docs/experiments/cv/clutter_occlusion.md`
+- `docs/experiments/cv/open_set_confidence.md`
+- `docs/experiments/adoption/workflow_acceptance.md`
+- `docs/experiments/adoption/formal_risk_analysis.md`
+- `docs/experiments/adoption/traceability_reporting.md`
 
 ### 1. Shape Similarity
 
@@ -228,8 +311,12 @@ The strongest final result would not be a claim that TrayGuard is ready for oper
 - Fayad et al., ["Traceability of Surgical Instruments: A Systematic Review"](https://doi.org/10.3390/app15031592), Applied Sciences, 2025.
 - Hu et al., ["Improvement and implementation of central sterile supply department training program based on action research"](https://link.springer.com/article/10.1186/s12912-024-01809-z), BMC Nursing, 2024.
 - Huang et al., ["Situations and demands of central sterile supply department training on nursing interruptions"](https://link.springer.com/article/10.1186/s12913-024-12190-7), BMC Health Services Research, 2025.
+- Jiang et al., ["Deployment of Artificial Intelligence in Radiology: Strategies for Success"](https://ajronline.org/doi/10.2214/AJR.24.31898), American Journal of Roentgenology, 2025.
+- Kastrup et al., ["Landscape and challenges in economic evaluations of artificial intelligence in healthcare: a systematic review of methodology"](https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-00088-7), BMC Digital Health, 2024.
+- Kim et al., ["The Effects of Presenting AI Uncertainty Information on Pharmacists’ Trust in Automated Pill Recognition Technology: Exploratory Mixed Subjects Study"](https://pmc.ncbi.nlm.nih.gov/articles/PMC11862782/), JMIR Human Factors, 2025.
 - Kusuda et al., ["Comparison of Reading Times of RFID-Tagged and Barcode-Engraved Surgical Instruments"](https://doi.org/10.1016/j.jss.2024.09.087), Journal of Surgical Research, 2024.
 - Macola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), Perioperative Care and Operating Room Management, 2025.
+- Deol et al., ["Artificial intelligence model for automated surgical instrument detection and counting: an experimental proof-of-concept study"](https://doi.org/10.1186/s13037-024-00406-y), Patient Safety in Surgery, 2024.
 - Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), The Joint Commission Journal on Quality and Patient Safety, 2025.
 - Nichol et al., ["Observed rates of surgical instrument errors point to visualization tasks as being a critically vulnerable point in sterile processing and a significant cause of lost chargeable OR minutes"](https://link.springer.com/article/10.1186/s12893-024-02407-1), BMC Surgery, 2024.
 - Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), Perioperative Care and Operating Room Management, 2023.
@@ -237,8 +324,18 @@ The strongest final result would not be a claim that TrayGuard is ready for oper
 - Olivere et al., ["Radiofrequency Identification Track for Tray Optimization: An Instrument Utilization Pilot Study in Surgical Oncology"](https://doi.org/10.1016/j.jss.2021.02.049), Journal of Surgical Research, 2021.
 - Ofstead et al., ["Improving mastery and retention of knowledge and complex skills among sterile processing professionals: A pilot study on borescope training and competency testing"](https://doi.org/10.1016/j.ajic.2023.03.002), American Journal of Infection Control, 2023.
 - Rubak et al., ["Surgical instrument tray optimization process at a university hospital: A comprehensive overview"](https://doi.org/10.1016/j.sopen.2024.09.007), Surgery Open Science, 2024.
+- Sayani et al., ["Detection of surgical instruments on surgical tray"](https://patents.google.com/patent/US20180204323A1/en), US Patent Application US20180204323A1, 2018.
+- Steenhuis et al., ["Artificial Intelligence Implementation in Healthcare: A Theory-Based Scoping Review of Barriers and Facilitators"](https://pmc.ncbi.nlm.nih.gov/articles/PMC9738234/), International Journal of Environmental Research and Public Health, 2022.
+- SteelcoBelimed, ["SUIS - Surgical Instrument Vision System"](https://www.steelcobelimed.com/insights/surgical-instrument-scanner/), accessed 2026.
+- Tikhomirov et al., ["A scoping review of silent trials for medical artificial intelligence"](https://www.nature.com/articles/s44360-025-00048-z), Nature Health, 2026.
 - Ting et al., ["Impact of Radio-Frequency Identification (RFID) Technologies on the Hospital Supply Chain: A Literature Review"](https://pmc.ncbi.nlm.nih.gov/articles/PMC3797551/), Perspectives in Health Information Management, 2013.
+- American Hospital Association, ["4 Ways Wellstar Health Is Funding Collaborative Innovation"](https://www.aha.org/aha-center-health-innovation-market-scan/2023-10-31-4-ways-wellstar-health-funding-collaborative-innovation), 2023.
+- van Leeuwen et al., ["Artificial intelligence in radiology: 100 commercially available products and their scientific evidence"](https://pmc.ncbi.nlm.nih.gov/articles/PMC8128724/), European Radiology, 2021.
+- Vithlani et al., ["Economic evaluations of artificial intelligence-based healthcare interventions: a systematic literature review of best practices in their conduct and reporting"](https://pmc.ncbi.nlm.nih.gov/articles/PMC10486896/), Frontiers in Pharmacology, 2023.
+- Yang et al., ["The limits of fair medical imaging AI in real-world generalization"](https://www.nature.com/articles/s41591-024-03113-4), Nature Medicine, 2024.
+- da Silva et al., ["Towards Autonomous Instrument Tray Assembly for Sterile Processing Applications"](https://arxiv.org/abs/2602.01679), arXiv, 2026.
 - Eussen et al., ["Surgical tray optimization: a prospective and survey-based evaluation of environmental and economic outcomes"](https://doi.org/10.1007/s00464-025-12499-2), Surgical Endoscopy, 2026.
+- Zheng et al., ["Designing Human-Centered AI to Prevent Medication Dispensing Errors: Focus Group Study With Pharmacists"](https://pmc.ncbi.nlm.nih.gov/articles/PMC10775023/), JMIR Formative Research, 2023.
 - Zhu et al., ["Errors in packaging surgical instruments based on a surgical instrument tracking system: an observational study"](https://link.springer.com/article/10.1186/s12913-019-4007-3), BMC Health Services Research, 2019.
 
 Regulatory and practice context
