@@ -259,15 +259,15 @@ def evaluate_stage(
     stage_metrics.update(scalar_metrics)
 
     image_paths = [str(sample.image_path) for sample in samples]
-    results = model.predict(source=image_paths, stream=True, imgsz=imgsz, conf=conf, verbose=False)
-    sample_by_image = {str(sample.image_path): sample for sample in samples}
+    results = list(model.predict(source=image_paths, stream=True, imgsz=imgsz, conf=conf, verbose=False))
+    if len(results) != len(samples):
+        raise RuntimeError(
+            "Prediction output count did not match the manifest sample count: "
+            f"{len(results)} predictions vs {len(samples)} samples."
+        )
 
     per_image_rows: list[dict[str, object]] = []
-    for result in results:
-        sample = sample_by_image.get(str(Path(result.path)))
-        if sample is None:
-            raise KeyError(f"Prediction result path did not match a manifest row: {result.path}")
-
+    for sample, result in zip(samples, results, strict=True):
         image_h, image_w = result.orig_shape
         gt_boxes = load_ground_truth(sample.label_path, image_w=image_w, image_h=image_h)
         pred_boxes = [
