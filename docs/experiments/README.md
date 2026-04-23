@@ -26,6 +26,7 @@ revised without rewriting the whole project background.
 
 - `reproducibility/brightness_yolo_reproducibility.md`
 - `reproducibility/lighting_yolo_reproducibility.md`
+- `reproducibility/shape_similarity_yolo_reproducibility.md`
 
 ## Experiment Overview
 
@@ -63,10 +64,13 @@ structure, and relative proportions
 
 **Proposed setup**
 
-- Collect images of visually similar tools.
-- Keep lighting and background mostly stable.
-- Train the detector on multiple shape classes.
-- Evaluate whether the model confuses similarly shaped objects.
+- Start with synthetic BlenderProc scenes under tray-like overhead conditions.
+- Export staged splits that separate synthetic interpolation, synthetic
+  robustness, and synthetic-to-real transfer.
+- Compare `real_small_from_scratch` against
+  `synthetic_pretrain_plus_real_small` on the same real proxy set.
+- Make pairwise confusion and high-confidence wrong-pair predictions the
+  headline metrics.
 
 **Success indicators**
 
