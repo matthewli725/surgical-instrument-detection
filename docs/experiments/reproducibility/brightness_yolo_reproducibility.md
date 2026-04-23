@@ -27,6 +27,92 @@ The current raw data has one known gap:
 The exporter reports this during export so the incomplete session is visible in
 the logs and manifests.
 
+## Why These Splits Exist
+
+This dataset supports three related questions, and the staged splits are meant
+to isolate them instead of mixing all effects together.
+
+### 1. Brightness Generalization
+
+These stages test whether the detector still works when the scene gets darker
+than the lighting it saw during training.
+
+- `bright_train_dim_test`: train on brighter separated images and test on
+  dimmer separated images
+- `dim_train_bright_test`: train on dimmer separated images and test on
+  brighter separated images
+
+These are complementary rather than redundant. The first stage shows how much
+performance drops when the model is trained on easier lighting and deployed on
+harder lighting. The second stage checks whether low-light training transfers
+back upward to easier conditions.
+
+### 2. Background Transfer
+
+These stages test whether the model is learning the objects or overfitting to
+the scene background and reflectivity context.
+
+- `matte_train_reflective_test`: train on matte-background separated images and
+  test on reflective-background separated images
+- `reflective_train_matte_test`: train on reflective-background separated
+  images and test on matte-background separated images
+
+These stages keep the layout separated and use all brightness ranks so the
+background domain is the main thing that changes between train and test.
+
+### 3. Overlap And Occlusion Stress
+
+This stage tests whether overlap and clutter reduce detection and count quality,
+especially when the brightness is already challenging.
+
+- `separated_train_overlay_test`: train on non-overlapping layouts and test on
+  overlapping layouts
+
+This is intentionally different from the lighting-only stages. The `overlay`
+sessions are not pure lighting changes; they add occlusion. Keeping them out of
+the brightness-only training stages helps preserve a cleaner causal story.
+
+## How The Session Types Map To The Experiment
+
+The six session folders play different roles:
+
+- `order1` and `order2` are the separated layouts
+- `overlay` is the overlapping layout
+- `matte` and `reflective` define the background domain
+- `variant_0001 ... variant_0011` define the brightness ladder
+
+This means the staged datasets are controlled along one axis at a time:
+
+- brightness stages vary train-vs-test illumination while keeping layout
+  separated
+- background-transfer stages vary matte-vs-reflective background while keeping
+  layout separated
+- overlap stages vary separated-vs-overlay layout while keeping the brightness
+  ladder available in both conditions
+
+## What The Metrics Are Meant To Show
+
+The experiment outputs are meant to answer two levels of question.
+
+Aggregate stage metrics such as precision, recall, mAP50, and mAP50-95 answer:
+
+- Which experiment split is hardest overall?
+- Does training on harder conditions help generalization?
+
+Per-brightness and per-image metrics answer:
+
+- At what brightness rank does performance start to fall?
+- Does the drop happen in both backgrounds or mainly one?
+- Does overlap cause a bigger failure gap under lower light?
+- Are failures mainly missed detections, extra detections, or count errors?
+
+That is why the validation workflow saves both:
+
+- YOLO summary metrics for each stage
+- grouped per-brightness metrics
+- per-image count and detection outcomes
+- plots for brightness, background transfer, and overlap effects
+
 ## Export The Staged Datasets
 
 Run all commands from the repo root.

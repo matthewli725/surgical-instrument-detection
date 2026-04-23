@@ -6,6 +6,7 @@ import json
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+import tempfile
 from typing import Iterable, Sequence
 
 import matplotlib
@@ -137,6 +138,52 @@ def discover_samples(stage_dir: Path) -> dict[tuple[str, str], list[SampleRow]]:
     return rows_by_split
 
 
+def load_names_block(stage_dir: Path) -> list[str]:
+    data_yaml = stage_dir / "data.yaml"
+    lines = data_yaml.read_text(encoding="utf-8").splitlines()
+    for index, line in enumerate(lines):
+        if line.strip() == "names:":
+            return lines[index:]
+    raise ValueError(f"Could not find names block in {data_yaml}")
+
+
+def evaluate_subset_map_metrics(
+    model: YOLO,
+    stage_dir: Path,
+    samples: list[SampleRow],
+    *,
+    imgsz: int,
+) -> dict[str, float | None]:
+    names_block = load_names_block(stage_dir)
+    with tempfile.TemporaryDirectory(prefix="brightness_eval_") as temp_dir_name:
+        temp_dir = Path(temp_dir_name)
+        subset_txt = temp_dir / "test.txt"
+        subset_txt.write_text(
+            "\n".join(str(sample.image_path.resolve()) for sample in samples) + "\n",
+            encoding="utf-8",
+        )
+        subset_yaml = temp_dir / "data.yaml"
+        yaml_lines = [
+            f"path: {stage_dir.resolve().as_posix()}",
+            "train: images/train",
+            "val: images/val",
+            f"test: {subset_txt.resolve().as_posix()}",
+            "",
+            *names_block,
+            "",
+        ]
+        subset_yaml.write_text("\n".join(yaml_lines), encoding="utf-8")
+
+        metrics = model.val(
+            data=str(subset_yaml),
+            split="test",
+            imgsz=imgsz,
+            plots=False,
+            verbose=False,
+        )
+    return collect_scalar_metrics(metrics)
+
+
 def yolo_to_xyxy(cx: float, cy: float, w: float, h: float, image_w: int, image_h: int) -> tuple[float, float, float, float]:
     x1 = (cx - w / 2.0) * image_w
     y1 = (cy - h / 2.0) * image_h
@@ -237,7 +284,7 @@ def evaluate_stage(
     conf: float,
     iou_threshold: float,
     plots: bool,
-) -> tuple[dict[str, object], list[dict[str, object]]]:
+) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
     model = YOLO(str(weights_path))
     metrics = model.val(
         data=str(stage_dir / "data.yaml"),
@@ -303,7 +350,35 @@ def evaluate_stage(
         }
         per_image_rows.append(row)
 
-    return stage_metrics, per_image_rows
+    per_rank_metric_rows: list[dict[str, object]] = []
+    samples_by_rank: dict[int, list[SampleRow]] = defaultdict(list)
+    for sample in samples:
+        samples_by_rank[sample.brightness_rank].append(sample)
+
+    for brightness_rank in sorted(samples_by_rank):
+        rank_samples = samples_by_rank[brightness_rank]
+        rank_metrics = evaluate_subset_map_metrics(
+            model,
+            stage_dir,
+            rank_samples,
+            imgsz=imgsz,
+        )
+        first = rank_samples[0]
+        per_rank_metric_rows.append(
+            {
+                "stage": spec.stage,
+                "eval_label": spec.eval_label,
+                "split": spec.split,
+                "background": first.background if len({sample.background for sample in rank_samples}) == 1 else "mixed",
+                "layout": first.layout if len({sample.layout for sample in rank_samples}) == 1 else "mixed",
+                "brightness_rank": brightness_rank,
+                "images": len(rank_samples),
+                "weights": str(weights_path),
+                **rank_metrics,
+            }
+        )
+
+    return stage_metrics, per_image_rows, per_rank_metric_rows
 
 
 def aggregate_rows(rows: Iterable[dict[str, object]], group_fields: Sequence[str]) -> list[dict[str, object]]:
@@ -416,6 +491,41 @@ def save_line_plot(
     plt.close(fig)
 
 
+def save_map_plot(
+    rows: list[dict[str, object]],
+    *,
+    output_path: Path,
+    title: str,
+    metric_field: str,
+    series_field: str,
+) -> None:
+    if not rows:
+        return
+
+    by_series: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in rows:
+        by_series[str(row[series_field])].append(row)
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+    for series_name, series_rows in sorted(by_series.items()):
+        ordered = sorted(series_rows, key=lambda row: int(row["brightness_rank"]))
+        xs = [int(row["brightness_rank"]) for row in ordered]
+        ys = [float(row[metric_field]) for row in ordered]
+        ax.plot(xs, ys, marker="o", linewidth=2, label=series_name)
+
+    ax.set_title(title)
+    ax.set_xlabel("Brightness Rank")
+    ax.set_ylabel(metric_field.replace("_", " ").title())
+    ax.set_xticks(sorted({int(row["brightness_rank"]) for row in rows}))
+    ax.set_ylim(0.0, 1.05)
+    ax.legend()
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=180)
+    plt.close(fig)
+
+
 def build_eval_specs(stages: Sequence[str]) -> list[EvalSpec]:
     specs = [EvalSpec(stage=stage, split="test", eval_label="test") for stage in stages]
     if "separated_train_overlay_test" in stages:
@@ -436,6 +546,7 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     stage_metric_rows: list[dict[str, object]] = []
     per_image_rows: list[dict[str, object]] = []
+    per_rank_metric_rows: list[dict[str, object]] = []
     processed_specs: list[dict[str, str]] = []
 
     for spec in eval_specs:
@@ -464,7 +575,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             raise ValueError(message)
 
         print(f"Evaluating {spec.stage} ({spec.eval_label}) on {len(samples)} image(s)")
-        stage_metrics, image_rows = evaluate_stage(
+        stage_metrics, image_rows, rank_rows = evaluate_stage(
             spec,
             stage_dir,
             weights_path,
@@ -476,6 +587,7 @@ def main(argv: Sequence[str] | None = None) -> None:
         )
         stage_metric_rows.append(stage_metrics)
         per_image_rows.extend(image_rows)
+        per_rank_metric_rows.extend(rank_rows)
         processed_specs.append({"stage": spec.stage, "eval_label": spec.eval_label, "split": spec.split})
 
     if not stage_metric_rows:
@@ -559,6 +671,30 @@ def main(argv: Sequence[str] | None = None) -> None:
             "mean_abs_count_error",
         ),
     )
+    write_csv(
+        args.output_dir / "brightness_map_metrics.csv",
+        per_rank_metric_rows,
+        fieldnames=(
+            "stage",
+            "eval_label",
+            "split",
+            "background",
+            "layout",
+            "brightness_rank",
+            "images",
+            "weights",
+            "precision",
+            "recall",
+            "map50",
+            "map50_95",
+            "fitness",
+            "preprocess_ms",
+            "inference_ms",
+            "loss_ms",
+            "postprocess_ms",
+            "latency_ms",
+        ),
+    )
     write_json(
         args.output_dir / "summary.json",
         {
@@ -574,6 +710,45 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     plots_dir = args.output_dir / "plots"
     save_stage_overview_plot(stage_metric_rows, plots_dir / "stage_test_overview.png")
+
+    brightness_map_rows = [
+        row for row in per_rank_metric_rows
+        if row["stage"] in {"bright_train_dim_test", "dim_train_bright_test"}
+        and row["eval_label"] == "test"
+    ]
+    save_map_plot(
+        brightness_map_rows,
+        output_path=plots_dir / "brightness_map50_95.png",
+        title="Brightness Generalization mAP50-95 By Brightness Rank",
+        metric_field="map50_95",
+        series_field="stage",
+    )
+
+    background_map_rows = [
+        row for row in per_rank_metric_rows
+        if row["stage"] in {"matte_train_reflective_test", "reflective_train_matte_test"}
+        and row["eval_label"] == "test"
+    ]
+    save_map_plot(
+        background_map_rows,
+        output_path=plots_dir / "background_transfer_map50_95.png",
+        title="Background Transfer mAP50-95 By Brightness Rank",
+        metric_field="map50_95",
+        series_field="stage",
+    )
+
+    overlay_map_rows = [
+        row for row in per_rank_metric_rows
+        if row["stage"] == "separated_train_overlay_test"
+        and row["eval_label"] in {"test", "separated_baseline"}
+    ]
+    save_map_plot(
+        overlay_map_rows,
+        output_path=plots_dir / "overlay_map50_95.png",
+        title="Separated Vs Overlay mAP50-95 By Brightness Rank",
+        metric_field="map50_95",
+        series_field="eval_label",
+    )
 
     brightness_rows = [
         row for row in grouped_rows
