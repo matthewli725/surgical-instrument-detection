@@ -35,8 +35,9 @@ These are proxy categories, not a claim of surgical-instrument coverage.
 
 Simulation is the primary data source in v1.
 
-- BlenderProc is the default renderer because it is the fastest practical path
-  for this repo.
+- Blender or BlenderProc can be used for the synthetic side, and the repo now
+  includes a bundled Blender-side planning and rendering scaffold.
+- The real-proxy transfer branch still uses separately captured proxy images.
 - Public 3D assets are acceptable for research prototyping if their licenses
   allow research use and the assumptions are documented.
 - The initial scene family stays simple: overhead camera, tray-like plane,

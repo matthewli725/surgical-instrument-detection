@@ -70,6 +70,15 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Source dataset root containing samples.csv plus image/label assets.",
     )
     parser.add_argument(
+        "--real-input-dir",
+        type=Path,
+        default=Path("data/shape_similarity_real_source"),
+        help=(
+            "Optional real-proxy source root containing samples.csv plus image/label assets for the "
+            "synthetic-to-real transfer stage."
+        ),
+    )
+    parser.add_argument(
         "--config",
         type=Path,
         default=Path("config/shape_similarity/default_experiment.json"),
@@ -247,6 +256,22 @@ def load_source_samples(input_dir: Path, stages: list[StageDefinition], known_cl
     return samples
 
 
+def load_all_source_samples(
+    input_dir: Path,
+    real_input_dir: Path | None,
+    stages: list[StageDefinition],
+    known_classes: list[str],
+) -> list[SourceSample]:
+    samples = load_source_samples(input_dir, stages, known_classes)
+
+    if real_input_dir is not None and real_input_dir.exists():
+        samples.extend(load_source_samples(real_input_dir, stages, known_classes))
+
+    if not samples:
+        raise ValueError("No source samples found in any input directory.")
+    return samples
+
+
 def prepare_stage_output(stage_dir: Path, overwrite: bool) -> None:
     if stage_dir.exists():
         if not overwrite:
@@ -416,10 +441,19 @@ def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
     known_classes, pair_families, all_stages = load_experiment_config(args.config)
     stages = resolve_stage_selection(all_stages, args.stage)
-    samples = load_source_samples(args.input_dir, stages, known_classes)
+    requires_real_source = any("real" in stage.allowed_source_types for stage in stages)
+    if requires_real_source and not args.real_input_dir.exists():
+        raise FileNotFoundError(
+            "The selected stages include real-source data, but the real proxy source directory does not exist: "
+            f"{args.real_input_dir}. Provide captured proxy data there or export only the synthetic stages."
+        )
+    samples = load_all_source_samples(args.input_dir, args.real_input_dir, stages, known_classes)
 
     print("=== Shape Similarity YOLO Export ===")
     print(f"Config: {args.config}")
+    print(f"Synthetic input: {args.input_dir}")
+    if args.real_input_dir.exists():
+        print(f"Real input: {args.real_input_dir}")
     print(f"Known classes: {len(known_classes)}")
     print(f"Pair families: {len(pair_families)}")
     print(f"Source samples: {len(samples)}")

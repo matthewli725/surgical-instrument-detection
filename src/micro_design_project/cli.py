@@ -10,6 +10,7 @@ from micro_design_project.dataset_tools import (
     export_brightness_yolo,
     export_collected_yolo,
     export_lighting_yolo,
+    plan_shape_similarity_synthetic,
     export_shape_similarity_yolo,
 )
 from micro_design_project.training import benchmark, export_weights, train
@@ -29,6 +30,10 @@ COMMANDS: dict[str, tuple[Command, str]] = {
     "export-shape-similarity-yolo": (
         export_shape_similarity_yolo.main,
         "Export staged shape-similarity synthetic-to-real YOLO datasets.",
+    ),
+    "plan-shape-similarity-synthetic": (
+        plan_shape_similarity_synthetic.main,
+        "Plan Blender-ready synthetic renders and emit the shape-similarity source manifest.",
     ),
     "download-lavado": (download_lavado.main, "Download the Lavado Kaggle dataset and export YOLO data."),
     "export-weights": (export_weights.main, "Copy trained best.pt weights into the TrayGuard demo path."),

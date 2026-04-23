@@ -8,6 +8,8 @@ from micro_design_project.training import train as train_module
 
 
 DEFAULT_STAGES: tuple[str, ...] = (
+    "brightest_train_darker_test",
+    "darkest_train_brighter_test",
     "bright_train_dim_test",
     "dim_train_bright_test",
     "matte_train_reflective_test",

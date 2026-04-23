@@ -1,0 +1,112 @@
+{
+  "assets": [
+    {
+      "asset_id": "straight_scissors_shared_01",
+      "class_name": "straight_scissors",
+      "pair_family": "scissors_curve",
+      "mesh_path": "/absolute/path/to/straight_scissors_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.15
+    },
+    {
+      "asset_id": "straight_scissors_heldout_01",
+      "class_name": "straight_scissors",
+      "pair_family": "scissors_curve",
+      "mesh_path": "/absolute/path/to/straight_scissors_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.15
+    },
+    {
+      "asset_id": "curved_scissors_shared_01",
+      "class_name": "curved_scissors",
+      "pair_family": "scissors_curve",
+      "mesh_path": "/absolute/path/to/curved_scissors_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.15
+    },
+    {
+      "asset_id": "curved_scissors_heldout_01",
+      "class_name": "curved_scissors",
+      "pair_family": "scissors_curve",
+      "mesh_path": "/absolute/path/to/curved_scissors_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.15
+    },
+    {
+      "asset_id": "straight_clamp_shared_01",
+      "class_name": "straight_clamp",
+      "pair_family": "clamp_curve",
+      "mesh_path": "/absolute/path/to/straight_clamp_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.17
+    },
+    {
+      "asset_id": "straight_clamp_heldout_01",
+      "class_name": "straight_clamp",
+      "pair_family": "clamp_curve",
+      "mesh_path": "/absolute/path/to/straight_clamp_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.17
+    },
+    {
+      "asset_id": "curved_clamp_shared_01",
+      "class_name": "curved_clamp",
+      "pair_family": "clamp_curve",
+      "mesh_path": "/absolute/path/to/curved_clamp_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.17
+    },
+    {
+      "asset_id": "curved_clamp_heldout_01",
+      "class_name": "curved_clamp",
+      "pair_family": "clamp_curve",
+      "mesh_path": "/absolute/path/to/curved_clamp_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.17
+    },
+    {
+      "asset_id": "narrow_tip_tweezer_plier_shared_01",
+      "class_name": "narrow_tip_tweezer_plier",
+      "pair_family": "tip_width",
+      "mesh_path": "/absolute/path/to/narrow_tip_tweezer_plier_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.14
+    },
+    {
+      "asset_id": "narrow_tip_tweezer_plier_heldout_01",
+      "class_name": "narrow_tip_tweezer_plier",
+      "pair_family": "tip_width",
+      "mesh_path": "/absolute/path/to/narrow_tip_tweezer_plier_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.14
+    },
+    {
+      "asset_id": "broad_tip_tweezer_plier_shared_01",
+      "class_name": "broad_tip_tweezer_plier",
+      "pair_family": "tip_width",
+      "mesh_path": "/absolute/path/to/broad_tip_tweezer_plier_shared_01.obj",
+      "mesh_split": "shared",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.14
+    },
+    {
+      "asset_id": "broad_tip_tweezer_plier_heldout_01",
+      "class_name": "broad_tip_tweezer_plier",
+      "pair_family": "tip_width",
+      "mesh_path": "/absolute/path/to/broad_tip_tweezer_plier_heldout_01.obj",
+      "mesh_split": "heldout",
+      "open_set_role": "known",
+      "scale_hint_meters": 0.14
+    }
+  ]
+}

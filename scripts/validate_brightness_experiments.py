@@ -17,12 +17,18 @@ from ultralytics import YOLO
 
 
 DEFAULT_STAGES: tuple[str, ...] = (
+    "brightest_train_darker_test",
+    "darkest_train_brighter_test",
     "bright_train_dim_test",
     "dim_train_bright_test",
     "matte_train_reflective_test",
     "reflective_train_matte_test",
     "separated_train_overlay_test",
 )
+
+LUMEN_START = 800
+LUMEN_END = 80
+BRIGHTNESS_LEVELS = 11
 
 
 @dataclass(frozen=True)
@@ -114,6 +120,13 @@ def collect_scalar_metrics(metrics) -> dict[str, float | None]:
     return results
 
 
+def brightness_lumens(brightness_rank: int) -> int:
+    if brightness_rank < 1 or brightness_rank > BRIGHTNESS_LEVELS:
+        raise ValueError(f"Brightness rank must be between 1 and {BRIGHTNESS_LEVELS}, got {brightness_rank}")
+    span = LUMEN_START - LUMEN_END
+    return int(round(LUMEN_START - (span * (brightness_rank - 1) / (BRIGHTNESS_LEVELS - 1))))
+
+
 def discover_samples(stage_dir: Path) -> dict[tuple[str, str], list[SampleRow]]:
     manifest_path = stage_dir / "manifests" / "samples.csv"
     if not manifest_path.exists():
@@ -136,6 +149,21 @@ def discover_samples(stage_dir: Path) -> dict[tuple[str, str], list[SampleRow]]:
             )
             rows_by_split[(sample.stage, sample.split)].append(sample)
     return rows_by_split
+
+
+def collect_samples_for_brightness_curve(stage_dirs: Sequence[Path]) -> list[SampleRow]:
+    samples: list[SampleRow] = []
+    seen: set[tuple[str, str, str]] = set()
+    for stage_dir in stage_dirs:
+        rows_by_split = discover_samples(stage_dir)
+        for split_name in ("test",):
+            for sample in rows_by_split.get((stage_dir.name, split_name), []):
+                key = (sample.session_id, sample.brightness_stem, sample.image_path.name)
+                if key in seen:
+                    continue
+                seen.add(key)
+                samples.append(sample)
+    return samples
 
 
 def load_names_block(stage_dir: Path) -> list[str]:
@@ -182,6 +210,118 @@ def evaluate_subset_map_metrics(
             verbose=False,
         )
     return collect_scalar_metrics(metrics)
+
+
+def evaluate_sample_set(
+    model: YOLO,
+    stage_dir: Path,
+    weights_path: Path,
+    samples: list[SampleRow],
+    *,
+    stage_label: str,
+    eval_label: str,
+    split_label: str,
+    data_yaml_path: Path | None = None,
+    imgsz: int,
+    conf: float,
+    iou_threshold: float,
+    plots: bool,
+) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
+    data_yaml_path = data_yaml_path or stage_dir / "data.yaml"
+    metrics = model.val(
+        data=str(data_yaml_path),
+        split=split_label,
+        imgsz=imgsz,
+        plots=plots,
+        verbose=False,
+    )
+
+    scalar_metrics = collect_scalar_metrics(metrics)
+    stage_metrics: dict[str, object] = {
+        "stage": stage_label,
+        "eval_label": eval_label,
+        "split": split_label,
+        "weights": str(weights_path),
+        "data_yaml": str(data_yaml_path),
+        "images": len(samples),
+    }
+    stage_metrics.update(scalar_metrics)
+
+    image_paths = [str(sample.image_path) for sample in samples]
+    results = list(model.predict(source=image_paths, stream=True, imgsz=imgsz, conf=conf, verbose=False))
+    if len(results) != len(samples):
+        raise RuntimeError(
+            "Prediction output count did not match the sample count: "
+            f"{len(results)} predictions vs {len(samples)} samples."
+        )
+
+    per_image_rows: list[dict[str, object]] = []
+    for sample, result in zip(samples, results, strict=True):
+        image_h, image_w = result.orig_shape
+        gt_boxes = load_ground_truth(sample.label_path, image_w=image_w, image_h=image_h)
+        pred_boxes = [
+            (int(box.cls.item()), tuple(float(value) for value in box.xyxy[0].tolist()))
+            for box in result.boxes
+        ]
+        tp, fp, fn = greedy_match(gt_boxes, pred_boxes, iou_threshold=iou_threshold)
+        gt_count = len(gt_boxes)
+        pred_count = len(pred_boxes)
+        count_error = pred_count - gt_count
+        row = {
+            "stage": stage_label,
+            "eval_label": eval_label,
+            "split": split_label,
+            "session_id": sample.session_id,
+            "background": sample.background,
+            "layout": sample.layout,
+            "brightness_rank": sample.brightness_rank,
+            "estimated_lumens": brightness_lumens(sample.brightness_rank),
+            "brightness_stem": sample.brightness_stem,
+            "image_path": str(sample.image_path),
+            "label_path": str(sample.label_path),
+            "gt_count": gt_count,
+            "pred_count": pred_count,
+            "tp": tp,
+            "fp": fp,
+            "fn": fn,
+            "image_precision": safe_div(tp, tp + fp),
+            "image_recall": safe_div(tp, tp + fn),
+            "exact_count_match": int(pred_count == gt_count),
+            "count_error": count_error,
+            "abs_count_error": abs(count_error),
+        }
+        per_image_rows.append(row)
+
+    per_rank_metric_rows: list[dict[str, object]] = []
+    samples_by_rank: dict[int, list[SampleRow]] = defaultdict(list)
+    for sample in samples:
+        samples_by_rank[sample.brightness_rank].append(sample)
+
+    for brightness_rank in sorted(samples_by_rank):
+        rank_samples = samples_by_rank[brightness_rank]
+        rank_metrics = evaluate_subset_map_metrics(
+            model,
+            stage_dir,
+            rank_samples,
+            imgsz=imgsz,
+        )
+        first = rank_samples[0]
+        per_rank_metric_rows.append(
+            {
+                "stage": stage_label,
+                "eval_label": eval_label,
+                "split": split_label,
+                "background": first.background if len({sample.background for sample in rank_samples}) == 1 else "mixed",
+                "layout": first.layout if len({sample.layout for sample in rank_samples}) == 1 else "mixed",
+                "brightness_rank": brightness_rank,
+                "estimated_lumens": brightness_lumens(brightness_rank),
+                "images": len(rank_samples),
+                "weights": str(weights_path),
+                **rank_metrics,
+            }
+        )
+
+    return stage_metrics, per_image_rows, per_rank_metric_rows
 
 
 def yolo_to_xyxy(cx: float, cy: float, w: float, h: float, image_w: int, image_h: int) -> tuple[float, float, float, float]:
@@ -286,99 +426,19 @@ def evaluate_stage(
     plots: bool,
 ) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
     model = YOLO(str(weights_path))
-    metrics = model.val(
-        data=str(stage_dir / "data.yaml"),
-        split=spec.split,
+    return evaluate_sample_set(
+        model,
+        stage_dir,
+        weights_path,
+        samples,
+        stage_label=spec.stage,
+        eval_label=spec.eval_label,
+        split_label=spec.split,
         imgsz=imgsz,
+        conf=conf,
+        iou_threshold=iou_threshold,
         plots=plots,
-        verbose=False,
     )
-
-    scalar_metrics = collect_scalar_metrics(metrics)
-    stage_metrics: dict[str, object] = {
-        "stage": spec.stage,
-        "eval_label": spec.eval_label,
-        "split": spec.split,
-        "weights": str(weights_path),
-        "data_yaml": str(stage_dir / "data.yaml"),
-        "images": len(samples),
-    }
-    stage_metrics.update(scalar_metrics)
-
-    image_paths = [str(sample.image_path) for sample in samples]
-    results = list(model.predict(source=image_paths, stream=True, imgsz=imgsz, conf=conf, verbose=False))
-    if len(results) != len(samples):
-        raise RuntimeError(
-            "Prediction output count did not match the manifest sample count: "
-            f"{len(results)} predictions vs {len(samples)} samples."
-        )
-
-    per_image_rows: list[dict[str, object]] = []
-    for sample, result in zip(samples, results, strict=True):
-        image_h, image_w = result.orig_shape
-        gt_boxes = load_ground_truth(sample.label_path, image_w=image_w, image_h=image_h)
-        pred_boxes = [
-            (int(box.cls.item()), tuple(float(value) for value in box.xyxy[0].tolist()))
-            for box in result.boxes
-        ]
-        tp, fp, fn = greedy_match(gt_boxes, pred_boxes, iou_threshold=iou_threshold)
-
-        gt_count = len(gt_boxes)
-        pred_count = len(pred_boxes)
-        count_error = pred_count - gt_count
-        row = {
-            "stage": spec.stage,
-            "eval_label": spec.eval_label,
-            "split": spec.split,
-            "session_id": sample.session_id,
-            "background": sample.background,
-            "layout": sample.layout,
-            "brightness_rank": sample.brightness_rank,
-            "brightness_stem": sample.brightness_stem,
-            "image_path": str(sample.image_path),
-            "label_path": str(sample.label_path),
-            "gt_count": gt_count,
-            "pred_count": pred_count,
-            "tp": tp,
-            "fp": fp,
-            "fn": fn,
-            "image_precision": safe_div(tp, tp + fp),
-            "image_recall": safe_div(tp, tp + fn),
-            "exact_count_match": int(pred_count == gt_count),
-            "count_error": count_error,
-            "abs_count_error": abs(count_error),
-        }
-        per_image_rows.append(row)
-
-    per_rank_metric_rows: list[dict[str, object]] = []
-    samples_by_rank: dict[int, list[SampleRow]] = defaultdict(list)
-    for sample in samples:
-        samples_by_rank[sample.brightness_rank].append(sample)
-
-    for brightness_rank in sorted(samples_by_rank):
-        rank_samples = samples_by_rank[brightness_rank]
-        rank_metrics = evaluate_subset_map_metrics(
-            model,
-            stage_dir,
-            rank_samples,
-            imgsz=imgsz,
-        )
-        first = rank_samples[0]
-        per_rank_metric_rows.append(
-            {
-                "stage": spec.stage,
-                "eval_label": spec.eval_label,
-                "split": spec.split,
-                "background": first.background if len({sample.background for sample in rank_samples}) == 1 else "mixed",
-                "layout": first.layout if len({sample.layout for sample in rank_samples}) == 1 else "mixed",
-                "brightness_rank": brightness_rank,
-                "images": len(rank_samples),
-                "weights": str(weights_path),
-                **rank_metrics,
-            }
-        )
-
-    return stage_metrics, per_image_rows, per_rank_metric_rows
 
 
 def aggregate_rows(rows: Iterable[dict[str, object]], group_fields: Sequence[str]) -> list[dict[str, object]]:
@@ -418,6 +478,7 @@ def aggregate_rows(rows: Iterable[dict[str, object]], group_fields: Sequence[str
         aggregated.append(
             bucket
             | {
+                "estimated_lumens": brightness_lumens(int(bucket["brightness_rank"])),
                 "precision": safe_div(tp, tp + fp),
                 "recall": safe_div(tp, tp + fn),
                 "exact_count_rate": safe_div(int(bucket["exact_count_matches"]), images),
@@ -462,6 +523,9 @@ def save_line_plot(
     title: str,
     metric_field: str,
     series_field: str,
+    x_field: str,
+    x_label: str,
+    invert_x: bool = False,
 ) -> None:
     if not rows:
         return
@@ -472,19 +536,63 @@ def save_line_plot(
 
     fig, ax = plt.subplots(figsize=(9, 5))
     for series_name, series_rows in sorted(by_series.items()):
-        ordered = sorted(series_rows, key=lambda row: int(row["brightness_rank"]))
-        xs = [int(row["brightness_rank"]) for row in ordered]
+        ordered = sorted(series_rows, key=lambda row: int(row[x_field]))
+        xs = [int(row[x_field]) for row in ordered]
         ys = [float(row[metric_field]) for row in ordered]
         ax.plot(xs, ys, marker="o", label=series_name)
 
     ax.set_title(title)
-    ax.set_xlabel("Brightness Rank")
+    ax.set_xlabel(x_label)
     ax.set_ylabel(metric_field.replace("_", " ").title())
-    ax.set_xticks(sorted({int(row["brightness_rank"]) for row in rows}))
+    ax.set_xticks(sorted({int(row[x_field]) for row in rows}))
     if metric_field in {"precision", "recall", "exact_count_rate"}:
         ax.set_ylim(0.0, 1.05)
+    if invert_x:
+        ax.invert_xaxis()
     ax.legend()
     ax.grid(alpha=0.25)
+    fig.tight_layout()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=180)
+    plt.close(fig)
+
+
+def save_two_panel_plot(
+    rows: list[dict[str, object]],
+    *,
+    output_path: Path,
+    title: str,
+    metric_field: str,
+    x_field: str,
+    x_label: str,
+    left_stage: str,
+    right_stage: str,
+    left_title: str,
+    right_title: str,
+) -> None:
+    left_rows = [row for row in rows if row["stage"] == left_stage]
+    right_rows = [row for row in rows if row["stage"] == right_stage]
+    if not left_rows and not right_rows:
+        return
+
+    fig, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
+    for ax, stage_rows, panel_title in (
+        (axes[0], left_rows, left_title),
+        (axes[1], right_rows, right_title),
+    ):
+        if stage_rows:
+            ordered = sorted(stage_rows, key=lambda row: int(row[x_field]), reverse=True)
+            xs = [int(row[x_field]) for row in ordered]
+            ys = [float(row[metric_field]) for row in ordered]
+            ax.plot(xs, ys, marker="o", linewidth=2)
+            ax.set_xticks(xs)
+            ax.invert_xaxis()
+        ax.set_title(panel_title)
+        ax.set_xlabel(x_label)
+        ax.grid(alpha=0.25)
+
+    axes[0].set_ylabel(metric_field.replace("_", " ").title())
+    fig.suptitle(title)
     fig.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path, dpi=180)
@@ -498,6 +606,9 @@ def save_map_plot(
     title: str,
     metric_field: str,
     series_field: str,
+    x_field: str,
+    x_label: str,
+    invert_x: bool = False,
 ) -> None:
     if not rows:
         return
@@ -508,16 +619,18 @@ def save_map_plot(
 
     fig, ax = plt.subplots(figsize=(9, 5))
     for series_name, series_rows in sorted(by_series.items()):
-        ordered = sorted(series_rows, key=lambda row: int(row["brightness_rank"]))
-        xs = [int(row["brightness_rank"]) for row in ordered]
+        ordered = sorted(series_rows, key=lambda row: int(row[x_field]))
+        xs = [int(row[x_field]) for row in ordered]
         ys = [float(row[metric_field]) for row in ordered]
         ax.plot(xs, ys, marker="o", linewidth=2, label=series_name)
 
     ax.set_title(title)
-    ax.set_xlabel("Brightness Rank")
+    ax.set_xlabel(x_label)
     ax.set_ylabel(metric_field.replace("_", " ").title())
-    ax.set_xticks(sorted({int(row["brightness_rank"]) for row in rows}))
+    ax.set_xticks(sorted({int(row[x_field]) for row in rows}))
     ax.set_ylim(0.0, 1.05)
+    if invert_x:
+        ax.invert_xaxis()
     ax.legend()
     ax.grid(alpha=0.25)
     fig.tight_layout()
@@ -537,6 +650,35 @@ def build_eval_specs(stages: Sequence[str]) -> list[EvalSpec]:
             )
         )
     return specs
+
+
+def build_brightness_curve_samples(datasets_dir: Path) -> list[SampleRow]:
+    stage_dirs = [
+        datasets_dir / "brightest_train_darker_test",
+        datasets_dir / "darkest_train_brighter_test",
+    ]
+    return collect_samples_for_brightness_curve(stage_dirs)
+
+
+def build_subset_data_yaml(stage_dir: Path, samples: list[SampleRow], temp_dir: Path) -> Path:
+    names_block = load_names_block(stage_dir)
+    subset_txt = temp_dir / "test.txt"
+    subset_txt.write_text(
+        "\n".join(str(sample.image_path.resolve()) for sample in samples) + "\n",
+        encoding="utf-8",
+    )
+    subset_yaml = temp_dir / "data.yaml"
+    yaml_lines = [
+        f"path: {stage_dir.resolve().as_posix()}",
+        "train: images/train",
+        "val: images/val",
+        f"test: {subset_txt.resolve().as_posix()}",
+        "",
+        *names_block,
+        "",
+    ]
+    subset_yaml.write_text("\n".join(yaml_lines), encoding="utf-8")
+    return subset_yaml
 
 
 def main(argv: Sequence[str] | None = None) -> None:
@@ -681,6 +823,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             "background",
             "layout",
             "brightness_rank",
+            "estimated_lumens",
             "images",
             "weights",
             "precision",
@@ -711,17 +854,32 @@ def main(argv: Sequence[str] | None = None) -> None:
     plots_dir = args.output_dir / "plots"
     save_stage_overview_plot(stage_metric_rows, plots_dir / "stage_test_overview.png")
 
-    brightness_map_rows = [
+    brightness_rows = [
         row for row in per_rank_metric_rows
-        if row["stage"] in {"bright_train_dim_test", "dim_train_bright_test"}
+        if row["stage"] in {"brightest_train_darker_test", "darkest_train_brighter_test"}
         and row["eval_label"] == "test"
     ]
     save_map_plot(
-        brightness_map_rows,
+        brightness_rows,
         output_path=plots_dir / "brightness_map50_95.png",
-        title="Brightness Generalization mAP50-95 By Brightness Rank",
+        title="Brightness Degradation mAP50-95 By Estimated Lumens",
         metric_field="map50_95",
         series_field="stage",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
+    )
+    save_two_panel_plot(
+        brightness_rows,
+        output_path=plots_dir / "brightness_map50_95_panels.png",
+        title="Brightness Degradation mAP50-95",
+        metric_field="map50_95",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        left_stage="darkest_train_brighter_test",
+        right_stage="brightest_train_darker_test",
+        left_title="Train darkest, test brighter",
+        right_title="Train brightest, test darker",
     )
 
     background_map_rows = [
@@ -732,9 +890,12 @@ def main(argv: Sequence[str] | None = None) -> None:
     save_map_plot(
         background_map_rows,
         output_path=plots_dir / "background_transfer_map50_95.png",
-        title="Background Transfer mAP50-95 By Brightness Rank",
+        title="Background Transfer mAP50-95 By Estimated Lumens",
         metric_field="map50_95",
         series_field="stage",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
     )
 
     overlay_map_rows = [
@@ -745,23 +906,41 @@ def main(argv: Sequence[str] | None = None) -> None:
     save_map_plot(
         overlay_map_rows,
         output_path=plots_dir / "overlay_map50_95.png",
-        title="Separated Vs Overlay mAP50-95 By Brightness Rank",
+        title="Separated Vs Overlay mAP50-95 By Estimated Lumens",
         metric_field="map50_95",
         series_field="eval_label",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
     )
 
     brightness_rows = [
         row for row in grouped_rows
-        if row["stage"] in {"bright_train_dim_test", "dim_train_bright_test"}
+        if row["stage"] in {"brightest_train_darker_test", "darkest_train_brighter_test"}
         and row["eval_label"] == "test"
         and row["layout"] in {"order1", "order2"}
     ]
     save_line_plot(
         brightness_rows,
         output_path=plots_dir / "brightness_test_recall.png",
-        title="Brightness Generalization Recall By Brightness Rank",
+        title="Brightness Degradation Recall By Estimated Lumens",
         metric_field="recall",
         series_field="stage",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
+    )
+    save_two_panel_plot(
+        brightness_rows,
+        output_path=plots_dir / "brightness_test_recall_panels.png",
+        title="Brightness Degradation Recall",
+        metric_field="recall",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        left_stage="darkest_train_brighter_test",
+        right_stage="brightest_train_darker_test",
+        left_title="Train darkest, test brighter",
+        right_title="Train brightest, test darker",
     )
 
     background_rows = [
@@ -772,9 +951,12 @@ def main(argv: Sequence[str] | None = None) -> None:
     save_line_plot(
         background_rows,
         output_path=plots_dir / "background_transfer_recall.png",
-        title="Background Transfer Recall By Brightness Rank",
+        title="Background Transfer Recall By Estimated Lumens",
         metric_field="recall",
         series_field="stage",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
     )
 
     overlay_rows = [
@@ -785,9 +967,12 @@ def main(argv: Sequence[str] | None = None) -> None:
     save_line_plot(
         overlay_rows,
         output_path=plots_dir / "overlay_gap_exact_count.png",
-        title="Separated Vs Overlay Exact Count Rate",
+        title="Separated Vs Overlay Exact Count Rate By Estimated Lumens",
         metric_field="exact_count_rate",
         series_field="eval_label",
+        x_field="estimated_lumens",
+        x_label="Estimated Lumens",
+        invert_x=True,
     )
 
     print(f"Wrote validation artifacts to: {args.output_dir}")

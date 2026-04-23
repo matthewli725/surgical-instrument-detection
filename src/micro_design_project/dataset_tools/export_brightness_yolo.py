@@ -55,10 +55,34 @@ class ExperimentStage:
 
 
 ALL_RANKS = tuple(range(1, len(BRIGHTNESS_STEMS) + 1))
+BRIGHTEST_ONLY_RANKS = (1,)
+DARKEST_ONLY_RANKS = (len(BRIGHTNESS_STEMS),)
+ALL_BUT_BRIGHTEST_RANKS = tuple(range(2, len(BRIGHTNESS_STEMS) + 1))
+ALL_BUT_DARKEST_RANKS = tuple(range(1, len(BRIGHTNESS_STEMS)))
 BRIGHT_RANKS = tuple(range(1, 7))
 DIM_RANKS = tuple(range(7, len(BRIGHTNESS_STEMS) + 1))
 
 EXPERIMENT_STAGES: tuple[ExperimentStage, ...] = (
+    ExperimentStage(
+        name="brightest_train_darker_test",
+        description="Train on the brightest separated images and test on all darker separated images.",
+        train_backgrounds=("matte", "reflective"),
+        train_layouts=("order1", "order2"),
+        train_ranks=BRIGHTEST_ONLY_RANKS,
+        test_backgrounds=("matte", "reflective"),
+        test_layouts=("order1", "order2"),
+        test_ranks=ALL_BUT_BRIGHTEST_RANKS,
+    ),
+    ExperimentStage(
+        name="darkest_train_brighter_test",
+        description="Train on the darkest separated images and test on all brighter separated images.",
+        train_backgrounds=("matte", "reflective"),
+        train_layouts=("order1", "order2"),
+        train_ranks=DARKEST_ONLY_RANKS,
+        test_backgrounds=("matte", "reflective"),
+        test_layouts=("order1", "order2"),
+        test_ranks=ALL_BUT_DARKEST_RANKS,
+    ),
     ExperimentStage(
         name="bright_train_dim_test",
         description="Train on brighter separated images and test on dimmer separated images.",

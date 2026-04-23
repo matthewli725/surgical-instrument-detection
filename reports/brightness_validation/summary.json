@@ -1,0 +1,40 @@
+{
+  "datasets_dir": "data/brightness_yolo",
+  "weights_dir": "weights",
+  "output_dir": "reports/brightness_validation",
+  "imgsz": 640,
+  "conf": 0.25,
+  "iou": 0.5,
+  "processed": [
+    {
+      "stage": "bright_train_dim_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "dim_train_bright_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "matte_train_reflective_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "reflective_train_matte_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "separated_train_overlay_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "separated_train_overlay_test",
+      "eval_label": "separated_baseline",
+      "split": "train"
+    }
+  ]
+}

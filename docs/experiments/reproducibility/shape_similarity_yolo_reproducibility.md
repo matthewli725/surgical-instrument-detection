@@ -1,8 +1,9 @@
 # Reproduce The Shape-Similarity YOLO Pipeline
 
 This note explains the staged shape-similarity experiment path. The v1 pipeline
-is manifest-driven so synthetic BlenderProc renders and small real proxy images
-can be exported through the same staged split logic.
+now includes a bundled Blender-side planning and rendering workflow so
+synthetic tray-like scenes and small real proxy images can flow through the
+same staged split logic.
 
 ## What This Covers
 
@@ -22,8 +23,8 @@ The transfer report is then evaluated through two training branches:
 
 ## Source Dataset Contract
 
-The exporter expects a source root such as `data/shape_similarity_source/` with
-this structure:
+The exporter expects a synthetic source root such as
+`data/shape_similarity_source/` with this structure:
 
 ```text
 data/shape_similarity_source/
@@ -32,18 +33,39 @@ data/shape_similarity_source/
   labels/...
 ```
 
+The transfer stage can also merge an optional real-proxy source root such as
+`data/shape_similarity_real_source/` using the same `samples.csv` schema. The
+Blender workflow writes the synthetic root; the real-proxy root is where you
+place captured proxy-tool images and labels.
+
 The default experiment definition lives at:
 
 ```text
 config/shape_similarity/default_experiment.json
 ```
 
-That config fixes:
+The Blender-side planning files live at:
+
+```text
+config/shape_similarity/blenderproc_v1.json
+config/shape_similarity/blender_assets.template.json
+scripts/plan_shape_similarity_synthetic.py
+scripts/render_shape_similarity_blender.py
+```
+
+The experiment config fixes:
 
 - the known classes used in `data.yaml`
 - the default similar-pair families
 - the stage names and split columns
 - the rationale for what each stage is meant to prove
+
+The render config fixes:
+
+- default image resolution
+- scene randomization ranges
+- how many renders to plan for each synthetic stage
+- which condition buckets and mesh splits belong in each split
 
 ## Required `samples.csv` Columns
 
@@ -88,17 +110,95 @@ that limitation in the source manifest notes and in the final writeup.
 
 ## Synthetic Scene Generation Workflow
 
-The repo does not yet bundle BlenderProc scene builders. The current workflow is
-therefore:
+The bundled synthetic workflow has two steps:
 
-1. Render overhead tray-like scenes in BlenderProc with mild pose and spacing
-   variation.
-2. Export YOLO image and label files for each rendered scene.
-3. Assign each render to the stage split columns in `samples.csv`.
-4. Record asset identifiers, mesh holdout status, and condition buckets in the
-   same manifest.
-5. Keep licenses for downloaded 3D assets alongside the asset inventory used to
-   build `mesh_id`.
+1. Plan the renders and write the source manifest.
+2. Render the planned scenes inside Blender or BlenderProc.
+
+### 1. Fill The Asset Catalog
+
+Start by copying the template asset catalog and replacing the placeholder mesh
+paths with your actual assets:
+
+```text
+config/shape_similarity/blender_assets.template.json
+```
+
+Each asset entry records:
+
+- `asset_id`
+- `class_name`
+- `pair_family`
+- `mesh_path`
+- `mesh_split` such as `shared` or `heldout`
+- `scale_hint_meters`
+
+The `mesh_split` field is how the planner prefers shared meshes for the
+interpolation floor and held-out meshes for harder synthetic tests when they
+exist.
+
+### 2. Plan The Synthetic Dataset
+
+Run the planner from the repo root:
+
+```bash
+uv run python scripts/plan_shape_similarity_synthetic.py \
+  --assets-config config/shape_similarity/blender_assets.template.json \
+  --output-dir data/shape_similarity_source \
+  --overwrite
+```
+
+This creates:
+
+- `data/shape_similarity_source/samples.csv`
+- `data/shape_similarity_source/manifests/scene_plan.jsonl`
+- `data/shape_similarity_source/manifests/asset_inventory.csv`
+- empty `images/synthetic/`, `labels/synthetic/`, and `metadata/synthetic/`
+  directories ready for renders
+
+If you are using real proxy captures for the transfer stage, place their source
+manifest and assets in `data/shape_similarity_real_source/` and pass that path
+with `--real-input-dir` when exporting the staged datasets.
+
+The scene plan already contains:
+
+- output file paths
+- class ids and class names
+- mesh ids and mesh split tags
+- condition ids
+- randomized camera, tray, lighting, and material parameters
+- stage split assignments encoded back into `samples.csv`
+
+### 3. Render The Planned Scenes
+
+Render the plan inside Blender or BlenderProc:
+
+```bash
+blenderproc run scripts/render_shape_similarity_blender.py -- \
+  --scene-plan data/shape_similarity_source/manifests/scene_plan.jsonl \
+  --overwrite
+```
+
+You can also shard the run:
+
+```bash
+blenderproc run scripts/render_shape_similarity_blender.py -- \
+  --scene-plan data/shape_similarity_source/manifests/scene_plan.jsonl \
+  --start-index 0 \
+  --count 200 \
+  --overwrite
+```
+
+The renderer currently keeps v1 intentionally simple:
+
+- one labeled primary object per image
+- tray plane background
+- metallic material with randomized roughness
+- overhead camera with mild distance variation
+- one area light with randomized position and energy
+
+That matches the repo’s v1 claim: tray-like controlled scenes, not full OR
+realism.
 
 The intended v1 randomization axes are:
 
@@ -117,6 +217,7 @@ uv sync
 
 uv run python scripts/export_shape_similarity_yolo.py \
   --input-dir data/shape_similarity_source \
+  --real-input-dir data/shape_similarity_real_source \
   --output-dir data/shape_similarity_yolo \
   --overwrite
 ```
@@ -225,7 +326,10 @@ Key outputs include:
 
 ## v1 Limitations To Keep Explicit
 
-- BlenderProc scene generation is assumed but not yet bundled in this repo.
+- The bundled renderer is a simple tray-like Blender workflow, not a
+  physics-heavy BlenderProc scene factory.
+- The real-proxy transfer stage still depends on separately captured or
+  assembled real images.
 - Real transfer claims are only as strong as the real proxy split design.
 - Public 3D assets may be acceptable for research prototyping, but commercial
   readiness is out of scope.

@@ -1,7 +1,7 @@
 # Reproduce The Brightness YOLO Results
 
 This note explains how to export the new brightness-order datasets from
-`data/collected/sessions/` and how to train the five staged YOLO experiments.
+`data/collected/sessions/` and how to train the staged YOLO experiments.
 
 ## What This Covers
 
@@ -32,20 +32,28 @@ the logs and manifests.
 This dataset supports three related questions, and the staged splits are meant
 to isolate them instead of mixing all effects together.
 
-### 1. Brightness Generalization
+The plots use an `estimated lumens` axis rather than raw rank labels. The
+brightness ladder is treated as a consistent 800-to-80 lumen scale so the
+curve can be read across the full capture range.
 
-These stages test whether the detector still works when the scene gets darker
-than the lighting it saw during training.
+### 1. Brightness Degradation
 
-- `bright_train_dim_test`: train on brighter separated images and test on
-  dimmer separated images
-- `dim_train_bright_test`: train on dimmer separated images and test on
-  brighter separated images
+The preferred brightness experiment is now a one-anchor degradation test.
+Instead of training on a bright half and testing on a dark half, we train on
+one lighting extreme and evaluate the model across the remaining brightness
+steps.
 
-These are complementary rather than redundant. The first stage shows how much
-performance drops when the model is trained on easier lighting and deployed on
-harder lighting. The second stage checks whether low-light training transfers
-back upward to easier conditions.
+- `brightest_train_darker_test`: train on the brightest separated images and
+  test on all darker separated images
+- `darkest_train_brighter_test`: train on the darkest separated images and
+  test on all brighter separated images
+
+These two stages are complementary. The brightest-only model shows how quickly
+performance degrades as lumens fall. The darkest-only model shows whether the
+same detector can recover when the scene gets brighter.
+
+The earlier bright-vs-dim transfer split still exists as a legacy sanity check,
+but it is no longer the primary brightness-degradation story.
 
 ### 2. Background Transfer
 
@@ -102,6 +110,8 @@ Aggregate stage metrics such as precision, recall, mAP50, and mAP50-95 answer:
 Per-brightness and per-image metrics answer:
 
 - At what brightness rank does performance start to fall?
+- Does the brightest-only model lose recall steadily as lumens drop?
+- Does the darkest-only model improve as lumens rise?
 - Does the drop happen in both backgrounds or mainly one?
 - Does overlap cause a bigger failure gap under lower light?
 - Are failures mainly missed detections, extra detections, or count errors?
@@ -125,10 +135,12 @@ uv run python scripts/export_brightness_yolo.py \
   --overwrite
 ```
 
-The exporter writes five staged YOLO datasets:
+The exporter writes seven staged YOLO datasets:
 
 | Stage | Meaning |
 | --- | --- |
+| `brightest_train_darker_test` | Train on the brightest separated images and test on all darker separated images |
+| `darkest_train_brighter_test` | Train on the darkest separated images and test on all brighter separated images |
 | `bright_train_dim_test` | Train on brighter separated images and test on dimmer separated images |
 | `dim_train_bright_test` | Train on dimmer separated images and test on brighter separated images |
 | `matte_train_reflective_test` | Train on matte-background separated images and test on reflective-background separated images |
@@ -163,6 +175,8 @@ With the current six sessions, the exporter produces these split sizes:
 
 | Stage | Train | Val | Test |
 | --- | ---: | ---: | ---: |
+| `brightest_train_darker_test` | 6 | 6 | 59 |
+| `darkest_train_brighter_test` | 5 | 5 | 60 |
 | `bright_train_dim_test` | 24 | 24 | 19 |
 | `dim_train_bright_test` | 19 | 19 | 24 |
 | `matte_train_reflective_test` | 21 | 21 | 22 |
@@ -172,15 +186,15 @@ With the current six sessions, the exporter produces these split sizes:
 These numbers reflect the missing `variant_0011` in
 `matte-background-order1`.
 
-## Train The Five Models
+## Train The Models
 
-You can train all five stages with one helper script:
+You can train all stages with one helper script:
 
 ```bash
 uv run python scripts/train_brightness_yolo.py
 ```
 
-By default, that script trains all five stages with:
+By default, that script trains all staged experiments with:
 
 - `model=yolo11s`
 - `trainer.imgsz=640`
@@ -190,6 +204,8 @@ By default, that script trains all five stages with:
 and exports weights to:
 
 ```text
+weights/brightest_train_darker_test.pt
+weights/darkest_train_brighter_test.pt
 weights/bright_train_dim_test.pt
 weights/dim_train_bright_test.pt
 weights/matte_train_reflective_test.pt
@@ -207,7 +223,7 @@ To train only a subset:
 
 ```bash
 uv run python scripts/train_brightness_yolo.py \
-  --stage bright_train_dim_test \
+  --stage brightest_train_darker_test \
   --stage matte_train_reflective_test
 ```
 
@@ -226,6 +242,28 @@ uv run python scripts/train_brightness_yolo.py \
 If you prefer running each training job directly:
 
 ```bash
+uv run trayguard train \
+  model=yolo11s \
+  data.name=brightest_train_darker_test \
+  data.root=data/brightness_yolo/brightest_train_darker_test \
+  data.yolo_data=data/brightness_yolo/brightest_train_darker_test/data.yaml \
+  trainer.name=brightest_train_darker_test \
+  trainer.imgsz=640 \
+  trainer.batch=16 \
+  trainer.deterministic=true \
+  --export-weights weights/brightest_train_darker_test.pt
+
+uv run trayguard train \
+  model=yolo11s \
+  data.name=darkest_train_brighter_test \
+  data.root=data/brightness_yolo/darkest_train_brighter_test \
+  data.yolo_data=data/brightness_yolo/darkest_train_brighter_test/data.yaml \
+  trainer.name=darkest_train_brighter_test \
+  trainer.imgsz=640 \
+  trainer.batch=16 \
+  trainer.deterministic=true \
+  --export-weights weights/darkest_train_brighter_test.pt
+
 uv run trayguard train \
   model=yolo11s \
   data.name=bright_train_dim_test \
@@ -305,11 +343,23 @@ The script writes:
 - `image_outcomes.csv`: per-image counts and matched detection outcomes
 - `grouped_metrics.csv`: aggregated metrics by stage, brightness rank,
   background, and layout
+- `brightness_map_metrics.csv`: per-brightness metrics including estimated
+  lumens
 - `plots/`: experiment-ready PNG figures
 
 If you want to evaluate each model manually on its own test split instead:
 
 ```bash
+uv run python scripts/print_yolo_metrics.py \
+  --model weights/brightest_train_darker_test.pt \
+  --data data/brightness_yolo/brightest_train_darker_test/data.yaml \
+  --split test
+
+uv run python scripts/print_yolo_metrics.py \
+  --model weights/darkest_train_brighter_test.pt \
+  --data data/brightness_yolo/darkest_train_brighter_test/data.yaml \
+  --split test
+
 uv run python scripts/print_yolo_metrics.py \
   --model weights/bright_train_dim_test.pt \
   --data data/brightness_yolo/bright_train_dim_test/data.yaml \
