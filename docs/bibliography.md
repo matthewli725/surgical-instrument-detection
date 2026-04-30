@@ -20,10 +20,15 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - American Hospital Association, ["4 Ways Wellstar Health Is Funding Collaborative Innovation"](https://www.aha.org/aha-center-health-innovation-market-scan/2023-10-31-4-ways-wellstar-health-funding-collaborative-innovation), 2023.
 
-<a id="bridges-2010"></a>
-### Bridges, 2010
+<a id="atabuzzaman-et-al-2025"></a>
+### Atabuzzaman et al., 2025
 
-- Bridges, ["The Real Costs of Surgical Instrument Training in Sterile Processing Revisited"](https://doi.org/10.1016/j.aorn.2009.10.025), *AORN Journal*, 2010.
+- Atabuzzaman et al., ["Real-Time Ultra-Fine-Grained Surgical Instrument Classification"](https://openaccess.thecvf.com/content/CVPR2025W/FGVC/html/Atabuzzaman_Real-Time_Ultra-Fine-Grained_Surgical_Instrument_Classification_CVPRW_2025_paper.html), *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops*, 2025.
+
+<a id="chobin-2010"></a>
+### Chobin, 2010
+
+- Chobin, ["The Real Costs of Surgical Instrument Training in Sterile Processing Revisited"](https://doi.org/10.1016/j.aorn.2009.10.025), *AORN Journal*, 2010.
 
 <a id="canovas-segura-et-al-2023"></a>
 ### Cánovas-Segura et al., 2023
@@ -70,6 +75,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Goddard et al., ["Automation bias: a systematic review of frequency, effect mediators, and mitigators"](https://academic.oup.com/jamia/article/19/1/121/732254), *Journal of the American Medical Informatics Association*, 2012.
 
+<a id="guo-et-al-2017"></a>
+### Guo et al., 2017
+
+- Guo et al., ["On Calibration of Modern Neural Networks"](https://proceedings.mlr.press/v70/guo17a.html), *Proceedings of the 34th International Conference on Machine Learning*, 2017.
+
 <a id="heil-et-al-2021"></a>
 ### Heil et al., 2021
 
@@ -100,6 +110,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kastrup et al., ["Landscape and challenges in economic evaluations of artificial intelligence in healthcare: a systematic review of methodology"](https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-00088-7), *BMC Digital Health*, 2024.
 
+<a id="khalid-et-al-2023"></a>
+### Khalid et al., 2023
+
+- Khalid et al., ["Privacy-preserving artificial intelligence in healthcare: Techniques and applications"](https://www.sciencedirect.com/science/article/pii/S001048252300313X), *Computers in Biology and Medicine*, 2023.
+
 <a id="kelly-2026"></a>
 ### Kelly, 2026
 
@@ -110,10 +125,10 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kim et al., ["The Effects of Presenting AI Uncertainty Information on Pharmacists’ Trust in Automated Pill Recognition Technology: Exploratory Mixed Subjects Study"](https://pmc.ncbi.nlm.nih.gov/articles/PMC11862782/), *JMIR Human Factors*, 2025.
 
-<a id="kim-et-al-2025-rct"></a>
-### Kim et al., 2025 RCT
+<a id="tsai-et-al-2025"></a>
+### Tsai et al., 2025
 
-- Kim et al., ["Effect of Artificial Intelligence Helpfulness and Uncertainty on Cognitive Interactions with Pharmacists: Randomized Controlled Trial"](https://pubmed.ncbi.nlm.nih.gov/39888668/), *Journal of Medical Internet Research*, 2025.
+- Tsai et al., ["Effect of Artificial Intelligence Helpfulness and Uncertainty on Cognitive Interactions with Pharmacists: Randomized Controlled Trial"](https://pubmed.ncbi.nlm.nih.gov/39888668/), *Journal of Medical Internet Research*, 2025.
 
 <a id="kusuda-et-al-2024"></a>
 ### Kusuda et al., 2024
@@ -125,10 +140,20 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Lobig et al., ["To pay or not to pay for artificial intelligence applications in radiology"](https://www.nature.com/articles/s41746-023-00861-4), *npj Digital Medicine*, 2023.
 
-<a id="macola-et-al-2025"></a>
-### Macola et al., 2025
+<a id="lin-et-al-2014"></a>
+### Lin et al., 2014
 
-- Macola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), *Perioperative Care and Operating Room Management*, 2025.
+- Lin et al., ["Microsoft COCO: Common Objects in Context"](https://www.microsoft.com/en-us/research/publication/microsoft-coco-common-objects-in-context/), *European Conference on Computer Vision*, 2014.
+
+<a id="lehr-et-al-2023"></a>
+### Lehr et al., 2023
+
+- Lehr et al., ["Image-based recognition of surgical instruments by means of convolutional neural networks"](https://link.springer.com/article/10.1007/s11548-023-02885-3), *International Journal of Computer Assisted Radiology and Surgery*, 2023.
+
+<a id="macola-et-al-2025"></a>
+### Mácola et al., 2025
+
+- Mácola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), *Perioperative Care and Operating Room Management*, 2025.
 
 <a id="natali-et-al-2025"></a>
 ### Natali et al., 2025
@@ -170,15 +195,30 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Olivere et al., ["Radiofrequency Identification Track for Tray Optimization: An Instrument Utilization Pilot Study in Surgical Oncology"](https://doi.org/10.1016/j.jss.2021.02.049), *Journal of Surgical Research*, 2021.
 
-<a id="pistillo-et-al-2024"></a>
-### Pistillo et al., 2024
+<a id="pelzer-et-al-2024"></a>
+### Pelzer et al., 2024
 
-- Pistillo et al., ["Evaluation of microbial occurrence in reusable robotic instruments for minimally invasive surgery: A pilot study"](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0300355), *PLOS One*, 2024.
+- Pelzer et al., ["Evaluation of microbial occurrence in reusable robotic instruments for minimally invasive surgery: A pilot study"](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0300355), *PLOS One*, 2024.
 
 <a id="rubak-et-al-2024"></a>
 ### Rubak et al., 2024
 
 - Rubak et al., ["Surgical instrument tray optimization process at a university hospital: A comprehensive overview"](https://doi.org/10.1016/j.sopen.2024.09.007), *Surgery Open Science*, 2024.
+
+<a id="redmon-et-al-2016"></a>
+### Redmon et al., 2016
+
+- Redmon et al., ["You Only Look Once: Unified, Real-Time Object Detection"](https://arxiv.org/abs/1506.02640), *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 2016.
+
+<a id="rodrigues-et-al-2022a"></a>
+### Rodrigues et al., 2022a
+
+- Rodrigues et al., ["Surgical Tool Datasets for Machine Learning Research: A Survey"](https://link.springer.com/article/10.1007/s11263-022-01640-6), *International Journal of Computer Vision*, 2022a.
+
+<a id="rodrigues-et-al-2022b"></a>
+### Rodrigues et al., 2022b
+
+- Rodrigues, Mayo, and Patros, ["Evaluation of Deep Learning Techniques on a Novel Hierarchical Surgical Tool Dataset"](https://hdl.handle.net/10289/14991), *AI 2021: Advances in Artificial Intelligence*, 2022b. Author accepted manuscript: [ResearchCommons PDF](https://researchcommons.waikato.ac.nz/server/api/core/bitstreams/886bec44-6ffb-40d9-a2d2-ec37f57a14c7/content).
 
 <a id="sayani-et-al-2018"></a>
 ### Sayani et al., 2018
@@ -195,15 +235,25 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Schlachter et al., ["Deep Open Set Recognition Using Dynamic Intra-class Splitting"](https://link.springer.com/article/10.1007/s42979-020-0086-9), *SN Computer Science*, 2020.
 
-<a id="steenhuis-et-al-2022"></a>
-### Steenhuis et al., 2022
+<a id="seeland-and-mader-2021"></a>
+### Seeland and Mader, 2021
 
-- Steenhuis et al., ["Artificial Intelligence Implementation in Healthcare: A Theory-Based Scoping Review of Barriers and Facilitators"](https://pmc.ncbi.nlm.nih.gov/articles/PMC9738234/), *International Journal of Environmental Research and Public Health*, 2022.
+- Seeland and Mader, ["Multi-view classification with convolutional neural networks"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0245230), *PLOS One*, 2021.
 
-<a id="stentoft-et-al-2020"></a>
-### Stentoft et al., 2020
+<a id="shorten-and-khoshgoftaar-2019"></a>
+### Shorten and Khoshgoftaar, 2019
 
-- Stentoft et al., ["Industry 4.0: Adoption challenges and benefits for SMEs"](https://www.sciencedirect.com/science/article/pii/S0166361520304954), *Computers in Industry*, 2020.
+- Shorten and Khoshgoftaar, ["A survey on Image Data Augmentation for Deep Learning"](https://link.springer.com/article/10.1186/s40537-019-0197-0), *Journal of Big Data*, 2019.
+
+<a id="chomutare-et-al-2022"></a>
+### Chomutare et al., 2022
+
+- Chomutare et al., ["Artificial Intelligence Implementation in Healthcare: A Theory-Based Scoping Review of Barriers and Facilitators"](https://pmc.ncbi.nlm.nih.gov/articles/PMC9738234/), *International Journal of Environmental Research and Public Health*, 2022.
+
+<a id="masood-and-sonntag-2020"></a>
+### Masood and Sonntag, 2020
+
+- Masood and Sonntag, ["Industry 4.0: Adoption challenges and benefits for SMEs"](https://www.sciencedirect.com/science/article/pii/S0166361520304954), *Computers in Industry*, 2020.
 
 <a id="steelcobelimed-accessed-2026"></a>
 ### SteelcoBelimed, accessed 2026
@@ -215,10 +265,15 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Tikhomirov et al., ["A scoping review of silent trials for medical artificial intelligence"](https://www.nature.com/articles/s44360-025-00048-z), *Nature Health*, 2026.
 
-<a id="ting-et-al-2013"></a>
-### Ting et al., 2013
+<a id="coustasse-et-al-2013"></a>
+### Coustasse et al., 2013
 
-- Ting et al., ["Impact of Radio-Frequency Identification (RFID) Technologies on the Hospital Supply Chain: A Literature Review"](https://pmc.ncbi.nlm.nih.gov/articles/PMC3797551/), *Perspectives in Health Information Management*, 2013.
+- Coustasse et al., ["Impact of Radio-Frequency Identification (RFID) Technologies on the Hospital Supply Chain: A Literature Review"](https://pmc.ncbi.nlm.nih.gov/articles/PMC3797551/), *Perspectives in Health Information Management*, 2013.
+
+<a id="tobin-et-al-2017"></a>
+### Tobin et al., 2017
+
+- Tobin et al., ["Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World"](https://arxiv.org/abs/1703.06907), *IEEE/RSJ International Conference on Intelligent Robots and Systems*, 2017.
 
 <a id="van-leeuwen-et-al-2021"></a>
 ### van Leeuwen et al., 2021
@@ -259,6 +314,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Zheng et al., 2023
 
 - Zheng et al., ["Designing Human-Centered AI to Prevent Medication Dispensing Errors: Focus Group Study With Pharmacists"](https://pmc.ncbi.nlm.nih.gov/articles/PMC10775023/), *JMIR Formative Research*, 2023.
+
+<a id="zhao-et-al-2024-rtdetr"></a>
+### Zhao et al., 2024 RT-DETR
+
+- Zhao et al., ["DETRs Beat YOLOs on Real-time Object Detection"](https://arxiv.org/abs/2304.08069), *arXiv*, 2024.
 
 <a id="zhu-et-al-2019"></a>
 ### Zhu et al., 2019

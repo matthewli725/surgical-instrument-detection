@@ -13,10 +13,13 @@
 - Run baseline lighting model on reference-only dataset
 - Run expanded-lighting model on augmented lighting dataset
 - Collect precision, recall, mAP50, and mAP50-95 into one table
+- Add evidence status for each hard engineering target
 - Select 6-10 representative glare-condition images
 - Write short rationale for chosen similar-instrument pairs
 - Collect initial image set for first similar-instrument pairs
 - Organize raw similar-instrument images into a consistent folder structure
+- Measure actual prototype field of view and usable tray workspace
+- Time clean setup from packed state to first successful scan
 
 ## Upcoming Milestones
 

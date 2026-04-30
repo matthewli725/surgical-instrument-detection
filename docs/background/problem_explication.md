@@ -8,16 +8,15 @@ goal is a camera-connected system that detects each instrument, compares the
 visible tray contents against the required list, and clearly shows which
 required tools are still missing.
 
-This project addresses a documented sterile-processing workflow problem rather
-than a purely speculative one. Surgical instrument errors are commonly tied to
+This project addresses a documented sterile-processing workflow problem. Surgical instrument errors are commonly tied to
 missing instruments, wrong instruments, broken or poorly functioning
 instruments, and bioburden or debris. Recent studies also suggest that
 visualization-heavy tasks such as identification, inspection, and sorting
 account for most observed errors
 ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024),
 [Nichol and Saari, 2023](../bibliography.md#nichol-and-saari-2023)). TrayGuard
-is therefore meant to reduce that burden by turning tray checking into a
-guided visual verification task while still preserving technician confirmation
+is aims to reduce that burden by turning tray checking into a
+guided visual verification task while preserving technician confirmation
 as the final decision
 ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024),
 [Natarus et al., 2025](../bibliography.md#natarus-et-al-2025)).
@@ -44,13 +43,13 @@ also shows why customers may hesitate. In one direct-observation study,
 researchers observed 236 surgical instrument errors across 147 cases. Missing
 instruments accounted for 160 errors, broken or poorly functioning instruments
 accounted for 44 errors, and tray issues accounted for 13 errors.
-Visualization-related tasks accounted for 88.6% of all observed errors. The
+In total, visualization-related tasks accounted for 88.6% of all observed errors. The
 same study estimated that instrument delays cost the campus between
 $6,751,058.06 and $9,421,590.11 in annual lost chargeable OR minutes
 ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). A separate
-study analyzed 33,839 surgical instrument packages. Wrong instrument
-specifications, incomplete packages, and missing instruments were the most
-common packaging errors
+study analyzed 33,839 surgical instrument packages and identified 398 (1.18%) packaging errors. Wrong instrument
+specifications, incomplete packages, and missing instruments were among the most
+common errors
 ([Zhu et al., 2019](../bibliography.md#zhu-et-al-2019)).
 
 The task is also difficult because trays can be large and varied. A
@@ -99,18 +98,18 @@ better suited for full traceability programs, while it is harder to justify
 for a low-cost visual-assistance prototype. Broader RFID literature also
 identifies high total spending and unclear return on investment as adoption
 barriers
-([Ting et al., 2013](../bibliography.md#ting-et-al-2013)).
+([Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)).
 
 Hiring more staff is also not a simple substitute. A 2025 national survey of
 U.S. sterile-processing workers describes a severe shortage of skilled SPD
 technicians. It links the shortage to wage stagnation, high turnover, and
 increasing instrument complexity
-([Macola et al., 2025](../bibliography.md#macola-et-al-2025)). The training
-pipeline is steep. In an AORN Journal survey, most respondents estimated three
-to six months or six to twelve months to train employees to process general and
+([Mácola et al., 2025](../bibliography.md#macola-et-al-2025)). Additionally, the training
+pipeline is steep for sterile-processing workers. In an AORN Journal survey, most respondents estimated it takes three
+to six months (60%) or six to twelve months (31%) to train employees to process general and
 specialty instruments. The same paper calculated the 2008 cost to train one
-technician to competence at $41,414 including preceptor salary
-([Bridges, 2010](../bibliography.md#bridges-2010)). More staff can increase
+technician to competence at $41,414 (~$65,000 today) including preceptor salary
+([Chobin, 2010](../bibliography.md#chobin-2010)). More staff can increase
 capacity, but it does not remove the visual-recognition burden, interruption
 burden, or need for structured training
 ([Hu et al., 2024](../bibliography.md#hu-et-al-2024),
@@ -129,123 +128,41 @@ tagging or major staffing expansion
 
 | Option | Benefits | Costs / Risks | Why TrayGuard Starts With CV |
 | --- | --- | --- | --- |
-| Hire and train more SPD staff | Adds human capacity and expertise | Skilled-worker shortage, months-long training pipeline, recurring labor cost, persistent visual error risk | CV supports existing staff instead of depending on immediate hiring ([Bridges, 2010](../bibliography.md#bridges-2010), [Macola et al., 2025](../bibliography.md#macola-et-al-2025), [Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)) |
-| RFID or barcode tracking | Strong traceability and utilization data | Requires item-level tags, engraving, readers, antennas, scanning workflow, integration, and ROI justification | CV can pilot visual assistance without modifying every tool ([Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Ting et al., 2013](../bibliography.md#ting-et-al-2013)) |
+| Hire and train more SPD staff | Adds human capacity and expertise | Skilled-worker shortage, months-long training pipeline, recurring labor cost, persistent visual error risk | CV supports existing staff instead of depending on immediate hiring ([Chobin, 2010](../bibliography.md#chobin-2010), [Mácola et al., 2025](../bibliography.md#macola-et-al-2025), [Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)) |
+| RFID or barcode tracking | Strong traceability and utilization data | Requires item-level tags, engraving, readers, antennas, scanning workflow, integration, and ROI justification | CV can pilot visual assistance without modifying every tool ([Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)) |
 | Computer vision assistant | Low physical-infrastructure burden, rapid pilot, visual verification, uncertainty flags, screenshot/log evidence | Needs image-quality controls, confidence calibration, and human confirmation | Matches the visualization failure mode that dominates observed errors ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024), [Fayad et al., 2025](../bibliography.md#fayad-et-al-2025)) |
 
 ## Existing Product And Research Landscape
 
-This is no longer just an adjacent-field thought experiment. There is now
-enough direct evidence to say that surgical tray verification and packaging
-assistance with computer vision is an active product and research space, even
-if broad adoption still appears to be early.
-
-The closest conceptual precedent is a 2018 patent from Aga Khan University for
-"Detection of surgical instruments on surgical tray." It describes a
-camera-plus-database workflow that detects what instruments are present,
-retrieves what instruments should be present, compares the two, and identifies
-missing items. That is very close to TrayGuard's core concept of visual
-verification against an expected set rather than generic object detection
-([Sayani et al., 2018](../bibliography.md#sayani-et-al-2018)).
-
-The closest visible commercial analog is SteelcoBelimed's SUIS system. Their
-product page says SUIS guides staff step-by-step through set packing
-procedures, identifies instruments by shape, outlines extraneous items, reduces
-procedure time, and is especially useful for complex loan sets. That means the
-core motivation behind TrayGuard already exists in the market as guided
-packaging assistance. The most important design implication is that operator
-guidance, not autonomous replacement, is the product framing that appears to
-have made it to commercialization
-([SteelcoBelimed, accessed 2026](../bibliography.md#steelcobelimed-accessed-2026)).
-
-There is also direct hospital-side pilot activity. In 2023, the American
-Hospital Association reported that Wellstar invested in RIF Robotics and ran a
-pilot to refine the technology with feedback from sterile processing staff. The
-reported goal was automated assembly of a basic surgical tray using AI,
-computer vision, and robotics. That is strong evidence that health systems see
-this as a real operational problem. It also reinforces that frontline workflow
-feedback is part of the product, not an afterthought
-(American Hospital Association, 2023).
-
-The academic literature is moving in the same direction. A 2026 arXiv paper,
-"Towards Autonomous Instrument Tray Assembly for Sterile Processing
-Applications," presents a robotic tray assembly system using a custom dataset of
-31 instruments and 6,975 annotated images, along with structured tray fixtures
-that reduce collisions during transport. The paper explicitly describes this as
-a first step toward automating SPD workflows. That matters because it suggests
-the field is real, but still early and often dependent on semi-structured
-layouts rather than fully unconstrained pile-of-instruments scenes
-([da Silva et al., 2026](../bibliography.md#da-silva-et-al-2026)).
-
-Direct academic evidence is somewhat broader in intraoperative counting than in
-SPD tray assembly. A 2024 proof-of-concept study on automated surgical
-instrument detection and counting found that deep-learning-based counting is
-feasible and could reduce manual burden, but it still called for further
-clinical validation
-([Deol et al., 2024](../bibliography.md#deol-et-al-2024)).
-
-Taken together, the market signal is clear enough to matter. TrayGuard is not
-inventing the general idea of visual tray verification from scratch. It is
-entering an early product space where patents, commercial assistance systems,
-startup pilots, and early robotic assembly papers already exist. The closest
-commercial overlap appears to be SteelcoBelimed's SUIS. That does not make the
-project irrelevant; instead, it sharpens the question. The important issue is
-not whether computer vision could be used for tray verification, but what
-motivations, constraints, and limitations shape how such a system should be
-positioned, evaluated, and differentiated.
+TrayGuard is not inventing visual tray verification from scratch. The product
+space already includes a tray-detection patent, SteelcoBelimed's SUIS guided
+packing system, Wellstar's reported RIF Robotics pilot, Atabuzzaman et al.'s
+CSSD-oriented fine-grained classification work, da Silva et al.'s autonomous
+tray-assembly prototype, and Deol et al.'s surgical-instrument detection and
+counting study
+([Sayani et al., 2018](../bibliography.md#sayani-et-al-2018),
+[SteelcoBelimed, accessed 2026](../bibliography.md#steelcobelimed-accessed-2026),
+[Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025),
+[da Silva et al., 2026](../bibliography.md#da-silva-et-al-2026),
+[Deol et al., 2024](../bibliography.md#deol-et-al-2024)).
+The implication is strategic: the question is not whether computer vision could
+be used for tray verification. The question is how such a system should be
+positioned, evaluated, and limited. 
 
 ### Failure Modes And Customer Hesitations
 
-The main risks fall into two connected groups: system-level adoption risks and
-computer-vision-specific risks.
+The main risks fall into two groups. System-level risks include loss of human
+agency, brittle workflow dependence, unclear exception handling, alert burden,
+liability, training cost, and weak economic proof. CV-specific risks include
+lighting shift, glare, occlusion, similar-class confusion, open-set objects,
+and poorly calibrated confidence.
 
-At the system level, a hospital may reject an apparently strong automation
-product if it removes too much human agency, creates a single point of failure,
-handles exceptions poorly, slows peak workflow, or creates unclear liability.
-Evidence from healthcare AI implementation, radiology deployment, and pharmacy
-verification suggests that high-risk organizations adopt AI more readily when
-it preserves human sign-off, makes the workflow easier to recover from, and
-keeps accountability legible rather than hidden inside a black box. Radiology
-market reviews also show that commercial availability often outpaces evidence
-of real clinical or economic impact
-([Steenhuis et al., 2022](../bibliography.md#steenhuis-et-al-2022),
-[van Leeuwen et al., 2021](../bibliography.md#van-leeuwen-et-al-2021),
-[Jiang et al., 2025](../bibliography.md#jiang-et-al-2025),
-[Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). That matters for
-TrayGuard because sterile processing depends on technician expertise, exception
-handling, and auditability, not just correct object recognition.
-
-At the computer-vision level, strong lab performance does not guarantee strong
-live performance. Tray verification involves reflective metal, occlusion,
-similar-looking instruments, residue, tray variation, and unfamiliar tools. The
-medical-imaging literature shows that AI performance often degrades under
-real-world distribution shift, and the pharmacy literature shows that trust
-depends strongly on uncertainty communication and human-centered review paths
-([Yang et al., 2024](../bibliography.md#yang-et-al-2024),
-[Tikhomirov et al., 2026](../bibliography.md#tikhomirov-et-al-2026),
-[Kim et al., 2025](../bibliography.md#kim-et-al-2025)). For TrayGuard, that
-means the product should be framed as guided visual verification rather than
-autonomous tray approval. It should surface missing items, low-confidence
-items, and corrections clearly enough that a technician can make the final
-decision quickly and defensibly.
-
-The resulting design stance is intentionally narrow. TrayGuard should not try
-to replace SPD judgment, prove sterility, or make policy decisions about
-unusual substitutions. It should reduce visual search burden, highlight likely
-misses, structure review, and create a better audit trail. That stance is also
-more consistent with what adjacent industries actually adopt: manufacturing
-uses CV for first-pass screening, radiology uses AI for triage and second-read
-support, and pharmacy verification work favors uncertainty-aware hybrid review
-rather than full replacement. The economics literature points in the same
-direction: buyers need evidence of system-level value, not just model
-performance, and that evidence is still limited in healthcare AI
-([Vithlani et al., 2023](../bibliography.md#vithlani-et-al-2023),
-[Kastrup et al., 2024](../bibliography.md#kastrup-et-al-2024)).
-
-For the detailed evidence base and source-backed breakdown, see:
-
-- `docs/experiments/adoption/workflow_acceptance.md`
-- `docs/experiments/adoption/formal_risk_analysis.md`
+TrayGuard should reduce visual search burden, highlight likely misses, structure review, and create a better
+audit trail. It should not replace SPD judgment, prove sterility, or make policy
+decisions about unusual substitutions. The detailed risk register lives in
+[`formal_risk_analysis.md`](../experiments/adoption/formal_risk_analysis.md),
+and the design response lives in
+[`system_design.md`](system_design.md#research-support-audit).
 
 ## Bibliography
 

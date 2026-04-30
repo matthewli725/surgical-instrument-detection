@@ -1,247 +1,94 @@
 # Experiments
 
-Experiment docs are grouped by purpose so results and open questions can be
-revised without rewriting the whole project background.
+This directory is the experiment map.
 
 ## Sections
 
 - `cv/`: computer-vision technical risks and experiments
 - `adoption/`: workflow fit, reporting, and sociotechnical risk
+- `splits/`: split policies for each experiment axis
 - `reproducibility/`: rerun instructions for benchmarked results
 
-## CV
+## Current Prototype Flow
 
-- `cv/shape_similarity.md`
-- `cv/reflectivity_lighting.md`
-- `cv/clutter_occlusion.md`
-- `cv/open_set_confidence.md`
+TrayGuard is being tested as a technician-centered tray-checking assistant:
 
-## Adoption
+1. Load or enter the required tray list.
+2. Capture the current tray view.
+3. Detect and count visible instruments.
+4. Show present, missing, extra, and review-needed items.
+5. Preserve technician confirmation as the final decision.
 
-- `adoption/workflow_acceptance.md`
-- `adoption/formal_risk_analysis.md`
-- `adoption/traceability_reporting.md`
+This repository focuses on the evidence needed for that prototype claim:
+camera capture, labeling, dataset export, model training, evaluation, review
+states, and lightweight reporting.
+
+## CV Experiment Map
+
+| Axis | Doc | Local Question |
+| --- | --- | --- |
+| Similar-instrument recognition | [`cv/shape_similarity.md`](cv/shape_similarity.md) | Can the model separate visually similar classes without hiding pairwise confusion behind average metrics? |
+| Reflective-object lighting robustness | [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md) | Does lighting diversity improve detection on reflective proxy objects, and when should glare trigger review or rescan? |
+| Crowded-tray clutter and occlusion | [`cv/clutter_occlusion.md`](cv/clutter_occlusion.md) | When do crowded tray scenes make visible-tool counts unreliable? |
+| Unknown similar-object review routing | [`cv/open_set_confidence.md`](cv/open_set_confidence.md) | Can unknown or similar-but-wrong objects be routed to review instead of forced into known classes? |
+
+The shared rationale for these axes lives in the system design's
+[research support audit](../background/system_design.md#research-support-audit).
+The individual pages should document only their local setup, metrics, results,
+and product interpretation.
+
+## Experiment Decision Evidence Index
+
+The project already includes justification for the experiment directions in the
+system design, especially the
+[research support audit](../background/system_design.md#research-support-audit).
+Use this table as the visible bridge between those sources and the concrete
+experiment decisions.
+
+| Decision | Evidence Link | What It Supports |
+| --- | --- | --- |
+| Run controlled experiments instead of claiming deployment readiness | [System scope](../background/system_design.md#current-focus), [Research support audit](../background/system_design.md#research-support-audit) | The prototype should test measurable assumptions under bounded conditions. |
+| Use shape similarity as a primary CV axis | [Pairwise-confusion row](../background/system_design.md#research-support-audit), [HOSPITools source](../bibliography.md#rodrigues-et-al-2022b) | Surgical tools can be visually similar with subtle differences, so average metrics are not enough. |
+| Report pairwise confusion and high-confidence wrong-class predictions | [Pairwise-confusion row](../background/system_design.md#research-support-audit), [`cv/shape_similarity.md`](cv/shape_similarity.md#headline-metrics) | Similar-class mistakes are the product-critical failure mode for fine-grained tray checks. |
+| Use lighting and reflectivity stages | [Controlled-lighting row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset) | Lighting is a documented acquisition variable for surgical-tool imagery and reflective objects can hide visual cues. |
+| Reuse labels only for fixed-pose lighting variants | [Controlled-lighting row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset) | Label reuse is defensible only when object geometry, identity, pose, and camera framing stay fixed. |
+| Evaluate on held-out conditions instead of random near-duplicates | [Held-out-splits row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset), [`cv/shape_similarity.md`](cv/shape_similarity.md#staged-experiment-logic) | The result should measure generalization to the isolated condition, not memorization of similar images. |
+| Use synthetic data only as a transfer hypothesis | [Synthetic-data row](../background/system_design.md#research-support-audit), [`cv/shape_similarity.md`](cv/shape_similarity.md#dataset-design) | Simulation is useful only if it improves a matched real-proxy baseline. |
+| Include clutter and occlusion as an axis | [Object-detection/counting row](../background/system_design.md#research-support-audit), [`cv/clutter_occlusion.md`](cv/clutter_occlusion.md#why-this-is-a-risk) | TrayGuard should count visible tools and know when overlap makes the view unreliable. |
+| Include open-set confidence and review states | [Confidence/review row](../background/system_design.md#research-support-audit), [`cv/open_set_confidence.md`](cv/open_set_confidence.md#how-to-read-the-results) | Unknown or similar-but-wrong objects should route to review instead of being forced into known labels. |
+| Keep technician confirmation as the final decision | [Technician-centered row](../background/system_design.md#research-support-audit), [Current prototype flow](#current-prototype-flow) | The detector supports human verification; it does not silently approve trays. |
+
+## Adoption Experiment Map
+
+| Axis | Doc | Local Question |
+| --- | --- | --- |
+| Workflow acceptance | [`adoption/workflow_acceptance.md`](adoption/workflow_acceptance.md) | Does the assistant help users catch tray issues without adding unacceptable correction burden? |
+| Formal risk analysis | [`adoption/formal_risk_analysis.md`](adoption/formal_risk_analysis.md) | What system-level and CV-specific risks must stay visible during positioning and evaluation? |
+| Traceability and reporting | [`adoption/traceability_reporting.md`](adoption/traceability_reporting.md) | Can the prototype produce useful evidence about repeated tray-check problems? |
 
 ## Reproducibility
 
-- `reproducibility/brightness_yolo_reproducibility.md`
-- `reproducibility/lighting_yolo_reproducibility.md`
-- `reproducibility/shape_similarity_yolo_reproducibility.md`
+- [`splits/README.md`](splits/README.md)
+- [`reproducibility/brightness_yolo_reproducibility.md`](reproducibility/brightness_yolo_reproducibility.md)
+- [`reproducibility/lighting_yolo_reproducibility.md`](reproducibility/lighting_yolo_reproducibility.md)
+- [`reproducibility/shape_similarity_yolo_reproducibility.md`](reproducibility/shape_similarity_yolo_reproducibility.md)
 
-## Experiment Overview
+The split README is the source of truth for experiment split intent. The
+reproducibility notes keep command-level detail for benchmarked results.
 
-TrayGuard is intended to become an interactive tray-checking system.
+## Shared Reporting Checklist
 
-1. A technician loads the required instrument list for a tray by scanning a
-   barcode.
-2. A camera captures the current tray state.
-3. The detector identifies and counts visible instruments.
-4. The interface shows collected tools, missing tools, and uncertain
-   detections.
-5. The technician confirms or corrects the result before the tray is
-   completed.
+For each experiment axis, report the smallest set of results that supports the
+claim:
 
-The current repository focuses on the computer vision foundation. This includes
-data collection, labeling, dataset export, model training, and model
-evaluation.
+- dataset size, class list, and split strategy
+- precision, recall, mAP50, and mAP50-95 where applicable
+- per-class failures and pairwise confusion for similar classes
+- unknown-object false positives and high-confidence errors
+- count error per tray or condition
+- review, rescan, correction, and time-to-check behavior where relevant
+- representative success and failure screenshots
 
-### 1. Shape Similarity
-
-**Question** Can the model distinguish between objects that have similar
-outlines but different identities?
-
-This tests a central recognition challenge in surgical tray assembly. Packaging
-studies show that wrong-specification instruments are a common error category.
-Visualization studies identify identification and sorting as weak points in
-sterile processing
-([Zhu et al., 2019](../bibliography.md#zhu-et-al-2019),
-[Nichol and Saari, 2023](../bibliography.md#nichol-and-saari-2023),
-[Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). The system
-therefore needs to learn subtle differences in shape, tip geometry, handle
-structure, and relative proportions
-([Zhu et al., 2019](../bibliography.md#zhu-et-al-2019),
-[Fayad et al., 2025](../bibliography.md#fayad-et-al-2025)).
-
-**Proposed setup**
-
-- Start with synthetic BlenderProc scenes under tray-like overhead conditions.
-- Export staged splits that separate synthetic interpolation, synthetic
-  robustness, and synthetic-to-real transfer.
-- Compare `real_small_from_scratch` against
-  `synthetic_pretrain_plus_real_small` on the same real proxy set.
-- Make pairwise confusion and high-confidence wrong-pair predictions the
-  headline metrics.
-
-**Success indicators**
-
-- High per-class precision and recall for visually similar classes
-- Low confusion between paired classes, such as straight vs. curved instruments
-- Reasonable detection confidence when objects are rotated or slightly
-  repositioned
-
-### 2. Material And Lighting Robustness
-
-**Question** Can the model remain reliable when reflective or metallic objects
-appear under different lighting conditions?
-
-Surgical instruments are commonly reusable metal tools. Sterile-processing
-studies emphasize inspection of instrument condition, cleanliness, and function
-as visual tasks. This motivates testing whether lighting and reflective
-surfaces degrade a camera-based detector
-([Nichol and Saari, 2023](../bibliography.md#nichol-and-saari-2023),
-[Nichol et al., 2024](../bibliography.md#nichol-et-al-2024),
-[Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023)). Our data
-collection workflow is designed around this issue. One setup can be annotated
-once and then captured repeatedly under different lighting conditions.
-
-**Proposed setup**
-
-- Place a fixed set of objects in a tray or tray-like area.
-- Capture one annotated reference image.
-- Capture lighting variants with changed light angle, brightness, glare, and
-  shadow.
-- Train and evaluate on lighting conditions not seen during training.
-
-**Success indicators**
-
-- Stable detections across lighting variants
-- Limited confidence drop under glare or shadow
-- Better performance when lighting augmentation or multi-lighting training data
-  is used
-
-### 3. Clutter And Occlusion
-
-**Question** Can the model detect and count instruments when objects are close
-together, overlapping, or partially occluded?
-
-Real trays can be large and visually dense. A Major General Surgery tray in one
-prospective study contained 94 reusable instruments. Hospital-wide tray
-optimization at Aarhus University Hospital involved 1,340 tray types and more
-than 43,000 instruments before redesign
-([Eussen et al., 2026](../bibliography.md#eussen-et-al-2026),
-[Rubak et al., 2024](../bibliography.md#rubak-et-al-2024)). A useful tray
-inspection system must measure how touching, overlap, and occlusion affect
-visible-tool counting
-([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)).
-
-**Proposed setup**
-
-- Create tray scenes with increasing clutter levels.
-- Start with separated objects, then move to touching objects, partial overlap,
-  and heavier occlusion.
-- Evaluate detection quality at each clutter level.
-
-**Success indicators**
-
-- Accurate counts in low and moderate clutter
-- Graceful degradation as occlusion increases
-- Clear failure cases where the system can flag low confidence instead of
-  silently miscounting
-
-### 4. Open-Set Recognition And Confidence Calibration
-
-**Question** Does the system know when it does not know?
-
-Hospitals will not trust a tray-check system that confidently mislabels an
-unfamiliar instrument because wrong instruments, wrong specifications, and
-missing instruments are documented sterile-processing error categories
-([Zhu et al., 2019](../bibliography.md#zhu-et-al-2019),
-[Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). This experiment
-tests whether TrayGuard can reject unknown tools, flag low-confidence cases,
-and avoid forcing every object into one of the known classes.
-
-**Proposed setup**
-
-- Train on the known prototype classes.
-- Test on visually similar but intentionally unknown tools.
-- Compare true known-class detections against unknown-object false positives.
-- Evaluate whether confidence thresholds and "needs review" states catch risky
-  predictions.
-
-**Success indicators**
-
-- Unknown tools are rejected or flagged rather than confidently mislabeled.
-- Confidence is lower on ambiguous, occluded, or glare-heavy cases.
-- A practical threshold can reduce dangerous false confirmations while keeping
-  the UI usable.
-
-### 5. Workflow Acceptance And Throughput
-
-**Question** Would a technician actually want to use the system during tray
-assembly?
-
-This addresses the UCLA anecdote directly. Published implementation research
-supports the same concern. SPD improvement work identifies staffing, training,
-inventory management, physical environment, workflow, communication, and
-governance as drivers of tray defects
-([Natarus et al., 2025](../bibliography.md#natarus-et-al-2025)). A model
-should therefore be evaluated as a technician-facing support tool. Adoption
-should also account for the specialized training and visual-inspection skills
-required of sterile-processing professionals
-([Hu et al., 2024](../bibliography.md#hu-et-al-2024),
-[Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023)).
-
-**Proposed setup**
-
-- Simulate a tray assembly checklist with and without TrayGuard.
-- Measure task time, number of manual corrections, number of rescans, and
-  perceived workload.
-- Record where users hesitate, override the model, or ask for more
-  explanation.
-- Compare "assistant mode" against "automation mode" language in the UI.
-
-**Success indicators**
-
-- The UI reduces missed items without adding unacceptable time.
-- Users understand uncertain detections and can correct them quickly.
-- The system preserves human confirmation rather than pretending to replace the
-  technician.
-
-### 6. Traceability And Quality Reporting
-
-**Question** Can the system produce evidence that matters to a hospital buyer?
-
-Hospitals may underreport tray defects. Nichol et al. found that staff
-reporting captured far fewer cases than direct observation. Incomplete
-reporting also limited delay analysis
-([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). TrayGuard
-should therefore log detections, uncertain items, corrections, missing
-instruments, and recurring failure patterns.
-
-**Proposed setup**
-
-- Save per-tray detection results, manual corrections, confidence values, and
-  missing-item lists.
-- Group errors by class, lighting condition, clutter level, and tray setup.
-- Produce a simple quality report that shows repeatable patterns instead of
-  isolated screenshots.
-
-**Success indicators**
-
-- Each tray check has an auditable record.
-- Repeated model or workflow failure modes are visible.
-- The output can support a buyer-facing argument about risk reduction,
-  technician support, and process improvement.
-
-## Evaluation Plan
-
-For each experiment axis, we plan to report these results.
-
-- Dataset size and class list
-- Train, validation, and test split strategy
-- Mean average precision or other detector metrics
-- Per-class precision and recall
-- Confusion between similar classes
-- Example successes and failures
-- Qualitative screenshots of detections
-- Unknown-object rejection rate
-- Confidence calibration and low-confidence review rate
-- Count error per tray
-- Time-to-check and number of user corrections in the UI
-- Repeated error categories suitable for quality reporting
-
-The strongest final result would not be a claim that TrayGuard is ready for
-operating-room deployment. Instead, it would show that the main risks are
-testable, that the prototype works under controlled approximations of those
-risks, and that the same pipeline could scale to real surgical instruments once
-real data is available.
+The final claim should remain bounded: TrayGuard is testing whether the main
+risks are measurable and manageable in a controlled prototype, not claiming
+deployment readiness for real SPD operations.

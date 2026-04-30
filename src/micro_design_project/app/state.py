@@ -4,12 +4,14 @@ import threading
 import time
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import cv2
-from ultralytics import YOLO
 
 from micro_design_project.detection import draw_detections, process_image
+
+if TYPE_CHECKING:
+    from ultralytics import YOLO
 
 
 @dataclass
@@ -38,6 +40,8 @@ class AppState:
     worker_started: bool = False
     worker_alive: bool = False
     camera_error: str | None = None
+    worker_camera_index: int | None = None
+    worker_model_path: str | None = None
 
     lock: threading.Lock = field(default_factory=threading.Lock)
 
@@ -105,6 +109,10 @@ def video_worker(state: AppState, model: YOLO, camera_index: int) -> None:
                 time.sleep(0.05)
                 continue
 
+            with state.lock:
+                if state.camera_error is not None:
+                    state.camera_error = None
+
             prediction = process_image(model, frame, imgsz=imgsz, conf=conf)
             annotated = draw_detections(frame, prediction["detections"])
             annotated = draw_status_banner(annotated, completed=completed)
@@ -123,11 +131,21 @@ def video_worker(state: AppState, model: YOLO, camera_index: int) -> None:
             state.worker_alive = False
             state.worker_started = False
             state.stop_requested = False
+            state.worker_camera_index = None
+            state.worker_model_path = None
 
 
-def ensure_worker_running(state: AppState, model: YOLO, camera_index: int) -> None:
+def ensure_worker_running(state: AppState, model: YOLO, camera_index: int, model_path: str) -> None:
     with state.lock:
-        should_start = not state.worker_started or not state.worker_alive
+        config_changed = (
+            state.worker_camera_index is not None
+            and (state.worker_camera_index != camera_index or state.worker_model_path != model_path)
+        )
+        if config_changed and state.worker_alive:
+            state.stop_requested = True
+            should_start = False
+        else:
+            should_start = not state.worker_started or not state.worker_alive
 
     if not should_start:
         return
@@ -142,3 +160,5 @@ def ensure_worker_running(state: AppState, model: YOLO, camera_index: int) -> No
     with state.lock:
         state.worker_started = True
         state.worker_alive = True
+        state.worker_camera_index = camera_index
+        state.worker_model_path = model_path

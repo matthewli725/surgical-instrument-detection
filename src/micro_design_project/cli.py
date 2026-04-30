@@ -7,11 +7,8 @@ from micro_design_project.data_collection import collect
 from micro_design_project.app import streamlit_runner
 from micro_design_project.dataset_tools import (
     download_lavado,
-    export_brightness_yolo,
     export_collected_yolo,
-    export_lighting_yolo,
     plan_shape_similarity_synthetic,
-    export_shape_similarity_yolo,
 )
 from micro_design_project.training import benchmark, export_weights, train
 
@@ -22,15 +19,6 @@ Command = Callable[[Sequence[str]], None]
 COMMANDS: dict[str, tuple[Command, str]] = {
     "collect": (collect.main, "Capture setup sessions and lighting variants."),
     "export-yolo": (export_collected_yolo.main, "Flatten collected sessions into a YOLO dataset."),
-    "export-brightness-yolo": (
-        export_brightness_yolo.main,
-        "Export staged YOLO datasets for brightness-order robustness experiments.",
-    ),
-    "export-lighting-yolo": (export_lighting_yolo.main, "Export staged lighting robustness YOLO datasets."),
-    "export-shape-similarity-yolo": (
-        export_shape_similarity_yolo.main,
-        "Export staged shape-similarity synthetic-to-real YOLO datasets.",
-    ),
     "plan-shape-similarity-synthetic": (
         plan_shape_similarity_synthetic.main,
         "Plan Blender-ready synthetic renders and emit the shape-similarity source manifest.",

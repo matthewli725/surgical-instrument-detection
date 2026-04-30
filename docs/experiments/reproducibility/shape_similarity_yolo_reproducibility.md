@@ -210,17 +210,10 @@ The intended v1 randomization axes are:
 
 ## Export The Staged Datasets
 
-Run all commands from the repo root.
-
-```bash
-uv sync
-
-uv run python scripts/export_shape_similarity_yolo.py \
-  --input-dir data/shape_similarity_source \
-  --real-input-dir data/shape_similarity_real_source \
-  --output-dir data/shape_similarity_yolo \
-  --overwrite
-```
+The setup-specific shape-similarity YOLO exporter has been retired. The split
+contract now belongs in the source `samples.csv` manifest and is documented in
+[`../splits/README.md`](../splits/README.md#similar-instrument-synthetic-to-real-transfer).
+Prepare staged YOLO folders from those manifest assignments before training.
 
 Each exported stage has the standard YOLO layout:
 

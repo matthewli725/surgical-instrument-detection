@@ -11,21 +11,12 @@ objects may overlap or sit close together.
 
 ## Why This Is A Risk
 
-Occlusion removes visual information. In object detection research, cluttered
-and occluded scenes are repeatedly identified as challenging because important
-features are hidden, which can create missed detections or merged objects. A
-survey of challenging detection environments treats occlusion, illumination, and
-scale as major stressors for deep object detectors
-([Ahmed et al., 2021](../../bibliography.md#ahmed-et-al-2021)).
-Another occlusion-focused survey notes that detection accuracy decreases when
-objects are deformed or occluded
-([Ning et al., 2021](../../bibliography.md#ning-et-al-2021)).
-
-This is a tray-checking risk because missing, extra, and wrong instruments are
-documented surgical-instrument error categories
-([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
-If instruments overlap, TrayGuard may undercount visible tools or produce a
-confident count from a bad view.
+Occlusion removes visual evidence. If tools overlap, TrayGuard may undercount
+visible items, merge detections, or produce a confident count from a bad view.
+The longer evidence base for occlusion, clutter, and tray-level detection lives
+in the system design's
+[research support audit](../../background/system_design.md#research-support-audit)
+and the [formal risk register](../adoption/formal_risk_analysis.md#cv-specific-risk-register).
 
 This test answers:
 

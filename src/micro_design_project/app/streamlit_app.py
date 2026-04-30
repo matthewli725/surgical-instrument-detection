@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from collections import Counter
 from pathlib import Path
 
 import streamlit as st
-from ultralytics import YOLO
 
 from micro_design_project.app.state import AppState, TrayRequirement, ensure_worker_running
 from micro_design_project.data_collection.classes import DEFAULT_CLASSES
+
+if TYPE_CHECKING:
+    from ultralytics import YOLO
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -18,6 +21,8 @@ DEFAULT_CAMERA_INDEX = 0
 
 @st.cache_resource(show_spinner="Loading detection model...")
 def load_model(model_path: str) -> YOLO:
+    from ultralytics import YOLO
+
     return YOLO(model_path)
 
 
@@ -88,6 +93,7 @@ def render_controls(state: AppState) -> tuple[str, int]:
                 state.running = False
                 state.paused = False
                 state.completed = False
+                state.camera_error = None
                 state.snapshot.prediction = None
                 state.snapshot.annotated_frame = None
                 state.snapshot.class_counts = Counter()
@@ -132,13 +138,14 @@ def render_checklist(requirements: list[TrayRequirement], counts: Counter[str]) 
         )
 
 
-@st.fragment(run_every="200ms")
-def render_live_view(state: AppState, requirements: list[TrayRequirement]) -> None:
+@st.fragment(run_every="100ms")
+def render_live_dashboard(state: AppState, requirements: list[TrayRequirement]) -> None:
     with state.lock:
         snapshot = state.snapshot
         annotated_frame = None if snapshot.annotated_frame is None else snapshot.annotated_frame.copy()
         counts = snapshot.class_counts.copy()
 
+    render_status(state)
     left, right = st.columns([2, 1])
     with left:
         if annotated_frame is None:
@@ -166,19 +173,17 @@ def main() -> None:
     requirements = parse_requirements(raw_requirements)
 
     model_file = Path(model_path).expanduser()
-    if not model_file.exists():
+    with state.lock:
+        should_initialize = state.running or state.worker_started or state.worker_alive
+
+    if should_initialize and not model_file.exists():
         st.warning(f"Model weights not found: {model_file}")
-    else:
+    elif should_initialize:
         model = load_model(str(model_file))
-        ensure_worker_running(state, model, camera_index)
+        ensure_worker_running(state, model, camera_index, str(model_file))
 
-    render_status(state)
-    render_live_view(state, requirements)
+    render_live_dashboard(state, requirements)
 
-    st.caption(
-        "Streamlit is useful for this prototype. For a lower-latency production UI, "
-        "move the video path to a NiceGUI or FastAPI WebRTC app and keep this package's detection layer."
-    )
 
 
 if __name__ == "__main__":

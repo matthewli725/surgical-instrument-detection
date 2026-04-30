@@ -11,21 +11,14 @@ covers part of the object.
 
 ## Why This Is A Risk
 
-Computer vision systems often assume that object appearance is mostly diffuse
-and stable, but shiny metal creates specular highlights that change with the
-light and camera angle. Specular reflection is described as a longstanding
-problem for segmentation, recognition, image analysis, and tracking because it
-creates appearance changes that do not belong to the object itself
-([Wang et al., 2016](../../bibliography.md#wang-et-al-2016)).
-Other CV work makes the same point more directly: many algorithms assume
-Lambertian surfaces, and specular highlights can hide texture details, create
-surface discontinuities, and reduce robustness
-([Wei et al., 2018](../../bibliography.md#wei-et-al-2018)).
-
-This matters for TrayGuard because sterile processing relies heavily on visual
-identification and inspection. In observed surgical cases, visualization-related
-instrument errors accounted for most errors in the study's taxonomy
-([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
+Shiny metal can change appearance when the light or camera angle changes.
+Specular highlights may hide edges, texture, or shape evidence that the detector
+needs. The longer source-backed rationale for lighting, controlled capture, and
+label reuse lives in the system design's
+[research support audit](../../background/system_design.md#research-support-audit).
+HOSPITools also treats illumination as a real surgical-tool dataset variable:
+its dataset included natural light, LED, halogen, and fluorescent lighting
+([Rodrigues et al., 2022b](../../bibliography.md#rodrigues-et-al-2022b)).
 
 This test answers:
 
@@ -50,6 +43,14 @@ The data is organized into three training stages:
 Each stage is evaluated on lighting conditions that were not included in that
 stage's training set. This is more useful than a random split because it tests
 whether the model handles new lighting, not whether it memorized similar images.
+The evidence link for this decision is the system design's
+[held-out-splits row](../../background/system_design.md#research-support-audit).
+
+Reference labels are reused only when object geometry and camera framing stay
+fixed and lighting changes. If pose, position, occlusion, or object identity
+changes, labels should be checked or redrawn.
+The evidence link for this decision is the system design's
+[controlled-lighting row](../../background/system_design.md#research-support-audit).
 
 ## How To Read The Results
 
@@ -109,7 +110,6 @@ There are research methods for estimating highlights and separating diffuse from
 specular reflection, but this project does not currently implement a validated
 specularity-pixel algorithm. Simple saturated-pixel counts or brightness
 thresholds would be custom heuristics, not a reliable product metric.
-
 
 ## Bibliography
 

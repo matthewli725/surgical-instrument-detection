@@ -16,14 +16,26 @@
   technical work supports the project story.
 
 ## Goals For Next Week
+20-25 minutes (followed by 5 mins of questions): 
+1-2 minutes introduction/brief project definition recap; 
+~5 minutes comprehensive technical status updates; 
+~10 minutes description of concerns / risks / remaining plan, including refinements to scope; 
+~5 minutes detailed description of expected final design deliverables.
 
-- Finish auditing and normalizing the lighting dataset so the splits and
-  condition names are consistent.
-- Run the first reproducible lighting baseline and collect precision, recall,
-  `mAP50`, and `mAP50-95` in one summary table.
-- Select the first similar-instrument proxy pairs and write a short rationale
-  for why they are hard but representative.
-- Collect and organize the initial image set for those pairs in a consistent
-  folder structure.
-- Draft the first experiment writeup sections while the results are still fresh
-  so they can drop into the CDR narrative later.
+### CDR parts broken down
+  - Project definition
+    - 1. proofread what Qiyu has done already, add citations
+  -  Design/Engineering work so far
+    - 2. summarize what has been done, why we did it, how it demonstrates capabilities
+  - Unknowns and concerns
+    - 3. identify elements of current design that is still unknown
+  - Refinement of scope and future work
+    - 4. discuss with instructors on scope of project
+  - 5. create slide deck
+- 6. update gantt chart (comes after refining scope)
+- 7. contact surgical/spd people (send out x number of emails)
+### find justification for similar instruments risk factor
+  - 8. define the general fine grained object detection problem
+  - 9. define what parts of instruments make it hard for our case
+  - 10. collect data on instruments/proxy objects
+  - 11. test model performance on collected data

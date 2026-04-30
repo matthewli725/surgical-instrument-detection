@@ -20,6 +20,20 @@ surgical instruments. It claims only that:
 - synthetic data can reduce real-data requirements if synthetic pretraining
   beats a matched small-real-data baseline
 
+This scope is consistent with surgical-instrument recognition literature.
+HOSPITools directly motivates the risk: its authors describe surgical-tool
+classification as fine-grained because many tools are visually similar and can
+differ in subtle, hard-to-discern ways
+([Rodrigues et al., 2022b](../../bibliography.md#rodrigues-et-al-2022b)).
+Lehr et al. first tested item-number-level recognition with one instrument per
+image under controlled lighting and a homogeneous background. Atabuzzaman et
+al. similarly used a structured two-camera acquisition platform for real-time
+ultra-fine-grained instrument classification in a CSSD setting. Those papers
+support using controlled acquisition for the narrow question of fine-grained
+identity before making broader tray-level claims. The longer prior-work
+discussion is centralized in
+[`system_design.md`](../../background/system_design.md#design-lessons-from-close-prior-work).
+
 ## Default Pair Families
 
 The v1 pipeline centers on intentionally difficult pairs:
@@ -49,9 +63,22 @@ Simulation is the primary data source in v1.
 The v1 design explicitly avoids full operating-room realism, articulated
 physics-heavy scenes, and large clutter stacks.
 
+Synthetic data is treated as a transfer hypothesis, not a replacement for real
+validation. Its value should be claimed only if
+`synthetic_pretrain_plus_real_small` beats the matched
+`real_small_from_scratch` baseline on the same real-proxy evaluation. For the
+broader rationale, see the system design's
+[synthetic-data row](../../background/system_design.md#research-support-audit).
+
 ## Staged Experiment Logic
 
 The split policy is aligned to the claim being tested, not to raw image count.
+That decision is evidence-backed: HOSPITools reserved held-out test images and
+used experiments to study dataset design variables such as image size and class
+frequency, while this project uses held-out rendering, lighting, session, or
+physical-instance conditions to isolate the variable each stage claims to test
+([Rodrigues et al., 2022b](../../bibliography.md#rodrigues-et-al-2022b),
+[held-out-splits row](../../background/system_design.md#research-support-audit)).
 
 ### 1. `synthetic_seen_condition`
 
@@ -109,7 +136,9 @@ Required outputs are:
 - qualitative examples of the hardest failures
 
 The most important result is not average mAP. It is whether any selected pair
-still produces confident wrong-class predictions.
+still produces confident wrong-class predictions. The shared rationale for that
+metric choice is in the system design's
+[pairwise-confusion row](../../background/system_design.md#research-support-audit).
 
 ## Product Interpretation
 

@@ -125,17 +125,13 @@ That is why the validation workflow saves both:
 
 ## Export The Staged Datasets
 
-Run all commands from the repo root.
+The setup-specific brightness exporter has been retired. The split policy is
+documented in
+[`../splits/README.md`](../splits/README.md#controlled-brightness-and-background-transfer),
+and staged YOLO folders should be prepared from manifests or stage-specific
+source folders before training.
 
-```bash
-uv sync
-
-uv run python scripts/export_brightness_yolo.py \
-  --output-dir data/brightness_yolo \
-  --overwrite
-```
-
-The exporter writes seven staged YOLO datasets:
+The benchmarked export used seven staged YOLO datasets:
 
 | Stage | Meaning |
 | --- | --- |

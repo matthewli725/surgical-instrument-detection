@@ -12,21 +12,11 @@ create unsafe false confidence.
 
 ## Why This Is A Risk
 
-Most standard classifiers are evaluated as closed-set systems, where every test
-class is known during training. Open-set recognition research argues that this
-is unrealistic for real vision applications because unknown classes can appear
-at inference time
-([Scheirer et al., 2013](../../bibliography.md#scheirer-et-al-2013)).
-Deep open-set work states the practical requirement plainly: a recognizer must
-classify known samples and reject unknown samples, while conventional deep
-models assume a closed environment
-([Schlachter et al., 2020](../../bibliography.md#schlachter-et-al-2020)).
-
-This matters for TrayGuard because tray errors include missing, extra, and wrong
-instruments, and a wrong instrument can look similar to the expected one
-([Zhu et al., 2019](../../bibliography.md#zhu-et-al-2019)).
-If an unknown object is confidently labeled as a known tool, the product could
-make a bad tray look complete.
+TrayGuard may see wrong, damaged, substituted, or partially hidden tools. If an
+unknown object is confidently labeled as a known tool, the product could make a
+bad tray look complete. The shared evidence for open-set behavior, calibration,
+and review states lives in the system design's
+[research support audit](../../background/system_design.md#research-support-audit).
 
 This test answers:
 
@@ -56,6 +46,11 @@ Track these outcomes:
 
 There is a tradeoff. A higher threshold may reduce false confirmations, but it
 can also send more real tools to review.
+
+The threshold itself should not be defended as a universal constant. Confidence
+is an operating signal that must be tuned against known-class recall, unknown
+false positives, high-confidence errors, and review burden on local validation
+data.
 
 ## Product Interpretation
 

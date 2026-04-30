@@ -23,6 +23,8 @@ This task list is organized by milestone.
 - Compare dataset coverage and likely usefulness
 - Investigate space and form-factor constraints for SPD deployment
 - Investigate deployment and maintenance expectations for the system
+- Measure actual prototype field of view and usable tray workspace
+- Time clean setup from packed state to first successful scan
 
 ### Sensing / Material And Lighting Assumptions Ready
 
@@ -99,6 +101,7 @@ This task list is organized by milestone.
 
 - Draft in-scope vs out-of-scope capability table
 - Draft prototype requirements section
+- Add evidence status for each hard engineering target
 - Decide whether manual correction is in scope this quarter
 - Document revised scope if manual correction is deferred
 
@@ -107,6 +110,7 @@ This task list is organized by milestone.
 - Add missing-item summary to Streamlit app
 - Add extra-item or over-count summary to Streamlit app
 - Add review-state indicator for risky detections
+- Track exact-count, under-count, and over-count outcomes by class
 
 ### UI / Baseline Workflow Defined
 
@@ -134,6 +138,7 @@ This task list is organized by milestone.
 - Run walkthrough session 1 and record timing
 - Run walkthrough session 2 and record timing
 - Run walkthrough session 3 and record timing
+- Record user action count from tray selection to final decision
 - Summarize rescans, hesitations, and user complaints
 - Summarize what users found helpful or clear
 - Run wording comparison between assistant-mode and automation-mode language

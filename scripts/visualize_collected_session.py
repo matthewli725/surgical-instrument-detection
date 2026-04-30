@@ -235,7 +235,7 @@ def render_image(
     label_path = session_dir / "labels" / f"{image_path.stem}.txt"
     boxes = load_boxes(label_path, class_names, width, height)
     draw_boxes(image, boxes)
-    # draw_overlay(image, session_dir, image_path, index, total, len(boxes))
+    draw_overlay(image, session_dir, image_path, index, total, len(boxes))
     return fit_to_window(image, max_width=max_width, max_height=max_height)
 
 
