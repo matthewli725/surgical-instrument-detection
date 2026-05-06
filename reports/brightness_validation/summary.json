@@ -7,6 +7,16 @@
   "iou": 0.5,
   "processed": [
     {
+      "stage": "brightest_train_darker_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
+      "stage": "darkest_train_brighter_test",
+      "eval_label": "test",
+      "split": "test"
+    },
+    {
       "stage": "bright_train_dim_test",
       "eval_label": "test",
       "split": "test"
