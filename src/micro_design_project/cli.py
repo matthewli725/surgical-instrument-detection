@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 import sys
 
-from micro_design_project.data_collection import collect
+from micro_design_project.data_collection import class_folder_collect, collect
 from micro_design_project.app import streamlit_runner
 from micro_design_project.dataset_tools import (
     download_lavado,
@@ -18,6 +18,10 @@ Command = Callable[[Sequence[str]], None]
 
 COMMANDS: dict[str, tuple[Command, str]] = {
     "collect": (collect.main, "Capture setup sessions and lighting variants."),
+    "collect-class-folder": (
+        class_folder_collect.main,
+        "Rapidly capture single-instrument images into one folder per class.",
+    ),
     "export-yolo": (export_collected_yolo.main, "Flatten collected sessions into a YOLO dataset."),
     "plan-shape-similarity-synthetic": (
         plan_shape_similarity_synthetic.main,

@@ -17,7 +17,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         prog="trayguard collect",
         description="Capture webcam setup sessions and reuse annotations across lighting variants."
     )
-    parser.add_argument("--camera-index", type=int, default=0, help="OpenCV camera index to use.")
+    parser.add_argument("--camera-index", type=int, default=1, help="OpenCV camera index to use.")
     parser.add_argument("--output-dir", type=Path, default=Path("data/collected"), help="Directory for session data.")
     parser.add_argument("--prefix", default="setup", help="Filename prefix for session IDs.")
     parser.add_argument("--classes-file", type=Path, default=None, help="Optional path to an existing classes.txt file.")

@@ -96,6 +96,26 @@ data/collected/sessions/<session_id>/labels/
 data/collected/sessions/<session_id>/metadata.json
 ```
 
+For rapid single-instrument capture into one folder per class, run:
+
+```bash
+uv run trayguard collect-class-folder
+```
+
+Class-folder capture controls:
+
+- Type the instrument class name in the OpenCV window first.
+- `ENTER`: start capturing that class
+- `SPACE` or `c`: save image
+- `n`: start a new class
+- `q`: quit
+
+Class-folder images are saved here:
+
+```text
+data/class_folder_raw/<class_slug>/
+```
+
 ## 3. Review Collected Data
 
 Open the latest non-empty session with boxes drawn:
