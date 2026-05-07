@@ -15,15 +15,40 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Ahmed et al., ["Survey and Performance Analysis of Deep Learning Based Object Detection in Challenging Environments"](https://pmc.ncbi.nlm.nih.gov/articles/PMC8348086/), *Sensors*, 2021.
 
+<a id="abell-et-al-2023"></a>
+### Abell et al., 2023
+
+- Abell et al., ["Identifying barriers and facilitators to successful implementation of computerized clinical decision support systems in hospitals: a NASSS framework-informed scoping review"](https://doi.org/10.1186/s13012-023-01287-y), *Implementation Science*, 2023.
+
 <a id="american-hospital-association-2023"></a>
 ### American Hospital Association, 2023
 
 - American Hospital Association, ["4 Ways Wellstar Health Is Funding Collaborative Innovation"](https://www.aha.org/aha-center-health-innovation-market-scan/2023-10-31-4-ways-wellstar-health-funding-collaborative-innovation), 2023.
 
+<a id="amershi-et-al-2019"></a>
+### Amershi et al., 2019
+
+- Amershi et al., ["Guidelines for Human-AI Interaction"](https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/), *Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems*, 2019.
+
 <a id="atabuzzaman-et-al-2025"></a>
 ### Atabuzzaman et al., 2025
 
 - Atabuzzaman et al., ["Real-Time Ultra-Fine-Grained Surgical Instrument Classification"](https://openaccess.thecvf.com/content/CVPR2025W/FGVC/html/Atabuzzaman_Real-Time_Ultra-Fine-Grained_Surgical_Instrument_Classification_CVPRW_2025_paper.html), *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops*, 2025.
+
+<a id="atosa-stainless-table-accessed-2026"></a>
+### Atosa, accessed 2026
+
+- Atosa, ["SSTW-2448 24 x 48 inches Stainless Steel Work Table"](https://therestaurantwarehouse.com/products/sstw-2448), accessed 2026.
+
+<a id="best-metal-products-stainless-sheet-accessed-2026"></a>
+### Best Metal Products, accessed 2026
+
+- Best Metal Products, ["304 Stainless Steel Sheet .023 in. x 24 in. x 48 in."](https://www.best-metal-products.com/products/304-stainless-steel-sheet-023-x-24-x-48-24ga), accessed 2026.
+
+<a id="brooke-1996"></a>
+### Brooke, 1996
+
+- Brooke, ["SUS: A 'Quick and Dirty' Usability Scale"](https://doi.org/10.1201/9781498710411-35), in *Usability Evaluation in Industry*, 1996.
 
 <a id="chobin-2010"></a>
 ### Chobin, 2010
@@ -35,20 +60,65 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Cánovas-Segura et al., ["Meaningful time-related aspects of alerts in Clinical Decision Support Systems. A unified framework"](https://pubmed.ncbi.nlm.nih.gov/37245656/), *Journal of Biomedical Informatics*, 2023.
 
+<a id="california-cooking-table-accessed-2026"></a>
+### California Cooking, accessed 2026
+
+- California Cooking, ["Worktable 24 x 48 Stainless Steel"](https://eastbayrestaurantsupply.com/products/cckccwt-2448), accessed 2026.
+
+<a id="cambo-accessed-2026"></a>
+### Cambo, accessed 2026
+
+- Cambo, ["RPS-240 Tabletop Version"](https://www.cambo.com/en/products/repro-archival-solutions/rps-copy-stands/copy-stands/rps-240), accessed 2026.
+
+<a id="contact-shelf-liner-accessed-2026"></a>
+### Con-Tact Shelf Liner, accessed 2026
+
+- Con-Tact, ["White Shelf Liners and Drawer Liners"](https://www.homedepot.com/b/Kitchen-Kitchen-Storage-Organization-Shelf-Liners-Drawer-Liners/White/N-5yc1vZc3xhZ1z0vm5f/), accessed 2026.
+
+<a id="contact-stainless-liner-accessed-2026"></a>
+### Con-Tact Stainless-Look Liner, accessed 2026
+
+- Con-Tact, ["Stainless Steel Adhesive Shelf/Drawer Liner"](https://www.homedepot.com/p/100388888), accessed 2026.
+
 <a id="cdc"></a>
 ### CDC
 
 - CDC, ["Sterilizing Practices"](https://www.cdc.gov/infection-control/hcp/disinfection-sterilization/sterilizing-practices.html), *Guideline for Disinfection and Sterilization in Healthcare Facilities*.
+
+<a id="cdc-environmental-surfaces-accessed-2026"></a>
+### CDC Environmental Surfaces, accessed 2026
+
+- CDC, ["Environmental Services"](https://www.cdc.gov/infection-control/hcp/environmental-control/environmental-services.html), *Guidelines for Environmental Infection Control in Health-Care Facilities*, accessed 2026.
+
+<a id="cdc-healthcare-equipment-accessed-2026"></a>
+### CDC Healthcare Equipment, accessed 2026
+
+- CDC, ["Disinfection of Healthcare Equipment"](https://www.cdc.gov/infection-control/hcp/disinfection-sterilization/healthcare-equipment.html), *Guideline for Disinfection and Sterilization in Healthcare Facilities*, accessed 2026.
+
+<a id="cdc-niosh-2024"></a>
+### CDC/NIOSH, 2024
+
+- CDC/NIOSH, ["About Ergonomics and Work-Related Musculoskeletal Disorders"](https://www.cdc.gov/niosh/ergonomics/about/index.html), 2024.
 
 <a id="chen-et-al-2023"></a>
 ### Chen et al., 2023
 
 - Chen et al., ["Incidence of Adverse Events in Central Sterile Supply Department: A Single-Center Retrospective Study"](https://doi.org/10.2147/RMHP.S423108), *Risk Management and Healthcare Policy*, 2023.
 
+<a id="chen-stavropoulou-et-al-2021"></a>
+### Chen, Stavropoulou, et al., 2021
+
+- Chen, Stavropoulou, et al., ["Professionals' responses to the introduction of AI innovations in radiology and their implications for future adoption: a qualitative study"](https://doi.org/10.1186/s12913-021-06861-y), *BMC Health Services Research*, 2021.
+
 <a id="da-silva-et-al-2026"></a>
 ### da Silva et al., 2026
 
 - da Silva et al., ["Towards Autonomous Instrument Tray Assembly for Sterile Processing Applications"](https://arxiv.org/abs/2602.01679), *arXiv*, 2026.
+
+<a id="davis-1989"></a>
+### Davis, 1989
+
+- Davis, ["Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology"](https://doi.org/10.2307/249008), *MIS Quarterly*, 1989.
 
 <a id="deol-et-al-2024"></a>
 ### Deol et al., 2024
@@ -70,10 +140,60 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - FDA, ["Reprocessing of Reusable Medical Devices"](https://www.fda.gov/medical-devices/products-and-medical-procedures/reprocessing-reusable-medical-devices/).
 
+<a id="fda-human-factors-accessed-2026"></a>
+### FDA Human Factors, accessed 2026
+
+- FDA, ["Human Factors Considerations"](https://www.fda.gov/medical-devices/human-factors-and-medical-devices/human-factors-considerations), accessed 2026.
+
+<a id="fda-gmlp-accessed-2026"></a>
+### FDA GMLP, accessed 2026
+
+- FDA, ["Good Machine Learning Practice for Medical Device Development: Guiding Principles"](https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles), accessed 2026.
+
+<a id="fda-reprocessing-accessed-2026"></a>
+### FDA Reprocessing, accessed 2026
+
+- FDA, ["How are Reusable Medical Devices Reprocessed?"](https://www.fda.gov/medical-devices/reprocessing-reusable-medical-devices/how-are-reusable-medical-devices-reprocessed), accessed 2026.
+
+<a id="fda-reprocessing-factors-accessed-2026"></a>
+### FDA Reprocessing Factors, accessed 2026
+
+- FDA, ["Factors Affecting Quality of Reprocessing"](https://www.fda.gov/medical-devices/reprocessing-reusable-medical-devices/factors-affecting-quality-reprocessing), accessed 2026.
+
+<a id="fda-transparency-accessed-2026"></a>
+### FDA Transparency, accessed 2026
+
+- FDA, ["Transparency for Machine Learning-Enabled Medical Devices: Guiding Principles"](https://www.fda.gov/medical-devices/software-medical-device-samd/transparency-machine-learning-enabled-medical-devices-guiding-principles), accessed 2026.
+
+<a id="gagnon-et-al-2012"></a>
+### Gagnon et al., 2012
+
+- Gagnon et al., ["Systematic review of factors influencing the adoption of information and communication technologies by healthcare professionals"](https://pubmed.ncbi.nlm.nih.gov/20703721/), *Journal of Medical Systems*, 2012.
+
+<a id="geifman-and-el-yaniv-2017"></a>
+### Geifman and El-Yaniv, 2017
+
+- Geifman and El-Yaniv, ["Selective Classification for Deep Neural Networks"](https://papers.neurips.cc/paper/7073-selective-classification-for-deep-neural-networks), *Advances in Neural Information Processing Systems*, 2017.
+
 <a id="goddard-et-al-2012"></a>
 ### Goddard et al., 2012
 
 - Goddard et al., ["Automation bias: a systematic review of frequency, effect mediators, and mitigators"](https://academic.oup.com/jamia/article/19/1/121/732254), *Journal of the American Medical Informatics Association*, 2012.
+
+<a id="ghorayeb-et-al-2023"></a>
+### Ghorayeb et al., 2023
+
+- Ghorayeb et al., ["Design and validation of a new Healthcare Systems Usability Scale (HSUS) for clinical decision support systems: a mixed-methods approach"](https://doi.org/10.1136/bmjopen-2022-065323), *BMJ Open*, 2023.
+
+<a id="getinge-prep-pack-accessed-2026"></a>
+### Getinge, accessed 2026
+
+- Getinge, ["Prep & Pack Workstations"](https://www.getinge.com/us/products/prep-pack-workstations/), accessed 2026.
+
+<a id="grossi-et-al-2021"></a>
+### Grossi et al., 2021
+
+- Grossi et al., ["Hospital contextual factors affecting the implementation of health technologies: a systematic review"](https://doi.org/10.1186/s12913-021-06423-2), *BMC Health Services Research*, 2021.
 
 <a id="guo-et-al-2017"></a>
 ### Guo et al., 2017
@@ -90,6 +210,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Hill et al., ["Measuring intraoperative surgical instrument use with radio-frequency identification"](https://doi.org/10.1093/jamiaopen/ooac003), *JAMIA Open*, 2022.
 
+<a id="hogan-et-al-2020"></a>
+### Hogan et al., 2020
+
+- Hogan et al., ["Factors influencing acceptance of robotics in hospital pharmacy: a longitudinal study using the Extended Technology Acceptance Model"](https://pubmed.ncbi.nlm.nih.gov/32430998/), *International Journal of Pharmacy Practice*, 2020.
+
+<a id="home-depot-project-panels-accessed-2026"></a>
+### Home Depot Project Panels, accessed 2026
+
+- Home Depot, ["2 ft. x 4 ft. Project Panels"](https://www.homedepot.com/b/Lumber-Composites-Plywood-Project-Panels/2-ft-x-4-ft/N-5yc1vZc7hmZ1z1abxg), accessed 2026.
+
 <a id="hu-et-al-2024"></a>
 ### Hu et al., 2024
 
@@ -104,6 +234,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Jiang et al., 2025
 
 - Jiang et al., ["Deployment of Artificial Intelligence in Radiology: Strategies for Success"](https://ajronline.org/doi/10.2214/AJR.24.31898), *American Journal of Roentgenology*, 2025.
+
+<a id="jian-et-al-2000"></a>
+### Jian et al., 2000
+
+- Jian, Bisantz, and Drury, ["Foundations for an Empirically Determined Scale of Trust in Automated Systems"](https://doi.org/10.1207/S15327566IJCE0401_04), *International Journal of Cognitive Ergonomics*, 2000.
 
 <a id="kastrup-et-al-2024"></a>
 ### Kastrup et al., 2024
@@ -125,6 +260,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kim et al., ["The Effects of Presenting AI Uncertainty Information on Pharmacists’ Trust in Automated Pill Recognition Technology: Exploratory Mixed Subjects Study"](https://pmc.ncbi.nlm.nih.gov/articles/PMC11862782/), *JMIR Human Factors*, 2025.
 
+<a id="kuppers-et-al-2022"></a>
+### Küppers et al., 2022
+
+- Küppers et al., ["Confidence Calibration for Object Detection and Segmentation"](https://link.springer.com/chapter/10.1007/978-3-031-01233-4_8), in *Deep Neural Networks and Data for Automated Driving*, 2022.
+
 <a id="tsai-et-al-2025"></a>
 ### Tsai et al., 2025
 
@@ -134,6 +274,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Kusuda et al., 2024
 
 - Kusuda et al., ["Comparison of Reading Times of RFID-Tagged and Barcode-Engraved Surgical Instruments"](https://doi.org/10.1016/j.jss.2024.09.087), *Journal of Surgical Research*, 2024.
+
+<a id="lambert-et-al-2023"></a>
+### Lambert et al., 2023
+
+- Lambert et al., ["An integrative review on the acceptance of artificial intelligence among healthcare professionals in hospitals"](https://www.nature.com/articles/s41746-023-00852-5), *npj Digital Medicine*, 2023.
 
 <a id="lobig-et-al-2023"></a>
 ### Lobig et al., 2023
@@ -155,6 +300,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Mácola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), *Perioperative Care and Operating Room Management*, 2025.
 
+<a id="mcginn-et-al-2011"></a>
+### McGinn et al., 2011
+
+- McGinn et al., ["Comparison of user groups' perspectives of barriers and facilitators to implementing electronic health records: a systematic review"](https://doi.org/10.1186/1741-7015-9-46), *BMC Medicine*, 2011.
+
+<a id="meiji-techno-accessed-2026"></a>
+### Meiji Techno, accessed 2026
+
+- Meiji Techno, ["S-4500 Boom Stand"](https://meijitechno.com/product/s-4500-boom-stand/), accessed 2026.
+
 <a id="natali-et-al-2025"></a>
 ### Natali et al., 2025
 
@@ -164,6 +319,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Natarus et al., 2025
 
 - Natarus et al., ["Optimization of a Sterile Processing Department Using Lean Six Sigma Methodology, Staffing Enhancement, and Capital Investment"](https://doi.org/10.1016/j.jcjq.2024.10.006), *The Joint Commission Journal on Quality and Patient Safety*, 2025.
+
+<a id="nasa-tlx-accessed-2026"></a>
+### NASA TLX, accessed 2026
+
+- NASA, ["NASA Task Load Index (TLX)"](https://www.nasa.gov/human-systems-integration-division/nasa-task-load-index-tlx/), accessed 2026.
+
+<a id="nielsen-norman-group-accessed-2026"></a>
+### Nielsen Norman Group, accessed 2026
+
+- Nielsen Norman Group, ["Jakob's Ten Usability Heuristics"](https://media.nngroup.com/media/articles/attachments/Heuristic_Summary_compressed.pdf), accessed 2026.
 
 <a id="nichol-and-saari-2023"></a>
 ### Nichol and Saari, 2023
@@ -185,6 +350,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Ofstead et al., ["Improving mastery and retention of knowledge and complex skills among sterile processing professionals: A pilot study on borescope training and competency testing"](https://doi.org/10.1016/j.ajic.2023.03.002), *American Journal of Infection Control*, 2023.
 
+<a id="office-depot-foam-board-accessed-2026"></a>
+### Office Depot Foam Board, accessed 2026
+
+- Office Depot, ["Foam Board, 20 in. x 30 in., White"](https://www.officedepot.com/a/products/804822/Office-Depot-Brand-Foam-Board-20/), accessed 2026.
+
 <a id="olakotan-and-yusof-2021"></a>
 ### Olakotan and Yusof, 2021
 
@@ -195,10 +365,30 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Olivere et al., ["Radiofrequency Identification Track for Tray Optimization: An Instrument Utilization Pilot Study in Surgical Oncology"](https://doi.org/10.1016/j.jss.2021.02.049), *Journal of Surgical Research*, 2021.
 
+<a id="osha-computer-workstations-accessed-2026"></a>
+### OSHA, accessed 2026
+
+- OSHA, ["Computer Workstations eTool"](https://www.osha.gov/etools/computer-workstations), accessed 2026.
+
+<a id="osha-central-sterile-supply-accessed-2026"></a>
+### OSHA Central Sterile Supply, accessed 2026
+
+- OSHA, ["Hospitals eTool: Central Sterile Supply - Work-related Musculoskeletal Disorders"](https://www.osha.gov/etools/hospitals/central-supply/work-related-musculoskeletal-disorders), accessed 2026.
+
 <a id="pelzer-et-al-2024"></a>
 ### Pelzer et al., 2024
 
 - Pelzer et al., ["Evaluation of microbial occurrence in reusable robotic instruments for minimally invasive surgery: A pilot study"](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0300355), *PLOS One*, 2024.
+
+<a id="poster-board-walmart-accessed-2026"></a>
+### Poster Board, accessed 2026
+
+- Walmart, ["Pen+Gear Economy White Poster Board, 22 in. x 28 in."](https://www.walmart.com/c/kp/silver-poster-board), accessed 2026.
+
+<a id="porter-2003"></a>
+### Porter, 2003
+
+- Porter, ["Testing the Three-Click Rule"](https://articles.centercentre.com/three_click_rule/), User Interface Engineering / Center Centre, 2003.
 
 <a id="rubak-et-al-2024"></a>
 ### Rubak et al., 2024
@@ -260,6 +450,21 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - SteelcoBelimed, ["SUIS - Surgical Instrument Vision System"](https://www.steelcobelimed.com/insights/surgical-instrument-scanner/), accessed 2026.
 
+<a id="skytron-prep-pack-accessed-2026"></a>
+### Skytron, accessed 2026
+
+- Skytron, ["Prep & Pack Workstations"](https://www.skytron.com/products/sterile-processing/prep-pack-workstations/), accessed 2026.
+
+<a id="southwest-cssd-tables-accessed-2026"></a>
+### Southwest Solutions CSSD Tables, accessed 2026
+
+- Southwest Solutions Group, ["CSSD Packing Tables"](https://www.southwestsolutions.com/ssg/healthcare/cssd-packing-tables/), accessed 2026.
+
+<a id="southwest-spd-workstations-accessed-2026"></a>
+### Southwest Solutions SPD Workstations, accessed 2026
+
+- Southwest Solutions Group, ["Sterile Processing Workstations"](https://www.southwestsolutions.com/divisions/healthcare/infection-control-patient-safety/sterile-processing-workstations/), accessed 2026.
+
 <a id="tikhomirov-et-al-2026"></a>
 ### Tikhomirov et al., 2026
 
@@ -275,6 +480,21 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Tobin et al., ["Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World"](https://arxiv.org/abs/1703.06907), *IEEE/RSJ International Conference on Intelligent Robots and Systems*, 2017.
 
+<a id="us-plastic-hdpe-accessed-2026"></a>
+### U.S. Plastic, accessed 2026
+
+- U.S. Plastic Corp., ["1/4 in. x 24 in. x 48 in. HDPE Sheet"](https://www.usplastic.com/catalog/item.aspx?itemid=36172), accessed 2026.
+
+<a id="user-spd-video-1-accessed-2026"></a>
+### User-provided SPD Video 1, accessed 2026
+
+- User-provided YouTube reference showing seated SPD-style work at a light plastic-looking table, ["YouTube video FW9p0p9iniQ"](https://www.youtube.com/watch?v=FW9p0p9iniQ&lc=UgxYsn0lRYFgRPMe_ox4AaABAg.AVfnN-L2Dz1AVhdcsyAwYT), accessed 2026.
+
+<a id="user-spd-video-2-accessed-2026"></a>
+### User-provided SPD Video 2, accessed 2026
+
+- User-provided YouTube reference showing standing SPD-style work at metal tables, ["YouTube video EMRwqWAn4zI"](https://www.youtube.com/watch?v=EMRwqWAn4zI), accessed 2026.
+
 <a id="van-leeuwen-et-al-2021"></a>
 ### van Leeuwen et al., 2021
 
@@ -284,6 +504,26 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Vithlani et al., 2023
 
 - Vithlani et al., ["Economic evaluations of artificial intelligence-based healthcare interventions: a systematic literature review of best practices in their conduct and reporting"](https://pmc.ncbi.nlm.nih.gov/articles/PMC10486896/), *Frontiers in Pharmacology*, 2023.
+
+<a id="vonken-et-al-2024"></a>
+### Vonken et al., 2024
+
+- Vonken et al., ["Barriers and facilitators of implementation of new antibacterial technologies in patient care: an interview study with orthopedic healthcare professionals at a university hospital"](https://doi.org/10.1186/s12913-024-10878-4), *BMC Health Services Research*, 2024.
+
+<a id="w3c-wai-audio-control-accessed-2026"></a>
+### W3C/WAI Audio Control, accessed 2026
+
+- W3C Web Accessibility Initiative, ["Understanding Success Criterion 1.4.2: Audio Control"](https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html), WCAG 2.2 Understanding Docs, accessed 2026.
+
+<a id="w3c-wai-status-messages-accessed-2026"></a>
+### W3C/WAI Status Messages, accessed 2026
+
+- W3C Web Accessibility Initiative, ["Understanding Success Criterion 4.1.3: Status Messages"](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html), WCAG 2.2 Understanding Docs, accessed 2026.
+
+<a id="w3c-wai-use-of-color-accessed-2026"></a>
+### W3C/WAI Use of Color, accessed 2026
+
+- W3C Web Accessibility Initiative, ["Understanding Success Criterion 1.4.1: Use of Color"](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html), WCAG 2.2 Understanding Docs, accessed 2026.
 
 <a id="wang-et-al-2016"></a>
 ### Wang et al., 2016
@@ -299,6 +539,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Wei et al., 2018
 
 - Wei et al., ["Specular highlight reduction with known surface geometry"](https://www.sciencedirect.com/science/article/pii/S107731421730173X), *Computer Vision and Image Understanding*, 2018.
+
+<a id="wenkel-et-al-2021"></a>
+### Wenkel et al., 2021
+
+- Wenkel et al., ["Confidence Score: The Forgotten Dimension of Object Detection Performance Evaluation"](https://doi.org/10.3390/s21134350), *Sensors*, 2021.
 
 <a id="yang-et-al-2024"></a>
 ### Yang et al., 2024

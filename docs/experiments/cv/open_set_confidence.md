@@ -22,7 +22,7 @@ This test answers:
 
 - Does TrayGuard recognize when an object is unfamiliar?
 - Are wrong predictions low confidence or dangerously high confidence?
-- What confidence threshold creates a reasonable review workflow?
+- What `T_review` and `T_present` thresholds create a reasonable review workflow?
 
 ## Known And Unknown Objects
 
@@ -43,14 +43,49 @@ Track these outcomes:
 - Unknown false positives: how often unknown objects are labeled as known tools.
 - High-confidence unknown false positives: the riskiest failure mode.
 - Review rate: how often the system asks a person to inspect the result.
+- False present rate: how often missing, wrong, or unknown items satisfy a
+  required class.
+- False missing rate: how often a visible required item is labeled missing.
 
-There is a tradeoff. A higher threshold may reduce false confirmations, but it
-can also send more real tools to review.
+There is a tradeoff. A higher present threshold may reduce false confirmations,
+but it can also send more real tools to review. A lower review threshold may
+surface more true tools for human inspection, but it may also create more
+review prompts.
 
 The threshold itself should not be defended as a universal constant. Confidence
 is an operating signal that must be tuned against known-class recall, unknown
-false positives, high-confidence errors, and review burden on local validation
-data.
+false positives, high-confidence errors, false missing labels, and review
+burden on local validation data.
+
+## Review-Band Threshold Logic
+
+TrayGuard should not use one confidence cutoff to decide every status. The
+recommended decision logic is a review band:
+
+| State | Rule |
+| --- | --- |
+| `Present` | A required class has enough detections above high `T_present`, with no active image-quality or similar-class risk flag. |
+| `Needs Review` | Evidence exists but is not strong enough for quiet confirmation: confidence falls between `T_review` and `T_present`, a similar class appears, an unknown object is plausible, or the count is unstable. |
+| `Missing` | No candidate detection appears above low `T_review`, and scan quality is acceptable enough that absence is meaningful. |
+| `Rescan Recommended` | No candidate appears above `T_review`, but glare, occlusion, blur, poor framing, or lighting makes a missing label unsafe. |
+
+The validation sweep should therefore produce two operating points:
+
+- `T_review`: low enough that visible required tools rarely disappear entirely.
+- `T_present`: high enough that quiet present labels are rarely wrong.
+
+For each candidate pair, report:
+
+- known-class recall at `T_review`
+- present precision at `T_present`
+- false `Present` decisions for missing, wrong, extra, and unknown objects
+- false `Missing` decisions for visible tools
+- review and rescan rates
+- high-confidence wrong similar-class predictions
+
+This threshold pair should be tied to the model version, camera geometry,
+lighting setup, class list, and validation split. It should be retuned if any
+of those change.
 
 ## Product Interpretation
 
@@ -60,6 +95,7 @@ data.
 | Unknown objects are confidently labeled as known tools | The system may falsely confirm a wrong tray | Add more training data, thresholds, or an unknown-object workflow |
 | Known tools are reviewed too often | The workflow may feel slow | Improve data coverage and tune the threshold |
 | Low-confidence errors are visible to users | The system can fail safely | Make correction and confirmation easy |
+| Items are marked missing under glare or occlusion | The UI is overclaiming absence | Use rescan or review language instead of `Missing` |
 
 ## User-Facing Guidance
 
@@ -76,6 +112,8 @@ When TrayGuard marks an item for review, the user should check whether it is:
 - Confidence is not the same thing as clinical safety.
 - A model trained on a few classes cannot identify every surgical instrument.
 - A review flag is a support tool, not a substitute for technician judgment.
+- A missing label is valid only when scan quality is good enough that absence is
+  meaningful.
 
 ## Bibliography
 
