@@ -1,17 +1,19 @@
 # TrayGuard
 
-Practical setup and command reference for collecting data, exporting YOLO datasets, training models, and running the demo.
+TrayGuard is now framed as an SPD training and assessment prototype. The active
+project evidence focuses on local tray modules, simulated pre/post sorting,
+feedback, confidence, and error breakdowns. Camera capture and YOLO utilities
+remain in the repo as legacy/future support, but local CV experiments are no
+longer the central claim.
 
 Project background and experiment motivation live in
 [docs/background/project_background.md](docs/background/project_background.md).
 
-Reproduce lighting experiments in
-[docs/experiments/reproducibility/lighting_yolo_reproducibility.md](docs/experiments/reproducibility/lighting_yolo_reproducibility.md).
-
-Workflow adoption risks and adjacent-industry CV evidence live in
+Workflow adoption risks and literature-backed CV feasibility boundaries live in
 [docs/experiments/adoption/workflow_acceptance.md](docs/experiments/adoption/workflow_acceptance.md).
 
-Detailed appendix for system-level and CV-specific adoption risks lives in
+Detailed appendix for literature gaps, stakeholder implications, and retired CV
+scope lives in
 [docs/experiments/adoption/formal_risk_analysis.md](docs/experiments/adoption/formal_risk_analysis.md).
 
 Planning materials and weekly updates live in
@@ -42,7 +44,27 @@ uv sync
 ```
 
 
-## 2. Collect Data
+## 2. Active Evaluation Path
+
+The active project work is documentation and prototype evidence for the
+training-platform pivot:
+
+- [training effectiveness plan](docs/experiments/adoption/training_effectiveness.md)
+- [workflow acceptance plan](docs/experiments/adoption/workflow_acceptance.md)
+- [traceability and reporting plan](docs/experiments/adoption/traceability_reporting.md)
+- [literature-backed risk analysis](docs/experiments/adoption/formal_risk_analysis.md)
+- [claim-evidence control sheet](docs/planning/claim_evidence_control_sheet.md)
+
+Use these files to defend the current claim: TrayGuard tests whether a local
+training module improves novice simulated tray familiarity. Do not use local CV
+accuracy metrics as the central evidence.
+
+## 3. Legacy/Future CV Utilities
+
+The commands below are retained for camera capture, annotation, model demos, and
+future visual-support work. They are not part of the active experiment plan.
+
+### Collect Data
 
 Start data collection:
 
@@ -116,7 +138,7 @@ Class-folder images are saved here:
 data/class_folder_raw/<class_slug>/
 ```
 
-## 3. Review Collected Data
+### Review Collected Data
 
 Open the latest non-empty session with boxes drawn:
 
@@ -141,7 +163,7 @@ Viewer controls:
 - `q` or `ESC`: quit
 
 
-## 4. Run The Demo App
+### Run The Legacy Tray-Check Demo App
 
 Run the Streamlit tray-check UI:
 
@@ -157,7 +179,7 @@ weights/trayguard.pt
 ```
 
 
-## 5. Other Useful Commands
+### Other Useful Commands
 
 Download the Lavado surgical tools dataset:
 
@@ -177,7 +199,7 @@ Export one run's weights into the default demo path:
 uv run trayguard export-weights runs/detect/spoons_reference_plus_45_90/weights/best.pt
 ```
 
-## 6. Project Layout
+## 4. Project Layout
 
 ```text
 src/micro_design_project/       main Python package

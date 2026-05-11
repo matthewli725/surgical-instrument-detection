@@ -2,56 +2,46 @@
 
 ## In Progress
 
-- Audit lighting dataset sessions and mark usable vs unusable folders
-- Standardize lighting-condition names across current dataset files
-- Define first similar-instrument class pairs to test
+- Define the first local tray training module: 8-12 required instruments,
+  3-5 distractors, and one comparable pre/post variant.
+- Lock the scoring rubric for `missing`, `extra`, `wrong`, `misidentified`,
+  and `wrong_count` errors.
+- Decide the minimum metrics export for simulated time-to-competency:
+  accuracy, duration, confidence, and error breakdown.
 
 ## Next Up
 
-- Export reproducible YOLO split for lighting experiment
-- Verify train, val, and test manifests for lighting dataset
-- Run baseline lighting model on reference-only dataset
-- Run expanded-lighting model on augmented lighting dataset
-- Collect precision, recall, mAP50, and mAP50-95 into one table
-- Add evidence status for each hard engineering target
-- Select 6-10 representative glare-condition images
-- Write short rationale for chosen similar-instrument pairs
-- Collect initial image set for first similar-instrument pairs
-- Organize raw similar-instrument images into a consistent folder structure
-- Measure actual prototype field of view and usable tray workspace
-- Time clean setup from packed state to first successful scan
+- Create file-backed tray and instrument seed data for the first module.
+- Implement pre-test and post-test tray sorting with hints and feedback
+  disabled.
+- Implement study cards and a short identification quiz for the same module.
+- Implement practice sorting with immediate error-specific feedback.
+- Export learner metrics as CSV or JSON.
+- Run a small pilot walkthrough and record pre/post accuracy, time, confidence,
+  and error categories.
+- Update presentation/report language so the main claim is simulated
+  time-to-competency, not hospital deployment readiness.
+- Add the literature-gap and stakeholder-implication framing to the final
+  presentation.
+- Treat camera/CV work as retired exploratory scope unless a future team
+  reopens it for authoring support.
 
 ## Upcoming Milestones
 
-### Sensing And Capture
+### Training Module
 
-- Physical Capture Setup Ready
-- Collection Pipeline Ready
-- Material And Lighting Assumptions Ready
-- Lighting Dataset Ready
+- Local Tray Data Contract Ready
+- Seed Tray Module Ready
+- Study And Quiz Flow Ready
+- Practice Sorting Feedback Ready
+- Pre/Post Assessment Ready
+- Metrics Export Ready
+- Pilot Training Walkthrough Ready
 
-### Perception
+### Evidence And Reporting
 
-- Experiment Questions Locked
-- Lighting Results Ready
-- Similar Baseline Ready
-- Demo Model Ready
-
-### Tray Logic And Decision Support
-
-- Result Semantics Defined
-- Decision Support Implemented
-
-### Technician UI And Workflow
-
-- Baseline Workflow Defined
-- Workflow Gap Review Complete
-- Tray Review Flow Improved
-- Walkthrough Evidence Ready
-- Demo Flow Ready
-
-### Traceability And Reporting
-
-- Record Schema Ready
-- Logging Implemented
-- Reporting Ready
+- Training Effectiveness Protocol Ready
+- Claim-Evidence Control Sheet Updated
+- Literature Gaps And Stakeholders Ready
+- Final Report Scope Language Ready
+- Demo Narrative Ready

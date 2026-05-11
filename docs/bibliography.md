@@ -10,10 +10,20 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Agostini and Nosella, ["The adoption of Industry 4.0 technologies in SMEs: results of an international study"](https://www.sciencedirect.com/science/article/pii/S0025174719000399), *Management Decision*, 2020.
 
+<a id="aaos-fundamental-surgery-2019"></a>
+### AAOS, 2019
+
+- American Academy of Orthopaedic Surgeons, ["Fundamental Surgery Achieves CME Accreditation from the American Academy of Orthopaedic Surgeons for VR Total Knee Arthroplasty Simulation"](https://www.aaos.org/aaos-home//newsroom/press-releases/fundamental-surgery-cme-accreditation-fromaaos-vr-tka-simulation/), 2019.
+
 <a id="ahmed-et-al-2021"></a>
 ### Ahmed et al., 2021
 
 - Ahmed et al., ["Survey and Performance Analysis of Deep Learning Based Object Detection in Challenging Environments"](https://pmc.ncbi.nlm.nih.gov/articles/PMC8348086/), *Sensors*, 2021.
+
+<a id="ahmadi-et-al-2023"></a>
+### Ahmadi et al., 2023
+
+- Ahmadi et al., ["A Data-Driven Decision-Making Model for Configuring Surgical Trays Based on the Likelihood of Instrument Usages"](https://www.mdpi.com/2227-7390/11/9/2219), *Mathematics*, 2023.
 
 <a id="abell-et-al-2023"></a>
 ### Abell et al., 2023
@@ -25,10 +35,30 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - American Hospital Association, ["4 Ways Wellstar Health Is Funding Collaborative Innovation"](https://www.aha.org/aha-center-health-innovation-market-scan/2023-10-31-4-ways-wellstar-health-funding-collaborative-innovation), 2023.
 
+<a id="alfred-et-al-2021"></a>
+### Alfred et al., 2021
+
+- Alfred et al., ["Work systems analysis of sterile processing: assembly"](https://qualitysafety.bmj.com/content/30/4/271), *BMJ Quality & Safety*, 2021.
+
+<a id="altamont-healthcare-accessed-2026"></a>
+### Altamont Healthcare, accessed 2026
+
+- Altamont Healthcare, ["SPD: Sterile Processing and Distribution Technician"](https://altamonthealthcare.com/programs/sterile-processing-technician/), accessed 2026.
+
 <a id="amershi-et-al-2019"></a>
 ### Amershi et al., 2019
 
 - Amershi et al., ["Guidelines for Human-AI Interaction"](https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/), *Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems*, 2019.
+
+<a id="aorn-staffing-shortage-2025"></a>
+### AORN Staff, 2025
+
+- AORN Staff, ["5 Proven Ways to Address Your Sterile Processing Staffing Shortage"](https://www.aorn.org/about-aorn/aorn-newsroom/periop-life/article/5-proven-ways-to-address-your-sterile-processing-staffing-shortage), 2025.
+
+<a id="arthur-et-al-2003"></a>
+### Arthur et al., 2003
+
+- Arthur et al., ["Effectiveness of training in organizations: a meta-analysis of design and evaluation features"](https://pubmed.ncbi.nlm.nih.gov/12731707/), *Journal of Applied Psychology*, 2003.
 
 <a id="atabuzzaman-et-al-2025"></a>
 ### Atabuzzaman et al., 2025
@@ -44,6 +74,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Best Metal Products, accessed 2026
 
 - Best Metal Products, ["304 Stainless Steel Sheet .023 in. x 24 in. x 48 in."](https://www.best-metal-products.com/products/304-stainless-steel-sheet-023-x-24-x-48-24ga), accessed 2026.
+
+<a id="bls-cpi-calculator-accessed-2026"></a>
+### BLS CPI Inflation Calculator, accessed 2026
+
+- U.S. Bureau of Labor Statistics, ["CPI Inflation Calculator"](https://www.bls.gov/data/inflation_calculator.htm), accessed 2026.
 
 <a id="brooke-1996"></a>
 ### Brooke, 1996
@@ -80,10 +115,20 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Con-Tact, ["Stainless Steel Adhesive Shelf/Drawer Liner"](https://www.homedepot.com/p/100388888), accessed 2026.
 
+<a id="cook-et-al-2011"></a>
+### Cook et al., 2011
+
+- Cook et al., ["Technology-enhanced simulation for health professions education: a systematic review and meta-analysis"](https://jamanetwork.com/journals/jama/fullarticle/1104300), *JAMA*, 2011.
+
 <a id="cdc"></a>
 ### CDC
 
 - CDC, ["Sterilizing Practices"](https://www.cdc.gov/infection-control/hcp/disinfection-sterilization/sterilizing-practices.html), *Guideline for Disinfection and Sterilization in Healthcare Facilities*.
+
+<a id="cbspd-technician-accessed-2026"></a>
+### CBSPD Technician Exam, accessed 2026
+
+- Certification Board for Sterile Processing and Distribution, ["SPD Technician Certification Exam C.S.P.D.T."](https://www.cbspd.net/technician.htm), accessed 2026.
 
 <a id="cdc-environmental-surfaces-accessed-2026"></a>
 ### CDC Environmental Surfaces, accessed 2026
@@ -110,10 +155,25 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Chen, Stavropoulou, et al., ["Professionals' responses to the introduction of AI innovations in radiology and their implications for future adoption: a qualitative study"](https://doi.org/10.1186/s12913-021-06861-y), *BMC Health Services Research*, 2021.
 
+<a id="censitrac-accessed-2026"></a>
+### CensiTrac, accessed 2026
+
+- Censis, ["Surgical Instrument Tracking Software | CensiTrac"](https://censis.com/solutions/censitrac/), accessed 2026.
+
 <a id="da-silva-et-al-2026"></a>
 ### da Silva et al., 2026
 
 - da Silva et al., ["Towards Autonomous Instrument Tray Assembly for Sterile Processing Applications"](https://arxiv.org/abs/2602.01679), *arXiv*, 2026.
+
+<a id="dos-santos-et-al-2021"></a>
+### dos Santos et al., 2021
+
+- dos Santos et al., ["Approaches to the rationalization of surgical instrument trays: scoping review and research agenda"](https://bmchealthservres.biomedcentral.com/articles/10.1186/s12913-021-06142-8), *BMC Health Services Research*, 2021.
+
+<a id="dunlosky-et-al-2013"></a>
+### Dunlosky et al., 2013
+
+- Dunlosky et al., ["Improving Students' Learning With Effective Learning Techniques: Promising Directions From Cognitive and Educational Psychology"](https://pubmed.ncbi.nlm.nih.gov/26173288/), *Psychological Science in the Public Interest*, 2013.
 
 <a id="davis-1989"></a>
 ### Davis, 1989
@@ -129,6 +189,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Eussen et al., 2026
 
 - Eussen et al., ["Surgical tray optimization: a prospective and survey-based evaluation of environmental and economic outcomes"](https://doi.org/10.1007/s00464-025-12499-2), *Surgical Endoscopy*, 2026.
+
+<a id="encyclopedia-surgical-instruments-2018"></a>
+### Encyclopedia.com Surgical Instruments, 2018
+
+- Encyclopedia.com, ["Surgical Instruments"](https://www.encyclopedia.com/medicine/divisions-diagnostics-and-procedures/medicine/surgical-instruments), 2018.
 
 <a id="fayad-et-al-2025"></a>
 ### Fayad et al., 2025
@@ -200,6 +265,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Guo et al., ["On Calibration of Modern Neural Networks"](https://proceedings.mlr.press/v70/guo17a.html), *Proceedings of the 34th International Conference on Machine Learning*, 2017.
 
+<a id="hattie-and-timperley-2007"></a>
+### Hattie and Timperley, 2007
+
+- Hattie and Timperley, ["The Power of Feedback"](https://journals.sagepub.com/doi/10.3102/003465430298487), *Review of Educational Research*, 2007.
+
 <a id="heil-et-al-2021"></a>
 ### Heil et al., 2021
 
@@ -220,6 +290,26 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Home Depot, ["2 ft. x 4 ft. Project Panels"](https://www.homedepot.com/b/Lumber-Composites-Plywood-Project-Panels/2-ft-x-4-ft/N-5yc1vZc7hmZ1z1abxg), accessed 2026.
 
+<a id="hspa-crcst-accessed-2026"></a>
+### HSPA CRCST, accessed 2026
+
+- Healthcare Sterile Processing Association, ["Certified Registered Central Service Technician (CRCST)"](https://myhspa.org/certification/certification-overview/certified-registered-central-service-technician-crcst/), accessed 2026.
+
+<a id="hspa-crcst-content-outline-2023"></a>
+### HSPA CRCST Content Outline, 2023
+
+- Healthcare Sterile Processing Association, ["Certified Registered Central Service Technician (CRCST) Exam Content Outline"](https://myhspa.org/wp-content/uploads/2024/01/HSPA_CRCST_Content_Outline_2023.Revision.pdf), revised November 2023.
+
+<a id="hspa-instrument-resources-accessed-2026"></a>
+### HSPA Surgical Instrument Resources, accessed 2026
+
+- Healthcare Sterile Processing Association, ["Surgical Instrument Resources"](https://myhspa.org/education/publications/surgical-instrument-resources/), accessed 2026.
+
+<a id="hspa-urology-instruments-accessed-2026"></a>
+### HSPA Urology Instruments, accessed 2026
+
+- Healthcare Sterile Processing Association eLearning, ["302 - Urology Instruments: Identification and Proper Care and Handling"](https://elearning.myhspa.org/products/302-urology-instruments-identification-and-proper-care-and-handling), accessed 2026.
+
 <a id="hu-et-al-2024"></a>
 ### Hu et al., 2024
 
@@ -230,6 +320,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Huang et al., ["Situations and demands of central sterile supply department training on nursing interruptions"](https://link.springer.com/article/10.1186/s12913-024-12190-7), *BMC Health Services Research*, 2025.
 
+<a id="issenberg-et-al-2005"></a>
+### Issenberg et al., 2005
+
+- Issenberg et al., ["Features and uses of high-fidelity medical simulations that lead to effective learning: a BEME systematic review"](https://pubmed.ncbi.nlm.nih.gov/16147767/), *Medical Teacher*, 2005.
+
 <a id="jiang-et-al-2025"></a>
 ### Jiang et al., 2025
 
@@ -239,6 +334,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Jian et al., 2000
 
 - Jian, Bisantz, and Drury, ["Foundations for an Empirically Determined Scale of Trust in Automated Systems"](https://doi.org/10.1207/S15327566IJCE0401_04), *International Journal of Cognitive Ergonomics*, 2000.
+
+<a id="kienle-et-al-2025"></a>
+### Kienle et al., 2025
+
+- Kienle et al., ["Surgical Instrument Detection on the Instrument Stand using Neural Networks"](https://doi.org/10.1515/cdbme-2025-0235), *Current Directions in Biomedical Engineering*, 2025.
 
 <a id="kastrup-et-al-2024"></a>
 ### Kastrup et al., 2024
@@ -255,10 +355,20 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kelly, ["Human in the loop: Balancing artificial intelligence, clinical judgment, and legal responsibility"](https://pubmed.ncbi.nlm.nih.gov/41932077/), *International Journal of Law and Psychiatry*, 2026.
 
+<a id="kerfoot-2010"></a>
+### Kerfoot, 2010
+
+- Kerfoot, ["Adaptive spaced education improves learning efficiency: a randomized controlled trial"](https://pubmed.ncbi.nlm.nih.gov/20022032/), *The Journal of Urology*, 2010.
+
 <a id="kim-et-al-2025"></a>
 ### Kim et al., 2025
 
 - Kim et al., ["The Effects of Presenting AI Uncertainty Information on Pharmacists’ Trust in Automated Pill Recognition Technology: Exploratory Mixed Subjects Study"](https://pmc.ncbi.nlm.nih.gov/articles/PMC11862782/), *JMIR Human Factors*, 2025.
+
+<a id="kleinert-et-al-2015"></a>
+### Kleinert et al., 2015
+
+- Kleinert et al., ["Web-Based Immersive Virtual Patient Simulators: Positive Effect on Clinical Reasoning in Medical Education"](https://pubmed.ncbi.nlm.nih.gov/26577020/), *Journal of Medical Internet Research*, 2015.
 
 <a id="kuppers-et-al-2022"></a>
 ### Küppers et al., 2022
@@ -280,6 +390,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Lambert et al., ["An integrative review on the acceptance of artificial intelligence among healthcare professionals in hospitals"](https://www.nature.com/articles/s41746-023-00852-5), *npj Digital Medicine*, 2023.
 
+<a id="layerjot-sid-accessed-2026"></a>
+### LayerJot SID, accessed 2026
+
+- LayerJot, ["SID 4.0"](https://www.layerjot.com/sid), accessed 2026.
+
 <a id="lobig-et-al-2023"></a>
 ### Lobig et al., 2023
 
@@ -300,6 +415,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Mácola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), *Perioperative Care and Operating Room Management*, 2025.
 
+<a id="mcgaghie-et-al-2011"></a>
+### McGaghie et al., 2011
+
+- McGaghie et al., ["Does Simulation-Based Medical Education With Deliberate Practice Yield Better Results Than Traditional Clinical Education? A Meta-Analytic Comparative Review of the Evidence"](https://academic.oup.com/academicmedicine/article-abstract/86/6/706/8352665), *Academic Medicine*, 2011.
+
 <a id="mcginn-et-al-2011"></a>
 ### McGinn et al., 2011
 
@@ -309,6 +429,26 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Meiji Techno, accessed 2026
 
 - Meiji Techno, ["S-4500 Boom Stand"](https://meijitechno.com/product/s-4500-boom-stand/), accessed 2026.
+
+<a id="medtronic-touch-surgery-accessed-2026"></a>
+### Medtronic Touch Surgery, accessed 2026
+
+- Medtronic, ["Touch Surgery Simulations"](https://www.medtronic.com/en-us/healthcare-professionals/specialties/touch-surgery/simulations.html), accessed 2026.
+
+<a id="medline-custom-trays-2025"></a>
+### Medline, 2025
+
+- Medline, ["Surgical tray standardization: What's in your custom sets?"](https://www.medline.com/strategies/perioperative/custom-surgical-tray-standardization-tips/), 2025.
+
+<a id="nadeau-2017"></a>
+### Nadeau, 2017
+
+- Nadeau, ["Your CS/SPD staff is certifiable"](https://www.hpnonline.com/sterile-processing/article/13000740/your-cs-spd-staff-is-certifiable), *Healthcare Purchasing News*, 2017.
+
+<a id="nadeau-2024"></a>
+### Nadeau, 2024
+
+- Nadeau, ["Back to Basics in the SPD"](https://www.hpnonline.com/sterile-processing/article/55247421/back-to-basics-in-the-spd), *Healthcare Purchasing News*, 2024.
 
 <a id="natali-et-al-2025"></a>
 ### Natali et al., 2025
@@ -345,6 +485,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Ning et al., ["Survey of pedestrian detection with occlusion"](https://link.springer.com/article/10.1007/s40747-020-00206-8), *Complex & Intelligent Systems*, 2021.
 
+<a id="nutrace-nu-scanner-accessed-2026"></a>
+### NuTrace Nu Scanner, accessed 2026
+
+- NuTrace, ["Nu Scanner"](https://nutrace.io/nu-scanner-portable-laboratory-reader), accessed 2026.
+
 <a id="ofstead-et-al-2023"></a>
 ### Ofstead et al., 2023
 
@@ -364,6 +509,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Olivere et al., 2021
 
 - Olivere et al., ["Radiofrequency Identification Track for Tray Optimization: An Instrument Utilization Pilot Study in Surgical Oncology"](https://doi.org/10.1016/j.jss.2021.02.049), *Journal of Surgical Research*, 2021.
+
+<a id="onet-medical-equipment-preparers-accessed-2026"></a>
+### O*NET, accessed 2026
+
+- O*NET OnLine, ["National Employment Trends: Medical Equipment Preparers"](https://www.onetonline.org/link/localtrends/31-9093.00), using Bureau of Labor Statistics 2024-2034 employment projections, accessed 2026.
+
+<a id="orland-et-al-2020"></a>
+### Orland et al., 2020
+
+- Orland et al., ["Does Virtual Reality Improve Procedural Completion and Accuracy in an Intramedullary Tibial Nail Procedure? A Randomized Control Trial"](https://pmc.ncbi.nlm.nih.gov/articles/PMC7431248/), *Clinical Orthopaedics and Related Research*, 2020.
 
 <a id="osha-computer-workstations-accessed-2026"></a>
 ### OSHA, accessed 2026
@@ -400,6 +555,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Redmon et al., ["You Only Look Once: Unified, Real-Time Object Detection"](https://arxiv.org/abs/1506.02640), *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 2016.
 
+<a id="roediger-and-karpicke-2006"></a>
+### Roediger and Karpicke, 2006
+
+- Roediger and Karpicke, ["Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention"](https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x), *Psychological Science*, 2006.
+
 <a id="rodrigues-et-al-2022a"></a>
 ### Rodrigues et al., 2022a
 
@@ -414,6 +574,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Sayani et al., 2018
 
 - Sayani et al., ["Detection of surgical instruments on surgical tray"](https://patents.google.com/patent/US20180204323A1/en), *US Patent Application US20180204323A1*, 2018.
+
+<a id="salas-et-al-2012"></a>
+### Salas et al., 2012
+
+- Salas et al., ["The Science of Training and Development in Organizations: What Matters in Practice"](https://www.psychologicalscience.org/publications/journals/pspi/training-and-development.html), *Psychological Science in the Public Interest*, 2012.
 
 <a id="scheirer-et-al-2013"></a>
 ### Scheirer et al., 2013
@@ -465,10 +630,45 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Southwest Solutions Group, ["Sterile Processing Workstations"](https://www.southwestsolutions.com/divisions/healthcare/infection-control-patient-safety/sterile-processing-workstations/), accessed 2026.
 
+<a id="steris-loaner-trays-2021"></a>
+### STERIS, 2021
+
+- STERIS, ["How to Track Loaner Surgical Instrument Trays"](https://www.steris.com/healthcare/knowledge-center/sterile-processing/how-to-track-loaner-surgical-instrument-trays), 2021.
+
+<a id="surgical-science-simulators-accessed-2026"></a>
+### Surgical Science, accessed 2026
+
+- Surgical Science, ["Simulators"](https://surgicalscience.com/simulators/), accessed 2026.
+
 <a id="tikhomirov-et-al-2026"></a>
 ### Tikhomirov et al., 2026
 
 - Tikhomirov et al., ["A scoping review of silent trials for medical artificial intelligence"](https://www.nature.com/articles/s44360-025-00048-z), *Nature Health*, 2026.
+
+<a id="towson-sterile-processing-accessed-2026"></a>
+### Towson University, accessed 2026
+
+- Towson University, ["Sterile Processing Technician Course"](https://www.towson.edu/campus/business-public-engagement/continuing-education/health-medical-courses/sterile-processing-technician.html), accessed 2026.
+
+<a id="toor-et-al-2022"></a>
+### Toor et al., 2022
+
+- Toor et al., ["Optimizing the surgical instrument tray to immediately increase efficiency and lower costs in the operating room"](https://pmc.ncbi.nlm.nih.gov/articles/PMC9007441/), *Canadian Journal of Surgery*, 2022.
+
+<a id="tray-pacer-accessed-2026"></a>
+### Tray Pacer, accessed 2026
+
+- Tray Pacer System, ["Tray Pacer System Sterile Processing Surgical Tray Assembly Software"](https://traypacersystem.com/), accessed 2026.
+
+<a id="tulipan-et-al-2019"></a>
+### Tulipan et al., 2019
+
+- Tulipan et al., ["Touch Surgery: Analysis and Assessment of Validity of a Hand Surgery Simulation 'App'"](https://pubmed.ncbi.nlm.nih.gov/29363359/), *Hand*, 2019.
+
+<a id="thurmond-2020"></a>
+### Thurmond, 2020
+
+- Thurmond, ["Power of competency checklists for Sterile Processing"](https://www.hpnonline.com/sterile-processing/article/21202328/power-of-competency-checklists-for-sterile-processing), *Healthcare Purchasing News*, 2020.
 
 <a id="coustasse-et-al-2013"></a>
 ### Coustasse et al., 2013
@@ -530,6 +730,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Wang et al., ["Light Field Imaging Based Accurate Image Specular Highlight Removal"](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/), *PLOS One*, 2016.
 
+<a id="wang-et-al-2020-fsod"></a>
+### Wang et al., 2020 FSOD
+
+- Wang et al., ["Frustratingly Simple Few-Shot Object Detection"](https://icml.cc/virtual/2020/poster/53777), *Proceedings of the 37th International Conference on Machine Learning*, 2020.
+
 <a id="wang-et-al-2021"></a>
 ### Wang et al., 2021
 
@@ -544,6 +749,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Wenkel et al., 2021
 
 - Wenkel et al., ["Confidence Score: The Forgotten Dimension of Object Detection Performance Evaluation"](https://doi.org/10.3390/s21134350), *Sensors*, 2021.
+
+<a id="wolters-kluwer-body-interact-accessed-2026"></a>
+### Wolters Kluwer Body Interact, accessed 2026
+
+- Wolters Kluwer, ["Body Interact Virtual Patient Care Simulator"](https://www.wolterskluwer.com/en/solutions/lippincott-medicine/medical-education/body-interact-virtual-patient-care-simulator), accessed 2026.
+
+<a id="xin-et-al-2024"></a>
+### Xin et al., 2024
+
+- Xin et al., ["Few-shot object detection: Research advances and challenges"](https://doi.org/10.1016/j.inffus.2024.102307), *Information Fusion*, 2024.
 
 <a id="yang-et-al-2024"></a>
 ### Yang et al., 2024

@@ -2,45 +2,53 @@
 
 ## Current Focus
 
-Because we do not have access to a full set of real surgical instruments, and
-because collecting a broad surgical dataset is outside the scope of this
-prototype timeline, we are building evidence along several controlled
-experiment axes. Instead of claiming full deployment readiness, we are testing
-whether the core computer vision assumptions hold under conditions that
-resemble the hard parts of surgical tray inspection.
+TrayGuard's current product focus is an SPD training module that reduces
+simulated time-to-competency for novice learners. The prototype should help a
+learner practice local tray and instrument familiarity, then measure whether
+the learner improves between a pre-test and a post-test.
 
-The current system supports these functions.
+Computer vision remains useful, but it is no longer the primary value claim or
+an active experiment obligation. Existing camera, annotation, YOLO export,
+model training, and live detection code should be treated as legacy
+implementation support for possible future authoring assistance or visual
+review. The current report should cite existing CV literature for feasibility
+instead of relying on local mAP or lighting/glare experiments.
 
-- Camera-based image collection
-- Manual bounding-box annotation
-- Reusing labels across controlled lighting variants
-- Exporting collected images to YOLO format
-- Training and benchmarking object detection models
-- Running a Streamlit tray-check UI for live camera detections
+The current training system should support these functions.
+
+- Load a local tray module from instructor-verified data.
+- Show instrument study cards with names, aliases, families, photos, notes, and
+  distinguishing features.
+- Run an identification quiz for retrieval practice.
+- Run simulated tray sorting in practice mode with immediate feedback.
+- Run pre-test and post-test tray sorting with no hints or feedback.
+- Export learner metrics: accuracy, time, confidence, and error categories.
 
 ## Prototype Scope
 
-TrayGuard should be described as a technician-centered verification assistant,
-not as a fully autonomous tray-approval station. The useful system-design
-question for this repository is therefore: what information should the
-prototype take in, what should it produce, what pieces does it need, and what
-should stay explicitly out of scope?
+TrayGuard should be described as a training and assessment platform, not as a
+hospital-ready tray automation system. The useful system-design question for
+this repository is therefore: what learning content should the prototype take
+in, what evidence should it produce, what pieces does it need, and what should
+stay explicitly out of scope?
 
 ### In Scope For This Prototype
 
-- Detect known instrument classes in tray-like scenes using a camera and an
-  object detector.
-- Count visible detections by class and compare them against a required list.
-- Show the live tray state in a technician-facing interface.
-- Surface missing-item, extra-item, and review-needed situations clearly enough
-  to support human confirmation.
-- Produce evidence that helps us study lighting, clutter, confusion, open-set,
-  and workflow-fit risks.
-- Support lightweight logging and reporting as a prototype quality-improvement
-  story.
+- One seeded local tray curriculum with 8-12 required instruments and a small
+  distractor pool.
+- File-backed local tray and instrument authoring.
+- Study cards, identification quiz, and simulated tray sorting.
+- Pre/post assessment with accuracy, time, confidence, and error breakdown.
+- Immediate feedback in learning modes, suppressed feedback in assessment
+  modes.
+- Lightweight export for learner and instructor review.
 
 ### Out Of Scope For This Prototype
 
+- Proof that TrayGuard shortens real hospital onboarding time.
+- CRCST or CSPDT certification readiness claims.
+- Replacement of supervised hands-on hours, preceptors, or competency sign-off.
+- Universal manufacturer-agnostic instrument recognition.
 - Autonomous tray approval without human confirmation.
 - Proof of sterility, cleanliness, sharpness, alignment, or instrument
   mechanical function.
@@ -51,24 +59,85 @@ should stay explicitly out of scope?
 
 ## Core System Information
 
-The core tray-checking task is simple in structure even if it is difficult in
-practice:
+The core learning task is simple in structure even if local tray knowledge is
+hard to acquire:
+
+1. Load a local tray module.
+2. Run a timed pre-test tray sort with no hints or feedback.
+3. Let the learner study instrument cards.
+4. Let the learner complete quiz prompts for retrieval practice.
+5. Let the learner practice simulated tray sorting with immediate feedback.
+6. Run a timed post-test tray sort with no hints or feedback.
+7. Export accuracy, time, confidence, and error-category metrics.
+
+This framing keeps the product centered on measurable novice learning. It also
+matches the strongest current adoption argument: reduce early training burden
+by giving learners repeatable local practice before, during, or between
+supervised hands-on experiences.
+
+## Training Module Architecture
+
+The training data model should stay small enough for file-backed authoring:
+
+| Object | Role |
+| --- | --- |
+| `Instrument` | Stores the local name, aliases, family, image, notes, and distinguishing features used by cards and quiz questions. |
+| `TrayTemplate` | Stores the tray name, version, required items, quantities, and distractors. |
+| `LearningRun` | Stores learner/session identity, mode, task version, start, and completion time. |
+| `AttemptResult` | Stores selected items, confidence, duration, score, and error categories. |
+
+The scoring model should classify errors as `missing`, `extra`, `wrong`,
+`misidentified`, and `wrong_count`. This is the minimum breakdown needed to
+tell an instructor whether a learner lacks tray familiarity, confuses
+lookalikes, or understands identity but not count-sheet quantities.
+
+Mode behavior should be explicit:
+
+| Mode | Hints | Feedback | Purpose |
+| --- | --- | --- | --- |
+| Pre-test | No | No | Baseline simulated competency. |
+| Study | Yes | Yes | Initial instruction and reference support. |
+| Quiz | Limited after answer | Yes | Retrieval practice and weak-item discovery. |
+| Practice sort | Yes | Yes | Deliberate practice on the tray task. |
+| Post-test | No | No | Comparable learning assessment. |
+
+The detailed design rationale is in
+[Training Module Design](training_module_design.md).
+
+## Optional Camera-Supported Tray Check
+
+The older tray-check workflow remains useful as technical background and a
+future extension, but it is outside the current evaluation claim:
 
 1. Load or enter the required instrument list for a tray.
 2. Capture the current tray view with a camera.
 3. Detect visible instruments and assign class labels with confidence scores.
 4. Aggregate detections into observed class counts.
 5. Compare observed counts against required counts.
-6. Present a technician-facing result that highlights what appears present,
-   missing, extra, or uncertain.
+6. Present a result that highlights what appears present, missing, extra, or
+   uncertain.
 7. Preserve the final decision as human judgment rather than silent automation.
 
-This framing keeps the product centered on visual verification support. It also
-matches the strongest current adoption argument: reduce visual search burden,
-make uncertainty legible, and create useful review evidence without replacing
-technician authority.
+This camera-supported path should not carry the MVP learning claim. Existing
+papers already make CV plausible in constrained surgical-instrument settings
+([Deol et al., 2024](../bibliography.md#deol-et-al-2024),
+[Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025),
+[Xin et al., 2024](../bibliography.md#xin-et-al-2024)). Other work also shows
+why deployment robustness cannot be assumed, especially across manufacturers
+and sites ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). If
+camera support returns later, it should be validated as site-specific review
+support, not as universal autonomous tray approval.
 
 ## Technician UI Design Principles
+
+These principles were written for the camera-supported tray-check UI, but the
+same human-factors pattern applies to the training module: keep the primary task
+visible, make feedback actionable, avoid noisy alerts, and preserve deliberate
+assessment boundaries.
+
+For the current MVP, apply these principles to the learning workflow. The
+camera-specific examples below are retained as future support notes, not active
+experiment requirements.
 
 TrayGuard's interface should be designed as a high-stakes workflow aid, not as
 a generic detector dashboard. The user should be able to understand the tray
@@ -150,6 +219,9 @@ The current prototype should evolve toward these interface requirements:
 
 ## Tray Status Logic From Confidence
 
+This section is retained only for a future camera-supported tray-check path; it
+is not part of the current training MVP or evaluation plan.
+
 The Streamlit prototype currently exposes a single confidence threshold. That
 threshold is useful as a model-control setting, but it is not enough to decide
 whether a required instrument is truly present, missing, or uncertain. A
@@ -219,7 +291,7 @@ not match the validation data
 ## Design Lessons From Close Prior Work
 
 Rodrigues, Mayo, and Patros's HOSPITools study gives direct motivation for
-TrayGuard's controlled experiment plan. Their surgical-tool dataset was built
+TrayGuard's literature-backed CV boundary. Their surgical-tool dataset was built
 for intelligent surgical-tool management, included 360 tool classes organized
 across speciality, pack, set, and tool levels, and was evaluated under concrete
 design variables: image size, class frequency, lighting/background variation,
@@ -227,9 +299,9 @@ held-out test data, and hierarchy-aware similarity
 ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b)).
 Most importantly for this project, they state that fine-grained tool
 classification is difficult because many surgical tools are visually similar and
-differ only in subtle ways. That supports treating shape similarity, data
-scarcity, capture conditions, and condition-held-out evaluation as first-class
-experiment questions rather than incidental implementation details.
+differ only in subtle ways. That supports designing training content around
+lookalike instruments and distinguishing features. It no longer means this
+capstone must run its own shape-similarity detector experiment.
 
 Atabuzzaman et al.'s 2025 CVPR Workshop paper, "Real-Time Ultra-Fine-Grained
 Surgical Instrument Classification," is the closest academic
@@ -263,10 +335,10 @@ The paper supports several system-design choices:
   missing, extra, wrong-item, and review-needed behavior.
 - **High accuracy does not remove failure-mode analysis.** A constrained
   platform can achieve excellent classification results, but a tray assistant
-  still has to answer what happens under glare, colored light, occlusion,
-  unknown instruments, and high-confidence similar-class confusion. Those
-  questions remain part of TrayGuard's differentiating design work rather than
-  a solved problem.
+  still has to handle glare, colored light, occlusion, unknown instruments, and
+  high-confidence similar-class confusion. For the current project, those are
+  literature-backed limitations and future validation requirements, not local
+  accuracy experiments.
 
 The practical design implication is that TrayGuard should separate two sensing
 modes. A tray-overview mode is useful for counting visible instruments and
@@ -444,15 +516,12 @@ These sources support feasibility and visual/material direction; they do not
 replace local SPD approval or cleaning validation.
 
 The budget choice is to use a plywood structural board with an inexpensive
-white or stainless-look surface skin. This is defensible for the computer
-vision prototype because the current experiment needs the camera to see a
-tray-like work surface with similar broad visual properties: light plastic-like
-background for the seated workflow or gray metallic-looking background for the
-standing workflow. The detector and capture tests are not measuring material
-bioburden, chemical compatibility, or validated reprocessing. For those CV
-purposes, a smooth white liner or stainless-look adhesive liner is similar
-enough to study framing, glare, contrast, object placement, and workflow
-ergonomics at low cost. The more expensive HDPE, stainless sheet, or commercial
+white or stainless-look surface skin if a physical demo is needed. This is a
+prototype visual and fabrication choice, not a clinical material claim. The
+current training MVP does not depend on camera measurements or detector
+performance, but a visually plausible work surface can still help future teams
+or reviewers understand how camera-assisted authoring or review might fit a
+tray workspace. The more expensive HDPE, stainless sheet, or commercial
 stainless-table options remain straightforward upgrades if the project moves
 from capstone prototype to an SPD-facing pilot, but buying and validating those
 materials is outside the current scope.
@@ -487,16 +556,16 @@ the team:
 
 | Question | Current Answer |
 | --- | --- |
-| Why use the existing camera stand at all? | It already provides the most important capture functions: rigid vertical support, overhead reach, adjustable height/arm position, and repeatable framing. Reusing it reduces build risk and lets the project focus on tray-vision evidence rather than custom hardware fabrication. |
+| Why use the existing camera stand at all? | It already provides the most important capture functions for future visual support: rigid vertical support, overhead reach, adjustable height/arm position, and repeatable framing. Reusing it reduces build risk if later teams revisit camera-assisted authoring or review. |
 | Why not keep screwing it into a table? | A table-screwed fixture is stable but not portable and requires modifying the work surface. A board-mounted fixture preserves the fixed stand geometry while allowing the setup to move between tables and be removed after use. |
 | Why plywood? | Plywood is cheap, rigid, heavy enough to help stability, and easy to drill while board size, ballast, and camera position are still experimental. It is a prototype material, not a clinical material claim. |
 | Is plywood sterile? | No. The board is not sterile, should not contact sterile instruments, and should not be presented as SPD-ready. It is an environmental support surface for prototype imaging. |
 | Should we use plastic instead? | For an SPD-facing pilot, probably yes. Smooth nonporous plastic or metal would be easier to clean and defend. Plywood is acceptable only for low-risk lab/demo iteration. |
-| Can we make the prototype visually match real SPD work areas? | Yes. The cheapest version uses white or stainless-look adhesive liner over plywood. The more realistic version uses HDPE, stainless sheet, or a stainless work table. The cheap version is acceptable for CV testing because the visual background is similar enough for framing, contrast, glare, and workflow experiments, while the expensive version is a future upgrade outside the current budget/scope. |
+| Can we make the prototype visually match real SPD work areas? | Yes. The cheapest version uses white or stainless-look adhesive liner over plywood. The more realistic version uses HDPE, stainless sheet, or a stainless work table. This matters only for demos or future camera-supported work; the current training MVP does not depend on material realism. |
 | Can the camera stand be cleaned easily? | Only partly. Smooth tubes are easier to wipe; knobs, clamps, seams, textured grips, and cables are weaker points. The prototype mitigation is to keep the stand outside the direct tray-contact zone and wipe exterior surfaces under a demo cleaning protocol. |
 | What would change for a real SPD pilot? | Replace plywood with a sealed nonporous base, simplify the mount geometry, cover or reroute cables, minimize crevices, choose disinfectant-compatible components, and document a facility-approved cleaning SOP. |
 | Does the rolling base change the cleanability problem? | Yes. Wheels, brakes, underside surfaces, rails, straps, and clamps add more surfaces to clean. A wheeled version should be treated as a cart-like environmental surface and reviewed separately. |
-| What are we simplifying? | We are testing stable, repeatable image capture and workflow fit. We are not validating sterility, validated reprocessing, disinfectant compatibility, or hospital deployment readiness. |
+| What are we simplifying? | We are preserving a low-cost future capture fixture while the current project tests simulated learning. We are not validating sterility, reprocessing, disinfectant compatibility, CV robustness, or hospital deployment readiness. |
 
 ## Research Support Audit
 
@@ -507,22 +576,18 @@ measure locally.
 
 | Design Choice | Research Support | Defensible Stance |
 | --- | --- | --- |
-| Technician-centered assistant instead of autonomous approval | SPD error research supports the need for better visual verification, while healthcare AI literature warns about automation bias, deskilling, liability, and workflow fit ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024), [Goddard et al., 2012](../bibliography.md#goddard-et-al-2012), [Natali et al., 2025](../bibliography.md#natali-et-al-2025), [Kelly, 2026](../bibliography.md#kelly-2026), [Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). | Keep the final decision human. The system may flag, count, explain, and log, but it should not silently approve trays. |
-| Workflow-first technician UI | General usability guidance supports visible status, efficient action paths, error prevention, and recoverable mistakes. Human-AI guidance supports efficient invocation, dismissal, and correction when AI guesses wrong. Clinical alert literature warns that low-value alerts and added tasks can undermine acceptance ([Nielsen Norman Group, accessed 2026](../bibliography.md#nielsen-norman-group-accessed-2026), [Amershi et al., 2019](../bibliography.md#amershi-et-al-2019), [Olakotan and Yusof, 2021](../bibliography.md#olakotan-and-yusof-2021), [Cánovas-Segura et al., 2023](../bibliography.md#canovas-segura-et-al-2023)). | Design around the tray decision, not around model controls. Use one primary action per state, clear review reasons, fast correction, and explicit final confirmation. |
-| Workspace observation as the first architecture | Visualization-related errors dominate observed instrument errors, and direct CV studies show surgical-tool detection/counting is feasible. RFID/barcode work supports traceability, but it also requires tags, readers, engraving, antennas, or scanner workflows ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024), [Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)). | Keep CV as the lowest-infrastructure prototype layer. Do not claim it is universally superior to RFID or barcode traceability. |
-| Structured capture rather than arbitrary webcam input | Controlled surgical-instrument recognition studies use constrained lighting, background, and acquisition platforms; the closest CSSD paper moved to multi-view capture for fine-grained details ([Lehr et al., 2023](../bibliography.md#lehr-et-al-2023), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Seeland and Mader, 2021](../bibliography.md#seeland-and-mader-2021)). | Keep the overhead tray view for counting visible objects, but preserve a future side-view or single-instrument review path for confusable instruments. |
+| Time-to-competency as the north star | SPD certification and training evidence shows that entry into practice requires hands-on hours, structured training, and preceptor support ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026), [Chobin, 2010](../bibliography.md#chobin-2010), [AORN Staff, 2025](../bibliography.md#aorn-staffing-shortage-2025)). | Measure simulated improvement in local tray familiarity. Do not claim reduced hospital onboarding time without a longitudinal SPD study. |
+| Complete learning loop instead of isolated cards | Simulation, retrieval practice, feedback, and pre/post testing are supported by health-professions and learning-science evidence, with direct SP training precedent in Ofstead et al. ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023), [Cook et al., 2011](../bibliography.md#cook-et-al-2011), [Roediger and Karpicke, 2006](../bibliography.md#roediger-and-karpicke-2006), [Hattie and Timperley, 2007](../bibliography.md#hattie-and-timperley-2007)). | Build pre-test, study, quiz, practice sorting with feedback, post-test, and metrics export as one module. |
+| Local tray authoring instead of a universal database | Instrument families are reusable, but actual tray requirements are local: count sheets specify tray contents, quantities, sizes, and catalog/reference numbers; tray optimization depends on procedure, surgeon preference, usage likelihood, and stock decisions; specialty and loaner trays can be vendor-specific ([Nadeau, 2024](../bibliography.md#nadeau-2024), [dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021), [Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023), [Medline, 2025](../bibliography.md#medline-custom-trays-2025), [STERIS, 2021](../bibliography.md#steris-loaner-trays-2021)). | Start with file-backed instructor-verified modules. Treat universal recognition as out of scope. |
+| Human authority instead of certification or autonomous approval | Healthcare AI literature warns about automation bias, deskilling, liability, and workflow fit ([Goddard et al., 2012](../bibliography.md#goddard-et-al-2012), [Natali et al., 2025](../bibliography.md#natali-et-al-2025), [Kelly, 2026](../bibliography.md#kelly-2026), [Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). | The system may teach, score, explain, and log, but instructors and supervisors remain responsible for real competency judgments. |
+| Workflow-first learner UI | General usability guidance supports visible status, efficient action paths, error prevention, and recoverable mistakes. Human-AI guidance supports efficient invocation, dismissal, and correction when AI guesses wrong. Clinical alert literature warns that low-value alerts and added tasks can undermine acceptance ([Nielsen Norman Group, accessed 2026](../bibliography.md#nielsen-norman-group-accessed-2026), [Amershi et al., 2019](../bibliography.md#amershi-et-al-2019), [Olakotan and Yusof, 2021](../bibliography.md#olakotan-and-yusof-2021), [Cánovas-Segura et al., 2023](../bibliography.md#canovas-segura-et-al-2023)). | Design around the learning mode, not model controls. Use clear mode boundaries, fast practice feedback, and no hints during assessment. |
+| CV feasibility as an external assumption | Few-shot object detection and surgical-instrument CV papers show that data-efficient detection and constrained instrument recognition are plausible ([Xin et al., 2024](../bibliography.md#xin-et-al-2024), [Wang et al., 2020 FSOD](../bibliography.md#wang-et-al-2020-fsod), [Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025)). | Cite existing papers for feasibility. Do not make local CV accuracy a capstone proof obligation. |
+| CV generalization as a future validation problem | Kienle et al. show a large cross-manufacturer performance drop despite strong in-domain instrument-stand results ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). | Any future camera-supported feature needs site-specific validation. The current MVP should work without it. |
 | Portable board-mounted overhead stand | Structured camera placement is already a design requirement for repeatable tray images. Copy-stand and boom-stand designs support a rigid base/column/arm pattern that keeps the capture plane stable while leaving the work area accessible. Ergonomics guidance supports arranging tools and equipment to preserve neutral posture and easy reach ([Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Cambo, accessed 2026](../bibliography.md#cambo-accessed-2026), [Meiji Techno, accessed 2026](../bibliography.md#meiji-techno-accessed-2026), [CDC/NIOSH, 2024](../bibliography.md#cdc-niosh-2024), [OSHA, accessed 2026](../bibliography.md#osha-computer-workstations-accessed-2026)). | Use the existing stand, but bolt it to a weighted portable board instead of screwing it into a table. Treat the board as the reusable capture module for both tabletop use and a future wheeled standing base. |
 | Tabletop default with rolling standing option | SPD workstations are not one-size-fits-all. OSHA central sterile guidance calls out reach, prolonged standing, rolling carts, height-adjustable surfaces, and sit/stand stools, while commercial prep/pack tables emphasize ergonomic flexibility, height adjustment, accessories, and different user/task needs. User-provided SPD video references also show both seated plastic-looking work surfaces and standing metal-table workflows ([OSHA Central Sterile Supply, accessed 2026](../bibliography.md#osha-central-sterile-supply-accessed-2026), [Skytron, accessed 2026](../bibliography.md#skytron-prep-pack-accessed-2026), [Getinge, accessed 2026](../bibliography.md#getinge-prep-pack-accessed-2026), [Southwest Solutions CSSD Tables, accessed 2026](../bibliography.md#southwest-cssd-tables-accessed-2026), [User-provided SPD video 1](../bibliography.md#user-spd-video-1-accessed-2026), [User-provided SPD video 2](../bibliography.md#user-spd-video-2-accessed-2026)). | Make tabletop the default because it plugs into existing work surfaces. Provide a rolling dock as an optional standing-height adapter. This approximates workflow flexibility without claiming commercial powered height adjustment. |
-| Object detection plus count aggregation | Automated surgical-instrument detection/counting has direct proof-of-concept support. General object-detection benchmarks also make bounding boxes and per-instance localization a standard way to evaluate visible objects in scenes ([Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Lin et al., 2014](../bibliography.md#lin-et-al-2014)). | Detect and count visible instruments. Do not infer fully hidden instruments from context. |
-| YOLO-format datasets and a real-time detector baseline | YOLO is research-backed as a real-time object-detection family, and RT-DETR is a credible real-time transformer alternative ([Redmon et al., 2016](../bibliography.md#redmon-et-al-2016), [Zhao et al., 2024 RT-DETR](../bibliography.md#zhao-et-al-2024-rtdetr)). | Treat `yolo11s` as the current implementation baseline, not a research conclusion. Keep the model layer benchmarkable across YOLO sizes and RT-DETR. |
-| Confidence threshold and "needs review" states | Open-set recognition research shows closed-set assumptions break when unknown classes appear. Calibration research shows modern neural-network confidence and object-detection confidence can be poorly calibrated. Selective-classification work supports rejecting or abstaining when a model cannot meet the desired risk level, and healthcare uncertainty-display studies support making uncertainty visible ([Scheirer et al., 2013](../bibliography.md#scheirer-et-al-2013), [Schlachter et al., 2020](../bibliography.md#schlachter-et-al-2020), [Guo et al., 2017](../bibliography.md#guo-et-al-2017), [Küppers et al., 2022](../bibliography.md#kuppers-et-al-2022), [Wenkel et al., 2021](../bibliography.md#wenkel-et-al-2021), [Geifman and El-Yaniv, 2017](../bibliography.md#geifman-and-el-yaniv-2017), [Kim et al., 2025](../bibliography.md#kim-et-al-2025)). | Use confidence as a review trigger, not as a safety probability. Separate the low review threshold from the high present threshold. Treat "missing" as valid only when scan quality is good enough for absence to be meaningful. |
-| Controlled lighting variants and label reuse | Specular highlights are a known CV problem, controlled surgical-instrument papers treat lighting as an acquisition variable, and augmentation research supports label-preserving image variation when the object geometry and class remain unchanged. HOSPITools also captured surgical tools under natural, LED, halogen, and fluorescent lighting, making illumination a documented surgical-tool dataset variable rather than a demo-only concern ([Wang et al., 2016](../bibliography.md#wang-et-al-2016), [Wei et al., 2018](../bibliography.md#wei-et-al-2018), [Lehr et al., 2023](../bibliography.md#lehr-et-al-2023), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Shorten and Khoshgoftaar, 2019](../bibliography.md#shorten-and-khoshgoftaar-2019), [Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b)). | Reuse boxes only for controlled lighting variants where the object pose is unchanged. Evaluate on held-out lighting conditions rather than random near-duplicate splits. |
-| Synthetic data for shape-similarity stress tests | Domain-randomization research supports synthetic-to-real transfer only when variation is broad enough and transfer is measured. Surgical-tool dataset surveys reinforce that dataset assumptions must be explicit, and HOSPITools shows the same need to evaluate dataset design variables such as class frequency, image size, and acquisition conditions rather than assuming one dataset construction is enough ([Tobin et al., 2017](../bibliography.md#tobin-et-al-2017), [Shorten and Khoshgoftaar, 2019](../bibliography.md#shorten-and-khoshgoftaar-2019), [Rodrigues et al., 2022a](../bibliography.md#rodrigues-et-al-2022a), [Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b)). | Use simulation for controlled stress testing, but claim value only if synthetic pretraining improves a matched real-proxy baseline. |
-| Pairwise confusion and high-confidence wrong-class metrics | Fine-grained recognition literature frames subtle inter-class differences as the central risk, and direct surgical-instrument work shows clinically distinct tools can be visually similar. HOSPITools explicitly motivates this point: many surgical tools are visually similar and differ in subtle, hard-to-discern ways ([Wang et al., 2021](../bibliography.md#wang-et-al-2021), [Zhao et al., 2017](../bibliography.md#zhao-et-al-2017), [Lehr et al., 2023](../bibliography.md#lehr-et-al-2023), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b)). | Do not rely on average mAP alone. Report per-class metrics, pairwise confusion, and high-confidence wrong similar-class predictions. |
-| Held-out splits and dataset-design reporting | HOSPITools reserved images for a test set not seen during training and used experiments to study image size and class frequency. ML reproducibility guidance also supports recording dataset and model details ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b), [Heil et al., 2021](../bibliography.md#heil-et-al-2021)). | Keep train, validation, and test splits explicit. Report class list, image count, instance count, split rule, and the design variable each experiment isolates. |
-| Local/no-PHI prototype data handling | Healthcare AI adoption literature identifies privacy, legal, and data-governance requirements as major deployment barriers ([Khalid et al., 2023](../bibliography.md#khalid-et-al-2023), [Chomutare et al., 2022](../bibliography.md#chomutare-et-al-2022)). | Keep prototype records focused on trays, detections, timestamps, and model versions. This reduces risk, but it is not a substitute for formal hospital privacy review. |
-| Lightweight traceability records | Surgical-instrument traceability reviews and error-reporting studies support keeping usable evidence for quality improvement. ML reproducibility standards support recording model/data details ([Fayad et al., 2025](../bibliography.md#fayad-et-al-2025), [Nichol and Saari, 2023](../bibliography.md#nichol-and-saari-2023), [Heil et al., 2021](../bibliography.md#heil-et-al-2021)). | Save scan ID, required list, observed counts, confidence values, review flags, corrections, screenshot references, dataset version, and model version. |
-| Hard P6-style numeric targets | Several old numbers were useful ambition but not research-backed for SPD tray verification: one false alert per eight hours, two user actions, ten-minute setup, and fixed `0.5 m x 0.5 m` coverage. | Do not defend those as requirements. Replace them with local measurement plans until walkthrough and physical capture data exist. |
+| Lookalike tools as learning content | HOSPITools and Atabuzzaman et al. highlight subtle instrument differences; Alfred et al. identifies nomenclature and training as assembly factors ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Teach distinguishing features in study cards and track `misidentified` errors separately from generic wrong answers. |
+| Student participants as novice evidence only | Simulation and learning-science evidence supports novice practice studies, but SPD certification and work-system evidence show real work requires supervised hands-on competence ([Cook et al., 2011](../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../bibliography.md#mcgaghie-et-al-2011), [HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Student results can support first-use clarity and novice simulated learning, not SPD adoption or safety readiness. |
+| Admin-facing metrics and traceability | Work-system studies and traceability reviews support recordkeeping for quality improvement, while economic AI reviews warn that technical performance alone is not a business case ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021), [Fayad et al., 2025](../bibliography.md#fayad-et-al-2025), [Vithlani et al., 2023](../bibliography.md#vithlani-et-al-2023), [Kastrup et al., 2024](../bibliography.md#kastrup-et-al-2024)). | Export learner progress, repeated weak items, time, confidence, and error patterns. Treat ROI as future pilot work. |
 
 ## Implementation Defaults That Should Not Be Overclaimed
 
@@ -531,57 +596,48 @@ best possible clinical design.
 
 | Default | Current Use | Critique-Ready Interpretation |
 | --- | --- | --- |
-| `model=yolo11s` | Fast baseline for training and demo inference. | Supported only as a YOLO-family real-time detector baseline. Compare with `yolo11m`, `yolo11l`, and `rtdetr-l` when performance claims matter. |
-| `conf=0.25` | Demo slider default. | Not a safety threshold and not a missing-item rule. Production-style tray logic should use a low `T_review`, a higher `T_present`, and a scan-quality gate chosen from local validation curves, unknown false-positive rates, and review burden. |
-| `imgsz=640`, `epochs=100`, `batch=16` | Reproducible training defaults. | Treat as starting points. Report them, tune when needed, and avoid presenting them as research-backed optima. |
-| Streamlit UI | Fast prototype interface for live camera review. | Suitable for demonstrating workflow concepts. Production UI claims need separate usability testing and implementation work. |
+| File-backed tray and instrument data | Fast local authoring for one seeded module. | Good for a capstone MVP. A real training program would need role permissions, content review, versioning, and integration decisions. |
+| Pre/post simulated tray sorting | Primary training-effectiveness evidence. | Measures simulated local familiarity, not live SPD competency. |
+| Confidence ratings | Learner metacognition and instructor review. | Useful for spotting overconfidence and fragile knowledge; not a clinical safety score. |
+| Existing YOLO/Streamlit tray-check code | Legacy demo and possible future visual support. | Not central evidence. Avoid presenting its detector metrics as proof of robustness. |
 | Local ignored `data/`, `runs/`, and `weights/` folders | Keeps raw images, training outputs, and weights out of git. | Sensible prototype hygiene. Formal deployment would require access controls, retention policy, audit policy, and privacy review. |
 
 ## Main Components
 
-The current product concept can be understood as seven components:
+The current training product concept can be understood as seven components:
 
-1. **Imaging And Inspection**
-   - Camera, scene framing, and practical lighting conditions.
-   - The main risk here is image quality degradation from glare, shadow,
-     reflectivity, blur, and camera placement.
-   - Close prior work suggests that a single overhead view may be insufficient
-     for ultra-fine-grained instrument distinctions, so the sensing design
-     should preserve a path to side-view or review-station capture when needed.
-2. **Edge Compute And Operator Interface**
-   - Local runtime, display, user controls, and status indicators.
-   - The prototype should keep session data local by default and avoid patient
-     information entirely. This is a risk-reduction choice aligned with
-     healthcare AI privacy concerns, not a complete compliance claim.
-3. **Workflow Orchestration**
-   - Tray-session state, capture, inference, validation, review, rescan, and
-     completion flow.
-   - Human-in-the-loop actions such as confirm, override, and recapture belong
-     here rather than inside the detector.
-4. **Computer Vision Inference**
-   - Detection model, confidence scores, and class-level predictions.
-   - The main risk here is confusion between similar tools, missed detections,
-     and unsafe high-confidence errors.
-   - The model should distinguish tray-level detection from single-instrument
-     classification, since the latter can be tested under more controlled views.
-   - The current YOLO-based implementation is an experiment baseline. The
-     architecture should stay swappable so model-family comparisons remain
-     possible.
-5. **Tray Validation And Decision Support**
-   - Required-list parsing, observed-count aggregation, and tray-status logic.
-   - This is where the system turns raw detections into missing, extra, and
-     review-needed information.
-   - Future versions should support allowed alternates, confidence thresholds,
-     and strict or relaxed review modes only when those rules are explicit.
-6. **Knowledge Management**
-   - Tray definitions, required instrument lists, label taxonomy, and model
-     version alignment.
-   - This avoids a quiet mismatch between model class names and the tray
-     definition being checked.
-7. **Data Lifecycle And Reporting**
-   - Saved results, confidence values, screenshots or frame references, and
-     repeat-pattern reporting.
-   - This is necessary for a buyer-facing quality story, not just demo output.
+1. **Local Curriculum Data**
+   - Instrument cards, tray templates, quantities, aliases, families,
+     distinguishing features, distractors, and module versioning.
+   - The main risk is vague or nonlocal content that does not match what a
+     learner is expected to assemble.
+2. **Learning Mode Orchestration**
+   - Pre-test, study, quiz, practice sort, post-test, and export flow.
+   - Assessment modes suppress hints and feedback; practice modes make feedback
+     immediate and specific.
+3. **Simulated Tray Sorting**
+   - Learner selection of required instruments and quantities from a local item
+     pool.
+   - This is the primary competency proxy because it combines identity,
+     count-sheet reading, and distractor resistance.
+4. **Scoring And Feedback**
+   - Error classification into missing, extra, wrong, misidentified, and
+     wrong-count categories.
+   - The system should explain what happened and what to review next, not only
+     mark answers right or wrong.
+5. **Learner Metrics And Instructor Reporting**
+   - Accuracy, duration, confidence, error categories, high-confidence errors,
+     low-confidence correct answers, and pre/post comparisons.
+   - This is the evidence layer for simulated time-to-competency.
+6. **Optional Camera And CV Support**
+   - Camera capture, detection, and review states for future visual practice or
+     authoring assistance.
+   - This remains a support layer until the training loop is working.
+7. **Local Data Lifecycle**
+   - Module files, learner run records, export files, screenshots when
+     applicable, and version references.
+   - Prototype records should avoid patient information and should not be
+     presented as a complete hospital audit system.
 
 ## Design Candidates And Selection
 
@@ -593,14 +649,14 @@ The design space can be described as three candidate architectures.
 | Tagged identification | Add RFID tags, barcodes, or other identifiers to instruments and read the identifiers during tray preparation. | Strong item-level identity and traceability; less dependent on visual conditions. | Requires tags, engraving, readers, scanner workflows, integration, and maintenance. RFID and barcode studies support traceability value but also show infrastructure and workflow costs ([Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)). |
 | Instrumented placement | Use custom tray slots or embedded sensors to confirm that expected locations are occupied. | Can make placement checks simple in a highly standardized tray. | Requires specialized trays, restricts tray-layout flexibility, and does not naturally identify wrong-but-similar instruments. |
 
-TrayGuard currently selects workspace observation because it is the best match
-for this repository's constraints: low physical-infrastructure burden, direct
-study of the visual inspection problem, and compatibility with the existing
-camera, annotation, YOLO export, model-training, and Streamlit demo pipeline.
-This is a prototype selection rather than a claim that computer vision is always
-superior to RFID or tray instrumentation. For a hospital-wide traceability
-program, RFID or barcode systems may be the right architecture; for this project,
-computer vision is the most testable first layer of tray-readiness support.
+For the MVP, TrayGuard selects local file-backed simulation because it is the
+best match for this repository's new constraints: it supports the
+time-to-competency claim, avoids universal recognition overclaims, and can be
+evaluated with pre/post learning metrics. Workspace observation remains the
+best optional sensing architecture for future visual practice because it fits
+the existing camera, annotation, YOLO export, model-training, and Streamlit demo
+pipeline. This is a prototype selection rather than a claim that computer
+vision is always superior to RFID or tray instrumentation.
 
 ## Fallback Strategy
 
@@ -608,15 +664,15 @@ The selected architecture should have graceful fallback paths.
 
 | Level | Trigger | Fallback | What It Preserves |
 | --- | --- | --- | --- |
-| Sensing | Glare, shadow, or camera placement makes detections unstable. | Add controlled lighting, fixed background, clearer tray staging, or a side/review view. | The workspace-observation concept remains intact while reducing image-quality variation. |
-| Perception | Fine-grained class recognition is unreliable for visually similar instruments. | Route low-confidence or similar-pair cases into review, or count broader instrument groups when that still answers the tray question. | The system still supports verification without pretending every class distinction is solved. |
-| Interaction | Alerts or rescans slow the user. | Switch from automation-style results to guided review language, clearer rescan prompts, and fewer high-interruption alerts. | Technician authority and workflow acceptance remain central. |
-| Architecture | Workspace observation cannot meet local reliability needs. | Revisit tagged identification or hybrid CV-plus-tag workflows. | The readiness-verification goal remains even if the sensing method changes. |
-| Full system | Automated detection is not reliable enough within the project timeline. | Deliver a semi-automated checklist assistant that guides manual confirmation and logs evidence. | The project still produces measurable workflow and documentation value. |
+| Content | The first tray module is too thin or confusing. | Reduce to one polished tray and improve cards, aliases, distractors, and feedback. | The learning claim remains measurable. |
+| Assessment | Pre/post tasks are too similar or too easy. | Create parallel variants with matched difficulty and randomized item order. | Improvement is less likely to be a memorized replay. |
+| Interaction | Feedback or confidence prompts slow learners. | Keep feedback concise and capture one simple confidence rating per attempt. | Practice remains useful without creating friction. |
+| Participants | Only students are available. | Report novice learnability and simulated gains only; require SPD validation later. | The project avoids adoption overclaims. |
+| Optional sensing | CV is unreliable within the timeline. | Keep sorting manual and use CV work only as future visual-practice support. | The MVP training evidence still stands. |
 
 ## Current Implementation Mapping
 
-The repository already contains the foundations of those components:
+The repository already contains foundations for the optional CV support layer:
 
 - `src/micro_design_project/data_collection/` handles camera capture,
   annotation, and controlled data collection.
@@ -627,9 +683,9 @@ The repository already contains the foundations of those components:
 - `src/micro_design_project/training/` and `scripts/` support dataset export,
   training, benchmarking, and weight export.
 
-The biggest remaining system-design gap is not "add more model code." It is
-bridging the current detector demo into a more complete verification workflow
-with review states, clearer tray summaries, and lightweight logging.
+The biggest remaining system-design gap is the new training layer: local tray
+module files, learner modes, scoring, feedback, and metrics export. The detector
+demo can be reused later, but it should not block the training MVP.
 
 ## Prototype Requirements
 
@@ -638,90 +694,32 @@ requirements rather than deployment requirements.
 
 TrayGuard should demonstrate that:
 
-- the detector can recognize and count known classes in controlled tray-like
-  scenes well enough to support comparison against a required list
-- the capture design can justify when an overhead tray view is enough and when
-  a controlled review view would be needed
-- the system can fail more safely by surfacing uncertainty, not only by raising
-  average accuracy
-- the interface can communicate present, missing, extra, and review-needed
-  states clearly enough for human confirmation
-- the interface can give visual-first, optional audio feedback without creating
-  unnecessary alert burden
-- the evaluation pipeline can expose the main CV risks: lighting,
-  shape-similarity confusion, clutter and occlusion, and open-set behavior
-- the workflow can be discussed as a realistic technician-assistance concept
-  rather than only as a model benchmark
-- the system can produce lightweight records that support traceability and
-  repeated-error analysis
+- one local tray module can be loaded from data rather than code changes
+- learners can complete pre-test, study, quiz, practice sort, and post-test
+  flows
+- practice mode gives immediate feedback for missing, extra, wrong,
+  misidentified, and wrong-count errors
+- assessment modes suppress hints and feedback
+- metrics export compares pre/post accuracy, duration, confidence, and error
+  categories
+- the result can be discussed as simulated time-to-competency evidence, not
+  certification readiness or live SPD productivity
+- optional CV code remains available for future authoring or visual-review
+  support, but local CV experiments are not part of the active evidence plan
 
 These requirements are intentionally narrower than field-readiness claims. They
 fit the actual state of the codebase and the quarter plan better than strict
 deployment-style targets such as full-shift uptime, hospital-grade false-alert
 limits, or comprehensive SPD integration.
 
-## Engineering Goals And Evidence Status
+## Literature Gaps And Stakeholder Response
 
-The original P6 draft listed several hard numbers. Some can be defended as
-controlled-prototype targets; others should be treated as aspirational until we
-collect local workflow evidence. The table below separates those cases so the
-requirements stay honest.
-
-| Goal Area | Engineering Goal | Evidence Status | How To Evaluate In This Project |
-| --- | --- | --- | --- |
-| Known-class detection | Report precision, recall, mAP50, and mAP50-95 for each controlled experiment. Use `>=90%` per-class precision and recall as a minimum controlled-prototype target for known classes. | Partly supported. Deol et al. reported 94.0-100% class precision and 97.1-100% class recall across 11 surgical-tool categories, with overlapping-tool precision falling as low as 89.6% for one class and recall staying 97.2-98.2%. Atabuzzaman et al. reported real-time CSSD classification exceeding 99.5%, but in a structured single-instrument multi-view station rather than full-tray checking ([Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025)). | Use held-out test splits for lighting, similar-shape, clutter, and open-set experiments. Report per-class failures instead of relying only on averages. |
-| Tray-level counting | Target `>=95%` exact class-count agreement for known classes in controlled tray-like scenes. Treat this as a stretch validation target, not an externally proven SPD requirement. | Partly supported, but not proven for our tray workflow. Deol et al. maintained correct tool count in all non-transition frames during a one-hour simulated surgical video and reported high detection recall, but that is not the same as SPD tray verification across many tray layouts ([Deol et al., 2024](../bibliography.md#deol-et-al-2024)). | For each test tray, compare required count vs observed count by class. Report exact-count rate, under-count rate, over-count rate, and the specific classes responsible. |
-| Missing-item detection | Target `>=95%` missing-item recall in controlled scenarios where one required item is absent. | Reasonable as a prototype target, but locally unproven. The operational need is strongly supported because missing instruments are a major delay source; the exact 95% number is a design target borrowed from high recall in related CV studies, not a published SPD deployment threshold ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024), [Deol et al., 2024](../bibliography.md#deol-et-al-2024)). | Construct tray scenarios with known missing items. Count how often the system flags the missing class without requiring the user to infer it from raw boxes. |
-| False alerts | Do not claim the P6 target of `<=1 false alert per 8 hours` yet. Use `<=5%` false positive rate or false review rate as an interim offline target, and replace it with a scan-volume-based target after walkthrough data exists. | The need for low false alerts is well supported, but the exact one-per-shift number is not. Alert-fatigue and workflow literature supports measuring false alerts because interruptions reduce usability and acceptance, but it does not justify this specific rate for SPD tray verification ([Olakotan and Yusof, 2021](../bibliography.md#olakotan-and-yusof-2021), [Cánovas-Segura et al., 2023](../bibliography.md#canovas-segura-et-al-2023)). | Track false extra-item alerts, false missing-item alerts, and unnecessary review prompts per tray scenario. In user walkthroughs, record rescans, hesitations, complaints, and whether users say alerts are tolerable. |
-| Latency | Produce tray status within `<5 seconds` from image capture for the prototype UI. Also report model inference latency separately from full UI latency. | Supported as a conservative prototype target. Deol et al. reported median inference of 24.7 ms, or 40.4 FPS, on a V100 for surgical-tool video; TrayGuard's full UI can be much slower than model inference and still meet a five-second tray-check goal ([Deol et al., 2024](../bibliography.md#deol-et-al-2024)). | Log model inference time, count-aggregation time, and end-to-end UI update time. Treat network calls or manual file movement as outside the runtime target. |
-| User interaction | Verification should require only a small number of deliberate actions: select or enter tray list, capture or confirm scan, review flagged issues, and finalize. The P6 `no more than two user actions` target is too rigid for review-heavy cases. | Workflow-fit evidence supports minimizing extra steps, but no source supports exactly two actions for this context. Human-in-the-loop literature and workflow-acceptance planning support fast correction and clear review over arbitrary click counts ([Chomutare et al., 2022](../bibliography.md#chomutare-et-al-2022), [Kim et al., 2025](../bibliography.md#kim-et-al-2025), [Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). | In walkthroughs, record action count, time to final decision, correction burden, and points of confusion. |
-| Setup and deployment burden | Keep setup lightweight: commodity camera or phone camera, fixed background, controlled lighting, local compute, and no instrument modification. Do not claim the P6 `usable within 10 minutes` setup target until it is timed. | Directionally supported. CV is attractive because it avoids instrument-level tagging; RFID and barcode alternatives require additional instrument and reader infrastructure ([Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)). The exact 10-minute setup number is currently an assumption. | Time a clean setup from packed state to first successful tray scan. Record required hardware, calibration steps, and failure points. |
-| Workspace coverage | Use a fixed, documented tray workspace for prototype tests. Do not claim the P6 `0.5 m x 0.5 m` coverage target unless the physical capture setup is measured and photographed. | Not independently supported yet. The number is plausible for a tabletop prototype, but it is not tied to a cited SPD tray standard in the current evidence base. | Measure the actual camera field of view at the chosen mount height. Report usable area, pixel resolution, and whether all test objects remain detectable at the edges. |
-| Privacy | Do not collect or transmit patient information. Keep prototype images focused on instruments and tray surfaces. | Strongly justified by scope: the system is intended for tray readiness, not patient data. It also keeps the prototype simpler and lower risk. | Verify that saved records contain scan IDs, timestamps, tray definitions, detections, and screenshots only; no patient identifiers. |
-| Traceability | Save scan ID, timestamp, required list, observed counts, confidence values, review flags, user corrections, and screenshot or frame reference. | Supported by the quality-reporting argument: incomplete and delayed reporting makes instrument-error improvement harder, and traceability literature frames tracking as important for safety, cost, logistics, and risk analysis ([Nichol and Saari, 2023](../bibliography.md#nichol-and-saari-2023), [Fayad et al., 2025](../bibliography.md#fayad-et-al-2025)). | Implement the minimum tray-check record schema and generate an example quality report from prototype data. |
-
-## Deployment-Style Threshold Ranges
-
-There is no published universal confidence cutoff that makes a tray-checking
-assistant safe for a high-stakes environment. A deployment threshold would need
-to be justified by the intended use, tray classes, user workflow, camera setup,
-local validation data, and risk controls. FDA and international MLMD guidance
-points in that direction: use representative data, test under clinically or
-operationally relevant conditions, focus on the human-AI team, communicate
-limits, and monitor performance across the product lifecycle
-([FDA GMLP, accessed 2026](../bibliography.md#fda-gmlp-accessed-2026),
-[FDA Transparency, accessed 2026](../bibliography.md#fda-transparency-accessed-2026)).
-
-The ranges below are not current TrayGuard claims. They are rough deployment
-screening targets for a future high-stakes guided-verification system before it
-would be reasonable to run outside a shadow-mode or supervised pilot.
-
-Raw confidence cutoffs should not be copied between models. If the prototype
-needs placeholder UI values before a validation sweep, a conservative starting
-band would be something like `T_review = 0.15-0.30` and
-`T_present = 0.75-0.90`, but those numbers would be demo assumptions only. A
-deployable cutoff is the value that achieves the validation targets below for a
-specific model, class list, camera setup, and use environment.
-
-| Area | Rough Pre-Deployment Target | Rationale |
+| Gap In The Literature | System Response | Stakeholder Meaning |
 | --- | --- | --- |
-| False complete tray decisions | `<=0.1%` per tray scenario, and ideally zero false complete decisions in the final validation set with confidence intervals reported. | A false complete result hides missing, wrong, extra, or uncertain items and is the highest-risk UI failure. |
-| Required-item recall at `T_review` | `>=99.5%` for critical required classes under intended scan conditions. | A present item should almost always appear at least as reviewable evidence instead of disappearing into `Missing`. |
-| Required-item precision at `T_present` | `>=99%` per class, with no unresolved high-confidence wrong similar-class pattern. | Quiet `Present` labels should be reserved for detections that are very likely to be correct. |
-| Missing-item recall | `>=99%` for planted missing-item scenarios. | The system should reliably flag truly absent required items. |
-| False missing rate | `<=0.5%` for visible required items under acceptable scan quality. | A visible tool should not be incorrectly treated as absent when the image is usable. |
-| Unknown or wrong-similar high-confidence false positives | `<=0.1-0.5%`, with `>=95-99%` of plausible unknowns routed to review or extra-item handling. | Unknown or wrong-but-similar objects should not quietly satisfy required classes. |
-| Review rate in normal use | Usually `<=5-10%` of routine trays, with higher rates acceptable for known hard trays if users find the review worthwhile. | Review is safer than false approval, but too much review becomes workflow burden and alert fatigue. |
-| Unnecessary rescan rate | Usually `<=5%` under intended lighting and staging conditions. | Frequent rescans signal that image-quality controls or camera setup are not deployment-ready. |
-| Calibration | Reliability plots by class and operating region; target calibration error around `<=0.05` for accepted detections, or justify why a different metric is used. | Confidence should be monitored as an operating signal, especially near `T_review` and `T_present`. |
-| Human-AI workflow | Users catch at least as many planted issues as manual baseline with acceptable time, correction, and trust-calibration results. | Deployment readiness is about the whole verification workflow, not the model alone. |
-| Monitoring and fallback | Defined manual fallback, downtime process, drift monitoring, and threshold-change control. | A high-stakes system needs performance monitoring and a safe path when the model or capture setup is outside validated conditions. |
-
-For this capstone prototype, the defensible target remains narrower: report the
-curves and failure cases that would let a future team choose those thresholds.
-The prototype should not claim clinical or SPD deployment readiness until those
-deployment-style targets are tested with real instruments, representative users,
-site-specific trays, and local operating conditions.
+| CV papers show feasibility but often under-test manufacturer, site, tray, and workflow variation. | Keep CV optional and locally verifiable. Use instructor-approved content as the source of truth. | Admins should not buy the prototype as autonomous inspection; trainees should not rely on it as final authority. |
+| SPD error papers show real defects but do not isolate which training intervention reduces them. | Run a pre/post simulated learning study. | Students can help test novice learnability; SPD trainees still need future validation. |
+| Training literature supports simulation and feedback but does not provide a ready-made SPD tray module design. | Build the module around local tray cards, quizzes, sorting, and error-specific feedback. | Trainees get repeatable practice; instructors get evidence about weak items. |
+| Adoption literature is broad healthcare AI, not specifically SPD training assistants. | Report workflow friction, role boundaries, privacy assumptions, and pilot requirements. | Admins get a clearer approval path and know what remains unproven. |
 
 ## Bibliography
 

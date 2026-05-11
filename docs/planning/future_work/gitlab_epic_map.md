@@ -1,48 +1,36 @@
 # GitLab Epic Map
 
-This document summarizes the project workstreams and milestone checkpoints.
+This document summarizes the training-platform workstreams and milestone
+checkpoints. Retired sensing/perception experiment epics have been removed from
+the active plan.
 
 ## Epics
 
 | Epic | Goal | Typical Labels |
 | --- | --- | --- |
-| Sensing And Capture | Build the physical and data-collection layer: camera setup, lighting setup, tray framing, capture workflow, and dataset inputs. | `epic::sensing-capture`, `category::hardware`, `category::capture`, `category::lighting` |
-| Perception | Build and evaluate the detector layer: training, metrics, confidence behavior, similar-class confusion, and robustness experiments. | `epic::perception`, `category::similar`, `category::lighting`, `category::ml` |
-| Tray Logic And Decision Support | Define what the system means by present, missing, extra, and review-needed, and connect detections to tray-level results. | `epic::tray-logic`, `category::scope`, `category::workflow` |
-| Technician UI And Workflow | Make the live prototype usable as a technician-facing assistant with understandable workflow, correction paths, and review prompts. | `epic::technician-ui`, `category::ui`, `category::workflow`, `category::demo` |
-| Traceability And Reporting | Add saved records, reports, and workflow evidence so TrayGuard can support a quality and audit story. | `epic::traceability-reporting`, `category::logging`, `category::reporting`, `category::workflow` |
+| Training Module | Build the local tray curriculum, study cards, quiz, simulated sorting, feedback, and assessment flow. | `epic::training-module`, `category::content`, `category::ui`, `category::assessment` |
+| Evidence And Reporting | Export learner metrics, pre/post comparisons, repeated weak-item summaries, and final report evidence. | `epic::evidence-reporting`, `category::metrics`, `category::reporting`, `category::docs` |
+| Pilot Evidence | Run bounded novice walkthroughs and report results with the student-participant limitation. | `epic::pilot-evidence`, `category::study`, `category::workflow` |
+| Presentation | Lock the final narrative around simulated time-to-competency, literature-backed CV feasibility, and stakeholder implications. | `epic::presentation`, `category::demo`, `category::docs` |
 
 ## Milestones
 
-### Sensing And Capture
+### Training Module
 
-- `Sensing / Physical Capture Setup Ready`
-- `Sensing / Collection Pipeline Ready`
-- `Sensing / Material And Lighting Assumptions Ready`
-- `Sensing / Lighting Dataset Ready`
+- `Local Tray Data Ready`
+- `Study And Quiz Flow Ready`
+- `Practice Sorting Feedback Ready`
+- `Pre/Post Assessment Ready`
 
-### Perception
+### Evidence And Reporting
 
-- `Perception / Experiment Questions Locked`
-- `Perception / Lighting Results Ready`
-- `Perception / Similar Baseline Ready`
-- `Perception / Demo Model Ready`
+- `Metrics Export Ready`
+- `Literature Gaps And Stakeholders Ready`
 
-### Tray Logic And Decision Support
+### Pilot Evidence
 
-- `Tray Logic / Result Semantics Defined`
-- `Tray Logic / Decision Support Implemented`
+- `Pilot Walkthrough Ready`
 
-### Technician UI And Workflow
+### Presentation
 
-- `UI / Baseline Workflow Defined`
-- `UI / Workflow Gap Review Complete`
-- `UI / Tray Review Flow Improved`
-- `UI / Walkthrough Evidence Ready`
-- `UI / Demo Flow Ready`
-
-### Traceability And Reporting
-
-- `Traceability / Record Schema Ready`
-- `Traceability / Logging Implemented`
-- `Traceability / Reporting Ready`
+- `Demo Narrative Ready`

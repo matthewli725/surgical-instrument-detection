@@ -1,12 +1,12 @@
 # Traceability And Quality Reporting
 
-TrayGuard should produce more than a one-time detection result. It should help a
-team understand repeated tray-check problems over time.
+TrayGuard should produce more than a one-time score. For the training MVP, it
+should help learners and instructors understand repeated tray-sorting and
+identification errors.
 
 ## What This Test Answers
 
-A hospital team needs an audit trail and a quality-improvement story, not just a
-demo screen.
+A training program needs learner evidence, not just a demo screen.
 
 ## Why This Is A Risk
 
@@ -19,30 +19,28 @@ Traceability research frames surgical instrument tracking as important for
 patient safety, cost, logistics, environmental impact, and risk analysis
 ([Fayad et al., 2025](../../bibliography.md#fayad-et-al-2025)).
 
-This matters for TrayGuard because a camera assistant that only shows a live
-prediction and then forgets it cannot help managers see repeated missing-item,
-wrong-class, glare, clutter, or correction patterns.
+This matters for TrayGuard because a trainer that only shows "right" or "wrong"
+and then forgets it cannot help instructors see repeated missing-item,
+wrong-count, lookalike, confidence, or correction patterns.
 
 This test answers:
 
-- Can TrayGuard explain why a tray was flagged?
-- Can it show repeated failure patterns?
-- Can it separate model mistakes from visibility problems and user corrections?
-- Would the output help an SPD manager decide what to improve next?
+- Can TrayGuard explain why a learner missed or misidentified an item?
+- Can it show repeated failure patterns by learner, instrument, or tray?
+- Would the output help an instructor decide what to review next?
 
 ## What The Report Should Capture
 
 A useful quality record should include:
 
-- Trial or scan ID.
+- Learner run or trial ID.
 - Required tray list.
-- Detected instruments and counts.
+- Selected instruments and counts.
 - Missing required items.
-- Extra or unknown objects.
-- Low-confidence or review-needed detections.
-- User corrections.
-- Image or screenshot reference.
-- Condition tags such as lighting, clutter, or similar-shape risk.
+- Extra items.
+- Confidence ratings.
+- Practice corrections.
+- Module version, tray variant, and task mode.
 
 ## How To Read The Results
 
@@ -52,34 +50,32 @@ Useful questions include:
 
 - Which instruments are most often missed?
 - Which instruments are most often confused?
-- Which tray conditions create the most review flags?
-- How often does a person correct the system?
-- Are failures caused by the model, the image quality, or the tray layout?
+- Which tray conditions or quiz items create the most errors?
+- How often does a learner correct an answer after feedback?
+- Are failures caused by learner confusion, weak content, lookalike
+  instruments, or tray layout?
 
 ## Product Interpretation
 
 | Pattern | What It Means | Product Response |
 | --- | --- | --- |
-| Missing items repeat for one class | The model or data is weak for that class | Collect targeted examples |
-| Review flags cluster under glare | Image quality is the issue | Add lighting guidance or rescan prompts |
-| Corrections cluster around similar tools | Class distinction is difficult | Add pair-specific review |
-| Unknown objects appear often | The workflow needs an extra-object path | Add simple remove-or-confirm actions |
+| Missing items repeat for one class | The instrument needs more practice or clearer card content | Add targeted quiz and card review |
+| Wrong counts repeat | Count-sheet quantity is not salient enough | Add quantity emphasis and count-specific feedback |
+| Corrections cluster around similar tools | Class distinction is difficult | Add pair-specific comparison cards |
 
 ## User-Facing Report Sections
 
 A good report should include:
 
-- Summary of tray checks completed.
-- Missing, extra, and uncertain item counts.
+- Summary of training runs completed.
+- Missing, extra, wrong, misidentified, wrong-count, and confidence patterns.
 - Most common failure categories.
-- Representative screenshots.
 - Recommended next actions.
 
 ## What We Are Not Claiming
 
-- Detection logs do not prove sterility, cleanliness, sharpness, or function.
-- Screenshots alone are not a complete audit record.
-- A quality report supports human review; it does not replace departmental
+- Training logs do not prove sterility, cleanliness, sharpness, or function.
+- A learner report supports instructor review; it does not replace departmental
   quality processes.
 
 ## Bibliography

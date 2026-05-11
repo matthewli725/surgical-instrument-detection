@@ -1,94 +1,71 @@
 # Experiments
 
-This directory is the experiment map.
-
-## Sections
-
-- `cv/`: computer-vision technical risks and experiments
-- `adoption/`: workflow fit, reporting, and sociotechnical risk
-- `splits/`: split policies for each experiment axis
-- `reproducibility/`: rerun instructions for benchmarked results
+This directory now contains the evaluation plan for the training-platform
+pivot. Local computer-vision accuracy experiments are no longer part of the
+active evidence plan. The repository may keep code for camera capture,
+annotation, YOLO export, and live detection as legacy implementation support,
+but the report should not ask reviewers to accept TrayGuard because of our own
+CV metrics.
 
 ## Current Prototype Flow
 
-TrayGuard is being tested as a technician-centered tray-checking assistant:
+TrayGuard is being evaluated as a training and assessment platform:
 
-1. Load or enter the required tray list.
-2. Capture the current tray view.
-3. Detect and count visible instruments.
-4. Show present, missing, extra, and review-needed items.
-5. Preserve technician confirmation as the final decision.
+1. Load a local tray module.
+2. Run a timed pre-test tray sorting assessment.
+3. Let the learner study instrument cards and complete quiz prompts.
+4. Let the learner practice simulated tray sorting with feedback.
+5. Run a timed post-test tray sorting assessment.
+6. Export accuracy, duration, confidence, and error-category metrics.
 
-This repository focuses on the evidence needed for that prototype claim:
-camera capture, labeling, dataset export, model training, evaluation, review
-states, and lightweight reporting.
+The evidence question is:
 
-## CV Experiment Map
+> Does a novice improve on simulated local tray familiarity after using the
+> TrayGuard module?
 
-| Axis | Doc | Local Question |
-| --- | --- | --- |
-| Similar-instrument recognition | [`cv/shape_similarity.md`](cv/shape_similarity.md) | Can the model separate visually similar classes without hiding pairwise confusion behind average metrics? |
-| Reflective-object lighting robustness | [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md) | Does lighting diversity improve detection on reflective proxy objects, and when should glare trigger review or rescan? |
-| Crowded-tray clutter and occlusion | [`cv/clutter_occlusion.md`](cv/clutter_occlusion.md) | When do crowded tray scenes make visible-tool counts unreliable? |
-| Unknown similar-object review routing | [`cv/open_set_confidence.md`](cv/open_set_confidence.md) | Can unknown or similar-but-wrong objects be routed to review instead of forced into known classes? |
-
-The shared rationale for these axes lives in the system design's
-[research support audit](../background/system_design.md#research-support-audit).
-The individual pages should document only their local setup, metrics, results,
-and product interpretation.
-
-## Experiment Decision Evidence Index
-
-The project already includes justification for the experiment directions in the
-system design, especially the
-[research support audit](../background/system_design.md#research-support-audit).
-Use this table as the visible bridge between those sources and the concrete
-experiment decisions.
-
-| Decision | Evidence Link | What It Supports |
-| --- | --- | --- |
-| Run controlled experiments instead of claiming deployment readiness | [System scope](../background/system_design.md#current-focus), [Research support audit](../background/system_design.md#research-support-audit) | The prototype should test measurable assumptions under bounded conditions. |
-| Use shape similarity as a primary CV axis | [Pairwise-confusion row](../background/system_design.md#research-support-audit), [HOSPITools source](../bibliography.md#rodrigues-et-al-2022b) | Surgical tools can be visually similar with subtle differences, so average metrics are not enough. |
-| Report pairwise confusion and high-confidence wrong-class predictions | [Pairwise-confusion row](../background/system_design.md#research-support-audit), [`cv/shape_similarity.md`](cv/shape_similarity.md#headline-metrics) | Similar-class mistakes are the product-critical failure mode for fine-grained tray checks. |
-| Use lighting and reflectivity stages | [Controlled-lighting row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset) | Lighting is a documented acquisition variable for surgical-tool imagery and reflective objects can hide visual cues. |
-| Reuse labels only for fixed-pose lighting variants | [Controlled-lighting row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset) | Label reuse is defensible only when object geometry, identity, pose, and camera framing stay fixed. |
-| Evaluate on held-out conditions instead of random near-duplicates | [Held-out-splits row](../background/system_design.md#research-support-audit), [`cv/reflectivity_lighting.md`](cv/reflectivity_lighting.md#dataset), [`cv/shape_similarity.md`](cv/shape_similarity.md#staged-experiment-logic) | The result should measure generalization to the isolated condition, not memorization of similar images. |
-| Use synthetic data only as a transfer hypothesis | [Synthetic-data row](../background/system_design.md#research-support-audit), [`cv/shape_similarity.md`](cv/shape_similarity.md#dataset-design) | Simulation is useful only if it improves a matched real-proxy baseline. |
-| Include clutter and occlusion as an axis | [Object-detection/counting row](../background/system_design.md#research-support-audit), [`cv/clutter_occlusion.md`](cv/clutter_occlusion.md#why-this-is-a-risk) | TrayGuard should count visible tools and know when overlap makes the view unreliable. |
-| Include open-set confidence and review states | [Confidence/review row](../background/system_design.md#research-support-audit), [`cv/open_set_confidence.md`](cv/open_set_confidence.md#how-to-read-the-results) | Unknown or similar-but-wrong objects should route to review instead of being forced into known labels. |
-| Keep technician confirmation as the final decision | [Technician-centered row](../background/system_design.md#research-support-audit), [Current prototype flow](#current-prototype-flow) | The detector supports human verification; it does not silently approve trays. |
-
-## Adoption Experiment Map
+## Active Experiment Map
 
 | Axis | Doc | Local Question |
 | --- | --- | --- |
-| Workflow acceptance | [`adoption/workflow_acceptance.md`](adoption/workflow_acceptance.md) | Does the assistant help users catch tray issues without adding unacceptable correction burden? |
-| Formal risk analysis | [`adoption/formal_risk_analysis.md`](adoption/formal_risk_analysis.md) | What system-level and CV-specific risks must stay visible during positioning and evaluation? |
-| Traceability and reporting | [`adoption/traceability_reporting.md`](adoption/traceability_reporting.md) | Can the prototype produce useful evidence about repeated tray-check problems? |
+| Training effectiveness | [`adoption/training_effectiveness.md`](adoption/training_effectiveness.md) | Does the trainer improve simulated tray-sorting accuracy, speed, confidence, and error breakdown from pre-test to post-test? |
+| Workflow acceptance | [`adoption/workflow_acceptance.md`](adoption/workflow_acceptance.md) | Can novice users complete the learning workflow without excessive friction or over-reliance? |
+| Traceability and reporting | [`adoption/traceability_reporting.md`](adoption/traceability_reporting.md) | Can the prototype produce useful learner and instructor evidence about repeated errors? |
+| Literature-backed risk analysis | [`adoption/formal_risk_analysis.md`](adoption/formal_risk_analysis.md) | What do existing papers already show, what gaps do they leave, and what does that mean for our system and stakeholders? |
 
-## Reproducibility
+## Evidence Boundary
 
-- [`splits/README.md`](splits/README.md)
-- [`reproducibility/brightness_yolo_reproducibility.md`](reproducibility/brightness_yolo_reproducibility.md)
-- [`reproducibility/lighting_yolo_reproducibility.md`](reproducibility/lighting_yolo_reproducibility.md)
-- [`reproducibility/shape_similarity_yolo_reproducibility.md`](reproducibility/shape_similarity_yolo_reproducibility.md)
+The project no longer needs to prove that a locally trained CV model reaches
+deployment-grade accuracy. Existing research already supports the weaker and
+more useful assumption: modern CV can be a plausible support layer in bounded
+surgical-instrument settings, but robustness must be validated locally before
+clinical use.
 
-The split README is the source of truth for experiment split intent. The
-reproducibility notes keep command-level detail for benchmarked results.
+| Evidence Area | Existing Literature Supports | Gap We Should Not Pretend To Fill |
+| --- | --- | --- |
+| Data-efficient detection is plausible | Few-shot object detection exists specifically because large annotated datasets are often impractical; fine-tuning pretrained detectors can work well in low-shot settings ([Xin et al., 2024](../bibliography.md#xin-et-al-2024), [Wang et al., 2020 FSOD](../bibliography.md#wang-et-al-2020-fsod)). | These papers do not prove our instrument set, camera setup, or hospital environment will generalize from a tiny dataset. |
+| Surgical-instrument detection is feasible | Deol et al. report strong detection/counting results for multi-tool surgical scenes; Atabuzzaman et al. report high-performing CSSD-oriented multi-view instrument classification ([Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025)). | These are not the same as our full training workflow, our local tray modules, or broad manufacturer-agnostic SPD deployment. |
+| Generalization remains the hard part | Kienle et al. show high in-domain mAP50 but a large cross-manufacturer drop when testing on a second dataset ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). | We should not claim robust real-hospital CV performance without a site-specific validation study. |
+| SPD assembly is a sociotechnical problem | Alfred et al. connect tray defects to training, nomenclature, production pressure, inventory, tools, and workflow; Nichol et al. connect errors to visualization tasks and OR delays ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021), [Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). | A detector metric alone cannot show that trainees learn, administrators see value, or workflows improve. |
+| Training and simulation are defensible | Sterile-processing and healthcare-education studies support structured training, simulation, practice, feedback, and pre/post assessment ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023), [Hu et al., 2024](../bibliography.md#hu-et-al-2024), [Cook et al., 2011](../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../bibliography.md#mcgaghie-et-al-2011)). | A short class study still cannot prove real SPD competency, certification readiness, or reduced hospital onboarding time. |
 
 ## Shared Reporting Checklist
 
-For each experiment axis, report the smallest set of results that supports the
-claim:
+For the current prototype, report:
 
-- dataset size, class list, and split strategy
-- precision, recall, mAP50, and mAP50-95 where applicable
-- per-class failures and pairwise confusion for similar classes
-- unknown-object false positives and high-confidence errors
-- count error per tray or condition
-- review, rescan, correction, and time-to-check behavior where relevant
-- representative success and failure screenshots
+- pre/post simulated tray-sorting accuracy;
+- pre/post duration;
+- confidence and high-confidence errors;
+- missing, extra, wrong, misidentified, and wrong-count errors;
+- whether learners can explain what they missed and what to review next;
+- usability friction, help requests, and confusing workflow states;
+- what the result means for SPD trainees, hospital administrators, and student
+  evaluators.
 
-The final claim should remain bounded: TrayGuard is testing whether the main
-risks are measurable and manageable in a controlled prototype, not claiming
-deployment readiness for real SPD operations.
+Do not report our local precision, recall, mAP50, mAP50-95, lighting-stage, or
+shape-similarity experiments as central evidence. Those can be mentioned only
+as retired exploratory work or future authoring-support infrastructure.
+
+The final claim should remain bounded: TrayGuard is testing whether a local
+training module improves simulated tray familiarity, not claiming live SPD
+competency, certification readiness, CV robustness, or hospital deployment
+readiness.

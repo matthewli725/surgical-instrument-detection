@@ -1,19 +1,39 @@
 # TrayGuard Project Background
 
-This page is now a lightweight hub for the core background materials so the
-problem framing and system design can evolve independently.
+This page is a lightweight hub for the pivoted project narrative. TrayGuard is
+now centered on reducing simulated time-to-competency for novice SPD learners,
+with computer vision treated as an optional support layer rather than the main
+deployment claim.
 
 ## Core Background Docs
 
 - [Problem explication](problem_explication.md)
+- [Surgical instrument taxonomy](instrument_taxonomy.md)
+- [Training module design](training_module_design.md)
 - [System design](system_design.md)
 - [Experiments overview](../experiments/README.md)
 
-The problem-explication doc covers the sterile-processing context, why tray
-verification matters, why computer vision is worth testing, and how the product
-space is evolving. 
+The problem-explication doc now establishes the training-centered motivation:
+SPD technician shortages, the cost and duration of onboarding, certification
+and hands-on training pathways, and the need for repeatable novice practice in
+instrument identification and tray organization. It also connects the proposed
+learner workflow to evidence from simulation-based medical education,
+retrieval practice, feedback research, organizational training, and existing
+medical training software.
 
-The system-design doc covers prototype scope, workflow,
-components, implementation mapping, and prototype-level requirements. 
+The training-module design doc makes the minimum viable module decision
+explicit: one local tray curriculum with pre-test, study cards, quiz,
+practice sorting with feedback, post-test, and exportable metrics. It also
+records the tradeoffs behind that decision so implementation does not drift
+back toward a generic flashcard app or a CV-first detector demo.
 
-The experiments overview and evaluation plan live in `docs/experiments/README.md`.
+The system-design doc treats the training module as the primary product and the
+existing camera/CV work as legacy or future support. CV feasibility is now
+cited from existing literature rather than proved through local experiments.
+
+The experiments overview and evaluation plan live in
+[`docs/experiments/README.md`](../experiments/README.md). The primary
+experiment is now
+[training effectiveness](../experiments/adoption/training_effectiveness.md):
+pre/post simulated tray sorting with accuracy, time, confidence, and
+error-category metrics.

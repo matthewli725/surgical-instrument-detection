@@ -1,8 +1,5 @@
 # Scope Pivot Handoff
 
-Use this as the morning restart note. The project needs to shift away from
-"prove computer vision generalizes to real hospital trays" and toward a
-stakeholder-centered, extensible training tool with measurable learning value.
 
 ## Why We Are Pivoting
 
@@ -16,6 +13,49 @@ That claim is not defensible. Surgical instruments vary by manufacturer,
 hospital inventory, local count sheets, local nicknames, tray composition,
 lighting, workflow, and instrument condition. Replicating existing datasets or
 collecting a small custom dataset does not prove deployment readiness.
+
+## Path Viability Check
+
+Old idea: improve accuracy of assembling instruments.
+
+- Benefit: Targets the final outcome directly: fewer assembly mistakes.
+- Benefit: Connects clearly to quality, consistency, and safety motivation.
+- Benefit: Could be strong if narrowed to one task, one error type, and one
+  simple intervention.
+- Risk: Requires a precise technical mechanism, not just a broad accuracy
+  claim.
+- Risk: Needs validation with real assembly data or realistic workflows.
+- Risk: Accuracy becomes hard to prove when instruments, trays, and local
+  standards vary.
+- Viability: Valuable, but higher risk for the current project timeline and
+  resources.
+- Viability: Realistic only if scoped to simulated tasks or a tightly bounded
+  tray workflow.
+
+New idea: training platform for assembling instruments.
+
+- Benefit: Easier to prototype, test, and present.
+- Benefit: Produces a complete learning loop: pre-test, practice, feedback,
+  post-test, and metrics.
+- Benefit: Supports onboarding, repeated practice, and instructor-created local
+  modules.
+- Benefit: Still serves the accuracy goal by training people before real
+  assembly work.
+- Risk: Could feel generic if it becomes only static educational content.
+- Risk: Needs measurable outcomes so the value is not just "people used the
+  platform."
+- Risk: Cannot claim workplace transfer without SPD validation.
+- Viability: More realistic and presentation-ready for the current project.
+- Viability: Strongest if evaluated with pre/post simulated tray sorting
+  accuracy, time, confidence, and error categories.
+
+Decision:
+
+- Use the training platform as the core direction.
+- Treat improved assembly accuracy as the purpose and evaluation target, not as
+  a hospital-ready deployment claim.
+- Preserve CV/few-shot work as optional support or future extension, not the
+  central proof.
 
 ## Old Scope To De-Emphasize
 
@@ -70,7 +110,8 @@ Use simulated training metrics, not hospital deployment metrics.
 
 Recommended primary metric:
 
-- Change in novice performance from pre-test to post-test.
+- Change in novice performance from pre-test to post-test, reported as a
+  simulated time-to-competency proxy.
 
 Track:
 
@@ -79,6 +120,10 @@ Track:
 - Time to complete a tray sorting task.
 - Error categories: missing, wrong, extra, and misidentified instruments.
 - Learner confidence or perceived familiarity.
+
+The wording matters. The prototype can claim improvement in simulated tray
+familiarity after practice; it cannot claim shorter hospital onboarding time
+without a longitudinal SPD study.
 
 Possible study design:
 
@@ -121,10 +166,20 @@ The clean distinction:
 
 ## Manufacturer And Hospital Variation
 
-Manufacturer variation is a serious objection if the system depends on a
-universal recognition dataset. Instruments differ by manufacturer, length,
-shape, finish, local naming, condition, and hospital inventory. Hospitals may
-also use instruments from multiple manufacturers.
+Manufacturer and hospital variation are serious objections if the system
+depends on a universal recognition dataset. The defensible distinction is:
+instrument concepts may be reusable, but real tray training content is local.
+Count sheets specify tray contents, quantities, sizes, and catalog/reference
+numbers. Tray-rationalization and tray-configuration studies model decisions
+about which instruments belong in which trays, how many instruments and trays
+are needed, and how surgeon-procedure preferences affect tray contents. Custom,
+specialty, and loaner trays add variation by hospital, surgical team,
+procedure, surgeon preference, and device manufacturer
+([Nadeau, 2024](../bibliography.md#nadeau-2024),
+[dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021),
+[Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023),
+[Medline, 2025](../bibliography.md#medline-custom-trays-2025),
+[STERIS, 2021](../bibliography.md#steris-loaner-trays-2021)).
 
 Design response:
 
@@ -198,6 +253,61 @@ Training need and industry precedent:
   instruments and assembling trays:
   https://www.spdceus.com/
 
+Local variation / non-universal tray support:
+
+- HPN count-sheet guidance says count sheets should include tray name,
+  contents, quantities, sizes, and catalog/reference numbers:
+  https://www.hpnonline.com/sterile-processing/article/55247421/back-to-basics-in-the-spd
+- Surgical-tray rationalization review frames tray management as deciding
+  which instruments belong in trays, how many to include, which trays map to
+  which procedures, and how many trays to stock:
+  https://bmchealthservres.biomedcentral.com/articles/10.1186/s12913-021-06142-8
+- Ahmadi et al. model tray configuration from surgeon preference cards,
+  procedure-specific instrument requests, usage probability, and reprocessing
+  costs:
+  https://www.mdpi.com/2227-7390/11/9/2219
+- Medline distinguishes standard, custom, and specialty trays and ties custom
+  trays to hospital, surgical-team, procedure, and surgeon needs:
+  https://www.medline.com/strategies/perioperative/custom-surgical-tray-standardization-tips/
+- STERIS describes loaner trays as manufacturer/vendor instruments used for
+  specific procedures with their own IFUs and count sheets:
+  https://www.steris.com/healthcare/knowledge-center/sterile-processing/how-to-track-loaner-surgical-instrument-trays
+
+Training-pipeline evidence:
+
+- Technology-enhanced simulation improves health-professions knowledge, skills,
+  and behavior compared with no intervention:
+  https://jamanetwork.com/journals/jama/fullarticle/1104300
+- Simulation-based medical education with deliberate practice outperforms
+  traditional clinical education for specific skill acquisition:
+  https://academic.oup.com/academicmedicine/article-abstract/86/6/706/8352665
+- Retrieval practice improves long-term retention compared with restudying:
+  https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x
+- Practice testing and distributed practice are high-utility learning
+  techniques:
+  https://pubmed.ncbi.nlm.nih.gov/26173288/
+- Effective feedback should show where the learner is going, how they are
+  doing, and what to do next:
+  https://journals.sagepub.com/doi/10.3102/003465430298487
+
+Medical training software precedents:
+
+- Touch Surgery uses mobile surgical simulations with repeated attempts and
+  scoring; a hand-surgery validation study found improvement across attempts:
+  https://pubmed.ncbi.nlm.nih.gov/29363359/
+- A randomized trial of VR orthopedic training found VR-trained novices
+  completed the downstream procedure more often, made fewer incorrect steps,
+  and finished faster than guide-only learners:
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC7431248/
+- Body Interact uses virtual patient scenarios with immediate feedback,
+  auto-grading, and educator analytics:
+  https://www.wolterskluwer.com/en/solutions/lippincott-medicine/medical-education/body-interact-virtual-patient-care-simulator
+- Surgical Science/Simbionix and Fundamental Surgery show the broader market
+  precedent for medical simulation, objective scoring, and proficiency-focused
+  training:
+  https://surgicalscience.com/simulators/
+  https://www.aaos.org/aaos-home//newsroom/press-releases/fundamental-surgery-cme-accreditation-fromaaos-vr-tka-simulation/
+
 Commercial workflow/training tools:
 
 - CensiTrac supports assembly instructions, multimedia aids, training tips,
@@ -252,31 +362,36 @@ Few-shot and fine-grained learning:
   still needed:
   https://link.springer.com/article/10.1007/s11548-025-03439-5
 
-## Tomorrow Morning Priorities
+## Minimum Viable Module Decision
 
-Start with these in order:
+Build one evidence-complete training module rather than five shallow feature
+islands. The MVP is:
 
-1. Rewrite the one-sentence project thesis around SPD training and assessment.
-2. Choose the primary metric: likely pre/post simulated tray sorting accuracy
-   plus completion time.
-3. Decide the minimum viable module:
-   - instrument cards,
-   - quiz mode,
-   - tray sorting simulation,
-   - feedback/error breakdown,
-   - local tray authoring.
-4. Identify what existing CV work becomes:
-   - background motivation,
-   - optional few-shot assist,
-   - future work,
-   - or deprecated scope.
-5. Update the presentation/report narrative so every claim has one of these
-   roles:
-   - stakeholder value,
-   - measurable training outcome,
-   - extensibility,
-   - real-world motivation,
-   - limitation/future work.
+```text
+local tray module -> pre-test -> study cards -> quiz -> practice sorting -> post-test -> metrics export
+```
+
+Prioritize:
+
+- P0: pre/post simulated tray sorting with accuracy, duration, confidence, and
+  error breakdown.
+- P0: file-backed local tray and instrument data.
+- P1: study cards and identification quiz for retrieval practice.
+- P1: practice sorting with immediate feedback.
+- P2: polished instructor authoring UI.
+
+Key tradeoffs:
+
+- Tray sorting beats pure quiz for the MVP because it maps to competency and
+  yields accuracy/time/error evidence.
+- File-backed authoring beats polished authoring UI because it proves
+  extensibility sooner.
+- Manual simulated sorting beats CV-dependent sorting because the training
+  claim should stand without model reliability.
+- Feedback belongs in practice, not assessment, so pre/post metrics remain
+  interpretable.
+- Student pilots can support novice learnability, but SPD validation is needed
+  before claiming workplace transfer.
 
 ## Suggested New Thesis
 
