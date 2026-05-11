@@ -2,7 +2,7 @@
 
 ## SPD Training And Assessment Platform
 
-TrayGuard is now framed as an extensible sterile processing department (SPD)
+TrayGuard is a sterile processing department (SPD)
 training platform, not a hospital-ready tray automation system. The project
 helps new technicians practice surgical instrument identification, tray
 organization, and simulated sorting tasks using local tray lists, local
@@ -291,11 +291,11 @@ content viewer. It is a measured practice system:
 | Confidence ratings | Metacognitive signal for learner and instructor. | Capture confidence before or after tasks so low-confidence correct answers and high-confidence errors are visible. |
 | Pre/post tests | Evaluation separated from practice. | Disable hints and feedback during tests; export comparable pre/post accuracy, time, error type, and confidence. |
 
-The resulting MVP is one complete local tray module, not a broad content
+The resulting project is one complete local tray module, not a broad content
 library. The first module should prove the loop from local tray data to
 pre-test, study, quiz, practice sorting, post-test, and metrics export. The
 design decision and tradeoffs are detailed in
-[Training Module Design](training_module_design.md).
+[Training Module Design](../project/training_module_design.md).
 
 ## Medical Training Software Precedents
 

@@ -1,6 +1,6 @@
 # Traceability And Quality Reporting
 
-TrayGuard should produce more than a one-time score. For the training MVP, it
+TrayGuard should produce more than a one-time score. For the training project, it
 should help learners and instructors understand repeated tray-sorting and
 identification errors.
 
@@ -14,10 +14,10 @@ Instrument errors are difficult to improve if they are not recorded in a useful
 way. A direct-observation study notes that staff reporting can be burdensome,
 incomplete, delayed, and can underreport the real rate and cost of instrument
 errors
-([Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)).
+([Nichol et al., 2024](../../../bibliography.md#nichol-et-al-2024)).
 Traceability research frames surgical instrument tracking as important for
 patient safety, cost, logistics, environmental impact, and risk analysis
-([Fayad et al., 2025](../../bibliography.md#fayad-et-al-2025)).
+([Fayad et al., 2025](../../../bibliography.md#fayad-et-al-2025)).
 
 This matters for TrayGuard because a trainer that only shows "right" or "wrong"
 and then forgets it cannot help instructors see repeated missing-item,
@@ -80,4 +80,4 @@ A good report should include:
 
 ## Bibliography
 
-See the [central bibliography](../../bibliography.md) for full source details.
+See the [central bibliography](../../../bibliography.md) for full source details.

@@ -275,6 +275,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Heil et al., ["Reproducibility standards for machine learning in the life sciences"](https://www.nature.com/articles/s41592-021-01256-7), *Nature Methods*, 2021.
 
+<a id="hennink-and-kaiser-2022"></a>
+### Hennink and Kaiser, 2022
+
+- Hennink and Kaiser, ["Sample sizes for saturation in qualitative research: A systematic review of empirical tests"](https://doi.org/10.1016/j.socscimed.2021.114523), *Social Science & Medicine*, 2022.
+
 <a id="hill-et-al-2022"></a>
 ### Hill et al., 2022
 
@@ -439,6 +444,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Medline, 2025
 
 - Medline, ["Surgical tray standardization: What's in your custom sets?"](https://www.medline.com/strategies/perioperative/custom-surgical-tray-standardization-tips/), 2025.
+
+<a id="malterud-et-al-2016"></a>
+### Malterud et al., 2016
+
+- Malterud et al., ["Sample Size in Qualitative Interview Studies: Guided by Information Power"](https://doi.org/10.1177/1049732315617444), *Qualitative Health Research*, 2016.
 
 <a id="nadeau-2017"></a>
 ### Nadeau, 2017

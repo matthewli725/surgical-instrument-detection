@@ -16,7 +16,7 @@ specific hospital or course provides exactly fourteen procedure families. HSPA's
 public instrument-resource page instead separates instruments in two overlapping
 ways: by broad specialty/device area in the Sterile Processing Instrument
 Manual, and by instrument family in *The World of Surgical Instruments*
-([HSPA Surgical Instrument Resources, accessed 2026](../bibliography.md#hspa-instrument-resources-accessed-2026)).
+([HSPA Surgical Instrument Resources, accessed 2026](../../bibliography.md#hspa-instrument-resources-accessed-2026)).
 That makes HSPA a strong comprehensive webpage to cite, but not a source for one
 universal fourteen-surgery taxonomy.
 
@@ -32,23 +32,23 @@ Support:
 - HPN's count-sheet guidance makes the local list operationally authoritative:
   tray name, contents, quantities, sizes, and catalog/reference numbers belong
   on the count sheet, and technicians should follow that list rather than
-  memory ([Nadeau, 2024](../bibliography.md#nadeau-2024)).
+  memory ([Nadeau, 2024](../../bibliography.md#nadeau-2024)).
 - A surgical-tray rationalization review defines tray management around local
   decisions about which instruments belong in trays, how many to include, which
   trays support which procedures, and how many trays to stock
-  ([dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021)).
+  ([dos Santos et al., 2021](../../bibliography.md#dos-santos-et-al-2021)).
 - Ahmadi et al.'s tray-configuration model uses surgeon preference cards and
   procedure-specific instrument requests, showing that requested quantities and
   actual usage vary across surgeon-procedure combinations
-  ([Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023)).
+  ([Ahmadi et al., 2023](../../bibliography.md#ahmadi-et-al-2023)).
 - Medline separates standard, custom, and specialty trays; custom trays are
   built around the needs of a hospital, surgical team, procedure, or surgeon,
   while specialty trays may be vendor loaners
-  ([Medline, 2025](../bibliography.md#medline-custom-trays-2025)).
+  ([Medline, 2025](../../bibliography.md#medline-custom-trays-2025)).
 - STERIS describes loaner trays as instruments not owned or stored by the
   facility, usually loaned by a device manufacturer for specific procedures,
   with their own IFUs and count sheets
-  ([STERIS, 2021](../bibliography.md#steris-loaner-trays-2021)).
+  ([STERIS, 2021](../../bibliography.md#steris-loaner-trays-2021)).
 
 Implication: TrayGuard's data model should separate the canonical concept
 (`Mayo scissors`) from the local training item: manufacturer, size, catalog
@@ -60,9 +60,9 @@ lookalike distractors.
 | Layer | What It Means | Evidence And Design Use |
 | --- | --- | --- |
 | Surgical service, specialty, or procedure family | The clinical area or type of surgery that drives which trays are needed, such as general, OB/GYN, ENT, ophthalmic, cardiovascular/thoracic, laparoscopic, urology, robotic, orthopedic, neurosurgical/spinal, trauma/transplant, dental, implants, endoscopes/probes, or powered instruments. | HSPA's Sterile Processing Instrument Manual table of contents includes general instruments plus more than a dozen specialty/device chapters. Use this layer for curriculum modules and tray-group selection, not as a fixed global list. |
-| Tray, set, kit, or case cart configuration | The bundled set of instruments assembled for a procedure or family of procedures. | A surgical-tray rationalization review defines surgical trays as containers holding instruments needed for a procedure or family of procedures and says tray management asks which instruments, how many, which trays map to which procedures, and how many trays to stock ([dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021)). |
-| Count sheet / instrument tracking list | The authoritative local list of required instruments and quantities for a tray. | Alfred et al. describe SPD assembly work where technicians access the required instrument list in an instrument tracking system, including photos, and then ensure the tray matches the required number and types of instruments ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). HPN also emphasizes following count sheets rather than memory and says count sheets should include tray name, contents, quantities, sizes, and catalog/reference numbers ([Nadeau, 2024](../bibliography.md#nadeau-2024)). |
-| Instrument function family | The functional class of tools, such as cutting/dissecting, clamping/occluding, grasping/holding, retracting/exposing, suturing/stapling, suctioning/aspirating, probing/dilating, measuring/diagnostic, accessory, viewing, powered, implant, or container/case items. | HSPA's inspection textbook table of contents separates common families such as scissors, needle holders, hemostatic/ring-handled forceps, retractors, tissue/dressing forceps, and suction tubes. General surgical-instrument references also classify tools by function, including cutting/dissecting, clamping, grasping/holding, probing, dilating, retracting, and suctioning ([Encyclopedia.com, 2018](../bibliography.md#encyclopedia-surgical-instruments-2018)). |
+| Tray, set, kit, or case cart configuration | The bundled set of instruments assembled for a procedure or family of procedures. | A surgical-tray rationalization review defines surgical trays as containers holding instruments needed for a procedure or family of procedures and says tray management asks which instruments, how many, which trays map to which procedures, and how many trays to stock ([dos Santos et al., 2021](../../bibliography.md#dos-santos-et-al-2021)). |
+| Count sheet / instrument tracking list | The authoritative local list of required instruments and quantities for a tray. | Alfred et al. describe SPD assembly work where technicians access the required instrument list in an instrument tracking system, including photos, and then ensure the tray matches the required number and types of instruments ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021)). HPN also emphasizes following count sheets rather than memory and says count sheets should include tray name, contents, quantities, sizes, and catalog/reference numbers ([Nadeau, 2024](../../bibliography.md#nadeau-2024)). |
+| Instrument function family | The functional class of tools, such as cutting/dissecting, clamping/occluding, grasping/holding, retracting/exposing, suturing/stapling, suctioning/aspirating, probing/dilating, measuring/diagnostic, accessory, viewing, powered, implant, or container/case items. | HSPA's inspection textbook table of contents separates common families such as scissors, needle holders, hemostatic/ring-handled forceps, retractors, tissue/dressing forceps, and suction tubes. General surgical-instrument references also classify tools by function, including cutting/dissecting, clamping, grasping/holding, probing, dilating, retracting, and suctioning ([Encyclopedia.com, 2018](../../bibliography.md#encyclopedia-surgical-instruments-2018)). |
 | Specific instrument type | The named tool a learner must recognize, such as Mayo scissors, Metzenbaum scissors, Kelly forceps, Allis forceps, Babcock forceps, Richardson retractor, Yankauer suction tip, needle holder, or scalpel handle. | This is the level where novice identification practice should usually happen. It maps to HSPA's emphasis on instrument names, lengths, uses, inspection points, and photos. |
 | Variant attributes | The details that separate lookalikes or local names: straight vs curved, sharp vs blunt, toothed vs non-toothed, delicate vs heavy, length, jaw shape, ring handle, ratchet, fenestration, manufacturer catalog number, specialty-specific version, and local alias. | This layer explains why immediate feedback matters. The learner may know the family, but still confuse visually similar variants. Count-sheet and HSPA sources support variant-level fields such as sizes, catalog/reference numbers, proper name, length, use, inspection points, and testing standards. |
 
@@ -88,7 +88,7 @@ use of a major orthopedic tray at a large academic hospital across 80 procedures
 The tray was used by orthopedic surgeons for hip arthroplasty, knee
 arthroplasty, trauma, and orthopedic oncology, and the paper publishes the tray's
 instrument-level configuration before and after optimization
-([Toor et al., 2022](../bibliography.md#toor-et-al-2022)).
+([Toor et al., 2022](../../bibliography.md#toor-et-al-2022)).
 
 | Hierarchy Layer | Example From The Published Tray |
 | --- | --- |
@@ -122,6 +122,49 @@ For TrayGuard, a module based on this kind of tray should not ask learners only
 "what is this instrument?" It should also ask which family it belongs to, which
 nearby variants are plausible distractors, and whether the count sheet calls for
 the short, long, toothed, nontoothed, small, medium, large, or numbered version.
+
+## Purchased Demo Kit: Basic Dissection / Specimen-Preparation Set
+
+The project purchased a basic student minor training surgical kit from Amazon:
+https://www.amazon.com/Student-Minor-Traning-Surgical-PCS/dp/B0DM6RY6GR/
+
+Use this kit as a local demo and photo-capture set for early TrayGuard authoring,
+not as a sterile clinical tray or authoritative hospital count sheet. The kit is
+best treated as a basic dissection/specimen-preparation set whose packaging or
+listing labels may use loose names. Before any item becomes scored module
+content, verify the physical tool, local photo, accepted alias, and family.
+
+| Labeled or visible item | More accurate instrument name | Instrument family | Main use in the teaching module |
+| --- | --- | --- | --- |
+| "Dissecting tissue forceps" | Dissecting scissors, straight or slightly curved; blunt/blunt or sharp/blunt depending on tips | Scissors | Cutting soft tissue or specimen material. |
+| "Lister bandage scissors" | Lister bandage scissors | Scissors | Cutting bandage, gauze, tape, or material near a surface; angled blade protects underlying material. |
+| "3" handle | Scalpel handle No. 3 | Scalpel / cutting handle | Holds smaller surgical blades, commonly No. 10, 11, 12, or 15. |
+| "4" handle | Scalpel handle No. 4 | Scalpel / cutting handle | Holds larger surgical blades, commonly No. 20-24. |
+| "6 blades" | Sterile disposable scalpel blades | Blades | Cutting/dissection; blade number determines shape and use. |
+| "Straight pean hemostat" | Straight Pean hemostatic forceps | Hemostats / locking forceps | Clamping tissue, tubing, vessels, or holding material. |
+| "Curved pean hemostat" | Curved Pean hemostatic forceps | Hemostats / locking forceps | Clamping or holding, with curved jaws for access around structures. |
+| "Mayo Hegar needle holder" | Mayo-Hegar needle holder | Needle holders | Holding suture needles; resembles a hemostat but has shorter, stronger jaws. |
+| Serrated tweezers shown | Tissue forceps / dissecting forceps, serrated | Forceps | Grasping tissue or specimen material. |
+| Plain narrow tweezers shown | Dressing forceps / thumb forceps | Forceps | Handling gauze, small objects, or delicate material. |
+| "Butter fly prob" | Butterfly probe / grooved director, sometimes called a director probe | Probe / director | Exploring openings, guiding cuts, separating tissue planes. |
+| "Probing rod" | Probe / seeker / dissecting probe | Probe | Pointing, teasing apart tissue, probing canals or cavities. |
+| Chain with hooks | Tissue retractor hooks / S-hooks with chain | Retractors / hooks | Holding tissue or specimen parts aside. |
+| Long flat metal tool in kit | Spatula / dissector / blunt probe | Probe / dissector | Lifting, separating, or scraping soft material. |
+| Flat handled blade-like tool at far right | Scalpel handle or micro knife handle, depending on blade compatibility | Scalpel / knife handle | Cutting or fine dissection. |
+| Ring-handled clamping tools in kit | Hemostatic forceps, likely mosquito or Pean-style depending on size | Hemostats / clamps | Clamping or gripping. |
+| Ring-handled cutting tools in kit | Dissecting scissors | Scissors | Cutting tissue or specimen material. |
+
+For first-pass organization, group the purchased kit into these families:
+
+- scalpels and blades: scalpel handles No. 3 and No. 4, disposable blades;
+- scissors: dissecting scissors and Lister bandage scissors;
+- forceps: dissecting/tissue forceps and dressing/thumb forceps;
+- hemostats and clamps: straight Pean hemostat, curved Pean hemostat, and
+  any smaller mosquito-style clamps if present;
+- needle holders: Mayo-Hegar needle holder;
+- probes and directors: butterfly/grooved director, probing rod, and blunt
+  probe/dissector;
+- retractors/hooks: S-hooks or chain retractor components.
 
 ## Practical Class List For Modules
 

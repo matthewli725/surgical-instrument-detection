@@ -118,7 +118,7 @@ future extension, but it is outside the current evaluation claim:
    uncertain.
 7. Preserve the final decision as human judgment rather than silent automation.
 
-This camera-supported path should not carry the MVP learning claim. Existing
+This camera-supported path should not carry the project's learning claim. Existing
 papers already make CV plausible in constrained surgical-instrument settings
 ([Deol et al., 2024](../bibliography.md#deol-et-al-2024),
 [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025),
@@ -135,7 +135,7 @@ same human-factors pattern applies to the training module: keep the primary task
 visible, make feedback actionable, avoid noisy alerts, and preserve deliberate
 assessment boundaries.
 
-For the current MVP, apply these principles to the learning workflow. The
+For the current project, apply these principles to the learning workflow. The
 camera-specific examples below are retained as future support notes, not active
 experiment requirements.
 
@@ -220,7 +220,7 @@ The current prototype should evolve toward these interface requirements:
 ## Tray Status Logic From Confidence
 
 This section is retained only for a future camera-supported tray-check path; it
-is not part of the current training MVP or evaluation plan.
+is not part of the current training project or evaluation plan.
 
 The Streamlit prototype currently exposes a single confidence threshold. That
 threshold is useful as a model-control setting, but it is not enough to decide
@@ -518,7 +518,7 @@ replace local SPD approval or cleaning validation.
 The budget choice is to use a plywood structural board with an inexpensive
 white or stainless-look surface skin if a physical demo is needed. This is a
 prototype visual and fabrication choice, not a clinical material claim. The
-current training MVP does not depend on camera measurements or detector
+current training project does not depend on camera measurements or detector
 performance, but a visually plausible work surface can still help future teams
 or reviewers understand how camera-assisted authoring or review might fit a
 tray workspace. The more expensive HDPE, stainless sheet, or commercial
@@ -561,7 +561,7 @@ the team:
 | Why plywood? | Plywood is cheap, rigid, heavy enough to help stability, and easy to drill while board size, ballast, and camera position are still experimental. It is a prototype material, not a clinical material claim. |
 | Is plywood sterile? | No. The board is not sterile, should not contact sterile instruments, and should not be presented as SPD-ready. It is an environmental support surface for prototype imaging. |
 | Should we use plastic instead? | For an SPD-facing pilot, probably yes. Smooth nonporous plastic or metal would be easier to clean and defend. Plywood is acceptable only for low-risk lab/demo iteration. |
-| Can we make the prototype visually match real SPD work areas? | Yes. The cheapest version uses white or stainless-look adhesive liner over plywood. The more realistic version uses HDPE, stainless sheet, or a stainless work table. This matters only for demos or future camera-supported work; the current training MVP does not depend on material realism. |
+| Can we make the prototype visually match real SPD work areas? | Yes. The cheapest version uses white or stainless-look adhesive liner over plywood. The more realistic version uses HDPE, stainless sheet, or a stainless work table. This matters only for demos or future camera-supported work; the current training project does not depend on material realism. |
 | Can the camera stand be cleaned easily? | Only partly. Smooth tubes are easier to wipe; knobs, clamps, seams, textured grips, and cables are weaker points. The prototype mitigation is to keep the stand outside the direct tray-contact zone and wipe exterior surfaces under a demo cleaning protocol. |
 | What would change for a real SPD pilot? | Replace plywood with a sealed nonporous base, simplify the mount geometry, cover or reroute cables, minimize crevices, choose disinfectant-compatible components, and document a facility-approved cleaning SOP. |
 | Does the rolling base change the cleanability problem? | Yes. Wheels, brakes, underside surfaces, rails, straps, and clamps add more surfaces to clean. A wheeled version should be treated as a cart-like environmental surface and reviewed separately. |
@@ -582,7 +582,7 @@ measure locally.
 | Human authority instead of certification or autonomous approval | Healthcare AI literature warns about automation bias, deskilling, liability, and workflow fit ([Goddard et al., 2012](../bibliography.md#goddard-et-al-2012), [Natali et al., 2025](../bibliography.md#natali-et-al-2025), [Kelly, 2026](../bibliography.md#kelly-2026), [Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). | The system may teach, score, explain, and log, but instructors and supervisors remain responsible for real competency judgments. |
 | Workflow-first learner UI | General usability guidance supports visible status, efficient action paths, error prevention, and recoverable mistakes. Human-AI guidance supports efficient invocation, dismissal, and correction when AI guesses wrong. Clinical alert literature warns that low-value alerts and added tasks can undermine acceptance ([Nielsen Norman Group, accessed 2026](../bibliography.md#nielsen-norman-group-accessed-2026), [Amershi et al., 2019](../bibliography.md#amershi-et-al-2019), [Olakotan and Yusof, 2021](../bibliography.md#olakotan-and-yusof-2021), [Cánovas-Segura et al., 2023](../bibliography.md#canovas-segura-et-al-2023)). | Design around the learning mode, not model controls. Use clear mode boundaries, fast practice feedback, and no hints during assessment. |
 | CV feasibility as an external assumption | Few-shot object detection and surgical-instrument CV papers show that data-efficient detection and constrained instrument recognition are plausible ([Xin et al., 2024](../bibliography.md#xin-et-al-2024), [Wang et al., 2020 FSOD](../bibliography.md#wang-et-al-2020-fsod), [Deol et al., 2024](../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025)). | Cite existing papers for feasibility. Do not make local CV accuracy a capstone proof obligation. |
-| CV generalization as a future validation problem | Kienle et al. show a large cross-manufacturer performance drop despite strong in-domain instrument-stand results ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). | Any future camera-supported feature needs site-specific validation. The current MVP should work without it. |
+| CV generalization as a future validation problem | Kienle et al. show a large cross-manufacturer performance drop despite strong in-domain instrument-stand results ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). | Any future camera-supported feature needs site-specific validation. The current project should work without it. |
 | Portable board-mounted overhead stand | Structured camera placement is already a design requirement for repeatable tray images. Copy-stand and boom-stand designs support a rigid base/column/arm pattern that keeps the capture plane stable while leaving the work area accessible. Ergonomics guidance supports arranging tools and equipment to preserve neutral posture and easy reach ([Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Cambo, accessed 2026](../bibliography.md#cambo-accessed-2026), [Meiji Techno, accessed 2026](../bibliography.md#meiji-techno-accessed-2026), [CDC/NIOSH, 2024](../bibliography.md#cdc-niosh-2024), [OSHA, accessed 2026](../bibliography.md#osha-computer-workstations-accessed-2026)). | Use the existing stand, but bolt it to a weighted portable board instead of screwing it into a table. Treat the board as the reusable capture module for both tabletop use and a future wheeled standing base. |
 | Tabletop default with rolling standing option | SPD workstations are not one-size-fits-all. OSHA central sterile guidance calls out reach, prolonged standing, rolling carts, height-adjustable surfaces, and sit/stand stools, while commercial prep/pack tables emphasize ergonomic flexibility, height adjustment, accessories, and different user/task needs. User-provided SPD video references also show both seated plastic-looking work surfaces and standing metal-table workflows ([OSHA Central Sterile Supply, accessed 2026](../bibliography.md#osha-central-sterile-supply-accessed-2026), [Skytron, accessed 2026](../bibliography.md#skytron-prep-pack-accessed-2026), [Getinge, accessed 2026](../bibliography.md#getinge-prep-pack-accessed-2026), [Southwest Solutions CSSD Tables, accessed 2026](../bibliography.md#southwest-cssd-tables-accessed-2026), [User-provided SPD video 1](../bibliography.md#user-spd-video-1-accessed-2026), [User-provided SPD video 2](../bibliography.md#user-spd-video-2-accessed-2026)). | Make tabletop the default because it plugs into existing work surfaces. Provide a rolling dock as an optional standing-height adapter. This approximates workflow flexibility without claiming commercial powered height adjustment. |
 | Lookalike tools as learning content | HOSPITools and Atabuzzaman et al. highlight subtle instrument differences; Alfred et al. identifies nomenclature and training as assembly factors ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Teach distinguishing features in study cards and track `misidentified` errors separately from generic wrong answers. |
@@ -596,7 +596,7 @@ best possible clinical design.
 
 | Default | Current Use | Critique-Ready Interpretation |
 | --- | --- | --- |
-| File-backed tray and instrument data | Fast local authoring for one seeded module. | Good for a capstone MVP. A real training program would need role permissions, content review, versioning, and integration decisions. |
+| File-backed tray and instrument data | Fast local authoring for one seeded module. | Good for a capstone project. A real training program would need role permissions, content review, versioning, and integration decisions. |
 | Pre/post simulated tray sorting | Primary training-effectiveness evidence. | Measures simulated local familiarity, not live SPD competency. |
 | Confidence ratings | Learner metacognition and instructor review. | Useful for spotting overconfidence and fragile knowledge; not a clinical safety score. |
 | Existing YOLO/Streamlit tray-check code | Legacy demo and possible future visual support. | Not central evidence. Avoid presenting its detector metrics as proof of robustness. |
@@ -649,7 +649,7 @@ The design space can be described as three candidate architectures.
 | Tagged identification | Add RFID tags, barcodes, or other identifiers to instruments and read the identifiers during tray preparation. | Strong item-level identity and traceability; less dependent on visual conditions. | Requires tags, engraving, readers, scanner workflows, integration, and maintenance. RFID and barcode studies support traceability value but also show infrastructure and workflow costs ([Olivere et al., 2021](../bibliography.md#olivere-et-al-2021), [Kusuda et al., 2024](../bibliography.md#kusuda-et-al-2024), [Coustasse et al., 2013](../bibliography.md#coustasse-et-al-2013)). |
 | Instrumented placement | Use custom tray slots or embedded sensors to confirm that expected locations are occupied. | Can make placement checks simple in a highly standardized tray. | Requires specialized trays, restricts tray-layout flexibility, and does not naturally identify wrong-but-similar instruments. |
 
-For the MVP, TrayGuard selects local file-backed simulation because it is the
+For this project, TrayGuard selects local file-backed simulation because it is the
 best match for this repository's new constraints: it supports the
 time-to-competency claim, avoids universal recognition overclaims, and can be
 evaluated with pre/post learning metrics. Workspace observation remains the
@@ -668,7 +668,7 @@ The selected architecture should have graceful fallback paths.
 | Assessment | Pre/post tasks are too similar or too easy. | Create parallel variants with matched difficulty and randomized item order. | Improvement is less likely to be a memorized replay. |
 | Interaction | Feedback or confidence prompts slow learners. | Keep feedback concise and capture one simple confidence rating per attempt. | Practice remains useful without creating friction. |
 | Participants | Only students are available. | Report novice learnability and simulated gains only; require SPD validation later. | The project avoids adoption overclaims. |
-| Optional sensing | CV is unreliable within the timeline. | Keep sorting manual and use CV work only as future visual-practice support. | The MVP training evidence still stands. |
+| Optional sensing | CV is unreliable within the timeline. | Keep sorting manual and use CV work only as future visual-practice support. | The training evidence still stands. |
 
 ## Current Implementation Mapping
 
@@ -685,7 +685,7 @@ The repository already contains foundations for the optional CV support layer:
 
 The biggest remaining system-design gap is the new training layer: local tray
 module files, learner modes, scoring, feedback, and metrics export. The detector
-demo can be reused later, but it should not block the training MVP.
+demo can be reused later, but it should not block the training project.
 
 ## Prototype Requirements
 

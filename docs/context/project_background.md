@@ -8,10 +8,10 @@ deployment claim.
 ## Core Background Docs
 
 - [Problem explication](problem_explication.md)
-- [Surgical instrument taxonomy](instrument_taxonomy.md)
-- [Training module design](training_module_design.md)
-- [System design](system_design.md)
-- [Experiments overview](../experiments/README.md)
+- [Surgical instrument taxonomy](../project/reference/instrument_taxonomy.md)
+- [Training module design](../project/training_module_design.md)
+- [System design](../project/system_design.md)
+- [Experiments overview](../project/evaluation/README.md)
 
 The problem-explication doc now establishes the training-centered motivation:
 SPD technician shortages, the cost and duration of onboarding, certification
@@ -21,7 +21,7 @@ learner workflow to evidence from simulation-based medical education,
 retrieval practice, feedback research, organizational training, and existing
 medical training software.
 
-The training-module design doc makes the minimum viable module decision
+The training-module design doc makes the focused module decision
 explicit: one local tray curriculum with pre-test, study cards, quiz,
 practice sorting with feedback, post-test, and exportable metrics. It also
 records the tradeoffs behind that decision so implementation does not drift
@@ -32,8 +32,8 @@ existing camera/CV work as legacy or future support. CV feasibility is now
 cited from existing literature rather than proved through local experiments.
 
 The experiments overview and evaluation plan live in
-[`docs/experiments/README.md`](../experiments/README.md). The primary
+[`docs/project/evaluation/README.md`](../project/evaluation/README.md). The primary
 experiment is now
-[training effectiveness](../experiments/adoption/training_effectiveness.md):
+[training effectiveness](../project/evaluation/adoption/training_effectiveness.md):
 pre/post simulated tray sorting with accuracy, time, confidence, and
 error-category metrics.

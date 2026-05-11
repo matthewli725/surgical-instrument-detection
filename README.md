@@ -7,17 +7,17 @@ remain in the repo as legacy/future support, but local CV experiments are no
 longer the central claim.
 
 Project background and experiment motivation live in
-[docs/background/project_background.md](docs/background/project_background.md).
+[docs/context/project_background.md](docs/context/project_background.md).
 
 Workflow adoption risks and literature-backed CV feasibility boundaries live in
-[docs/experiments/adoption/workflow_acceptance.md](docs/experiments/adoption/workflow_acceptance.md).
+[docs/project/evaluation/adoption/workflow_acceptance.md](docs/project/evaluation/adoption/workflow_acceptance.md).
 
 Detailed appendix for literature gaps, stakeholder implications, and retired CV
 scope lives in
-[docs/experiments/adoption/formal_risk_analysis.md](docs/experiments/adoption/formal_risk_analysis.md).
+[docs/project/evaluation/adoption/formal_risk_analysis.md](docs/project/evaluation/adoption/formal_risk_analysis.md).
 
 Planning materials and weekly updates live in
-[docs/planning/README.md](docs/planning/README.md).
+[docs/project/planning/README.md](docs/project/planning/README.md).
 
 ## 1. Install
 
@@ -49,11 +49,11 @@ uv sync
 The active project work is documentation and prototype evidence for the
 training-platform pivot:
 
-- [training effectiveness plan](docs/experiments/adoption/training_effectiveness.md)
-- [workflow acceptance plan](docs/experiments/adoption/workflow_acceptance.md)
-- [traceability and reporting plan](docs/experiments/adoption/traceability_reporting.md)
-- [literature-backed risk analysis](docs/experiments/adoption/formal_risk_analysis.md)
-- [claim-evidence control sheet](docs/planning/claim_evidence_control_sheet.md)
+- [training effectiveness plan](docs/project/evaluation/adoption/training_effectiveness.md)
+- [workflow acceptance plan](docs/project/evaluation/adoption/workflow_acceptance.md)
+- [traceability and reporting plan](docs/project/evaluation/adoption/traceability_reporting.md)
+- [literature-backed risk analysis](docs/project/evaluation/adoption/formal_risk_analysis.md)
+- [claim-evidence control sheet](docs/project/planning/claim_evidence_control_sheet.md)
 
 Use these files to defend the current claim: TrayGuard tests whether a local
 training module improves novice simulated tray familiarity. Do not use local CV
@@ -209,7 +209,9 @@ data/                           local datasets, ignored by git
 runs/                           training outputs, ignored by git
 weights/                        local model weights
 docs/README.md                  docs index
-docs/background/                problem framing and design background
-docs/experiments/               experiment writeups by theme
-docs/planning/                  weekly updates and forward plans
+docs/context/                   background, root cause, and decision framing
+docs/project/                   technical docs, evaluation, and planning
+docs/project/reference/         instrument taxonomy and lookalike catalog
+docs/project/evaluation/        evaluation plans and adoption/risk writeups
+docs/project/planning/          weekly updates and forward plans
 ```

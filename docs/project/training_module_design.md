@@ -22,10 +22,53 @@ avoiding a claim that would require a longitudinal SPD field study.
 | Focus on tray and instrument familiarity | HSPA instrument resources emphasize identification, inspection, maintenance, names, uses, photos, and testing points; the CRCST outline weights preparation and packaging at 21% and includes package assembly, count sheets, item identification, and instrument placement; sterile-processing courses include tray assembly and instrument-identification units ([HSPA Surgical Instrument Resources, accessed 2026](../bibliography.md#hspa-instrument-resources-accessed-2026), [HSPA CRCST Content Outline, 2023](../bibliography.md#hspa-crcst-content-outline-2023), [Towson University, accessed 2026](../bibliography.md#towson-sterile-processing-accessed-2026)). | Local trays, local names, instrument families, variants, and distinguishing features belong in the core data model. |
 | Treat assembly as a high-friction subtask, not the whole SPD curriculum | Alfred et al. found that most recorded tray defects occurred during assembly, while Nichol et al. found that most observed surgical instrument errors involved visualization tasks such as inspection, identification, function, and correct tray assembly ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021), [Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). | Sorting should be the capstone practice task for this module, while the product explicitly avoids claiming comprehensive SPD certification readiness. |
 | Use simulation and hands-on-style practice | AORN describes simulation and hands-on practice as a way to build competence before formal roles; broad health-professions simulation evidence associates simulation with knowledge, skill, and behavior gains ([AORN Staff, 2025](../bibliography.md#aorn-staffing-shortage-2025), [Cook et al., 2011](../bibliography.md#cook-et-al-2011)). | Tray sorting should be the primary module activity, with cards and quizzes supporting that task. |
-| Separate practice from assessment | Ofstead et al. used pre/post testing, lectures, hands-on practice, homework, and a booster session in an SP training pilot, with test scores improving and remaining high after two months ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023)). | Pre/post assessment should suppress hints and feedback; practice should provide feedback. |
+| Use Ofstead as the closest sterile-processing training precedent | Ofstead et al. evaluated borescope-based endoscope visual-inspection training for certified SP professionals using pre/post testing, lectures, demonstrations, hands-on practice, workplace homework, confidence/satisfaction surveys, and a 2-month booster; mean test scores improved from 41% to 84% after the workshop and remained high after the booster ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023)). | TrayGuard should copy the structure: baseline test, guided study, hands-on-style practice, separated post-test, confidence capture, and optional delayed retention check. |
 | Use retrieval practice and spacing | Retrieval-practice and learning-technique reviews support practice testing and distributed practice; adaptive spaced education achieved comparable test scores with fewer items in medical education ([Roediger and Karpicke, 2006](../bibliography.md#roediger-and-karpicke-2006), [Dunlosky et al., 2013](../bibliography.md#dunlosky-et-al-2013), [Kerfoot, 2010](../bibliography.md#kerfoot-2010)). | Quiz mode is not decoration. It should generate repeated recall prompts and record weak items for review. |
 | Make feedback specific | Feedback research supports telling learners where they are going, how they are doing, and what to do next ([Hattie and Timperley, 2007](../bibliography.md#hattie-and-timperley-2007)). | Feedback should classify missing, extra, wrong, misidentified, and wrong-count errors and suggest the next review target. |
 | Keep the module local and authorable | Instrument concepts may be shared, but actual tray requirements are local: count sheets specify contents, quantities, sizes, and catalog/reference numbers; optimization studies model tray contents around procedures, surgeons, usage likelihood, and stock decisions; commercial tools emphasize local count sheets, photos, tray assembly, and proficiency metrics ([Nadeau, 2024](../bibliography.md#nadeau-2024), [dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021), [Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023), [Tray Pacer, accessed 2026](../bibliography.md#tray-pacer-accessed-2026), [LayerJot SID, accessed 2026](../bibliography.md#layerjot-sid-accessed-2026)). | Start with file-based local trays and instructor-verified content; do not promise a universal instrument database. |
+
+## Why This Is More Than Flashcards
+
+TrayGuard should not be defended as a flashcard app. Study cards are only the
+orientation layer: they introduce local names, aliases, photos, families, and
+distinguishing features before the learner attempts the tray task.
+
+The learning intervention is the complete practice loop. Retrieval quizzes make
+learners recall instrument names and features instead of only rereading them.
+Simulated tray sorting then asks learners to apply that knowledge to a
+count-sheet-like task: select the required instruments, use the correct
+quantities, avoid distractors, and distinguish known lookalikes. Error-specific
+feedback turns each attempt into directed practice by naming whether the problem
+was `missing`, `extra`, `wrong`, `misidentified`, or `wrong_count`.
+
+This structure is why the project can cite simulation, retrieval-practice, and
+feedback evidence. Health-professions simulation supports active, hands-on-style
+practice over passive review; retrieval-practice evidence supports quizzes as a
+way to strengthen recall and find weak items; feedback evidence supports telling
+learners what happened and what to do next. The pre-test and post-test are the
+measurement layer: they test whether the full loop improves simulated tray
+sorting accuracy, time, error patterns, and confidence.
+
+## Why Ofstead Matters Most
+
+Ofstead et al. is the strongest direct precedent because it is not generic UX
+research or general medical simulation. It is a sterile-processing training
+study for a difficult visual-inspection skill tied to endoscope reprocessing,
+one of the hardest quality problems in SP. The task is not tray assembly, but
+the learning problem is close: learners must recognize visual cues, handle
+specialized instruments or devices, distinguish normal from defective states,
+build confidence without guessing, and communicate findings.
+
+TrayGuard should borrow these design moves:
+
+| Ofstead Design Move | TrayGuard Translation |
+| --- | --- |
+| Pre-test used before teaching. | Run a no-hints tray sort before study to reveal baseline knowledge gaps. |
+| Lectures and demonstrations interleaved with hands-on practice. | Combine study cards, worked examples, quiz prompts, and simulated tray sorting. |
+| Test items included images and a `Not sure` option. | Use local instrument photos and capture confidence or uncertainty for each assessed item. |
+| Hands-on homework applied the skill to real workplace endoscopes. | Use the physical demo tray or local photos of the exact teaching instruments, not generic web images. |
+| Booster session revisited weak concepts and trainee-submitted examples. | Add a delayed retention check or review mode if the schedule allows. |
+| Confidence and satisfaction were measured alongside test scores. | Export confidence, high-confidence errors, low-confidence correct answers, and workflow friction. |
 
 ## Why The Content Must Be Local
 
@@ -59,13 +102,13 @@ The support is now strong enough to treat local authoring as a requirement:
 
 Design conclusion: TrayGuard should treat the public instrument concept as a
 starting label, then attach local aliases, photos, quantities, variant details,
-and tray rules through a module file or import. That is what makes the MVP
+and tray rules through a module file or import. That is what makes the project
 defensible for reducing simulated time-to-competency: learners practice the
 tray they actually need to learn, not a generic instrument encyclopedia.
 
-## MVP Decision
+## Project Decision
 
-The minimum viable module is a single local tray curriculum with:
+The first focused module is a single local tray curriculum with:
 
 - a tray template containing 8-12 required instruments and a few distractors;
 - study cards for each required instrument and distractor;
@@ -75,7 +118,7 @@ The minimum viable module is a single local tray curriculum with:
 - exportable metrics that compare pre/post accuracy, time, confidence, and
   error categories.
 
-This means the MVP is not five independent features. It is one learning loop:
+This means the project is not five independent features. It is one learning loop:
 
 ```text
 local tray module -> pre-test -> study/quiz -> practice sorting -> post-test -> metrics export
@@ -111,10 +154,10 @@ Scoring should classify these errors:
 
 ## Tradeoffs
 
-| Tradeoff | Choose For MVP | Why |
+| Tradeoff | Project Choice | Why |
 | --- | --- | --- |
 | Tray sorting vs pure quiz | Tray sorting first | It maps better to competency and produces accuracy/time/error evidence; quiz supports retrieval but is too narrow alone. |
-| Local authoring UI vs file-backed modules | File-backed modules first | It proves extensibility without spending the MVP on forms and validation UI. |
+| Local authoring UI vs file-backed modules | File-backed modules first | It proves extensibility without spending the project budget on forms and validation UI. |
 | Manual simulated sorting vs computer vision | Manual simulated sorting first | It lets the training claim stand without depending on detector reliability. CV can later assist authoring or visual review. |
 | Immediate feedback vs assessment integrity | Feedback only in learning modes | Feedback improves practice but would contaminate pre/post measurement. |
 | Confidence capture vs lower friction | Capture one simple rating per attempt | Confidence helps identify high-confidence errors and low-confidence correct answers, but too many prompts slow practice. |
@@ -136,7 +179,7 @@ The training module is evidence-ready when it can show:
 
 ## What Not To Claim
 
-Do not claim the MVP:
+Do not claim the project:
 
 - certifies a technician as competent;
 - reduces real hospital onboarding time without a longitudinal field study;

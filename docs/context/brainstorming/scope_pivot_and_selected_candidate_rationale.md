@@ -1,4 +1,54 @@
-# Scope Pivot Handoff
+# Scope Pivot And Selected Candidate Rationale
+
+This artifact combines the scope pivot handoff with the selected candidate
+rationale and weighted-objectives justification. It is the canonical reference
+for why the project moved away from a CV-centered deployment claim and toward
+an extensible SPD training platform.
+
+## Decision Summary
+
+We pivoted away from a CV-centered project because the original direction
+depended on a claim we could not responsibly prove within the project timeline:
+that a small, self-collected computer vision dataset could generalize to real
+sterile processing environments. The CV work showed that surgical instrument
+recognition is technically plausible in controlled settings, but it also exposed
+the core risk: real SPD workflows vary by hospital, manufacturer, tray layout,
+lighting, instrument condition, local naming conventions, clutter, and
+technician process.
+
+Because of that variability, continuing with CV as the central proof would
+require hospital-specific validation, representative datasets, and deployment
+testing that are outside the scope of this project. The selected direction is a
+training-centered platform because it is more feasible, testable, extensible,
+and defensible. Instead of claiming hospital-ready automation, the project can
+measure novice improvement through simulated tray sorting, identification
+accuracy, completion time, confidence, and error categories before and after
+practice.
+
+This gives the project a clear stakeholder value: helping new SPD technicians
+learn instruments and tray organization while giving instructors measurable
+training evidence.
+
+## What We Learned From The CV-Centered Work
+
+The CV-centered work was still valuable because it clarified that the problem is
+not just object recognition. The larger issue includes training, tray
+familiarity, lookalike discrimination, local workflow knowledge, and error
+feedback.
+
+The earlier experiments around lighting, shape similarity, clutter, and open-set
+confidence showed why autonomous recognition cannot be the project's foundation.
+Computer vision can remain a future support layer for authoring, review, or
+assisted identification, but it should not be treated as the system's source of
+truth.
+
+## Why The Pivot Was A Must-Have Decision
+
+The pivot was a must-have decision because continuing the CV-first direction
+would make the project depend on an unvalidated deployment claim. The new
+direction preserves the useful lessons from CV while shifting the core
+contribution to something we can build, evaluate, and justify: an extensible SPD
+training tool with measurable simulated learning outcomes.
 
 
 ## Why We Are Pivoting
@@ -175,11 +225,11 @@ about which instruments belong in which trays, how many instruments and trays
 are needed, and how surgeon-procedure preferences affect tray contents. Custom,
 specialty, and loaner trays add variation by hospital, surgical team,
 procedure, surgeon preference, and device manufacturer
-([Nadeau, 2024](../bibliography.md#nadeau-2024),
-[dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021),
-[Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023),
-[Medline, 2025](../bibliography.md#medline-custom-trays-2025),
-[STERIS, 2021](../bibliography.md#steris-loaner-trays-2021)).
+([Nadeau, 2024](../../bibliography.md#nadeau-2024),
+[dos Santos et al., 2021](../../bibliography.md#dos-santos-et-al-2021),
+[Ahmadi et al., 2023](../../bibliography.md#ahmadi-et-al-2023),
+[Medline, 2025](../../bibliography.md#medline-custom-trays-2025),
+[STERIS, 2021](../../bibliography.md#steris-loaner-trays-2021)).
 
 Design response:
 
@@ -362,10 +412,10 @@ Few-shot and fine-grained learning:
   still needed:
   https://link.springer.com/article/10.1007/s11548-025-03439-5
 
-## Minimum Viable Module Decision
+## Focused Module Decision
 
 Build one evidence-complete training module rather than five shallow feature
-islands. The MVP is:
+islands. The initial project scope is:
 
 ```text
 local tray module -> pre-test -> study cards -> quiz -> practice sorting -> post-test -> metrics export
@@ -382,7 +432,7 @@ Prioritize:
 
 Key tradeoffs:
 
-- Tray sorting beats pure quiz for the MVP because it maps to competency and
+- Tray sorting beats pure quiz for the project because it maps to competency and
   yields accuracy/time/error evidence.
 - File-backed authoring beats polished authoring UI because it proves
   extensibility sooner.

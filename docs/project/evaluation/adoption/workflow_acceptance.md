@@ -2,7 +2,7 @@
 
 TrayGuard only matters if the learning workflow helps novices practice tray
 work without making the training process harder. This page explains how to test
-usability and adoption for the training-platform MVP.
+usability and adoption for the training platform.
 
 ## What This Test Answers
 
@@ -10,7 +10,7 @@ A hospital or training program does not buy a detector. It buys a workflow
 change: a way to reduce early training burden while preserving instructor
 authority, local competency expectations, and supervised hands-on sign-off.
 
-For the training-module MVP, this test asks:
+For the training module, this test asks:
 
 - Can learners move through pre-test, study, quiz, practice, and post-test
   without help?
@@ -25,15 +25,15 @@ For the training-module MVP, this test asks:
 SPD improvement work shows that missing and unusable instrumentation is not
 only a recognition problem. Successful improvement involves staffing, training,
 inventory, equipment, physical environment, workflows, communication, and
-governance ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021),
-[Natarus et al., 2025](../../bibliography.md#natarus-et-al-2025)).
+governance ([Alfred et al., 2021](../../../bibliography.md#alfred-et-al-2021),
+[Natarus et al., 2025](../../../bibliography.md#natarus-et-al-2025)).
 
 Healthcare implementation research also warns that adoption depends on
 workflow fit, leadership, infrastructure, privacy, cost, training, and user
 trust, not technical performance alone
-([Chomutare et al., 2022](../../bibliography.md#chomutare-et-al-2022),
-[Lambert et al., 2023](../../bibliography.md#lambert-et-al-2023),
-[Grossi et al., 2021](../../bibliography.md#grossi-et-al-2021)).
+([Chomutare et al., 2022](../../../bibliography.md#chomutare-et-al-2022),
+[Lambert et al., 2023](../../../bibliography.md#lambert-et-al-2023),
+[Grossi et al., 2021](../../../bibliography.md#grossi-et-al-2021)).
 
 TrayGuard therefore has to fit the training workflow, not just present correct
 answers.
