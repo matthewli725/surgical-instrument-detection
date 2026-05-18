@@ -11,4 +11,3 @@ current TrayGuard training-platform prototype.
 - `reference/`: instrument taxonomy and lookalike-pair catalog
 - `evaluation/`: training effectiveness, workflow, reporting, and risk plans
 - `planning/`: task planning, weekly updates, and claim-evidence tracking
-

@@ -7,6 +7,14 @@ simulated time-to-competency for novice learners. The prototype should help a
 learner practice local tray and instrument familiarity, then measure whether
 the learner improves between a pre-test and a post-test.
 
+The central stakeholder value is accessibility and modernization of SPD
+education. TrayGuard should make local tray practice more repeatable,
+self-paced, updateable, feedback-rich, and measurable before a learner reaches
+supervised hands-on work. Design choices should therefore be justified by how
+they reduce dependence on scarce preceptor time, make local tray knowledge
+easier to practice outside scheduled labs, or give educators clearer evidence
+about learner gaps.
+
 Computer vision remains useful, but it is no longer the primary value claim or
 an active experiment obligation. Existing camera, annotation, YOLO export,
 model training, and live detection code should be treated as legacy
@@ -80,6 +88,70 @@ This framing keeps the product centered on measurable novice learning. It also
 matches the strongest current adoption argument: reduce early training burden
 by giving learners repeatable local practice before, during, or between
 supervised hands-on experiences.
+
+The simulation component is included because accessible SPD education should
+not stop at recognition drills. Flashcards and quizzes help learners retrieve
+names, aliases, functions, and distinguishing features, but tray work requires
+using that knowledge against a count sheet. Simulated tray sorting/checking
+therefore trains and measures a different competency: applying local
+instrument knowledge to a tray-verification task.
+
+## Accessibility And Modernization Design Decisions
+
+Every major design choice should contribute to the same value proposition:
+modernize SPD education by making local, applied practice easier to access and
+easier to measure.
+
+| Design Decision | Contribution To Accessible And Updated SPD Education |
+| --- | --- |
+| Local tray modules | SPD tray knowledge varies by site. File-backed modules let educators update count sheets, aliases, photos, quantities, distractors, and lookalikes without rebuilding the application. |
+| Retrieval-first cards | Supports self-paced active recall before supervised practice. Learners can repeat names and distinguishing features without requiring continuous preceptor attention. |
+| Identification and feature quizzes | Turns passive review into measurable retrieval attempts. The system can record accuracy, time, confidence, and weak items. |
+| Simulated tray sorting/checking | Gives learners repeatable access to applied tray practice without requiring a full physical instrument set, a lab session, or a preceptor for every repetition. |
+| Error-specific feedback | Updates the learning loop from delayed correction to immediate coaching. Feedback should identify `missing`, `extra`, `wrong`, `misidentified`, and `wrong_count` errors so learners know what to review next. |
+| Weak-item review | Makes practice adaptive by focusing repetition on the instruments and tray rules a learner actually missed. |
+| Confidence capture | Helps educators see overconfidence and uncertainty, not just right/wrong scores. High-confidence errors are especially useful coaching targets. |
+| Pre/post assessment | Separates learning from evaluation and provides evidence that the module improves simulated performance rather than merely exposing learners to content. |
+| Metrics export | Gives educators an updated way to track repeated errors, learner progress, and module-level weak points. |
+| Optional QR/AprilTag cards | Adds low-cost physical interaction without requiring expensive instrument sets or fragile full-object computer vision. The physical layer supports access and engagement, but the software learning claim remains primary. |
+
+The simulation does not need to reproduce an entire SPD room. Its purpose is to
+simulate the educational bottleneck: can a learner apply local instrument
+knowledge to a count sheet and detect tray errors? The minimum useful
+simulation is therefore a count sheet, tray scenario, instrument options,
+seeded errors, learner correction, feedback, and metrics.
+
+This design should be described as a lower-cost preparation layer, not a
+replacement for hands-on competency validation. The intended value is that
+learners arrive at supervised practice with stronger local familiarity and
+educators arrive with clearer weak-point data.
+
+## Printable Card Adoption Rationale
+
+A printable tray-practice kit with phone or tablet scanning is a plausible
+education workflow because it combines familiar low-cost materials with mobile
+learning. The adoption claim should still be cautious: this workflow is most
+plausible for training programs, classrooms, and skills labs. Live SPD
+departments would need additional review of device policy, cleaning, privacy,
+storage, instructor setup burden, and whether learners are allowed to use
+personal devices in the training space.
+
+The closest precedents support parts of the workflow rather than proving this
+exact SPD use case:
+
+| Precedent | Relevance To TrayGuard | Design Implication |
+| --- | --- | --- |
+| QR codes in healthcare education | A scoping review found QR codes used in healthcare education for engagement, just-in-time learning, simulation, and training support, with advantages such as low cost, ease of creation, and rapid access to resources ([Karia et al., 2019](../bibliography.md#karia-et-al-2019)). | Printable codes are a reasonable access layer for instrument cards, local notes, answer reveal, and self-paced review. |
+| Electronic flashcards in health professions | A recent scoping review documents widespread health-professions use of electronic flashcards ([Barrison et al., 2025](../bibliography.md#barrison-et-al-2025)). | The app-based retrieval portion is familiar to health-professions learners, but it should remain connected to tray simulation rather than standing alone. |
+| Tangible mobile AR cue-card learning | NeuroVase is a recent preprint, so it should be treated as emerging design precedent rather than settled evidence. It is still highly relevant because it combines physical cue cards, tablet-based interaction, standalone card review, structured medical curriculum, pre/post knowledge assessment, usability measures, and a controlled user study comparing AR-supported learning against traditional paper-based learning ([Jahani et al., 2026](../bibliography.md#jahani-et-al-2026-neurovase)). | TrayGuard can use printable instrument cards as both offline study aids and digital triggers for app-based practice. The evaluation should similarly compare physical/digital practice against a more traditional learning condition. |
+| Marker-based mobile learning and AR cards | Mobile augmented-reality anatomy work shows that marker/card-triggered learning materials can be evaluated for usability, perceived usefulness, and learning support in medical education ([Bolek et al., 2021](../bibliography.md#bolek-et-al-2021)). | AprilTags should be used only when spatial tracking or tray placement matters. QR codes are enough when the goal is simply opening the correct instrument record. |
+
+The strongest adoption value is not novelty. It is that an instructor can print
+or update a local tray kit, learners can practice outside scarce hands-on lab
+time, and the software can return weak-item and error-category reports. For
+that reason, QR codes should be the default low-friction marker. AprilTags are
+appropriate only for the more advanced physical simulation case where the app
+needs card identity, position, or orientation on a tray mat.
 
 ## Training Module Architecture
 

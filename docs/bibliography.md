@@ -85,6 +85,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - U.S. Bureau of Labor Statistics, ["CPI Inflation Calculator"](https://www.bls.gov/data/inflation_calculator.htm), accessed 2026.
 
+<a id="bolek-et-al-2021"></a>
+### Bolek et al., 2021
+
+- Bolek et al., ["An Augmented Reality Application for Anatomy Learning: Mobile App Design and User Evaluation Study"](https://pubmed.ncbi.nlm.nih.gov/34581680/), *JMIR Serious Games*, 2021.
+
 <a id="brooke-1996"></a>
 ### Brooke, 1996
 
@@ -340,6 +345,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Jiang et al., ["Deployment of Artificial Intelligence in Radiology: Strategies for Success"](https://ajronline.org/doi/10.2214/AJR.24.31898), *American Journal of Roentgenology*, 2025.
 
+<a id="jiang-et-al-2024-virtual-simulation"></a>
+### Jiang et al., 2024 Virtual Simulation
+
+- Jiang et al., ["Effectiveness of Virtual Simulations Versus Mannequins and Real Persons in Medical and Nursing Education: Meta-Analysis and Trial Sequential Analysis of Randomized Controlled Trials"](https://www.jmir.org/2024/1/e56195), *Journal of Medical Internet Research*, 2024.
+
+<a id="jahani-et-al-2026-neurovase"></a>
+### Jahani et al., 2026 NeuroVase
+
+- Jahani et al., ["NeuroVase: A Tangible Mobile Augmented Reality Learning System for Neurovascular Anatomy and Stroke Education"](https://arxiv.org/abs/2604.00296), *arXiv preprint*, 2026.
+
 <a id="jian-et-al-2000"></a>
 ### Jian et al., 2000
 
@@ -359,6 +374,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Karpicke and Blunt, 2011
 
 - Karpicke and Blunt, ["Retrieval Practice Produces More Learning than Elaborative Studying with Concept Mapping"](https://doi.org/10.1126/science.1199327), *Science*, 2011.
+
+<a id="karia-et-al-2019"></a>
+### Karia et al., 2019
+
+- Karia et al., ["The use of QR codes in healthcare education: a scoping review"](https://bmcmededuc.biomedcentral.com/articles/10.1186/s12909-019-1876-4), *BMC Medical Education*, 2019.
 
 <a id="khalid-et-al-2023"></a>
 ### Khalid et al., 2023
@@ -564,6 +584,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Pelzer et al., 2024
 
 - Pelzer et al., ["Evaluation of microbial occurrence in reusable robotic instruments for minimally invasive surgery: A pilot study"](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0300355), *PLOS One*, 2024.
+
+<a id="phanudulkitti-et-al-2023"></a>
+### Phanudulkitti et al., 2023
+
+- Phanudulkitti et al., ["A systematic review on the use of virtual patient and computer-based simulation for experiential pharmacy education"](https://pubmed.ncbi.nlm.nih.gov/37635840/), *Exploratory Research in Clinical and Social Pharmacy*, 2023.
 
 <a id="poster-board-walmart-accessed-2026"></a>
 ### Poster Board, accessed 2026
@@ -784,6 +809,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Wolters Kluwer Body Interact, accessed 2026
 
 - Wolters Kluwer, ["Body Interact Virtual Patient Care Simulator"](https://www.wolterskluwer.com/en/solutions/lippincott-medicine/medical-education/body-interact-virtual-patient-care-simulator), accessed 2026.
+
+<a id="wu-et-al-2022-virtual-simulation"></a>
+### Wu et al., 2022 Virtual Simulation
+
+- Wu et al., ["Virtual Simulation in Undergraduate Medical Education: A Scoping Review of Recent Practice"](https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2022.855403/full), *Frontiers in Medicine*, 2022.
 
 <a id="xin-et-al-2024"></a>
 ### Xin et al., 2024

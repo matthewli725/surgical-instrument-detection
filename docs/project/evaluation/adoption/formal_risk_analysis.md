@@ -35,6 +35,29 @@ training and assessment workflow that helps novices practice local tray
 knowledge and gives instructors/admins usable evidence without claiming
 clinical automation.
 
+## Why CV Is Not The Active Track
+
+The CV-centered direction is not being retired because surgical-instrument
+recognition is impossible. It is being retired because existing literature
+already makes bounded instrument detection and fine-grained classification
+plausible. After that literature, the remaining research gap is no longer "can
+a model recognize an instrument?" The remaining gap is whether recognition
+outputs improve SPD tray-checking, inspection, training, or documentation
+workflows.
+
+That workflow-impact question would require access this project does not have:
+realistic SPD tray images, local count sheets, representative instrument
+variation, technician behavior, time pressure, false-alarm handling, and
+validation that assistance reduces missed errors without creating overtrust or
+extra review burden. Model accuracy, precision, recall, mAP, and latency would
+show that an artifact works under test conditions, but they would not prove
+that hospital tray workflow improves.
+
+Therefore the project should cite CV work as feasibility and boundary evidence,
+not make local CV metrics the central proof. The active contribution is the
+education workflow we can actually evaluate: accessible, repeatable simulated
+tray practice with pre/post novice learning evidence.
+
 ## Literature-Backed Risk Factors
 
 | Risk Factor | What Existing Papers Show | What The Literature Glosses Over | Meaning For TrayGuard |

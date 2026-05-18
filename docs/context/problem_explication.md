@@ -250,6 +250,24 @@ curriculum integration, measurable outcomes, and controlled task difficulty as
 features associated with effective learning
 ([Issenberg et al., 2005](../bibliography.md#issenberg-et-al-2005)).
 
+More recent software-based simulation literature supports treating TrayGuard as
+a virtual practice environment rather than a simple content viewer. Jiang et
+al.'s 2024 meta-analysis of randomized trials compared virtual simulations with
+mannequins or real persons in medical and nursing education and found virtual
+simulation to be a viable training alternative for several education outcomes
+([Jiang et al., 2024](../bibliography.md#jiang-et-al-2024-virtual-simulation)).
+Wu et al.'s scoping review shows that virtual simulation has become a common
+recent pattern in undergraduate medical education, including web- and
+software-based learning environments
+([Wu et al., 2022](../bibliography.md#wu-et-al-2022-virtual-simulation)).
+Phanudulkitti et al.'s review of virtual patient and computer-based simulation
+in pharmacy education is also useful because it evaluates experiential outcomes
+such as knowledge, skills, confidence, enjoyment, and engagement
+([Phanudulkitti et al., 2023](../bibliography.md#phanudulkitti-et-al-2023)).
+Together, these sources support a software simulation claim: the product should
+let learners practice an applied task, receive feedback, and generate
+performance evidence.
+
 The quiz component is also a learning intervention, not just an assessment.
 Retrieval-practice research shows that testing can improve long-term retention
 compared with restudying
@@ -313,6 +331,24 @@ library. The first module should prove the loop from local tray data to
 pre-test, retrieval-first cards, quiz, applied tray practice, weak-item review,
 post-test, and metrics export. The design decision and tradeoffs are detailed in
 [Training Module Design](../project/training_module_design.md).
+
+The proposed capstone experiment should therefore test simulation as an added
+practice layer, not compare the product against no learning at all:
+
+| Group | Training Condition | Post-Test |
+| --- | --- | --- |
+| A | Structured flashcards and quizzes only. | No-hints simulated tray-verification task. |
+| B | Structured flashcards and quizzes plus simulated tray-verification practice with feedback. | Same no-hints simulated tray-verification task. |
+
+The main outcome is whether Group B performs better on the applied tray task.
+Measure tray-verification accuracy, completion time, missing/extra/wrong/
+misidentified/wrong-count errors, high-confidence errors, low-confidence correct
+answers, weak-item recovery, and whether learners can explain what to review
+next. The bounded claim is:
+
+> Compared with structured flashcards alone, adding software-based simulated
+> tray-verification practice improves novice performance on a comparable
+> simulated tray task.
 
 ## Medical Training Software Precedents
 
@@ -403,6 +439,14 @@ claim. It can help create instrument cards, suggest labels during authoring,
 generate distractors, or support future visual practice modes. The validated
 product story should remain: TrayGuard helps novices learn instruments and tray
 organization in a measurable, extensible training environment.
+
+A lightweight physical layer can make the demo more compelling without changing
+the evidence claim. The safest hardware option is a printed tray mat with
+printed instrument cards containing QR codes or AprilTags. Learners place cards
+on the tray and scan them with a webcam or phone camera. The software still
+scores identity, count, lookalikes, and placement, while avoiding fragile
+full-object computer vision. This hardware should be treated as an interaction
+layer for the software simulation, not as the core research claim.
 
 ## Bibliography
 
