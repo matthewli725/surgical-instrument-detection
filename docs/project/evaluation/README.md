@@ -13,8 +13,9 @@ TrayGuard is being evaluated as a training and assessment platform:
 
 1. Load a local tray module.
 2. Run a timed pre-test tray sorting assessment.
-3. Let the learner study instrument cards and complete quiz prompts.
-4. Let the learner practice simulated tray sorting with feedback.
+3. Let the learner use retrieval-first cards and quiz prompts.
+4. Let the learner practice simulated tray sorting as applied retrieval with
+   feedback.
 5. Run a timed post-test tray sorting assessment.
 6. Export accuracy, duration, confidence, and error-category metrics.
 
@@ -47,6 +48,7 @@ clinical use.
 | Generalization remains the hard part | Kienle et al. show high in-domain mAP50 but a large cross-manufacturer drop when testing on a second dataset ([Kienle et al., 2025](../../bibliography.md#kienle-et-al-2025)). | We should not claim robust real-hospital CV performance without a site-specific validation study. |
 | SPD assembly is a sociotechnical problem | Alfred et al. connect tray defects to training, nomenclature, production pressure, inventory, tools, and workflow; Nichol et al. connect errors to visualization tasks and OR delays ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021), [Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)). | A detector metric alone cannot show that trainees learn, administrators see value, or workflows improve. |
 | Training and simulation are defensible | Sterile-processing and healthcare-education studies support structured training, simulation, practice, feedback, and pre/post assessment ([Ofstead et al., 2023](../../bibliography.md#ofstead-et-al-2023), [Hu et al., 2024](../../bibliography.md#hu-et-al-2024), [Cook et al., 2011](../../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../../bibliography.md#mcgaghie-et-al-2011)). | A short class study still cannot prove real SPD competency, certification readiness, or reduced hospital onboarding time. |
+| Retrieval-centered digital practice is defensible | Retrieval-practice and health-professions digital-education studies support prompt-before-answer practice, spacing, and weak-item repetition, while electronic-flashcard research shows that app-style recall tools are already common in health-professions learning ([Roediger and Karpicke, 2006](../../bibliography.md#roediger-and-karpicke-2006), [Larsen et al., 2009](../../bibliography.md#larsen-et-al-2009), [Martinengo et al., 2024](../../bibliography.md#martinengo-et-al-2024), [Barrison et al., 2025](../../bibliography.md#barrison-et-al-2025)). | Do not claim that Quizlet-like cards alone teach tray competence. Use retrieval practice as the center, then test transfer with simulated tray sorting. |
 
 ## Shared Reporting Checklist
 
@@ -55,6 +57,7 @@ For the current prototype, report:
 - pre/post simulated tray-sorting accuracy;
 - pre/post duration;
 - confidence and high-confidence errors;
+- weak-item recovery after repeated retrieval;
 - missing, extra, wrong, misidentified, and wrong-count errors;
 - whether learners can explain what they missed and what to review next;
 - usability friction, help requests, and confusing workflow states;

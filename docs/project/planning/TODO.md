@@ -6,7 +6,8 @@
   `docs/project/system_requirements.md`.
 - Implement pre-test and post-test tray sorting with hints and feedback
   disabled.
-- Implement study cards and a short identification quiz for the same module.
+- Implement retrieval-first cards and a short identification quiz for the same
+  module.
 - Implement practice sorting with immediate error-specific feedback.
 - Export learner metrics as CSV or JSON.
 

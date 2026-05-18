@@ -17,12 +17,14 @@ instead of relying on local mAP or lighting/glare experiments.
 The current training system should support these functions.
 
 - Load a local tray module from instructor-verified data.
-- Show instrument study cards with names, aliases, families, photos, notes, and
-  distinguishing features.
-- Run an identification quiz for retrieval practice.
-- Run simulated tray sorting in practice mode with immediate feedback.
+- Show retrieval-first instrument cards with names, aliases, families, photos,
+  notes, and distinguishing features hidden behind prompts.
+- Run identification and feature quizzes for retrieval practice.
+- Run simulated tray sorting in practice mode as applied retrieval with
+  immediate feedback.
 - Run pre-test and post-test tray sorting with no hints or feedback.
-- Export learner metrics: accuracy, time, confidence, and error categories.
+- Export learner metrics: accuracy, time, confidence, weak-item recovery, and
+  error categories.
 
 ## Prototype Scope
 
@@ -37,7 +39,8 @@ stay explicitly out of scope?
 - One seeded local tray curriculum with 8-12 required instruments and a small
   distractor pool.
 - File-backed local tray and instrument authoring.
-- Study cards, identification quiz, and simulated tray sorting.
+- Retrieval-first cards, identification quiz, weak-item review, and simulated
+  tray sorting.
 - Pre/post assessment with accuracy, time, confidence, and error breakdown.
 - Immediate feedback in learning modes, suppressed feedback in assessment
   modes.
@@ -64,11 +67,14 @@ hard to acquire:
 
 1. Load a local tray module.
 2. Run a timed pre-test tray sort with no hints or feedback.
-3. Let the learner study instrument cards.
-4. Let the learner complete quiz prompts for retrieval practice.
-5. Let the learner practice simulated tray sorting with immediate feedback.
-6. Run a timed post-test tray sort with no hints or feedback.
-7. Export accuracy, time, confidence, and error-category metrics.
+3. Let the learner answer retrieval-first card prompts.
+4. Let the learner complete identification and feature quizzes.
+5. Let the learner practice simulated tray sorting as applied retrieval with
+   immediate feedback.
+6. Repeat weak items if the schedule allows.
+7. Run a timed post-test tray sort with no hints or feedback.
+8. Export accuracy, time, confidence, weak-item recovery, and error-category
+   metrics.
 
 This framing keeps the product centered on measurable novice learning. It also
 matches the strongest current adoption argument: reduce early training burden
@@ -81,7 +87,7 @@ The training data model should stay small enough for file-backed authoring:
 
 | Object | Role |
 | --- | --- |
-| `Instrument` | Stores the local name, aliases, family, image, notes, and distinguishing features used by cards and quiz questions. |
+| `Instrument` | Stores the local name, aliases, family, image, notes, and distinguishing features used by retrieval cards and quiz questions. |
 | `TrayTemplate` | Stores the tray name, version, required items, quantities, and distractors. |
 | `LearningRun` | Stores learner/session identity, mode, task version, start, and completion time. |
 | `AttemptResult` | Stores selected items, confidence, duration, score, and error categories. |
@@ -96,9 +102,9 @@ Mode behavior should be explicit:
 | Mode | Hints | Feedback | Purpose |
 | --- | --- | --- | --- |
 | Pre-test | No | No | Baseline simulated competency. |
-| Study | Yes | Yes | Initial instruction and reference support. |
-| Quiz | Limited after answer | Yes | Retrieval practice and weak-item discovery. |
-| Practice sort | Yes | Yes | Deliberate practice on the tray task. |
+| Study | Yes | Yes | Prompt-before-reveal instruction and reference support. |
+| Quiz | Limited after answer | Yes | Retrieval practice, confidence calibration, and weak-item discovery. |
+| Practice sort | Yes | Yes | Applied retrieval and deliberate practice on the tray task. |
 | Post-test | No | No | Comparable learning assessment. |
 
 The detailed design rationale is in
@@ -577,7 +583,7 @@ measure locally.
 | Design Choice | Research Support | Defensible Stance |
 | --- | --- | --- |
 | Time-to-competency as the north star | SPD certification and training evidence shows that entry into practice requires hands-on hours, structured training, and preceptor support ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026), [Chobin, 2010](../bibliography.md#chobin-2010), [AORN Staff, 2025](../bibliography.md#aorn-staffing-shortage-2025)). | Measure simulated improvement in local tray familiarity. Do not claim reduced hospital onboarding time without a longitudinal SPD study. |
-| Complete learning loop instead of isolated cards | Simulation, retrieval practice, feedback, and pre/post testing are supported by health-professions and learning-science evidence, with direct SP training precedent in Ofstead et al. ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023), [Cook et al., 2011](../bibliography.md#cook-et-al-2011), [Roediger and Karpicke, 2006](../bibliography.md#roediger-and-karpicke-2006), [Hattie and Timperley, 2007](../bibliography.md#hattie-and-timperley-2007)). | Build pre-test, study, quiz, practice sorting with feedback, post-test, and metrics export as one module. |
+| Retrieval-centered learning loop instead of isolated cards | Simulation, retrieval practice, spacing, feedback, and pre/post testing are supported by health-professions and learning-science evidence, with direct SP training precedent in Ofstead et al. and digital-practice support from spaced education and electronic-flashcard research ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023), [Cook et al., 2011](../bibliography.md#cook-et-al-2011), [Roediger and Karpicke, 2006](../bibliography.md#roediger-and-karpicke-2006), [Larsen et al., 2009](../bibliography.md#larsen-et-al-2009), [Martinengo et al., 2024](../bibliography.md#martinengo-et-al-2024), [Barrison et al., 2025](../bibliography.md#barrison-et-al-2025), [Hattie and Timperley, 2007](../bibliography.md#hattie-and-timperley-2007)). | Build pre-test, retrieval-first cards, quizzes, applied tray practice with feedback, weak-item review, post-test, and metrics export as one module. |
 | Local tray authoring instead of a universal database | Instrument families are reusable, but actual tray requirements are local: count sheets specify tray contents, quantities, sizes, and catalog/reference numbers; tray optimization depends on procedure, surgeon preference, usage likelihood, and stock decisions; specialty and loaner trays can be vendor-specific ([Nadeau, 2024](../bibliography.md#nadeau-2024), [dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021), [Ahmadi et al., 2023](../bibliography.md#ahmadi-et-al-2023), [Medline, 2025](../bibliography.md#medline-custom-trays-2025), [STERIS, 2021](../bibliography.md#steris-loaner-trays-2021)). | Start with file-backed instructor-verified modules. Treat universal recognition as out of scope. |
 | Human authority instead of certification or autonomous approval | Healthcare AI literature warns about automation bias, deskilling, liability, and workflow fit ([Goddard et al., 2012](../bibliography.md#goddard-et-al-2012), [Natali et al., 2025](../bibliography.md#natali-et-al-2025), [Kelly, 2026](../bibliography.md#kelly-2026), [Zheng et al., 2023](../bibliography.md#zheng-et-al-2023)). | The system may teach, score, explain, and log, but instructors and supervisors remain responsible for real competency judgments. |
 | Workflow-first learner UI | General usability guidance supports visible status, efficient action paths, error prevention, and recoverable mistakes. Human-AI guidance supports efficient invocation, dismissal, and correction when AI guesses wrong. Clinical alert literature warns that low-value alerts and added tasks can undermine acceptance ([Nielsen Norman Group, accessed 2026](../bibliography.md#nielsen-norman-group-accessed-2026), [Amershi et al., 2019](../bibliography.md#amershi-et-al-2019), [Olakotan and Yusof, 2021](../bibliography.md#olakotan-and-yusof-2021), [Cánovas-Segura et al., 2023](../bibliography.md#canovas-segura-et-al-2023)). | Design around the learning mode, not model controls. Use clear mode boundaries, fast practice feedback, and no hints during assessment. |
@@ -585,7 +591,7 @@ measure locally.
 | CV generalization as a future validation problem | Kienle et al. show a large cross-manufacturer performance drop despite strong in-domain instrument-stand results ([Kienle et al., 2025](../bibliography.md#kienle-et-al-2025)). | Any future camera-supported feature needs site-specific validation. The current project should work without it. |
 | Portable board-mounted overhead stand | Structured camera placement is already a design requirement for repeatable tray images. Copy-stand and boom-stand designs support a rigid base/column/arm pattern that keeps the capture plane stable while leaving the work area accessible. Ergonomics guidance supports arranging tools and equipment to preserve neutral posture and easy reach ([Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Cambo, accessed 2026](../bibliography.md#cambo-accessed-2026), [Meiji Techno, accessed 2026](../bibliography.md#meiji-techno-accessed-2026), [CDC/NIOSH, 2024](../bibliography.md#cdc-niosh-2024), [OSHA, accessed 2026](../bibliography.md#osha-computer-workstations-accessed-2026)). | Use the existing stand, but bolt it to a weighted portable board instead of screwing it into a table. Treat the board as the reusable capture module for both tabletop use and a future wheeled standing base. |
 | Tabletop default with rolling standing option | SPD workstations are not one-size-fits-all. OSHA central sterile guidance calls out reach, prolonged standing, rolling carts, height-adjustable surfaces, and sit/stand stools, while commercial prep/pack tables emphasize ergonomic flexibility, height adjustment, accessories, and different user/task needs. User-provided SPD video references also show both seated plastic-looking work surfaces and standing metal-table workflows ([OSHA Central Sterile Supply, accessed 2026](../bibliography.md#osha-central-sterile-supply-accessed-2026), [Skytron, accessed 2026](../bibliography.md#skytron-prep-pack-accessed-2026), [Getinge, accessed 2026](../bibliography.md#getinge-prep-pack-accessed-2026), [Southwest Solutions CSSD Tables, accessed 2026](../bibliography.md#southwest-cssd-tables-accessed-2026), [User-provided SPD video 1](../bibliography.md#user-spd-video-1-accessed-2026), [User-provided SPD video 2](../bibliography.md#user-spd-video-2-accessed-2026)). | Make tabletop the default because it plugs into existing work surfaces. Provide a rolling dock as an optional standing-height adapter. This approximates workflow flexibility without claiming commercial powered height adjustment. |
-| Lookalike tools as learning content | HOSPITools and Atabuzzaman et al. highlight subtle instrument differences; Alfred et al. identifies nomenclature and training as assembly factors ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Teach distinguishing features in study cards and track `misidentified` errors separately from generic wrong answers. |
+| Lookalike tools as learning content | HOSPITools and Atabuzzaman et al. highlight subtle instrument differences; Alfred et al. identifies nomenclature and training as assembly factors ([Rodrigues et al., 2022b](../bibliography.md#rodrigues-et-al-2022b), [Atabuzzaman et al., 2025](../bibliography.md#atabuzzaman-et-al-2025), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Teach distinguishing features in retrieval-first cards and track `misidentified` errors separately from generic wrong answers. |
 | Student participants as novice evidence only | Simulation and learning-science evidence supports novice practice studies, but SPD certification and work-system evidence show real work requires supervised hands-on competence ([Cook et al., 2011](../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../bibliography.md#mcgaghie-et-al-2011), [HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026), [Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | Student results can support first-use clarity and novice simulated learning, not SPD adoption or safety readiness. |
 | Admin-facing metrics and traceability | Work-system studies and traceability reviews support recordkeeping for quality improvement, while economic AI reviews warn that technical performance alone is not a business case ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021), [Fayad et al., 2025](../bibliography.md#fayad-et-al-2025), [Vithlani et al., 2023](../bibliography.md#vithlani-et-al-2023), [Kastrup et al., 2024](../bibliography.md#kastrup-et-al-2024)). | Export learner progress, repeated weak items, time, confidence, and error patterns. Treat ROI as future pilot work. |
 
@@ -612,7 +618,8 @@ The current training product concept can be understood as seven components:
    - The main risk is vague or nonlocal content that does not match what a
      learner is expected to assemble.
 2. **Learning Mode Orchestration**
-   - Pre-test, study, quiz, practice sort, post-test, and export flow.
+   - Pre-test, retrieval-first cards, quiz, practice sort, post-test, and
+     export flow.
    - Assessment modes suppress hints and feedback; practice modes make feedback
      immediate and specific.
 3. **Simulated Tray Sorting**
@@ -695,8 +702,8 @@ requirements rather than deployment requirements.
 TrayGuard should demonstrate that:
 
 - one local tray module can be loaded from data rather than code changes
-- learners can complete pre-test, study, quiz, practice sort, and post-test
-  flows
+- learners can complete pre-test, retrieval-first cards, quiz, practice sort,
+  and post-test flows
 - practice mode gives immediate feedback for missing, extra, wrong,
   misidentified, and wrong-count errors
 - assessment modes suppress hints and feedback
@@ -718,7 +725,7 @@ limits, or comprehensive SPD integration.
 | --- | --- | --- |
 | CV papers show feasibility but often under-test manufacturer, site, tray, and workflow variation. | Keep CV optional and locally verifiable. Use instructor-approved content as the source of truth. | Admins should not buy the prototype as autonomous inspection; trainees should not rely on it as final authority. |
 | SPD error papers show real defects but do not isolate which training intervention reduces them. | Run a pre/post simulated learning study. | Students can help test novice learnability; SPD trainees still need future validation. |
-| Training literature supports simulation and feedback but does not provide a ready-made SPD tray module design. | Build the module around local tray cards, quizzes, sorting, and error-specific feedback. | Trainees get repeatable practice; instructors get evidence about weak items. |
+| Training literature supports retrieval practice, simulation, spacing, and feedback but does not provide a ready-made SPD tray module design. | Build the module around local retrieval cards, quizzes, applied sorting, weak-item repetition, and error-specific feedback. | Trainees get repeatable practice; instructors get evidence about weak items. |
 | Adoption literature is broad healthcare AI, not specifically SPD training assistants. | Report workflow friction, role boundaries, privacy assumptions, and pilot requirements. | Admins get a clearer approval path and know what remains unproven. |
 
 ## Bibliography

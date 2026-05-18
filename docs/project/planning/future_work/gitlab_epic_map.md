@@ -8,7 +8,7 @@ the active plan.
 
 | Epic | Goal | Typical Labels |
 | --- | --- | --- |
-| Training Module | Build the local tray curriculum, study cards, quiz, simulated sorting, feedback, and assessment flow. | `epic::training-module`, `category::content`, `category::ui`, `category::assessment` |
+| Training Module | Build the local tray curriculum, retrieval-first cards, quiz, applied sorting, feedback, weak-item review, and assessment flow. | `epic::training-module`, `category::content`, `category::ui`, `category::assessment` |
 | Evidence And Reporting | Export learner metrics, pre/post comparisons, repeated weak-item summaries, and final report evidence. | `epic::evidence-reporting`, `category::metrics`, `category::reporting`, `category::docs` |
 | Pilot Evidence | Run bounded novice walkthroughs and report results with the student-participant limitation. | `epic::pilot-evidence`, `category::study`, `category::workflow` |
 | Presentation | Lock the final narrative around simulated time-to-competency, literature-backed CV feasibility, and stakeholder implications. | `epic::presentation`, `category::demo`, `category::docs` |
@@ -18,7 +18,7 @@ the active plan.
 ### Training Module
 
 - `Local Tray Data Ready`
-- `Study And Quiz Flow Ready`
+- `Retrieval Card And Quiz Flow Ready`
 - `Practice Sorting Feedback Ready`
 - `Pre/Post Assessment Ready`
 

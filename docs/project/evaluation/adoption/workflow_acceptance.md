@@ -113,8 +113,8 @@ Use a 1-5 agreement scale:
 
 1. I could complete the training workflow without help.
 2. The order of steps felt clear from start to finish.
-3. The study cards helped me understand the instruments.
-4. The quiz helped me notice what I did not know.
+3. The retrieval cards helped me understand the instruments.
+4. The quiz helped me notice what I could not recall yet.
 5. Practice feedback made it clear what to review next.
 6. The amount of information shown felt manageable.
 7. I could imagine using this repeatedly without frustration.

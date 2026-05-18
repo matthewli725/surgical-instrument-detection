@@ -70,6 +70,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Atosa, ["SSTW-2448 24 x 48 inches Stainless Steel Work Table"](https://therestaurantwarehouse.com/products/sstw-2448), accessed 2026.
 
+<a id="barrison-et-al-2025"></a>
+### Barrison et al., 2025
+
+- Barrison et al., ["Electronic Flashcards in Health Professions Education: A Scoping Review"](https://doi.org/10.1097/ACM.0000000000005968), *Academic Medicine*, 2025.
+
 <a id="best-metal-products-stainless-sheet-accessed-2026"></a>
 ### Best Metal Products, accessed 2026
 
@@ -350,6 +355,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kastrup et al., ["Landscape and challenges in economic evaluations of artificial intelligence in healthcare: a systematic review of methodology"](https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-00088-7), *BMC Digital Health*, 2024.
 
+<a id="karpicke-and-blunt-2011"></a>
+### Karpicke and Blunt, 2011
+
+- Karpicke and Blunt, ["Retrieval Practice Produces More Learning than Elaborative Studying with Concept Mapping"](https://doi.org/10.1126/science.1199327), *Science*, 2011.
+
 <a id="khalid-et-al-2023"></a>
 ### Khalid et al., 2023
 
@@ -394,6 +404,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Lambert et al., 2023
 
 - Lambert et al., ["An integrative review on the acceptance of artificial intelligence among healthcare professionals in hospitals"](https://www.nature.com/articles/s41746-023-00852-5), *npj Digital Medicine*, 2023.
+
+<a id="larsen-et-al-2009"></a>
+### Larsen et al., 2009
+
+- Larsen et al., ["Repeated Testing Improves Long-Term Retention Relative to Repeated Study: A Randomised Controlled Trial"](https://doi.org/10.1111/j.1365-2923.2009.03518.x), *Medical Education*, 2009.
 
 <a id="layerjot-sid-accessed-2026"></a>
 ### LayerJot SID, accessed 2026
@@ -449,6 +464,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Malterud et al., 2016
 
 - Malterud et al., ["Sample Size in Qualitative Interview Studies: Guided by Information Power"](https://doi.org/10.1177/1049732315617444), *Qualitative Health Research*, 2016.
+
+<a id="martinengo-et-al-2024"></a>
+### Martinengo et al., 2024
+
+- Martinengo et al., ["Spaced Digital Education for Health Professionals: Systematic Review and Meta-Analysis"](https://doi.org/10.2196/57760), *Journal of Medical Internet Research*, 2024.
 
 <a id="nadeau-2017"></a>
 ### Nadeau, 2017

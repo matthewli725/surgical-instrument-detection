@@ -218,10 +218,12 @@ simulated identification or tray-sorting task after using the trainer.
 
 ## Training Pipeline Evidence
 
-TrayGuard's training loop should be built around a simple sequence: study,
-retrieve, simulate, receive feedback, and assess. That sequence is supported by
-sterile-processing training studies, medical simulation research, cognitive
-psychology, and workplace training literature.
+TrayGuard's training loop should be built around retrieval practice: learners
+orient to the material, retrieve names and features from memory, apply that
+retrieval in a simulated tray task, receive specific feedback, and then assess
+without hints. That sequence is supported by sterile-processing training
+studies, medical simulation research, cognitive psychology, digital education,
+and workplace training literature.
 
 Direct sterile-processing evidence supports the same structure. Ofstead et al.
 piloted borescope training for sterile processing professionals using pre- and
@@ -252,13 +254,28 @@ The quiz component is also a learning intervention, not just an assessment.
 Retrieval-practice research shows that testing can improve long-term retention
 compared with restudying
 ([Roediger and Karpicke, 2006](../bibliography.md#roediger-and-karpicke-2006)).
+Karpicke and Blunt found that retrieval practice produced stronger delayed
+learning than elaborative concept mapping in science-text learning, which
+supports recall-first activity rather than a purely explanatory study flow
+([Karpicke and Blunt, 2011](../bibliography.md#karpicke-and-blunt-2011)).
 A broad review of learning techniques rated practice testing and distributed
 practice among the most useful strategies for durable learning
 ([Dunlosky et al., 2013](../bibliography.md#dunlosky-et-al-2013)). In medical
-education specifically, adaptive spaced education uses repeated online
-questions to combine testing and spacing; one randomized trial found comparable
-learning with fewer items when repetition was adapted to learner performance
-([Kerfoot, 2010](../bibliography.md#kerfoot-2010)).
+education specifically, repeated testing improved long-term retention compared
+with repeated study, and adaptive spaced education uses repeated online
+questions to combine testing and spacing
+([Larsen et al., 2009](../bibliography.md#larsen-et-al-2009),
+[Kerfoot, 2010](../bibliography.md#kerfoot-2010)).
+
+That is the evidence-backed version of the "Quizlet or Duolingo" intuition:
+the defendable mechanism is not a particular brand, but repeated active recall,
+spacing, immediate feedback, and repetition of weak items. A 2024 meta-analysis
+of spaced digital education for health professionals supports spaced digital
+education for knowledge, skills, confidence, and clinical behavior change, and
+a 2025 scoping review documents widespread health-professions use of electronic
+flashcards, including platforms such as Anki and Quizlet
+([Martinengo et al., 2024](../bibliography.md#martinengo-et-al-2024),
+[Barrison et al., 2025](../bibliography.md#barrison-et-al-2025)).
 
 Feedback needs to be specific enough to guide the next attempt. Hattie and
 Timperley's feedback review frames effective feedback around three questions:
@@ -284,17 +301,17 @@ content viewer. It is a measured practice system:
 
 | TrayGuard Feature | Evidence-Based Role | Engineering Requirement |
 | --- | --- | --- |
-| Instrument study cards | Initial instruction and reference support. | Store photos, names, aliases, functions, distinguishing features, and local notes. |
-| Identification quiz mode | Retrieval practice for instrument identity. | Ask recall/recognition questions, randomize distractors, record correctness and time. |
-| Simulated tray sorting mode | Safe simulation of a realistic work task. | Let learners assemble or check a tray against a count sheet without patient or workflow risk. |
+| Retrieval-first study cards | Initial instruction that still asks learners to answer before reveal. | Store photos, names, aliases, functions, distinguishing features, and local notes; present prompts before explanations. |
+| Identification quiz mode | Central retrieval practice for instrument identity and features. | Ask recall/recognition questions, randomize distractors, record correctness, confidence, and time. |
+| Simulated tray sorting mode | Safe applied retrieval in a realistic work task. | Let learners assemble or check a tray against a count sheet without patient or workflow risk. |
 | Immediate feedback | Deliberate practice and error correction. | Explain wrong answers and classify errors as missing, extra, wrong, misidentified, or wrong count. |
 | Confidence ratings | Metacognitive signal for learner and instructor. | Capture confidence before or after tasks so low-confidence correct answers and high-confidence errors are visible. |
 | Pre/post tests | Evaluation separated from practice. | Disable hints and feedback during tests; export comparable pre/post accuracy, time, error type, and confidence. |
 
 The resulting project is one complete local tray module, not a broad content
 library. The first module should prove the loop from local tray data to
-pre-test, study, quiz, practice sorting, post-test, and metrics export. The
-design decision and tradeoffs are detailed in
+pre-test, retrieval-first cards, quiz, applied tray practice, weak-item review,
+post-test, and metrics export. The design decision and tradeoffs are detailed in
 [Training Module Design](../project/training_module_design.md).
 
 ## Medical Training Software Precedents

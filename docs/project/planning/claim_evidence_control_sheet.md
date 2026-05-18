@@ -12,7 +12,7 @@ training-centered project, not to defend local CV accuracy experiments.
 | C2 | TrayGuard should be framed as training and assessment support, not certification, autonomous tray approval, or deployment-ready SPD automation. | [`../system_design.md`](../system_design.md#prototype-scope) | deep | not started |
 | C3 | Existing CV papers make computer vision plausible enough to treat as future support; our project does not need to prove mAP or hospital robustness. | [`../evaluation/adoption/formal_risk_analysis.md`](../evaluation/adoption/formal_risk_analysis.md#literature-backed-risk-factors) | skim | not started |
 | C4 | The major literature gap is not "can any detector work"; it is training transfer, local content, workflow fit, stakeholder value, and site-specific validation. | [`../evaluation/adoption/formal_risk_analysis.md`](../evaluation/adoption/formal_risk_analysis.md#stakeholder-implications) | deep | not started |
-| C5 | TrayGuard's training workflow should use study, retrieval practice, simulation, feedback, and pre/post assessment because these patterns are supported by medical simulation and learning-science evidence. | [`../../context/problem_explication.md`](../../context/problem_explication.md#training-pipeline-evidence) | deep/skim | not started |
+| C5 | TrayGuard's training workflow should center retrieval practice, then connect it to applied tray sorting, feedback, spacing, and pre/post assessment. | [`../../context/problem_explication.md`](../../context/problem_explication.md#training-pipeline-evidence) | deep/skim | not started |
 | C6 | Reducing time to competency is the right north-star goal, but this prototype can only measure simulated time-to-competency proxies unless it runs a longitudinal SPD study. | [`../training_module_design.md`](../training_module_design.md) | deep | not started |
 | C7 | College-student walkthroughs support novice learnability and checklist-style task clarity, not SPD technician adoption or hospital safety readiness. | [`../evaluation/adoption/workflow_acceptance.md`](../evaluation/adoption/workflow_acceptance.md#college-student-participant-caveat) | deep | not started |
 | C8 | Traceability and reporting matter because pre/post metrics, confidence, and repeated error patterns make the system more useful for instructors and administrators. | [`../evaluation/adoption/traceability_reporting.md`](../evaluation/adoption/traceability_reporting.md) | skim | not started |
@@ -94,21 +94,26 @@ transfers from students to real technicians.
 **Prototype evidence:** Stakeholder-specific interpretation in the formal risk
 analysis and workflow acceptance docs.
 
-### C5: The Learning Loop Is Evidence-Based
+### C5: The Retrieval-Centered Learning Loop Is Evidence-Based
 
-**Plain-English version:** Study, retrieval, simulation, feedback, and pre/post
-assessment are supported by sterile-processing training, medical simulation,
-and learning-science research.
+**Plain-English version:** Retrieval practice should be the center of the
+learning loop. Retrieval-first cards orient learners, while prompt-before-answer
+recall, applied tray sorting, feedback, weak-item repetition, and pre/post
+assessment are the evidence-backed pieces.
 
 **Primary sources:** [Ofstead et al., 2023](../../bibliography.md#ofstead-et-al-2023),
 [Hu et al., 2024](../../bibliography.md#hu-et-al-2024),
 [Cook et al., 2011](../../bibliography.md#cook-et-al-2011),
 [McGaghie et al., 2011](../../bibliography.md#mcgaghie-et-al-2011),
 [Roediger and Karpicke, 2006](../../bibliography.md#roediger-and-karpicke-2006),
+[Karpicke and Blunt, 2011](../../bibliography.md#karpicke-and-blunt-2011),
+[Larsen et al., 2009](../../bibliography.md#larsen-et-al-2009),
+[Martinengo et al., 2024](../../bibliography.md#martinengo-et-al-2024),
+[Barrison et al., 2025](../../bibliography.md#barrison-et-al-2025),
 [Hattie and Timperley, 2007](../../bibliography.md#hattie-and-timperley-2007).
 
-**Prototype evidence:** One complete local tray module and paired pre/post
-results.
+**Prototype evidence:** One complete local tray module, weak-item review data,
+and paired pre/post results.
 
 ### C6: Simulated Time-To-Competency Is The Metric
 

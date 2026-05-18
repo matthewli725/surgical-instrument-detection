@@ -40,7 +40,7 @@ The project is evidence-ready only if all targets in this table are met.
 | Uncertainty capture | Assessment screens include a 1-5 confidence rating and an explicit `Not sure` option for each assessed item. | Exports include `item_confidence`, `item_uncertainty`, `not_sure_count`, high-confidence errors, and low-confidence correct answers. |
 | Workflow help | Median help requests per participant is <= 1; no participant needs more than 2 non-blocking help requests. | `help_requests_count` and moderator notes. |
 | Export completeness | Every completed run exports attempt-level and item-level records with all required fields. | CSV/JSON schema validation. |
-| Demo success | A facilitator can load the module, run pre-test, study, quiz, practice sort, post-test, and export metrics in one uninterrupted demo. | End-to-end demo checklist. |
+| Demo success | A facilitator can load the module, run pre-test, retrieval-first cards, quiz, practice sort, post-test, and export metrics in one uninterrupted demo. | End-to-end demo checklist. |
 
 ## First Local Tray Module
 
@@ -272,9 +272,9 @@ Required fields:
 | ID | Requirement | Acceptance Test |
 | --- | --- | --- |
 | FR-1 | Load `basic_general_tray_v1` from a data file without code changes. | Change module content in data, restart app, and see updated cards and assessment items. |
-| FR-2 | Render study cards for all required and distractor instruments. | Each card shows name, aliases, family, quantity if required, local photos, and distinguishing features. |
+| FR-2 | Render retrieval-first cards for all required and distractor instruments. | Each card prompts before reveal, then shows name, aliases, family, quantity if required, local photos, and distinguishing features. |
 | FR-3 | Run pre-test and post-test without hints or corrective feedback. | User submits both variants and sees feedback only after submission. |
-| FR-4 | Run quiz mode with immediate correctness feedback. | Quiz records correctness, time, confidence, and weak items. |
+| FR-4 | Run quiz mode with immediate correctness feedback. | Quiz records correctness, time, confidence, and weak-item recovery. |
 | FR-5 | Run practice sort with error-specific feedback. | Feedback names `missing`, `extra`, `wrong`, `misidentified`, and `wrong_count` when present. |
 | FR-6 | Export valid metrics after a full learner run. | Attempt-level and item-level files contain every required field. |
 | FR-7 | Separate teaching and assessment modes. | UI state and export mode values make mode boundaries unambiguous. |
@@ -297,7 +297,8 @@ A successful project demo means:
 1. The first local module is loaded from data.
 2. The facilitator shows at least one required instrument card, one distractor,
    and one lookalike feedback example.
-3. A learner run completes pre-test, study, quiz, practice sort, and post-test.
+3. A learner run completes pre-test, retrieval-first cards, quiz, practice sort,
+   and post-test.
 4. The post-test uses the `post_b` variant, not the exact pre-test layout.
 5. Metrics export includes accuracy, duration, confidence, help requests, and
    all five error categories.

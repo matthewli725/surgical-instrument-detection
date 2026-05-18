@@ -21,11 +21,11 @@ learner workflow to evidence from simulation-based medical education,
 retrieval practice, feedback research, organizational training, and existing
 medical training software.
 
-The training-module design doc makes the focused module decision
-explicit: one local tray curriculum with pre-test, study cards, quiz,
-practice sorting with feedback, post-test, and exportable metrics. It also
-records the tradeoffs behind that decision so implementation does not drift
-back toward a generic flashcard app or a CV-first detector demo.
+The training-module design doc makes the focused module decision explicit: one
+local tray curriculum with pre-test, retrieval-first study cards, quiz prompts,
+applied tray sorting with feedback, weak-item review, post-test, and exportable
+metrics. It also records the tradeoffs behind that decision so implementation
+does not drift back toward passive content browsing or a CV-first detector demo.
 
 The system-design doc treats the training module as the primary product and the
 existing camera/CV work as legacy or future support. CV feasibility is now
