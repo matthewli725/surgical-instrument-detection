@@ -1,20 +1,19 @@
 # TrayGuard
 
-TrayGuard is now framed as an SPD training and assessment prototype. The active
-project evidence focuses on local tray modules, simulated pre/post sorting,
-feedback, confidence, and error breakdowns. Camera capture and YOLO utilities
-remain in the repo as legacy/future support, but local CV experiments are no
-longer the central claim.
+TrayGuard is an SPD training and assessment prototype. The active project
+tests whether a local tray module can improve novice simulated tray familiarity
+through retrieval-first study, quiz prompts, simulated tray sorting, immediate
+feedback, confidence capture, and pre/post error analysis.
 
 Project background and experiment motivation live in
 [docs/context/project_background.md](docs/context/project_background.md).
 
-Workflow adoption risks and literature-backed CV feasibility boundaries live in
-[docs/project/evaluation/adoption/workflow_acceptance.md](docs/project/evaluation/adoption/workflow_acceptance.md).
+Workflow acceptance, traceability, and study design live in the project
+evaluation docs:
+[docs/project/evaluation/README.md](docs/project/evaluation/README.md).
 
-Detailed appendix for literature gaps, stakeholder implications, and retired CV
-scope lives in
-[docs/project/evaluation/adoption/formal_risk_analysis.md](docs/project/evaluation/adoption/formal_risk_analysis.md).
+Consolidated scope boundaries and risks live in
+[docs/project/scope_boundaries_and_risks.md](docs/project/scope_boundaries_and_risks.md).
 
 Planning materials and weekly updates live in
 [docs/project/planning/README.md](docs/project/planning/README.md).
@@ -56,13 +55,15 @@ training-platform pivot:
 - [claim-evidence control sheet](docs/project/planning/claim_evidence_control_sheet.md)
 
 Use these files to defend the current claim: TrayGuard tests whether a local
-training module improves novice simulated tray familiarity. Do not use local CV
-accuracy metrics as the central evidence.
+training module improves novice simulated tray familiarity. Camera and YOLO
+utilities support future authoring or visual-review extensions; the active
+evidence path is the pre/post training workflow.
 
 ## 3. Legacy/Future CV Utilities
 
-The commands below are retained for camera capture, annotation, model demos, and
-future visual-support work. They are not part of the active experiment plan.
+The commands below support camera capture, annotation, model demos, and future
+visual-support work. The active experiment plan is the training workflow in
+Section 2.
 
 ### Collect Data
 

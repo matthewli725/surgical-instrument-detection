@@ -3,27 +3,25 @@
 This artifact combines the scope pivot handoff with the selected candidate
 rationale and weighted-objectives justification. It is the canonical reference
 for why the project moved away from a CV-centered deployment claim and toward
-an extensible SPD training platform.
+an extensible SPD training platform. Current scope boundaries are consolidated
+in
+[`../../project/scope_boundaries_and_risks.md`](../../project/scope_boundaries_and_risks.md).
 
 ## Decision Summary
 
 We pivoted away from a CV-centered project because the original direction
-depended on a claim we could not responsibly prove within the project timeline:
-that a small, self-collected computer vision dataset could generalize to real
-sterile processing environments. The CV work showed that surgical instrument
-recognition is technically plausible in controlled settings, but it also exposed
-the core risk: real SPD workflows vary by hospital, manufacturer, tray layout,
-lighting, instrument condition, local naming conventions, clutter, and
-technician process.
+depended on hospital generalization from a small, self-collected computer vision
+dataset. The CV work showed that surgical instrument recognition is technically
+plausible in controlled settings, and it also exposed the core risk: real SPD
+workflows vary by hospital, manufacturer, tray layout, lighting, instrument
+condition, local naming conventions, clutter, and technician process.
 
-Because of that variability, continuing with CV as the central proof would
-require hospital-specific validation, representative datasets, and deployment
-testing that are outside the scope of this project. The selected direction is a
-training-centered platform because it is more feasible, testable, extensible,
-and defensible. Instead of claiming hospital-ready automation, the project can
-measure novice improvement through simulated tray sorting, identification
-accuracy, completion time, confidence, and error categories before and after
-practice.
+Because of that variability, CV as the central proof would require
+hospital-specific validation, representative datasets, and deployment testing.
+The selected direction is a training-centered platform because it is more
+feasible, testable, extensible, and defensible. The project can measure novice
+improvement through simulated tray sorting, identification accuracy, completion
+time, confidence, and error categories before and after practice.
 
 This gives the project a clear stakeholder value: helping new SPD technicians
 learn instruments and tray organization while giving instructors measurable
@@ -31,16 +29,15 @@ training evidence.
 
 ## What We Learned From The CV-Centered Work
 
-The CV-centered work was still valuable because it clarified that the problem is
-not just object recognition. The larger issue includes training, tray
+The CV-centered work was valuable because it clarified that the problem extends
+beyond object recognition. The larger issue includes training, tray
 familiarity, lookalike discrimination, local workflow knowledge, and error
 feedback.
 
 The earlier experiments around lighting, shape similarity, clutter, and open-set
-confidence showed why autonomous recognition cannot be the project's foundation.
-Computer vision can remain a future support layer for authoring, review, or
-assisted identification, but it should not be treated as the system's source of
-truth.
+confidence showed why autonomous recognition requires future validation.
+Computer vision can remain a support layer for authoring, review, or assisted
+identification.
 
 ## Why The Pivot Was A Must-Have Decision
 
@@ -50,19 +47,16 @@ direction preserves the useful lessons from CV while shifting the core
 contribution to something we can build, evaluate, and justify: an extensible SPD
 training tool with measurable simulated learning outcomes.
 
-
 ## Why We Are Pivoting
 
 Professor and TA feedback exposed a major scope problem: the project needs to
 create tangible stakeholder value and leave something another team can extend.
-The current CV experiments are drifting toward an unrealistic claim: that a
-small, self-collected dataset can show model generalization to real sterile
-processing or hospital conditions.
-
-That claim is not defensible. Surgical instruments vary by manufacturer,
-hospital inventory, local count sheets, local nicknames, tray composition,
-lighting, workflow, and instrument condition. Replicating existing datasets or
-collecting a small custom dataset does not prove deployment readiness.
+The current CV experiments were drifting toward a claim about generalization
+from a small, self-collected dataset to real sterile-processing or hospital
+conditions. Surgical instruments vary by manufacturer, hospital inventory,
+local count sheets, local nicknames, tray composition, lighting, workflow, and
+instrument condition. That variation makes deployment validation a separate
+future study.
 
 ## Path Viability Check
 
@@ -94,7 +88,7 @@ New idea: training platform for assembling instruments.
 - Risk: Could feel generic if it becomes only static educational content.
 - Risk: Needs measurable outcomes so the value is not just "people used the
   platform."
-- Risk: Cannot claim workplace transfer without SPD validation.
+- Risk: Workplace transfer requires SPD validation.
 - Viability: More realistic and presentation-ready for the current project.
 - Viability: Strongest if evaluated with pre/post simulated tray sorting
   accuracy, time, confidence, and error categories.
@@ -102,14 +96,13 @@ New idea: training platform for assembling instruments.
 Decision:
 
 - Use the training platform as the core direction.
-- Treat improved assembly accuracy as the purpose and evaluation target, not as
-  a hospital-ready deployment claim.
-- Preserve CV/few-shot work as optional support or future extension, not the
-  central proof.
+- Treat improved simulated assembly accuracy as the purpose and evaluation
+  target.
+- Preserve CV/few-shot work as optional support or future extension.
 
-## Old Scope To De-Emphasize
+## Scope Boundaries To Centralize
 
-Do not center the project on these claims:
+The following claims require the consolidated boundary page:
 
 - Our model can generalize to real hospital scenes.
 - Our dataset is sufficient to show real-world SPD deployment readiness.
@@ -119,7 +112,7 @@ Do not center the project on these claims:
 - The prototype improves real technician accuracy in live sterile processing.
 
 These claims require hospital-specific validation, real instrument inventories,
-clinical workflow testing, and much larger data coverage than we can support.
+clinical workflow testing, and much larger data coverage.
 
 ## New Core Scope
 
@@ -129,8 +122,7 @@ The strongest revised scope is:
 > surgical instruments and tray organization through interactive practice, with
 > measurable improvement in simulated identification and sorting tasks.
 
-The product should be framed as a teaching and assessment tool, not a deployed
-automation system.
+The product should be framed as a teaching and assessment tool.
 
 ## Stakeholder Value
 
@@ -156,7 +148,7 @@ Value proposition:
 
 ## Defensible Metric
 
-Use simulated training metrics, not hospital deployment metrics.
+Use simulated training metrics.
 
 Recommended primary metric:
 
@@ -172,8 +164,8 @@ Track:
 - Learner confidence or perceived familiarity.
 
 The wording matters. The prototype can claim improvement in simulated tray
-familiarity after practice; it cannot claim shorter hospital onboarding time
-without a longitudinal SPD study.
+familiarity after practice. Longitudinal onboarding time belongs in a future SPD
+study.
 
 Possible study design:
 
@@ -182,12 +174,12 @@ Possible study design:
 3. Give a comparable post-test.
 4. Compare accuracy, completion time, error type, and confidence.
 
-## Why Not The SPD Efficiency Direction
+## SPD Efficiency Direction
 
 The "increase SPD technician efficiency and reduce lost OR minutes" direction
-is valuable but too hard to prove directly. Accuracy is safety-critical, and we
-cannot responsibly claim improvement in real tray verification accuracy without
-field validation.
+is valuable and requires field validation. Accuracy is safety-critical, and real
+tray-verification outcomes require representative SPD tasks, local count
+sheets, and operational follow-up.
 
 The better framing is upstream:
 
@@ -198,9 +190,9 @@ This avoids overclaiming while still connecting the work to real SPD pain.
 
 ## Existing Tools And Differentiation
 
-LayerJot/SID and similar tools weaken any claim that our value is simply
-"identify an instrument from a phone photo." LayerJot already appears to be a
-mature recognition/reference pipeline.
+LayerJot/SID and similar tools show why TrayGuard's value should be a measured
+training loop rather than phone-photo identification alone. LayerJot already
+appears to be a mature recognition/reference pipeline.
 
 Our differentiation should be:
 
@@ -210,8 +202,7 @@ Our differentiation should be:
 
 The clean distinction:
 
-> We are not competing with mature instrument recognition tools. We are
-> building the educational layer that helps novices practice and lets
+> TrayGuard builds the educational layer that helps novices practice and lets
 > instructors measure whether familiarity improves.
 
 ## Manufacturer And Hospital Variation
@@ -233,7 +224,6 @@ procedure, surgeon preference, and device manufacturer
 
 Design response:
 
-- Do not promise universal recognition.
 - Treat variation as local customization.
 - Let each hospital or instructor add the instruments trainees actually need.
 - Use local count sheets, local tray lists, local photos, local aliases, and
@@ -255,10 +245,9 @@ Low-overhead customization should mean:
 - Instructor verification.
 - Reusable tray modules.
 
-It should not mean:
-
-- The model automatically learns all instruments from one or two images with
-  clinical reliability.
+Clinical-reliability boundaries for automatic learning from one or two images
+belong in
+[`../../project/scope_boundaries_and_risks.md`](../../project/scope_boundaries_and_risks.md#computer-vision-boundary).
 
 ## Few-Shot Learning Position
 
@@ -267,7 +256,7 @@ Few-shot learning can support the project, but only as an assistive layer.
 Defensible claim:
 
 > Few-shot visual matching may reduce authoring overhead in constrained
-> instrument sets, but it does not eliminate local validation.
+> instrument sets when paired with local validation.
 
 Why caution is needed:
 
@@ -286,7 +275,7 @@ Recommended architecture:
 2. Local instrument and tray data layer.
 3. Optional embedding/prototype matching to suggest likely labels.
 4. Human-in-the-loop instructor verification before learners see content.
-5. Evaluation focused on learner improvement, not autonomous recognition.
+5. Evaluation focused on learner improvement.
 
 ## Evidence To Use
 
@@ -436,9 +425,9 @@ Key tradeoffs:
   yields accuracy/time/error evidence.
 - File-backed authoring beats polished authoring UI because it proves
   extensibility sooner.
-- Manual simulated sorting beats CV-dependent sorting because the training
-  claim should stand without model reliability.
-- Feedback belongs in practice, not assessment, so pre/post metrics remain
+- Manual simulated sorting supports a training claim based on learner evidence.
+- Feedback belongs in practice and pre/post assessment suppresses hints, so
+  metrics remain
   interpretable.
 - Student pilots can support novice learnability, but SPD validation is needed
   before claiming workplace transfer.
@@ -453,27 +442,12 @@ Key tradeoffs:
 
 ## Suggested Scope Boundary
 
-In scope:
-
-- Training and assessment.
-- Local tray/instrument authoring.
-- Simulated sorting tasks.
-- Instrument identification practice.
-- Progress and error metrics.
-- Evidence-backed motivation from SPD tray errors and training burden.
-- Optional few-shot visual matching as a non-authoritative helper.
-
-Out of scope:
-
-- Real hospital deployment readiness.
-- Autonomous tray approval.
-- Universal manufacturer-agnostic recognition.
-- Claims of reducing actual OR minutes lost.
-- Claims of improving live technician accuracy without field validation.
+Use
+[`../../project/scope_boundaries_and_risks.md`](../../project/scope_boundaries_and_risks.md)
+as the current scope boundary page for certification, deployment, CV,
+clinical-transfer, reporting, and physical-prototype constraints.
 
 ## Key Message For The Team
 
-The project is stronger if we stop trying to prove a hospital-ready CV model
-and instead deliver a usable, extensible training system. The CV work can still
-matter, but it should support authoring or future extension, not carry the
-central value claim.
+The project is stronger when it delivers a usable, extensible training system.
+The CV work can still matter as authoring support or future extension.

@@ -9,6 +9,7 @@ weekly progress snapshots.
 - `future_work/unit_task_list.md`: task list grouped by milestone
 - `future_work/gitlab_issue_table.md`: tabular issue view
 - `claim_evidence_control_sheet.md`: claim ownership and citation triage
+- `training_feature_prioritization.md`: ranked training feature analysis
 - `TODO.md`: consolidated action list
 - `weekly_updates/`: weekly progress logs
 

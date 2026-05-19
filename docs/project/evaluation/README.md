@@ -1,11 +1,10 @@
 # Experiments
 
-This directory now contains the evaluation plan for the training-platform
-pivot. Local computer-vision accuracy experiments are no longer part of the
-active evidence plan. The repository may keep code for camera capture,
-annotation, YOLO export, and live detection as legacy implementation support,
-but the report should not ask reviewers to accept TrayGuard because of our own
-CV metrics.
+This directory contains the evaluation plan for the training-platform
+prototype. The active evidence plan measures whether a local tray module
+improves novice simulated tray familiarity. Camera capture, annotation, YOLO
+export, and live detection code remain available as support infrastructure for
+future authoring or visual-review work.
 
 ## Current Prototype Flow
 
@@ -33,22 +32,25 @@ The evidence question is:
 | Traceability and reporting | [`adoption/traceability_reporting.md`](adoption/traceability_reporting.md) | Can the prototype produce useful learner and instructor evidence about repeated errors? |
 | Literature-backed risk analysis | [`adoption/formal_risk_analysis.md`](adoption/formal_risk_analysis.md) | What do existing papers already show, what gaps do they leave, and what does that mean for our system and stakeholders? |
 
-## Evidence Boundary
+## Evidence Boundary Routing
 
-The project no longer needs to prove that a locally trained CV model reaches
-deployment-grade accuracy. Existing research already supports the weaker and
-more useful assumption: modern CV can be a plausible support layer in bounded
-surgical-instrument settings, but robustness must be validated locally before
-clinical use.
+The evaluation plan separates the active training claim from future clinical,
+CV, and deployment validation work. Existing research supports CV as a
+plausible support layer in bounded surgical-instrument settings; the current
+prototype uses manual simulated sorting so learning evidence can be collected
+without making detector performance a proof obligation.
 
-| Evidence Area | Existing Literature Supports | Gap We Should Not Pretend To Fill |
+| Evidence Area | Existing Literature Supports | TrayGuard Response |
 | --- | --- | --- |
-| Data-efficient detection is plausible | Few-shot object detection exists specifically because large annotated datasets are often impractical; fine-tuning pretrained detectors can work well in low-shot settings ([Xin et al., 2024](../../bibliography.md#xin-et-al-2024), [Wang et al., 2020 FSOD](../../bibliography.md#wang-et-al-2020-fsod)). | These papers do not prove our instrument set, camera setup, or hospital environment will generalize from a tiny dataset. |
-| Surgical-instrument detection is feasible | Deol et al. report strong detection/counting results for multi-tool surgical scenes; Atabuzzaman et al. report high-performing CSSD-oriented multi-view instrument classification ([Deol et al., 2024](../../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../../bibliography.md#atabuzzaman-et-al-2025)). | These are not the same as our full training workflow, our local tray modules, or broad manufacturer-agnostic SPD deployment. |
-| Generalization remains the hard part | Kienle et al. show high in-domain mAP50 but a large cross-manufacturer drop when testing on a second dataset ([Kienle et al., 2025](../../bibliography.md#kienle-et-al-2025)). | We should not claim robust real-hospital CV performance without a site-specific validation study. |
-| SPD assembly is a sociotechnical problem | Alfred et al. connect tray defects to training, nomenclature, production pressure, inventory, tools, and workflow; Nichol et al. connect errors to visualization tasks and OR delays ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021), [Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)). | A detector metric alone cannot show that trainees learn, administrators see value, or workflows improve. |
-| Training and simulation are defensible | Sterile-processing and healthcare-education studies support structured training, simulation, practice, feedback, and pre/post assessment ([Ofstead et al., 2023](../../bibliography.md#ofstead-et-al-2023), [Hu et al., 2024](../../bibliography.md#hu-et-al-2024), [Cook et al., 2011](../../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../../bibliography.md#mcgaghie-et-al-2011)). | A short class study still cannot prove real SPD competency, certification readiness, or reduced hospital onboarding time. |
-| Retrieval-centered digital practice is defensible | Retrieval-practice and health-professions digital-education studies support prompt-before-answer practice, spacing, and weak-item repetition, while electronic-flashcard research shows that app-style recall tools are already common in health-professions learning ([Roediger and Karpicke, 2006](../../bibliography.md#roediger-and-karpicke-2006), [Larsen et al., 2009](../../bibliography.md#larsen-et-al-2009), [Martinengo et al., 2024](../../bibliography.md#martinengo-et-al-2024), [Barrison et al., 2025](../../bibliography.md#barrison-et-al-2025)). | Do not claim that Quizlet-like cards alone teach tray competence. Use retrieval practice as the center, then test transfer with simulated tray sorting. |
+| Data-efficient detection is plausible | Few-shot object detection exists specifically because large annotated datasets are often impractical; fine-tuning pretrained detectors can work well in low-shot settings ([Xin et al., 2024](../../bibliography.md#xin-et-al-2024), [Wang et al., 2020 FSOD](../../bibliography.md#wang-et-al-2020-fsod)). | Treat local CV as future support-layer validation. |
+| Surgical-instrument detection is feasible | Deol et al. report strong detection/counting results for multi-tool surgical scenes; Atabuzzaman et al. report high-performing CSSD-oriented multi-view instrument classification ([Deol et al., 2024](../../bibliography.md#deol-et-al-2024), [Atabuzzaman et al., 2025](../../bibliography.md#atabuzzaman-et-al-2025)). | Use CV literature for feasibility and focus this evaluation on the learning workflow. |
+| Generalization remains the hard part | Kienle et al. show high in-domain mAP50 but a large cross-manufacturer drop when testing on a second dataset ([Kienle et al., 2025](../../bibliography.md#kienle-et-al-2025)). | Keep local photos and instructor verification as the source of truth. |
+| SPD assembly is a sociotechnical problem | Alfred et al. connect tray defects to training, nomenclature, production pressure, inventory, tools, and workflow; Nichol et al. connect errors to visualization tasks and OR delays ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021), [Nichol et al., 2024](../../bibliography.md#nichol-et-al-2024)). | Measure trainee learning, workflow friction, and instructor-facing evidence. |
+| Training and simulation are defensible | Sterile-processing and healthcare-education studies support structured training, simulation, practice, feedback, and pre/post assessment ([Ofstead et al., 2023](../../bibliography.md#ofstead-et-al-2023), [Hu et al., 2024](../../bibliography.md#hu-et-al-2024), [Cook et al., 2011](../../bibliography.md#cook-et-al-2011), [McGaghie et al., 2011](../../bibliography.md#mcgaghie-et-al-2011)). | Run a paired novice learning study and report the clinical-transfer boundary separately. |
+| Retrieval-centered digital practice is defensible | Retrieval-practice and health-professions digital-education studies support prompt-before-answer practice, spacing, and weak-item repetition, while electronic-flashcard research shows that app-style recall tools are already common in health-professions learning ([Roediger and Karpicke, 2006](../../bibliography.md#roediger-and-karpicke-2006), [Larsen et al., 2009](../../bibliography.md#larsen-et-al-2009), [Martinengo et al., 2024](../../bibliography.md#martinengo-et-al-2024), [Barrison et al., 2025](../../bibliography.md#barrison-et-al-2025)). | Use retrieval practice as the center and test applied transfer with simulated tray sorting. |
+
+Detailed boundaries live in
+[Scope Boundaries And Risks](../scope_boundaries_and_risks.md).
 
 ## Shared Reporting Checklist
 
@@ -64,11 +66,7 @@ For the current prototype, report:
 - what the result means for SPD trainees, hospital administrators, and student
   evaluators.
 
-Do not report our local precision, recall, mAP50, mAP50-95, lighting-stage, or
-shape-similarity experiments as central evidence. Those can be mentioned only
-as retired exploratory work or future authoring-support infrastructure.
-
-The final claim should remain bounded: TrayGuard is testing whether a local
-training module improves simulated tray familiarity, not claiming live SPD
-competency, certification readiness, CV robustness, or hospital deployment
-readiness.
+Report local precision, recall, mAP50, mAP50-95, lighting-stage, or
+shape-similarity experiments as exploratory support-layer work when relevant.
+The final claim should remain: TrayGuard tests whether a local training module
+improves simulated tray familiarity.

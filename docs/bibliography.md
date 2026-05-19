@@ -45,6 +45,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Altamont Healthcare, ["SPD: Sterile Processing and Distribution Technician"](https://altamonthealthcare.com/programs/sterile-processing-technician/), accessed 2026.
 
+<a id="altamont-externship-accessed-2026"></a>
+### Altamont Externship, accessed 2026
+
+- Altamont Healthcare, ["Externship Program"](https://altamonthealthcare.com/programs/externship-programs/), accessed 2026.
+
 <a id="amershi-et-al-2019"></a>
 ### Amershi et al., 2019
 
@@ -59,6 +64,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Arthur et al., 2003
 
 - Arthur et al., ["Effectiveness of training in organizations: a meta-analysis of design and evaluation features"](https://pubmed.ncbi.nlm.nih.gov/12731707/), *Journal of Applied Psychology*, 2003.
+
+<a id="aims-education-sterile-processing-accessed-2026"></a>
+### AIMS Education, accessed 2026
+
+- AIMS Education, ["Sterile Processing Technician Training"](https://aimseducation.edu/sterile-processing-technician), accessed 2026.
 
 <a id="atabuzzaman-et-al-2025"></a>
 ### Atabuzzaman et al., 2025
@@ -150,6 +160,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - CDC, ["Disinfection of Healthcare Equipment"](https://www.cdc.gov/infection-control/hcp/disinfection-sterilization/healthcare-equipment.html), *Guideline for Disinfection and Sterilization in Healthcare Facilities*, accessed 2026.
 
+<a id="central-sterilization-solutions-in-person-accessed-2026"></a>
+### Central Sterilization Solutions, accessed 2026
+
+- Central Sterilization Solutions, ["In-Person Sterile Processing Class"](https://centralsterilizationschool.com/in-person-crcst-class/), accessed 2026.
+
 <a id="cdc-niosh-2024"></a>
 ### CDC/NIOSH, 2024
 
@@ -209,6 +224,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Fayad et al., 2025
 
 - Fayad et al., ["Traceability of Surgical Instruments: A Systematic Review"](https://doi.org/10.3390/app15031592), *Applied Sciences*, 2025.
+
+<a id="fast-et-al-2019"></a>
+### Fast et al., 2019
+
+- Fast et al., ["The impact of a short-term training program on workers' sterile processing knowledge and practices in 12 Ethiopian hospitals: A mixed methods study"](https://doi.org/10.1371/journal.pone.0215643), *PLOS ONE*, 2019.
 
 <a id="fda"></a>
 ### FDA
@@ -460,6 +480,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - McGaghie et al., ["Does Simulation-Based Medical Education With Deliberate Practice Yield Better Results Than Traditional Clinical Education? A Meta-Analytic Comparative Review of the Evidence"](https://academic.oup.com/academicmedicine/article-abstract/86/6/706/8352665), *Academic Medicine*, 2011.
 
+<a id="mcbride-et-al-2020"></a>
+### McBride et al., 2020
+
+- McBride et al., ["Allied health pre-entry student clinical placement capacity: can it be sustained?"](https://doi.org/10.1071/AH18088), *Australian Health Review*, 2020.
+
 <a id="mcginn-et-al-2011"></a>
 ### McGinn et al., 2011
 
@@ -479,6 +504,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Medline, 2025
 
 - Medline, ["Surgical tray standardization: What's in your custom sets?"](https://www.medline.com/strategies/perioperative/custom-surgical-tray-standardization-tips/), 2025.
+
+<a id="medcerts-catalog-2025"></a>
+### MedCerts Catalog, 2025
+
+- MedCerts, ["Academic Catalog 2025"](https://medcerts.com/wp-content/uploads/2025/03/MedCerts-Academic-Catalog-2025-01.pdf), 2025.
 
 <a id="malterud-et-al-2016"></a>
 ### Malterud et al., 2016
@@ -519,6 +549,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Nielsen Norman Group, accessed 2026
 
 - Nielsen Norman Group, ["Jakob's Ten Usability Heuristics"](https://media.nngroup.com/media/articles/attachments/Heuristic_Summary_compressed.pdf), accessed 2026.
+
+<a id="north-greater-sacramento-coe-2025"></a>
+### North Greater Sacramento COE, 2025
+
+- North (Greater Sacramento) Center of Excellence for Labor Market Research, ["Pathways Forward: Collaborative Solutions to Allied Health Clinical Placement Challenges"](https://coeccc.net/wp-content/uploads/2025/04/Pathways-Forward_Report_24-25-1.pdf), 2025.
 
 <a id="nichol-and-saari-2023"></a>
 ### Nichol and Saari, 2023
@@ -584,6 +619,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Pelzer et al., 2024
 
 - Pelzer et al., ["Evaluation of microbial occurrence in reusable robotic instruments for minimally invasive surgery: A pilot study"](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0300355), *PLOS One*, 2024.
+
+<a id="penn-foster-sterile-processing-accessed-2026"></a>
+### Penn Foster, accessed 2026
+
+- Penn Foster, ["Sterile Processing Technician Career Diploma"](https://www.pennfoster.edu/programs/healthcare/sterile-processing-career-diploma), accessed 2026.
 
 <a id="phanudulkitti-et-al-2023"></a>
 ### Phanudulkitti et al., 2023
@@ -684,6 +724,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Southwest Solutions SPD Workstations, accessed 2026
 
 - Southwest Solutions Group, ["Sterile Processing Workstations"](https://www.southwestsolutions.com/divisions/healthcare/infection-control-patient-safety/sterile-processing-workstations/), accessed 2026.
+
+<a id="shreckengost-et-al-2022"></a>
+### Shreckengost et al., 2022
+
+- Shreckengost et al., ["Clean and Confident: Impact of Sterile Instrument Processing Workshops on Knowledge and Confidence in Five Low- and Middle-Income Countries"](https://doi.org/10.1089/sur.2021.187), *Surgical Infections*, 2022.
 
 <a id="steris-loaner-trays-2021"></a>
 ### STERIS, 2021

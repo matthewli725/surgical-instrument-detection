@@ -2,21 +2,25 @@
 
 TrayGuard's updated direction is an education-centered SPD training system
 focused on making local instrument and tray education more accessible,
-updated, repeatable, and measurable. The project should not return to computer
-vision as the central proof because existing surgical-instrument CV literature
+updated, repeatable, and measurable. 
+
+Existing surgical-instrument CV literature
 already makes bounded recognition plausible; the remaining CV gap is workflow
 impact, which would require realistic SPD tray images, local count sheets,
 representative instruments, technician behavior, time pressure, false-alarm
-handling, and overtrust validation that we do not have. The active product
-concept is therefore a software-based simulated tray-verification trainer:
-learners use local tray modules, retrieval-first cards, quizzes, simulated
-tray sorting/checking, error-specific feedback, weak-item review, pre/post
-assessment, and instructor metrics. Optional printable instrument cards with QR
-codes or AprilTags can serve as a low-cost physical-digital practice kit, but
-the learning claim remains software-based simulated practice. Each design
-decision now points back to one stakeholder value: helping SPD learners access
-repeatable local practice before supervised hands-on work while giving
-educators clearer evidence of learner gaps.
+handling, and overtrust validation. 
+
+The active product concept is therefore a
+software-based simulated tray-verification trainer: learners use local tray
+modules, retrieval-first cards, quizzes, simulated tray sorting/checking,
+error-specific feedback, weak-item review, pre/post assessment, and instructor
+metrics. Optional printable instrument cards with QR codes or AprilTags can
+serve as a low-cost physical-digital practice kit, while the learning claim
+remains software-based simulated practice. Each design decision points back to
+one stakeholder value: helping SPD learners access repeatable local practice
+before supervised hands-on work while giving educators clearer evidence of
+learner gaps. Scope boundaries live in
+[`../scope_boundaries_and_risks.md`](../scope_boundaries_and_risks.md).
 
 ## Bibliography
 

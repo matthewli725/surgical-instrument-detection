@@ -16,7 +16,8 @@
 - Run a small pilot walkthrough and record pre/post accuracy, time, confidence,
   and error categories.
 - Update presentation/report language so the main claim is simulated
-  time-to-competency, not hospital deployment readiness.
+  time-to-competency, with deployment boundaries linked to
+  `docs/project/scope_boundaries_and_risks.md`.
 - Add the literature-gap and stakeholder-implication framing to the final
   presentation.
 - Review accessible surgical instrument catalogs as candidate sources for
@@ -28,11 +29,15 @@
   [SurgicalInstruments.com Major Instrument Set](https://www.surgicalinstruments.com/major-instrument-set/).
   Use them as authoring references only, then verify final module names against
   local tray count sheets and teaching photos.
-- Treat camera/CV work as retired exploratory scope unless a future team
-  reopens it for authoring support.
+- Treat camera/CV work as future authoring or visual-review support unless a
+  future team validates it as an active evaluation layer.
 
 ## Completed Decisions
 
+- Training feature priorities are ranked in
+  `docs/project/planning/training_feature_prioritization.md`: tray
+  reconstruction, error spotting, lookalike challenges, weak-item replay,
+  metrics export, and file-backed local modules are the recommended MVP focus.
 - First local tray training module is defined in
   `docs/project/system_requirements.md`: 10 required instrument types,
   15 required units, 5 distractors, photo manifest, lookalike pairs, and

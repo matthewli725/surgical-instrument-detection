@@ -9,18 +9,20 @@ analysis problem frame:
 > Surgical instrument sets are not reliably complete, correct, functional,
 > sterile, and available at the point of use.
 
-TrayGuard cannot prove live SPD readiness in the current project. It can prove a narrower
-learning claim: novices can practice one local tray module and show measurable
-improvement on a comparable simulated tray-sorting post-test.
+TrayGuard's current measurable learning claim is that novices can practice one
+local tray module and show measurable improvement on a comparable simulated
+tray-sorting post-test. Clinical-transfer and certification boundaries are
+tracked separately in
+[Scope Boundaries And Risks](scope_boundaries_and_risks.md).
 
 ## Evidence-To-Metric Basis
 
 | Evidence | Requirement Implication |
 | --- | --- |
-| HSPA requires 400 hands-on CRCST hours, including 120 hours in preparing and packaging instruments ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026)). | The training project must be framed as practice evidence, not certification or workplace sign-off. |
-| Alfred et al. found 3900 tray defects across 41,799 cases; 55.0% occurred during assembly, with missing, wrong, damaged, extra, and incorrectly assembled instruments represented ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | The project must score tray assembly categories, not only quiz correctness. |
+| HSPA requires 400 hands-on CRCST hours, including 120 hours in preparing and packaging instruments ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026)). | The training project should export practice evidence that instructors can review before or during supervised competency development. |
+| Alfred et al. found 3900 tray defects across 41,799 cases; 55.0% occurred during assembly, with missing, wrong, damaged, extra, and incorrectly assembled instruments represented ([Alfred et al., 2021](../bibliography.md#alfred-et-al-2021)). | The project must score tray assembly categories in addition to quiz correctness. |
 | Nichol et al. observed 236 surgical instrument errors; Missing+ accounted for 160 errors, including 144 missing, 9 wrong, and 7 extra instruments, and the average delay when a delay occurred was 10.16 minutes ([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). | Missing, wrong, and extra items must be visible as separate exported metrics. |
-| Surgical tray management asks which instruments belong in trays, in what quantities, which trays map to procedures, and how many trays to hold ([dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021)). | The module must include quantities and versioned local tray rules, not only instrument names. |
+| Surgical tray management asks which instruments belong in trays, in what quantities, which trays map to procedures, and how many trays to hold ([dos Santos et al., 2021](../bibliography.md#dos-santos-et-al-2021)). | The module must include quantities, versioned local tray rules, and instrument names. |
 | Ofstead et al. pilot-tested sterile-processing training for endoscope visual inspection using pre/post tests, lectures, demonstrations, hands-on practice, workplace homework, confidence/satisfaction surveys, and a 2-month booster; nine certified SP employees improved from 41% to 84% after the workshop and retained high scores after the booster ([Ofstead et al., 2023](../bibliography.md#ofstead-et-al-2023)). | The project should treat Ofstead as the primary training-process analog: baseline assessment, guided practice, separated post-test, confidence/uncertainty capture, and an optional retention check. |
 | Qualitative health research should justify sample size by information power and saturation, not by fixed statistical rules; empirical saturation studies commonly converged around 9-17 interviews for homogeneous, narrowly scoped studies ([Malterud et al., 2016](../bibliography.md#malterud-et-al-2016), [Hennink and Kaiser, 2022](../bibliography.md#hennink-and-kaiser-2022)). | A class pilot can use 8 novices as a formative floor, while stronger qualitative theme claims should target 12-17 complete participants. |
 
@@ -45,10 +47,9 @@ The project is evidence-ready only if all targets in this table are met.
 ## First Local Tray Module
 
 The first module is `basic_general_tray_v1`. It is a local, instructor-verified
-training tray inspired by a basic general/minor procedure instrument set. It is
-not a universal hospital count sheet. Before pilot use, an instructor must
-verify the exact instruments, quantities, names, aliases, and photos against the
-physical teaching set.
+training tray inspired by a basic general/minor procedure instrument set. Before
+pilot use, an instructor must verify the exact instruments, quantities, names,
+aliases, and photos against the physical teaching set.
 
 Module acceptance requirements:
 
@@ -65,9 +66,8 @@ Physical demo set note: the team purchased a basic dissection/specimen-
 preparation kit as an early photo-capture and authoring source. Its provisional
 instrument mapping is documented in
 [`instrument_taxonomy.md`](reference/instrument_taxonomy.md#purchased-demo-kit-basic-dissection--specimen-preparation-set).
-Treat that kit as teaching/demo material only; the physical items still need
-photo capture and instructor verification before they replace or modify the
-scored `basic_general_tray_v1` content below.
+Use that kit as teaching and demo material after photo capture and instructor
+verification align it with the scored `basic_general_tray_v1` content below.
 
 ### Required Instruments
 
@@ -94,11 +94,10 @@ scored `basic_general_tray_v1` content below.
 | `olsen_hegar_needle_holder_55` | Olsen-Hegar needle holder, 5.5 in | Suturing/cutting | Olsen-Hegar, needle holder with scissors | <a href="https://prodentusa.com/shop/instruments/surgical/needle-holders/olsen-hegar-needle-holder/"><img src="https://prodentusa.com/wp-content/uploads/2024/11/olsen-hegar-needle-holder-5.5-GS14-21100-300x300.jpg" alt="Olsen-Hegar needle holder" width="90"><br>Source: ProDentUSA</a> | May be confused with Mayo-Hegar needle holder. |
 | `babcock_tissue_forceps_6` | Babcock tissue forceps, 6 in | Grasping/holding | Babcock clamp, Babcock forceps | <a href="https://surgicalmart.com/shop/surgical-instruments/hemostatic-forceps/babcock-intestinal-forceps-6-25-with-9mm-jaws-sm4657/"><img src="https://surgicalmart.com/wp-content/uploads/2024/01/babcock-intestinal-forceps-6-25inch-surgicalmart.jpg" alt="Babcock tissue forceps" width="90"><br>Source: Surgical Mart</a> | May be confused with Allis tissue forceps. |
 
-Photo rule: the linked real photos are visual and procurement references only.
-Accepted training assets must still be local photos of the actual demo
-instruments or 3D-printed proxies used in the pilot. Web or vendor photos may
-be shown in planning docs, but should not be treated as the assessed image set
-unless licensing and attribution are explicitly cleared.
+Photo rule: the linked real photos are visual and procurement references.
+Accepted training assets must be local photos of the actual demo instruments or
+3D-printed proxies used in the pilot, with licensing and attribution cleared
+for any web or vendor image used in an assessed set.
 
 ### Lookalike Pairs
 
@@ -114,7 +113,7 @@ unless licensing and attribution are explicitly cleared.
 ## Pre/Post Assessment Variants
 
 Both variants use the same required tray rules and quantities. They differ in
-presentation so the post-test is not a layout replay.
+presentation so the post-test measures transfer across a comparable layout.
 
 | Variant | Use | Required Items | Distractors | Photo View | Randomization |
 | --- | --- | --- | --- | --- | --- |
@@ -128,7 +127,7 @@ Assessment rules:
 - confidence captured once per item or once per submitted tray;
 - item order randomized but deterministic by variant seed;
 - the learner may inspect the count sheet during assessment because the real
-  training target is count-sheet-guided sorting, not memorization alone.
+  training target is count-sheet-guided sorting.
 
 ## Scoring Rubric
 
@@ -288,7 +287,7 @@ Required fields:
 | NFR-3 | Export reliability | 100% of completed runs produce a valid export file. |
 | NFR-4 | Data privacy | Exports use `learner_id_hash`; no names, emails, MRNs, or patient data. |
 | NFR-5 | Content traceability | Every instrument has a module version, photo path, source note, and instructor verification status. |
-| NFR-6 | Claim boundary | The UI and report language never label a learner as certified, workplace-ready, or clinically approved. |
+| NFR-6 | Capability labels | The UI and report language label outcomes as practice progress, simulated assessment results, or instructor-review evidence. |
 
 ## Successful Demo Definition
 
@@ -303,18 +302,6 @@ A successful project demo means:
 5. Metrics export includes accuracy, duration, confidence, help requests, and
    all five error categories.
 6. The summary compares pre/post outcomes and names the weakest instruments.
-7. The presenter explicitly states that results are simulated training evidence,
-   not certification or live SPD productivity proof.
-
-## Out Of Scope
-
-The project does not need to:
-
-- certify SPD competency;
-- prove reduced real hospital onboarding time;
-- prove fewer OR delays or tray defects;
-- use computer vision for assessment;
-- recognize every manufacturer variant;
-- integrate with hospital instrument tracking systems;
-- handle sterile technique, damaged instruments, bioburden inspection, or
-  packaging/sterilization readiness beyond explanatory training notes.
+7. The presenter links the result to simulated training evidence and cites
+   [Scope Boundaries And Risks](scope_boundaries_and_risks.md) for clinical,
+   certification, CV, and deployment boundaries.

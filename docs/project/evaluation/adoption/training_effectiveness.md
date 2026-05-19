@@ -12,8 +12,9 @@ The study asks:
 > does a novice complete a comparable tray-sorting assessment more accurately,
 > faster, with fewer error types, and with better-calibrated confidence?
 
-This is not a hospital deployment study. It is a controlled learning study that
-supports or weakens the product's training claim.
+This is a controlled learning study that supports or weakens the product's
+training claim. Clinical-transfer and certification boundaries are maintained
+in [Scope Boundaries And Risks](../../scope_boundaries_and_risks.md).
 
 ## Closest Precedent
 
@@ -33,12 +34,10 @@ between hands-on-style practice sessions.
 
 ## Why The Intervention Should Help
 
-The intervention is not evaluated as flashcards alone. Retrieval practice is
-the center of the design because the product is trying to change what learners
-can bring to mind and apply later: local instrument names, distinguishing
-features, lookalikes, counts, and tray rules. Retrieval-first cards are useful
-because they behave like prompt-before-reveal practice rather than passive pages
-to skim.
+Retrieval practice is the center of the design because the product is trying to
+change what learners can bring to mind and apply later: local instrument names,
+distinguishing features, lookalikes, counts, and tray rules. Retrieval-first
+cards are useful because they behave like prompt-before-reveal practice.
 
 The quiz mode gives learners repeated recall attempts and creates weak-item
 data. The practice tray sort then turns the same mechanism into applied
@@ -68,8 +67,8 @@ weak items after practice.
 ## Study Design
 
 Use one seeded tray module with 8-12 required instruments and a small distractor
-pool. Use parallel pre/post tasks so the post-test is not an exact replay of the
-pre-test.
+pool. Use parallel pre/post tasks so the post-test measures transfer across a
+comparable tray scenario.
 
 1. Consent and demographic context: ask about prior SPD, medical, lab, or tool
    identification experience.
@@ -103,8 +102,8 @@ short booster session using the same weak-item summary, modeled on Ofstead's
 | Not-sure responses | Learner marks an item as uncertain during assessment. | Mirrors Ofstead's uncertainty capture and reduces hidden guessing. |
 | High-confidence errors | Incorrect selections with high confidence. | Useful for instructor review because these errors are risky. |
 | Low-confidence correct answers | Correct selections with low confidence. | Shows fragile knowledge that may need repetition. |
-| Feedback comprehension | Learner can explain at least one error and next step. | Tests whether feedback is actionable, not just visible. |
-| Weak-item recovery | Previously missed or uncertain items later answered or sorted correctly. | Tests whether retrieval practice is doing useful work, not merely recording mistakes. |
+| Feedback comprehension | Learner can explain at least one error and next step. | Tests whether feedback is actionable. |
+| Weak-item recovery | Previously missed or uncertain items later answered or sorted correctly. | Tests whether retrieval practice supports later correction. |
 
 ## Analysis
 
@@ -119,7 +118,7 @@ Report each participant as a paired pre/post comparison:
 - recovery on weak items first missed during retrieval practice.
 
 For a small class demo, use descriptive statistics and participant-level plots
-instead of overclaiming statistical significance. If there are enough
+instead of making inferential claims from an underpowered sample. If there are enough
 participants, report paired differences with confidence intervals.
 
 ## Acceptance Bar
@@ -143,9 +142,9 @@ fluent. That should guide the next module design.
 | Risk | Mitigation |
 | --- | --- |
 | Practice effect from seeing the same tray twice | Use parallel pre/post trays with the same difficulty and instrument families. |
-| Student participants are not SPD technicians | Report novice learning only; run SPD technician validation later. |
-| Short-term gain may not persist | Add an Ofstead-style delayed retention check or booster if schedule allows. |
-| Learners may memorize screen layout instead of instruments | Randomize item order and use parallel task variants. |
+| Student participants differ from SPD technicians | Report novice learning and route technician validation to future work. |
+| Short-term gain may fade | Add an Ofstead-style delayed retention check or booster if schedule allows. |
+| Learners may memorize screen layout | Randomize item order and use parallel task variants. |
 | Feedback could leak assessment answers | Suppress hints and feedback in pre/post modes. |
 | Time reduction could hide unsafe guessing | Require accuracy and severe-error reduction alongside speed. |
 
@@ -166,8 +165,7 @@ This protocol follows the evidence summarized in
   ([AORN Staff, 2025](../../../bibliography.md#aorn-staffing-shortage-2025),
   [Cook et al., 2011](../../../bibliography.md#cook-et-al-2011)).
 - Retrieval practice, spacing, electronic flashcards, and feedback explain why
-  the module makes prompt-before-answer practice central instead of treating
-  quiz mode as a side feature
+  the module makes prompt-before-answer practice central
   ([Roediger and Karpicke, 2006](../../../bibliography.md#roediger-and-karpicke-2006),
   [Karpicke and Blunt, 2011](../../../bibliography.md#karpicke-and-blunt-2011),
   [Larsen et al., 2009](../../../bibliography.md#larsen-et-al-2009),
@@ -176,9 +174,8 @@ This protocol follows the evidence summarized in
   [Barrison et al., 2025](../../../bibliography.md#barrison-et-al-2025),
   [Hattie and Timperley, 2007](../../../bibliography.md#hattie-and-timperley-2007)).
 
-## What We Are Not Claiming
+## Boundary Link
 
-This experiment does not prove live SPD competence, certification readiness,
-reduced hospital onboarding months, reduced OR delays, or lower tray-defect
-rates. Those require SPD participants, real workplace tasks, supervisor signoff,
-and longitudinal follow-up.
+Use [Scope Boundaries And Risks](../../scope_boundaries_and_risks.md) for
+claims that require SPD participants, real workplace tasks, supervisor signoff,
+operational outcome data, or longitudinal follow-up.

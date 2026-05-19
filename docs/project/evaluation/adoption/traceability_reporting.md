@@ -6,7 +6,8 @@ identification errors.
 
 ## What This Test Answers
 
-A training program needs learner evidence, not just a demo screen.
+A training program needs learner evidence that can be reviewed after the
+practice session.
 
 ## Why This Is A Risk
 
@@ -19,9 +20,9 @@ Traceability research frames surgical instrument tracking as important for
 patient safety, cost, logistics, environmental impact, and risk analysis
 ([Fayad et al., 2025](../../../bibliography.md#fayad-et-al-2025)).
 
-This matters for TrayGuard because a trainer that only shows "right" or "wrong"
-and then forgets it cannot help instructors see repeated missing-item,
-wrong-count, lookalike, confidence, or correction patterns.
+This matters for TrayGuard because instructors need repeated missing-item,
+wrong-count, lookalike, confidence, and correction patterns after the learner
+leaves the screen.
 
 This test answers:
 
@@ -60,7 +61,7 @@ Useful questions include:
 | Pattern | What It Means | Product Response |
 | --- | --- | --- |
 | Missing items repeat for one class | The instrument needs more practice or clearer card content | Add targeted quiz and card review |
-| Wrong counts repeat | Count-sheet quantity is not salient enough | Add quantity emphasis and count-specific feedback |
+| Wrong counts repeat | Count-sheet quantity needs stronger emphasis | Add quantity emphasis and count-specific feedback |
 | Corrections cluster around similar tools | Class distinction is difficult | Add pair-specific comparison cards |
 
 ## User-Facing Report Sections
@@ -72,11 +73,11 @@ A good report should include:
 - Most common failure categories.
 - Recommended next actions.
 
-## What We Are Not Claiming
+## Boundary Link
 
-- Training logs do not prove sterility, cleanliness, sharpness, or function.
-- A learner report supports instructor review; it does not replace departmental
-  quality processes.
+Use [Scope Boundaries And Risks](../../scope_boundaries_and_risks.md#reporting-boundary)
+for reporting boundaries involving sterility, cleanliness, sharpness,
+instrument function, departmental quality processes, and hospital audit trails.
 
 ## Bibliography
 

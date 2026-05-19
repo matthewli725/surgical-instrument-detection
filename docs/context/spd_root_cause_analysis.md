@@ -14,10 +14,11 @@ That concern contains two different things:
 - a quality and reliability outcome: instruments are missing, wrong, damaged,
   contaminated, incorrectly assembled, or unavailable when needed.
 
-A strong root cause analysis should not treat the workforce condition as the
-answer too early. Staffing shortages may be an important contributor, but the
-best problem framing should explain why the system fails to produce complete,
-correct, functional, sterile, and available instrument sets at the point of use.
+A strong root cause analysis should treat the workforce condition as one system
+input rather than the full answer. Staffing shortages may be an important
+contributor, but the best problem framing should explain why the system fails
+to produce complete, correct, functional, sterile, and available instrument sets
+at the point of use.
 
 ## Evidence Anchors
 
@@ -88,9 +89,9 @@ This effect includes:
 - packaging or sterilization readiness issues;
 - trays unavailable because of transport, turnover, or location problems.
 
-## Scope Boundary
+## RCA Boundary
 
-In scope:
+This RCA focuses on:
 
 - the SPD-to-OR workflow for preparing, assembling, transporting, and using
   surgical instrument sets;
@@ -100,7 +101,7 @@ In scope:
 - training, local knowledge, handoffs, policy, and escalation;
 - errors that reach the OR or create rework before the case.
 
-Out of scope for this RCA:
+Separate analyses would be needed for:
 
 - every possible cause of OR delay;
 - national labor-market reform as a standalone problem;
@@ -422,16 +423,15 @@ Short version:
 > interaction of staffing capacity, tray complexity, local knowledge, manual
 > process controls, physical flow, and policy compliance.
 
-This is better than saying "there are not enough SPD technicians" because it
-explains how staffing interacts with complexity, knowledge, process, place, and
-policy. It is also better than saying "technicians make errors" because it
-frames errors as the output of a work system.
+This framing explains how staffing interacts with complexity, knowledge,
+process, place, and policy. It also frames errors as the output of a work
+system.
 
 ## Literature-Supported Solution Directions
 
 Because no local operational dataset is available, solution selection should be
-motivated by the strongest patterns in prior literature. The RCA does not prove
-one final intervention, but it suggests several possible directions:
+motivated by the strongest patterns in prior literature. The RCA suggests
+several possible directions:
 
 - staffing and retention: improve hiring pipeline, retention, scheduling, and
   protected educator capacity;
@@ -449,7 +449,7 @@ one final intervention, but it suggests several possible directions:
   control, maintenance thresholds, and quality metrics.
 
 The current literature makes three areas especially defensible as starting
-points. They are not equally feasible for this project:
+points. Their feasibility differs for this project:
 
 | Direction | Why It Is Supported | Why It Is Challenging Here |
 | --- | --- | --- |
@@ -467,7 +467,8 @@ work, or using protected operational data.
 The selected project direction should therefore focus on simulated local tray
 familiarity: helping learners identify instruments, distinguish look-alikes,
 understand count-sheet expectations, practice tray organization, receive
-specific feedback, and show measurable pre/post improvement. This does not
-claim to solve the full SPD-OR readiness problem. It targets the training
-portion of that system problem because it is important, literature-supported,
-and feasible without direct hospital access.
+specific feedback, and show measurable pre/post improvement. It targets the
+training portion of the SPD-OR readiness problem because that portion is
+important, literature-supported, and feasible without direct hospital access.
+Project-level clinical-transfer boundaries are consolidated in
+[`../project/scope_boundaries_and_risks.md`](../project/scope_boundaries_and_risks.md).

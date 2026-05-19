@@ -11,14 +11,13 @@ TrayGuard already has a declared lookalike set for the seeded basic/general tray
 - Allis tissue forceps vs Babcock tissue forceps;
 - mosquito hemostat vs Kelly forceps.
 
-That is enough for the current module acceptance requirement, but it is not a
-comprehensive list of surgical instruments that look similar. A broader catalog
+That is enough for the current module acceptance requirement. A broader catalog
 is useful as authoring support: it helps instructors choose meaningful
 distractors, write study-card distinguishing features, generate pairwise quiz
 items, and analyze `misidentified` errors separately from generic wrong answers.
 
-The catalog should not be treated as a universal hospital inventory. Instrument
-names, sizes, jaw patterns, catalog numbers, and accepted substitutions vary by
+The catalog should be treated as a candidate authoring list. Instrument names,
+sizes, jaw patterns, catalog numbers, and accepted substitutions vary by
 facility, manufacturer, specialty, and count sheet. Each pair must be verified
 against the local teaching instruments before it becomes scored content.
 
@@ -101,5 +100,4 @@ For the capstone, keep the scored content narrow:
    count-sheet language prove that the visual distinction is teachable.
 
 That gives TrayGuard a defensible position: it supports reusable lookalike
-authoring, but it does not claim to ship a complete manufacturer-agnostic
-surgical instrument atlas.
+authoring with local verification before scored use.

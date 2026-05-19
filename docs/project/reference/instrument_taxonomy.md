@@ -11,21 +11,20 @@ The most defensible hierarchy for TrayGuard is:
 5. variant attributes such as size, shape, jaw pattern, curve, tip, length,
    catalog number, manufacturer, local alias, and local tray position.
 
-This should not be described as a fixed breakdown from "14 surgeries" unless a
-specific hospital or course provides exactly fourteen procedure families. HSPA's
-public instrument-resource page instead separates instruments in two overlapping
-ways: by broad specialty/device area in the Sterile Processing Instrument
-Manual, and by instrument family in *The World of Surgical Instruments*
+Use this as a flexible hierarchy unless a specific hospital or course provides
+an exact procedure-family breakdown. HSPA's public instrument-resource page
+separates instruments in two overlapping ways: by broad specialty/device area
+in the Sterile Processing Instrument Manual, and by instrument family in *The
+World of Surgical Instruments*
 ([HSPA Surgical Instrument Resources, accessed 2026](../../bibliography.md#hspa-instrument-resources-accessed-2026)).
-That makes HSPA a strong comprehensive webpage to cite, but not a source for one
-universal fourteen-surgery taxonomy.
+That makes HSPA a strong comprehensive webpage to cite for professional
+taxonomy structure.
 
-## Why Surgical Instruments Are Not Universal
+## Why Local Authoring Matters
 
-TrayGuard should not claim that a universal instrument list or universal tray
-template can cover every training case. The evidence supports a more careful
-claim: public instrument names and families are reusable, but real trays are
-localized by facility, procedure, surgeon, vendor, count sheet, and variant.
+TrayGuard should treat public instrument names and families as reusable
+concepts, then localize the scored training task by facility, procedure,
+surgeon, vendor, count sheet, and variant.
 
 Support:
 
@@ -59,7 +58,7 @@ lookalike distractors.
 
 | Layer | What It Means | Evidence And Design Use |
 | --- | --- | --- |
-| Surgical service, specialty, or procedure family | The clinical area or type of surgery that drives which trays are needed, such as general, OB/GYN, ENT, ophthalmic, cardiovascular/thoracic, laparoscopic, urology, robotic, orthopedic, neurosurgical/spinal, trauma/transplant, dental, implants, endoscopes/probes, or powered instruments. | HSPA's Sterile Processing Instrument Manual table of contents includes general instruments plus more than a dozen specialty/device chapters. Use this layer for curriculum modules and tray-group selection, not as a fixed global list. |
+| Surgical service, specialty, or procedure family | The clinical area or type of surgery that drives which trays are needed, such as general, OB/GYN, ENT, ophthalmic, cardiovascular/thoracic, laparoscopic, urology, robotic, orthopedic, neurosurgical/spinal, trauma/transplant, dental, implants, endoscopes/probes, or powered instruments. | HSPA's Sterile Processing Instrument Manual table of contents includes general instruments plus more than a dozen specialty/device chapters. Use this layer for curriculum modules and tray-group selection. |
 | Tray, set, kit, or case cart configuration | The bundled set of instruments assembled for a procedure or family of procedures. | A surgical-tray rationalization review defines surgical trays as containers holding instruments needed for a procedure or family of procedures and says tray management asks which instruments, how many, which trays map to which procedures, and how many trays to stock ([dos Santos et al., 2021](../../bibliography.md#dos-santos-et-al-2021)). |
 | Count sheet / instrument tracking list | The authoritative local list of required instruments and quantities for a tray. | Alfred et al. describe SPD assembly work where technicians access the required instrument list in an instrument tracking system, including photos, and then ensure the tray matches the required number and types of instruments ([Alfred et al., 2021](../../bibliography.md#alfred-et-al-2021)). HPN also emphasizes following count sheets rather than memory and says count sheets should include tray name, contents, quantities, sizes, and catalog/reference numbers ([Nadeau, 2024](../../bibliography.md#nadeau-2024)). |
 | Instrument function family | The functional class of tools, such as cutting/dissecting, clamping/occluding, grasping/holding, retracting/exposing, suturing/stapling, suctioning/aspirating, probing/dilating, measuring/diagnostic, accessory, viewing, powered, implant, or container/case items. | HSPA's inspection textbook table of contents separates common families such as scissors, needle holders, hemostatic/ring-handled forceps, retractors, tissue/dressing forceps, and suction tubes. General surgical-instrument references also classify tools by function, including cutting/dissecting, clamping, grasping/holding, probing, dilating, retracting, and suctioning ([Encyclopedia.com, 2018](../../bibliography.md#encyclopedia-surgical-instruments-2018)). |
@@ -78,8 +77,8 @@ lens for deciding which pairs are hardest to tell apart. For example, two tools
 may be in the same family and look similar, such as straight vs curved Mayo
 scissors, or they may share a ring-handled silhouette while having different
 clinical roles. Shape similarity is therefore useful for test design, distractor
-selection, and measuring pairwise confusion, but it should not replace the
-industry-facing hierarchy above.
+selection, and measuring pairwise confusion. It supplements the industry-facing
+hierarchy above.
 
 ## Full-Stack Example: Major Orthopedic Tray
 
@@ -118,8 +117,8 @@ Orthopedic surgery
 -> variants such as curved, short, long, toothed, nontoothed, numbered, and sized
 ```
 
-For TrayGuard, a module based on this kind of tray should not ask learners only
-"what is this instrument?" It should also ask which family it belongs to, which
+For TrayGuard, a module based on this kind of tray should ask learners which
+instrument they see, which family it belongs to, which
 nearby variants are plausible distractors, and whether the count sheet calls for
 the short, long, toothed, nontoothed, small, medium, large, or numbered version.
 
@@ -128,11 +127,12 @@ the short, long, toothed, nontoothed, small, medium, large, or numbered version.
 The project purchased a basic student minor training surgical kit from Amazon:
 https://www.amazon.com/Student-Minor-Traning-Surgical-PCS/dp/B0DM6RY6GR/
 
-Use this kit as a local demo and photo-capture set for early TrayGuard authoring,
-not as a sterile clinical tray or authoritative hospital count sheet. The kit is
-best treated as a basic dissection/specimen-preparation set whose packaging or
-listing labels may use loose names. Before any item becomes scored module
-content, verify the physical tool, local photo, accepted alias, and family.
+Use this kit as a local demo and photo-capture set for early TrayGuard
+authoring. The kit is best treated as a basic dissection/specimen-preparation
+set whose packaging or listing labels may use loose names. Before any item
+becomes scored module content, verify the physical tool, local photo, accepted
+alias, and family. Clinical-material boundaries live in
+[`../scope_boundaries_and_risks.md`](../scope_boundaries_and_risks.md#physical-prototype-boundary).
 
 | Labeled or visible item | More accurate instrument name | Instrument family | Main use in the teaching module |
 | --- | --- | --- | --- |
@@ -192,7 +192,6 @@ tray they are expected to assemble.
 
 The best single comprehensive webpage is HSPA's
 [Surgical Instrument Resources](https://myhspa.org/education/publications/surgical-instrument-resources/).
-It is not a free full instrument atlas, but its public page gives the clearest
-professional taxonomy signal: specialty chapters, instrument-family chapters,
-instrument names, photos, uses, lengths, inspection points, and testing
-standards.
+Its public page gives the clearest professional taxonomy signal: specialty
+chapters, instrument-family chapters, instrument names, photos, uses, lengths,
+inspection points, and testing standards.

@@ -8,6 +8,9 @@ current TrayGuard training-platform prototype.
 - `system_requirements.md`: measurable product and pilot requirements
 - `system_design.md`: prototype scope and architecture
 - `training_module_design.md`: local tray training-module design
+- `scope_boundaries_and_risks.md`: consolidated scope boundaries,
+  clinical-transfer risks, CV boundaries, and physical-prototype constraints
 - `reference/`: instrument taxonomy and lookalike-pair catalog
 - `evaluation/`: training effectiveness, workflow, reporting, and risk plans
-- `planning/`: task planning, weekly updates, and claim-evidence tracking
+- `planning/`: task planning, feature prioritization, weekly updates, and
+  claim-evidence tracking

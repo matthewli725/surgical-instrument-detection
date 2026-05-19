@@ -12,6 +12,8 @@ evaluation, and planning materials.
 - `project/reference/`: surgical instrument taxonomy and lookalike-pair catalog
 - `project/evaluation/`: training-effectiveness, workflow, reporting, and
   literature-backed risk writeups
+- `project/scope_boundaries_and_risks.md`: consolidated claim boundaries,
+  clinical-transfer risks, CV limits, and physical-prototype constraints
 - `project/planning/`: weekly updates, milestone-based task planning, and
   execution tracking artifacts
 
@@ -27,6 +29,7 @@ evaluation, and planning materials.
 - `project/system_requirements.md`
 - `project/system_design.md`
 - `project/training_module_design.md`
+- `project/scope_boundaries_and_risks.md`
 - `project/reference/instrument_taxonomy.md`
 - `project/reference/lookalike_pair_catalog.md`
 - `project/evaluation/README.md`
