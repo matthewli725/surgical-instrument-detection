@@ -270,6 +270,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Geifman and El-Yaniv, ["Selective Classification for Deep Neural Networks"](https://papers.neurips.cc/paper/7073-selective-classification-for-deep-neural-networks), *Advances in Neural Information Processing Systems*, 2017.
 
+<a id="george-et-al-2024"></a>
+### George et al., 2024
+
+- George et al., ["A Day in the Life of a Surgical Instrument: The Cycle of Sterilization"](https://doi.org/10.1097/AS9.0000000000000381), *Annals of Surgery Open*, 2024.
+
 <a id="goddard-et-al-2012"></a>
 ### Goddard et al., 2012
 
@@ -505,6 +510,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Medline, ["Surgical tray standardization: What's in your custom sets?"](https://www.medline.com/strategies/perioperative/custom-surgical-tray-standardization-tips/), 2025.
 
+<a id="medline-transport-2026"></a>
+### Medline, 2026
+
+- Medline, ["Keep it sterile: Tips for transporting surgical instruments"](https://www.medline.com/strategies/perioperative/transporting-surgical-instruments-tips/), 2026.
+
 <a id="medcerts-catalog-2025"></a>
 ### MedCerts Catalog, 2025
 
@@ -559,6 +569,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Nichol and Saari, 2023
 
 - Nichol and Saari, ["Patterns in staff reported surgical instrument errors point to failures in visualization as a critically weak point in sterile processing of surgical instruments"](https://doi.org/10.1016/j.pcorm.2023.100356), *Perioperative Care and Operating Room Management*, 2023.
+
+<a id="nichol-and-saari-risk-modeling-2023"></a>
+### Nichol and Saari, 2023b
+
+- Nichol and Saari, ["Risk modeling of errors in the surgical instrument cycle, insights into solutions for an expensive and persistent problem"](https://doi.org/10.1016/j.pcorm.2023.100333), *Perioperative Care and Operating Room Management*, 2023.
 
 <a id="nichol-et-al-2024"></a>
 ### Nichol et al., 2024
@@ -639,6 +654,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Porter, 2003
 
 - Porter, ["Testing the Three-Click Rule"](https://articles.centercentre.com/three_click_rule/), User Interface Engineering / Center Centre, 2003.
+
+<a id="public-health-ontario-2013"></a>
+### Public Health Ontario, 2013
+
+- Public Health Ontario, ["Best Practices for Cleaning, Disinfection and Sterilization in All Health Care Settings"](https://www.publichealthontario.ca/-/media/Documents/B/2013/bp-cleaning-disinfection-sterilization-hcs.pdf), 2013.
+
+<a id="purdue-count-sheets-accessed-2026"></a>
+### Purdue University, accessed 2026
+
+- Purdue University, ["Counting on Count Sheets"](https://www.eventreg.purdue.edu/info/central-service/pdf/CIS281.pdf), *Instrument Continuing Education (ICE), Lesson No. CIS 281*, accessed 2026.
 
 <a id="rubak-et-al-2024"></a>
 ### Rubak et al., 2024
@@ -734,6 +759,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### STERIS, 2021
 
 - STERIS, ["How to Track Loaner Surgical Instrument Trays"](https://www.steris.com/healthcare/knowledge-center/sterile-processing/how-to-track-loaner-surgical-instrument-trays), 2021.
+
+<a id="steris-cleaning-instruments-accessed-2026"></a>
+### STERIS, accessed 2026
+
+- STERIS, ["How are Surgical Instruments Cleaned and Disinfected?"](https://www.steris.com/healthcare/knowledge-center/infection-prevention/cleaning-and-disinfecting-surgical-instruments), accessed 2026.
 
 <a id="surgical-science-simulators-accessed-2026"></a>
 ### Surgical Science, accessed 2026
