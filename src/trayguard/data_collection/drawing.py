@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import cv2
 
-from micro_design_project.data_collection.models import Box
+from trayguard.data_collection.models import Box
 
 
 def draw_status_lines(image, lines: list[str], top: int = 25) -> None:

@@ -8,7 +8,7 @@ from hydra import compose, initialize_config_dir
 from omegaconf import DictConfig, OmegaConf
 from ultralytics import YOLO
 
-from micro_design_project.training.export_weights import DEFAULT_DESTINATION, export_weights
+from trayguard.training.export_weights import DEFAULT_DESTINATION, export_weights
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]

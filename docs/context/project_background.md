@@ -10,10 +10,9 @@ authoring or visual-review workflows.
 
 - [Problem explication](problem_explication.md)
 - [Surgical instrument taxonomy](../project/reference/instrument_taxonomy.md)
-- [Training module design](../project/training_module_design.md)
+- [Final Paper FDR](../final_paper_fdr.md)
 - [System design](../project/system_design.md)
 - [Scope boundaries and risks](../project/scope_boundaries_and_risks.md)
-- [Experiments overview](../project/evaluation/README.md)
 
 The problem-explication doc now establishes the training-centered motivation:
 SPD technician shortages, the cost and duration of onboarding, certification
@@ -38,9 +37,8 @@ The scope-boundaries doc consolidates certification, clinical-transfer,
 computer-vision, reporting, and physical-prototype risks so the main docs can
 stay focused on proposed capabilities.
 
-The experiments overview and evaluation plan live in
-[`docs/project/evaluation/README.md`](../project/evaluation/README.md). The primary
-experiment is now
-[training effectiveness](../project/evaluation/adoption/training_effectiveness.md):
+The experiments overview, evaluation plan, user-study protocol, risks, and
+future-work plan now live in
+[`docs/final_paper_fdr.md`](../final_paper_fdr.md). The primary experiment is
 pre/post simulated tray sorting with accuracy, time, confidence, and
-error-category metrics.
+error-category metrics, plus a delayed retention check if schedule allows.

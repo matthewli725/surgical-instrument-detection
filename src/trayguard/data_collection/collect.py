@@ -6,10 +6,10 @@ from typing import Sequence
 
 import cv2
 
-from micro_design_project.data_collection.annotation_ui import ImageAnnotator
-from micro_design_project.data_collection.camera import capture_reference_image, run_variant_capture
-from micro_design_project.data_collection.classes import load_class_names, write_class_names
-from micro_design_project.data_collection.session_io import create_session
+from trayguard.data_collection.annotation_ui import ImageAnnotator
+from trayguard.data_collection.camera import capture_reference_image, run_variant_capture
+from trayguard.data_collection.classes import load_class_names, write_class_names
+from trayguard.data_collection.session_io import create_session
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:

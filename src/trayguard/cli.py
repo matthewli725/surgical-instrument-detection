@@ -3,14 +3,14 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 import sys
 
-from micro_design_project.data_collection import class_folder_collect, collect
-from micro_design_project.app import streamlit_runner
-from micro_design_project.dataset_tools import (
+from trayguard.data_collection import class_folder_collect, collect
+from trayguard.app import streamlit_runner
+from trayguard.dataset_tools import (
     download_lavado,
     export_collected_yolo,
     plan_shape_similarity_synthetic,
 )
-from micro_design_project.training import benchmark, export_weights, train
+from trayguard.training import benchmark, export_weights, train
 
 
 Command = Callable[[Sequence[str]], None]

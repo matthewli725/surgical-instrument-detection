@@ -6,8 +6,8 @@ from pathlib import Path
 
 import streamlit as st
 
-from micro_design_project.app.state import AppState, TrayRequirement, ensure_worker_running
-from micro_design_project.data_collection.classes import DEFAULT_CLASSES
+from trayguard.app.state import AppState, TrayRequirement, ensure_worker_running
+from trayguard.data_collection.classes import DEFAULT_CLASSES
 
 if TYPE_CHECKING:
     from ultralytics import YOLO

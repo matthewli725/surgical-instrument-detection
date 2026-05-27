@@ -333,9 +333,90 @@ loaner trays, and surgeon/procedure variation.
 
 ### 4.4 Learning Science And Simulation Evidence
 
-TODO: Summarize retrieval practice, spacing, feedback, confidence/uncertainty
-capture, simulation-based health-professions training, and sterile-processing
-training precedents such as Ofstead et al.
+The training method is defensible if it is framed as a simulation proxy for
+local tray familiarity, not as proof of independent clinical competence. Health
+professions education has a strong general precedent for simulation: a broad
+review of technology-enhanced simulation found improved knowledge, skills, and
+behaviors compared with no intervention, and simulation-based medical education
+with deliberate practice has also been shown to outperform traditional clinical
+education in meta-analysis
+([Cook et al., 2011](bibliography.md#cook-et-al-2011);
+[McGaghie et al., 2011](bibliography.md#mcgaghie-et-al-2011)). Earlier medical
+simulation guidance identifies feedback, repetitive practice, curriculum
+integration, and measurable outcomes as important features of effective
+simulation ([Issenberg et al., 2005](bibliography.md#issenberg-et-al-2005)).
+
+For sterile processing specifically, Ofstead et al. provide the closest direct
+precedent. Their borescope/endoscope visual-inspection training pilot used a
+pre-test, structured teaching, hands-on practice, image-based testing,
+confidence/satisfaction measures, workplace homework, and a delayed booster
+with certified sterile-processing professionals
+([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). Tray assembly is
+a different task, but the learning structure maps well: the learner must build
+visual familiarity, recognize subtle differences, decide when uncertain, apply
+a procedural rule, and improve between a baseline task and a later task.
+
+Retrieval-practice evidence explains why the prototype should ask learners to
+produce answers before showing them. Tests can improve long-term retention
+relative to restudy, repeated testing improved long-term retention in a
+medical-education randomized trial, and reviews support practice testing,
+distributed practice, spaced digital education, electronic flashcards, and
+actionable feedback in health-professions learning
+([Roediger and Karpicke, 2006](bibliography.md#roediger-and-karpicke-2006);
+[Larsen et al., 2009](bibliography.md#larsen-et-al-2009);
+[Dunlosky et al., 2013](bibliography.md#dunlosky-et-al-2013);
+[Martinengo et al., 2024](bibliography.md#martinengo-et-al-2024);
+[Barrison et al., 2025](bibliography.md#barrison-et-al-2025);
+[Hattie and Timperley, 2007](bibliography.md#hattie-and-timperley-2007)).
+This supports retrieval-first cards, quizzes, weak-item repetition, and
+error-specific feedback as the instructional core rather than decoration around
+the tray task.
+
+The electronic-flashcard evidence is especially relevant to the proposed study
+and card modes. Barrison et al.'s 2025 scoping review found that electronic
+flashcards are widely used in health-professions education, that the research
+base grew rapidly from 2019 to 2024, and that many studies examine utilization
+and associated learning outcomes. The review also cautions that development and
+delivery methods are less systematically studied
+([Barrison et al., 2025](bibliography.md#barrison-et-al-2025)). For TrayGuard,
+that means flashcards are a credible medical-learning mechanism, but they
+should be designed as one part of a larger tray simulation: short prompts,
+single target concepts, local photos or card representations, immediate answer
+feedback, spacing or weak-item repetition, and a downstream tray-sort task that
+tests application rather than isolated recall.
+
+The proposed AprilTag-card tray is a reasonable physical proxy because it
+preserves the target cognitive actions while replacing regulated instruments
+with safe, cheap, repeatable tokens. The user still has to read a local tray
+list, retrieve which items belong, distinguish distractors and lookalikes, apply
+counts, place items into a tray area, and respond to feedback. The marker does
+not need to prove that the user can handle real sterile instruments; it needs to
+make the simulated choice observable to the app. NeuroVase is a close emerging
+design precedent: it uses tangible cue cards with a tablet-based mobile AR
+system, structured medical curriculum, pre/post assessment, usability measures,
+and a controlled user study for neurovascular anatomy and stroke education
+([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase)).
+QR-code education literature similarly supports low-cost printable codes as an
+access layer for healthcare learning, simulation, and training support
+([Karia et al., 2019](bibliography.md#karia-et-al-2019)).
+
+Serious tabletop and board-game precedents also support the choice to turn a
+healthcare protocol into a bounded physical learning game. Ward et al. designed
+and evaluated the PlayDecide patient-safety board game in two acute teaching
+hospitals; the intervention used cards and facilitated discussion to teach
+junior doctors about safety concerns and reporting, and the authors concluded
+that it was valuable for patient-safety education and deep discussion
+([Ward et al., 2019](bibliography.md#ward-et-al-2019)). This does not prove
+TrayGuard will teach tray assembly, but it supports the broader educational
+strategy: abstracted physical artifacts can stand in for clinical objects when
+the study measures learning, discussion, decision quality, and protocol use
+rather than patient outcomes.
+
+Therefore the FDR claim should be narrow and testable: marker cards are an
+acceptable first prototype for measuring novice improvement on simulated local
+tray sorting. The follow-on SPD pilot must replace or supplement cards with
+local photos, real teaching instruments, educator-reviewed count sheets, and
+supervised workplace validation before making clinical-transfer claims.
 
 ### 4.5 Computer Vision Feasibility And Boundary Evidence
 
@@ -354,10 +435,28 @@ TODO: Define the final TrayGuard direction and explain why it was selected.
 
 ### 5.1 Final Product Concept
 
-TODO: Define TrayGuard as a software-based local tray training and assessment
-platform with retrieval-first study, quizzes, simulated tray sorting, feedback,
-weak-item review, pre/post assessment, confidence capture, and exportable
-instructor metrics.
+TrayGuard is a local tray training and assessment platform. The core product is
+a learner-facing app plus a file-backed tray module that defines the
+instruments, aliases, required counts, distractors, lookalike pairs,
+distinguishing features, and assessment variants for one local tray.
+
+The first build should use printable AprilTag instrument cards as the physical
+simulation layer. Each card represents one instrument or instrument variant.
+The app scans the cards on a tabletop or tray area, treats the detected markers
+as the learner's tray selection, scores the result against the tray template,
+and returns missing, extra, wrong, misidentified, and wrong-count feedback in
+practice mode. Pre-test and post-test modes suppress hints and corrective
+feedback so the same system can collect baseline and post-training evidence.
+
+The full learning loop is:
+
+```text
+local tray module -> pre-test -> retrieval-first cards -> quiz -> AprilTag-card tray sort -> post-test -> metrics export
+```
+
+This concept keeps the prototype buildable while preserving the important task
+structure: the learner must use local names, local counts, visual/semantic
+distinctions, and tray rules to assemble a simulated tray.
 
 ### 5.2 Rationale For The Training-Centered Pivot
 
@@ -368,9 +467,19 @@ risks.
 
 ### 5.3 Alternatives Considered
 
-TODO: Summarize candidate directions such as full CV tray checking, physical
-camera-supported review, software-only training, printable QR/AprilTag cards,
-and any other concepts from brainstorming or morphological analysis.
+Several product directions were considered:
+
+| Alternative | Benefit | Reason rejected or deferred |
+| --- | --- | --- |
+| Deployment-grade CV tray checker on real instruments | Closest to the original automation concept and strongest if validated in an SPD. | Requires local instrument data, clinical workflow integration, failure-mode validation, and regulatory/adoption work beyond the FDR timeline. |
+| Software-only study and quiz module | Fastest implementation path and easiest novice study. | Too far from the tray reconstruction task; it would mostly test recognition, not applied count-sheet use. |
+| Real teaching instruments with camera-supported tray review | Better physical fidelity than cards. | Requires access to representative instruments, cleaning/handling rules, storage, and educator review; appropriate for an SPD pilot after the simulated loop works. |
+| Printable QR/AprilTag instrument cards | Cheap, portable, repeatable, and compatible with device scanning; closely matches NeuroVase-style tangible cue-card learning. | Less physically realistic than real instruments, so claims must stay limited to simulated tray-task improvement. |
+| Manual drag-and-drop tray simulation | Simple software implementation without camera setup. | Does not exercise physical search, placement, or scanning workflow, and is less persuasive for an interactive FDR demo. |
+
+The selected first prototype is the printable AprilTag-card path because it
+creates a physical, measurable simulation without depending on deployment-grade
+instrument recognition.
 
 ### 5.4 Selected Candidate And Backup Paths
 
@@ -395,10 +504,23 @@ practice.
 
 ### 6.3 Performance Specifications
 
-TODO: List measurable targets from `docs/project/system_requirements.md`,
-including completion rate, accuracy gain, post-test floor, severe-error
-reduction, time target, confidence calibration, export completeness, and demo
-success.
+The first build should use the following targets. They are deliberately
+formative rather than clinical: they define when the prototype is ready to
+support an FDR novice-learning claim.
+
+| Area | Target | Evidence Basis | Measurement |
+| --- | --- | --- | --- |
+| Participant count | Minimum 8 novice participants; target 12 complete participants if schedule allows. | NeuroVase used a 40-participant controlled study for an educational card/AR system, while qualitative methods literature supports small, narrow, homogeneous samples for early formative work ([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase); [Malterud et al., 2016](bibliography.md#malterud-et-al-2016); [Hennink and Kaiser, 2022](bibliography.md#hennink-and-kaiser-2022)). | Unique participants with complete pre/post attempts. |
+| Completion rate | At least 7 of 8 participants, or 85% when n > 8, complete the full loop without blocking moderator intervention. | Usability must be separated from learning; NeuroVase used SUS and user-experience measures alongside knowledge testing. | Completion flag and blocking help requests. |
+| Accuracy gain | Mean paired tray accuracy improves by at least 20 percentage points from pre-test to post-test. | Ofstead's SP training pilot showed large pre/post score movement after structured teaching and hands-on practice; TrayGuard should set a smaller but visible formative threshold ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). | `post_accuracy - pre_accuracy`. |
+| Post-test floor | Mean post-test accuracy is at least 80%, and no more than one participant scores below 70%. | The goal is not only improvement from a low baseline; learners should reach a usable simulated familiarity level before the module is considered ready. | Post-test `accuracy_score`. |
+| Severe-error reduction | Mean `missing + wrong + misidentified` errors decrease by at least 30%. | Alfred et al. and Nichol et al. show missing, wrong, extra, and assembly-related errors are operationally meaningful categories ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | Paired error-category counts. |
+| Speed without unsafe guessing | Median post-test duration is at least 10% lower, or is no more than 20% higher if accuracy improves by at least 20 points. | Time matters because tray assembly is workflow-bound, but speed alone could reward guessing. | `duration_seconds`, paired by learner. |
+| Confidence calibration | High-confidence errors decline by at least 30%; low-confidence correct answers are exported. | Ofstead captured confidence/satisfaction, and feedback research supports showing learners where they are and what to do next ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023); [Hattie and Timperley, 2007](bibliography.md#hattie-and-timperley-2007)). | Confidence >= 4 on incorrect items; confidence <= 2 on correct items. |
+| Retention | If schedule allows, a 7-14 day delayed tray sort retains at least half of the immediate accuracy gain. | Bell et al. showed immediate medical-learning gains can decay within days and recommended reinforcement after as little as 1 week; same-day results should not be called retention ([Bell et al., 2008](bibliography.md#bell-et-al-2008)). | Delayed `accuracy_score` relative to pre/post. |
+| Marker reliability | At least 95% card detection in normal layouts and no systematic marker-ID confusion before user testing. | The marker layer is a measurement tool; if detection fails, scores confound learner error with app error. | Marker bench-test log. |
+| Export completeness | Every completed run exports attempt-level and item-level records with required fields. | Instructor-facing evidence is part of the training value proposition. | CSV/JSON schema validation. |
+| Demo success | A facilitator can load the module, run pre-test, study, quiz, practice sort, post-test, and export metrics in one uninterrupted demo. | The FDR requires an interactive demonstration of a functional design. | End-to-end checklist. |
 
 ### 6.4 Quality Function Deployment
 
@@ -412,28 +534,94 @@ source, validation method, current status, and future owner/task.
 
 ## 7. System Design
 
-TODO: Describe the selected TrayGuard system at a level a future engineering
-team can implement.
+The selected system is a local, file-backed training app with a physical card
+interface. It should be implemented as a buildable learning loop first, with
+real-instrument CV reserved for later support work.
 
 ### 7.1 System Overview
 
-TODO: Present the learning loop:
+TrayGuard should be built as a local module runner plus a card-scanning
+assessment surface. The app does not need to recognize real instruments for the
+first study. It needs to observe which simulated instrument cards the learner
+placed in the tray area, score that selection against a local tray template,
+and export evidence.
 
 ```text
-local tray module -> pre-test -> retrieval-first cards -> quiz -> applied tray practice -> post-test -> metrics export
+local tray module
+  -> pre-test AprilTag tray sort
+  -> retrieval-first study cards
+  -> quiz with confidence / Not sure
+  -> practice AprilTag tray sort with feedback
+  -> post-test AprilTag tray sort
+  -> metrics export
+  -> optional 7-14 day delayed retention sort
 ```
+
+The architecture follows the evidence base:
+
+- Local tray modules are required because count sheets define tray names,
+  contents, quantities, sizes, and reference/catalog numbers, and real count
+  sheets include fields such as reference number, description, location, quantity,
+  check box, total count, and hospital signature ([Nadeau, 2024](bibliography.md#nadeau-2024);
+  [Stryker Gamma4 Count Sheet, 2023](bibliography.md#stryker-gamma4-count-sheet-2023);
+  [Stryker IMN Count Sheet, 2023](bibliography.md#stryker-imn-count-sheet-2023)).
+- Retrieval-first study and quiz modes are justified by retrieval practice,
+  health-professions flashcard evidence, and spaced digital education
+  ([Roediger and Karpicke, 2006](bibliography.md#roediger-and-karpicke-2006);
+  [Barrison et al., 2025](bibliography.md#barrison-et-al-2025);
+  [Martinengo et al., 2024](bibliography.md#martinengo-et-al-2024)).
+- Pre/post practice, confidence capture, and optional delayed retention follow
+  the sterile-processing precedent in Ofstead and the retention warning in Bell
+  et al. ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023);
+  [Bell et al., 2008](bibliography.md#bell-et-al-2008)).
+- AprilTag cards are a physical proxy, not a real-instrument detector. The
+  tangible-card idea is supported by NeuroVase-style cue cards and
+  board/card-based healthcare education, but clinical transfer remains future
+  validation ([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase);
+  [Ward et al., 2019](bibliography.md#ward-et-al-2019)).
 
 ### 7.2 Subsystem Breakdown
 
-TODO: Describe functional subsystems: local content/tray module, learning
-workflow, quiz/retrieval practice, simulated tray sorting, scoring and
-feedback, confidence/uncertainty, reporting/export, optional physical cards,
-optional camera/CV support, and instructor review.
+The system separates into these functional subsystems:
+
+| Subsystem | Responsibility |
+| --- | --- |
+| Local content/tray module | Stores instrument records, aliases, photos, distinguishing features, required quantities, distractors, and tray-template versions. |
+| Learning workflow | Routes the learner through pre-test, study, quiz, practice sort, weak-item review, post-test, and export. |
+| Retrieval practice | Presents prompt-before-answer cards and quizzes for instrument names, features, lookalikes, and required counts. |
+| AprilTag card scanning | Detects printed marker cards and maps marker IDs to instrument IDs so the app can observe a physical tray simulation. |
+| Simulated tray scoring | Compares detected cards and selected quantities against the tray template. |
+| Feedback engine | Reports missing, extra, wrong, misidentified, and wrong-count errors in practice mode. |
+| Confidence/uncertainty capture | Records confidence or `Not sure` responses for assessment and instructor review. |
+| Reporting/export | Produces pre/post accuracy, time, error-category, confidence, and weak-item summaries. |
+| Instructor review | Lets an educator verify tray content, local naming, distractors, and study evidence before broader use. |
+
+Computer vision for recognizing real instruments remains a future support
+subsystem. In the FDR build, the marker-scanning subsystem is deliberately a
+proxy for observing user decisions, not a claim that the app can identify real
+surgical instruments under clinical conditions.
 
 ### 7.3 Functional Block Diagram
 
-TODO: Add a procedural/data-flow diagram showing how content, learner actions,
-scoring, feedback, and reports move through the system.
+```mermaid
+flowchart LR
+  A["Local Tray Module JSON"] --> B["Learning Workflow Controller"]
+  B --> C["Study Cards"]
+  B --> D["Quiz"]
+  B --> E["AprilTag Tray Sort"]
+  E --> F["Detected Cards"]
+  F --> G["User Confirmation"]
+  G --> H["Scoring Engine"]
+  A --> H
+  H --> I["Practice Feedback"]
+  H --> J["Assessment Result"]
+  J --> K["Metrics Export"]
+  K --> L["Learner / Instructor Summary"]
+```
+
+In practice modes, the scoring engine sends error-specific feedback back to the
+learner. In assessment modes, the same engine records errors but suppresses
+corrective feedback until after submission.
 
 ### 7.4 Dependency Diagram
 
@@ -442,78 +630,591 @@ dependency wires.
 
 ### 7.5 Data Model And Module Contract
 
-TODO: Describe `Instrument`, `TrayTemplate`, `LearningRun`, and
-`AttemptResult`, including required fields and why they matter.
+The data model should mirror a real count sheet while staying small enough for
+the first build. Stryker's public count sheets show the practical minimum:
+reference number, description, location/layer, quantity, check box, total count,
+additional items, and hospital signature. TrayGuard adds learning-specific
+fields for aliases, lookalikes, confidence, and error categories.
+
+| Object | Required Fields | Why It Matters |
+| --- | --- | --- |
+| `Instrument` | `id`, `display_name`, `family`, `aliases`, `distinguishing_features`, `image_refs`, `apriltag_id`, `local_verification_status` | Supports retrieval cards, quiz prompts, card scanning, and local naming. |
+| `TrayTemplate` | `id`, `name`, `version`, `procedure_family`, `source_note`, `required_items`, `distractor_items`, `lookalike_pairs`, `assessment_variants` | Stores the local count-sheet task and separates required instruments from distractors. |
+| `TrayItemRequirement` | `instrument_id`, `quantity`, `reference_number`, `location_or_layer`, `acceptable_substitutes`, `notes` | Mirrors real count-sheet fields and makes count/location errors measurable. |
+| `AssessmentVariant` | `id`, `mode`, `random_seed`, `required_item_ids`, `distractor_item_ids`, `card_front_policy`, `feedback_enabled` | Keeps pre/post/delayed tasks comparable while preventing answer leakage. |
+| `LearningRun` | `run_id`, `learner_id_hash`, `participant_group`, `tray_template_id`, `variant_id`, `mode`, `started_at`, `completed_at` | Separates study, quiz, practice, pre-test, post-test, and delayed attempts. |
+| `DetectedCard` | `run_id`, `apriltag_id`, `instrument_id`, `timestamp`, `detection_confidence`, `confirmed_by_user` | Lets marker failures be audited instead of silently counted as learner errors. |
+| `AttemptResult` | `run_id`, `selected_items`, `duration_seconds`, `accuracy_score`, `required_recall`, `errors`, `confidence_summary` | Provides the main pre/post evidence. |
+| `ItemResult` | `run_id`, `instrument_id`, `required_qty`, `selected_qty`, `error_category`, `confidence`, `not_sure` | Supports item-level feedback, weak-item review, high-confidence error reporting, and instructor review. |
+
+The first implementation can store these objects in JSON files and export CSV
+for analysis. The important constraint is schema stability: pre-test, post-test,
+and delayed retention must produce comparable rows.
+
+Sample instrument JSON:
+
+```json
+{
+  "id": "mayo_scissors_straight_55",
+  "display_name": "Straight Mayo scissors, 5.5 in",
+  "family": "cutting_dissecting",
+  "aliases": [
+    "straight Mayo",
+    "suture scissors"
+  ],
+  "distinguishing_features": [
+    "Heavy straight blades",
+    "Broader blade profile than Metzenbaum scissors",
+    "Ring-handled cutting instrument"
+  ],
+  "common_confusions": [
+    "mayo_scissors_curved_55",
+    "metzenbaum_scissors_curved_55"
+  ],
+  "image_refs": [
+    {
+      "id": "view_a",
+      "path": "assets/instruments/mayo_scissors_straight_55_view_a.jpg",
+      "source": "local_photo",
+      "approved_for_study": true,
+      "approved_for_assessment": true,
+      "attribution": "Local TrayGuard photo"
+    },
+    {
+      "id": "card_front_neutral",
+      "path": "assets/cards/mayo_scissors_straight_55_neutral_front.png",
+      "source": "generated_card",
+      "approved_for_study": false,
+      "approved_for_assessment": true,
+      "attribution": "TrayGuard AprilTag card"
+    }
+  ],
+  "apriltag_id": 12,
+  "card_front_policy": "neutral_assessment_front",
+  "study_prompts": [
+    {
+      "id": "name_recall",
+      "prompt": "Name this instrument.",
+      "answer": "Straight Mayo scissors, 5.5 in"
+    },
+    {
+      "id": "feature_recall",
+      "prompt": "What feature helps distinguish this from Metzenbaum scissors?",
+      "answer": "Straight Mayo scissors have heavier, broader blades."
+    }
+  ],
+  "notes": "Use local photos before pilot. Do not rely on vendor images for assessed study content.",
+  "local_verification_status": "pending_review"
+}
+```
 
 ### 7.6 Mode Behavior
 
-TODO: Summarize pre-test, study, quiz, practice sort, post-test, and
-report/export behavior.
+| Mode | Input | Hints | Feedback | Stored Output |
+| --- | --- | --- | --- | --- |
+| Pre-test | AprilTag tray sort against count-sheet prompt | No | No | Attempt result, item results, confidence, duration, errors. |
+| Study cards | Instrument prompt, photo/card, feature, alias, or count | Yes after reveal | Yes | Optional viewed cards and self-rated confidence. |
+| Quiz | Recall or recognition prompt with distractors | Limited after answer | Yes | Correctness, duration, confidence, weak items. |
+| Practice sort | AprilTag tray sort with distractors | Yes | Yes | Attempt result plus immediate missing/extra/wrong/misidentified/wrong-count feedback. |
+| Post-test | Parallel AprilTag tray sort | No | No | Comparable assessment result. |
+| Delayed retention | Third parallel AprilTag tray sort after 7-14 days | No | No | Retention result and decay/recovery summary. |
+| Export/report | Completed run data | N/A | N/A | CSV/JSON plus learner summary. |
 
 ### 7.7 User Interaction / Experience
 
-TODO: Describe the learner workflow and instructor workflow separately.
+Learner workflow:
+
+1. Enter anonymous participant ID.
+2. Complete prior-experience questions.
+3. Assemble the pre-test tray from neutral AprilTag instrument cards.
+4. Confirm detected cards before submission.
+5. Study retrieval-first cards and answer quiz prompts.
+6. Practice tray sorting with feedback.
+7. Complete a no-hints post-test and short survey.
+8. Return for delayed retention if scheduled.
+
+Instructor/researcher workflow:
+
+1. Author or load the tray module.
+2. Print neutral assessment cards and study/reference cards.
+3. Run marker reliability check.
+4. Moderate sessions and record help requests.
+5. Export pre/post/delayed metrics.
+6. Review weak items, high-confidence errors, scan failures, and qualitative
+   feedback.
+7. Revise module content before future SPD validation.
 
 ## 8. Training Module Design
 
-TODO: Document the first local tray module and training content decisions.
-Include module name, required instruments, distractors, lookalike pairs,
-aliases, distinguishing features, photo/source rules, pre/post assessment
-variants, scoring rubric, confidence/Not sure behavior, weak-item review, and
-instructor verification.
+The first module is one evidence-complete local tray curriculum, not a broad
+instrument encyclopedia. The module must be small enough to build, test, and
+explain in an FDR demo while still exercising the target task: local tray
+assembly from a count-sheet-like rule.
+
+The bounded capability claim is:
+
+> TrayGuard gives novices repeated, measured practice on local tray familiarity
+> and can test whether that practice improves simulated tray-sorting
+> performance.
+
+### 8.1 Module Scope
+
+The first module should contain:
+
+- 8-12 required instrument concepts;
+- 3-6 distractor instruments;
+- 2-4 known lookalike or same-family pairs;
+- local names, aliases, family labels, required counts, and distinguishing
+  features;
+- AprilTag cards that represent instruments during the physical tray
+  simulation;
+- parallel pre-test, post-test, and delayed-retention tray variants with
+  matched difficulty;
+- instructor or expert review before results are presented as content-valid.
+
+The cards should use neutral assessment fronts. Names, counts, and obvious
+answer labels should be hidden during pre-test, post-test, and retention tasks
+so the participant cannot solve the task by reading the card.
+
+### 8.1.1 Real Tray List Examples
+
+The first TrayGuard module should be smaller than a clinical tray, but its data
+fields should look like real tray/count-sheet data. Three examples are useful:
+
+| Real Example | What It Shows | Design Implication |
+| --- | --- | --- |
+| Stryker Gamma4 Indication Tray count sheet | A real vendor count sheet uses tray name, insert/base sections, reference numbers, descriptions, locations, quantities, check boxes, total instrument counts, additional items, and hospital signature ([Stryker Gamma4 Count Sheet, 2023](bibliography.md#stryker-gamma4-count-sheet-2023)). | TrayGuard should store `reference_number`, `description/display_name`, `location_or_layer`, `quantity`, and `additional_items` fields even if the first module only uses names and quantities. |
+| Stryker IMN Basic Instruments Tray count sheet | A second real count sheet uses the same pattern and splits the tray into insert/base groupings with total counts of 15 and 10 instruments ([Stryker IMN Count Sheet, 2023](bibliography.md#stryker-imn-count-sheet-2023)). | The data model should support sections/layers and total-count validation, not just a flat list. |
+| Published major orthopedic tray study | Toor et al. observed an 88-instrument major orthopedic tray across 80 procedures and compared optimized tray configurations of 47, 67, and 51 instruments ([Toor et al., 2022](bibliography.md#toor-et-al-2022)). | Real clinical trays can be far larger than the first module. The first study should use 8-12 required concepts for feasibility, while preserving fields that can scale to larger trays. |
+
+For the first build, use a teaching-scale tray: 8-12 required concepts, 3-6
+distractors, and 2-4 lookalike pairs. This is intentionally smaller than the
+real examples so a novice can complete the loop in 45-60 minutes.
+
+### 8.2 Learning Loop
+
+The product is one learning loop:
+
+```text
+local tray module -> pre-test -> retrieval-first cards -> quiz -> practice tray sort -> post-test -> metrics export
+```
+
+Retrieval practice is the instructional engine. The learner should usually
+commit to an answer before the system reveals it: name the instrument, identify
+a distinguishing feature, choose the lookalike, recall the count, or decide
+whether the item belongs in the tray. The simulated tray sort is applied
+retrieval: the learner must use those same facts in context with distractors
+and quantities.
+
+### 8.3 Data Contract
+
+Use the module contract in Section 7.5 as the implementation source of truth.
+The key requirement is that `Instrument`, `TrayTemplate`,
+`TrayItemRequirement`, `AssessmentVariant`, `LearningRun`, `DetectedCard`,
+`AttemptResult`, and `ItemResult` are stable enough to export comparable
+pre-test, post-test, and delayed-retention rows.
+
+Scoring should classify errors as:
+
+- `missing`: required item not selected;
+- `extra`: non-required item selected;
+- `wrong`: required slot filled with the wrong instrument;
+- `misidentified`: selected item is a known lookalike or distractor for the
+  intended item;
+- `wrong_count`: correct item selected with the wrong quantity.
+
+### 8.4 Mode Behavior
+
+| Mode | Hints | Corrective Feedback | Metrics | Use |
+| --- | --- | --- | --- | --- |
+| Pre-test | No | No | Yes | Baseline simulated tray-task proficiency. |
+| Study cards | Yes | Yes | Optional | Prompt-before-reveal retrieval of names, aliases, families, features, and counts. |
+| Quiz | Limited after answer | Yes | Yes | Retrieval practice, confidence calibration, and weak-item discovery. |
+| Practice sort | Yes | Yes | Yes | Applied retrieval and deliberate practice on tray organization. |
+| Post-test | No | No | Yes | Comparable same-day assessment after practice. |
+| Delayed retention | No | No | Yes | Checks whether gains persist after 7-14 days. |
+
+### 8.5 Acceptance Criteria
+
+The training module is evidence-ready when it can show:
+
+- a learner completing a no-hints pre-test and post-test on comparable tray
+  tasks;
+- practice mode producing error-specific feedback;
+- quiz mode recording correctness, time, and confidence or `Not sure`;
+- weak-item review repeating missed or uncertain instruments if time allows;
+- metrics export comparing pre/post accuracy, duration, confidence, and error
+  counts;
+- a marker reliability check showing the app is not mostly scoring camera
+  errors;
+- expert or instructor review of instrument names, counts, distractors,
+  lookalikes, and feedback;
+- documentation that results are simulated training evidence, not clinical
+  competency evidence.
 
 ## 9. Evaluation And Validation Plan
 
-TODO: Define how the current design would be validated by a future team.
+The evaluation plan uses a ladder of studies. Each level earns a different
+claim, which prevents the FDR from overreaching.
 
 ### 9.1 Current Evidence Available
 
-TODO: State what exists now: literature-backed problem definition,
-requirements, architecture, proposed module content, risk analysis, and future
-task plan.
+The current evidence package includes:
+
+- literature-backed problem definition for SPD tray reconstruction and
+  assembly errors;
+- support for simulation, retrieval practice, flashcards, feedback, tangible
+  card interfaces, and board/card-based healthcare education;
+- a bounded final product concept based on local tray modules and AprilTag
+  instrument cards;
+- a subsystem architecture, data contract, mode behavior, and scoring rubric;
+- a user-study plan that distinguishes immediate learning, short-term
+  retention, expert review, and future SPD validation.
 
 ### 9.2 Formative Novice Study Plan
 
-TODO: Define the first feasible novice study: participants, sample size,
-pre/post sequence, measures, and success thresholds.
+The first feasible study is a formative novice study with students or other
+participants who do not have SPD tray experience. The study should evaluate
+whether the AprilTag-card simulation teaches a bounded local tray module, not
+whether participants are ready for real SPD work.
 
-### 9.3 SPD Workplace Pilot Plan
+Use one tray module with 8-12 required instruments, a distractor pool, and
+parallel pre/post tray variants. A reasonable first sample is 8-12 participants
+for classroom evidence; a larger follow-up can use paired statistics once the
+prototype and protocol are stable.
 
-TODO: Define the later SPD pilot requirements: local count sheet, local photos,
-SPD educator review, technician participants, approval/privacy needs,
-comparison condition, and operational outcomes.
+Study sequence:
 
-### 9.4 Validation Claims By Evidence Level
+1. Consent and prior-experience questionnaire.
+2. No-hints pre-test: assemble the simulated tray from AprilTag instrument
+   cards using a tray list or count-sheet-style prompt.
+3. Retrieval-first study cards for instrument names, aliases, distinguishing
+   features, and counts.
+4. Short quiz with confidence or `Not sure` capture.
+5. Practice tray sort with immediate error-specific feedback.
+6. Weak-item review for missed or uncertain instruments if time permits.
+7. No-hints post-test on a comparable tray variant.
+8. Short interview about confusing instruments, feedback usefulness, and
+   perceived realism.
 
-TODO: For each major claim, list current support, required validation, what
-would falsify it, and the next action.
+Primary measures are pre/post tray accuracy, duration, missing/wrong/extra/
+misidentified/wrong-count errors, confidence calibration, high-confidence
+errors, low-confidence correct answers, and weak-item recovery. The study
+supports the training claim if most participants improve accuracy without a
+severe-error increase, maintain or improve completion time, and can explain at
+least one corrected error after practice.
 
-### 9.5 Design Outcome Versus Requirements
+### 9.3 Source Patterns For The Study Design
 
-TODO: Compare the current design package against each requirement. Mark each
-requirement as satisfied by documentation, ready for implementation, ready for
-formative test, blocked by missing prototype, blocked by missing SPD access, or
-future clinical validation required.
+| Source | Study Pattern | TrayGuard Translation |
+| --- | --- | --- |
+| NeuroVase used tangible cue cards, a tablet-based AR system, a structured curriculum, a controlled user study with 40 participants, a traditional-learning comparison, pre/post knowledge testing, SUS, Likert experience measures, and open feedback ([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase)). | Use college students only as target-adjacent novices. Compare learning before and after the system, collect usability data, and route clinical transfer to later SPD validation. |
+| Ofstead et al. used sterile-processing professionals, pre-testing, structured teaching, hands-on practice, confidence/satisfaction capture, workplace homework, and a 2-month booster/retention check ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). | Use the same pre/post/hands-on structure now, and treat a later SPD educator or SPD worker study as the stronger validation path. |
+| Bell et al. randomized residents to post-tests at 0, 1, 3, 8, 21, or 55 days and found immediate gains could decay quickly; they recommended reinforcement after as little as 1 week ([Bell et al., 2008](bibliography.md#bell-et-al-2008)). | Do not call same-day results retention. Add a 7-14 day delayed tray-sort check for a credible short-term retention claim. |
+| Barrison et al. found electronic flashcards are widely used in health-professions education, while noting that development and delivery methods are less systematically studied ([Barrison et al., 2025](bibliography.md#barrison-et-al-2025)). | Use flashcards as a supported retrieval mechanism, but make the main outcome applied tray sorting rather than isolated card recall. |
+| Ward et al. evaluated a serious board game for patient-safety education in two teaching hospitals using card-based discussion and learner feedback ([Ward et al., 2019](bibliography.md#ward-et-al-2019)). | Treat physical cards as a legitimate educational abstraction when the claim is protocol learning or simulated decision-making, not patient outcome improvement. |
+
+### 9.4 Study Ladder
+
+| Study | Participants | Claim Supported |
+| --- | --- | --- |
+| Study 0: marker reliability | 1-2 project members, no learning claim | AprilTag scanning is reliable enough that scoring errors are not mostly camera errors. |
+| Study 1: novice simulated learning | 8-12 college students or classmates with no SPD experience | TrayGuard can improve novice performance on a simulated local tray task. |
+| Study 2: delayed retention | Same Study 1 participants, 7-14 days later | Some learning persists beyond the initial session. |
+| Study 3: expert review | 1 SPD educator, instructor, or knowledgeable reviewer | The tray module, terms, distractors, and feedback are plausible enough for future SPD testing. |
+| Study 4: future SPD pilot | SPD trainees or technicians | The system may transfer to target users and workplace-relevant training. |
+
+The FDR should prioritize Studies 0-2 and, if possible, one expert review.
+
+### 9.5 Study 0: Marker Reliability Check
+
+Purpose: prevent app or camera failures from contaminating learner scores.
+
+Setup:
+
+- Print all AprilTag cards used in the tray module.
+- Use the same device, camera angle, lighting, tray boundary, and table setup
+  planned for the user study.
+- Test cards individually, in valid tray layouts, and in cluttered layouts with
+  distractors.
+
+Record total cards visible, cards detected, false positives, missed cards,
+duplicate or unstable detections, and lighting or occlusion notes.
+
+Acceptance target before user testing:
+
+- at least 95% card detection in normal layouts;
+- no systematic confusion between marker IDs;
+- visible confirmation screen before final scoring so camera misses are not
+  counted as learner errors.
+
+### 9.6 Study 1: Novice Simulated Learning
+
+Recruit 8-12 college students or classmates with no formal SPD experience and
+no prior exposure to the module. Collect optional background variables such as
+medical, biology, lab, tool, or surgical-instrument familiarity. This matches
+the NeuroVase-style proxy choice: students are not SPD workers, but they are
+acceptable for a first novice learning and usability study if the claim is
+bounded to simulated learning.
+
+Use a within-subject pre/post design:
+
+```text
+intake -> pre-test -> training -> practice -> immediate post-test -> survey/interview
+```
+
+Target one 45-60 minute session per participant:
+
+| Segment | Time | Activity |
+| --- | --- | --- |
+| Consent and intake | 3-5 min | Explain simulated study, collect background. |
+| Device orientation | 2 min | Show how to scan and submit without teaching tray answers. |
+| Pre-test tray sort | 5-8 min | No hints, no feedback, timed. |
+| Retrieval cards | 10-12 min | Prompt-before-reveal study of required items, distractors, features, and counts. |
+| Quiz | 5-8 min | Short recall/recognition quiz with confidence or `Not sure`. |
+| Practice sort | 8-10 min | Same style task with immediate feedback. |
+| Immediate post-test | 5-8 min | Parallel variant, no hints, no feedback, timed. |
+| Survey and interview | 5-8 min | SUS or short usability items plus open questions. |
+
+Primary learning measures:
+
+- tray accuracy: required items correctly selected with correct count;
+- severe errors: missing, wrong, misidentified, extra, wrong-count;
+- duration from task start to final submission;
+- high-confidence errors;
+- `Not sure` selections or low-confidence correct answers;
+- weak-item recovery from quiz/practice to post-test.
+
+Usability and experience measures:
+
+- completion rate;
+- help requests;
+- scan failures or rescan attempts;
+- SUS or short 5-point ease/usefulness/confidence survey;
+- open feedback on confusing cards, confusing instruments, and perceived
+  realism.
+
+Prior user studies support this design pattern. NeuroVase is the closest
+interaction precedent because it tested a tangible cue-card and tablet-based AR
+medical-learning system with 40 participants, a traditional-learning comparison,
+pre/post knowledge testing, SUS, Likert experience measures, and open feedback
+([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase)).
+That supports TrayGuard's use of college students as target-adjacent novice
+learners, provided the claim remains about simulated learning and usability
+rather than target-worker competence.
+
+Medical simulation app studies also commonly use novice learner cohorts when
+the goal is early validity, usability, or learning evidence. Tulipan et al.
+evaluated Touch Surgery's carpal-tunnel-release module with medical students,
+orthopedic residents, and expert hand surgeons; medical students served as the
+novice cohort, participants completed repeated simulation attempts, performance
+was logged, and the novice group completed a Likert satisfaction/face-validity
+questionnaire ([Tulipan et al., 2019](bibliography.md#tulipan-et-al-2019)).
+The study is relevant because TrayGuard similarly expects repeated attempts,
+objective scoring, and user perception data to show whether the simulation is
+usable and whether performance changes with practice.
+
+Orthopedic VR training studies provide a second proxy-participant precedent:
+Orland et al. studied first- and second-year medical students as novices in a
+controlled orthopedic training task, comparing simulation-supported preparation
+with conventional preparation and measuring downstream task performance
+([Orland et al., 2020](bibliography.md#orland-et-al-2020)). This supports using
+students when the target is an early, controlled, preclinical learning task,
+while still reserving real workplace transfer for later target-user studies.
+
+Finally, Ofstead et al. is the target-domain model rather than the proxy-user
+model. Their sterile-processing training pilot used certified SP professionals,
+pre/post testing, hands-on practice, confidence and satisfaction capture,
+workplace homework, and a delayed booster
+([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). TrayGuard's
+student study should therefore be described as a first-stage novice simulation
+study, with a later SPD educator review and SPD trainee pilot needed before
+making target-worker claims.
+
+### 9.7 Study 2: Delayed Retention Check
+
+Same-day post-testing supports immediate learning only. It should not be called
+retention. The delayed check distinguishes immediate practice gain from retained
+learning.
+
+Timing ladder:
+
+- same day: immediate learning;
+- 24-72 hours: very short-term retention;
+- 7-14 days: credible short-term retention for this project;
+- 21-28 days: stronger delayed retention evidence;
+- about 2 months: closest match to Ofstead's sterile-processing booster
+  precedent.
+
+Procedure:
+
+1. Ask whether the participant studied the material since the first session.
+2. Run a no-hints delayed tray sort with a third parallel variant.
+3. Capture confidence or `Not sure`.
+4. Run a short recall quiz only after the tray sort.
+5. Ask what they remembered and what decayed.
+
+### 9.8 Study 3: Expert Review
+
+Expert review addresses the main weakness of college-student testing: content
+validity. The reviewer can be an SPD educator, SPD supervisor,
+sterile-processing instructor, surgical technology instructor, or faculty
+member with relevant instrument knowledge.
+
+Materials to show:
+
+- tray list;
+- instrument cards;
+- distractor list;
+- aliases and distinguishing features;
+- scoring rubric;
+- sample learner report.
+
+Questions:
+
+1. Are the instrument names and aliases plausible?
+2. Are the required counts and distractors plausible for a training tray?
+3. Are the lookalike pairs educationally meaningful?
+4. Are any feedback messages misleading or unsafe?
+5. Would the weak-item report help target coaching?
+6. What would need to change before using this with SPD trainees?
+
+### 9.9 Analysis And Acceptance Bar
+
+For 8-12 participants, report descriptive paired results:
+
+- participant-level pre/post table;
+- mean and median accuracy change;
+- mean and median duration change;
+- total error counts by type before and after;
+- high-confidence errors before and after;
+- weak-item examples;
+- representative qualitative feedback.
+
+Avoid strong inferential claims unless the sample is larger. If the sample is
+large enough, add paired differences with confidence intervals.
+
+The training claim is supported if most learners show:
+
+- higher post-test accuracy;
+- equal or lower post-test duration without accuracy decline;
+- fewer severe errors, especially missing and misidentified items;
+- fewer high-confidence errors;
+- fewer `Not sure` responses or low-confidence correct answers;
+- evidence that missed or uncertain items improve after repeated retrieval;
+- interview evidence that they can name what they learned or what remains hard.
+
+Best FDR claim wording:
+
+> In a novice college-student sample, TrayGuard improved immediate simulated
+> tray-sorting performance after retrieval-centered practice. A delayed
+> 7-14-day check tested short-term retention. Expert review was used to assess
+> whether the tray content and feedback were plausible for future SPD trainee
+> validation.
+
+### 9.10 Future SPD Workplace Pilot Plan
+
+A later SPD pilot requires local count sheets, local photos or real teaching
+instruments, SPD educator review, technician or trainee participants,
+approval/privacy review, and a comparison condition such as current study
+materials or preceptor-led orientation. It should measure whether the system
+helps target users in a workplace-relevant training context. Only that later
+pilot can support claims about SPD trainee usefulness, supervised transfer, or
+operational training adoption.
+
+### 9.11 Validation Claims By Evidence Level
+
+| Claim | Current Support | Required Validation | What Would Falsify It |
+| --- | --- | --- | --- |
+| Marker cards are a usable proxy for simulated tray choices. | NeuroVase, QR/marker education precedent, and marker reliability testing. | Study 0 and participant workflow observation. | Frequent detection failures, answer leakage, or user confusion about card meaning. |
+| Retrieval cards and quizzes improve immediate tray-task performance. | Retrieval-practice and flashcard literature. | Study 1 pre/post accuracy and error results. | No accuracy gain, more severe errors, or gains only from answer leakage. |
+| Learning persists beyond the session. | Retention literature and Ofstead booster precedent. | Study 2 delayed tray sort after 7-14 days or longer. | Delayed performance returns to baseline. |
+| Content is plausible for SPD training. | Local count-sheet and sterile-processing education literature. | Study 3 expert review. | Expert finds names, counts, distractors, or feedback unrealistic. |
+| TrayGuard helps SPD trainees. | Not proven by the current student study. | Future SPD pilot. | SPD trainees reject workflow or fail to improve on workplace-relevant tasks. |
+
+### 9.12 Design Outcome Versus Requirements
+
+| Requirement Area | Current Status |
+| --- | --- |
+| Local tray module structure | Ready for implementation. |
+| Retrieval-first study and quiz modes | Ready for implementation. |
+| AprilTag-card tray sorting | Ready for prototype build and marker reliability testing. |
+| Error-specific scoring | Defined; ready for implementation. |
+| Pre/post novice study | Protocol-ready. |
+| Delayed retention | Protocol-ready if schedule allows 7-14 day follow-up. |
+| Expert content review | Ready if an instructor or SPD educator is available. |
+| SPD trainee validation | Future clinical/workplace validation required. |
+| Deployment-grade real-instrument CV | Future support-layer validation required. |
 
 ## 10. Risk Assessment And Scope Boundaries
 
-TODO: Consolidate CDR-style concerns and risk-reduction work.
+The main risk is not that the design is impossible. The main risk is
+overclaiming. TrayGuard is viable as a simulated learning prototype, but the FDR
+must separate immediate novice learning, delayed retention, expert content
+review, future SPD transfer, and future real-instrument CV.
 
 ### 10.1 Formal Risk Register
 
-TODO: Include risk statement, cause, consequence, likelihood, severity,
-mitigation, residual risk, and future owner/task.
+| Risk | Cause | Consequence | Mitigation | Residual Boundary |
+| --- | --- | --- | --- | --- |
+| Student proxy overclaim | Participants are not SPD workers. | Reviewers reject relevance to target users. | State that students test novice simulated learning; add expert review; reserve SPD claims for future pilot. | No SPD worker effectiveness claim. |
+| Same-day learning mistaken for retention | Immediate post-test follows practice. | Report overstates durability. | Add 7-14 day delayed check; otherwise call it immediate learning only. | Retention claim only after delayed test. |
+| Marker cards lack physical realism | Cards do not reproduce weight, scale, tactile handling, or real visual lookalikes. | Transfer to real instruments remains unknown. | Use cards as selection/count proxy; add local photos or real teaching instruments later. | No clinical handling competency claim. |
+| Marker detection errors contaminate scores | Lighting, occlusion, angle, or overlap causes missed detections. | App errors look like learner errors. | Run Study 0; log raw detections; show confirmation before scoring. | Marker reliability must be reported. |
+| Answer leakage from cards | Labels or marker IDs reveal the answer. | Measured gain is not learning. | Use neutral assessment fronts; randomize marker IDs; hide answer text in assessment. | Study cards and assessment cards must be separated. |
+| Content invalidity | Student-built module may use wrong names, counts, or distractors. | Results do not reflect plausible SPD training. | Require expert review of module content and feedback. | Content validity remains limited until SPD review. |
+| Feedback contaminates assessment | Practice answers leak into post-test. | Pre/post comparison inflated. | Use parallel variants; suppress hints and feedback in assessment modes. | Cannot claim broad generalization from one tray. |
+| Usability friction dominates learning | Scanning or workflow confusion slows participants. | Poor scores reflect interface friction. | Track help requests, scan failures, SUS/ease ratings, and qualitative feedback. | Usability results must be reported separately. |
 
 ### 10.2 Unknowns And Concerns
 
-TODO: List the unanswered questions that cannot be resolved from the current
-project state, such as educator usefulness, simulated-to-physical transfer,
-authoring burden, confidence calibration, and future CV value.
+The current design is viable as a low-cost formative learning prototype, but
+several concerns remain unresolved:
+
+| Concern | Why it matters | Strengthening action |
+| --- | --- | --- |
+| Card-to-instrument transfer | AprilTag cards preserve selection and counting decisions, but they do not reproduce weight, scale, handling, tactile inspection, or real visual lookalikes. | Treat the first study as simulated learning only; add an SPD educator review and a later task using local photos or real teaching instruments. |
+| Flashcard overreach | Flashcards support recall, but tray work requires applying local rules under distractor pressure. | Keep flashcards as preparation, then make the main outcome a no-hints tray sort with missing, extra, wrong, misidentified, and wrong-count scoring. |
+| Marker identity leakage | If cards visibly encode names or IDs, learners may match labels instead of learning instruments. | Use neutral card fronts during assessment, randomize marker IDs, hide answer text, and separate study cards from assessment cards. |
+| Content validity | A student-built tray module may contain wrong names, unrealistic distractors, or nonlocal quantities. | Require instructor or SPD educator verification of every instrument, alias, count, and distractor before using results as evidence. |
+| Assessment equivalence | Pre/post gains are weak evidence if the post-test is easier or repeats the same exact layout. | Build parallel pre/post tray variants with matched item families, counts, distractors, and difficulty. |
+| Short-term learning only | A same-day post-test can show practice effects rather than retention. | Add a delayed retention check or booster if schedule permits. |
+| Novice participant limits | Student participants can test learnability, but they do not represent SPD technicians under workflow pressure. | Report student results as novice simulated-learning evidence and reserve adoption/clinical-transfer claims for an SPD pilot. |
+| Scanning reliability | Camera angle, lighting, occlusion, and card overlap may produce app errors that look like learner errors. | Log raw detections, show a confirmation state before scoring, and run a marker-detection bench test before the user study. |
+| Confidence calibration | Confidence ratings can become noise if captured too often or too vaguely. | Capture simple confidence or `Not sure` at assessment moments and analyze high-confidence errors separately. |
+| Instructor usefulness | Better learner scores do not automatically mean the output helps educators. | Add a short instructor-facing report and ask an educator whether the weak-item summary would change coaching. |
+
+These holes do not invalidate the design. They define the claim boundary: the
+prototype can show whether a marker-card training loop improves novice
+performance on a simulated local tray task. It cannot yet show real SPD
+competence, reduced OR delays, or deployment-ready instrument recognition.
 
 ### 10.3 Scope Boundaries
 
-TODO: Summarize capability, study, clinical, local content, CV, reporting, and
-physical prototype boundaries.
+Allowed after Study 1:
+
+- novices improved on a simulated tray task;
+- the interface was usable for first-time learners;
+- retrieval cards plus practice sorting produced measurable immediate gains.
+
+Allowed after Study 2:
+
+- some gains persisted after 7-14 days;
+- the system showed short-term retention in a simulated tray task.
+
+Allowed after Study 3:
+
+- an expert reviewer found the module plausible for future SPD validation;
+- content concerns were identified and revised before broader testing.
+
+Not allowed yet:
+
+- SPD technicians will improve;
+- the system reduces tray errors in hospitals;
+- the system reduces OR delays;
+- the system certifies competency;
+- the app recognizes real surgical instruments;
+- same-day gains demonstrate retention.
 
 ## 11. Broader Impacts And Ethics
 
@@ -524,34 +1225,78 @@ and bias toward represented instrument libraries.
 
 ## 12. Project Plan And Future Work
 
-TODO: Turn the FDR into a handoff plan.
+This FDR is now the handoff plan. The next team should build only the minimum
+evidence loop needed to run the study, then expand after the first results.
 
 ### 12.1 Project Plan Postmortem
 
-TODO: Compare the original engineering plan to actual execution, including the
-pivot toward literature synthesis and risk reduction.
+The original project direction emphasized computer vision support for tray
+checking. That direction remained technically plausible, but the validation
+burden was too large for the FDR schedule: real instrument recognition would
+require local instrument data, site-specific tray rules, cross-manufacturer
+generalization testing, camera reliability, clinical workflow review, and
+adoption evidence. The project therefore pivoted to a training-centered system
+with a stronger near-term evidence path.
+
+The pivot reduced risk by changing the main proof obligation from
+deployment-grade recognition to measurable novice learning. The remaining
+engineering work is still concrete: build a local tray module, use AprilTag
+cards to make the simulated physical task observable, score tray attempts, and
+run a small pre/post study with claim boundaries.
 
 ### 12.2 Future Work Roadmap
 
-TODO: Organize future work into phases: minimal software prototype, polished
-verified module, novice study, report/instructor refinement, SPD educator
-review, supervised SPD pilot, and optional CV support.
+| Phase | Goal | Exit Criteria |
+| --- | --- | --- |
+| 1. Minimal prototype | Build the end-to-end local tray loop. | Load module, scan cards, run pre-test, show study cards, run quiz, run practice sort, run post-test, export metrics. |
+| 2. Verified module | Make the first tray content defensible. | 8-12 required instruments, distractors, lookalikes, neutral assessment cards, matched variants, and expert/instructor review. |
+| 3. Marker reliability | Prove the app can observe card choices. | At least 95% detection in normal layouts, no systematic ID confusion, confirmation screen before scoring. |
+| 4. Novice study | Test immediate simulated learning. | 8-12 college-student participants, pre/post results, usability notes, and bounded claim language. |
+| 5. Retention check | Test whether anything persists. | 7-14 day delayed no-hints tray sort with a third matched variant. |
+| 6. Report refinement | Turn study output into FDR evidence. | Participant-level results, aggregate pre/post plots, error-category table, high-confidence errors, and qualitative themes. |
+| 7. SPD educator review | Improve content validity. | Reviewer feedback on names, counts, distractors, lookalikes, scoring, and weak-item report. |
+| 8. Future SPD pilot | Test target-user relevance. | SPD trainee or technician participants, local count sheet/photos, approval/privacy review, and comparison condition. |
+| 9. Optional CV support | Reintroduce real-instrument recognition as support, not the core proof. | Detector tested on local photos with generalization and failure-mode reporting. |
 
 ### 12.3 GitLab Epic / Issue Map
 
-TODO: Summarize planned epics and issues for content authoring, learner
-workflow, scoring, reporting, study protocol, instructor validation, optional
-physical cards, and optional CV support.
+| Epic | Issues |
+| --- | --- |
+| Training Module | Define first tray module; add instrument cards with aliases and features; add tray quantities and distractors; build study-card view; build identification quiz. |
+| Scoring And Feedback | Record quiz correctness, duration, and confidence; build simulated tray sorting; implement missing/extra/wrong/misidentified/wrong-count scoring; add practice feedback. |
+| Assessment | Build pre-test mode; build post-test mode; suppress hints and feedback during assessment; add delayed-retention mode if schedule allows. |
+| Evidence And Reporting | Export learner metrics; generate pre/post summary; report confidence calibration, high-confidence errors, and weak-item recovery. |
+| Pilot Evidence | Write pilot walkthrough script; run marker reliability check; run novice study; record confusion points; add limitation note about non-SPD participants. |
+| Content Validation | Prepare expert-review packet; collect reviewer feedback; revise names, counts, distractors, and feedback language. |
+| Presentation | Lock final demo narrative around simulated learning, retention boundary, and future SPD validation. |
 
 ### 12.4 Milestones And Gantt Chart
 
-TODO: Include a proposed continuation schedule and label it as future work.
+Proposed continuation schedule, labeled as future work:
+
+| Week | Milestone | Deliverable |
+| --- | --- | --- |
+| Week 1 | Local Tray Data Ready | Tray module, instrument cards, aliases, counts, distractors, lookalikes. |
+| Week 2 | Study And Quiz Flow Ready | Retrieval cards, quiz, confidence capture, weak-item logging. |
+| Week 3 | Practice Sorting Feedback Ready | AprilTag tray sort, scoring, practice feedback, marker reliability pass. |
+| Week 4 | Pre/Post Assessment Ready | No-hints pre-test/post-test modes, matched variants, metrics export. |
+| Week 5 | Pilot Evidence Ready | Novice study, descriptive analysis, usability findings, immediate-learning claim. |
+| Week 6 | Retention And Review Ready | 7-14 day delayed check if feasible, expert review, revised FDR result section. |
 
 ### 12.5 Budget
 
-TODO: Separate software/prototype costs, physical teaching materials,
-camera/stand costs if needed, participant/study costs, future pilot costs, and
-labor hours by subsystem.
+| Category | Expected Cost | Notes |
+| --- | --- | --- |
+| Software prototype | $0 direct cost | Uses existing local app stack and open-source AprilTag support where available. |
+| Physical cards | $5-25 | Printer paper/cardstock, sleeves, tape, or foam backing. |
+| Tray surface | $0-30 | Existing table, poster board, foam board, or simple marked tray boundary. |
+| Camera/device | $0 if using existing laptop/tablet/phone | Optional stand improves reliability but is not required for the first study. |
+| Participant cost | $0-100 | Small snacks/gift cards if allowed; class demo can be unpaid. |
+| Expert review | $0-200 | Likely unpaid instructor feedback; paid SPD educator review would be stronger. |
+| Future SPD pilot | TBD | Depends on site approval, staff time, privacy review, and local instrument access. |
+
+The main cost is labor: module authoring, prototype implementation, marker
+testing, study moderation, analysis, and report writing.
 
 ## 13. Discussion And Final Recommendations
 

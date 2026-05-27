@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 from typing import Sequence
 
-from micro_design_project.training import train as train_module
+from trayguard.training import train as train_module
 
 
 DEFAULT_RUNS: tuple[str, ...] = (

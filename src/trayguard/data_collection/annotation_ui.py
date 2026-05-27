@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import cv2
 
-from micro_design_project.data_collection.drawing import draw_box, draw_status_lines
-from micro_design_project.data_collection.models import Box
+from trayguard.data_collection.drawing import draw_box, draw_status_lines
+from trayguard.data_collection.models import Box
 
 
 class ImageAnnotator:

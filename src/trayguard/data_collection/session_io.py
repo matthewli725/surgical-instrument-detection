@@ -6,7 +6,7 @@ from pathlib import Path
 
 import cv2
 
-from micro_design_project.data_collection.models import Box, CollectionSession
+from trayguard.data_collection.models import Box, CollectionSession
 
 
 def create_session(

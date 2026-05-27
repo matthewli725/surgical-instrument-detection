@@ -7,7 +7,7 @@ from typing import Sequence
 
 import cv2
 
-from micro_design_project.data_collection.drawing import draw_status_lines
+from trayguard.data_collection.drawing import draw_status_lines
 
 
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp", ".webp")

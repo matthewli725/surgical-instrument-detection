@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Any
 
 import cv2
 
-from micro_design_project.detection import draw_detections, process_image
+from trayguard.detection import draw_detections, process_image
 
 if TYPE_CHECKING:
     from ultralytics import YOLO

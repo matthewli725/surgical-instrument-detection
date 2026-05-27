@@ -9,15 +9,8 @@ The consolidated final report draft lives in
 [docs/final_paper_fdr.md](docs/final_paper_fdr.md). Remaining background notes
 start at [docs/context/project_background.md](docs/context/project_background.md).
 
-Workflow acceptance, traceability, and study design live in the project
-evaluation docs:
-[docs/project/evaluation/README.md](docs/project/evaluation/README.md).
-
 Consolidated scope boundaries and risks live in
 [docs/project/scope_boundaries_and_risks.md](docs/project/scope_boundaries_and_risks.md).
-
-Planning materials and weekly updates live in
-[docs/project/planning/README.md](docs/project/planning/README.md).
 
 ## 1. Install
 
@@ -31,33 +24,26 @@ We use `uv` for dependency management.
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://git.capstone.uclalemur.com/2026/building/micro-design-project.git
-cd micro-design-project
+git clone https://git.capstone.uclalemur.com/2026/building/trayguard.git
+cd trayguard
 uv sync
 ```
 
 If you already cloned the repo, run this from the repo folder:
 
 ```bash
-cd micro-design-project
+cd trayguard
 uv sync
 ```
 
 
 ## 2. Active Evaluation Path
 
-The active project work is documentation and prototype evidence for the
-training-platform pivot:
-
-- [training effectiveness plan](docs/project/evaluation/adoption/training_effectiveness.md)
-- [workflow acceptance plan](docs/project/evaluation/adoption/workflow_acceptance.md)
-- [traceability and reporting plan](docs/project/evaluation/adoption/traceability_reporting.md)
-- [literature-backed risk analysis](docs/project/evaluation/adoption/formal_risk_analysis.md)
-- [claim-evidence control sheet](docs/project/planning/claim_evidence_control_sheet.md)
-
-Use these files to defend the current claim: TrayGuard tests whether a local
-training module improves novice simulated tray familiarity. Camera and YOLO
-utilities support future authoring or visual-review extensions; the active
+The active project work is consolidated in the
+[Final Paper FDR](docs/final_paper_fdr.md). Use that file to defend the
+current claim: TrayGuard tests whether a local training module improves novice
+simulated tray familiarity. Camera and YOLO utilities support future authoring
+or visual-review extensions; the active
 evidence path is the pre/post training workflow.
 
 ## 3. Legacy/Future CV Utilities
@@ -204,7 +190,7 @@ uv run trayguard export-weights runs/detect/spoons_reference_plus_45_90/weights/
 ## 4. Project Layout
 
 ```text
-src/micro_design_project/       main Python package
+src/trayguard/       main Python package
 scripts/                        helper scripts
 config/                         training config
 data/                           local datasets, ignored by git
@@ -212,8 +198,6 @@ runs/                           training outputs, ignored by git
 weights/                        local model weights
 docs/README.md                  docs index
 docs/context/                   background, root cause, and decision framing
-docs/project/                   technical docs, evaluation, and planning
+docs/project/                   technical docs and reference material
 docs/project/reference/         instrument taxonomy and lookalike catalog
-docs/project/evaluation/        evaluation plans and adoption/risk writeups
-docs/project/planning/          weekly updates and forward plans
 ```

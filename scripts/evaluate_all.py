@@ -1,6 +1,6 @@
 import sys
 
-from micro_design_project.cli import main
+from trayguard.cli import main
 
 
 if __name__ == "__main__":

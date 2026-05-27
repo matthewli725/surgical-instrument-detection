@@ -1,5 +1,5 @@
 [project]
-name = "micro-design-project"
+name = "trayguard"
 version = "0.1.0"
 description = "SPD training and assessment prototype for surgical tray instruments."
 readme = "README.md"
@@ -16,8 +16,8 @@ dependencies = [
 ]
 
 [project.scripts]
-trayguard = "micro_design_project.cli:main"
-trayguard-app = "micro_design_project.app.streamlit_runner:main"
+trayguard = "trayguard.cli:main"
+trayguard-app = "trayguard.app.streamlit_runner:main"
 
 [build-system]
 requires = ["setuptools>=61"]

@@ -165,8 +165,8 @@ Mode behavior should be explicit:
 | Practice sort | Yes | Yes | Applied retrieval and deliberate practice on the tray task. |
 | Post-test | No | No | Comparable learning assessment. |
 
-The detailed design rationale is in
-[Training Module Design](training_module_design.md).
+The detailed design rationale is in the consolidated
+[Final Paper FDR](../final_paper_fdr.md).
 
 ## Optional Camera-Supported Tray Check
 
@@ -679,13 +679,13 @@ The selected architecture should have graceful fallback paths.
 
 The repository already contains foundations for the optional CV support layer:
 
-- `src/micro_design_project/data_collection/` handles camera capture,
+- `src/trayguard/data_collection/` handles camera capture,
   annotation, and controlled data collection.
-- `src/micro_design_project/detection.py` handles detector inference and
+- `src/trayguard/detection.py` handles detector inference and
   annotated rendering.
-- `src/micro_design_project/app/` provides the current live tray-check UI and
+- `src/trayguard/app/` provides the current live tray-check UI and
   count checklist flow.
-- `src/micro_design_project/training/` and `scripts/` support dataset export,
+- `src/trayguard/training/` and `scripts/` support dataset export,
   training, benchmarking, and weight export.
 
 The biggest remaining system-design gap is the new training layer: local tray

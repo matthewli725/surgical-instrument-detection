@@ -7,7 +7,7 @@ from typing import Sequence
 
 from ultralytics import YOLO
 
-from micro_design_project.training.train import PROJECT_ROOT, load_config, train_model
+from trayguard.training.train import PROJECT_ROOT, load_config, train_model
 
 
 RESULTS_JSON = PROJECT_ROOT / "runs" / "benchmark_results.json"

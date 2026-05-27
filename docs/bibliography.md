@@ -93,12 +93,17 @@ citations throughout `docs/` should link back to the relevant entry here.
 <a id="barrison-et-al-2025"></a>
 ### Barrison et al., 2025
 
-- Barrison et al., ["Electronic Flashcards in Health Professions Education: A Scoping Review"](https://doi.org/10.1097/ACM.0000000000005968), *Academic Medicine*, 2025.
+- Barrison et al., ["Electronic Flashcards in Health Professions Education: A Scoping Review"](https://pubmed.ncbi.nlm.nih.gov/39774058/), *Academic Medicine*, 2025. PMID: 39774058. DOI: 10.1097/ACM.0000000000005968.
 
 <a id="best-metal-products-stainless-sheet-accessed-2026"></a>
 ### Best Metal Products, accessed 2026
 
 - Best Metal Products, ["304 Stainless Steel Sheet .023 in. x 24 in. x 48 in."](https://www.best-metal-products.com/products/304-stainless-steel-sheet-023-x-24-x-48-24ga), accessed 2026.
+
+<a id="bell-et-al-2008"></a>
+### Bell et al., 2008
+
+- Bell et al., ["Knowledge Retention after an Online Tutorial: A Randomized Educational Experiment among Resident Physicians"](https://pmc.ncbi.nlm.nih.gov/articles/PMC2517967/), *Journal of General Internal Medicine*, 2008.
 
 <a id="bls-cpi-calculator-accessed-2026"></a>
 ### BLS CPI Inflation Calculator, accessed 2026
@@ -810,6 +815,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - STERIS, ["How are Surgical Instruments Cleaned and Disinfected?"](https://www.steris.com/healthcare/knowledge-center/infection-prevention/cleaning-and-disinfecting-surgical-instruments), accessed 2026.
 
+<a id="stryker-gamma4-count-sheet-2023"></a>
+### Stryker Gamma4 Count Sheet, 2023
+
+- Stryker, ["Gamma4 Indication Tray Count Sheet"](https://www.stryker.com/content/dam/stryker/australia-new-zealand/trauma/products/gamma4/Gamma4%20Count%20Sheet%20-%20SSP.pdf), 2023.
+
+<a id="stryker-imn-count-sheet-2023"></a>
+### Stryker IMN Count Sheet, 2023
+
+- Stryker, ["IMN Basic Instruments Tray Count Sheet"](https://www.stryker.com/content/dam/stryker/australia-new-zealand/trauma/products/gamma4/IMN%20Basic%20Inst.%20Count%20Sheet%20%28CA4114%29.pdf), 2023.
+
 <a id="surgical-science-simulators-accessed-2026"></a>
 ### Surgical Science, accessed 2026
 
@@ -914,6 +929,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Wang et al., 2021
 
 - Wang et al., ["Fine-grained classification based on multi-scale pyramid convolution networks"](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254054), *PLOS One*, 2021.
+
+<a id="ward-et-al-2019"></a>
+### Ward et al., 2019
+
+- Ward et al., ["The co-design, implementation and evaluation of a serious board game 'PlayDecide patient safety' to educate junior doctors about patient safety and the importance of reporting safety concerns"](https://bmcmededuc.biomedcentral.com/articles/10.1186/s12909-019-1655-2), *BMC Medical Education*, 2019.
 
 <a id="wei-et-al-2018"></a>
 ### Wei et al., 2018

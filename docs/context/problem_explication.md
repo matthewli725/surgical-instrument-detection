@@ -378,7 +378,7 @@ The resulting project is one complete local tray module. The first module
 should prove the loop from local tray data to
 pre-test, retrieval-first cards, quiz, applied tray practice, weak-item review,
 post-test, and metrics export. The design decision and tradeoffs are detailed in
-[Training Module Design](../project/training_module_design.md).
+the [Final Paper FDR](../final_paper_fdr.md).
 
 The proposed capstone experiment should therefore test simulation as an added
 practice layer:

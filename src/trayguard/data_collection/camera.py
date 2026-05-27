@@ -4,11 +4,11 @@ from pathlib import Path
 
 import cv2
 
-from micro_design_project.data_collection.annotation_ui import ImageAnnotator
-from micro_design_project.data_collection.classes import write_class_names
-from micro_design_project.data_collection.drawing import draw_box, draw_status_lines
-from micro_design_project.data_collection.models import CollectionSession
-from micro_design_project.data_collection.session_io import (
+from trayguard.data_collection.annotation_ui import ImageAnnotator
+from trayguard.data_collection.classes import write_class_names
+from trayguard.data_collection.drawing import draw_box, draw_status_lines
+from trayguard.data_collection.models import CollectionSession
+from trayguard.data_collection.session_io import (
     rewrite_session_labels,
     save_image_with_shared_labels,
     save_metadata,
