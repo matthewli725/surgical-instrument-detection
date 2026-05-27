@@ -41,6 +41,7 @@ class AssessmentVariant:
     distractor_item_ids: list[str]
     random_seed: str
     feedback_enabled: bool
+    photo_view: str = ""
 
 
 @dataclass(frozen=True)
@@ -87,6 +88,24 @@ class TrayModule:
     @property
     def total_required_units(self) -> int:
         return sum(item.quantity for item in self.required_items.values())
+
+
+@dataclass(frozen=True)
+class InstrumentCatalog:
+    catalog_id: str
+    version: str
+    name: str
+    source_note: str
+    instruments: dict[str, Instrument]
+
+    def to_public_dict(self) -> dict[str, Any]:
+        return {
+            "catalog_id": self.catalog_id,
+            "version": self.version,
+            "name": self.name,
+            "source_note": self.source_note,
+            "instruments": {key: asdict(value) for key, value in self.instruments.items()},
+        }
 
 
 @dataclass(frozen=True)

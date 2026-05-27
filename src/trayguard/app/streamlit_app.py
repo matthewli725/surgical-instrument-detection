@@ -7,13 +7,15 @@ from pathlib import Path
 import streamlit as st
 
 from trayguard.app.state import AppState, TrayRequirement, ensure_worker_running
-from trayguard.data_collection.classes import DEFAULT_CLASSES
+from trayguard.learning.models import TrayModule
+from trayguard.learning.module import load_tray_module
 
 if TYPE_CHECKING:
     from ultralytics import YOLO
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "basic_general_tray_v1.json"
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "weights" / "trayguard.pt"
 FALLBACK_MODEL_PATH = PROJECT_ROOT / "yolo11s.pt"
 DEFAULT_CAMERA_INDEX = 0
@@ -31,6 +33,11 @@ def get_shared_state() -> AppState:
     return AppState()
 
 
+@st.cache_resource(show_spinner="Loading tray module...")
+def get_tray_module(module_path: str) -> TrayModule:
+    return load_tray_module(module_path)
+
+
 def parse_requirements(raw_value: str) -> list[TrayRequirement]:
     requirements: list[TrayRequirement] = []
     for line in raw_value.splitlines():
@@ -44,11 +51,32 @@ def parse_requirements(raw_value: str) -> list[TrayRequirement]:
                 count = max(1, int(required))
             except ValueError:
                 count = 1
-            requirements.append(TrayRequirement(name=name.strip(), required=count))
+            display_name = name.strip()
+            requirements.append(TrayRequirement(instrument_id=display_name, name=display_name, required=count))
         else:
-            requirements.append(TrayRequirement(name=stripped, required=1))
+            requirements.append(TrayRequirement(instrument_id=stripped, name=stripped, required=1))
 
     return requirements
+
+
+def module_requirements(module: TrayModule) -> list[TrayRequirement]:
+    requirements: list[TrayRequirement] = []
+    for instrument_id, item in module.required_items.items():
+        instrument = module.instruments[instrument_id]
+        requirements.append(
+            TrayRequirement(
+                instrument_id=instrument_id,
+                name=instrument.display_name,
+                required=item.quantity,
+                aliases=tuple(instrument.aliases),
+            )
+        )
+    return requirements
+
+
+def observed_count(requirement: TrayRequirement, counts: Counter[str]) -> int:
+    names = (requirement.instrument_id, requirement.name, *requirement.aliases)
+    return max(counts[name] for name in names)
 
 
 def default_model_path() -> Path:
@@ -124,11 +152,11 @@ def render_checklist(requirements: list[TrayRequirement], counts: Counter[str]) 
     st.subheader("Tray Checklist")
 
     if not requirements:
-        st.info("Add one required item per line in the sidebar. Use `Name: count` for duplicates.")
+        st.info("No required items were found in the loaded tray module.")
         return
 
     for index, requirement in enumerate(requirements):
-        observed = counts[requirement.name]
+        observed = observed_count(requirement, counts)
         done = observed >= requirement.required
         st.checkbox(
             f"{requirement.name} ({observed}/{requirement.required})",
@@ -161,16 +189,16 @@ def main() -> None:
     st.title("TrayGuard Detection")
 
     state = get_shared_state()
-    model_path, camera_index = render_controls(state)
+    module_path = st.sidebar.text_input("Tray module", value=str(DEFAULT_MODULE_PATH))
+    try:
+        module = get_tray_module(str(Path(module_path).expanduser()))
+    except (OSError, ValueError) as exc:
+        st.error(f"Tray module could not be loaded: {exc}")
+        return
 
-    default_requirements = "\n".join(DEFAULT_CLASSES)
-    raw_requirements = st.sidebar.text_area(
-        "Required instruments",
-        value=default_requirements,
-        height=160,
-        help="One item per line. Use `Instrument: count` when more than one is required.",
-    )
-    requirements = parse_requirements(raw_requirements)
+    st.sidebar.caption(f"Loaded {module.name} ({module.module_id}, {module.total_required_units} required units)")
+    model_path, camera_index = render_controls(state)
+    requirements = module_requirements(module)
 
     model_file = Path(model_path).expanduser()
     with state.lock:

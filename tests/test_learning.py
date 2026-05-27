@@ -8,12 +8,15 @@ from pathlib import Path
 import cv2
 
 from trayguard.learning.aruco import detect_aruco_cards, generate_marker_png
+from trayguard.learning.catalog import load_instrument_catalog
 from trayguard.learning.export import export_run
 from trayguard.learning.module import load_tray_module
 from trayguard.learning.scoring import score_tray
 
 
 MODULE_PATH = Path("config/tray_modules/basic_general_tray_v1.json")
+CATALOG_PATH = Path("config/instrument_catalogs/hospitools_dslr_v1.json")
+COMMONS_CATALOG_PATH = Path("config/instrument_catalogs/wikimedia_commons_surgical_instruments_v1.json")
 
 
 class LearningPrototypeTests(unittest.TestCase):
@@ -25,6 +28,26 @@ class LearningPrototypeTests(unittest.TestCase):
         self.assertEqual(len(self.module.required_items), 10)
         self.assertEqual(self.module.total_required_units, 15)
         self.assertEqual(len(self.module.marker_cards), 20)
+        self.assertEqual(len(self.module.distractor_item_ids), 5)
+        self.assertGreaterEqual(len(self.module.lookalike_pairs), 5)
+        for instrument in self.module.instruments.values():
+            self.assertEqual({"view_a", "view_b"}, {ref["id"] for ref in instrument.image_refs[:2]})
+        self.assertEqual(self.module.assessment_variants["basic_general_tray_v1_pre_a"].photo_view, "view_a")
+        self.assertEqual(self.module.assessment_variants["basic_general_tray_v1_post_b"].photo_view, "view_b")
+
+    def test_hospitools_catalog_loads(self) -> None:
+        catalog = load_instrument_catalog(CATALOG_PATH)
+        self.assertEqual(catalog.catalog_id, "hospitools_dslr_v1")
+        self.assertGreaterEqual(len(catalog.instruments), 400)
+        first = next(iter(catalog.instruments.values()))
+        self.assertTrue(first.image_refs)
+
+    def test_wikimedia_commons_catalog_loads(self) -> None:
+        catalog = load_instrument_catalog(COMMONS_CATALOG_PATH)
+        self.assertEqual(catalog.catalog_id, "wikimedia_commons_surgical_instruments_v1")
+        self.assertGreaterEqual(len(catalog.instruments), 5)
+        first = next(iter(catalog.instruments.values()))
+        self.assertTrue(first.image_refs)
 
     def test_correct_tray_scores_full_credit(self) -> None:
         selected = {key: item.quantity for key, item in self.module.required_items.items()}

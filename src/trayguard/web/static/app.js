@@ -58,6 +58,42 @@ function instrumentsForTray() {
   return [...required, ...distractors].map((id) => state.module.instruments[id]);
 }
 
+function variantByMode(mode) {
+  return Object.values(state.module.assessment_variants).find((variant) => variant.mode === mode);
+}
+
+function seededRandom(seed) {
+  let hash = 2166136261;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return () => {
+    hash += 0x6d2b79f5;
+    let value = hash;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function shuffled(ids, seed) {
+  const random = seededRandom(seed || "trayguard");
+  const result = [...ids];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
+}
+
+function instrumentsForVariant(variantId) {
+  const variant = state.module.assessment_variants[variantId];
+  if (!variant) return instrumentsForTray();
+  const ids = [...variant.required_item_ids, ...variant.distractor_item_ids];
+  return shuffled(ids, variant.random_seed).map((id) => state.module.instruments[id]);
+}
+
 function selectedCountsFromInputs() {
   const counts = {};
   document.querySelectorAll("[data-instrument-id]").forEach((input) => {
@@ -105,11 +141,12 @@ function renderIntake() {
 
 function renderTraySort({ mode, variantId, title, copy, feedback }) {
   const startedAt = new Date();
+  const variant = state.module.assessment_variants[variantId];
   const template = document.querySelector("#tray-sort-template").content.cloneNode(true);
   template.querySelector("[data-title]").textContent = title;
-  template.querySelector("[data-copy]").textContent = copy;
+  template.querySelector("[data-copy]").textContent = variant?.photo_view ? `${copy} Photo set: ${variant.photo_view}.` : copy;
   const controls = template.querySelector("#manualControls");
-  for (const instrument of instrumentsForTray()) {
+  for (const instrument of instrumentsForVariant(variantId)) {
     const row = document.createElement("div");
     row.className = "manual-row";
     row.innerHTML = `<span>${instrument.display_name}</span><input type="number" min="0" value="0" data-instrument-id="${instrument.id}">`;
@@ -303,12 +340,14 @@ async function renderSummary() {
 
 function render() {
   if (!state.module) return;
+  const preVariant = variantByMode("pre_test");
+  const postVariant = variantByMode("post_test");
   if (state.currentStep === "intake") renderIntake();
-  if (state.currentStep === "pre") renderTraySort({ mode: "pre_test", variantId: "basic_general_tray_v1_pre_a", title: "Pre-test tray sort", copy: "No hints. Use cards and the count sheet task to assemble the tray.", feedback: false });
+  if (state.currentStep === "pre") renderTraySort({ mode: "pre_test", variantId: preVariant.id, title: "Pre-test tray sort", copy: "No hints. Use cards and the count sheet task to assemble the tray.", feedback: false });
   if (state.currentStep === "study") renderStudy();
   if (state.currentStep === "quiz") renderQuiz();
-  if (state.currentStep === "practice") renderTraySort({ mode: "practice", variantId: "basic_general_tray_v1_pre_a", title: "Practice tray sort", copy: "Use the same physical-card workflow. Feedback appears after submission.", feedback: true });
-  if (state.currentStep === "post") renderTraySort({ mode: "post_test", variantId: "basic_general_tray_v1_post_b", title: "Post-test tray sort", copy: "No hints. This uses the matched post-test variant.", feedback: false });
+  if (state.currentStep === "practice") renderTraySort({ mode: "practice", variantId: preVariant.id, title: "Practice tray sort", copy: "Use the same physical-card workflow. Feedback appears after submission.", feedback: true });
+  if (state.currentStep === "post") renderTraySort({ mode: "post_test", variantId: postVariant.id, title: "Post-test tray sort", copy: "No hints. This uses the matched post-test variant.", feedback: false });
   if (state.currentStep === "summary") renderSummary();
 }
 

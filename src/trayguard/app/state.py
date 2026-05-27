@@ -16,8 +16,10 @@ if TYPE_CHECKING:
 
 @dataclass
 class TrayRequirement:
+    instrument_id: str
     name: str
     required: int = 1
+    aliases: tuple[str, ...] = ()
 
 
 @dataclass

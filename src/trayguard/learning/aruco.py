@@ -9,7 +9,7 @@ import numpy as np
 from trayguard.learning.models import DetectedCard
 
 
-ARUCO_DICTIONARY_NAME = "DICT_4X4_100"
+ARUCO_DICTIONARY_NAME = "DICT_5X5_1000"
 
 
 def aruco_dictionary():

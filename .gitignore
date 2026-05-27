@@ -17,6 +17,12 @@ rtdetr-x.pt
 /demo
 /reports
 /weights
+/assets
+/config/instrument_catalogs
+/config/tray_modules
+/outputs
+/tests
+
 
 # ---------------------------
 

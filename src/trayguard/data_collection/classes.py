@@ -2,13 +2,18 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from trayguard.learning.module import load_tray_module
 
-DEFAULT_CLASSES = [
-    "Scalpel n4",
-    "Straight Dissection Clamp",
-    "Straight Mayo Scissor",
-    "Curved Mayo Scissor",
-]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_TRAY_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "basic_general_tray_v1.json"
+
+
+def module_class_names(module_path: Path = DEFAULT_TRAY_MODULE_PATH) -> list[str]:
+    module = load_tray_module(module_path)
+    return [instrument.display_name for instrument in module.instruments.values()]
+
+
+DEFAULT_CLASSES = module_class_names()
 
 
 def load_class_names(classes_path: Path) -> list[str]:

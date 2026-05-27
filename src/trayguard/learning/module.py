@@ -77,9 +77,21 @@ def load_tray_module(path: str | Path) -> TrayModule:
             distractor_item_ids=list(row.get("distractor_item_ids", [])),
             random_seed=row.get("random_seed", ""),
             feedback_enabled=bool(row.get("feedback_enabled", False)),
+            photo_view=row.get("photo_view", ""),
         )
         for row in payload.get("assessment_variants", [])
     }
+    for variant in assessment_variants.values():
+        unknown_variant_items = sorted((set(variant.required_item_ids) | set(variant.distractor_item_ids)) - set(instruments))
+        if unknown_variant_items:
+            raise ValueError(
+                f"Assessment variant {variant.id} refers to unknown instrument(s): {', '.join(unknown_variant_items)}"
+            )
+        missing_required = sorted(set(variant.required_item_ids) - set(required_items))
+        if missing_required:
+            raise ValueError(
+                f"Assessment variant {variant.id} requires item(s) not declared in required_items: {', '.join(missing_required)}"
+            )
 
     marker_cards = [
         MarkerCard(

@@ -309,27 +309,127 @@ The resulting research question is:
 
 ## 4. Literature And Related Work
 
-TODO: Synthesize the evidence base that supports the final project direction.
-This section should consolidate the literature instead of scattering the full
-argument across every design section.
+The literature supports the final direction only if the claim is kept narrow.
+The evidence is strong that tray readiness problems recur, that many important
+errors depend on visual inspection and local tray knowledge, and that
+simulation plus retrieval practice can improve health-professions learning.
+The evidence is not yet strong enough to claim that a student-built prototype
+will reduce hospital tray errors or certify sterile-processing competence.
+
+For that reason, TrayGuard should be evaluated as a training and assessment
+system first. Its near-term job is to give novices repeated, measured practice
+on a local tray module and to show whether they improve on comparable simulated
+tray-sorting tasks. Real-instrument computer vision, clinical workflow
+automation, and operational error reduction remain future validation layers.
 
 ### 4.1 SPD Error And Tray-Readiness Evidence
 
-TODO: Summarize tray defects, missing/wrong/extra instruments, delays,
-assembly risk, visualization tasks, packaging errors, dirty or damaged
-instruments, and count-sheet dependence.
+Several studies make tray reconstruction a defensible intervention point.
+Alfred et al. analyzed 3,900 tray defects across 41,799 surgical cases and
+found that 55.0% of recorded defects occurred during assembly. The recorded
+defects included missing, wrong, damaged, extra, and incorrectly assembled
+instruments ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). That
+finding matters because assembly is the stage where cleaned instruments are
+identified, inspected, counted, and rebuilt into a tray before packaging and
+sterilization.
+
+Nichol et al. provide a second, more direct error-pattern argument. They
+observed 236 surgical instrument errors affecting 147 cases. Missing+ errors
+were the largest category and included missing, wrong, and extra instruments.
+They also found that 88.6% of observed errors involved visualization tasks such
+as inspection, identification, function checking, and sorting
+([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). When delays
+occurred, the average delay was about 10 minutes. This does not prove that a
+training app will prevent those delays, but it does show that the target task
+is not a cosmetic documentation problem. It is a recurrent readiness problem
+with operational consequences.
+
+Packaging and inspection evidence points in the same direction. Zhu et al.
+found 398 packaging errors among 33,839 surgical instrument packages, including
+wrong specifications, incomplete packages, and missing instruments
+([Zhu et al., 2019](bibliography.md#zhu-et-al-2019)). Safety reports also show
+that dirty, damaged, or suspect instruments can reach ready-for-use trays and
+create patient-safety and lost-time concerns when they are found late
+([Pennsylvania Patient Safety Authority, 2006](bibliography.md#pennsylvania-patient-safety-authority-2006);
+[Association of Health Care Journalists, 2024](bibliography.md#association-of-health-care-journalists-2024)).
+
+The FDR design implication is that TrayGuard should score the error categories
+that actually appear in the literature: missing, wrong, extra, misidentified,
+wrong-count, and visibly unacceptable items when that content is included in a
+future module. The current prototype should focus on the first five categories
+because they can be measured in a controlled card-based tray task.
 
 ### 4.2 SPD Training And Competency Context
 
-TODO: Summarize certification and training realities, including CRCST/CBSPD
-boundaries, hands-on hour requirements, preceptor burden, preparation and
-packaging relevance, and supervised competency sign-off.
+Sterile-processing training is not just general medical vocabulary. It
+requires local instrument recognition, tray assembly, inspection, packaging,
+and supervised practice. HSPA's CRCST route requires 400 hours of hands-on
+experience, including 120 hours in preparation and packaging
+([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026)). The
+CRCST content outline also includes cleaning, decontamination, preparation,
+packaging, sterilization, sterile storage, patient-care equipment, and quality
+assurance ([HSPA CRCST Content Outline, 2023](bibliography.md#hspa-crcst-content-outline-2023)).
+CBSPD's technician certification is a separate credential route and likewise
+does not turn a software score into local workplace competence
+([CBSPD Technician Exam, accessed 2026](bibliography.md#cbspd-technician-accessed-2026)).
+
+This boundary is important for the training pivot. TrayGuard should not claim
+to replace certification, hands-on hours, preceptor observation, or sign-off.
+Its value is earlier and narrower: give learners repeated practice before,
+during, or between supervised work, and give educators evidence about weak
+instruments, weak tray rules, high-confidence errors, and uncertainty.
+
+The training need is also practical. HSPA maintains surgical-instrument
+resources focused on instrument identification, names, uses, inspection, and
+testing points
+([HSPA Surgical Instrument Resources, accessed 2026](bibliography.md#hspa-instrument-resources-accessed-2026)).
+AORN describes hands-on and simulation training as part of sterile-processing
+workforce development, while staffing and turnover reports show why supervised
+training time is a scarce resource rather than an unlimited input
+([AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025);
+[Brozak, 2025](bibliography.md#brozak-2025);
+[Mácola et al., 2025](bibliography.md#macola-et-al-2025)). TrayGuard therefore
+fits best as an accessibility and modernization layer for training, not as a
+shortcut around clinical supervision.
 
 ### 4.3 Local Tray And Count-Sheet Evidence
 
-TODO: Explain why TrayGuard must use local modules: local names, aliases,
-photos, quantities, variants, placement rules, specialty trays, custom trays,
-loaner trays, and surgeon/procedure variation.
+TrayGuard must be local because tray assembly is local. Count sheets are not
+just generic instrument lists. They can include tray names, contents,
+quantities, sizes, reference numbers, preparation and inspection steps,
+placement instructions, packaging, indicators, destination or storage details,
+and sign-off fields ([Nadeau, 2024](bibliography.md#nadeau-2024)). Public
+Stryker count sheets show the same practical pattern: tray sections,
+descriptions, reference numbers, locations, quantities, check boxes, total
+counts, additional items, and hospital signature fields
+([Stryker Gamma4 Count Sheet, 2023](bibliography.md#stryker-gamma4-count-sheet-2023);
+[Stryker IMN Count Sheet, 2023](bibliography.md#stryker-imn-count-sheet-2023)).
+
+Tray optimization literature reinforces that tray contents are design choices.
+dos Santos et al. describe rationalization as deciding which instruments and
+quantities belong in trays and which trays are needed for procedures
+([dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021)). Ahmadi et
+al. similarly frame tray configuration around procedure-, surgeon-, and
+usage-based decisions
+([Ahmadi et al., 2023](bibliography.md#ahmadi-et-al-2023)). A learner can
+therefore know the difference between a Kelly and a Crile and still make the
+wrong decision for a specific hospital tray if the local rule, count, alias, or
+substitution policy differs.
+
+The local requirement becomes even stronger for specialty, custom, and loaner
+trays. Loaner workflows depend on scheduling, vendor delivery, OR awareness,
+SPD awareness, IFUs, count sheets, status, location, and pickup
+([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)). Commercial tray
+tools also emphasize count sheets, tray photos, assembly information, and
+proficiency metrics, which suggests that structured local tray information is a
+real operational need
+([Tray Pacer, accessed 2026](bibliography.md#tray-pacer-accessed-2026);
+[LayerJot SID, accessed 2026](bibliography.md#layerjot-sid-accessed-2026)).
+
+The FDR design consequence is a file-backed module contract. TrayGuard should
+store local names, aliases, approved photos, required counts, lookalike pairs,
+distractors, assessment variants, and module version. The module must be
+instructor-verified before the results are described as content-valid.
 
 ### 4.4 Learning Science And Simulation Evidence
 
@@ -420,18 +520,67 @@ supervised workplace validation before making clinical-transfer claims.
 
 ### 4.5 Computer Vision Feasibility And Boundary Evidence
 
-TODO: Summarize surgical-instrument CV as plausible future support while
-explaining why deployment-grade CV is not the central FDR claim.
+Computer vision remains technically plausible, but it is no longer the central
+FDR proof. Deol et al. show that automated surgical-instrument detection and
+counting can work in an experimental proof-of-concept setting
+([Deol et al., 2024](bibliography.md#deol-et-al-2024)). Atabuzzaman et al.
+show that structured image acquisition can support ultra-fine-grained surgical
+instrument classification, and Xin et al. address CSSD-oriented instrument
+recognition
+([Atabuzzaman et al., 2025](bibliography.md#atabuzzaman-et-al-2025);
+[Xin et al., 2024](bibliography.md#xin-et-al-2024)). These papers justify
+continued CV work as authoring support, camera-assisted practice, or a future
+visual review layer.
+
+They do not remove the validation burden for a hospital tray checker. Real SPD
+deployment would need local data, manufacturer and variant coverage, lighting
+and glare testing, occlusion handling, open-set behavior, workflow review,
+human confirmation, false-alert analysis, cleaning and device-policy review,
+and site-specific failure-mode reporting. Kienle et al. show why this boundary
+matters: strong in-domain detection can drop when instruments come from
+different manufacturers
+([Kienle et al., 2025](bibliography.md#kienle-et-al-2025)).
+
+The project's earlier CV pipeline is still useful technical evidence, but it
+should be treated as a support layer. The FDR's primary claim should come from
+the training loop because that loop can be built, tested, and interpreted
+without pretending that deployment-grade instrument recognition has already
+been solved.
 
 ### 4.6 Market And Comparable Tools
 
-TODO: Compare relevant commercial tools, research systems, and training
-approaches. Suggested columns: tool, target user, relevant features, evidence
-strength, and gap relative to TrayGuard.
+Comparable systems cluster into four groups: tray-management products,
+instrument tracking systems, surgical simulation tools, and emerging CV or
+robotic research systems. None of them eliminates the need for TrayGuard's
+bounded training claim.
+
+| Tool or approach | Target user | Relevant features | Evidence strength | Gap relative to TrayGuard |
+| --- | --- | --- | --- | --- |
+| Tray Pacer | SPD teams and managers | Count sheets, tray assembly support, photos, productivity and proficiency metrics. | Commercial product evidence. | Supports operations, but public materials do not establish the specific pre/post local tray learning study proposed here ([Tray Pacer, accessed 2026](bibliography.md#tray-pacer-accessed-2026)). |
+| LayerJot SID | SPD and surgical instrument teams | Instrument documentation, photos, count sheets, and tray information. | Commercial product evidence. | Strong local-information precedent, but not a demonstrated AprilTag-card novice learning loop ([LayerJot SID, accessed 2026](bibliography.md#layerjot-sid-accessed-2026)). |
+| CensiTrac and similar tracking systems | Hospitals, SPD, OR inventory teams | Instrument and tray tracking, traceability, inventory visibility. | Commercial and operational precedent. | Addresses tracking and lifecycle visibility more than low-cost novice simulation and weak-item training ([CensiTrac, accessed 2026](bibliography.md#censitrac-accessed-2026)). |
+| Touch Surgery and surgical simulators | Medical trainees and clinicians | Repeated simulation attempts, performance logging, skill practice. | Published evaluation and commercial adoption. | Supports simulation logic, but focuses on surgical procedure skills rather than SPD tray reconstruction ([Tulipan et al., 2019](bibliography.md#tulipan-et-al-2019); [Medtronic Touch Surgery, accessed 2026](bibliography.md#medtronic-touch-surgery-accessed-2026)). |
+| NeuroVase-style tangible learning cards | Health-professions learners | Physical cue cards, mobile AR, structured curriculum, pre/post testing, usability measures. | Emerging preprint evidence. | Strong design precedent for tangible medical learning, but not sterile-processing content ([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase)). |
+| Surgical-instrument CV research | Researchers and future technical teams | Detection, counting, fine-grained classification, instrument-stand recognition. | Published research, usually bounded datasets. | Supports future camera assistance, but not deployment-ready SPD workflow claims ([Deol et al., 2024](bibliography.md#deol-et-al-2024); [Atabuzzaman et al., 2025](bibliography.md#atabuzzaman-et-al-2025); [Kienle et al., 2025](bibliography.md#kienle-et-al-2025)). |
+| Autonomous tray assembly research | Robotics researchers and future automation teams | Manipulation, sorting, and assembly concepts. | Early research. | Much higher hardware, sterility, safety, and integration burden than the FDR training loop ([da Silva et al., 2026](bibliography.md#da-silva-et-al-2026)). |
+
+TrayGuard's differentiation is not that no one has count sheets, tracking, or
+simulation. Its narrower contribution is a low-cost local training loop that
+turns a tray module into retrieval-first study, applied tray sorting, immediate
+feedback, no-hints assessment, and exportable pre/post evidence.
 
 ## 5. Final Product Concept And Design Rationale
 
-TODO: Define the final TrayGuard direction and explain why it was selected.
+The final TrayGuard direction is a local tray training and assessment platform,
+not a deployment-ready clinical tray checker. The selected concept keeps the
+original readiness problem but moves the proof point earlier in the workflow:
+can a novice learn a local tray module well enough to improve on a comparable
+simulated tray-sorting task?
+
+This direction was selected because it is useful, buildable, and testable
+within the FDR scope. It still addresses tray reconstruction errors, but it
+does so by reducing training and knowledge-transfer risk before claiming that a
+camera system can verify real sterile-processing trays.
 
 ### 5.1 Final Product Concept
 
@@ -460,10 +609,32 @@ distinctions, and tray rules to assemble a simulated tray.
 
 ### 5.2 Rationale For The Training-Centered Pivot
 
-TODO: Explain why the project is no longer centered on a live clinical CV tray
-checker: time constraints, validation risk, existing bounded CV literature,
-and the stronger near-term value of reducing training and workflow-transfer
-risks.
+The project originally aimed at a live CV tray checker: detect instruments,
+compare detections against a tray list, and return a readiness result. That
+direction remains attractive, but it has the wrong proof burden for the current
+FDR. A useful clinical tray checker would need strong evidence across real
+instruments, local tray definitions, similar variants, glare, occlusion,
+unknown objects, workflow interruptions, false alerts, human review, device
+policy, cleaning, privacy, and adoption. The current project can demonstrate
+parts of that pipeline, but it cannot responsibly claim deployment-grade
+clinical reliability.
+
+The Week 6 pivot made the value proposition more testable: reduce simulated
+time-to-competency and training burden for sterile-processing learners by
+building an interactive training platform. That direction keeps the same root
+problem, because missing, wrong, extra, and misidentified instruments still
+arise during tray reconstruction. It changes the claim from "the model can
+outperform humans in a hospital environment" to "novices can improve on a
+measured local tray simulation after retrieval-centered practice."
+
+This is a better FDR claim for three reasons. First, it matches the evidence:
+sterile-processing work depends on local knowledge and supervised practice, and
+simulation/retrieval evidence supports repeated practice with feedback. Second,
+it is buildable with low-cost materials: a file-backed tray module, printable
+cards, a scanning surface, scoring, and export. Third, it reduces risk for a
+future CV system by creating validated local content, error categories,
+workflow language, and learner data before asking a camera model to make
+clinical-grade distinctions.
 
 ### 5.3 Alternatives Considered
 
@@ -483,24 +654,86 @@ instrument recognition.
 
 ### 5.4 Selected Candidate And Backup Paths
 
-TODO: State the selected candidate and Plan B options at the feature, physical,
-CV, and evaluation levels.
+The selected candidate is:
+
+> A local tray training and assessment app that uses printable AprilTag
+> instrument cards for simulated tray sorting, retrieval-first study, quiz,
+> practice feedback, no-hints pre/post assessment, and metrics export.
+
+The backup paths are layered so the project still produces evidence if one
+piece fails.
+
+| Level | Selected path | Backup path | Claim preserved |
+| --- | --- | --- | --- |
+| Learning feature | Retrieval cards, quiz, practice sort, pre/post sort. | If the full loop is too long, run pre-test, study cards, practice sort, and post-test only. | Immediate simulated learning. |
+| Physical interface | AprilTag cards scanned on a tray mat. | Use QR codes or manual card selection if AprilTag scanning is unreliable. | Local tray-task learning, with marker reliability reported as a limitation. |
+| Content | `basic_general_tray_v1` with 8-12 required concepts, distractors, lookalikes, and matched variants. | Reduce to 6-8 required concepts while preserving at least two lookalike pairs and count errors. | Bounded module feasibility. |
+| CV | Marker detection only for FDR scoring. | Defer all camera recognition and score user selections manually. | Training evidence without CV overclaim. |
+| Evaluation | 8-12 novice participants plus delayed retention if schedule allows. | Run a smaller formative walkthrough and report it as usability/protocol evidence, not learning proof. | Risk-reduction handoff. |
+| Content validity | SPD educator or instructor review. | Faculty or surgical-technology reviewer plus explicit future SPD review requirement. | Plausibility review, not clinical validation. |
+
+This backup strategy is intentionally conservative. It protects the FDR from
+collapsing into a fragile detector demo and keeps the main deliverable aligned
+with the training pivot.
 
 ## 6. Requirements Definition
 
-TODO: Convert the problem and stakeholder needs into measurable requirements.
+The requirements translate the narrowed problem into a formative learning
+claim. They are not hospital deployment requirements. They define what the
+prototype must do to support a credible FDR statement about novice improvement
+on a simulated local tray task.
 
 ### 6.1 Element Definition
 
-TODO: Define intended practice / other practice, artifact, problem,
-technology, uses, perception, addresses, environment, function, behavior,
-structure, intended effects, and side effects.
+| Element | Definition For TrayGuard |
+| --- | --- |
+| Intended practice | Novice preparation for local tray reconstruction before or alongside supervised SPD training. |
+| Other practice affected | Instructor review, preceptor coaching, tray content updates, weak-item remediation, and future CV-supported tray review. |
+| Artifact | A local training app, file-backed tray module, printable marker cards, tray-sorting surface, scoring engine, and export/report package. |
+| Problem addressed | Learners need repeated, measurable practice applying local tray rules, counts, aliases, and lookalike discrimination before real tray work. |
+| Technology | Local web/app workflow, JSON tray modules, QR or AprilTag cards, camera or manual selection input, scoring logic, and CSV/JSON export. |
+| Primary users | Novice learners, instructors, SPD educators, and future project teams. |
+| Perception goal | The system should feel like a serious practice tool, not a clinical approval device or punitive surveillance system. |
+| Environment | Classroom, skills lab, project demo, or supervised training setting; not a live sterile field or production SPD deployment. |
+| Core function | Convert a local tray module into study, quiz, simulated sorting, feedback, assessment, and learner metrics. |
+| Required behavior | Separate practice from assessment, suppress hints during pre/post modes, classify errors consistently, and export comparable rows. |
+| Structure | Content module, learning workflow, marker/manual input, scoring engine, feedback engine, reporting/export, and instructor review. |
+| Intended effects | Improve simulated tray-sorting accuracy, reduce severe errors, expose weak items, calibrate confidence, and reduce early preceptor burden. |
+| Possible side effects | Overclaiming simulated scores, punitive use of learner metrics, answer leakage, inequitable access to updated modules, and reduced attention to supervised hands-on practice. |
 
 ### 6.2 Objective Tree
 
-TODO: Add the objective tree. Suggested top objective: improve novice readiness
-for local tray reconstruction through repeatable, measurable simulated
-practice.
+```text
+Improve novice readiness for local tray reconstruction through repeatable,
+measurable simulated practice.
+
+1. Increase local tray knowledge
+   1.1 Teach local names, aliases, and instrument families
+   1.2 Teach required counts and tray-specific rules
+   1.3 Teach lookalike and same-family distinctions
+
+2. Improve applied tray-sorting performance
+   2.1 Reduce missing required items
+   2.2 Reduce wrong and misidentified items
+   2.3 Reduce extra and wrong-count items
+   2.4 Maintain reasonable task time without rewarding guessing
+
+3. Make learning measurable
+   3.1 Capture pre-test and post-test accuracy
+   3.2 Export item-level error categories
+   3.3 Capture confidence, Not sure choices, and high-confidence errors
+   3.4 Preserve comparable assessment variants
+
+4. Support instructors
+   4.1 Show weak instruments and weak tray rules
+   4.2 Keep modules local, versioned, and reviewable
+   4.3 Avoid collecting patient data or unnecessary learner identifiers
+
+5. Preserve claim boundaries
+   5.1 Label outputs as simulated practice evidence
+   5.2 Require expert review before content-valid claims
+   5.3 Require SPD pilot evidence before workplace-effectiveness claims
+```
 
 ### 6.3 Performance Specifications
 
@@ -524,13 +757,37 @@ support an FDR novice-learning claim.
 
 ### 6.4 Quality Function Deployment
 
-TODO: Add a House of Quality or compact QFD table linking stakeholder needs to
-engineering characteristics and target values.
+Compact QFD:
+
+| Stakeholder need | Engineering characteristic | Target value | Verification |
+| --- | --- | --- | --- |
+| Learners can practice local tray content repeatedly. | File-backed module with required items, distractors, aliases, features, counts, and variants. | One complete `basic_general_tray_v1` module with 8-12 required concepts and 3-6 distractors. | Module schema review and demo load. |
+| Practice feels connected to tray reconstruction, not isolated memorization. | Simulated tray sort using physical cards or manual selection. | Pre-test, practice, post-test, and optional delayed variant all use the same tray rule. | End-to-end run. |
+| Educators can see what learners missed. | Attempt-level and item-level export. | 100% of completed runs export all required fields. | Schema validation. |
+| Errors map to operationally meaningful categories. | Scoring engine with `missing`, `extra`, `wrong`, `misidentified`, and `wrong_count`. | Every submitted tray receives category counts. | Unit tests or scored example cases. |
+| Assessment is not contaminated by coaching. | Mode boundaries and feedback suppression. | No hints or corrective feedback in pre-test, post-test, or delayed modes. | UI walkthrough and export mode check. |
+| The physical marker layer does not corrupt scores. | Marker reliability and user confirmation. | At least 95% detection in normal layouts; confirmation before scoring. | Study 0 marker log. |
+| Learner confidence is visible. | Confidence or `Not sure` capture. | High-confidence errors and low-confidence correct answers exported. | Export inspection. |
+| The system remains ethical and nonpunitive. | Privacy and report labels. | Hashed learner IDs, no patient data, and report language that says practice evidence. | Report review. |
+| Future teams can extend the design. | Versioned data model and traceability. | Module version, source notes, verification status, and assessment variant IDs included. | Data file review. |
 
 ### 6.5 Requirement Traceability Matrix
 
-TODO: Link each requirement to stakeholder need, design feature, evidence
-source, validation method, current status, and future owner/task.
+| Req. | Stakeholder need | Design feature | Evidence source | Validation method | Status / owner |
+| --- | --- | --- | --- | --- | --- |
+| FR-1 Load local module | Educators need updateable local tray rules. | JSON tray module and module selector. | Count-sheet and local tray evidence ([Nadeau, 2024](bibliography.md#nadeau-2024)). | Change module data and reload. | Ready for implementation. |
+| FR-2 Retrieval cards | Learners need active recall of names, features, and counts. | Prompt-before-reveal cards. | Retrieval and flashcard evidence ([Roediger and Karpicke, 2006](bibliography.md#roediger-and-karpicke-2006); [Barrison et al., 2025](bibliography.md#barrison-et-al-2025)). | Card walkthrough and quiz logs. | Ready for implementation. |
+| FR-3 Pre/post assessment | Reviewers need measurable learning evidence. | No-hints pre-test and post-test variants. | Ofstead pre/post training pattern ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). | Paired run export. | Protocol-ready. |
+| FR-4 Quiz mode | Learners need feedback before applied sorting. | Quiz with confidence and weak-item logging. | Feedback and retrieval evidence ([Hattie and Timperley, 2007](bibliography.md#hattie-and-timperley-2007)). | Quiz result export. | Ready for implementation. |
+| FR-5 Practice feedback | Learners need actionable correction. | Error-specific feedback engine. | Tray defect categories ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | Seeded error cases. | Defined. |
+| FR-6 Metrics export | Instructors need reviewable evidence. | Attempt and item CSV/JSON. | Error-reporting and competency feedback needs ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). | Schema validation. | Defined. |
+| FR-7 Mode separation | Assessment must remain fair. | Mode state and feedback suppression. | Simulation assessment logic and answer-leakage risk. | UI walkthrough. | Defined. |
+| NFR-1 Fast data load | Demo cannot stall. | Local file storage. | Usability expectations. | Load timing <= 2 seconds. | Future test. |
+| NFR-2 Short flow | Participants can finish in one session. | Bounded module and timed segments. | Study protocol and sample feasibility. | Pilot timing <= 45-60 minutes for study; <= 20 minutes for demo. | Future test. |
+| NFR-3 Export reliability | No completed run should be lost. | Local export after each run. | Study evidence requirement. | 100% completed-run exports. | Future test. |
+| NFR-4 Privacy | Learners should not be surveilled unnecessarily. | Hashed IDs and no PHI. | Healthcare data governance concerns. | Export review. | Defined. |
+| NFR-5 Content traceability | Local content must be auditable. | Source notes and instructor verification status. | Count-sheet and local-content boundary. | Module review. | Defined. |
+| NFR-6 Capability labels | Stakeholders must not overread scores. | Report language: simulated practice evidence. | Certification and clinical-transfer boundaries. | Report review. | Defined. |
 
 ## 7. System Design
 
@@ -625,8 +882,35 @@ corrective feedback until after submission.
 
 ### 7.4 Dependency Diagram
 
-TODO: Add a capability/cost dependency diagram and highlight the highest-risk
-dependency wires.
+```mermaid
+flowchart TD
+  A["Instructor-verified local tray module"] --> B["Retrieval cards and quiz"]
+  A --> C["Assessment variants"]
+  A --> D["Scoring engine"]
+  E["Printable neutral marker cards"] --> F["AprilTag / QR detection"]
+  F --> G["User confirmation"]
+  G --> D
+  C --> H["Pre/post/delayed tray sort"]
+  B --> I["Practice and weak-item review"]
+  I --> H
+  D --> J["Attempt and item export"]
+  J --> K["Learner / instructor report"]
+  L["Study protocol"] --> H
+  L --> K
+  M["Expert review"] --> A
+  M --> K
+```
+
+Highest-risk dependency wires:
+
+| Dependency | Risk | Mitigation |
+| --- | --- | --- |
+| Expert review -> local tray module | If names, counts, distractors, or feedback are unrealistic, learning results lose content validity. | Require instructor/SPD review before claiming content plausibility. |
+| Marker cards -> detection -> scoring | If cards are missed or confused, learner scores mix app error with user error. | Run Study 0, log raw detections, and require user confirmation before scoring. |
+| Assessment variants -> pre/post claim | If the post-test is easier or leaks answers, improvement is not credible. | Match required items, counts, distractors, lookalikes, and difficulty across variants. |
+| Retrieval/practice -> post-test | If practice only teaches the exact post-test layout, results are memorization. | Use parallel variants and test the same tray rule in a different order/view/distractor mix. |
+| Export -> instructor report | If exported rows are incomplete, results cannot support the FDR claim. | Validate schemas before running participants. |
+| Student sample -> stakeholder conclusion | Students can test novice learning, but not SPD workplace transfer. | Label Study 1 as simulated novice evidence and reserve SPD claims for later pilot. |
 
 ### 7.5 Data Model And Module Contract
 
@@ -1218,10 +1502,44 @@ Not allowed yet:
 
 ## 11. Broader Impacts And Ethics
 
-TODO: Identify negative externalities and apply at least one ethical framework.
-Consider unequal access, punitive use of learner metrics, overreliance on
-simulated scores, reduction of supervised practice, printing/e-waste burden,
-and bias toward represented instrument libraries.
+TrayGuard's positive impact is a more accessible way to practice local tray
+knowledge before a learner consumes scarce supervised training time. If it
+works, learners get repeatable practice, instructors get clearer weak-item
+evidence, and future teams get a safer bridge between training content and
+camera-supported tray review.
+
+The ethical risk is that a useful training report could be misused. A learner
+score is not a certification result, employment screen, disciplinary record, or
+permission to perform unsupervised sterile-processing work. The report should
+therefore label outputs as simulated practice evidence and should avoid
+language such as pass, fail, competent, or cleared unless a formal program adds
+its own supervised competency process.
+
+Using the principles of beneficence, nonmaleficence, autonomy, and justice:
+
+| Principle | TrayGuard implication |
+| --- | --- |
+| Beneficence | The system should help learners improve and help educators target coaching, especially on missing, wrong, misidentified, and high-confidence errors. |
+| Nonmaleficence | The system should not imply clinical readiness, replace hands-on supervision, or hide uncertainty behind a single score. |
+| Autonomy | Learners and instructors should understand what is being recorded, why it is being recorded, and how the report will be used. |
+| Justice | Access should not depend on having a perfect local instrument library, expensive hardware, or one preferred training site. Modules should be updateable and printable. |
+
+Negative externalities and controls:
+
+| Risk | Ethical concern | Control |
+| --- | --- | --- |
+| Punitive learner metrics | Scores could become surveillance or discipline instead of coaching. | Use hashed IDs for studies; report weak items and practice progress; prohibit employment or competency decisions from prototype data. |
+| Overreliance on simulated scores | A high score could be mistaken for real SPD readiness. | Label all results as simulated; require supervised hands-on validation for clinical claims. |
+| Reduced supervised practice | Programs might use the tool to cut preceptor time. | Frame TrayGuard as preparation for supervised practice, not replacement. |
+| Unequal local content | Better-resourced sites may build richer modules. | Use open file formats, printable cards, and a minimal module template. |
+| Instrument-library bias | Learners may only practice instruments represented in the module. | Version modules, list coverage gaps, and require local review before use. |
+| Answer leakage | Labels or marker IDs could inflate learning results. | Use neutral assessment cards and hide names/counts in assessment modes. |
+| Printing and material waste | Card iterations create paper/plastic waste. | Use reusable sleeves, print small modules, and revise digitally before reprinting. |
+| Privacy creep | Future reports could collect names, staff IDs, or workplace behavior. | Keep patient data out of scope; collect only fields needed for learning analysis. |
+
+These controls are part of the design, not optional documentation. They protect
+the stakeholder value of TrayGuard by keeping the training tool honest about
+what it can and cannot prove.
 
 ## 12. Project Plan And Future Work
 
@@ -1300,19 +1618,76 @@ testing, study moderation, analysis, and report writing.
 
 ## 13. Discussion And Final Recommendations
 
-TODO: State what stakeholders can conclude from this FDR, what they cannot
-conclude yet, which risks have been reduced, which risks remain decisive, and
-why the next team should build and test the software-first training loop before
-investing in deployment-grade CV or clinical tray automation.
+This FDR supports a clear next step: build and test the software-first training
+loop before investing more effort in deployment-grade tray automation. The
+problem evidence is strong enough to justify the target task, and the learning
+evidence is strong enough to justify a simulated training prototype. The
+current evidence is not strong enough to claim that TrayGuard reduces hospital
+tray errors, improves SPD technician performance, or recognizes real surgical
+instruments in clinical conditions.
+
+Stakeholders can conclude the following:
+
+- Tray reconstruction is a defensible focus because many readiness failures
+  involve assembly, visualization, identification, missing items, wrong items,
+  extra items, and local count-sheet use.
+- The training pivot is justified because local tray knowledge and supervised
+  practice are real bottlenecks, while deployment-grade CV has a much larger
+  validation burden.
+- A marker-card prototype can support a bounded novice-learning study if the
+  cards are neutral, detection is reliable, assessment variants are comparable,
+  and results are labeled as simulated.
+- The FDR has reduced concept risk, requirement risk, scoring risk, and study
+  design risk by defining the module contract, performance targets, error
+  categories, study ladder, and claim boundaries.
+
+Stakeholders cannot yet conclude that TrayGuard:
+
+- certifies sterile-processing competence;
+- replaces hands-on hours, preceptor observation, or local sign-off;
+- reduces OR delays or hospital tray-defect rates;
+- works for SPD technicians in a real workplace;
+- recognizes real instruments across manufacturers, lighting, occlusion, and
+  tray layouts;
+- supports retention unless a delayed check is actually run.
+
+The next team should therefore implement the minimum evidence loop:
+
+```text
+load module -> pre-test -> study cards -> quiz -> practice sort -> post-test -> export report
+```
+
+After that loop works, the team should run the marker reliability check, then a
+small novice pre/post study, then a delayed retention check if schedule allows,
+then an expert review of names, counts, distractors, lookalikes, and feedback.
+Only after those results should the project expand toward real teaching
+instruments, local photos, SPD trainees, or real-instrument CV.
+
+Final recommendation:
+
+> Treat TrayGuard as a local tray learning and assessment platform first. Use
+> the FDR prototype to prove that novices can improve on a simulated local tray
+> task, then use those results to decide whether a future SPD pilot or
+> camera-supported tray review system is worth the additional validation cost.
 
 ## References
 
-TODO: Consolidate citations into `docs/bibliography.md` and keep report links
-consistent.
+The working source list is consolidated in
+[bibliography.md](bibliography.md). Citations in this report should continue to
+link to that file so a future team can update sources without rebuilding the
+paper's structure.
 
 ## Appendices
 
-TODO: Add supporting materials that would interrupt the body: problem
-explication artifacts, design-method artifacts, full requirements artifacts,
-system diagrams, training module tables, evaluation instruments, risk register,
-budget, schedule, task matrix, and presentation materials.
+Recommended appendices for the final submitted version:
+
+- problem explication artifacts and RCA diagrams;
+- full design-method artifacts, including the morphological chart and weighted
+  alternatives;
+- complete requirements and traceability tables;
+- system diagrams and module schema examples;
+- full `basic_general_tray_v1` training module tables;
+- novice study instruments, consent text, survey items, and moderator script;
+- marker reliability checklist and scoring examples;
+- risk register, budget, schedule, and task matrix;
+- presentation slides and demo screenshots.
