@@ -1,0 +1,256 @@
+{
+  "module_id": "basic_general_tray_v1",
+  "version": "2026.05-demo",
+  "name": "Basic General Tray",
+  "procedure_family": "general_minor_procedure_training",
+  "source_note": "Prototype module adapted from the TrayGuard FDR requirements. Instructor verification required before pilot claims.",
+  "instruments": [
+    {
+      "id": "scalpel_handle_3",
+      "display_name": "Scalpel handle #3",
+      "family": "Cutting",
+      "aliases": ["#3 handle", "Bard-Parker #3", "knife handle"],
+      "distinguishing_features": ["Short handle for smaller blades", "Flat metal handle with blade slot"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the flat cutting handle used with small blades.", "answer": "Scalpel handle #3"},
+        {"id": "feature", "prompt": "What feature helps identify a #3 scalpel handle?", "answer": "A short flat handle with a blade slot."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "mayo_scissors_straight_55",
+      "display_name": "Straight Mayo scissors, 5.5 in",
+      "family": "Cutting",
+      "aliases": ["straight Mayo", "suture scissors"],
+      "distinguishing_features": ["Heavy straight blades", "Broader blade profile than Metzenbaum scissors"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the heavy straight cutting scissors.", "answer": "Straight Mayo scissors, 5.5 in"},
+        {"id": "feature", "prompt": "How do straight Mayo scissors differ from Metzenbaum scissors?", "answer": "Mayo scissors have heavier, broader blades."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "metzenbaum_scissors_curved_55",
+      "display_name": "Curved Metzenbaum scissors, 5.5 in",
+      "family": "Cutting/dissecting",
+      "aliases": ["curved Metzenbaum", "Metz scissors"],
+      "distinguishing_features": ["Slim curved blades", "Lighter profile for delicate tissue"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the slim curved scissors used for delicate tissue.", "answer": "Curved Metzenbaum scissors, 5.5 in"},
+        {"id": "feature", "prompt": "What feature separates Metzenbaum scissors from Mayo scissors?", "answer": "Metzenbaum scissors are slimmer and lighter."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "adson_forceps_1x2_475",
+      "display_name": "Adson tissue forceps, 1x2 teeth, 4.75 in",
+      "family": "Grasping/holding",
+      "aliases": ["toothed Adson", "Adson 1x2"],
+      "distinguishing_features": ["Short thumb forceps", "One tooth opposing two teeth at tip"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the short toothed thumb forceps.", "answer": "Adson tissue forceps, 1x2 teeth, 4.75 in"},
+        {"id": "feature", "prompt": "What does 1x2 mean on Adson forceps?", "answer": "One tooth opposes two teeth at the tip."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "debakey_forceps_6",
+      "display_name": "DeBakey tissue forceps, 6 in",
+      "family": "Grasping/holding",
+      "aliases": ["DeBakey", "atraumatic forceps"],
+      "distinguishing_features": ["Long narrow jaws", "Atraumatic longitudinal serrations"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the long atraumatic tissue forceps.", "answer": "DeBakey tissue forceps, 6 in"},
+        {"id": "feature", "prompt": "What jaw feature identifies DeBakey forceps?", "answer": "Long narrow jaws with atraumatic longitudinal serrations."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "mosquito_hemostat_curved_5",
+      "display_name": "Curved mosquito hemostat, 5 in",
+      "family": "Clamping/occluding",
+      "aliases": ["mosquito clamp", "small hemostat", "snap"],
+      "distinguishing_features": ["Small ring-handled clamp", "Shorter and finer than Kelly forceps"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the small curved hemostat.", "answer": "Curved mosquito hemostat, 5 in"},
+        {"id": "feature", "prompt": "How is a mosquito hemostat different from a Kelly?", "answer": "The mosquito is smaller and finer."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "kelly_forceps_curved_55",
+      "display_name": "Curved Kelly forceps, 5.5 in",
+      "family": "Clamping/occluding",
+      "aliases": ["Kelly clamp", "curved Kelly", "hemostat"],
+      "distinguishing_features": ["Curved jaws", "Transverse serrations on distal half of jaws"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the curved clamp with distal-half serrations.", "answer": "Curved Kelly forceps, 5.5 in"},
+        {"id": "feature", "prompt": "What serration pattern identifies Kelly forceps?", "answer": "Transverse serrations on the distal half of the jaws."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "allis_tissue_forceps_6",
+      "display_name": "Allis tissue forceps, 6 in",
+      "family": "Grasping/holding",
+      "aliases": ["Allis clamp", "Allis forceps"],
+      "distinguishing_features": ["Ring-handled clamp", "Multiple interlocking teeth"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the ring-handled tissue clamp with interlocking teeth.", "answer": "Allis tissue forceps, 6 in"},
+        {"id": "feature", "prompt": "What tip feature identifies an Allis clamp?", "answer": "Multiple interlocking teeth."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "mayo_hegar_needle_holder_6",
+      "display_name": "Mayo-Hegar needle holder, 6 in",
+      "family": "Suturing",
+      "aliases": ["needle driver", "Mayo-Hegar"],
+      "distinguishing_features": ["Short broad jaws with cross-hatching", "No cutting blades"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the needle driver without scissor blades.", "answer": "Mayo-Hegar needle holder, 6 in"},
+        {"id": "feature", "prompt": "How does Mayo-Hegar differ from Olsen-Hegar?", "answer": "Mayo-Hegar does not include integrated scissor blades."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "senn_retractor_double_ended",
+      "display_name": "Senn retractor, double-ended",
+      "family": "Retracting/exposing",
+      "aliases": ["Senn", "rake retractor"],
+      "distinguishing_features": ["Double-ended handheld retractor", "One L-shaped blade and one three-prong rake"],
+      "image_refs": [{"id": "placeholder", "path": "", "source": "pending_local_photo", "approved_for_study": false, "approved_for_assessment": false}],
+      "study_prompts": [
+        {"id": "name", "prompt": "Name the double-ended handheld retractor with a rake end.", "answer": "Senn retractor, double-ended"},
+        {"id": "feature", "prompt": "What two ends does a Senn retractor have?", "answer": "An L-shaped blade and a three-prong rake."}
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "mayo_scissors_curved_55",
+      "display_name": "Curved Mayo scissors, 5.5 in",
+      "family": "Cutting",
+      "aliases": ["curved Mayo"],
+      "distinguishing_features": ["Heavy curved blades", "Broader than Metzenbaum scissors"],
+      "image_refs": [],
+      "study_prompts": [{"id": "confusion", "prompt": "Which required item is this most likely confused with?", "answer": "Curved Metzenbaum scissors."}],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "crile_hemostat_curved_55",
+      "display_name": "Curved Crile hemostat, 5.5 in",
+      "family": "Clamping/occluding",
+      "aliases": ["Crile clamp", "curved Crile"],
+      "distinguishing_features": ["Full-jaw serrations", "Similar size to Kelly forceps"],
+      "image_refs": [],
+      "study_prompts": [{"id": "confusion", "prompt": "How is a Crile different from a Kelly?", "answer": "Crile serrations run the full jaw; Kelly serrations are distal half."}],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "brown_adson_forceps_475",
+      "display_name": "Brown-Adson tissue forceps, 4.75 in",
+      "family": "Grasping/holding",
+      "aliases": ["Brown-Adson", "multiple-tooth Adson"],
+      "distinguishing_features": ["Multiple fine teeth", "Short Adson-style thumb forceps"],
+      "image_refs": [],
+      "study_prompts": [{"id": "confusion", "prompt": "How is Brown-Adson different from Adson 1x2?", "answer": "Brown-Adson has multiple fine teeth instead of a 1x2 tip."}],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "olsen_hegar_needle_holder_55",
+      "display_name": "Olsen-Hegar needle holder, 5.5 in",
+      "family": "Suturing/cutting",
+      "aliases": ["Olsen-Hegar", "needle holder with scissors"],
+      "distinguishing_features": ["Integrated scissor blades", "Needle holder jaws"],
+      "image_refs": [],
+      "study_prompts": [{"id": "confusion", "prompt": "Why is Olsen-Hegar a distractor for Mayo-Hegar?", "answer": "It includes integrated scissor blades."}],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "babcock_tissue_forceps_6",
+      "display_name": "Babcock tissue forceps, 6 in",
+      "family": "Grasping/holding",
+      "aliases": ["Babcock clamp", "Babcock forceps"],
+      "distinguishing_features": ["Smooth fenestrated jaws", "Less traumatic than Allis teeth"],
+      "image_refs": [],
+      "study_prompts": [{"id": "confusion", "prompt": "How is Babcock different from Allis?", "answer": "Babcock has smooth fenestrated jaws; Allis has teeth."}],
+      "local_verification_status": "pending_review"
+    }
+  ],
+  "required_items": [
+    {"instrument_id": "scalpel_handle_3", "quantity": 1, "reference_number": "TG-001", "location_or_layer": "main"},
+    {"instrument_id": "mayo_scissors_straight_55", "quantity": 1, "reference_number": "TG-002", "location_or_layer": "main"},
+    {"instrument_id": "metzenbaum_scissors_curved_55", "quantity": 1, "reference_number": "TG-003", "location_or_layer": "main"},
+    {"instrument_id": "adson_forceps_1x2_475", "quantity": 2, "reference_number": "TG-004", "location_or_layer": "main"},
+    {"instrument_id": "debakey_forceps_6", "quantity": 1, "reference_number": "TG-005", "location_or_layer": "main"},
+    {"instrument_id": "mosquito_hemostat_curved_5", "quantity": 2, "reference_number": "TG-006", "location_or_layer": "main"},
+    {"instrument_id": "kelly_forceps_curved_55", "quantity": 2, "reference_number": "TG-007", "location_or_layer": "main"},
+    {"instrument_id": "allis_tissue_forceps_6", "quantity": 2, "reference_number": "TG-008", "location_or_layer": "main"},
+    {"instrument_id": "mayo_hegar_needle_holder_6", "quantity": 1, "reference_number": "TG-009", "location_or_layer": "main"},
+    {"instrument_id": "senn_retractor_double_ended", "quantity": 2, "reference_number": "TG-010", "location_or_layer": "main"}
+  ],
+  "distractor_item_ids": [
+    "mayo_scissors_curved_55",
+    "crile_hemostat_curved_55",
+    "brown_adson_forceps_475",
+    "olsen_hegar_needle_holder_55",
+    "babcock_tissue_forceps_6"
+  ],
+  "lookalike_pairs": [
+    {"id": "lookalike_metz_mayo_curved", "expected_id": "metzenbaum_scissors_curved_55", "selected_id": "mayo_scissors_curved_55", "feedback_message": "Compare blade thickness and tissue role."},
+    {"id": "lookalike_kelly_crile", "expected_id": "kelly_forceps_curved_55", "selected_id": "crile_hemostat_curved_55", "feedback_message": "Check serration pattern: Kelly distal half vs Crile full jaw."},
+    {"id": "lookalike_adson_brown_adson", "expected_id": "adson_forceps_1x2_475", "selected_id": "brown_adson_forceps_475", "feedback_message": "Compare tip teeth: 1x2 vs multiple fine teeth."},
+    {"id": "lookalike_mayo_hegar_olsen", "expected_id": "mayo_hegar_needle_holder_6", "selected_id": "olsen_hegar_needle_holder_55", "feedback_message": "Look for integrated scissor blades on Olsen-Hegar."},
+    {"id": "lookalike_allis_babcock", "expected_id": "allis_tissue_forceps_6", "selected_id": "babcock_tissue_forceps_6", "feedback_message": "Compare toothed Allis jaws vs smooth fenestrated Babcock jaws."},
+    {"id": "lookalike_mosquito_kelly", "expected_id": "mosquito_hemostat_curved_5", "selected_id": "kelly_forceps_curved_55", "feedback_message": "Compare size and jaw length; mosquito is smaller and finer."}
+  ],
+  "assessment_variants": [
+    {
+      "id": "basic_general_tray_v1_pre_a",
+      "mode": "pre_test",
+      "required_item_ids": ["scalpel_handle_3", "mayo_scissors_straight_55", "metzenbaum_scissors_curved_55", "adson_forceps_1x2_475", "debakey_forceps_6", "mosquito_hemostat_curved_5", "kelly_forceps_curved_55", "allis_tissue_forceps_6", "mayo_hegar_needle_holder_6", "senn_retractor_double_ended"],
+      "distractor_item_ids": ["mayo_scissors_curved_55", "crile_hemostat_curved_55", "brown_adson_forceps_475", "babcock_tissue_forceps_6"],
+      "random_seed": "pre_a_2026_05",
+      "feedback_enabled": false
+    },
+    {
+      "id": "basic_general_tray_v1_post_b",
+      "mode": "post_test",
+      "required_item_ids": ["scalpel_handle_3", "mayo_scissors_straight_55", "metzenbaum_scissors_curved_55", "adson_forceps_1x2_475", "debakey_forceps_6", "mosquito_hemostat_curved_5", "kelly_forceps_curved_55", "allis_tissue_forceps_6", "mayo_hegar_needle_holder_6", "senn_retractor_double_ended"],
+      "distractor_item_ids": ["mayo_scissors_curved_55", "crile_hemostat_curved_55", "brown_adson_forceps_475", "olsen_hegar_needle_holder_55"],
+      "random_seed": "post_b_2026_05",
+      "feedback_enabled": false
+    }
+  ],
+  "marker_cards": [
+    {"marker_id": 1, "instrument_id": "scalpel_handle_3", "card_id": "scalpel_handle_3_a"},
+    {"marker_id": 2, "instrument_id": "mayo_scissors_straight_55", "card_id": "mayo_scissors_straight_55_a"},
+    {"marker_id": 3, "instrument_id": "metzenbaum_scissors_curved_55", "card_id": "metzenbaum_scissors_curved_55_a"},
+    {"marker_id": 4, "instrument_id": "adson_forceps_1x2_475", "card_id": "adson_forceps_1x2_475_a"},
+    {"marker_id": 5, "instrument_id": "adson_forceps_1x2_475", "card_id": "adson_forceps_1x2_475_b"},
+    {"marker_id": 6, "instrument_id": "debakey_forceps_6", "card_id": "debakey_forceps_6_a"},
+    {"marker_id": 7, "instrument_id": "mosquito_hemostat_curved_5", "card_id": "mosquito_hemostat_curved_5_a"},
+    {"marker_id": 8, "instrument_id": "mosquito_hemostat_curved_5", "card_id": "mosquito_hemostat_curved_5_b"},
+    {"marker_id": 9, "instrument_id": "kelly_forceps_curved_55", "card_id": "kelly_forceps_curved_55_a"},
+    {"marker_id": 10, "instrument_id": "kelly_forceps_curved_55", "card_id": "kelly_forceps_curved_55_b"},
+    {"marker_id": 11, "instrument_id": "allis_tissue_forceps_6", "card_id": "allis_tissue_forceps_6_a"},
+    {"marker_id": 12, "instrument_id": "allis_tissue_forceps_6", "card_id": "allis_tissue_forceps_6_b"},
+    {"marker_id": 13, "instrument_id": "mayo_hegar_needle_holder_6", "card_id": "mayo_hegar_needle_holder_6_a"},
+    {"marker_id": 14, "instrument_id": "senn_retractor_double_ended", "card_id": "senn_retractor_double_ended_a"},
+    {"marker_id": 15, "instrument_id": "senn_retractor_double_ended", "card_id": "senn_retractor_double_ended_b"},
+    {"marker_id": 16, "instrument_id": "mayo_scissors_curved_55", "card_id": "mayo_scissors_curved_55_a"},
+    {"marker_id": 17, "instrument_id": "crile_hemostat_curved_55", "card_id": "crile_hemostat_curved_55_a"},
+    {"marker_id": 18, "instrument_id": "brown_adson_forceps_475", "card_id": "brown_adson_forceps_475_a"},
+    {"marker_id": 19, "instrument_id": "olsen_hegar_needle_holder_55", "card_id": "olsen_hegar_needle_holder_55_a"},
+    {"marker_id": 20, "instrument_id": "babcock_tissue_forceps_6", "card_id": "babcock_tissue_forceps_6_a"}
+  ]
+}

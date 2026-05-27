@@ -10,7 +10,9 @@ from trayguard.dataset_tools import (
     export_collected_yolo,
     plan_shape_similarity_synthetic,
 )
+from trayguard.learning import card_cli
 from trayguard.training import benchmark, export_weights, train
+from trayguard.web import runner as web_runner
 
 
 Command = Callable[[Sequence[str]], None]
@@ -32,6 +34,8 @@ COMMANDS: dict[str, tuple[Command, str]] = {
     "train": (train.main, "Train one object detection model."),
     "benchmark": (benchmark.main, "Train and evaluate standard model variants."),
     "app": (streamlit_runner.main, "Launch the Streamlit tray detection UI."),
+    "train-app": (web_runner.main, "Launch the TrayGuard educational training web app."),
+    "print-cards": (card_cli.main, "Generate printable ArUco card assets for a tray module."),
 }
 
 
