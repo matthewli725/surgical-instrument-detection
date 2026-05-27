@@ -35,6 +35,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - American Hospital Association, ["4 Ways Wellstar Health Is Funding Collaborative Innovation"](https://www.aha.org/aha-center-health-innovation-market-scan/2023-10-31-4-ways-wellstar-health-funding-collaborative-innovation), 2023.
 
+<a id="association-of-health-care-journalists-2024"></a>
+### Association of Health Care Journalists, 2024
+
+- Association of Health Care Journalists, ["Hospital inspection report detail SNXU11"](https://www.hospitalinspections.org/report-detail/SNXU11), 2024.
+
 <a id="alfred-et-al-2021"></a>
 ### Alfred et al., 2021
 
@@ -69,6 +74,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### AIMS Education, accessed 2026
 
 - AIMS Education, ["Sterile Processing Technician Training"](https://aimseducation.edu/sterile-processing-technician), accessed 2026.
+
+<a id="aesculap-and-ascendco-health-2025"></a>
+### Aesculap and Ascendco Health, 2025
+
+- Aesculap and Ascendco Health, ["2025 Surgical Asset Management Industry Benchmark Report"](https://www.aesculapusa.com/content/dam/aesculap-us/us/website/aesculap-inc/healthcareprofessionals/surgical-asset-management-solutions/2025%20Surgical%20Asset%20Management%20Industry%20Benchmark%20Report%20Aesculap%20Ascendco%20Health%20UPDATE.pdf), 2025.
 
 <a id="atabuzzaman-et-al-2025"></a>
 ### Atabuzzaman et al., 2025
@@ -105,10 +115,20 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Brooke, ["SUS: A 'Quick and Dirty' Usability Scale"](https://doi.org/10.1201/9781498710411-35), in *Usability Evaluation in Industry*, 1996.
 
+<a id="brozak-2025"></a>
+### Brozak, 2025
+
+- Brozak, ["SPD staffing issues: 8 tips for recruiting/retaining staff"](https://www.medline.com/strategies/perioperative/spd-staffing-issues-8-tips-for-recruiting-retaining-staff/), *Medline*, 2025.
+
 <a id="chobin-2010"></a>
 ### Chobin, 2010
 
 - Chobin, ["The Real Costs of Surgical Instrument Training in Sterile Processing Revisited"](https://doi.org/10.1016/j.aorn.2009.10.025), *AORN Journal*, 2010.
+
+<a id="chobin-2019"></a>
+### Chobin, 2019
+
+- Chobin, ["Instrument processing: key considerations for patient safety"](https://pubmed.ncbi.nlm.nih.gov/31465566/), *AORN Journal*, 2019.
 
 <a id="canovas-segura-et-al-2023"></a>
 ### Cánovas-Segura et al., 2023
@@ -350,6 +370,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Healthcare Sterile Processing Association eLearning, ["302 - Urology Instruments: Identification and Proper Care and Handling"](https://elearning.myhspa.org/products/302-urology-instruments-identification-and-proper-care-and-handling), accessed 2026.
 
+<a id="hpn-2025"></a>
+### HPN, 2025
+
+- Healthcare Purchasing News, ["Benchmark report identifies fundamental risks in sterile processing operations"](https://www.hpnonline.com/sterile-processing/news/55330330/benchmark-report-identifies-fundamental-risks-in-sterile-processing-operations), 2025.
+
 <a id="hu-et-al-2024"></a>
 ### Hu et al., 2024
 
@@ -359,6 +384,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Huang et al., 2025
 
 - Huang et al., ["Situations and demands of central sterile supply department training on nursing interruptions"](https://link.springer.com/article/10.1186/s12913-024-12190-7), *BMC Health Services Research*, 2025.
+
+<a id="ingold-2025"></a>
+### Ingold, 2025
+
+- Ingold, ["Colorado's largest hospital had to pause surgeries for a week following a complaint. Here's what health inspectors saw."](https://coloradosun.com/2025/10/16/uchealth-university-of-colorado-hospital-surgery-pause/), *The Colorado Sun*, 2025.
 
 <a id="issenberg-et-al-2005"></a>
 ### Issenberg et al., 2005
@@ -430,6 +460,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kleinert et al., ["Web-Based Immersive Virtual Patient Simulators: Positive Effect on Clinical Reasoning in Medical Education"](https://pubmed.ncbi.nlm.nih.gov/26577020/), *Journal of Medical Internet Research*, 2015.
 
+<a id="kovach-2012"></a>
+### Kovach, 2012
+
+- Kovach, ["Sterile Processing Certification, Does It Have Value?"](https://www.infectioncontroltoday.com/view/sterile-processing-certification-does-it-have-value), *Infection Control Today*, 2012.
+
 <a id="kuppers-et-al-2022"></a>
 ### Küppers et al., 2022
 
@@ -474,6 +509,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Lehr et al., 2023
 
 - Lehr et al., ["Image-based recognition of surgical instruments by means of convolutional neural networks"](https://link.springer.com/article/10.1007/s11548-023-02885-3), *International Journal of Computer Assisted Radiology and Surgery*, 2023.
+
+<a id="loria-2024"></a>
+### Loria, 2024
+
+- Loria, ["Instrument Tray Management Made Easy"](https://www.aorn.org/outpatient-surgery/article/instrument-tray-management-made-easy), *Outpatient Surgery Magazine*, 2024.
 
 <a id="macola-et-al-2025"></a>
 ### Mácola et al., 2025
@@ -639,6 +679,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Penn Foster, accessed 2026
 
 - Penn Foster, ["Sterile Processing Technician Career Diploma"](https://www.pennfoster.edu/programs/healthcare/sterile-processing-career-diploma), accessed 2026.
+
+<a id="pennsylvania-patient-safety-authority-2006"></a>
+### Pennsylvania Patient Safety Authority, 2006
+
+- Pennsylvania Patient Safety Authority, ["Contaminated Surgical Instruments: The Worst-Case Scenario"](https://patientsafety.pa.gov/ADVISORIES/Pages/200603_20.aspx), *Pennsylvania Patient Safety Advisory*, 2006.
 
 <a id="phanudulkitti-et-al-2023"></a>
 ### Phanudulkitti et al., 2023

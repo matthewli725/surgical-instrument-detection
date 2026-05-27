@@ -1,12 +1,16 @@
 # TrayGuard Docs
 
-This directory separates project context from project-specific technical,
-evaluation, and planning materials.
+This directory now treats `final_paper_fdr.md` as the consolidation target for
+the final document. The other docs are source notes for sections that still need
+to be written in the FDR or appendix material that should stay outside the main
+report body.
 
 ## Structure
 
-- `context/`: background, problem framing, root-cause analysis, and decision
-  artifacts
+- `final_paper_fdr.md`: consolidated final report draft and source of truth
+- `bibliography.md`: central citation list used by the FDR and source notes
+- `context/`: background, training rationale, and decision artifacts that have
+  not been fully absorbed into the FDR
 - `project/`: technical design, requirements, reference catalogs, evaluation
   plans, and execution tracking
 - `project/reference/`: surgical instrument taxonomy and lookalike-pair catalog
@@ -19,11 +23,11 @@ evaluation, and planning materials.
 
 ## Quick Links
 
+- `final_paper_fdr.md`
 - `bibliography.md`
 - `context/README.md`
 - `context/project_background.md`
 - `context/problem_explication.md`
-- `context/spd_root_cause_analysis.md`
 - `context/brainstorming/scope_pivot_and_selected_candidate_rationale.md`
 - `project/README.md`
 - `project/system_requirements.md`
@@ -37,5 +41,5 @@ evaluation, and planning materials.
 - `project/evaluation/adoption/formal_risk_analysis.md`
 - `project/planning/README.md`
 
-Use `context/project_background.md` as the narrative hub, then go to
-`project/` for implementation details, evaluation plans, and execution tracking.
+Use `final_paper_fdr.md` as the main working document. Use the remaining source
+notes only when filling unfinished FDR sections or preparing appendices.

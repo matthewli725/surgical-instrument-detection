@@ -1,13 +1,13 @@
 # Context
 
-This folder holds the project reasoning that should stay readable before
-someone dives into implementation details.
+This folder holds source notes for FDR sections that are not fully written yet.
+The standalone root-cause analysis was removed after being consolidated into
+`../final_paper_fdr.md` Section 3.
 
 ## Files
 
-- `project_background.md`: narrative hub for the TrayGuard pivot
-- `problem_explication.md`: problem framing, evidence, and learning rationale
-- `spd_root_cause_analysis.md`: root-cause analysis for the SPD problem
+- `project_background.md`: lightweight map to remaining background notes
+- `problem_explication.md`: training, evidence, and learning-rationale source
+  notes
 - `brainstorming/`: scope exploration, candidate rationale, and major decision
   artifacts
-

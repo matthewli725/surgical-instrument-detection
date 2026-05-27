@@ -5,8 +5,9 @@ tests whether a local tray module can improve novice simulated tray familiarity
 through retrieval-first study, quiz prompts, simulated tray sorting, immediate
 feedback, confidence capture, and pre/post error analysis.
 
-Project background and experiment motivation live in
-[docs/context/project_background.md](docs/context/project_background.md).
+The consolidated final report draft lives in
+[docs/final_paper_fdr.md](docs/final_paper_fdr.md). Remaining background notes
+start at [docs/context/project_background.md](docs/context/project_background.md).
 
 Workflow acceptance, traceability, and study design live in the project
 evaluation docs:

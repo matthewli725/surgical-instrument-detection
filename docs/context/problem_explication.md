@@ -1,5 +1,10 @@
 # Problem Explication
 
+The broad problem definition, narrowed scope, and root-cause analysis have been
+consolidated into [`../final_paper_fdr.md`](../final_paper_fdr.md). This file
+keeps the training, learning-science, and market source notes needed to fill the
+unfinished FDR literature, product-rationale, and evaluation sections.
+
 ## SPD Training And Assessment Platform
 
 > TrayGuard helps novice SPD learners improve simulated tray and instrument
@@ -407,27 +412,6 @@ healthcare education practice.
 | Body Interact virtual patients | Screen-based virtual patient scenarios with immediate feedback, auto-grading, LMS analytics, and instructor review ([Wolters Kluwer Body Interact, accessed 2026](../bibliography.md#wolters-kluwer-body-interact-accessed-2026)). Web-based virtual patient research also reports positive effects on clinical reasoning ([Kleinert et al., 2015](../bibliography.md#kleinert-et-al-2015)). | A safe, repeatable simulation can support both learner practice and educator-facing analytics. |
 | Fundamental Surgery | Step-by-step VR/haptic surgical guidance, performance analysis, and a surgical skills score; its total knee arthroplasty simulation received AAOS CME accreditation ([AAOS, 2019](../bibliography.md#aaos-fundamental-surgery-2019)). | Medical education products commonly pair guided practice with formal performance scoring. |
 | Surgical Science / Simbionix | Commercial medical simulators across specialties, positioned around evidence-based simulation, clinical proficiency, and performance measurement ([Surgical Science, accessed 2026](../bibliography.md#surgical-science-simulators-accessed-2026)). | The market precedent supports simulation software as a credible healthcare training category. |
-
-## Error Motivation
-
-The broader sterile-processing problem defines the operational stakes for the
-training module.
-Nichol et al. observed surgical instrument errors across 147 of 562 cases in a
-direct-observation study. Missing instruments were the largest error category,
-and visualization-related tasks accounted for most observed errors. The same
-study estimated substantial annual lost chargeable OR minutes for the observed
-campus
-([Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). A separate
-packaging-error study found 398 errors among 33,839 surgical instrument
-packages, including wrong specifications, incomplete packages, and missing
-instruments
-([Zhu et al., 2019](../bibliography.md#zhu-et-al-2019)).
-
-These sources justify why instrument familiarity, count sheets, tray
-organization, and visual inspection matter. The defensible bridge is upstream:
-better novice practice may improve familiarity in simulated tasks, and a future
-hospital study could test whether that learning transfers to supervised SPD
-work.
 
 ## Existing Tools And Differentiation
 
