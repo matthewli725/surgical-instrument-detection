@@ -1,0 +1,28 @@
+source:
+  data_yaml: datasets/dataset_obj_detection/data.yaml
+
+splits:
+  - train
+  - val
+  - test
+
+mapping:
+  general_names:
+    - scalpel
+    - clamp
+    - scissors
+
+  fine_to_general:
+    Scalpel n4: scalpel
+    Straight Dissection Clamp: clamp
+    Straight Mayo Scissor: scissors
+    Curved Mayo Scissor: scissors
+
+crop:
+  padding: 0.05
+
+output:
+  overwrite: true
+
+  general_detection_dir: datasets/dataset_general_detection
+  specific_classifier_dir: datasets/dataset_specific_classifiers

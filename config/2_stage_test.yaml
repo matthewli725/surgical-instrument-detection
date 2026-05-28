@@ -1,0 +1,33 @@
+detector:
+  # Use null to use detector.run_dir/weights/best.pt
+  weights: null
+
+  run_dir: runs/detect/runs/yolo11s_imgsz640_batch16
+
+  data_yaml: datasets/dataset_obj_detection/data.yaml
+
+  imgsz: 640
+  conf: 0.25
+
+classifier:
+  # Use null to use classifier.run_dir/best.pt
+  weights: null
+
+  run_dir: runs/classifier/resnet18_surgical_classifier
+  # run_dir: runs/classifier/efficientnet_b0_surgical_classifier
+
+test:
+  split: test
+
+  max_images: null
+
+  # Null unless testing one image
+  image_path: null
+
+  # Tests only certain pictures
+  filename_prefix: separado
+
+output:
+  dir: runs/two_stage_test_outputs
+  save_crops: true
+  open_report: true

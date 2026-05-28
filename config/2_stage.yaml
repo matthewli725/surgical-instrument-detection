@@ -1,0 +1,59 @@
+defaults:
+  - classifier_model: resnet18
+  - _self_
+
+seed: 0
+
+summary_path: runs/two_stage_general_specific/summary.json
+
+general_detector:
+  train: true
+
+  model: yolo11s.pt
+  project: runs/general_detector
+  run_name: yolo11s_general_classes
+
+  run_dir: runs/general_detector/yolo11s_general_classes
+
+  data_yaml: datasets/dataset_general_detection/data.yaml
+
+  epochs: 100
+  batch: 16
+  imgsz: 640
+
+  test: true
+
+specific_classifier:
+  general_class: scissors
+
+  # null uses base_data_dir/general_class
+  data_dir: null
+  base_data_dir: datasets/dataset_specific_classifiers
+
+  run_dir: runs/specific_classifiers/scissors
+
+  skip_single_variant: true
+
+  epochs: 30
+  batch: 64
+  lr: 0.0003
+  weight_decay: 0.0001
+  num_workers: 2
+
+pipeline_test:
+  enabled: true
+
+
+  yolo_val_split: test
+
+
+  image_dir: datasets/dataset_obj_detection/images/test
+  filename_prefix: separado
+  max_images: null
+
+  det_conf: 0.90
+
+  save_crops: true
+  open_report: true
+
+  output_dir: runs/two_stage_general_specific/separado_test_outputs

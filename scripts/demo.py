@@ -1,7 +1,7 @@
 from pathlib import Path
 import cv2
 from ultralytics import YOLO
-from src.utils import process_image
+from src.micro_design_project.utils import process_image
 
 MODEL_PATH = "runs/detect/runs/yolo11s_imgsz960_batch16/weights/best.pt"
 
