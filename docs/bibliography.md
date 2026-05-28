@@ -150,6 +150,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Cambo, ["RPS-240 Tabletop Version"](https://www.cambo.com/en/products/repro-archival-solutions/rps-copy-stands/copy-stands/rps-240), accessed 2026.
 
+<a id="castillo-gutierrez-2025"></a>
+### Castillo-Gutierrez, 2025
+
+- Castillo-Gutierrez, Gisselle, ["Sharpening Sensory Skills in SP Technicians to Support Quality and Safety"](https://www.eventreg.purdue.edu/info/sterile-processing/pdf/crcst-201.pdf), *PROCESS: The Magazine for Sterile Processing*, Mar/Apr 2025.
+
 <a id="contact-shelf-liner-accessed-2026"></a>
 ### Con-Tact Shelf Liner, accessed 2026
 
@@ -209,6 +214,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### CensiTrac, accessed 2026
 
 - Censis, ["Surgical Instrument Tracking Software | CensiTrac"](https://censis.com/solutions/censitrac/), accessed 2026.
+
+<a id="czarnowski-2025"></a>
+### Czarnowski, 2025
+
+- Czarnowski, Catherine, ["Labeling Techniques for Sterile Packages"](https://www.eventreg.purdue.edu/info/sterile-processing/pdf/crcst/SeptOct2025_CRCST.pdf), *PROCESS: The Magazine for Sterile Processing*, Sep/Oct 2025.
 
 <a id="da-silva-et-al-2026"></a>
 ### da Silva et al., 2026
@@ -295,6 +305,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Geifman and El-Yaniv, ["Selective Classification for Deep Neural Networks"](https://papers.neurips.cc/paper/7073-selective-classification-for-deep-neural-networks), *Advances in Neural Information Processing Systems*, 2017.
 
+<a id="garrido-jurado-et-al-2014"></a>
+### Garrido-Jurado et al., 2014
+
+- Garrido-Jurado et al., ["Automatic generation and detection of highly reliable fiducial markers under occlusion"](https://doi.org/10.1016/j.patcog.2014.01.005), *Pattern Recognition*, 2014.
+
 <a id="george-et-al-2024"></a>
 ### George et al., 2024
 
@@ -380,6 +395,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Healthcare Purchasing News, ["Benchmark report identifies fundamental risks in sterile processing operations"](https://www.hpnonline.com/sterile-processing/news/55330330/benchmark-report-identifies-fundamental-risks-in-sterile-processing-operations), 2025.
 
+<a id="huang-et-al-2024-gamified"></a>
+### Huang et al., 2024
+
+- Huang et al., ["Reflecting on gamified learning in medical education: a systematic literature review grounded in the Structure of Observed Learning Outcomes (SOLO) taxonomy 2012-2022"](https://pmc.ncbi.nlm.nih.gov/articles/PMC10765768/), *BMC Medical Education*, 2024.
+
 <a id="hu-et-al-2024"></a>
 ### Hu et al., 2024
 
@@ -430,6 +450,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kastrup et al., ["Landscape and challenges in economic evaluations of artificial intelligence in healthcare: a systematic review of methodology"](https://bmcdigitalhealth.biomedcentral.com/articles/10.1186/s44247-024-00088-7), *BMC Digital Health*, 2024.
 
+<a id="kalaitzakis-et-al-2021"></a>
+### Kalaitzakis et al., 2021
+
+- Kalaitzakis et al., ["Fiducial Markers for Pose Estimation: Overview, Applications and Experimental Comparison of the ARTag, AprilTag, ArUco and STag Markers"](https://doi.org/10.1007/s10846-020-01307-9), *Journal of Intelligent and Robotic Systems*, 2021.
+
 <a id="karpicke-and-blunt-2011"></a>
 ### Karpicke and Blunt, 2011
 
@@ -460,6 +485,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Kim et al., ["The Effects of Presenting AI Uncertainty Information on Pharmacists’ Trust in Automated Pill Recognition Technology: Exploratory Mixed Subjects Study"](https://pmc.ncbi.nlm.nih.gov/articles/PMC11862782/), *JMIR Human Factors*, 2025.
 
+<a id="klacik-2023"></a>
+### Klacik, 2023
+
+- Klacik, Sue, ["Core Elements of Sterile Processing Training Programs"](https://www.eventreg.purdue.edu/info/central-service/pdf/CIS299.pdf), *PROCESS: The Magazine for Sterile Processing*, Sep/Oct 2023.
+
 <a id="kleinert-et-al-2015"></a>
 ### Kleinert et al., 2015
 
@@ -469,6 +499,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Kovach, 2012
 
 - Kovach, ["Sterile Processing Certification, Does It Have Value?"](https://www.infectioncontroltoday.com/view/sterile-processing-certification-does-it-have-value), *Infection Control Today*, 2012.
+
+<a id="krogius-et-al-2019"></a>
+### Krogius et al., 2019
+
+- Krogius et al., ["AprilTag 3: A robust, flexible, and faster fiducial marker system"](https://april.eecs.umich.edu/papers/details.php?name=krogius2019april3), *Technical Report, University of Michigan*, 2019.
 
 <a id="kuppers-et-al-2022"></a>
 ### Küppers et al., 2022
@@ -510,6 +545,21 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Lin et al., ["Microsoft COCO: Common Objects in Context"](https://www.microsoft.com/en-us/research/publication/microsoft-coco-common-objects-in-context/), *European Conference on Computer Vision*, 2014.
 
+<a id="lind-2025"></a>
+### Lind, 2025
+
+- Lind, Judy, ["Strategies to Enhance the Surgical Instrument System"](https://www.eventreg.purdue.edu/info/sterile-processing/pdf/cis/SeptOct2025_CIS.pdf), *PROCESS: The Magazine for Sterile Processing*, Sep/Oct 2025.
+
+<a id="lind-2026a"></a>
+### Lind, 2026a
+
+- Lind, Judy, ["Instrument Error! What Happened? Identifying Causes, Adopting Solutions"](https://elearning.myhspa.org/cis-lesson-plans), *PROCESS: The Magazine for Sterile Processing*, Jan/Feb 2026.
+
+<a id="lind-2026b"></a>
+### Lind, 2026b
+
+- Lind, Judy, ["Competencies: A Technician's Perspective"](https://elearning.myhspa.org/cis-lesson-plans), *PROCESS: The Magazine for Sterile Processing*, May/Jun 2026.
+
 <a id="lehr-et-al-2023"></a>
 ### Lehr et al., 2023
 
@@ -524,6 +574,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Mácola et al., 2025
 
 - Mácola et al., ["An analysis of the economic challenges facing central sterile processing employees in the United States: Results of a national survey"](https://doi.org/10.1016/j.pcorm.2025.100520), *Perioperative Care and Operating Room Management*, 2025.
+
+<a id="malicki-et-al-2025"></a>
+### Malicki et al., 2025
+
+- Malicki et al., ["Game-thinking; utilizing serious games and gamification in nursing education -- a systematic review and meta-analysis"](https://link.springer.com/article/10.1186/s12909-024-06531-7), *BMC Medical Education*, 2025.
 
 <a id="mcgaghie-et-al-2011"></a>
 ### McGaghie et al., 2011
@@ -650,6 +705,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - Olakotan and Yusof, ["The appropriateness of clinical decision support systems alerts in supporting clinical workflows: A systematic review"](https://pubmed.ncbi.nlm.nih.gov/33853395/), *Health Informatics Journal*, 2021.
 
+<a id="olson-2011"></a>
+### Olson, 2011
+
+- Olson, ["AprilTag: A robust and flexible visual fiducial system"](https://april.eecs.umich.edu/papers/details.php?name=olson2011tags), *2011 IEEE International Conference on Robotics and Automation*, 2011.
+
 <a id="olivere-et-al-2021"></a>
 ### Olivere et al., 2021
 
@@ -659,6 +719,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### O*NET, accessed 2026
 
 - O*NET OnLine, ["National Employment Trends: Medical Equipment Preparers"](https://www.onetonline.org/link/localtrends/31-9093.00), using Bureau of Labor Statistics 2024-2034 employment projections, accessed 2026.
+
+<a id="opencv-aruco-detection-accessed-2026"></a>
+### OpenCV, accessed 2026
+
+- OpenCV, ["Detection of ArUco Markers"](https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html), OpenCV 4.x documentation, accessed 2026.
 
 <a id="orland-et-al-2020"></a>
 ### Orland et al., 2020
@@ -729,6 +794,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Roediger and Karpicke, 2006
 
 - Roediger and Karpicke, ["Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention"](https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x), *Psychological Science*, 2006.
+
+<a id="romero-ramirez-et-al-2018"></a>
+### Romero-Ramirez et al., 2018
+
+- Romero-Ramirez et al., ["Speeded up detection of squared fiducial markers"](https://doi.org/10.1016/j.imavis.2018.05.004), *Image and Vision Computing*, 2018.
 
 <a id="rodrigues-et-al-2022a"></a>
 ### Rodrigues et al., 2022a
@@ -815,6 +885,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - STERIS, ["How are Surgical Instruments Cleaned and Disinfected?"](https://www.steris.com/healthcare/knowledge-center/infection-prevention/cleaning-and-disinfecting-surgical-instruments), accessed 2026.
 
+<a id="steriboost-accessed-2026"></a>
+### SteriBoost, accessed 2026
+
+- SteriBoost, ["VR Simulation Training"](https://steriboost.com/vr-simulation-training/), accessed 2026.
+
 <a id="stryker-gamma4-count-sheet-2023"></a>
 ### Stryker Gamma4 Count Sheet, 2023
 
@@ -890,6 +965,16 @@ citations throughout `docs/` should link back to the relevant entry here.
 
 - van Leeuwen et al., ["Artificial intelligence in radiology: 100 commercially available products and their scientific evidence"](https://pmc.ncbi.nlm.nih.gov/articles/PMC8128724/), *European Radiology*, 2021.
 
+<a id="van-gaalen-et-al-2021"></a>
+### van Gaalen et al., 2021
+
+- van Gaalen et al., ["Gamification of health professions education: a systematic review"](https://link.springer.com/article/10.1007/s10459-020-10000-3), *Advances in Health Sciences Education*, 2021.
+
+<a id="vanhaverbeke-et-al-2018"></a>
+### Vanhaverbeke et al., 2018
+
+- Vanhaverbeke et al., ["The Introduction of SteriDefi: a Serious Game for Continuous Education in Sterilization"](https://www.degruyterbrill.com/document/doi/10.1515/pthp-2018-0009/html), *Pharmaceutical Technology in Hospital Pharmacy*, 2018.
+
 <a id="vithlani-et-al-2023"></a>
 ### Vithlani et al., 2023
 
@@ -919,6 +1004,11 @@ citations throughout `docs/` should link back to the relevant entry here.
 ### Wang et al., 2016
 
 - Wang et al., ["Light Field Imaging Based Accurate Image Specular Highlight Removal"](https://pmc.ncbi.nlm.nih.gov/articles/PMC4890744/), *PLOS One*, 2016.
+
+<a id="wang-et-al-2016-apriltag"></a>
+### Wang et al., 2016 AprilTag
+
+- Wang and Olson, ["AprilTag 2: Efficient and robust fiducial detection"](https://ieeexplore.ieee.org/document/7759617), *2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)*, 2016.
 
 <a id="wang-et-al-2020-fsod"></a>
 ### Wang et al., 2020 FSOD

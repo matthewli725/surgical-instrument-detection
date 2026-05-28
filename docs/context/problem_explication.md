@@ -22,7 +22,10 @@ instruments. Mistakes can affect OR readiness and patient safety
 [Nichol et al., 2024](../bibliography.md#nichol-et-al-2024)). The work also
 requires visual expertise: technicians must distinguish visually similar
 instruments, understand count sheets, recognize aliases and manufacturer
-variants, and know where instruments belong in a tray.
+variants, and know where instruments belong in a tray. HSPA self-study
+guidance identifies sensory skills — sight, touch, hearing, smell — as
+trainable competencies that must be developed through hands-on practice
+and mentorship ([Castillo-Gutierrez, 2025](../bibliography.md#castillo-gutierrez-2025)).
 
 That local framing is necessary because instruments differ by manufacturer and hospital. HPN describes count sheets
 as tray-specific documents with contents, quantities, sizes, and
@@ -107,7 +110,7 @@ learning plus hands-on validation.
 | --- | --- | --- |
 | Certification exam plus verified hands-on hours | HSPA CRCST requires 400 SPD hands-on hours and a computer-based exam; CBSPD CSPDT uses eligibility routes that include work experience or a sterile processing course plus an exam ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026), [CBSPD Technician Exam, accessed 2026](../bibliography.md#cbspd-technician-accessed-2026)). | The tool should measure learning and support practice before and during supervised competency development. |
 | Self-paced or classroom instruction | Towson's ed2go-backed course is self-paced online, 190 hours, and includes instrument identification and tray assembly topics. Altamont's program is 135 hours over 8-12 weeks with live online classes, in-person labs, and an optional 240-400 hour externship ([Towson University, accessed 2026](../bibliography.md#towson-sterile-processing-accessed-2026), [Altamont Healthcare, accessed 2026](../bibliography.md#altamont-healthcare-accessed-2026)). | The platform can complement formal instruction with reusable local modules and repeated practice. |
-| Preceptor-led onboarding | Healthcare Purchasing News describes hospital examples including a 90-day on-the-job training program, a 19-week program with textbook chapters, quizzes, and progress tests, and a structured 1:1 preceptor onboarding program with presentations, online modules, written tests, direct observation, and one-on-one training ([Nadeau, 2017](../bibliography.md#nadeau-2017)). | The system should reduce low-level explanation burden and give preceptors evidence of where a learner still struggles. |
+| Preceptor-led onboarding | Healthcare Purchasing News describes hospital examples including a 90-day on-the-job training program, a 19-week program with textbook chapters, quizzes, and progress tests, and a structured 1:1 preceptor onboarding program with presentations, online modules, written tests, direct observation, and one-on-one training ([Nadeau, 2017](../bibliography.md#nadeau-2017)). HSPA self-study guidance frames core training-program elements as combining structured orientation, competency documentation, and ongoing education; training that stops after initial orientation perpetuates inconsistent habits ([Klacik, 2023](../bibliography.md#klacik-2023)). | The system should reduce low-level explanation burden and give preceptors evidence of where a learner still struggles. |
 | Simulation and skills assessment | AORN describes Penn Medicine's earn-to-learn SPD training program as combining didactic education, hands-on training, simulation, mentorship, content testing, and skills-based assessment ([AORN Staff, 2025](../bibliography.md#aorn-staffing-shortage-2025)). | Simulated tray sorting and pre/post tasks are aligned with existing training practice. |
 
 This answers the training-process question directly: SPD training can include
@@ -127,6 +130,10 @@ HSPA makes hands-on experience mandatory for CRCST certification: 400 hours
 must be completed in an actual sterile processing department, paid or volunteer,
 and the candidate must secure the placement
 ([HSPA CRCST, accessed 2026](../bibliography.md#hspa-crcst-accessed-2026)).
+HSPA self-study lessons on instrument errors document how common systems
+issues — missing workstation information, stress, communication gaps, and
+inadequate training — contribute to errors found during tray assembly
+([Lind, 2026a](../bibliography.md#lind-2026a); [Lind, 2025](../bibliography.md#lind-2025)).
 That requirement creates a clear role for TrayGuard: preclinical and
 supplemental practice that strengthens local tray familiarity before scarce
 hands-on time is consumed.

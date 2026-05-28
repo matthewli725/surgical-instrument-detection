@@ -212,77 +212,78 @@ conflict with the count sheet or local tray rule
 [Nichol et al., 2024](bibliography.md#nichol-et-al-2024);
 [Zhu et al., 2019](bibliography.md#zhu-et-al-2019)).
 
-### 3.1 Product
+### 3.1 Fishbone  Summary
+
+**Product** — Same-family instruments differ only in small features with no labels or markings. Wear further hides the differences. Nothing on the tool itself helps tell them apart ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)).
+
+**Knowledge** — Three sub-causes converge: (a) knowing the general name isn't enough — workers must see the difference between nearly identical instruments ([Castillo-Gutierrez, 2025](bibliography.md#castillo-gutierrez-2025); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)); (b) knowing what a Crile is doesn't tell you what this tray calls it or how many it expects — general knowledge and local tray rules are separate domains ([Nadeau, 2024](bibliography.md#nadeau-2024); [dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021)); (c) certification proves a starting point, not local readiness — this hospital's trays require repeated practice with feedback ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)).
+
+**Process** — Building a tray forces picking, counting, checking, and arranging into one step with no double-check. The work uses only eyes and hands. Without aids, small errors pass through ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)).
+
+**Information** — When count sheets are incomplete or outdated, workers stop following rules and start guessing ([Nadeau, 2024](bibliography.md#nadeau-2024)). Missing photos, names, or loaner-tray info adds to the risk ([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)).
+
+**Environment** — Pressure and interruptions break focus for detail-heavy visual work. Short staffing means less training and looser checking ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Huang et al., 2025](bibliography.md#huang-et-al-2025)). When SPD staffing doesn't keep up with new ORs, backlogs pile up ([Ingold, 2025](bibliography.md#ingold-2025)).
+
+**Policy & Feedback** — Nobody owns the standards. Workers only get tested once at hiring. Slow error reporting lets the same mistakes happen again ([Loria, 2024](bibliography.md#loria-2024); [Kovach, 2012](bibliography.md#kovach-2012); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). Training often stops after orientation, and informal mentoring perpetuates inconsistent habits ([Klacik, 2023](bibliography.md#klacik-2023)).
+
+### 3.2 Product
 
 | Observed failure mode | Root cause hypothesis |
 | --- | --- |
-| Wrong instruments appear in trays, and wrong-instrument errors are often similar in type to the intended instrument ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | Same-family variants and look-alike instruments create a discrimination burden that generic instrument familiarity does not solve; users need practice distinguishing local variants by visible features, size, function, and tray context ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| Assembly defects include missing, wrong, damaged, incorrectly assembled, and extra instruments ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | Tray composition, instrument design, inventory, and unstandardized nomenclature make the tray itself a complex product to reconstruct reliably ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| Procedure-, surgeon-, and tray-specific decisions determine which instruments and quantities belong in a set ([dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021); [Ahmadi et al., 2023](bibliography.md#ahmadi-et-al-2023)). | Tray contents are local design decisions rather than fixed universal lists, so a user can know instrument families and still select the wrong item or quantity for a specific tray ([dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021); [Ahmadi et al., 2023](bibliography.md#ahmadi-et-al-2023)). |
-| Damaged, malfunctioning, contaminated, or otherwise unacceptable instruments can create readiness and safety concerns ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Pennsylvania Patient Safety Authority, 2006](bibliography.md#pennsylvania-patient-safety-authority-2006)). | Reconstruction must include rejection of visibly unacceptable items, not only selection of named items; otherwise damaged or suspect instruments can remain in a tray despite correct identity and count ([CDC](bibliography.md#cdc); [Pennsylvania Patient Safety Authority, 2006](bibliography.md#pennsylvania-patient-safety-authority-2006)). |
+| Instruments within same families (Kelly/Crile, straight/curved Mayo, etc.) differ only in subtle dimensional features — blade angle, tip shape, serration pattern — with no intrinsic labels or physical keying. Wear, staining, and reprocessing cycles further reduce visible distinguishing cues ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Lind, 2026a](bibliography.md#lind-2026a); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | The instruments have no labels, color codes, or markings to tell them apart. Scratching, staining, and repeated cleaning wear down the small visual differences that do exist. Workers must memorize subtle details that nothing on the tool itself points out ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [HSPA Surgical Instrument Resources, accessed 2026](bibliography.md#hspa-instrument-resources-accessed-2026); [Nichol and Saari, 2023](bibliography.md#nichol-and-saari-2023)). |
 
-### 3.2 Knowledge
+### 3.3 Knowledge
 
 | Observed failure mode | Root cause hypothesis |
 | --- | --- |
-| Instrument identification, inspection, names, uses, and testing points are explicit sterile-processing learning needs ([HSPA Surgical Instrument Resources, accessed 2026](bibliography.md#hspa-instrument-resources-accessed-2026)). | Users may not have enough retrievable instrument knowledge to identify items, notice damage, or distinguish similar tools during reconstruction ([HSPA Surgical Instrument Resources, accessed 2026](bibliography.md#hspa-instrument-resources-accessed-2026)). |
-| Tray assembly requires local names, aliases, quantities, placement rules, and count-sheet use ([Nadeau, 2024](bibliography.md#nadeau-2024)). | General instrument knowledge is insufficient when the task depends on local tray rules; learners need practice applying the exact tray rule, not just recognizing instruments in isolation ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
-| Alfred et al. identify technician knowledge, training variation, missing or incorrect photos, and varied names as assembly work-system factors ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | Local knowledge may be inconsistent across staff or training materials, so the same tray can be reconstructed differently depending on who learned which names, photos, and informal rules ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| HSPA requires 400 hands-on hours for CRCST certification, including 120 hours in preparation and packaging ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026)). | Tray reconstruction competency depends on repeated hands-on practice; without measured practice, a learner may appear familiar with instruments but still fail under tray-like conditions ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). |
-| AORN describes hands-on and simulation training for decontaminating sets, assembling and wrapping trays, and preparing items for sterilization, while sterile-processing certification commentary frames certification as a baseline that still requires ongoing competency checks, education, and in-services ([AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025); [Kovach, 2012](bibliography.md#kovach-2012)). | The supportable root cause is not individual technician incompetence; it is that certification and initial instruction do not prove local tray-reconstruction competence unless they are paired with repeated local practice, observation, feedback, and current tray information ([Kovach, 2012](bibliography.md#kovach-2012); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). |
+| Wrong instruments appear in trays and are often similar in type to the intended instrument; instrument identification, inspection, names, uses, and testing points are explicit sterile-processing learning needs ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [HSPA Surgical Instrument Resources, accessed 2026](bibliography.md#hspa-instrument-resources-accessed-2026)). | Knowing the general name isn't enough — the technician must see the difference. Kelly and Crile look nearly identical to untrained eyes, and tray errors are predominantly visual ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). Sensory skills (sight, touch, hearing, smell) must be developed through hands-on practice and mentorship; they are not automatic ([Castillo-Gutierrez, 2025](bibliography.md#castillo-gutierrez-2025)). Structured training studies show that practice with instrument identification improves SPD knowledge and observed tray-assembly practices ([Fast et al., 2019](bibliography.md#fast-et-al-2019); [Shreckengost et al., 2022](bibliography.md#shreckengost-et-al-2022)). |
+| Tray assembly requires local names, aliases, quantities, placement rules, and count-sheet use; procedure-, surgeon-, and tray-specific decisions determine which instruments and quantities belong in a set ([Nadeau, 2024](bibliography.md#nadeau-2024); [dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021); [Ahmadi et al., 2023](bibliography.md#ahmadi-et-al-2023)). | Knowing what a Crile is doesn't tell you what this tray calls it or how many it expects. General instrument knowledge and local tray rules are separate domains ([Nadeau, 2024](bibliography.md#nadeau-2024); [dos Santos et al., 2021](bibliography.md#dos-santos-et-al-2021)). |
+| Alfred et al. identify technician knowledge, training variation, missing or incorrect photos, and varied names as assembly work-system factors; if names, aliases, and photos are not aligned with the actual tray, users may match the wrong concept to the physical instrument or fail to recognize a local variant ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | Tray knowledge is taught on the job without a standard source, and Alfred et al. identify training variation as a documented work-system factor ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). Structured SPD training programs that use simulation and assessment show that standardizing teaching improves knowledge and operational skills ([Hu et al., 2024](bibliography.md#hu-et-al-2024); [Thurmond, 2020](bibliography.md#thurmond-2020)). |
+| HSPA requires 400 hands-on hours for CRCST certification, including 120 hours in preparation and packaging; AORN describes hands-on and simulation training for assembling and wrapping trays; certification commentary frames certification as a baseline requiring ongoing competency checks ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026); [AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025); [Kovach, 2012](bibliography.md#kovach-2012); [Nadeau, 2017](bibliography.md#nadeau-2017)). | Certification proves a baseline, not local competence. This hospital's trays require repeated practice, observation, feedback, and current tray information ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023); [Kovach, 2012](bibliography.md#kovach-2012); [Nadeau, 2017](bibliography.md#nadeau-2017)). |
 
-### 3.3 Process
-
-| Observed failure mode | Root cause hypothesis |
-| --- | --- |
-| Alfred et al. found that 55.0% of recorded tray defects occurred during assembly ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | The assembly step is a high-risk control point because content errors can enter or escape while instruments are being selected, counted, inspected, and arranged ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| Nichol et al. found that 88.6% of observed errors involved visualization tasks such as inspection, identification, function checking, and sorting ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | Reconstruction depends heavily on manual visual checking; without task-specific aids or practice, users can miss errors that are visible but visually subtle ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). |
-| Zhu et al. observed packaging errors including wrong specifications, incomplete packages, and missing instruments ([Zhu et al., 2019](bibliography.md#zhu-et-al-2019)). | Downstream package errors can reflect upstream reconstruction and verification gaps, especially when wrong specifications or missing contents are not caught before packaging ([Zhu et al., 2019](bibliography.md#zhu-et-al-2019)). |
-| HPN frames following count sheets and inspecting instruments as core preparation, packing, and assembly practices ([Nadeau, 2024](bibliography.md#nadeau-2024)). | If verification is memory-based, inconsistent, or separated from the count sheet, missing, wrong, extra, damaged, or miscounted items can pass through reconstruction ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
-
-### 3.4 Information
+### 3.4 Process
 
 | Observed failure mode | Root cause hypothesis |
 | --- | --- |
-| Count sheets should include tray names, contents, quantities, sizes, reference numbers, preparation and inspection steps, placement instructions, packaging, indicators, and destination/storage details ([Nadeau, 2024](bibliography.md#nadeau-2024)). | If the local build rule is incomplete, outdated, vague, or hard to use, reconstruction shifts from rule-following to interpretation, increasing the chance of wrong items or quantities ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
-| Alfred et al. identify missing or incorrect photos and varied instrument names as assembly-relevant factors ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | If names, aliases, and photos are not aligned with the actual tray, users may match the wrong concept to the physical instrument or fail to recognize a local variant ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| Outpatient Surgery Magazine describes tray customization and standardization as reducing variation and time spent identifying instruments, and notes that proper OR and sterile-processing staff training is important for recognizing instruments that need sharpening or repair ([Loria, 2024](bibliography.md#loria-2024)). | Tray information must be maintained as a shared local standard; otherwise staff training, instrument identification, defect recognition, and tray reconstruction all depend on informal memory instead of a reliable local rule ([Loria, 2024](bibliography.md#loria-2024); [Nadeau, 2024](bibliography.md#nadeau-2024)). |
-| Tray-focused commercial tools emphasize count sheets, photos, assembly information, and proficiency metrics ([Tray Pacer, accessed 2026](bibliography.md#tray-pacer-accessed-2026); [LayerJot SID, accessed 2026](bibliography.md#layerjot-sid-accessed-2026)). | The practical market for tray tools suggests that structured local tray information is a real operational need, not just a classroom convenience ([Tray Pacer, accessed 2026](bibliography.md#tray-pacer-accessed-2026); [LayerJot SID, accessed 2026](bibliography.md#layerjot-sid-accessed-2026)). |
-| Loaner-tray workflows depend on visibility across scheduling, vendor delivery, OR awareness, SPD awareness, IFUs, count sheets, status, location, and pickup ([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)). | When tray status, IFUs, count sheets, or source information are not visible during reconstruction, staff may not have the correct local rule for a non-routine or loaner tray ([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)). |
+| Alfred et al. found that 55.0% of recorded tray defects occurred during assembly, including missing, wrong, damaged, extra, and incorrectly assembled instruments ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). Instrument damage such as corrosion, stains, burrs, and worn jaw serrations can be missed when inspection relies on rapid visual checks under poor lighting ([Lind, 2026a](bibliography.md#lind-2026a)). | Building a tray means picking, counting, checking, and arranging items all at once with no double-check system. Different trays have different parts, the same instrument can have different names, and inventory keeps changing ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [Chen et al., 2023](bibliography.md#chen-et-al-2023)). |
+| Nichol et al. found that 88.6% of observed errors involved visualization tasks such as inspection, identification, function checking, and sorting ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | Workers use only their eyes and hands. Without tools or extra practice, even obvious-looking mistakes slip through because the differences between instruments are tiny ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). |
+| HPN frames following count sheets and inspecting instruments as core preparation, packing, and assembly practices ([Nadeau, 2024](bibliography.md#nadeau-2024)). | Nobody can remember every item in every tray. If workers aren't checking the count sheet as they build, items get missed ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
 
-### 3.5 Environment
+### 3.5 Information
 
 | Observed failure mode | Root cause hypothesis |
 | --- | --- |
-| Alfred et al. identify production pressure and workspace constraints as performance-shaping factors in assembly work ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). | Time and workspace pressure can reduce the attention available for visual discrimination, count checking, and escalation, making existing product/process risks more likely to become errors ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| AORN describes limited training programs, rising market demand, and high turnover as contributors to a shortage of qualified sterile processing technicians; Medline describes short staffing as increasing overtime, miscommunication, and difficulty maintaining quality; Mácola et al. found wage stagnation, inadequate benefits, and financial stress across a national SPD worker survey ([AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025); [Brozak, 2025](bibliography.md#brozak-2025); [Mácola et al., 2025](bibliography.md#macola-et-al-2025)). | Staffing pressure is plausible context, but the evidence does not prove it is the direct root cause of tray content errors; it should be treated as an amplifier that can worsen onboarding burden, training quality, attention, and verification gaps ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
-| A Colorado hospital inspection report, summarized by The Colorado Sun, tied a major SPD backlog to increased staffing requirements after new operating rooms opened without evidence that SPD staffing had increased to match the new demand ([Ingold, 2025](bibliography.md#ingold-2025)). | Capacity mismatch can turn SPD work-system stress into delayed cleaning, reprocessing backlogs, and readiness failures; this supports the importance of staffing and training capacity, but it is broader context rather than direct evidence for tray-reconstruction content errors ([Ingold, 2025](bibliography.md#ingold-2025)). |
-| Huang et al. examine training demands related to interruptions in central sterile supply departments ([Huang et al., 2025](bibliography.md#huang-et-al-2025)). | Interruptions can break the continuity of counting, sorting, and inspection, so users may lose place in the tray reconstruction task and miss quantity or identity errors ([Huang et al., 2025](bibliography.md#huang-et-al-2025)). |
-| OSHA central sterile guidance discusses workstation, reaching, standing, carts, and height-adjustment concerns for central sterile work ([OSHA Central Sterile Supply, accessed 2026](bibliography.md#osha-central-sterile-supply-accessed-2026)). | Physical layout and ergonomic friction can increase handling and search burden, making a visual, detail-heavy reconstruction task harder to perform consistently ([OSHA Central Sterile Supply, accessed 2026](bibliography.md#osha-central-sterile-supply-accessed-2026)). |
+| Count sheets vary in completeness across shifts and trays; many lack photos, aliases, placement instructions, or current quantities ([Nadeau, 2024](bibliography.md#nadeau-2024)). Missing or outdated identification information, IFUs, and tray listings at the workstation force workers to rely on memory ([Lind, 2025](bibliography.md#lind-2025)). | When the count sheet has missing pictures, wrong names, or old quantities, workers have to make their best guess instead of following clear rules ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
+| Loaner-tray workflows depend on visibility across scheduling, vendor delivery, OR awareness, SPD awareness, IFUs, count sheets, status, location, and pickup ([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)). | When a loaner tray arrives without paperwork or instructions at the workstation, the worker has nothing reliable to go on ([STERIS, 2021](bibliography.md#steris-loaner-trays-2021)). |
 
-### 3.6 Policy And Feedback
+### 3.6 Environment
 
 | Observed failure mode | Root cause hypothesis |
 | --- | --- |
-| HPN emphasizes standardized, clearly written count sheets that are available across shifts ([Nadeau, 2024](bibliography.md#nadeau-2024)). | If no one clearly owns count-sheet standardization and updates, different shifts or learners may use different tray rules, names, or quantities during reconstruction ([Nadeau, 2024](bibliography.md#nadeau-2024)). |
-| Chobin states that instrument processing requires coordinated policies, procedures, accountability, education, and documentation ([Chobin, 2019](bibliography.md#chobin-2019)). | Without clear policy and accountability, users may not know when to stop, escalate, substitute, reject, or document uncertain tray-content decisions ([Chobin, 2019](bibliography.md#chobin-2019)). |
-| Sterile-processing certification commentary argues that certification creates a common knowledge baseline but cannot guarantee error-free work, and that managers must maintain competency programs and continuing education ([Kovach, 2012](bibliography.md#kovach-2012)). | If competency is treated as a one-time credential instead of a measured, recurring, local skill, repeated tray errors may not become targeted retraining, updated modules, or supervisor coaching ([Kovach, 2012](bibliography.md#kovach-2012)). |
-| Nichol et al. describe traditional surgical-instrument error reporting as cumbersome, human-dependent, delayed, incomplete, and difficult to integrate with operational systems ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). | If error reporting is delayed or incomplete, repeated missing, wrong, extra, damaged, or quantity errors may not become targeted retraining or tray-rule updates ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). |
-| Ofstead et al. used competency testing and booster training as part of a structured sterile-processing training intervention ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). | Without repeated assessment and feedback, local tray reconstruction skill can remain unmeasured, making it hard to identify weak instruments, weak rules, or users who need more practice ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). |
-| Safety reports show that content, contamination, and readiness issues can create patient-safety and lost-time concerns when detected late ([Pennsylvania Patient Safety Authority, 2006](bibliography.md#pennsylvania-patient-safety-authority-2006)). | Escalation and feedback need to happen before the tray is treated as ready; otherwise detected issues may become downstream rework or point-of-use disruption ([Pennsylvania Patient Safety Authority, 2006](bibliography.md#pennsylvania-patient-safety-authority-2006)). |
+| Alfred et al. identify production pressure and workspace constraints as performance-shaping factors in assembly work; AORN, Medline, and Mácola et al. describe short staffing, high turnover, rising demand, and financial stress as workforce pressures that reduce attention and training quality ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021); [AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025); [Mácola et al., 2025](bibliography.md#macola-et-al-2025); [Brozak, 2025](bibliography.md#brozak-2025)). Human factors such as stress and communication breakdowns between SPD and the OR compound the risk of instrument errors ([Lind, 2026a](bibliography.md#lind-2026a)). | Rushed workers can't focus on tiny visual differences. Fewer staff means less time for training and less thorough checking ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). |
+| A Colorado hospital inspection report tied a major SPD backlog to increased staffing requirements after new operating rooms opened without matching SPD staff increases ([Ingold, 2025](bibliography.md#ingold-2025)). | When hospitals add surgery rooms without hiring more SPD staff, the work piles up. That backlog then makes every other problem — training pressure, checking shortcuts, rushing — even worse ([Ingold, 2025](bibliography.md#ingold-2025)). |
+| Huang et al. examine training demands related to interruptions in central sterile supply departments ([Huang et al., 2025](bibliography.md#huang-et-al-2025)). | Getting interrupted while sorting or counting makes workers lose their place. They skip items and miss mistakes ([Huang et al., 2025](bibliography.md#huang-et-al-2025)). |
+| OSHA central sterile guidance discusses workstation, reaching, standing, carts, and height-adjustment concerns for central sterile work ([OSHA Central Sterile Supply, accessed 2026](bibliography.md#osha-central-sterile-supply-accessed-2026)). | Uncomfortable workstations, awkward reaches, and poor setup make a job that already needs close attention even harder ([OSHA Central Sterile Supply, accessed 2026](bibliography.md#osha-central-sterile-supply-accessed-2026)). |
 
-### 3.7 Consolidated Root Cause Chain
+### 3.7 Policy And Feedback
 
-```text
-Local tray complexity, similar instruments, and exact count requirements
-  -> dependence on local knowledge, count-sheet quality, and visual recognition
-  -> manual reconstruction and verification under real work-system conditions
-  -> missed, wrong, extra, damaged, or miscounted instruments
-  -> tray content errors before the tray is considered ready for use
-```
+| Observed failure mode | Root cause hypothesis |
+| --- | --- |
+| HPN emphasizes standardized, clearly written count sheets that are available across shifts; Outpatient Surgery Magazine describes tray customization and standardization as reducing instrument identification time, and notes that tray information must be maintained as a shared local standard ([Nadeau, 2024](bibliography.md#nadeau-2024); [Loria, 2024](bibliography.md#loria-2024)). | Nobody owns the standards. Each shift follows its own rules, and what you learn depends on who trains you that day ([Nadeau, 2024](bibliography.md#nadeau-2024); [Loria, 2024](bibliography.md#loria-2024)). |
+| Chobin states that instrument processing requires coordinated policies, procedures, accountability, education, and documentation ([Chobin, 2019](bibliography.md#chobin-2019)). | Without clear written rules, workers don't know what to do when something looks wrong — send it through or flag it? ([Chobin, 2019](bibliography.md#chobin-2019)). |
+| Sterile-processing certification commentary argues that certification creates a common baseline but cannot guarantee error-free work; Ofstead et al. used competency testing and booster training as a structured training intervention; managers must maintain competency programs and continuing education ([Kovach, 2012](bibliography.md#kovach-2012); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). Repeated errors in practice are often traceable to incomplete, outdated, or unused competency documents ([Lind, 2026b](bibliography.md#lind-2026b)). | If workers only get tested at hiring and never again, gaps in their knowledge, changes to trays, and worn instruments all stay hidden ([Kovach, 2012](bibliography.md#kovach-2012); [Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). |
+| Nichol et al. describe traditional surgical-instrument error reporting as cumbersome, human-dependent, delayed, incomplete, and difficult to integrate with operational systems; Zhu et al. observed packaging errors including wrong specifications, incomplete packages, and missing instruments — errors that could reflect upstream gaps not caught before packaging ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Zhu et al., 2019](bibliography.md#zhu-et-al-2019)). | When mistakes aren't caught and reported quickly, the same errors keep happening. Problems from assembly end up in sealed packages without anyone noticing ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024); [Zhu et al., 2019](bibliography.md#zhu-et-al-2019)). |
 
+### 3.8 Consolidated Root Cause Chain
 
-### 3.8 Resulting Solvable Scope
+- **Product**: No labels or markings. Wear hides the small differences. Workers must memorize tiny visual details.
+- **Knowledge**: Must see the difference between near-identical instruments. General names don't tell you local tray rules. Certification is a starting point, not local readiness.
+- **Process**: Assembly combines picking, counting, and checking in one step with no backup check. Without aids, small errors slip through.
+- **Information**: Outdated or incomplete count sheets force guessing. Loaner trays may arrive with no local information.
+- **Environment**: Pressure and interruptions break focus. Short staffing means thinner training and looser checking.
+- **Policy & Feedback**: Nobody owns the standards. Only tested once at hiring. Slow error reporting lets mistakes repeat.
+
+### 3.9 Resulting Solvable Scope
 
 The full readiness problem remains too broad for one final project because it
 includes staffing, inventory, cleaning practice, sterilization capacity,
@@ -296,7 +297,7 @@ hands-on work.
 This scope does not claim to solve the entire SPD staffing shortage or certify
 clinical competence. Instead, it focuses on a measurable precursor to
 competence: whether a learner can improve at identifying missing, wrong, extra,
-damaged, or miscounted instruments in a simulated local tray task. That scope
+or miscounted instruments in a simulated local tray task. That scope
 can be studied without a live hospital deployment by using representative
 instrument sets, tray-specific count sheets, distractor items, inspection
 criteria, and repeated pre/post tray-building tasks.
@@ -304,34 +305,63 @@ criteria, and repeated pre/post tray-building tasks.
 The resulting research question is:
 
 > How can a local tray training and assessment system help novice users improve
-> their ability to detect missing, wrong, extra, damaged, or miscounted
+> their ability to detect missing, wrong, extra, or miscounted
 > instruments before supervised SPD tray-reconstruction work?
 
 ## 4. Literature And Related Work
 
-The literature supports the final direction only if the claim is kept narrow.
-The evidence is strong that tray readiness problems recur, that many important
-errors depend on visual inspection and local tray knowledge, and that
-simulation plus retrieval practice can improve health-professions learning.
-The evidence is not yet strong enough to claim that a student-built prototype
-will reduce hospital tray errors or certify sterile-processing competence.
+The root cause analysis identified several interconnected causes of
+tray-content errors. Among them, one knowledge-focused pattern recurs across
+multiple failure modes: that general certification and broad instrument
+familiarity may not reliably prepare technicians to recognize and differentiate
+the full range of complex, lookalike, and locally variant instruments
+encountered during tray reconstruction (Section 3.2). The same analysis also
+identified product-level, process-level, information-level, and environmental
+root causes, meaning there are many possible intervention points.
 
-For that reason, TrayGuard should be evaluated as a training and assessment
-system first. Its near-term job is to give novices repeated, measured practice
-on a local tray module and to show whether they improve on comparable simulated
-tray-sorting tasks. Real-instrument computer vision, clinical workflow
-automation, and operational error reduction remain future validation layers.
+This section surveys the full solution space before narrowing. Surveying the
+landscape first serves two purposes: it shows that each approach targets a
+different root cause with a different feasibility profile, and it makes
+explicit why the selected path — a local tray training and assessment system —
+is the most actionable given the project's constraints (no live hospital
+deployment, no access to real instruments at scale, limited timeline and
+budget, no SPD-industry partnership).
 
-### 4.1 SPD Error And Tray-Readiness Evidence
+### 4.1 Solution Landscape
 
-Several studies make tray reconstruction a defensible intervention point.
+The solution space for reducing tray-content errors during reconstruction can
+be organized into seven categories by intervention point. Each category targets
+a different subset of the root causes from Section 3, and each faces a
+different feasibility constraint for this project.
+
+| | Category | Intervention point | Example solutions | Root causes addressed | Key constraint for this project |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Automated content verification | Post-assembly inspection | CV tray checker, RFID tray scan, barcode line scan, weight check | Product (missed damage), Process (errors escape unchecked) | Requires real instruments, lighting, workflow integration; cannot validate without SPD deployment |
+| 2 | Physical error-proofing | The tray or instrument interface | Custom foam cutouts, color-coded handles, segregated tray zones | Knowledge (lookalike discrimination), Process (selection errors) | Expensive custom fabrication per tray; difficult to validate and maintain across tray variants |
+| 3 | Workflow / process design | Task structure and handoffs | Dual verification, gating sign-offs, pre-sorted pick lists | Process (unchecked errors), Policy (unclear accountability) | Primarily organizational change; no technical prototype to build or measure in a controlled study |
+| 4 | Decision support at point of assembly | Information available during reconstruction | Standardized count sheets with photos, alias lookup, reference kiosk | Information (incomplete count sheets), Knowledge (unfamiliar items) | Improves the reference but does not exercise or measure the technician's own ability |
+| 5 | Task simplification | The tray definition itself | Tray rationalization, instrument consolidation, procedure-level standardization | Knowledge (too many items to learn), Environment (time pressure) | Requires hospital utilization data and multi-stakeholder buy-in; no buildable prototype |
+| 6 | Workforce / accountability systems | Competency management and error feedback | Periodic competency reassessment, closed-loop error tracking, structured mentorship | Policy (one-time credential), Feedback (delayed or absent reporting) | Primarily organizational policy change; no measurable prototype within FDR scope |
+| 7 | Training and simulated practice | Pre-work and between-work skill building | VR simulation, digital flashcards, tangible tray simulation, structured OJT | Knowledge (certification gap), Local knowledge (site-specific variants) | Requires learning-science justification and a novice study — both accessible without SPD deployment |
+
+Each category reduces a real risk. Categories 1 through 6, however, all depend
+on resources that this project cannot access within the FDR timeline: SPD
+deployment sites, real instrument inventories, hospital utilization data,
+institutional policy authority, or multi-stakeholder buy-in. Category 7 —
+training and simulated practice — is the only category whose primary evidence
+can be collected with accessible participants (novices), low-cost materials
+(printed cards), and a bounded pre/post study design on a simulated local tray
+task. The remainder of this section examines the literature supporting each
+relevant area in depth.
+
+### 4.2 SPD Error And Tray-Readiness Evidence
+
 Alfred et al. analyzed 3,900 tray defects across 41,799 surgical cases and
 found that 55.0% of recorded defects occurred during assembly. The recorded
 defects included missing, wrong, damaged, extra, and incorrectly assembled
-instruments ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). That
-finding matters because assembly is the stage where cleaned instruments are
-identified, inspected, counted, and rebuilt into a tray before packaging and
-sterilization.
+instruments ([Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). Assembly
+is the stage where cleaned instruments are identified, inspected, counted, and
+rebuilt into a tray before packaging and sterilization.
 
 Nichol et al. provide a second, more direct error-pattern argument. They
 observed 236 surgical instrument errors affecting 147 cases. Missing+ errors
@@ -339,10 +369,8 @@ were the largest category and included missing, wrong, and extra instruments.
 They also found that 88.6% of observed errors involved visualization tasks such
 as inspection, identification, function checking, and sorting
 ([Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). When delays
-occurred, the average delay was about 10 minutes. This does not prove that a
-training app will prevent those delays, but it does show that the target task
-is not a cosmetic documentation problem. It is a recurrent readiness problem
-with operational consequences.
+occurred, the average delay was about 10 minutes — a recurrent operational
+consequence, not a cosmetic documentation problem.
 
 Packaging and inspection evidence points in the same direction. Zhu et al.
 found 398 packaging errors among 33,839 surgical instrument packages, including
@@ -359,24 +387,19 @@ wrong-count, and visibly unacceptable items when that content is included in a
 future module. The current prototype should focus on the first five categories
 because they can be measured in a controlled card-based tray task.
 
-### 4.2 SPD Training And Competency Context
+### 4.3 SPD Training And Competency Context
 
-Sterile-processing training is not just general medical vocabulary. It
-requires local instrument recognition, tray assembly, inspection, packaging,
-and supervised practice. HSPA's CRCST route requires 400 hours of hands-on
+Sterile-processing training requires local instrument recognition, tray
+assembly, inspection, packaging, and supervised practice. HSPA's CRCST route requires 400 hours of hands-on
 experience, including 120 hours in preparation and packaging
 ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026)). The
 CRCST content outline also includes cleaning, decontamination, preparation,
 packaging, sterilization, sterile storage, patient-care equipment, and quality
 assurance ([HSPA CRCST Content Outline, 2023](bibliography.md#hspa-crcst-content-outline-2023)).
-CBSPD's technician certification is a separate credential route and likewise
-does not turn a software score into local workplace competence
-([CBSPD Technician Exam, accessed 2026](bibliography.md#cbspd-technician-accessed-2026)).
 
-This boundary is important for the training pivot. TrayGuard should not claim
-to replace certification, hands-on hours, preceptor observation, or sign-off.
-Its value is earlier and narrower: give learners repeated practice before,
-during, or between supervised work, and give educators evidence about weak
+
+TrayGuard gives learners repeated practice before,
+during, or between supervised work, and gives educators evidence about weak
 instruments, weak tray rules, high-confidence errors, and uncertainty.
 
 The training need is also practical. HSPA maintains surgical-instrument
@@ -388,11 +411,9 @@ workforce development, while staffing and turnover reports show why supervised
 training time is a scarce resource rather than an unlimited input
 ([AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025);
 [Brozak, 2025](bibliography.md#brozak-2025);
-[Mácola et al., 2025](bibliography.md#macola-et-al-2025)). TrayGuard therefore
-fits best as an accessibility and modernization layer for training, not as a
-shortcut around clinical supervision.
+[Mácola et al., 2025](bibliography.md#macola-et-al-2025)).
 
-### 4.3 Local Tray And Count-Sheet Evidence
+### 4.4 Local Tray And Count-Sheet Evidence
 
 TrayGuard must be local because tray assembly is local. Count sheets are not
 just generic instrument lists. They can include tray names, contents,
@@ -431,15 +452,13 @@ store local names, aliases, approved photos, required counts, lookalike pairs,
 distractors, assessment variants, and module version. The module must be
 instructor-verified before the results are described as content-valid.
 
-### 4.4 Learning Science And Simulation Evidence
+### 4.5 Learning Science And Simulation Evidence
 
-The training method is defensible if it is framed as a simulation proxy for
-local tray familiarity, not as proof of independent clinical competence. Health
-professions education has a strong general precedent for simulation: a broad
-review of technology-enhanced simulation found improved knowledge, skills, and
-behaviors compared with no intervention, and simulation-based medical education
-with deliberate practice has also been shown to outperform traditional clinical
-education in meta-analysis
+Health professions education provides a general precedent for simulation: a
+broad review of technology-enhanced simulation found improved knowledge, skills,
+and behaviors compared with no intervention, and simulation-based medical
+education with deliberate practice has also been shown to outperform traditional
+clinical education in meta-analysis
 ([Cook et al., 2011](bibliography.md#cook-et-al-2011);
 [McGaghie et al., 2011](bibliography.md#mcgaghie-et-al-2011)). Earlier medical
 simulation guidance identifies feedback, repetitive practice, curriculum
@@ -489,9 +508,8 @@ The proposed AprilTag-card tray is a reasonable physical proxy because it
 preserves the target cognitive actions while replacing regulated instruments
 with safe, cheap, repeatable tokens. The user still has to read a local tray
 list, retrieve which items belong, distinguish distractors and lookalikes, apply
-counts, place items into a tray area, and respond to feedback. The marker does
-not need to prove that the user can handle real sterile instruments; it needs to
-make the simulated choice observable to the app. NeuroVase is a close emerging
+counts, place items into a tray area, and respond to feedback. The marker
+makes the simulated choice observable to the app. NeuroVase is a close emerging
 design precedent: it uses tangible cue cards with a tablet-based mobile AR
 system, structured medical curriculum, pre/post assessment, usability measures,
 and a controlled user study for neurovascular anatomy and stroke education
@@ -506,19 +524,16 @@ and evaluated the PlayDecide patient-safety board game in two acute teaching
 hospitals; the intervention used cards and facilitated discussion to teach
 junior doctors about safety concerns and reporting, and the authors concluded
 that it was valuable for patient-safety education and deep discussion
-([Ward et al., 2019](bibliography.md#ward-et-al-2019)). This does not prove
-TrayGuard will teach tray assembly, but it supports the broader educational
-strategy: abstracted physical artifacts can stand in for clinical objects when
-the study measures learning, discussion, decision quality, and protocol use
-rather than patient outcomes.
+([Ward et al., 2019](bibliography.md#ward-et-al-2019)). Their study demonstrates
+that abstracted physical artifacts can stand in for clinical objects when the
+study measures learning, discussion, decision quality, and protocol use.
 
-Therefore the FDR claim should be narrow and testable: marker cards are an
-acceptable first prototype for measuring novice improvement on simulated local
-tray sorting. The follow-on SPD pilot must replace or supplement cards with
-local photos, real teaching instruments, educator-reviewed count sheets, and
-supervised workplace validation before making clinical-transfer claims.
+Marker cards are the first prototype for measuring novice improvement on
+simulated local tray sorting. A follow-on SPD pilot would replace or supplement
+cards with local photos, real teaching instruments, educator-reviewed count
+sheets, and supervised workplace validation.
 
-### 4.5 Computer Vision Feasibility And Boundary Evidence
+### 4.6 Computer Vision Feasibility And Boundary Evidence
 
 Computer vision remains technically plausible, but it is no longer the central
 FDR proof. Deol et al. show that automated surgical-instrument detection and
@@ -528,15 +543,12 @@ show that structured image acquisition can support ultra-fine-grained surgical
 instrument classification, and Xin et al. address CSSD-oriented instrument
 recognition
 ([Atabuzzaman et al., 2025](bibliography.md#atabuzzaman-et-al-2025);
-[Xin et al., 2024](bibliography.md#xin-et-al-2024)). These papers justify
-continued CV work as authoring support, camera-assisted practice, or a future
-visual review layer.
-
-They do not remove the validation burden for a hospital tray checker. Real SPD
-deployment would need local data, manufacturer and variant coverage, lighting
-and glare testing, occlusion handling, open-set behavior, workflow review,
-human confirmation, false-alert analysis, cleaning and device-policy review,
-and site-specific failure-mode reporting. Kienle et al. show why this boundary
+[Xin et al., 2024](bibliography.md#xin-et-al-2024)). These papers support CV as authoring support, camera-assisted practice, or a
+future visual review layer, but real SPD deployment would need local data,
+manufacturer and variant coverage, lighting and glare testing, occlusion
+handling, open-set behavior, workflow review, human confirmation, false-alert
+analysis, cleaning and device-policy review, and site-specific failure-mode
+reporting. Kienle et al. show why this boundary
 matters: strong in-domain detection can drop when instruments come from
 different manufacturers
 ([Kienle et al., 2025](bibliography.md#kienle-et-al-2025)).
@@ -547,7 +559,7 @@ the training loop because that loop can be built, tested, and interpreted
 without pretending that deployment-grade instrument recognition has already
 been solved.
 
-### 4.6 Market And Comparable Tools
+### 4.7 Market And Comparable Tools
 
 Comparable systems cluster into four groups: tray-management products,
 instrument tracking systems, surgical simulation tools, and emerging CV or
@@ -564,23 +576,17 @@ bounded training claim.
 | Surgical-instrument CV research | Researchers and future technical teams | Detection, counting, fine-grained classification, instrument-stand recognition. | Published research, usually bounded datasets. | Supports future camera assistance, but not deployment-ready SPD workflow claims ([Deol et al., 2024](bibliography.md#deol-et-al-2024); [Atabuzzaman et al., 2025](bibliography.md#atabuzzaman-et-al-2025); [Kienle et al., 2025](bibliography.md#kienle-et-al-2025)). |
 | Autonomous tray assembly research | Robotics researchers and future automation teams | Manipulation, sorting, and assembly concepts. | Early research. | Much higher hardware, sterility, safety, and integration burden than the FDR training loop ([da Silva et al., 2026](bibliography.md#da-silva-et-al-2026)). |
 
-TrayGuard's differentiation is not that no one has count sheets, tracking, or
-simulation. Its narrower contribution is a low-cost local training loop that
-turns a tray module into retrieval-first study, applied tray sorting, immediate
-feedback, no-hints assessment, and exportable pre/post evidence.
+TrayGuard's contribution is a low-cost local training loop that turns a tray
+module into retrieval-first study, applied tray sorting, immediate feedback,
+no-hints assessment, and exportable pre/post evidence.
 
 ## 5. Final Product Concept And Design Rationale
 
-The final TrayGuard direction is a local tray training and assessment platform,
-not a deployment-ready clinical tray checker. The selected concept keeps the
-original readiness problem but moves the proof point earlier in the workflow:
-can a novice learn a local tray module well enough to improve on a comparable
-simulated tray-sorting task?
-
-This direction was selected because it is useful, buildable, and testable
-within the FDR scope. It still addresses tray reconstruction errors, but it
-does so by reducing training and knowledge-transfer risk before claiming that a
-camera system can verify real sterile-processing trays.
+The final TrayGuard direction is a local tray training and assessment platform
+that addresses tray reconstruction errors by reducing training and
+knowledge-transfer risk. The selected concept moves the proof point earlier in
+the workflow: can a novice learn a local tray module well enough to improve on
+a comparable simulated tray-sorting task?
 
 ### 5.1 Final Product Concept
 
@@ -675,6 +681,270 @@ piece fails.
 This backup strategy is intentionally conservative. It protects the FDR from
 collapsing into a fragile detector demo and keeps the main deliverable aligned
 with the training pivot.
+
+### 5.5 Rationale for AprilTag Marker Choice
+
+The prototype uses printable AprilTag fiducial markers on physical instrument
+cards. This section justifies AprilTag specifically against the alternatives of
+no physical component, QR codes, ArUco markers, and real instruments with
+camera-based recognition.
+
+#### 5.5.1 Why Physical Markers at All
+
+A purely digital drag-and-drop tray simulation would be simpler to implement
+and would avoid camera-setup and detection-reliability concerns. It is rejected
+because the target task is fundamentally physical: SPD technicians search for,
+pick up, examine, count, and arrange real instruments under a tray boundary
+([Nichol et al., 2024](bibliography.md#nichol-et-al-2024);
+[Alfred et al., 2021](bibliography.md#alfred-et-al-2021)). A purely on-screen
+interface removes the spatial search, the need to distinguish similar objects
+in hand, and the physical count-and-place workflow that the study is meant to
+simulate. Physical cards preserve those cognitive demands while replacing
+regulated stainless-steel instruments with safe, cheap, tractable tokens.
+
+#### 5.5.2 Why AprilTag over QR Codes
+
+QR codes are a natural alternative because they are widely available, readable
+by consumer devices, and familiar to most users. However, they are designed for
+data encoding rather than computer-vision pose estimation and marker tracking
+([OpenCV, accessed 2026](bibliography.md#opencv-aruco-detection-accessed-2026)). A QR
+code embeds dozens to hundreds of bytes of payload data, decodes it through a
+Reed-Solomon error-correction pipeline, and returns a string. AprilTag inverts
+that priority: it encodes a compact integer identifier using a binary matrix
+optimized for fast corner detection, rotation disambiguation, and error
+identification under perspective distortion, partial occlusion, and varying
+lighting ([Olson, 2011](bibliography.md#olson-2011)).
+
+Three practical differences make AprilTag the better choice for this prototype.
+
+First, detection speed and robustness. AprilTag exploits its known black border
+and grid structure to extract corners at sub-pixel precision. The OpenCV
+`aruco` module (which natively supports AprilTag dictionaries) can detect and
+decode dozens of markers in a single video frame in milliseconds, while QR-code
+detection requires finding three finder patterns, performing perspective
+correction, and decoding a payload — a heavier pipeline designed for different
+goals ([Garrido-Jurado et al., 2014](bibliography.md#garrido-jurado-et-al-2014);
+[Romero-Ramirez et al., 2018](bibliography.md#romero-ramirez-et-al-2018)).
+Experimental comparisons have shown that AprilTag achieves higher detection
+rates than QR codes under motion blur, shadow, and perspective distortion in
+pose-estimation contexts
+([Kalaitzakis et al., 2021](bibliography.md#kalaitzakis-et-al-2021)).
+
+Second, compact dictionaries with guaranteed Hamming-distance bounds. AprilTag
+uses a lexicode-based coding system that guarantees a minimum Hamming distance
+between every pair of markers under all four rotations
+([Olson, 2011](bibliography.md#olson-2011);
+[Wang et al., 2016](bibliography.md#wang-et-al-2016-apriltag)). A high
+inter-marker distance means the detector can confidently identify a marker even
+when several bits are corrupted by glare, print quality, or partial occlusion.
+For a training prototype that must not confuse a learner's correct selection
+with a detection error, that robustness is critical.
+
+Third, pose estimation. A single AprilTag marker provides four coplanar corner
+correspondences, sufficient for full 6-DOF pose estimation from a single
+calibrated camera ([Olson, 2011](bibliography.md#olson-2011)). Although the
+current prototype does not yet use pose for detailed spatial feedback, the same
+markers can later support richer interaction — detecting which instrument a
+learner hesitates over, flagging instruments placed in the wrong tray zone, or
+verifying the physical arrangement against a placement template. QR codes do
+not offer comparable corner-localization accuracy because their finder patterns
+are designed for barcode scanning rather than metric pose estimation.
+
+| Requirement | QR code | AprilTag | Effect on TrayGuard |
+| --- | --- | --- | --- |
+| Detection under perspective, partial occlusion, and lighting variation | Moderate; designed for fronto-parallel scanning | Strong; designed for arbitrary camera pose and varying conditions | Fewer detection failures that inflate learner error rates ([Kalaitzakis et al., 2021](bibliography.md#kalaitzakis-et-al-2021)). |
+| Sub-pixel corner accuracy | Not designed for pose estimation | Native: lexicode-guaranteed dictionary with sub-pixel refinement | Enables future tray-zone and placement feedback ([Romero-Ramirez et al., 2018](bibliography.md#romero-ramirez-et-al-2018)). |
+| Compact identifier with error correction | Large payload, Reed-Solomon on data bytes | Compact ID with lexicode Hamming-distance guarantee | Lower decode latency; no ambiguity between marker ID and payload parsing ([Olson, 2011](bibliography.md#olson-2011)). |
+| Open-source library in existing stack | OpenCV and platform libraries | Integrated in OpenCV `aruco` module; standalone C library | Zero additional dependency cost ([OpenCV, accessed 2026](bibliography.md#opencv-aruco-detection-accessed-2026)). |
+| Neutral card front for assessment | QR pattern is visually distinctive and recognizable as a code | Binary grid is less obviously a machine-readable code to novices | Lower risk of learners recognizing markers as answer keys during assessment. |
+
+#### 5.5.3 Why AprilTag over ArUco
+
+ArUco is the closest alternative: both produce binary square fiducial markers,
+both are open source, and both can be detected through the same OpenCV `aruco`
+module. For this project's requirements — up to 1000 markers and high detection
+accuracy — AprilTag is the stronger choice for three reasons.
+
+First, AprilTag's lexicode system provides mathematical guarantees that ArUco's
+search-based dictionary does not. The lexicode algorithm generates a family of
+codewords with a proven minimum Hamming distance under every possible rotation
+([Olson, 2011](bibliography.md#olson-2011);
+[Wang et al., 2016](bibliography.md#wang-et-al-2016-apriltag)). This means the
+detector can not only detect but also correct more bit errors per marker than
+ArUco's heuristic dictionary of equivalent size. A larger minimum distance
+directly improves detection accuracy in the conditions most likely to occur
+during a training session: glare off laminated cards, low tabletop lighting,
+partial card occlusion, and off-angle camera views.
+
+Second, AprilTag's corner-refinement pipeline (especially AprilTag 2's
+adaptive thresholding and edge refinement) produces more stable corner
+localization across varying lighting and image scales
+([Wang et al., 2016](bibliography.md#wang-et-al-2016-apriltag)). The original
+AprilTag was already benchmarked as the most accurate fiducial system in
+head-to-head comparisons under motion blur and perspective distortion
+([Kalaitzakis et al., 2021](bibliography.md#kalaitzakis-et-al-2021)).
+
+Third, AprilTag 3 introduces a multi-threaded detector and flexible tag layouts
+that improve throughput on higher-resolution images without sacrificing
+detection rate
+([Krogius et al., 2019](bibliography.md#krogius-et-al-2019)). For the first
+build, the recommended family is `tagStandard52h13`, which provides 52 data
+bits and a minimum Hamming distance of 13 — enough error-correction capacity
+to support thousands of unique markers while still fitting comfortably on a
+printed card. If fewer than 500 markers are needed, `tagStandard41h12` is a
+more compact alternative with comparable robustness. Both families are
+supported through the AprilTag dictionary support in OpenCV's `aruco` module,
+with full backward compatibility for earlier dictionaries
+(`DICT_APRILTAG_36h11`, `DICT_APRILTAG_16h5`), so no additional library
+dependency is required.
+
+#### 5.5.4 Why Not Real Instruments
+
+The most obvious alternative — and the one that keeps the project closest to its
+original CV-checker goal — is to use real surgical instruments with a
+camera-based object detector. That path is rejected for the first prototype for
+four reasons. First, real instruments require regulated access, cleaning and
+handling protocols, storage space, and educator supervision that the first
+study cannot assume ([HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026)).
+Second, instrument recognition across manufacturers, wear states, and lighting
+conditions is an unsolved research problem that would dominate the engineering
+schedule and make the FDR claim fragile to a single detection failure
+([Deol et al., 2024](bibliography.md#deol-et-al-2024);
+[Kienle et al., 2025](bibliography.md#kienle-et-al-2025)).
+Third, a real-instrument prototype would be difficult to reproduce across
+sites, since each hospital has different inventory, variant mix, and
+replacement cycles. Fourth, the cognitive task of interest — applying a local
+tray rule to select, count, and discriminate among items — can be studied
+without the sterility, weight, and handling requirements of real steel.
+Printed cards preserve the selection, count, and lookalike-discrimination
+demands while stripping away the confounding variables of instrument
+availability, cleaning policy, and physical handling risk.
+
+The card interface follows the same abstraction strategy as NeuroVase, which
+uses tangible cue cards to teach neurovascular anatomy and stroke assessment
+without requiring cadavers, imaging workstations, or clinical placements
+([Jahani et al., 2026 NeuroVase](bibliography.md#jahani-et-al-2026-neurovase)).
+QR-code-based medical education tools similarly demonstrate that low-cost
+printable codes can support healthcare learning, simulation, and training
+access in resource-constrained settings
+([Karia et al., 2019](bibliography.md#karia-et-al-2019)). The AprilTag card is a deliberate methodological choice that controls for
+instrument-access confounds while keeping the measured task aligned with the
+real cognitive demands of tray reconstruction.
+
+### 5.6 Rationale for Gamified and Simulation-Based Learning Style
+
+TrayGuard embeds retrieval practice, feedback, scoring, progressive difficulty,
+and confidence capture within a structured learning session that resembles a
+serious tabletop training game. This section justifies that design against
+traditional lecture-based training, video-only instruction, and unguided
+self-study.
+
+#### 5.6.1 Why Gamification and Simulation over Traditional Instruction
+
+Traditional sterile-processing training relies heavily on lecture, video, and
+supervised on-the-job practice ([AORN Staff, 2025](bibliography.md#aorn-staffing-shortage-2025);
+[HSPA CRCST, accessed 2026](bibliography.md#hspa-crcst-accessed-2026)). Those
+methods are necessary but not sufficient: lectures can introduce instrument
+names and tray rules, but they do not exercise the applied discrimination and
+count-sheet following that defines tray reconstruction. Simulation-based
+medical education with deliberate practice has been shown to outperform
+traditional clinical education in meta-analysis, and technology-enhanced
+simulation improves knowledge, skills, and behaviors compared with no
+intervention ([Cook et al., 2011](bibliography.md#cook-et-al-2011);
+[McGaghie et al., 2011](bibliography.md#mcgaghie-et-al-2011)). The features that
+make simulation effective — feedback, repetitive practice, curriculum
+integration, and measurable outcomes — map directly to TrayGuard's learning
+loop ([Issenberg et al., 2005](bibliography.md#issenberg-et-al-2005)).
+
+Gamification adds a second layer. A 2021 systematic review of gamification in
+health professions education found that combining assessment attributes (scores,
+progress tracking) with conflict/challenge attributes (timed tasks, increasing
+difficulty) increased learners' engagement with study material and led to
+improved learning outcomes in most studies that included a comparison condition
+([van Gaalen et al., 2021](bibliography.md#van-gaalen-et-al-2021)). A more
+recent umbrella review of game-based learning in nursing education found a
+large pooled effect on academic knowledge performance (standardized mean
+difference 1.06) and a moderate effect on skill performance (0.54)
+([Malicki et al., 2025](bibliography.md#malicki-et-al-2025)). The mechanism is
+plausible: game elements increase repetition, focus attention on error patterns,
+and make low-stakes practice more acceptable than high-stakes testing.
+
+The same review
+cautions that most gamified intervention studies lack well-defined control
+groups and theoretical grounding for their choice of game elements
+([van Gaalen et al., 2021](bibliography.md#van-gaalen-et-al-2021)). TrayGuard
+addresses that concern by grounding each game-like feature in a specific
+learning mechanism.
+
+#### 5.6.2 Specific Game Elements and Their Learning Rationale
+
+| Game-like feature | Learning mechanism | Evidence base |
+| --- | --- | --- |
+| Pre-test establishes a baseline score | Goal-setting and self-assessment calibration before practice | Pre-testing improves later retention compared with studying without a prior test, even when answers are not provided ([Roediger and Karpicke, 2006](bibliography.md#roediger-and-karpicke-2006); [Larsen et al., 2009](bibliography.md#larsen-et-al-2009)). |
+| Retrieval cards use prompt-before-reveal | Active recall with immediate confirmation; the core retrieval-practice effect | Tests improve long-term retention more than restudy across health-professions contexts ([Dunlosky et al., 2013](bibliography.md#dunlosky-et-al-2013); [Barrison et al., 2025](bibliography.md#barrison-et-al-2025)). |
+| Quiz with score and weak-item logging | Retrieval with spaced repetition and targeted remediation | Weak-item repetition reduces error persistence on later tasks ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023); [Hattie and Timperley, 2007](bibliography.md#hattie-and-timperley-2007)). |
+| Practice tray sort with error-category feedback | Deliberate practice with specific, actionable correction | Immediate error-specific feedback improves skill acquisition more than correctness-only feedback ([Hattie and Timperley, 2007](bibliography.md#hattie-and-timperley-2007); [Issenberg et al., 2005](bibliography.md#issenberg-et-al-2005)). |
+| Confidence capture after each item | Metacognitive calibration; exposes high-confidence errors | High-confidence errors are more resistant to correction and indicate overconfidence that feedback must target explicitly ([Ofstead et al., 2023](bibliography.md#ofstead-et-al-2023)). |
+| Parallel no-hints post-test | Near-transfer assessment without answer leakage | Separating assessment from practice prevents score inflation from memorization of exact layouts ([Bell et al., 2008](bibliography.md#bell-et-al-2008)). |
+| Metrics export and weak-item summary | Learner- and instructor-facing performance data for targeted remediation | Instructors cannot target weak items or weak rules without item-level evidence ([Kovach, 2012](bibliography.md#kovach-2012); [Nichol et al., 2024](bibliography.md#nichol-et-al-2024)). |
+
+Each element serves a specific cognitive purpose rather than decoration.
+Points and progress bars (the most common gamification elements in medical
+education) are present only insofar as they support self-assessment: the
+pre/post accuracy score, the weak-item recovery count, and the error-category
+breakdown are the central feedback signals. The design deliberately avoids
+leaderboards, badges, and competitive ranking, which can shift motivation from
+intrinsic learning to extrinsic reward-seeking in health-professions contexts
+([van Gaalen et al., 2021](bibliography.md#van-gaalen-et-al-2021)).
+
+#### 5.6.3 Why Not a More Complex Game Format
+
+Several alternative gamification approaches were considered and rejected.
+
+Full virtual reality (VR) simulation offers immersive instrument handling but
+requires hardware (headset, controllers), room space, onboarding time, and
+technical support that the first prototype cannot assume. SteriBoost, a
+commercial VR sterile-processing trainer, demonstrates the feasibility of VR
+for this domain, but its hardware and custom-scene requirements place it at a
+later validation stage rather than the first FDR prototype
+([SteriBoost, accessed 2026](bibliography.md#steriboost-accessed-2026)).
+
+Competitive multiplayer formats (leaderboards, team challenges) can increase
+engagement but risk publicizing individual error rates in a training context,
+potentially creating the punitive environment that the ethics controls
+explicitly prohibit (Section 11). They also require larger participant pools
+and session coordination that the first 8-12-person study cannot support.
+
+Simulated patient scenarios or narrative-driven learning modules (used in tools
+such as Touch Surgery) can improve engagement and contextual reasoning, but
+they add authoring burden and reduce the number of tray-repetition cycles per
+session ([Tulipan et al., 2019](bibliography.md#tulipan-et-al-2019);
+[Medtronic Touch Surgery, accessed 2026](bibliography.md#medtronic-touch-surgery-accessed-2026)).
+TrayGuard's target task — learning a specific local tray rule — benefits more
+from repeated applied practice than from narrative context, so the game
+structure stays close to the assessment loop.
+
+The chosen gamification level is therefore lightweight, mechanism-driven, and
+designed around the retrieval-practice and feedback evidence. It is closer to
+the serious-game approach of SteriDefi, the SF2S sterilization serious game
+that uses question banks, difficulty levels, and scoring to motivate repeated
+knowledge retrieval, than to a narrative or VR simulation
+([Vanhaverbeke et al., 2018](bibliography.md#vanhaverbeke-et-al-2018)).
+
+#### 5.6.4 Learning Mechanisms Behind the Game Elements
+
+Structured, repeated practice with immediate, error-specific feedback,
+delivered in a bounded session with clear goals and measurable progress,
+produces measurable short-term learning. Game elements sustain the repetition
+that retrieval-practice research shows is necessary for durable learning
+([Roediger and Karpicke, 2006](bibliography.md#roediger-and-karpicke-2006);
+[Dunlosky et al., 2013](bibliography.md#dunlosky-et-al-2013)). The "game" is the
+learning loop itself — the same logic that makes flashcard apps, spaced-
+repetition quizzes, and simulation-based skills trainers effective teaching
+tools. A learner who improves on the TrayGuard simulated tray task has
+undergone repeated retrieval practice on local names, aliases, counts, and
+lookalike distinctions, followed by an applied sorting task with
+category-specific feedback.
 
 ## 6. Requirements Definition
 
