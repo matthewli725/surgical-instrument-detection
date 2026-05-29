@@ -147,7 +147,7 @@ def duplicate_rows(new_rows: list[dict[str, Any]], existing: list[tuple[str, str
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build an Openverse surgical instrument flashcard catalog.")
     parser.add_argument("--output", type=Path, default=Path("config/instrument_catalogs/openverse_surgical_instruments_v1.json"))
-    parser.add_argument("--asset-dir", type=Path, default=Path("assets/instruments/openverse_surgical_instruments_v1"))
+    parser.add_argument("--asset-dir", type=Path, default=Path("data/instruments/openverse_surgical_instruments_v1"))
     parser.add_argument("--duplicate-report", type=Path, default=Path("docs/project/reference/openverse_duplicate_candidates.csv"))
     parser.add_argument("--max-images", type=int, default=80)
     parser.add_argument("--page-size", type=int, default=20)

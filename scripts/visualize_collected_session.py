@@ -10,7 +10,7 @@ import cv2
 
 
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp", ".webp")
-DEFAULT_COLLECTED_DIR = Path("data/collected")
+DEFAULT_COLLECTED_DIR = Path("data/cv/collected")
 WINDOW_NAME = "Collected Session Review"
 
 

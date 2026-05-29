@@ -17,6 +17,15 @@ from trayguard.learning.scoring import score_tray
 MODULE_PATH = Path("config/tray_modules/basic_general_tray_v1.json")
 CATALOG_PATH = Path("config/instrument_catalogs/hospitools_dslr_v1.json")
 COMMONS_CATALOG_PATH = Path("config/instrument_catalogs/wikimedia_commons_surgical_instruments_v1.json")
+FGVC12_MAJOR_CATALOG_PATH = Path("config/instrument_catalogs/fgvc12_major_tray_v1.json")
+DERIVED_MODULE_PATHS = [
+    Path("config/tray_modules/minor_skin_closure_tray_v1.json"),
+    Path("config/tray_modules/cut_down_tray_v1.json"),
+    Path("config/tray_modules/basic_tissue_handling_tray_v1.json"),
+    Path("config/tray_modules/fgvc12_major_overview_tray_v1.json"),
+    Path("config/tray_modules/fgvc12_major_clamp_discrimination_tray_v1.json"),
+    Path("config/tray_modules/fgvc12_major_soft_tissue_tray_v1.json"),
+]
 
 
 class LearningPrototypeTests(unittest.TestCase):
@@ -48,6 +57,26 @@ class LearningPrototypeTests(unittest.TestCase):
         self.assertGreaterEqual(len(catalog.instruments), 5)
         first = next(iter(catalog.instruments.values()))
         self.assertTrue(first.image_refs)
+
+    def test_fgvc12_major_catalog_loads(self) -> None:
+        catalog = load_instrument_catalog(FGVC12_MAJOR_CATALOG_PATH)
+        self.assertEqual(catalog.catalog_id, "fgvc12_major_tray_v1")
+        self.assertGreaterEqual(len(catalog.instruments), 30)
+        first = next(iter(catalog.instruments.values()))
+        self.assertGreaterEqual(len(first.image_refs), 2)
+
+    def test_derived_modules_load_with_evidence(self) -> None:
+        for path in DERIVED_MODULE_PATHS:
+            with self.subTest(path=path):
+                module = load_tray_module(path)
+                payload = json.loads(path.read_text(encoding="utf-8"))
+                self.assertGreaterEqual(len(module.required_items), 5)
+                self.assertGreaterEqual(module.total_required_units, 6)
+                self.assertGreaterEqual(len(module.distractor_item_ids), 3)
+                self.assertGreaterEqual(len(module.assessment_variants), 2)
+                self.assertGreaterEqual(len(payload.get("evidence_sources", [])), 2)
+                for variant in module.assessment_variants.values():
+                    self.assertEqual(set(variant.required_item_ids), set(module.required_items))
 
     def test_correct_tray_scores_full_credit(self) -> None:
         selected = {key: item.quantity for key, item in self.module.required_items.items()}

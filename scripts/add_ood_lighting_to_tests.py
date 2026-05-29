@@ -8,8 +8,8 @@ from typing import Sequence
 
 
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".bmp", ".webp")
-DEFAULT_SESSION_DIR = Path("data/collected/sessions/setup_20260416_095507")
-DEFAULT_DATASETS_DIR = Path("data/spoon_lighting_yolo")
+DEFAULT_SESSION_DIR = Path("data/cv/collected/sessions/setup_20260416_095507")
+DEFAULT_DATASETS_DIR = Path("data/cv/spoon_lighting_yolo")
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:

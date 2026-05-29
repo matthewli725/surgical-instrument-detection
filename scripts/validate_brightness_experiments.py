@@ -58,7 +58,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--datasets-dir",
         type=Path,
-        default=Path("data/brightness_yolo"),
+        default=Path("data/cv/brightness_yolo"),
         help="Directory containing staged brightness YOLO datasets.",
     )
     parser.add_argument(

@@ -1,0 +1,931 @@
+{
+  "module_id": "fgvc12_eye_vitrectomy_tray_v1",
+  "version": "2026.05-fgvc12-derived",
+  "name": "FGVC12 Eye Vitrectomy Tray",
+  "procedure_family": "eye_vitrectomy",
+  "source_note": "Derived from Atabuzzaman et al. CVPRW 2025 supplementary material. Lists 41 instrument classes from the Eye Vitrectomy tray. Images pending download from eye_tray_images_fgvc12.zip on Google Drive.",
+  "evidence_sources": [
+    {
+      "label": "Atabuzzaman et al. CVPRW 2025 supplementary material",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025W/FGVC/supplemental/Atabuzzaman_Real-Time_Ultra-Fine-Grained_Surgical_CVPRW_2025_supplemental.pdf",
+      "supports": [
+        "Full 95-class list organized by surgery type."
+      ]
+    },
+    {
+      "label": "eye_tray_images_fgvc12.zip",
+      "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC",
+      "supports": [
+        "Eye Vitrectomy instrument images."
+      ]
+    }
+  ],
+  "instruments": [
+    {
+      "id": "fgvc12_eye_adapter_female_flusing_white_plastic",
+      "display_name": "Adapter Female Flusing White Plastic",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Adapter Female Flusing White Plastic"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_adapter_male_flusing_white_plastic",
+      "display_name": "Adapter Male Flusing White Plastic",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Adapter Male Flusing White Plastic"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_bull_dog_serrefine_small_straight",
+      "display_name": "Bull Dog Serrefine Small Straight",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Bull Dog Serrefine Small Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_caliper_castroviejo_straight",
+      "display_name": "Caliper Castroviejo Straight",
+      "family": "Measuring",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Caliper Castroviejo Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
+      "display_name": "Cannula Angled Viscoelastic Aspirating 19g",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Angled Viscoelastic Aspirating 19G"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
+      "display_name": "Cannula Gills Aspirating 25g 5mm Tip",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Gills Aspirating 25G 5Mm Tip"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_cannula_perfluoron_chang_ia",
+      "display_name": "Cannula Perfluoron Chang IA",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Perfluoron Chang Ia"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_clamp_edna_3_1_2in",
+      "display_name": "Clamp Edna 3 1/2\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Edna 3 1/2\""
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
+      "display_name": "Clamp Mosquito Petit Point Curved",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Mosquito Petit Point Curved"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_depressor_oconnor_scleral_marker",
+      "display_name": "Depressor OConnor Scleral Marker",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Depressor Oconnor Scleral Marker"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
+      "display_name": "Depressor Schocket Scleral Double Ended",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Depressor Schocket Scleral Double Ended"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
+      "display_name": "Forcep Bipolar McPherson Straight",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bipolar Mcpherson Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
+      "display_name": "Forcep Bishop Harmon w Teeth",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bishop Harmon W Teeth"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
+      "display_name": "Forcep Bonaccolto Conjuctivia",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bonaccolto Conjuctivia"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
+      "display_name": "Forcep Castroviejo Suturing .12mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .12Mm"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
+      "display_name": "Forcep Castroviejo Suturing .3mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .3Mm"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
+      "display_name": "Forcep Castroviejo Suturing .5mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .5Mm"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_cross-action_scleral_plug",
+      "display_name": "Forcep Cross-Action Scleral Plug",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Cross-Action Scleral Plug"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_harms_tying_curved",
+      "display_name": "Forcep Harms Tying Curved",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Harms Tying Curved"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
+      "display_name": "Forcep Landers Vitrectomy Lens",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Landers Vitrectomy Lens"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_mcpherson_tying_angled",
+      "display_name": "Forcep McPherson Tying Angled",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Angled"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_mcpherson_tying_straight",
+      "display_name": "Forcep McPherson Tying Straight",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
+      "display_name": "Forcep Nugent Utility Angled 45 Deg Serrated Jaw",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Nugent Utility Angled 45 Deg Serrated Jaw"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
+      "display_name": "Handle Beaver Blade #3 with Collet Screw",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Handle Beaver Blade #3 With Collet Screw"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_hook_gass_retinal_detachment",
+      "display_name": "Hook Gass Retinal Detachment",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Gass Retinal Detachment"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
+      "display_name": "Hook Manipulating Sinskey II Lens 0.2mm Angled",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Manipulating Sinskey Ii Lens 0.2Mm Angled"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_hook_muscle_graefe_size_1",
+      "display_name": "Hook Muscle Graefe Size 1",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Muscle Graefe Size 1"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_hook_muscle_jameson_sm",
+      "display_name": "Hook Muscle Jameson SM",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Muscle Jameson Sm"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
+      "display_name": "Needle Holder Castro Locking Standard Curved",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Curved"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
+      "display_name": "Needle Holder Castro Locking Standard Straight",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
+      "display_name": "Needle Holder McPherson Locking X-Delicate Curved",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Locking X-Delicate Curved"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
+      "display_name": "Needle Holder McPherson Non-Locking X-Delicate Straight",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Non-Locking X-Delicate Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_retractor_schepens_orbital",
+      "display_name": "Retractor Schepens Orbital",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Schepens Orbital"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
+      "display_name": "Scissors Knapp Strabismus Blunt Curved",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Knapp Strabismus Blunt Curved"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
+      "display_name": "Scissors Vannas Capsulotomy Straight",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Vannas Capsulotomy Straight"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
+      "display_name": "Scissors Wescott Stitch Curved Sharp Tips",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Stitch Curved Sharp Tips"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
+      "display_name": "Scissors Wescott Tenotomy Curved Blunt",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Tenotomy Curved Blunt"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
+      "display_name": "Speculum Barraquer Eye Adult 15mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Adult 15Mm Blade"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
+      "display_name": "Speculum Barraquer Eye Pediatric 9mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Pediatric 9Mm Blade"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
+      "display_name": "Speculum Barraquer Heavy Wire Lid 19mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Heavy Wire Lid 19Mm Blade"
+      ],
+      "image_refs": []
+    },
+    {
+      "id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
+      "display_name": "Speculum Lieberman Eye w Adjustable V-Wire Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Lieberman Eye W Adjustable V-Wire Blade"
+      ],
+      "image_refs": []
+    }
+  ],
+  "required_items": [
+    {
+      "instrument_id": "fgvc12_eye_adapter_female_flusing_white_plastic",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_adapter_male_flusing_white_plastic",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_bull_dog_serrefine_small_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_caliper_castroviejo_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_cannula_perfluoron_chang_ia",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_clamp_edna_3_1_2in",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_depressor_oconnor_scleral_marker",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_cross-action_scleral_plug",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_harms_tying_curved",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_angled",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_hook_gass_retinal_detachment",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_hook_muscle_graefe_size_1",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_hook_muscle_jameson_sm",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_retractor_schepens_orbital",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    },
+    {
+      "instrument_id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
+      "quantity": 1,
+      "reference_number": "",
+      "location_or_layer": "",
+      "notes": ""
+    }
+  ],
+  "marker_cards": [
+    {
+      "marker_id": 1100,
+      "instrument_id": "fgvc12_eye_adapter_female_flusing_white_plastic",
+      "card_id": "fgvc12_eye_adapter_female_flusing_white_plastic_fgvc12"
+    },
+    {
+      "marker_id": 1101,
+      "instrument_id": "fgvc12_eye_adapter_male_flusing_white_plastic",
+      "card_id": "fgvc12_eye_adapter_male_flusing_white_plastic_fgvc12"
+    },
+    {
+      "marker_id": 1102,
+      "instrument_id": "fgvc12_eye_bull_dog_serrefine_small_straight",
+      "card_id": "fgvc12_eye_bull_dog_serrefine_small_straight_fgvc12"
+    },
+    {
+      "marker_id": 1103,
+      "instrument_id": "fgvc12_eye_caliper_castroviejo_straight",
+      "card_id": "fgvc12_eye_caliper_castroviejo_straight_fgvc12"
+    },
+    {
+      "marker_id": 1104,
+      "instrument_id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
+      "card_id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating__fgvc12"
+    },
+    {
+      "marker_id": 1105,
+      "instrument_id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
+      "card_id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip_fgvc12"
+    },
+    {
+      "marker_id": 1106,
+      "instrument_id": "fgvc12_eye_cannula_perfluoron_chang_ia",
+      "card_id": "fgvc12_eye_cannula_perfluoron_chang_ia_fgvc12"
+    },
+    {
+      "marker_id": 1107,
+      "instrument_id": "fgvc12_eye_clamp_edna_3_1_2in",
+      "card_id": "fgvc12_eye_clamp_edna_3_1_2in_fgvc12"
+    },
+    {
+      "marker_id": 1108,
+      "instrument_id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
+      "card_id": "fgvc12_eye_clamp_mosquito_petit_point_curved_fgvc12"
+    },
+    {
+      "marker_id": 1109,
+      "instrument_id": "fgvc12_eye_depressor_oconnor_scleral_marker",
+      "card_id": "fgvc12_eye_depressor_oconnor_scleral_marker_fgvc12"
+    },
+    {
+      "marker_id": 1110,
+      "instrument_id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
+      "card_id": "fgvc12_eye_depressor_schocket_scleral_double_ended_fgvc12"
+    },
+    {
+      "marker_id": 1111,
+      "instrument_id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
+      "card_id": "fgvc12_eye_forcep_bipolar_mcpherson_straight_fgvc12"
+    },
+    {
+      "marker_id": 1112,
+      "instrument_id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
+      "card_id": "fgvc12_eye_forcep_bishop_harmon_w_teeth_fgvc12"
+    },
+    {
+      "marker_id": 1113,
+      "instrument_id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
+      "card_id": "fgvc12_eye_forcep_bonaccolto_conjuctivia_fgvc12"
+    },
+    {
+      "marker_id": 1114,
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
+      "card_id": "fgvc12_eye_forcep_castroviejo_suturing_12mm_fgvc12"
+    },
+    {
+      "marker_id": 1115,
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
+      "card_id": "fgvc12_eye_forcep_castroviejo_suturing_3mm_fgvc12"
+    },
+    {
+      "marker_id": 1116,
+      "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
+      "card_id": "fgvc12_eye_forcep_castroviejo_suturing_5mm_fgvc12"
+    },
+    {
+      "marker_id": 1117,
+      "instrument_id": "fgvc12_eye_forcep_cross-action_scleral_plug",
+      "card_id": "fgvc12_eye_forcep_cross-action_scleral_plug_fgvc12"
+    },
+    {
+      "marker_id": 1118,
+      "instrument_id": "fgvc12_eye_forcep_harms_tying_curved",
+      "card_id": "fgvc12_eye_forcep_harms_tying_curved_fgvc12"
+    },
+    {
+      "marker_id": 1119,
+      "instrument_id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
+      "card_id": "fgvc12_eye_forcep_landers_vitrectomy_lens_fgvc12"
+    },
+    {
+      "marker_id": 1120,
+      "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_angled",
+      "card_id": "fgvc12_eye_forcep_mcpherson_tying_angled_fgvc12"
+    },
+    {
+      "marker_id": 1121,
+      "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_straight",
+      "card_id": "fgvc12_eye_forcep_mcpherson_tying_straight_fgvc12"
+    },
+    {
+      "marker_id": 1122,
+      "instrument_id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
+      "card_id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_ser_fgvc12"
+    },
+    {
+      "marker_id": 1123,
+      "instrument_id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
+      "card_id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_sc_fgvc12"
+    },
+    {
+      "marker_id": 1124,
+      "instrument_id": "fgvc12_eye_hook_gass_retinal_detachment",
+      "card_id": "fgvc12_eye_hook_gass_retinal_detachment_fgvc12"
+    },
+    {
+      "marker_id": 1125,
+      "instrument_id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
+      "card_id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_fgvc12"
+    },
+    {
+      "marker_id": 1126,
+      "instrument_id": "fgvc12_eye_hook_muscle_graefe_size_1",
+      "card_id": "fgvc12_eye_hook_muscle_graefe_size_1_fgvc12"
+    },
+    {
+      "marker_id": 1127,
+      "instrument_id": "fgvc12_eye_hook_muscle_jameson_sm",
+      "card_id": "fgvc12_eye_hook_muscle_jameson_sm_fgvc12"
+    },
+    {
+      "marker_id": 1128,
+      "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
+      "card_id": "fgvc12_eye_needle_holder_castro_locking_standard_c_fgvc12"
+    },
+    {
+      "marker_id": 1129,
+      "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
+      "card_id": "fgvc12_eye_needle_holder_castro_locking_standard_s_fgvc12"
+    },
+    {
+      "marker_id": 1130,
+      "instrument_id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
+      "card_id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delic_fgvc12"
+    },
+    {
+      "marker_id": 1131,
+      "instrument_id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
+      "card_id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-d_fgvc12"
+    },
+    {
+      "marker_id": 1132,
+      "instrument_id": "fgvc12_eye_retractor_schepens_orbital",
+      "card_id": "fgvc12_eye_retractor_schepens_orbital_fgvc12"
+    },
+    {
+      "marker_id": 1133,
+      "instrument_id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
+      "card_id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved_fgvc12"
+    },
+    {
+      "marker_id": 1134,
+      "instrument_id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
+      "card_id": "fgvc12_eye_scissors_vannas_capsulotomy_straight_fgvc12"
+    },
+    {
+      "marker_id": 1135,
+      "instrument_id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
+      "card_id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_ti_fgvc12"
+    },
+    {
+      "marker_id": 1136,
+      "instrument_id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
+      "card_id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt_fgvc12"
+    },
+    {
+      "marker_id": 1137,
+      "instrument_id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
+      "card_id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade_fgvc12"
+    },
+    {
+      "marker_id": 1138,
+      "instrument_id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
+      "card_id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_bl_fgvc12"
+    },
+    {
+      "marker_id": 1139,
+      "instrument_id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
+      "card_id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm__fgvc12"
+    },
+    {
+      "marker_id": 1140,
+      "instrument_id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
+      "card_id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-w_fgvc12"
+    }
+  ]
+}

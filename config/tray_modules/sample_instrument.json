@@ -18,7 +18,7 @@
   "image_refs": [
     {
       "id": "view_a",
-      "path": "assets/instruments/mayo_scissors_straight_55_view_a.jpg",
+      "path": "data/instruments/mayo_scissors_straight_55_view_a.jpg",
       "source": "local_photo",
       "approved_for_study": true,
       "approved_for_assessment": true,
@@ -26,7 +26,7 @@
     },
     {
       "id": "card_front_neutral",
-      "path": "assets/cards/mayo_scissors_straight_55_neutral_front.png",
+      "path": "outputs/cards/mayo_scissors_straight_55_neutral_front.png",
       "source": "generated_card",
       "approved_for_study": false,
       "approved_for_assessment": true,

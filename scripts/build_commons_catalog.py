@@ -258,7 +258,7 @@ def duplicate_rows(new_rows: list[dict[str, Any]], existing: list[tuple[str, str
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build a Wikimedia Commons surgical instrument flashcard catalog.")
     parser.add_argument("--output", type=Path, default=Path("config/instrument_catalogs/wikimedia_commons_surgical_instruments_v1.json"))
-    parser.add_argument("--asset-dir", type=Path, default=Path("assets/instruments/wikimedia_commons_surgical_instruments_v1"))
+    parser.add_argument("--asset-dir", type=Path, default=Path("data/instruments/wikimedia_commons_surgical_instruments_v1"))
     parser.add_argument("--duplicate-report", type=Path, default=Path("docs/project/reference/card_duplicate_candidates.csv"))
     parser.add_argument("--max-images", type=int, default=260)
     parser.add_argument("--category-depth", type=int, default=1)

@@ -39,8 +39,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         prog="trayguard export-yolo",
         description="Flatten collected setup sessions into a YOLO train/val/test dataset."
     )
-    parser.add_argument("--input-dir", type=Path, default=Path("data/collected"), help="Collected session root.")
-    parser.add_argument("--output-dir", type=Path, default=Path("data/collected_yolo"), help="YOLO dataset output root.")
+    parser.add_argument("--input-dir", type=Path, default=Path("data/cv/collected"), help="Collected session root.")
+    parser.add_argument("--output-dir", type=Path, default=Path("data/cv/collected_yolo"), help="YOLO dataset output root.")
     parser.add_argument("--train-ratio", type=float, default=0.7, help="Fraction of setup sessions assigned to train.")
     parser.add_argument("--val-ratio", type=float, default=0.2, help="Fraction of setup sessions assigned to val.")
     parser.add_argument("--test-ratio", type=float, default=0.1, help="Fraction of setup sessions assigned to test.")

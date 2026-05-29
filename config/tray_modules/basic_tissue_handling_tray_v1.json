@@ -1,9 +1,32 @@
 {
-  "module_id": "basic_general_tray_v1",
-  "version": "2026.05-demo",
-  "name": "Basic General Tray",
-  "procedure_family": "general_minor_procedure_training",
-  "source_note": "Prototype module adapted from the TrayGuard FDR requirements. Instructor verification required before pilot claims.",
+  "module_id": "basic_tissue_handling_tray_v1",
+  "version": "2026.05-derived",
+  "name": "Basic Tissue Handling Tray",
+  "procedure_family": "general_soft_tissue_handling_training",
+  "source_note": "Derived TrayGuard training module based on basic surgery set and general surgical-instrument family references. The module emphasizes selecting grasping, clamping, cutting/dissection, and suturing cards that appear in basic surgery sets and general surgical tray examples.",
+  "evidence_sources": [
+    {
+      "label": "Clinician\u2019s Brief basic surgery kit",
+      "url": "https://www.cliniciansbrief.com/article/basic-surgery-kit",
+      "supports": [
+        "Basic surgery kit discussion includes scalpel, Mayo-Hegar needle holder, mosquito hemostats, thumb forceps including Adson, Brown-Adson, and DeBakey, and Olsen-Hegar as a needle-holder/scissor variant."
+      ]
+    },
+    {
+      "label": "Veterinary Key surgical tray figure",
+      "url": "https://veteriankey.com/instruments/",
+      "supports": [
+        "General surgical tray example labels No. 3 scalpel handle, straight Mayo scissors, Metzenbaum scissors, Adson Brown forceps, Adson DeBakey forceps, straight and curved mosquito forceps, Allis tissue forceps, and Mayo-Hegar needle holder."
+      ]
+    },
+    {
+      "label": "HOSPI-Tools General Surgery / General Major source group",
+      "url": "https://zenodo.org/records/5895068",
+      "supports": [
+        "Hospitools General Surgery / General Major includes source image groups for Babcock tissue forceps, Metzenbaum scissors, Mayo needle holder, DeBakey dissector, Allis tissue forceps, Crile artery forceps, and curved Mayo scissors used by existing TrayGuard cards."
+      ]
+    }
+  ],
   "instruments": [
     {
       "id": "scalpel_handle_3",
@@ -48,52 +71,6 @@
           "id": "feature",
           "prompt": "What feature helps identify a #3 scalpel handle?",
           "answer": "A short flat handle with a blade slot."
-        }
-      ],
-      "local_verification_status": "pending_review"
-    },
-    {
-      "id": "mayo_scissors_straight_55",
-      "display_name": "Straight Mayo scissors, 5.5 in",
-      "family": "Cutting",
-      "aliases": [
-        "straight Mayo",
-        "suture scissors"
-      ],
-      "distinguishing_features": [
-        "Heavy straight blades",
-        "Broader blade profile than Metzenbaum scissors"
-      ],
-      "image_refs": [
-        {
-          "id": "view_a",
-          "path": "data/instruments/basic_general_tray_v1/mayo_scissors_straight_55_view_a.jpg",
-          "source": "wikimedia_commons",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: Gunting Mayo Berbilah Lurus.jpg by Na'il Hillan, CC BY-SA 4.0",
-          "url": "https://commons.wikimedia.org/wiki/File:Gunting_Mayo_Berbilah_Lurus.jpg"
-        },
-        {
-          "id": "view_b",
-          "path": "data/instruments/basic_general_tray_v1/mayo_scissors_straight_55_view_b.jpg",
-          "source": "wikimedia_commons",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: Mayo surgical scissors.jpg by Armin/Saltanat ebli, public domain",
-          "url": "https://commons.wikimedia.org/wiki/File:Mayo_surgical_scissors.jpg"
-        }
-      ],
-      "study_prompts": [
-        {
-          "id": "name",
-          "prompt": "Name the heavy straight cutting scissors.",
-          "answer": "Straight Mayo scissors, 5.5 in"
-        },
-        {
-          "id": "feature",
-          "prompt": "How do straight Mayo scissors differ from Metzenbaum scissors?",
-          "answer": "Mayo scissors have heavier, broader blades."
         }
       ],
       "local_verification_status": "pending_review"
@@ -145,52 +122,6 @@
       "local_verification_status": "pending_review"
     },
     {
-      "id": "adson_forceps_1x2_475",
-      "display_name": "Adson tissue forceps, 1x2 teeth, 4.75 in",
-      "family": "Grasping/holding",
-      "aliases": [
-        "toothed Adson",
-        "Adson 1x2"
-      ],
-      "distinguishing_features": [
-        "Short thumb forceps",
-        "One tooth opposing two teeth at tip"
-      ],
-      "image_refs": [
-        {
-          "id": "view_a",
-          "path": "data/instruments/basic_general_tray_v1/adson_forceps_1x2_475_view_a.jpg",
-          "source": "wikimedia_commons",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: Adson 00.jpg by SnowBink, CC BY-SA 3.0",
-          "url": "https://commons.wikimedia.org/wiki/File:Adson_00.jpg"
-        },
-        {
-          "id": "view_b",
-          "path": "data/instruments/basic_general_tray_v1/adson_forceps_1x2_475_view_b.jpg",
-          "source": "wikimedia_commons",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: Adson 01.jpg by SnowBink, CC BY-SA 3.0",
-          "url": "https://commons.wikimedia.org/wiki/File:Adson_01.jpg"
-        }
-      ],
-      "study_prompts": [
-        {
-          "id": "name",
-          "prompt": "Name the short toothed thumb forceps.",
-          "answer": "Adson tissue forceps, 1x2 teeth, 4.75 in"
-        },
-        {
-          "id": "feature",
-          "prompt": "What does 1x2 mean on Adson forceps?",
-          "answer": "One tooth opposes two teeth at the tip."
-        }
-      ],
-      "local_verification_status": "pending_review"
-    },
-    {
       "id": "debakey_forceps_6",
       "display_name": "DeBakey tissue forceps, 6 in",
       "family": "Grasping/holding",
@@ -237,48 +168,88 @@
       "local_verification_status": "pending_review"
     },
     {
-      "id": "mosquito_hemostat_curved_5",
-      "display_name": "Curved mosquito hemostat, 5 in",
-      "family": "Clamping/occluding",
+      "id": "allis_tissue_forceps_6",
+      "display_name": "Allis tissue forceps, 6 in",
+      "family": "Grasping/holding",
       "aliases": [
-        "mosquito clamp",
-        "small hemostat",
-        "snap"
+        "Allis clamp",
+        "Allis forceps"
       ],
       "distinguishing_features": [
-        "Small ring-handled clamp",
-        "Shorter and finer than Kelly forceps"
+        "Ring-handled clamp",
+        "Multiple interlocking teeth"
       ],
       "image_refs": [
         {
           "id": "view_a",
-          "path": "data/instruments/basic_general_tray_v1/mosquito_hemostat_curved_5_view_a.jpg",
-          "source": "wikimedia_commons",
+          "path": "data/instruments/basic_general_tray_v1/allis_tissue_forceps_6_view_a.jpg",
+          "source": "hospitools_dslr",
           "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: Curved Hemostatic Mosquito Forceps, Missouri Historical Society/DPLA",
-          "url": "https://commons.wikimedia.org/wiki/File:Curved_Hemostatic_Mosquito_Forceps_of_Dr._John_Hersel_Gladney_-_DPLA_-_ab73c6459d190ec886a8f43831b2ca7b_(page_1).jpg"
+          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/Allis_Tissue_Forceps/Allis_Tissue_Forceps1.jpg, CC BY 4.0",
+          "url": "https://zenodo.org/records/5895068"
         },
         {
           "id": "view_b",
-          "path": "data/instruments/basic_general_tray_v1/mosquito_hemostat_curved_5_view_b.jpg",
-          "source": "wikimedia_commons",
+          "path": "data/instruments/basic_general_tray_v1/allis_tissue_forceps_6_view_b.jpg",
+          "source": "hospitools_dslr",
           "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Wikimedia Commons: \u0417\u0430\u0436\u0438\u043c \u043c\u043e\u0441\u043a\u0438\u0442 \u0438\u0437\u043e\u0433\u043d\u0443\u0442\u044b\u0439 \u043f\u043e \u0440\u0435\u0431\u0440\u0443.jpg",
-          "url": "https://commons.wikimedia.org/wiki/File:%D0%97%D0%B0%D0%B6%D0%B8%D0%BC_%D0%BC%D0%BE%D1%81%D0%BA%D0%B8%D1%82_%D0%B8%D0%B7%D0%BE%D0%B3%D0%BD%D1%83%D1%82%D1%8B%D0%B9_%D0%BF%D0%BE_%D1%80%D0%B5%D0%B1%D1%80%D1%83.jpg"
+          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/Allis_Tissue_Forceps/Allis_Tissue_Forceps10.jpg, CC BY 4.0",
+          "url": "https://zenodo.org/records/5895068"
         }
       ],
       "study_prompts": [
         {
           "id": "name",
-          "prompt": "Name the small curved hemostat.",
-          "answer": "Curved mosquito hemostat, 5 in"
+          "prompt": "Name the ring-handled tissue clamp with interlocking teeth.",
+          "answer": "Allis tissue forceps, 6 in"
         },
         {
           "id": "feature",
-          "prompt": "How is a mosquito hemostat different from a Kelly?",
-          "answer": "The mosquito is smaller and finer."
+          "prompt": "What tip feature identifies an Allis clamp?",
+          "answer": "Multiple interlocking teeth."
+        }
+      ],
+      "local_verification_status": "pending_review"
+    },
+    {
+      "id": "babcock_tissue_forceps_6",
+      "display_name": "Babcock tissue forceps, 6 in",
+      "family": "Grasping/holding",
+      "aliases": [
+        "Babcock clamp",
+        "Babcock forceps"
+      ],
+      "distinguishing_features": [
+        "Smooth fenestrated jaws",
+        "Less traumatic than Allis teeth"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/basic_general_tray_v1/babcock_tissue_forceps_6_view_a.jpg",
+          "source": "hospitools_dslr",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/6_Babcock_Tissue_Forceps/6_Babcock_Tissue_Forceps1.jpg, CC BY 4.0",
+          "url": "https://zenodo.org/records/5895068"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/basic_general_tray_v1/babcock_tissue_forceps_6_view_b.jpg",
+          "source": "hospitools_dslr",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/6_Babcock_Tissue_Forceps/6_Babcock_Tissue_Forceps10.jpg, CC BY 4.0",
+          "url": "https://zenodo.org/records/5895068"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "confusion",
+          "prompt": "How is Babcock different from Allis?",
+          "answer": "Babcock has smooth fenestrated jaws; Allis has teeth."
         }
       ],
       "local_verification_status": "pending_review"
@@ -331,52 +302,6 @@
       "local_verification_status": "pending_review"
     },
     {
-      "id": "allis_tissue_forceps_6",
-      "display_name": "Allis tissue forceps, 6 in",
-      "family": "Grasping/holding",
-      "aliases": [
-        "Allis clamp",
-        "Allis forceps"
-      ],
-      "distinguishing_features": [
-        "Ring-handled clamp",
-        "Multiple interlocking teeth"
-      ],
-      "image_refs": [
-        {
-          "id": "view_a",
-          "path": "data/instruments/basic_general_tray_v1/allis_tissue_forceps_6_view_a.jpg",
-          "source": "hospitools_dslr",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/Allis_Tissue_Forceps/Allis_Tissue_Forceps1.jpg, CC BY 4.0",
-          "url": "https://zenodo.org/records/5895068"
-        },
-        {
-          "id": "view_b",
-          "path": "data/instruments/basic_general_tray_v1/allis_tissue_forceps_6_view_b.jpg",
-          "source": "hospitools_dslr",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/Allis_Tissue_Forceps/Allis_Tissue_Forceps10.jpg, CC BY 4.0",
-          "url": "https://zenodo.org/records/5895068"
-        }
-      ],
-      "study_prompts": [
-        {
-          "id": "name",
-          "prompt": "Name the ring-handled tissue clamp with interlocking teeth.",
-          "answer": "Allis tissue forceps, 6 in"
-        },
-        {
-          "id": "feature",
-          "prompt": "What tip feature identifies an Allis clamp?",
-          "answer": "Multiple interlocking teeth."
-        }
-      ],
-      "local_verification_status": "pending_review"
-    },
-    {
       "id": "mayo_hegar_needle_holder_6",
       "display_name": "Mayo-Hegar needle holder, 6 in",
       "family": "Suturing",
@@ -417,51 +342,7 @@
         {
           "id": "feature",
           "prompt": "How does Mayo-Hegar differ from Olsen-Hegar?",
-          "answer": "Mayo-Hegar does not include integrated scissor blades."
-        }
-      ],
-      "local_verification_status": "pending_review"
-    },
-    {
-      "id": "senn_retractor_double_ended",
-      "display_name": "Senn retractor, double-ended",
-      "family": "Retracting/exposing",
-      "aliases": [
-        "Senn",
-        "rake retractor"
-      ],
-      "distinguishing_features": [
-        "Double-ended handheld retractor",
-        "One L-shaped blade and one three-prong rake"
-      ],
-      "image_refs": [
-        {
-          "id": "view_a",
-          "path": "data/instruments/senn_retractor_double_ended_view_a.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
-          "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
-        },
-        {
-          "id": "view_b",
-          "path": "data/instruments/senn_retractor_double_ended_view_b.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
-          "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
-        }
-      ],
-      "study_prompts": [
-        {
-          "id": "name",
-          "prompt": "Name the double-ended handheld retractor with a rake end.",
-          "answer": "Senn retractor, double-ended"
-        },
-        {
-          "id": "feature",
-          "prompt": "What two ends does a Senn retractor have?",
-          "answer": "An L-shaped blade and a three-prong rake."
+          "answer": "Mayo-Hegar has needle-holder jaws without integrated scissor blades."
         }
       ],
       "local_verification_status": "pending_review"
@@ -548,120 +429,94 @@
       "local_verification_status": "pending_review"
     },
     {
-      "id": "brown_adson_forceps_475",
-      "display_name": "Brown-Adson tissue forceps, 4.75 in",
+      "id": "adson_forceps_1x2_475",
+      "display_name": "Adson tissue forceps, 1x2 teeth, 4.75 in",
       "family": "Grasping/holding",
       "aliases": [
-        "Brown-Adson",
-        "multiple-tooth Adson"
+        "toothed Adson",
+        "Adson 1x2"
       ],
       "distinguishing_features": [
-        "Multiple fine teeth",
-        "Short Adson-style thumb forceps"
+        "Short thumb forceps",
+        "One tooth opposing two teeth at tip"
       ],
       "image_refs": [
         {
           "id": "view_a",
-          "path": "data/instruments/brown_adson_forceps_475_view_a.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
+          "path": "data/instruments/basic_general_tray_v1/adson_forceps_1x2_475_view_a.jpg",
+          "source": "wikimedia_commons",
+          "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
+          "attribution": "Wikimedia Commons: Adson 00.jpg by SnowBink, CC BY-SA 3.0",
+          "url": "https://commons.wikimedia.org/wiki/File:Adson_00.jpg"
         },
         {
           "id": "view_b",
-          "path": "data/instruments/brown_adson_forceps_475_view_b.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
+          "path": "data/instruments/basic_general_tray_v1/adson_forceps_1x2_475_view_b.jpg",
+          "source": "wikimedia_commons",
+          "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
+          "attribution": "Wikimedia Commons: Adson 01.jpg by SnowBink, CC BY-SA 3.0",
+          "url": "https://commons.wikimedia.org/wiki/File:Adson_01.jpg"
         }
       ],
       "study_prompts": [
         {
-          "id": "confusion",
-          "prompt": "How is Brown-Adson different from Adson 1x2?",
-          "answer": "Brown-Adson has multiple fine teeth instead of a 1x2 tip."
+          "id": "name",
+          "prompt": "Name the short toothed thumb forceps.",
+          "answer": "Adson tissue forceps, 1x2 teeth, 4.75 in"
+        },
+        {
+          "id": "feature",
+          "prompt": "What does 1x2 mean on Adson forceps?",
+          "answer": "One tooth opposes two teeth at the tip."
         }
       ],
       "local_verification_status": "pending_review"
     },
     {
-      "id": "olsen_hegar_needle_holder_55",
-      "display_name": "Olsen-Hegar needle holder, 5.5 in",
-      "family": "Suturing/cutting",
+      "id": "mosquito_hemostat_curved_5",
+      "display_name": "Curved mosquito hemostat, 5 in",
+      "family": "Clamping/occluding",
       "aliases": [
-        "Olsen-Hegar",
-        "needle holder with scissors"
+        "mosquito clamp",
+        "small hemostat",
+        "snap"
       ],
       "distinguishing_features": [
-        "Integrated scissor blades",
-        "Needle holder jaws"
+        "Small ring-handled clamp",
+        "Shorter and finer than Kelly forceps"
       ],
       "image_refs": [
         {
           "id": "view_a",
-          "path": "data/instruments/olsen_hegar_needle_holder_55_view_a.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
+          "path": "data/instruments/basic_general_tray_v1/mosquito_hemostat_curved_5_view_a.jpg",
+          "source": "wikimedia_commons",
+          "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
+          "attribution": "Wikimedia Commons: Curved Hemostatic Mosquito Forceps, Missouri Historical Society/DPLA",
+          "url": "https://commons.wikimedia.org/wiki/File:Curved_Hemostatic_Mosquito_Forceps_of_Dr._John_Hersel_Gladney_-_DPLA_-_ab73c6459d190ec886a8f43831b2ca7b_(page_1).jpg"
         },
         {
           "id": "view_b",
-          "path": "data/instruments/olsen_hegar_needle_holder_55_view_b.jpg",
-          "source": "pending_open_source_or_local_photo",
-          "approved_for_study": false,
+          "path": "data/instruments/basic_general_tray_v1/mosquito_hemostat_curved_5_view_b.jpg",
+          "source": "wikimedia_commons",
+          "approved_for_study": true,
           "approved_for_assessment": false,
-          "attribution": "Pending image source; do not use for assessment until verified"
+          "attribution": "Wikimedia Commons: \u0417\u0430\u0436\u0438\u043c \u043c\u043e\u0441\u043a\u0438\u0442 \u0438\u0437\u043e\u0433\u043d\u0443\u0442\u044b\u0439 \u043f\u043e \u0440\u0435\u0431\u0440\u0443.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:%D0%97%D0%B0%D0%B6%D0%B8%D0%BC_%D0%BC%D0%BE%D1%81%D0%BA%D0%B8%D1%82_%D0%B8%D0%B7%D0%BE%D0%B3%D0%BD%D1%83%D1%82%D1%8B%D0%B9_%D0%BF%D0%BE_%D1%80%D0%B5%D0%B1%D1%80%D1%83.jpg"
         }
       ],
       "study_prompts": [
         {
-          "id": "confusion",
-          "prompt": "Why is Olsen-Hegar a distractor for Mayo-Hegar?",
-          "answer": "It includes integrated scissor blades."
-        }
-      ],
-      "local_verification_status": "pending_review"
-    },
-    {
-      "id": "babcock_tissue_forceps_6",
-      "display_name": "Babcock tissue forceps, 6 in",
-      "family": "Grasping/holding",
-      "aliases": [
-        "Babcock clamp",
-        "Babcock forceps"
-      ],
-      "distinguishing_features": [
-        "Smooth fenestrated jaws",
-        "Less traumatic than Allis teeth"
-      ],
-      "image_refs": [
-        {
-          "id": "view_a",
-          "path": "data/instruments/basic_general_tray_v1/babcock_tissue_forceps_6_view_a.jpg",
-          "source": "hospitools_dslr",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/6_Babcock_Tissue_Forceps/6_Babcock_Tissue_Forceps1.jpg, CC BY 4.0",
-          "url": "https://zenodo.org/records/5895068"
+          "id": "name",
+          "prompt": "Name the small curved hemostat.",
+          "answer": "Curved mosquito hemostat, 5 in"
         },
         {
-          "id": "view_b",
-          "path": "data/instruments/basic_general_tray_v1/babcock_tissue_forceps_6_view_b.jpg",
-          "source": "hospitools_dslr",
-          "approved_for_study": true,
-          "approved_for_assessment": false,
-          "attribution": "HOSPI-Tools Dataset - DSLR, General_Surgery/General_Major/6_Babcock_Tissue_Forceps/6_Babcock_Tissue_Forceps10.jpg, CC BY 4.0",
-          "url": "https://zenodo.org/records/5895068"
-        }
-      ],
-      "study_prompts": [
-        {
-          "id": "confusion",
-          "prompt": "How is Babcock different from Allis?",
-          "answer": "Babcock has smooth fenestrated jaws; Allis has teeth."
+          "id": "feature",
+          "prompt": "How is a mosquito hemostat different from a Kelly?",
+          "answer": "The mosquito is smaller and finer."
         }
       ],
       "local_verification_status": "pending_review"
@@ -671,70 +526,58 @@
     {
       "instrument_id": "scalpel_handle_3",
       "quantity": 1,
-      "reference_number": "TG-001",
-      "location_or_layer": "main"
-    },
-    {
-      "instrument_id": "mayo_scissors_straight_55",
-      "quantity": 1,
-      "reference_number": "TG-002",
-      "location_or_layer": "main"
+      "reference_number": "GST-001",
+      "location_or_layer": "field",
+      "notes": "General surgery setup cutting handle."
     },
     {
       "instrument_id": "metzenbaum_scissors_curved_55",
       "quantity": 1,
-      "reference_number": "TG-003",
-      "location_or_layer": "main"
-    },
-    {
-      "instrument_id": "adson_forceps_1x2_475",
-      "quantity": 2,
-      "reference_number": "TG-004",
-      "location_or_layer": "main"
+      "reference_number": "GST-002",
+      "location_or_layer": "field",
+      "notes": "Curved tissue dissection scissors."
     },
     {
       "instrument_id": "debakey_forceps_6",
       "quantity": 1,
-      "reference_number": "TG-005",
-      "location_or_layer": "main"
-    },
-    {
-      "instrument_id": "mosquito_hemostat_curved_5",
-      "quantity": 2,
-      "reference_number": "TG-006",
-      "location_or_layer": "main"
-    },
-    {
-      "instrument_id": "kelly_forceps_curved_55",
-      "quantity": 2,
-      "reference_number": "TG-007",
-      "location_or_layer": "main"
+      "reference_number": "GST-003",
+      "location_or_layer": "field",
+      "notes": "Atraumatic tissue forceps."
     },
     {
       "instrument_id": "allis_tissue_forceps_6",
       "quantity": 2,
-      "reference_number": "TG-008",
-      "location_or_layer": "main"
+      "reference_number": "GST-004",
+      "location_or_layer": "field",
+      "notes": "Toothed tissue-holding clamps."
+    },
+    {
+      "instrument_id": "babcock_tissue_forceps_6",
+      "quantity": 1,
+      "reference_number": "GST-005",
+      "location_or_layer": "field",
+      "notes": "Fenestrated tissue forceps."
+    },
+    {
+      "instrument_id": "kelly_forceps_curved_55",
+      "quantity": 1,
+      "reference_number": "GST-006",
+      "location_or_layer": "field",
+      "notes": "Curved hemostat card."
     },
     {
       "instrument_id": "mayo_hegar_needle_holder_6",
       "quantity": 1,
-      "reference_number": "TG-009",
-      "location_or_layer": "main"
-    },
-    {
-      "instrument_id": "senn_retractor_double_ended",
-      "quantity": 2,
-      "reference_number": "TG-010",
-      "location_or_layer": "main"
+      "reference_number": "GST-007",
+      "location_or_layer": "field",
+      "notes": "Needle holder card."
     }
   ],
   "distractor_item_ids": [
     "mayo_scissors_curved_55",
     "crile_hemostat_curved_55",
-    "brown_adson_forceps_475",
-    "olsen_hegar_needle_holder_55",
-    "babcock_tissue_forceps_6"
+    "adson_forceps_1x2_475",
+    "mosquito_hemostat_curved_5"
   ],
   "lookalike_pairs": [
     {
@@ -748,18 +591,6 @@
       "expected_id": "kelly_forceps_curved_55",
       "selected_id": "crile_hemostat_curved_55",
       "feedback_message": "Check serration pattern: Kelly distal half vs Crile full jaw."
-    },
-    {
-      "id": "lookalike_adson_brown_adson",
-      "expected_id": "adson_forceps_1x2_475",
-      "selected_id": "brown_adson_forceps_475",
-      "feedback_message": "Compare tip teeth: 1x2 vs multiple fine teeth."
-    },
-    {
-      "id": "lookalike_mayo_hegar_olsen",
-      "expected_id": "mayo_hegar_needle_holder_6",
-      "selected_id": "olsen_hegar_needle_holder_55",
-      "feedback_message": "Look for integrated scissor blades on Olsen-Hegar."
     },
     {
       "id": "lookalike_allis_babcock",
@@ -776,52 +607,44 @@
   ],
   "assessment_variants": [
     {
-      "id": "basic_general_tray_v1_pre_a",
+      "id": "basic_tissue_handling_tray_v1_pre_a",
       "mode": "pre_test",
       "required_item_ids": [
         "scalpel_handle_3",
-        "mayo_scissors_straight_55",
         "metzenbaum_scissors_curved_55",
-        "adson_forceps_1x2_475",
         "debakey_forceps_6",
-        "mosquito_hemostat_curved_5",
-        "kelly_forceps_curved_55",
         "allis_tissue_forceps_6",
-        "mayo_hegar_needle_holder_6",
-        "senn_retractor_double_ended"
+        "babcock_tissue_forceps_6",
+        "kelly_forceps_curved_55",
+        "mayo_hegar_needle_holder_6"
       ],
       "distractor_item_ids": [
         "mayo_scissors_curved_55",
         "crile_hemostat_curved_55",
-        "brown_adson_forceps_475",
-        "babcock_tissue_forceps_6"
+        "adson_forceps_1x2_475"
       ],
-      "random_seed": "pre_a_2026_05",
+      "random_seed": "tissue_handling_pre_a_2026_05",
       "feedback_enabled": false,
       "photo_view": "view_a"
     },
     {
-      "id": "basic_general_tray_v1_post_b",
+      "id": "basic_tissue_handling_tray_v1_post_b",
       "mode": "post_test",
       "required_item_ids": [
         "scalpel_handle_3",
-        "mayo_scissors_straight_55",
         "metzenbaum_scissors_curved_55",
-        "adson_forceps_1x2_475",
         "debakey_forceps_6",
-        "mosquito_hemostat_curved_5",
-        "kelly_forceps_curved_55",
         "allis_tissue_forceps_6",
-        "mayo_hegar_needle_holder_6",
-        "senn_retractor_double_ended"
+        "babcock_tissue_forceps_6",
+        "kelly_forceps_curved_55",
+        "mayo_hegar_needle_holder_6"
       ],
       "distractor_item_ids": [
         "mayo_scissors_curved_55",
         "crile_hemostat_curved_55",
-        "brown_adson_forceps_475",
-        "olsen_hegar_needle_holder_55"
+        "mosquito_hemostat_curved_5"
       ],
-      "random_seed": "post_b_2026_05",
+      "random_seed": "tissue_handling_post_b_2026_05",
       "feedback_enabled": false,
       "photo_view": "view_b"
     }
@@ -831,11 +654,6 @@
       "marker_id": 1,
       "instrument_id": "scalpel_handle_3",
       "card_id": "scalpel_handle_3_a"
-    },
-    {
-      "marker_id": 2,
-      "instrument_id": "mayo_scissors_straight_55",
-      "card_id": "mayo_scissors_straight_55_a"
     },
     {
       "marker_id": 3,
@@ -893,16 +711,6 @@
       "card_id": "mayo_hegar_needle_holder_6_a"
     },
     {
-      "marker_id": 14,
-      "instrument_id": "senn_retractor_double_ended",
-      "card_id": "senn_retractor_double_ended_a"
-    },
-    {
-      "marker_id": 15,
-      "instrument_id": "senn_retractor_double_ended",
-      "card_id": "senn_retractor_double_ended_b"
-    },
-    {
       "marker_id": 16,
       "instrument_id": "mayo_scissors_curved_55",
       "card_id": "mayo_scissors_curved_55_a"
@@ -911,16 +719,6 @@
       "marker_id": 17,
       "instrument_id": "crile_hemostat_curved_55",
       "card_id": "crile_hemostat_curved_55_a"
-    },
-    {
-      "marker_id": 18,
-      "instrument_id": "brown_adson_forceps_475",
-      "card_id": "brown_adson_forceps_475_a"
-    },
-    {
-      "marker_id": 19,
-      "instrument_id": "olsen_hegar_needle_holder_55",
-      "card_id": "olsen_hegar_needle_holder_55_a"
     },
     {
       "marker_id": 20,

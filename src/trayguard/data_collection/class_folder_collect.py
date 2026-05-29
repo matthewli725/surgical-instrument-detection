@@ -22,7 +22,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("data/class_folder_raw"),
+        default=Path("data/cv/class_folder_raw"),
         help="Directory where class folders will be created.",
     )
     parser.add_argument("--prefix", default="sample", help="Filename prefix for captured images.")

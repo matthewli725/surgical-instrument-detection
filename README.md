@@ -5,12 +5,8 @@ tests whether a local tray module can improve novice simulated tray familiarity
 through retrieval-first study, quiz prompts, simulated tray sorting, immediate
 feedback, confidence capture, and pre/post error analysis.
 
-The consolidated final report draft lives in
-[docs/final_paper_fdr.md](docs/final_paper_fdr.md). Remaining background notes
-start at [docs/context/project_background.md](docs/context/project_background.md).
-
-Consolidated scope boundaries and risks live in
-[docs/project/scope_boundaries_and_risks.md](docs/project/scope_boundaries_and_risks.md).
+The consolidated final report is at
+[final_paper/trayguard_paper.pdf](final_paper/trayguard_paper.pdf).
 
 ## 1. Install
 
@@ -40,7 +36,7 @@ uv sync
 ## 2. Active Evaluation Path
 
 The active project work is consolidated in the
-[Final Paper FDR](docs/final_paper_fdr.md). Use that file to defend the
+[final\_paper/](final_paper/). Use the FDR PDF to defend the
 current claim: TrayGuard tests whether a local training module improves novice
 simulated tray familiarity. Camera and YOLO utilities support future authoring
 or visual-review extensions; the active
@@ -100,10 +96,10 @@ Data collection rules:
 Collected data is saved here:
 
 ```text
-data/collected/classes.txt
-data/collected/sessions/<session_id>/images/
-data/collected/sessions/<session_id>/labels/
-data/collected/sessions/<session_id>/metadata.json
+data/cv/collected/classes.txt
+data/cv/collected/sessions/<session_id>/images/
+data/cv/collected/sessions/<session_id>/labels/
+data/cv/collected/sessions/<session_id>/metadata.json
 ```
 
 For rapid single-instrument capture into one folder per class, run:
@@ -123,7 +119,7 @@ Class-folder capture controls:
 Class-folder images are saved here:
 
 ```text
-data/class_folder_raw/<class_slug>/
+data/cv/class_folder_raw/<class_slug>/
 ```
 
 ### Review Collected Data
@@ -196,8 +192,5 @@ config/                         training config
 data/                           local datasets, ignored by git
 runs/                           training outputs, ignored by git
 weights/                        local model weights
-docs/README.md                  docs index
-docs/context/                   background, root cause, and decision framing
-docs/project/                   technical docs and reference material
-docs/project/reference/         instrument taxonomy and lookalike catalog
+final_paper/                    FDR paper and bibliography
 ```

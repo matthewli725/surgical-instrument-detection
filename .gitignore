@@ -21,8 +21,15 @@ rtdetr-x.pt
 /weights
 /assets
 /config/instrument_catalogs
+!/config/instrument_catalogs/
+/config/instrument_catalogs/*
+!/config/instrument_catalogs/fgvc12_major_tray_v1.json
 /config/tray_modules
+!/config/
+!/config/tray_modules/
+!/config/tray_modules/*.json
 /outputs
+/assets
 /tests
 
 

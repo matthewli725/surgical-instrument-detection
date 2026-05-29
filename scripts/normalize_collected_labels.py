@@ -21,7 +21,7 @@ def parse_args() -> argparse.Namespace:
         "roots",
         nargs="+",
         type=Path,
-        help="Collected dataset roots to normalize, e.g. data/collected data/collected_matthew",
+        help="Collected dataset roots to normalize, e.g. data/cv/collected data/cv/collected_matthew",
     )
     return parser.parse_args()
 

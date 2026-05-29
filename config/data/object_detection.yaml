@@ -1,6 +1,6 @@
 # name: surgical_object_detection
-# root: data/collected_yolo
+# root: data/cv/collected_yolo
 # yolo_data: ${data.root}/data.yaml
 name: lavado
-root: data/lavado
+root: data/cv/lavado
 yolo_data: ${data.root}/data.yaml

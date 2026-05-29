@@ -1,0 +1,2502 @@
+{
+  "module_id": "fgvc12_combined_tray_v1",
+  "version": "2026.05-fgvc12-derived",
+  "name": "FGVC12 All Trays Combined (95 Classes)",
+  "procedure_family": "fgvc12_all",
+  "source_note": "Combines all instruments from Eye Vitrectomy (41), Minor Laparotomy (38), and Major Laparotomy (34) trays (Atabuzzaman et al. CVPRW 2025). 18 instruments are shared between Minor and Major. Major lap instruments have local images; eye and minor lap images pending download.",
+  "evidence_sources": [
+    {
+      "label": "Atabuzzaman et al. CVPRW 2025 supplementary material",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025W/FGVC/supplemental/Atabuzzaman_Real-Time_Ultra-Fine-Grained_Surgical_CVPRW_2025_supplemental.pdf",
+      "supports": [
+        "Full 95-class list organized by surgery type."
+      ]
+    },
+    {
+      "label": "FGVC12 Google Drive dataset folder",
+      "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC",
+      "supports": [
+        "Major laparotomy images (2 views per instrument). Eye and minor tray images pending."
+      ]
+    }
+  ],
+  "instruments": [
+    {
+      "id": "fgvc12_eye_adapter_female_flusing_white_plastic",
+      "display_name": "Adapter Female Flusing White Plastic",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Adapter Female Flusing White Plastic"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_adapter_male_flusing_white_plastic",
+      "display_name": "Adapter Male Flusing White Plastic",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Adapter Male Flusing White Plastic"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_bull_dog_serrefine_small_straight",
+      "display_name": "Bull Dog Serrefine Small Straight",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Bull Dog Serrefine Small Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_caliper_castroviejo_straight",
+      "display_name": "Caliper Castroviejo Straight",
+      "family": "Measuring",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Caliper Castroviejo Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
+      "display_name": "Cannula Angled Viscoelastic Aspirating 19g",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Angled Viscoelastic Aspirating 19G"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
+      "display_name": "Cannula Gills Aspirating 25g 5mm Tip",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Gills Aspirating 25G 5Mm Tip"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_cannula_perfluoron_chang_ia",
+      "display_name": "Cannula Perfluoron Chang IA",
+      "family": "Access/irrigation",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Cannula Perfluoron Chang Ia"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_clamp_edna_3_1_2in",
+      "display_name": "Clamp Edna 3 1/2\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Edna 3 1/2\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
+      "display_name": "Clamp Mosquito Petit Point Curved",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Mosquito Petit Point Curved"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_depressor_oconnor_scleral_marker",
+      "display_name": "Depressor OConnor Scleral Marker",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Depressor Oconnor Scleral Marker"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
+      "display_name": "Depressor Schocket Scleral Double Ended",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Depressor Schocket Scleral Double Ended"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
+      "display_name": "Forcep Bipolar McPherson Straight",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bipolar Mcpherson Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
+      "display_name": "Forcep Bishop Harmon w Teeth",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bishop Harmon W Teeth"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
+      "display_name": "Forcep Bonaccolto Conjuctivia",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Bonaccolto Conjuctivia"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
+      "display_name": "Forcep Castroviejo Suturing .12mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .12Mm"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
+      "display_name": "Forcep Castroviejo Suturing .3mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .3Mm"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
+      "display_name": "Forcep Castroviejo Suturing .5mm",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .5Mm"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_cross-action_scleral_plug",
+      "display_name": "Forcep Cross-Action Scleral Plug",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Cross-Action Scleral Plug"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_harms_tying_curved",
+      "display_name": "Forcep Harms Tying Curved",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Harms Tying Curved"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
+      "display_name": "Forcep Landers Vitrectomy Lens",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Landers Vitrectomy Lens"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_mcpherson_tying_angled",
+      "display_name": "Forcep McPherson Tying Angled",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Angled"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_mcpherson_tying_straight",
+      "display_name": "Forcep McPherson Tying Straight",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
+      "display_name": "Forcep Nugent Utility Angled 45 Deg Serrated Jaw",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Nugent Utility Angled 45 Deg Serrated Jaw"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
+      "display_name": "Handle Beaver Blade #3 with Collet Screw",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Handle Beaver Blade #3 With Collet Screw"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_hook_gass_retinal_detachment",
+      "display_name": "Hook Gass Retinal Detachment",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Gass Retinal Detachment"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
+      "display_name": "Hook Manipulating Sinskey II Lens 0.2mm Angled",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Manipulating Sinskey Ii Lens 0.2Mm Angled"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_hook_muscle_graefe_size_1",
+      "display_name": "Hook Muscle Graefe Size 1",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Muscle Graefe Size 1"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_hook_muscle_jameson_sm",
+      "display_name": "Hook Muscle Jameson SM",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Hook Muscle Jameson Sm"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
+      "display_name": "Needle Holder Castro Locking Standard Curved",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Curved"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
+      "display_name": "Needle Holder Castro Locking Standard Straight",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
+      "display_name": "Needle Holder McPherson Locking X-Delicate Curved",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Locking X-Delicate Curved"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
+      "display_name": "Needle Holder McPherson Non-Locking X-Delicate Straight",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Non-Locking X-Delicate Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_retractor_schepens_orbital",
+      "display_name": "Retractor Schepens Orbital",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Schepens Orbital"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
+      "display_name": "Scissors Knapp Strabismus Blunt Curved",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Knapp Strabismus Blunt Curved"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
+      "display_name": "Scissors Vannas Capsulotomy Straight",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Vannas Capsulotomy Straight"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
+      "display_name": "Scissors Wescott Stitch Curved Sharp Tips",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Stitch Curved Sharp Tips"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
+      "display_name": "Scissors Wescott Tenotomy Curved Blunt",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Tenotomy Curved Blunt"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
+      "display_name": "Speculum Barraquer Eye Adult 15mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Adult 15Mm Blade"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
+      "display_name": "Speculum Barraquer Eye Pediatric 9mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Pediatric 9Mm Blade"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
+      "display_name": "Speculum Barraquer Heavy Wire Lid 19mm Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Heavy Wire Lid 19Mm Blade"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
+      "display_name": "Speculum Lieberman Eye w Adjustable V-Wire Blade",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Speculum Lieberman Eye W Adjustable V-Wire Blade"
+      ],
+      "image_refs": [],
+      "trays": [
+        "eye_vitrectomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_adson_tonsil_11in",
+      "display_name": "Clamp Adson Tonsil 11\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP ADSON (TONSIL) 11\"",
+        "JARIT_305-310"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_305-310",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_adson_tonsil_11in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_305-310: CLAMP ADSON (TONSIL) 11\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_adson_tonsil_11in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_305-310: CLAMP ADSON (TONSIL) 11\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Adson (Tonsil) 11\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_305-310"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_allis_11in",
+      "display_name": "Clamp Allis 11\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP ALLIS 11\"",
+        "JARIT_305-231"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_305-231",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_11in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_305-231: CLAMP ALLIS 11\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_11in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_305-231: CLAMP ALLIS 11\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Allis 11\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_305-231"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_allis_6in",
+      "display_name": "Clamp Allis 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP ALLIS 6\"",
+        "JARIT_136-100"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_136-100",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-100: CLAMP ALLIS 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-100: CLAMP ALLIS 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Allis 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_136-100"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_babcock_12in",
+      "display_name": "Clamp Babcock 12\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BABCOCK 12\"",
+        "JARIT_135-196"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_135-196",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_12in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-196: CLAMP BABCOCK 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_12in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-196: CLAMP BABCOCK 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Babcock 12\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_135-196"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_babcock_6in",
+      "display_name": "Clamp Babcock 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BABCOCK 6\"",
+        "JARIT_136-181"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_136-181",
+        "FGVC12 major tray image count: 13"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-181: CLAMP BABCOCK 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-181: CLAMP BABCOCK 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Babcock 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_136-181"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_babcock_9_5in",
+      "display_name": "Clamp Babcock 9.5\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BABCOCK 9.5\"",
+        "JARIT_135-195"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_135-195",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_9_5in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-195: CLAMP BABCOCK 9.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_9_5in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-195: CLAMP BABCOCK 9.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Babcock 9.5\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_135-195"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_backhaus_5_1_4in",
+      "display_name": "Clamp Backhaus 5 1/4\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BACKHAUS 5 1/4\"",
+        "JARIT_109-102"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_109-102",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_backhaus_5_1_4in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_109-102: CLAMP BACKHAUS 5 1/4\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_backhaus_5_1_4in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_109-102: CLAMP BACKHAUS 5 1/4\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Backhaus 5 1/4\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_109-102"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_crile_curved_5_1_2",
+      "display_name": "Clamp Crile Curved 5 1/2\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP CRILE CURVED 5 1/2",
+        "JARIT_106-121"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_106-121",
+        "FGVC12 major tray image count: 13"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_crile_curved_5_1_2_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-121: CLAMP CRILE CURVED 5 1/2",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_crile_curved_5_1_2_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-121: CLAMP CRILE CURVED 5 1/2",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Crile Curved 5 1/2"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-121"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_debakey_aneurysm_10in",
+      "display_name": "Clamp Debakey Aneurysm 10\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP DEBAKEY ANEURYSM 10\"",
+        "JARIT_320-282"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_320-282",
+        "FGVC12 major tray image count: 14"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_debakey_aneurysm_10in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-282: CLAMP DEBAKEY ANEURYSM 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_debakey_aneurysm_10in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-282: CLAMP DEBAKEY ANEURYSM 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Debakey Aneurysm 10\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_320-282"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_edna_5_1_2in",
+      "display_name": "Clamp Edna 5 1/2\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP EDNA 5 1/2\"",
+        "JARIT_109-120"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_109-120",
+        "FGVC12 major tray image count: 15"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_edna_5_1_2in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_109-120: CLAMP EDNA 5 1/2\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_edna_5_1_2in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_109-120: CLAMP EDNA 5 1/2\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Edna 5 1/2\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_109-120"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_kelly_12in",
+      "display_name": "Clamp Kelly 12\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KELLY 12\"",
+        "JARIT_135-266"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_135-266",
+        "FGVC12 major tray image count: 11"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_12in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-266: CLAMP KELLY 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_12in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-266: CLAMP KELLY 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kelly 12\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_135-266"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_kelly_6in",
+      "display_name": "Clamp Kelly 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KELLY 6\"",
+        "JARIT_106-171"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_106-171",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-171: CLAMP KELLY 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-171: CLAMP KELLY 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kelly 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-171"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_kelly_8in",
+      "display_name": "Clamp Kelly 8\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KELLY 8\"",
+        "JARIT_106-191"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_106-191",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_8in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-191: CLAMP KELLY 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_8in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-191: CLAMP KELLY 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kelly 8\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-191"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_kocher_6in",
+      "display_name": "Clamp Kocher 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KOCHER 6\"",
+        "JARIT_106-200"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_106-200",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-200: CLAMP KOCHER 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-200: CLAMP KOCHER 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kocher 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-200"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_kocher_8in",
+      "display_name": "Clamp Kocher 8\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KOCHER 8\"",
+        "JARIT_106-220"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_106-220",
+        "FGVC12 major tray image count: 13"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_8in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-220: CLAMP KOCHER 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_8in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-220: CLAMP KOCHER 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kocher 8\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-220"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_right_angle_10_5in",
+      "display_name": "Clamp Right Angle 10.5\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP RIGHT ANGLE 10.5\"",
+        "NO_CATALOG_1"
+      ],
+      "distinguishing_features": [
+        "Source class: NO_CATALOG_1",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_right_angle_10_5in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class NO_CATALOG_1: CLAMP RIGHT ANGLE 10.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_right_angle_10_5in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class NO_CATALOG_1: CLAMP RIGHT ANGLE 10.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Right Angle 10.5\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "NO_CATALOG_1"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_right_angle_reg_tip_7in",
+      "display_name": "Clamp Right Angle REG Tip 7\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP RIGHT ANGLE REG TIP 7\"",
+        "JARIT_140-231"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_140-231",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_right_angle_reg_tip_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_140-231: CLAMP RIGHT ANGLE REG TIP 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_right_angle_reg_tip_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_140-231: CLAMP RIGHT ANGLE REG TIP 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Right Angle Reg Tip 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_140-231"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_sponge_9in",
+      "display_name": "Clamp Sponge 9\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP SPONGE 9\"",
+        "JARIT_114-107"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_114-107",
+        "FGVC12 major tray image count: 13"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_sponge_9in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_114-107: CLAMP SPONGE 9\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_sponge_9in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_114-107: CLAMP SPONGE 9\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Sponge 9\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_114-107"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_clamp_tonsil_7_5in",
+      "display_name": "Clamp Tonsil 7.5\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP TONSIL 7.5\"",
+        "JARIT_449-310"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_449-310",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_tonsil_7_5in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_449-310: CLAMP TONSIL 7.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_tonsil_7_5in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_449-310: CLAMP TONSIL 7.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Tonsil 7.5\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_449-310"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_forcep_adson_w_teeth",
+      "display_name": "Forcep Adson W Teeth",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP ADSON W/ TEETH",
+        "JARIT_130-234"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_130-234",
+        "FGVC12 major tray image count: 13"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_adson_w_teeth_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-234: FORCEP ADSON W/ TEETH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_adson_w_teeth_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-234: FORCEP ADSON W/ TEETH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Adson W/ Teeth"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_130-234"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_forcep_debakey_12in_thoracic_tip",
+      "display_name": "Forcep Debakey 12\" Thoracic Tip",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP DEBAKEY 12\" THORACIC TIP",
+        "JARIT_320-103"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_320-103",
+        "FGVC12 major tray image count: 11"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_12in_thoracic_tip_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-103: FORCEP DEBAKEY 12\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_12in_thoracic_tip_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-103: FORCEP DEBAKEY 12\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Debakey 12\" Thoracic Tip"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_320-103"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+      "display_name": "Forcep Debakey 8\" Thoracic Tip",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP DEBAKEY 8\" THORACIC TIP",
+        "JARIT_320-101"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_320-101",
+        "FGVC12 major tray image count: 10"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_8in_thoracic_tip_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-101: FORCEP DEBAKEY 8\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_8in_thoracic_tip_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-101: FORCEP DEBAKEY 8\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Debakey 8\" Thoracic Tip"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_320-101"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_forcep_debakey_9_5in_thoracic_tip",
+      "display_name": "Forcep Debakey 9.5\" Thoracic Tip",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP DEBAKEY 9.5\" THORACIC TIP",
+        "JARIT_320-102"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_320-102",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_9_5in_thoracic_tip_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-102: FORCEP DEBAKEY 9.5\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_9_5in_thoracic_tip_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-102: FORCEP DEBAKEY 9.5\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Debakey 9.5\" Thoracic Tip"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_320-102"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_forcep_ferris_smith",
+      "display_name": "Forcep Ferris Smith",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP FERRIS-SMITH",
+        "JARIT_130-290"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_130-290",
+        "FGVC12 major tray image count: 14"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_ferris_smith_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-290: FORCEP FERRIS-SMITH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_ferris_smith_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-290: FORCEP FERRIS-SMITH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Ferris-Smith"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_130-290"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_knife_handle_number_3_long",
+      "display_name": "Knife Handle 3\" Long",
+      "family": "Cutting",
+      "aliases": [
+        "KNIFE HANDLE #3 LONG",
+        "JARIT_110-178"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_110-178",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_long_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-178: KNIFE HANDLE #3 LONG",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_long_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-178: KNIFE HANDLE #3 LONG",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Knife Handle #3 Long"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_110-178"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_knife_handle_number_3_short",
+      "display_name": "Knife Handle 3\" Short",
+      "family": "Cutting",
+      "aliases": [
+        "KNIFE HANDLE #3 SHORT",
+        "JARIT_110-165"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_110-165",
+        "FGVC12 major tray image count: 14"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_short_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-165: KNIFE HANDLE #3 SHORT",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_short_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-165: KNIFE HANDLE #3 SHORT",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Knife Handle #3 Short"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_110-165"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_needleholder_mayo_hegar_10in",
+      "display_name": "Needle Driver Mayo Hegar 10\"",
+      "family": "Suturing",
+      "aliases": [
+        "NEEDLEHOLDER MAYO HEGAR 10\"",
+        "JARIT_121-180"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_121-180",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_10in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-180: NEEDLEHOLDER MAYO HEGAR 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_10in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-180: NEEDLEHOLDER MAYO HEGAR 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Needleholder Mayo Hegar 10\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_121-180"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_needleholder_mayo_hegar_7in",
+      "display_name": "Needle Driver Mayo Hegar 7\"",
+      "family": "Suturing",
+      "aliases": [
+        "NEEDLEHOLDER MAYO HEGAR 7\"",
+        "JARIT_121-140"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_121-140",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-140: NEEDLEHOLDER MAYO HEGAR 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-140: NEEDLEHOLDER MAYO HEGAR 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Needleholder Mayo Hegar 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_121-140"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_needleholder_mayo_hegar_8in",
+      "display_name": "Needle Holder Mayo-Hegar 8\"",
+      "family": "Suturing",
+      "aliases": [
+        "NEEDLEHOLDER MAYO HEGAR 8\"",
+        "JARIT_121-145"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_121-145",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_8in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-145: NEEDLEHOLDER MAYO HEGAR 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_8in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-145: NEEDLEHOLDER MAYO HEGAR 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Needleholder Mayo Hegar 8\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_121-145"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_scissors_mayo_curved_7in",
+      "display_name": "Scissors Mayo Curved 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS MAYO CURVED 7\"",
+        "JARIT_101-222"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_101-222",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_curved_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-222: SCISSORS MAYO CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_curved_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-222: SCISSORS MAYO CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Mayo Curved 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-222"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_scissors_mayo_straight_7in",
+      "display_name": "Scissors Mayo Straight 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS MAYO STRAIGHT 7\"",
+        "JARIT_101-220"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_101-220",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-220: SCISSORS MAYO STRAIGHT 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-220: SCISSORS MAYO STRAIGHT 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Mayo Straight 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-220"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_scissors_metz_curved_10in",
+      "display_name": "Scissors Metz Curved 10\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS METZ CURVED 10\"",
+        "JARIT_101-267"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_101-267",
+        "FGVC12 major tray image count: 14"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_10in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-267: SCISSORS METZ CURVED 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_10in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-267: SCISSORS METZ CURVED 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Metz Curved 10\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-267"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_scissors_metz_curved_7in",
+      "display_name": "Scissors Metz Curved 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS METZ CURVED 7\"",
+        "JARIT_101-258"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_101-258",
+        "FGVC12 major tray image count: 12"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-258: SCISSORS METZ CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-258: SCISSORS METZ CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Metz Curved 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-258"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy",
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_major_scissors_metz_curved_12in",
+      "display_name": "Scissors Metzenbaum Curved 12\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS METZ CURVED 12\"",
+        "JARIT_101-272"
+      ],
+      "distinguishing_features": [
+        "Source class: JARIT_101-272",
+        "FGVC12 major tray image count: 15"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_12in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-272: SCISSORS METZ CURVED 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_12in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-272: SCISSORS METZ CURVED 12\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Metz Curved 12\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-272"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified",
+      "trays": [
+        "major_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_clamp_backhaus_4in",
+      "display_name": "Clamp Backhaus 4\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Backhaus 4\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_clamp_hemostat_straight_5_1_2in",
+      "display_name": "Clamp Hemostat Straight 5 1/2\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Hemostat Straight 5 1/2\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_clamp_mosquito_curved_5in",
+      "display_name": "Clamp Mosquito Curved 5\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Clamp Mosquito Curved 5\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_forcep_debakey_6in_thoracic_tip",
+      "display_name": "Forcep Debakey 6\" Thoracic Tip",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Debakey 6\" Thoracic Tip"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_forcep_smooth_6in",
+      "display_name": "Forcep Smooth 6\"",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep Smooth 6\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_forcep_w_teeth_6in",
+      "display_name": "Forcep W Teeth 6\"",
+      "family": "Grasping/holding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Forcep W Teeth 6\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_needle_holder_mayo-hegar_6in",
+      "display_name": "Needle Holder Mayo-Hegar 6\"",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Mayo-Hegar 6\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_needle_holder_webster_smooth_5_1_4in",
+      "display_name": "Needle Holder Webster Smooth 5 1/4\"",
+      "family": "Suturing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Needle Holder Webster Smooth 5 1/4\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_army_navy",
+      "display_name": "Retractor Army Navy",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Army Navy"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_gelpi_7_5in",
+      "display_name": "Retractor Gelpi 7.5\"",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Gelpi 7.5\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_goulet",
+      "display_name": "Retractor Goulet",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Goulet"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_lobe",
+      "display_name": "Retractor Lobe",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Lobe"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_rake_3in_prong_dull",
+      "display_name": "Retractor Rake 3\" Prong Dull",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Rake 3\" Prong Dull"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_rake_4in_prong_dull",
+      "display_name": "Retractor Rake 4\" Prong Dull",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Rake 4\" Prong Dull"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_rake_6in_prong_dull",
+      "display_name": "Retractor Rake 6\" Prong Dull",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Rake 6\" Prong Dull"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_senn_dull",
+      "display_name": "Retractor Senn Dull",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Senn Dull"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_vein",
+      "display_name": "Retractor Vein",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Vein"
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_retractor_weitlaner_blunt_6_5in",
+      "display_name": "Retractor Weitlaner Blunt 6.5\"",
+      "family": "Retracting/exposing",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Retractor Weitlaner Blunt 6.5\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_right_angle_regular_tip_7_5in",
+      "display_name": "Right Angle Regular Tip 7.5\"",
+      "family": "Clamping/occluding",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Right Angle Regular Tip 7.5\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    },
+    {
+      "id": "fgvc12_minor_scissors_metz_curved_5_3_4in",
+      "display_name": "Scissors Metz Curved 5 3/4\"",
+      "family": "Cutting/dissecting",
+      "aliases": [],
+      "distinguishing_features": [
+        "Source: Atabuzzaman et al. FGVC12 Scissors Metz Curved 5 3/4\""
+      ],
+      "image_refs": [],
+      "trays": [
+        "minor_laparotomy"
+      ]
+    }
+  ]
+}
