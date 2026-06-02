@@ -22,9 +22,7 @@ DERIVED_MODULE_PATHS = [
     Path("config/tray_modules/minor_skin_closure_tray_v1.json"),
     Path("config/tray_modules/cut_down_tray_v1.json"),
     Path("config/tray_modules/basic_tissue_handling_tray_v1.json"),
-    Path("config/tray_modules/fgvc12_major_overview_tray_v1.json"),
-    Path("config/tray_modules/fgvc12_major_clamp_discrimination_tray_v1.json"),
-    Path("config/tray_modules/fgvc12_major_soft_tissue_tray_v1.json"),
+
 ]
 
 

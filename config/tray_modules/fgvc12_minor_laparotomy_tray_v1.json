@@ -29,7 +29,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Crile Curved 5 1/2\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_031ec301",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP CRILE CURVED 5 12/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP CRILE CURVED 5 12 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_3ff17976",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP CRILE CURVED 5 12/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP CRILE CURVED 5 12 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_allis_6in",
@@ -39,7 +58,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Allis 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c3d2e89c",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP ALLIS 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP ALLIS 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_1fa6e86f",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP ALLIS 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP ALLIS 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_babcock_6in",
@@ -49,7 +87,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Babcock 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_1a22bd92",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BABCOCK 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BABCOCK 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_4c864333",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BABCOCK 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BABCOCK 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_backhaus_4in",
@@ -59,7 +116,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Backhaus 4\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_659bbab9",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BACKHAUS 4/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BACKHAUS 4 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_ed496568",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BACKHAUS 4/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BACKHAUS 4 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_backhaus_5_1_4in",
@@ -69,7 +145,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Backhaus 5 1/4\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_585ae20d",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BACKHAUS 5 14/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BACKHAUS 5 14 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_874ad566",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP BACKHAUS 5 14/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP BACKHAUS 5 14 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_edna_5_1_2in",
@@ -79,7 +174,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Edna 5 1/2\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_eacc721b",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP EDNA 5 12/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP EDNA 5 12 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_fe9337de",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP EDNA 5 12/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP EDNA 5 12 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_hemostat_straight_5_1_2in",
@@ -89,7 +203,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Hemostat Straight 5 1/2\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_74bcf383",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP HEMOSTAT STRAIGHT 5 12/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP HEMOSTAT STRAIGHT 5 12 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_69e9b77c",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP HEMOSTAT STRAIGHT 5 12/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP HEMOSTAT STRAIGHT 5 12 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_kelly_6in",
@@ -99,7 +232,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Kelly 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_464b6e33",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KELLY 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KELLY 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b6942028",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KELLY 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KELLY 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_adson_w_teeth",
@@ -109,7 +261,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Adson W Teeth"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_0812ae75",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP ADSON W TEETH/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP ADSON W TEETH sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_82e8bd61",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP ADSON W TEETH/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP ADSON W TEETH topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_debakey_6in_thoracic_tip",
@@ -119,7 +290,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Debakey 6\" Thoracic Tip"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_0ac93cfb",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP DEBAKEY 6 THORACIC TIP/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP DEBAKEY 6 THORACIC TIP sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_1cfc663c",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP DEBAKEY 6 THORACIC TIP/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP DEBAKEY 6 THORACIC TIP topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_mosquito_curved_5in",
@@ -129,7 +319,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Mosquito Curved 5\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_6e75b562",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP MOSQUITO CURVED 5/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP MOSQUITO CURVED 5 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_15bc98f9",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP MOSQUITO CURVED 5/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP MOSQUITO CURVED 5 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_sponge_9in",
@@ -139,7 +348,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Sponge 9\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_825672df",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP SPONGE 9/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP SPONGE 9 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_6b5324dd",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP SPONGE 9/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP SPONGE 9 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_tonsil_7_5in",
@@ -149,7 +377,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Tonsil 7.5\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c8a809d9",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP TONSIL 75/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP TONSIL 75 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b9be187a",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP TONSIL 75/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP TONSIL 75 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_knife_handle_3in_short",
@@ -159,7 +406,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Knife Handle 3\" Short"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_60dece45",
+          "path": "data/instruments/minor_tray_images_fgvc12/KNIFE HANDLE 3 SHORT/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 KNIFE HANDLE 3 SHORT sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_fb98cd41",
+          "path": "data/instruments/minor_tray_images_fgvc12/KNIFE HANDLE 3 SHORT/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 KNIFE HANDLE 3 SHORT topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_debakey_8in_thoracic_tip",
@@ -169,7 +435,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Debakey 8\" Thoracic Tip"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_1482a2da",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP DEBAKEY 8 THORACIC TIP/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP DEBAKEY 8 THORACIC TIP sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_33327c62",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP DEBAKEY 8 THORACIC TIP/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP DEBAKEY 8 THORACIC TIP topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_ferris_smith",
@@ -179,7 +464,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Ferris Smith"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_83a18db7",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP FERRIS SMITH/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP FERRIS SMITH sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_4dc83c75",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP FERRIS SMITH/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP FERRIS SMITH topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_smooth_6in",
@@ -189,7 +493,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Smooth 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_a50331ad",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP SMOOTH 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP SMOOTH 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b94bb87a",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP SMOOTH 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP SMOOTH 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_forcep_w_teeth_6in",
@@ -199,7 +522,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep W Teeth 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_bb3fb600",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP W TEETH 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP W TEETH 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_f015bad3",
+          "path": "data/instruments/minor_tray_images_fgvc12/FORCEP W TEETH 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 FORCEP W TEETH 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_gelpi_7_5in",
@@ -209,7 +551,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Gelpi 7.5\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_f60e16e5",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR GELPI 75/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR GELPI 75 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_514888d0",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR GELPI 75/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR GELPI 75 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_needle_holder_mayo-hegar_6in",
@@ -219,7 +580,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Mayo-Hegar 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_13e3dafe",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER MAYO-HEGAR 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER MAYO-HEGAR 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_3ebca72c",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER MAYO-HEGAR 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER MAYO-HEGAR 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_needle_holder_mayo-hegar_8in",
@@ -229,7 +609,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Mayo-Hegar 8\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_0ab0a7f6",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER MAYO-HEGAR 8/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER MAYO-HEGAR 8 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_513d37bd",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER MAYO-HEGAR 8/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER MAYO-HEGAR 8 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_needle_holder_webster_smooth_5_1_4in",
@@ -239,7 +638,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Webster Smooth 5 1/4\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_876e51e9",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER WEBSTER SMOOTH 5 14/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER WEBSTER SMOOTH 5 14 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_39f54e21",
+          "path": "data/instruments/minor_tray_images_fgvc12/NEEDLE HOLDER WEBSTER SMOOTH 5 14/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 NEEDLE HOLDER WEBSTER SMOOTH 5 14 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_army_navy",
@@ -249,7 +667,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Army Navy"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_cba42ba8",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR ARMY NAVY/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR ARMY NAVY sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_959f5b70",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR ARMY NAVY/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR ARMY NAVY topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_rake_6in_prong_dull",
@@ -259,7 +696,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Rake 6\" Prong Dull"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_dc49ab4e",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 6 PRONG DULL/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 6 PRONG DULL sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_ac6189c9",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 6 PRONG DULL/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 6 PRONG DULL topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_goulet",
@@ -269,7 +725,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Goulet"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_761f234b",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR GOULET/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR GOULET sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_26dd197c",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR GOULET/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR GOULET topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_lobe",
@@ -279,7 +754,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Lobe"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ceef2a96",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR LOBE/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR LOBE sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_f4bf29f2",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR LOBE/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR LOBE topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_rake_3in_prong_dull",
@@ -289,7 +783,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Rake 3\" Prong Dull"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c3b0054b",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 3 PRONG DULL/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 3 PRONG DULL sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_f5ca53ea",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 3 PRONG DULL/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 3 PRONG DULL topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_rake_4in_prong_dull",
@@ -299,7 +812,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Rake 4\" Prong Dull"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_56edc303",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 4 PRONG DULL/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 4 PRONG DULL sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_2ac90a2b",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR RAKE 4 PRONG DULL/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR RAKE 4 PRONG DULL topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_scissors_mayo_curved_7in",
@@ -309,7 +841,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Mayo Curved 7\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ffea74a7",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS MAYO CURVED 7/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS MAYO CURVED 7 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_55f817c4",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS MAYO CURVED 7/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS MAYO CURVED 7 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_senn_dull",
@@ -319,7 +870,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Senn Dull"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_2c4959d8",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR SENN DULL/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR SENN DULL sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_9d33c0e2",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR SENN DULL/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR SENN DULL topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_vein",
@@ -329,7 +899,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Vein"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_bb81b172",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR VEIN/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR VEIN sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_590d6af6",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR VEIN/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR VEIN topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_retractor_weitlaner_blunt_6_5in",
@@ -339,7 +928,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Weitlaner Blunt 6.5\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_60b17394",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR WEITLANER BLUNT 65/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR WEITLANER BLUNT 65 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_89b3ea34",
+          "path": "data/instruments/minor_tray_images_fgvc12/RETRACTOR WEITLANER BLUNT 65/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RETRACTOR WEITLANER BLUNT 65 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_right_angle_regular_tip_7_5in",
@@ -349,7 +957,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Right Angle Regular Tip 7.5\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_8572c235",
+          "path": "data/instruments/minor_tray_images_fgvc12/RIGHT ANGLE REGULAR TIP 75/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RIGHT ANGLE REGULAR TIP 75 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_9b547674",
+          "path": "data/instruments/minor_tray_images_fgvc12/RIGHT ANGLE REGULAR TIP 75/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 RIGHT ANGLE REGULAR TIP 75 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_scissors_metz_curved_7in",
@@ -359,7 +986,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Metz Curved 7\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_945dbeeb",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS METZ CURVED 7/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS METZ CURVED 7 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_2a2a7640",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS METZ CURVED 7/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS METZ CURVED 7 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_scissors_mayo_straight_7in",
@@ -369,7 +1015,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Mayo Straight 7\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_463d0fa5",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS MAYO STRAIGHT 7/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS MAYO STRAIGHT 7 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_e05baf3b",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS MAYO STRAIGHT 7/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS MAYO STRAIGHT 7 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_scissors_metz_curved_5_3_4in",
@@ -379,7 +1044,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Metz Curved 5 3/4\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ad4a11c0",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS METZ CURVED 5 34/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS METZ CURVED 5 34 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_d8daacfb",
+          "path": "data/instruments/minor_tray_images_fgvc12/SCISSORS METZ CURVED 5 34/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 SCISSORS METZ CURVED 5 34 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_kelly_8in",
@@ -389,7 +1073,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Kelly 8\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_f7a44564",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KELLY 8/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KELLY 8 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_a9312901",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KELLY 8/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KELLY 8 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_minor_clamp_kocher_6in",
@@ -399,7 +1102,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Kocher 6\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c2b593a6",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KOCHER 6/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KOCHER 6 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_678d89a4",
+          "path": "data/instruments/minor_tray_images_fgvc12/CLAMP KOCHER 6/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_minor_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 CLAMP KOCHER 6 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     }
   ],
   "required_items": [
@@ -672,192 +1394,192 @@
   ],
   "marker_cards": [
     {
-      "marker_id": 1200,
+      "marker_id": 75,
       "instrument_id": "fgvc12_minor_clamp_crile_curved_5_1_2in",
       "card_id": "fgvc12_minor_clamp_crile_curved_5_1_2in_fgvc12"
     },
     {
-      "marker_id": 1201,
+      "marker_id": 76,
       "instrument_id": "fgvc12_minor_clamp_allis_6in",
       "card_id": "fgvc12_minor_clamp_allis_6in_fgvc12"
     },
     {
-      "marker_id": 1202,
+      "marker_id": 77,
       "instrument_id": "fgvc12_minor_clamp_babcock_6in",
       "card_id": "fgvc12_minor_clamp_babcock_6in_fgvc12"
     },
     {
-      "marker_id": 1203,
+      "marker_id": 78,
       "instrument_id": "fgvc12_minor_clamp_backhaus_4in",
       "card_id": "fgvc12_minor_clamp_backhaus_4in_fgvc12"
     },
     {
-      "marker_id": 1204,
+      "marker_id": 79,
       "instrument_id": "fgvc12_minor_clamp_backhaus_5_1_4in",
       "card_id": "fgvc12_minor_clamp_backhaus_5_1_4in_fgvc12"
     },
     {
-      "marker_id": 1205,
+      "marker_id": 80,
       "instrument_id": "fgvc12_minor_clamp_edna_5_1_2in",
       "card_id": "fgvc12_minor_clamp_edna_5_1_2in_fgvc12"
     },
     {
-      "marker_id": 1206,
+      "marker_id": 81,
       "instrument_id": "fgvc12_minor_clamp_hemostat_straight_5_1_2in",
       "card_id": "fgvc12_minor_clamp_hemostat_straight_5_1_2in_fgvc12"
     },
     {
-      "marker_id": 1207,
+      "marker_id": 82,
       "instrument_id": "fgvc12_minor_clamp_kelly_6in",
       "card_id": "fgvc12_minor_clamp_kelly_6in_fgvc12"
     },
     {
-      "marker_id": 1208,
+      "marker_id": 83,
       "instrument_id": "fgvc12_minor_forcep_adson_w_teeth",
       "card_id": "fgvc12_minor_forcep_adson_w_teeth_fgvc12"
     },
     {
-      "marker_id": 1209,
+      "marker_id": 84,
       "instrument_id": "fgvc12_minor_forcep_debakey_6in_thoracic_tip",
       "card_id": "fgvc12_minor_forcep_debakey_6in_thoracic_tip_fgvc12"
     },
     {
-      "marker_id": 1210,
+      "marker_id": 85,
       "instrument_id": "fgvc12_minor_clamp_mosquito_curved_5in",
       "card_id": "fgvc12_minor_clamp_mosquito_curved_5in_fgvc12"
     },
     {
-      "marker_id": 1211,
+      "marker_id": 86,
       "instrument_id": "fgvc12_minor_clamp_sponge_9in",
       "card_id": "fgvc12_minor_clamp_sponge_9in_fgvc12"
     },
     {
-      "marker_id": 1212,
+      "marker_id": 87,
       "instrument_id": "fgvc12_minor_clamp_tonsil_7_5in",
       "card_id": "fgvc12_minor_clamp_tonsil_7_5in_fgvc12"
     },
     {
-      "marker_id": 1213,
+      "marker_id": 88,
       "instrument_id": "fgvc12_minor_knife_handle_3in_short",
       "card_id": "fgvc12_minor_knife_handle_3in_short_fgvc12"
     },
     {
-      "marker_id": 1214,
+      "marker_id": 89,
       "instrument_id": "fgvc12_minor_forcep_debakey_8in_thoracic_tip",
       "card_id": "fgvc12_minor_forcep_debakey_8in_thoracic_tip_fgvc12"
     },
     {
-      "marker_id": 1215,
+      "marker_id": 90,
       "instrument_id": "fgvc12_minor_forcep_ferris_smith",
       "card_id": "fgvc12_minor_forcep_ferris_smith_fgvc12"
     },
     {
-      "marker_id": 1216,
+      "marker_id": 91,
       "instrument_id": "fgvc12_minor_forcep_smooth_6in",
       "card_id": "fgvc12_minor_forcep_smooth_6in_fgvc12"
     },
     {
-      "marker_id": 1217,
+      "marker_id": 92,
       "instrument_id": "fgvc12_minor_forcep_w_teeth_6in",
       "card_id": "fgvc12_minor_forcep_w_teeth_6in_fgvc12"
     },
     {
-      "marker_id": 1218,
+      "marker_id": 93,
       "instrument_id": "fgvc12_minor_retractor_gelpi_7_5in",
       "card_id": "fgvc12_minor_retractor_gelpi_7_5in_fgvc12"
     },
     {
-      "marker_id": 1219,
+      "marker_id": 94,
       "instrument_id": "fgvc12_minor_needle_holder_mayo-hegar_6in",
       "card_id": "fgvc12_minor_needle_holder_mayo-hegar_6in_fgvc12"
     },
     {
-      "marker_id": 1220,
+      "marker_id": 95,
       "instrument_id": "fgvc12_minor_needle_holder_mayo-hegar_8in",
       "card_id": "fgvc12_minor_needle_holder_mayo-hegar_8in_fgvc12"
     },
     {
-      "marker_id": 1221,
+      "marker_id": 96,
       "instrument_id": "fgvc12_minor_needle_holder_webster_smooth_5_1_4in",
       "card_id": "fgvc12_minor_needle_holder_webster_smooth_5_1_4in_fgvc12"
     },
     {
-      "marker_id": 1222,
+      "marker_id": 97,
       "instrument_id": "fgvc12_minor_retractor_army_navy",
       "card_id": "fgvc12_minor_retractor_army_navy_fgvc12"
     },
     {
-      "marker_id": 1223,
+      "marker_id": 98,
       "instrument_id": "fgvc12_minor_retractor_rake_6in_prong_dull",
       "card_id": "fgvc12_minor_retractor_rake_6in_prong_dull_fgvc12"
     },
     {
-      "marker_id": 1224,
+      "marker_id": 99,
       "instrument_id": "fgvc12_minor_retractor_goulet",
       "card_id": "fgvc12_minor_retractor_goulet_fgvc12"
     },
     {
-      "marker_id": 1225,
+      "marker_id": 100,
       "instrument_id": "fgvc12_minor_retractor_lobe",
       "card_id": "fgvc12_minor_retractor_lobe_fgvc12"
     },
     {
-      "marker_id": 1226,
+      "marker_id": 101,
       "instrument_id": "fgvc12_minor_retractor_rake_3in_prong_dull",
       "card_id": "fgvc12_minor_retractor_rake_3in_prong_dull_fgvc12"
     },
     {
-      "marker_id": 1227,
+      "marker_id": 102,
       "instrument_id": "fgvc12_minor_retractor_rake_4in_prong_dull",
       "card_id": "fgvc12_minor_retractor_rake_4in_prong_dull_fgvc12"
     },
     {
-      "marker_id": 1228,
+      "marker_id": 103,
       "instrument_id": "fgvc12_minor_scissors_mayo_curved_7in",
       "card_id": "fgvc12_minor_scissors_mayo_curved_7in_fgvc12"
     },
     {
-      "marker_id": 1229,
+      "marker_id": 104,
       "instrument_id": "fgvc12_minor_retractor_senn_dull",
       "card_id": "fgvc12_minor_retractor_senn_dull_fgvc12"
     },
     {
-      "marker_id": 1230,
+      "marker_id": 105,
       "instrument_id": "fgvc12_minor_retractor_vein",
       "card_id": "fgvc12_minor_retractor_vein_fgvc12"
     },
     {
-      "marker_id": 1231,
+      "marker_id": 106,
       "instrument_id": "fgvc12_minor_retractor_weitlaner_blunt_6_5in",
       "card_id": "fgvc12_minor_retractor_weitlaner_blunt_6_5in_fgvc12"
     },
     {
-      "marker_id": 1232,
+      "marker_id": 107,
       "instrument_id": "fgvc12_minor_right_angle_regular_tip_7_5in",
       "card_id": "fgvc12_minor_right_angle_regular_tip_7_5in_fgvc12"
     },
     {
-      "marker_id": 1233,
+      "marker_id": 108,
       "instrument_id": "fgvc12_minor_scissors_metz_curved_7in",
       "card_id": "fgvc12_minor_scissors_metz_curved_7in_fgvc12"
     },
     {
-      "marker_id": 1234,
+      "marker_id": 109,
       "instrument_id": "fgvc12_minor_scissors_mayo_straight_7in",
       "card_id": "fgvc12_minor_scissors_mayo_straight_7in_fgvc12"
     },
     {
-      "marker_id": 1235,
+      "marker_id": 110,
       "instrument_id": "fgvc12_minor_scissors_metz_curved_5_3_4in",
       "card_id": "fgvc12_minor_scissors_metz_curved_5_3_4in_fgvc12"
     },
     {
-      "marker_id": 1236,
+      "marker_id": 111,
       "instrument_id": "fgvc12_minor_clamp_kelly_8in",
       "card_id": "fgvc12_minor_clamp_kelly_8in_fgvc12"
     },
     {
-      "marker_id": 1237,
+      "marker_id": 112,
       "instrument_id": "fgvc12_minor_clamp_kocher_6in",
       "card_id": "fgvc12_minor_clamp_kocher_6in_fgvc12"
     }

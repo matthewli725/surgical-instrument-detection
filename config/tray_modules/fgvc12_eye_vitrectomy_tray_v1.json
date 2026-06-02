@@ -29,7 +29,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Adapter Female Flusing White Plastic"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_924f8e67",
+          "path": "data/instruments/eye_tray_images_fgvc12/Adapter Female Flusing White Plastic/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Adapter Female Flusing White Plastic sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_551a527a",
+          "path": "data/instruments/eye_tray_images_fgvc12/Adapter Female Flusing White Plastic/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Adapter Female Flusing White Plastic topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_adapter_male_flusing_white_plastic",
@@ -39,7 +58,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Adapter Male Flusing White Plastic"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c82e3ee1",
+          "path": "data/instruments/eye_tray_images_fgvc12/Adapter Male Flusing White Plastic/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Adapter Male Flusing White Plastic sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_37f6ccc3",
+          "path": "data/instruments/eye_tray_images_fgvc12/Adapter Male Flusing White Plastic/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Adapter Male Flusing White Plastic topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_bull_dog_serrefine_small_straight",
@@ -49,7 +87,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Bull Dog Serrefine Small Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_99ce1fd6",
+          "path": "data/instruments/eye_tray_images_fgvc12/Bull Dog Serrefine Small Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Bull Dog Serrefine Small Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_c19e2eed",
+          "path": "data/instruments/eye_tray_images_fgvc12/Bull Dog Serrefine Small Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Bull Dog Serrefine Small Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_caliper_castroviejo_straight",
@@ -59,7 +116,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Caliper Castroviejo Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_dedc42a2",
+          "path": "data/instruments/eye_tray_images_fgvc12/Caliper Castroviejo Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Caliper Castroviejo Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_c8347d23",
+          "path": "data/instruments/eye_tray_images_fgvc12/Caliper Castroviejo Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Caliper Castroviejo Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
@@ -69,7 +145,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Cannula Angled Viscoelastic Aspirating 19G"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_85949ce1",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Angled Viscoelastic Aspirating 19g/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Angled Viscoelastic Aspirating 19g sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_bd57810f",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Angled Viscoelastic Aspirating 19g/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Angled Viscoelastic Aspirating 19g topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
@@ -79,7 +174,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Cannula Gills Aspirating 25G 5Mm Tip"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_19536d92",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Gills Aspirating 25g 5mm Tip/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Gills Aspirating 25g 5mm Tip sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_db004c2b",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Gills Aspirating 25g 5mm Tip/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Gills Aspirating 25g 5mm Tip topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_cannula_perfluoron_chang_ia",
@@ -89,7 +203,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Cannula Perfluoron Chang Ia"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_30f7cec8",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Perfluoron Chang IA/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Perfluoron Chang IA sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_01a10039",
+          "path": "data/instruments/eye_tray_images_fgvc12/Cannula Perfluoron Chang IA/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Cannula Perfluoron Chang IA topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_clamp_edna_3_1_2in",
@@ -99,7 +232,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Edna 3 1/2\""
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_eb2aa68c",
+          "path": "data/instruments/eye_tray_images_fgvc12/Clamp Edna 3 12/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Clamp Edna 3 12 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b8f7d1cf",
+          "path": "data/instruments/eye_tray_images_fgvc12/Clamp Edna 3 12/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Clamp Edna 3 12 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
@@ -109,7 +261,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Clamp Mosquito Petit Point Curved"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_4b3ea515",
+          "path": "data/instruments/eye_tray_images_fgvc12/Clamp Mosquito Petit Point Curved/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Clamp Mosquito Petit Point Curved sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_a4da2a4d",
+          "path": "data/instruments/eye_tray_images_fgvc12/Clamp Mosquito Petit Point Curved/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Clamp Mosquito Petit Point Curved topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_depressor_oconnor_scleral_marker",
@@ -119,7 +290,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Depressor Oconnor Scleral Marker"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c657c864",
+          "path": "data/instruments/eye_tray_images_fgvc12/Depressor OConnor Scleral Marker/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Depressor OConnor Scleral Marker sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_49266b3b",
+          "path": "data/instruments/eye_tray_images_fgvc12/Depressor OConnor Scleral Marker/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Depressor OConnor Scleral Marker topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
@@ -129,7 +319,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Depressor Schocket Scleral Double Ended"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_0fd4c80b",
+          "path": "data/instruments/eye_tray_images_fgvc12/Depressor Schocket Scleral Double Ended/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Depressor Schocket Scleral Double Ended sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_eb77a69f",
+          "path": "data/instruments/eye_tray_images_fgvc12/Depressor Schocket Scleral Double Ended/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Depressor Schocket Scleral Double Ended topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
@@ -139,7 +348,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Bipolar Mcpherson Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_fba2687a",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bipolar McPherson Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bipolar McPherson Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_762ccf58",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bipolar McPherson Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bipolar McPherson Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
@@ -149,7 +377,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Bishop Harmon W Teeth"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_a48aea91",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bishop Harmon w Teeth/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bishop Harmon w Teeth sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_acd61501",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bishop Harmon w Teeth/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bishop Harmon w Teeth topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
@@ -159,7 +406,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Bonaccolto Conjuctivia"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_c0e55ff5",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bonaccolto Conjuctivia/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bonaccolto Conjuctivia sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_3b385bb5",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Bonaccolto Conjuctivia/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Bonaccolto Conjuctivia topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
@@ -169,7 +435,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .12Mm"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_8f71b81e",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .12/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .12 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_6dd9db5e",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .12/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .12 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
@@ -179,7 +464,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .3Mm"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_1345bd38",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .3/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .3 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_266a8eb4",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .3/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .3 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
@@ -189,7 +493,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Castroviejo Suturing .5Mm"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_71060cbc",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .5/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .5 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_1ad21aaf",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Castroviejo Suturing .5/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Castroviejo Suturing .5 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_cross-action_scleral_plug",
@@ -199,7 +522,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Cross-Action Scleral Plug"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ec9873b3",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Cross-Action Scleral Plug/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Cross-Action Scleral Plug sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_1153c888",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Cross-Action Scleral Plug/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Cross-Action Scleral Plug topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_harms_tying_curved",
@@ -209,7 +551,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Harms Tying Curved"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_b60777a0",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Harms Tying Curved/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Harms Tying Curved sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_e82f4017",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Harms Tying Curved/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Harms Tying Curved topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
@@ -219,7 +580,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Landers Vitrectomy Lens"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_f4862321",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Landers Vitrectomy Lens/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Landers Vitrectomy Lens sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_d5a7e8c8",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Landers Vitrectomy Lens/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Landers Vitrectomy Lens topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_mcpherson_tying_angled",
@@ -229,7 +609,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Angled"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_56e05945",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep McPherson Tying Angled/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep McPherson Tying Angled sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_dd941c7a",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep McPherson Tying Angled/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep McPherson Tying Angled topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_mcpherson_tying_straight",
@@ -239,7 +638,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Mcpherson Tying Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_cf3f79a3",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep McPherson Tying Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep McPherson Tying Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_9a944a0e",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep McPherson Tying Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep McPherson Tying Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
@@ -249,7 +667,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Forcep Nugent Utility Angled 45 Deg Serrated Jaw"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_3567e79c",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Nugent Utility Angled 45 Deg Serrated Jaw/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Nugent Utility Angled 45 Deg Serrated Jaw sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b1915186",
+          "path": "data/instruments/eye_tray_images_fgvc12/Forcep Nugent Utility Angled 45 Deg Serrated Jaw/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Forcep Nugent Utility Angled 45 Deg Serrated Jaw topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
@@ -259,7 +696,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Handle Beaver Blade #3 With Collet Screw"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_97f18ca7",
+          "path": "data/instruments/eye_tray_images_fgvc12/Handle Beaver Blade #3 w Collet Screw/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Handle Beaver Blade #3 w Collet Screw sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_8251ab11",
+          "path": "data/instruments/eye_tray_images_fgvc12/Handle Beaver Blade #3 w Collet Screw/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Handle Beaver Blade #3 w Collet Screw topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_hook_gass_retinal_detachment",
@@ -269,7 +725,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Hook Gass Retinal Detachment"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ca09cb54",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Gass Retinal Detachment/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Gass Retinal Detachment sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_ce657ec6",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Gass Retinal Detachment/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Gass Retinal Detachment topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
@@ -279,7 +754,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Hook Manipulating Sinskey Ii Lens 0.2Mm Angled"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ea1990de",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Manipulating Sinskey II Lens 0.2mm Angled/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Manipulating Sinskey II Lens 0.2mm Angled sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_d36f1a39",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Manipulating Sinskey II Lens 0.2mm Angled/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Manipulating Sinskey II Lens 0.2mm Angled topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_hook_muscle_graefe_size_1",
@@ -289,7 +783,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Hook Muscle Graefe Size 1"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_1abf42d5",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Muscle Graefe Size 1/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Muscle Graefe Size 1 sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_635ec603",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Muscle Graefe Size 1/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Muscle Graefe Size 1 topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_hook_muscle_jameson_sm",
@@ -299,7 +812,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Hook Muscle Jameson Sm"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_1cd15215",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Muscle Jameson SM/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Muscle Jameson SM sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_4e51f812",
+          "path": "data/instruments/eye_tray_images_fgvc12/Hook Muscle Jameson SM/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Hook Muscle Jameson SM topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
@@ -309,7 +841,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Curved"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_544d7f0b",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder Castro Locking Standard Curved/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder Castro Locking Standard Curved sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_e03f3417",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder Castro Locking Standard Curved/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder Castro Locking Standard Curved topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
@@ -319,7 +870,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Castro Locking Standard Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_b84446e3",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder Castro Locking Standard Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder Castro Locking Standard Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_dfd47e91",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder Castro Locking Standard Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder Castro Locking Standard Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
@@ -329,7 +899,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Locking X-Delicate Curved"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_9ddcfc2a",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder McPherson Locking X-Delicate Curved/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder McPherson Locking X-Delicate Curved sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_76d9128d",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder McPherson Locking X-Delicate Curved/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder McPherson Locking X-Delicate Curved topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
@@ -339,7 +928,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Needle Holder Mcpherson Non-Locking X-Delicate Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ee4e01b9",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder McPherson Non-Locking X-Delicate Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder McPherson Non-Locking X-Delicate Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_7d1f0aa5",
+          "path": "data/instruments/eye_tray_images_fgvc12/Needle Holder McPherson Non-Locking X-Delicate Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Needle Holder McPherson Non-Locking X-Delicate Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_retractor_schepens_orbital",
@@ -349,7 +957,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Retractor Schepens Orbital"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_0e570c34",
+          "path": "data/instruments/eye_tray_images_fgvc12/Retractor Schepens Orbital/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Retractor Schepens Orbital sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_f745adb6",
+          "path": "data/instruments/eye_tray_images_fgvc12/Retractor Schepens Orbital/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Retractor Schepens Orbital topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
@@ -359,7 +986,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Knapp Strabismus Blunt Curved"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_d2aaf88f",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Knapp Strabismus Blunt Curved/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Knapp Strabismus Blunt Curved sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_6a694344",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Knapp Strabismus Blunt Curved/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Knapp Strabismus Blunt Curved topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
@@ -369,7 +1015,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Vannas Capsulotomy Straight"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_565b5b2f",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Vannas Capsulotomy Straight/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Vannas Capsulotomy Straight sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_80b001e9",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Vannas Capsulotomy Straight/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Vannas Capsulotomy Straight topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
@@ -379,7 +1044,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Stitch Curved Sharp Tips"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_cad21458",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Wescott Stitch Curved Sharp Tips/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Wescott Stitch Curved Sharp Tips sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_1b19dcf5",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Wescott Stitch Curved Sharp Tips/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Wescott Stitch Curved Sharp Tips topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
@@ -389,7 +1073,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Scissors Wescott Tenotomy Curved Blunt"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_dd1f36f7",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Wescott Tenotomy Curved Blunt/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Wescott Tenotomy Curved Blunt sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_bd7ba384",
+          "path": "data/instruments/eye_tray_images_fgvc12/Scissors Wescott Tenotomy Curved Blunt/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Scissors Wescott Tenotomy Curved Blunt topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
@@ -399,7 +1102,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Adult 15Mm Blade"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_a46370fa",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Eye Adult 15mm Blade/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Eye Adult 15mm Blade sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_b7fa1b0d",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Eye Adult 15mm Blade/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Eye Adult 15mm Blade topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
@@ -409,7 +1131,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Eye Pediatric 9Mm Blade"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_ee719f7a",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Eye Pediatric 9mm Blade/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Eye Pediatric 9mm Blade sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_5c545b34",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Eye Pediatric 9mm Blade/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Eye Pediatric 9mm Blade topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
@@ -419,7 +1160,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Speculum Barraquer Heavy Wire Lid 19Mm Blade"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_7bf3329c",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Heavy Wire Lid 19mm Blade/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Heavy Wire Lid 19mm Blade sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_48da4e03",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Barraquer Heavy Wire Lid 19mm Blade/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Barraquer Heavy Wire Lid 19mm Blade topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     },
     {
       "id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
@@ -429,7 +1189,26 @@
       "distinguishing_features": [
         "Source: Atabuzzaman et al. FGVC12 Speculum Lieberman Eye W Adjustable V-Wire Blade"
       ],
-      "image_refs": []
+      "image_refs": [
+        {
+          "id": "sideView_4031d1a0",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Lieberman Eye w Adjustable V-Wire Blade/sideView/00_sideView.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Lieberman Eye w Adjustable V-Wire Blade sideView",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "topCam_0ed7e5bc",
+          "path": "data/instruments/eye_tray_images_fgvc12/Speculum Lieberman Eye w Adjustable V-Wire Blade/topCam/00_topCam.png",
+          "source": "fgvc12_google_drive_eye_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "Atabuzzaman et al. FGVC12 \u2014 Speculum Lieberman Eye w Adjustable V-Wire Blade topCam",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ]
     }
   ],
   "required_items": [
@@ -723,207 +1502,207 @@
   ],
   "marker_cards": [
     {
-      "marker_id": 1100,
+      "marker_id": 34,
       "instrument_id": "fgvc12_eye_adapter_female_flusing_white_plastic",
       "card_id": "fgvc12_eye_adapter_female_flusing_white_plastic_fgvc12"
     },
     {
-      "marker_id": 1101,
+      "marker_id": 35,
       "instrument_id": "fgvc12_eye_adapter_male_flusing_white_plastic",
       "card_id": "fgvc12_eye_adapter_male_flusing_white_plastic_fgvc12"
     },
     {
-      "marker_id": 1102,
+      "marker_id": 36,
       "instrument_id": "fgvc12_eye_bull_dog_serrefine_small_straight",
       "card_id": "fgvc12_eye_bull_dog_serrefine_small_straight_fgvc12"
     },
     {
-      "marker_id": 1103,
+      "marker_id": 37,
       "instrument_id": "fgvc12_eye_caliper_castroviejo_straight",
       "card_id": "fgvc12_eye_caliper_castroviejo_straight_fgvc12"
     },
     {
-      "marker_id": 1104,
+      "marker_id": 38,
       "instrument_id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating_19g",
       "card_id": "fgvc12_eye_cannula_angled_viscoelastic_aspirating__fgvc12"
     },
     {
-      "marker_id": 1105,
+      "marker_id": 39,
       "instrument_id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip",
       "card_id": "fgvc12_eye_cannula_gills_aspirating_25g_5mm_tip_fgvc12"
     },
     {
-      "marker_id": 1106,
+      "marker_id": 40,
       "instrument_id": "fgvc12_eye_cannula_perfluoron_chang_ia",
       "card_id": "fgvc12_eye_cannula_perfluoron_chang_ia_fgvc12"
     },
     {
-      "marker_id": 1107,
+      "marker_id": 41,
       "instrument_id": "fgvc12_eye_clamp_edna_3_1_2in",
       "card_id": "fgvc12_eye_clamp_edna_3_1_2in_fgvc12"
     },
     {
-      "marker_id": 1108,
+      "marker_id": 42,
       "instrument_id": "fgvc12_eye_clamp_mosquito_petit_point_curved",
       "card_id": "fgvc12_eye_clamp_mosquito_petit_point_curved_fgvc12"
     },
     {
-      "marker_id": 1109,
+      "marker_id": 43,
       "instrument_id": "fgvc12_eye_depressor_oconnor_scleral_marker",
       "card_id": "fgvc12_eye_depressor_oconnor_scleral_marker_fgvc12"
     },
     {
-      "marker_id": 1110,
+      "marker_id": 44,
       "instrument_id": "fgvc12_eye_depressor_schocket_scleral_double_ended",
       "card_id": "fgvc12_eye_depressor_schocket_scleral_double_ended_fgvc12"
     },
     {
-      "marker_id": 1111,
+      "marker_id": 45,
       "instrument_id": "fgvc12_eye_forcep_bipolar_mcpherson_straight",
       "card_id": "fgvc12_eye_forcep_bipolar_mcpherson_straight_fgvc12"
     },
     {
-      "marker_id": 1112,
+      "marker_id": 46,
       "instrument_id": "fgvc12_eye_forcep_bishop_harmon_w_teeth",
       "card_id": "fgvc12_eye_forcep_bishop_harmon_w_teeth_fgvc12"
     },
     {
-      "marker_id": 1113,
+      "marker_id": 47,
       "instrument_id": "fgvc12_eye_forcep_bonaccolto_conjuctivia",
       "card_id": "fgvc12_eye_forcep_bonaccolto_conjuctivia_fgvc12"
     },
     {
-      "marker_id": 1114,
+      "marker_id": 48,
       "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_12mm",
       "card_id": "fgvc12_eye_forcep_castroviejo_suturing_12mm_fgvc12"
     },
     {
-      "marker_id": 1115,
+      "marker_id": 49,
       "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_3mm",
       "card_id": "fgvc12_eye_forcep_castroviejo_suturing_3mm_fgvc12"
     },
     {
-      "marker_id": 1116,
+      "marker_id": 50,
       "instrument_id": "fgvc12_eye_forcep_castroviejo_suturing_5mm",
       "card_id": "fgvc12_eye_forcep_castroviejo_suturing_5mm_fgvc12"
     },
     {
-      "marker_id": 1117,
+      "marker_id": 51,
       "instrument_id": "fgvc12_eye_forcep_cross-action_scleral_plug",
       "card_id": "fgvc12_eye_forcep_cross-action_scleral_plug_fgvc12"
     },
     {
-      "marker_id": 1118,
+      "marker_id": 52,
       "instrument_id": "fgvc12_eye_forcep_harms_tying_curved",
       "card_id": "fgvc12_eye_forcep_harms_tying_curved_fgvc12"
     },
     {
-      "marker_id": 1119,
+      "marker_id": 53,
       "instrument_id": "fgvc12_eye_forcep_landers_vitrectomy_lens",
       "card_id": "fgvc12_eye_forcep_landers_vitrectomy_lens_fgvc12"
     },
     {
-      "marker_id": 1120,
+      "marker_id": 54,
       "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_angled",
       "card_id": "fgvc12_eye_forcep_mcpherson_tying_angled_fgvc12"
     },
     {
-      "marker_id": 1121,
+      "marker_id": 55,
       "instrument_id": "fgvc12_eye_forcep_mcpherson_tying_straight",
       "card_id": "fgvc12_eye_forcep_mcpherson_tying_straight_fgvc12"
     },
     {
-      "marker_id": 1122,
+      "marker_id": 56,
       "instrument_id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_serrated_jaw",
       "card_id": "fgvc12_eye_forcep_nugent_utility_angled_45_deg_ser_fgvc12"
     },
     {
-      "marker_id": 1123,
+      "marker_id": 57,
       "instrument_id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_screw",
       "card_id": "fgvc12_eye_handle_beaver_blade_num3_with_collet_sc_fgvc12"
     },
     {
-      "marker_id": 1124,
+      "marker_id": 58,
       "instrument_id": "fgvc12_eye_hook_gass_retinal_detachment",
       "card_id": "fgvc12_eye_hook_gass_retinal_detachment_fgvc12"
     },
     {
-      "marker_id": 1125,
+      "marker_id": 59,
       "instrument_id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_angled",
       "card_id": "fgvc12_eye_hook_manipulating_sinskey_ii_lens_0_2mm_fgvc12"
     },
     {
-      "marker_id": 1126,
+      "marker_id": 60,
       "instrument_id": "fgvc12_eye_hook_muscle_graefe_size_1",
       "card_id": "fgvc12_eye_hook_muscle_graefe_size_1_fgvc12"
     },
     {
-      "marker_id": 1127,
+      "marker_id": 61,
       "instrument_id": "fgvc12_eye_hook_muscle_jameson_sm",
       "card_id": "fgvc12_eye_hook_muscle_jameson_sm_fgvc12"
     },
     {
-      "marker_id": 1128,
+      "marker_id": 62,
       "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_curved",
       "card_id": "fgvc12_eye_needle_holder_castro_locking_standard_c_fgvc12"
     },
     {
-      "marker_id": 1129,
+      "marker_id": 63,
       "instrument_id": "fgvc12_eye_needle_holder_castro_locking_standard_straight",
       "card_id": "fgvc12_eye_needle_holder_castro_locking_standard_s_fgvc12"
     },
     {
-      "marker_id": 1130,
+      "marker_id": 64,
       "instrument_id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delicate_curved",
       "card_id": "fgvc12_eye_needle_holder_mcpherson_locking_x-delic_fgvc12"
     },
     {
-      "marker_id": 1131,
+      "marker_id": 65,
       "instrument_id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-delicate_straight",
       "card_id": "fgvc12_eye_needle_holder_mcpherson_non-locking_x-d_fgvc12"
     },
     {
-      "marker_id": 1132,
+      "marker_id": 66,
       "instrument_id": "fgvc12_eye_retractor_schepens_orbital",
       "card_id": "fgvc12_eye_retractor_schepens_orbital_fgvc12"
     },
     {
-      "marker_id": 1133,
+      "marker_id": 67,
       "instrument_id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved",
       "card_id": "fgvc12_eye_scissors_knapp_strabismus_blunt_curved_fgvc12"
     },
     {
-      "marker_id": 1134,
+      "marker_id": 68,
       "instrument_id": "fgvc12_eye_scissors_vannas_capsulotomy_straight",
       "card_id": "fgvc12_eye_scissors_vannas_capsulotomy_straight_fgvc12"
     },
     {
-      "marker_id": 1135,
+      "marker_id": 69,
       "instrument_id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_tips",
       "card_id": "fgvc12_eye_scissors_wescott_stitch_curved_sharp_ti_fgvc12"
     },
     {
-      "marker_id": 1136,
+      "marker_id": 70,
       "instrument_id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt",
       "card_id": "fgvc12_eye_scissors_wescott_tenotomy_curved_blunt_fgvc12"
     },
     {
-      "marker_id": 1137,
+      "marker_id": 71,
       "instrument_id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade",
       "card_id": "fgvc12_eye_speculum_barraquer_eye_adult_15mm_blade_fgvc12"
     },
     {
-      "marker_id": 1138,
+      "marker_id": 72,
       "instrument_id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_blade",
       "card_id": "fgvc12_eye_speculum_barraquer_eye_pediatric_9mm_bl_fgvc12"
     },
     {
-      "marker_id": 1139,
+      "marker_id": 73,
       "instrument_id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm_blade",
       "card_id": "fgvc12_eye_speculum_barraquer_heavy_wire_lid_19mm__fgvc12"
     },
     {
-      "marker_id": 1140,
+      "marker_id": 74,
       "instrument_id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-wire_blade",
       "card_id": "fgvc12_eye_speculum_lieberman_eye_w_adjustable_v-w_fgvc12"
     }

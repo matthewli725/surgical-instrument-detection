@@ -127,15 +127,24 @@ function renderIntake() {
     </section>
   `;
   document.querySelector("#startRun").onclick = async () => {
-    state.run = await api("/api/runs", {
-      method: "POST",
-      body: JSON.stringify({
-        learner_id: document.querySelector("#learnerId").value,
-        participant_group: document.querySelector("#participantGroup").value,
-        prior_experience_level: document.querySelector("#priorExperience").value,
-      }),
-    });
-    setStep("pre");
+    const btn = document.querySelector("#startRun");
+    btn.disabled = true;
+    btn.textContent = "Starting...";
+    try {
+      state.run = await api("/api/runs", {
+        method: "POST",
+        body: JSON.stringify({
+          learner_id: document.querySelector("#learnerId").value,
+          participant_group: document.querySelector("#participantGroup").value,
+          prior_experience_level: document.querySelector("#priorExperience").value,
+        }),
+      });
+      setStep("pre");
+    } catch (err) {
+      app.innerHTML += `<div class="notice error">${err.message}</div>`;
+      btn.disabled = false;
+      btn.textContent = "Start pre-test";
+    }
   };
 }
 
@@ -248,6 +257,15 @@ function renderAttemptResult(result, showFeedback, mode) {
   };
 }
 
+function studyImage(instrument) {
+  const refs = instrument.image_refs || [];
+  const approved = refs.find((r) => r.approved_for_study);
+  const ref = approved || refs[0];
+  if (!ref) return `<div class="image-placeholder">No image</div>`;
+  const path = ref.path.replace(/^data\/instruments\//, "");
+  return `<img src="/instrument-images/${path}" alt="${instrument.display_name}" class="study-img" onerror="this.parentElement.innerHTML='<div class=image-placeholder>Image not found</div>'">`;
+}
+
 function renderStudy() {
   const cards = instrumentsForTray();
   const instrument = cards[state.studyIndex % cards.length];
@@ -256,12 +274,15 @@ function renderStudy() {
     <section class="panel study-card">
       <h2>Study card ${state.studyIndex + 1} of ${cards.length}</h2>
       <p class="muted">Prompt before reveal: identify the instrument and its key distinguishing features.</p>
-      <div class="card">
-        <h3>${instrument.display_name}</h3>
-        <p><strong>Family:</strong> ${instrument.family}</p>
-        <p><strong>Required count:</strong> ${required ? required.quantity : "Distractor"}</p>
-        <p><strong>Aliases:</strong> ${instrument.aliases.join(", ") || "-"}</p>
-        <ul class="feature-list">${instrument.distinguishing_features.map((feature) => `<li>${feature}</li>`).join("")}</ul>
+      <div class="card study-layout">
+        <div class="study-image">${studyImage(instrument)}</div>
+        <div class="study-details">
+          <h3>${instrument.display_name}</h3>
+          <p><strong>Family:</strong> ${instrument.family}</p>
+          <p><strong>Required count:</strong> ${required ? required.quantity : "Distractor"}</p>
+          <p><strong>Aliases:</strong> ${instrument.aliases.join(", ") || "-"}</p>
+          <ul class="feature-list">${instrument.distinguishing_features.map((feature) => `<li>${feature}</li>`).join("")}</ul>
+        </div>
       </div>
       <div class="button-row">
         <button id="prevCard">Previous</button>
@@ -342,12 +363,14 @@ function render() {
   if (!state.module) return;
   const preVariant = variantByMode("pre_test");
   const postVariant = variantByMode("post_test");
+  const preVariantId = preVariant ? preVariant.id : "full_tray";
+  const postVariantId = postVariant ? postVariant.id : "full_tray";
   if (state.currentStep === "intake") renderIntake();
-  if (state.currentStep === "pre") renderTraySort({ mode: "pre_test", variantId: preVariant.id, title: "Pre-test tray sort", copy: "No hints. Use cards and the count sheet task to assemble the tray.", feedback: false });
+  if (state.currentStep === "pre") renderTraySort({ mode: "pre_test", variantId: preVariantId, title: "Pre-test tray sort", copy: "No hints. Use cards and the count sheet task to assemble the tray.", feedback: false });
   if (state.currentStep === "study") renderStudy();
   if (state.currentStep === "quiz") renderQuiz();
-  if (state.currentStep === "practice") renderTraySort({ mode: "practice", variantId: preVariant.id, title: "Practice tray sort", copy: "Use the same physical-card workflow. Feedback appears after submission.", feedback: true });
-  if (state.currentStep === "post") renderTraySort({ mode: "post_test", variantId: postVariant.id, title: "Post-test tray sort", copy: "No hints. This uses the matched post-test variant.", feedback: false });
+  if (state.currentStep === "practice") renderTraySort({ mode: "practice", variantId: preVariantId, title: "Practice tray sort", copy: "Use the same physical-card workflow. Feedback appears after submission.", feedback: true });
+  if (state.currentStep === "post") renderTraySort({ mode: "post_test", variantId: postVariantId, title: "Post-test tray sort", copy: "No hints. This uses the matched post-test variant.", feedback: false });
   if (state.currentStep === "summary") renderSummary();
 }
 

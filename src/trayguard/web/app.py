@@ -29,6 +29,9 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
     app.state.store = store
 
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+    instruments_dir = PROJECT_ROOT / "data" / "instruments"
+    if instruments_dir.is_dir():
+        app.mount("/instrument-images", StaticFiles(directory=str(instruments_dir)), name="instrument-images")
 
     @app.get("/")
     def index():

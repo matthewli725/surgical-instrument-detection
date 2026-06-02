@@ -1842,172 +1842,172 @@
   ],
   "marker_cards": [
     {
-      "marker_id": 1000,
+      "marker_id": 0,
       "instrument_id": "fgvc12_major_scissors_mayo_straight_7in",
       "card_id": "fgvc12_major_scissors_mayo_straight_7in_fgvc12"
     },
     {
-      "marker_id": 1001,
+      "marker_id": 1,
       "instrument_id": "fgvc12_major_scissors_mayo_curved_7in",
       "card_id": "fgvc12_major_scissors_mayo_curved_7in_fgvc12"
     },
     {
-      "marker_id": 1002,
+      "marker_id": 2,
       "instrument_id": "fgvc12_major_scissors_metz_curved_7in",
       "card_id": "fgvc12_major_scissors_metz_curved_7in_fgvc12"
     },
     {
-      "marker_id": 1003,
+      "marker_id": 3,
       "instrument_id": "fgvc12_major_scissors_metz_curved_10in",
       "card_id": "fgvc12_major_scissors_metz_curved_10in_fgvc12"
     },
     {
-      "marker_id": 1004,
+      "marker_id": 4,
       "instrument_id": "fgvc12_major_scissors_metz_curved_12in",
       "card_id": "fgvc12_major_scissors_metz_curved_12in_fgvc12"
     },
     {
-      "marker_id": 1005,
+      "marker_id": 5,
       "instrument_id": "fgvc12_major_clamp_crile_curved_5_1_2",
       "card_id": "fgvc12_major_clamp_crile_curved_5_1_2_fgvc12"
     },
     {
-      "marker_id": 1006,
+      "marker_id": 6,
       "instrument_id": "fgvc12_major_clamp_kelly_6in",
       "card_id": "fgvc12_major_clamp_kelly_6in_fgvc12"
     },
     {
-      "marker_id": 1007,
+      "marker_id": 7,
       "instrument_id": "fgvc12_major_clamp_kelly_8in",
       "card_id": "fgvc12_major_clamp_kelly_8in_fgvc12"
     },
     {
-      "marker_id": 1008,
+      "marker_id": 8,
       "instrument_id": "fgvc12_major_clamp_kocher_6in",
       "card_id": "fgvc12_major_clamp_kocher_6in_fgvc12"
     },
     {
-      "marker_id": 1009,
+      "marker_id": 9,
       "instrument_id": "fgvc12_major_clamp_kocher_8in",
       "card_id": "fgvc12_major_clamp_kocher_8in_fgvc12"
     },
     {
-      "marker_id": 1010,
+      "marker_id": 10,
       "instrument_id": "fgvc12_major_clamp_backhaus_5_1_4in",
       "card_id": "fgvc12_major_clamp_backhaus_5_1_4in_fgvc12"
     },
     {
-      "marker_id": 1011,
+      "marker_id": 11,
       "instrument_id": "fgvc12_major_clamp_edna_5_1_2in",
       "card_id": "fgvc12_major_clamp_edna_5_1_2in_fgvc12"
     },
     {
-      "marker_id": 1012,
+      "marker_id": 12,
       "instrument_id": "fgvc12_major_knife_handle_number_3_short",
       "card_id": "fgvc12_major_knife_handle_number_3_short_fgvc12"
     },
     {
-      "marker_id": 1013,
+      "marker_id": 13,
       "instrument_id": "fgvc12_major_knife_handle_number_3_long",
       "card_id": "fgvc12_major_knife_handle_number_3_long_fgvc12"
     },
     {
-      "marker_id": 1014,
+      "marker_id": 14,
       "instrument_id": "fgvc12_major_clamp_sponge_9in",
       "card_id": "fgvc12_major_clamp_sponge_9in_fgvc12"
     },
     {
-      "marker_id": 1015,
+      "marker_id": 15,
       "instrument_id": "fgvc12_major_needleholder_mayo_hegar_7in",
       "card_id": "fgvc12_major_needleholder_mayo_hegar_7in_fgvc12"
     },
     {
-      "marker_id": 1016,
+      "marker_id": 16,
       "instrument_id": "fgvc12_major_needleholder_mayo_hegar_8in",
       "card_id": "fgvc12_major_needleholder_mayo_hegar_8in_fgvc12"
     },
     {
-      "marker_id": 1017,
+      "marker_id": 17,
       "instrument_id": "fgvc12_major_needleholder_mayo_hegar_10in",
       "card_id": "fgvc12_major_needleholder_mayo_hegar_10in_fgvc12"
     },
     {
-      "marker_id": 1018,
+      "marker_id": 18,
       "instrument_id": "fgvc12_major_forcep_adson_w_teeth",
       "card_id": "fgvc12_major_forcep_adson_w_teeth_fgvc12"
     },
     {
-      "marker_id": 1019,
+      "marker_id": 19,
       "instrument_id": "fgvc12_major_forcep_ferris_smith",
       "card_id": "fgvc12_major_forcep_ferris_smith_fgvc12"
     },
     {
-      "marker_id": 1020,
+      "marker_id": 20,
       "instrument_id": "fgvc12_major_clamp_babcock_9_5in",
       "card_id": "fgvc12_major_clamp_babcock_9_5in_fgvc12"
     },
     {
-      "marker_id": 1021,
+      "marker_id": 21,
       "instrument_id": "fgvc12_major_clamp_babcock_12in",
       "card_id": "fgvc12_major_clamp_babcock_12in_fgvc12"
     },
     {
-      "marker_id": 1022,
+      "marker_id": 22,
       "instrument_id": "fgvc12_major_clamp_kelly_12in",
       "card_id": "fgvc12_major_clamp_kelly_12in_fgvc12"
     },
     {
-      "marker_id": 1023,
+      "marker_id": 23,
       "instrument_id": "fgvc12_major_clamp_allis_6in",
       "card_id": "fgvc12_major_clamp_allis_6in_fgvc12"
     },
     {
-      "marker_id": 1024,
+      "marker_id": 24,
       "instrument_id": "fgvc12_major_clamp_babcock_6in",
       "card_id": "fgvc12_major_clamp_babcock_6in_fgvc12"
     },
     {
-      "marker_id": 1025,
+      "marker_id": 25,
       "instrument_id": "fgvc12_major_clamp_right_angle_reg_tip_7in",
       "card_id": "fgvc12_major_clamp_right_angle_reg_tip_7in_fgvc12"
     },
     {
-      "marker_id": 1026,
+      "marker_id": 26,
       "instrument_id": "fgvc12_major_clamp_allis_11in",
       "card_id": "fgvc12_major_clamp_allis_11in_fgvc12"
     },
     {
-      "marker_id": 1027,
+      "marker_id": 27,
       "instrument_id": "fgvc12_major_clamp_adson_tonsil_11in",
       "card_id": "fgvc12_major_clamp_adson_tonsil_11in_fgvc12"
     },
     {
-      "marker_id": 1028,
+      "marker_id": 28,
       "instrument_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
       "card_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip_fgvc12"
     },
     {
-      "marker_id": 1029,
+      "marker_id": 29,
       "instrument_id": "fgvc12_major_forcep_debakey_9_5in_thoracic_tip",
       "card_id": "fgvc12_major_forcep_debakey_9_5in_thoracic_tip_fgvc12"
     },
     {
-      "marker_id": 1030,
+      "marker_id": 30,
       "instrument_id": "fgvc12_major_forcep_debakey_12in_thoracic_tip",
       "card_id": "fgvc12_major_forcep_debakey_12in_thoracic_tip_fgvc12"
     },
     {
-      "marker_id": 1031,
+      "marker_id": 31,
       "instrument_id": "fgvc12_major_clamp_debakey_aneurysm_10in",
       "card_id": "fgvc12_major_clamp_debakey_aneurysm_10in_fgvc12"
     },
     {
-      "marker_id": 1032,
+      "marker_id": 32,
       "instrument_id": "fgvc12_major_clamp_tonsil_7_5in",
       "card_id": "fgvc12_major_clamp_tonsil_7_5in_fgvc12"
     },
     {
-      "marker_id": 1033,
+      "marker_id": 33,
       "instrument_id": "fgvc12_major_clamp_right_angle_10_5in",
       "card_id": "fgvc12_major_clamp_right_angle_10_5in_fgvc12"
     }
