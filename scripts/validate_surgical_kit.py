@@ -90,8 +90,13 @@ def collect_per_class_metrics(metrics) -> list[dict]:
     per_class = []
     for idx, class_id in enumerate(ap_class_index):
         class_name = CLASS_NAMES.get(int(class_id), f"class_{int(class_id)}")
-        ap50 = float(ap[idx][0]) if ap is not None and idx < len(ap) and len(ap[idx]) > 0 else None
-        ap50_95 = float(ap[idx][1]) if ap is not None and idx < len(ap) and len(ap[idx]) > 1 else None
+        ap_val = ap[idx] if ap is not None and idx < len(ap) else None
+        if ap_val is not None and hasattr(ap_val, "__len__"):
+            ap50 = float(ap_val[0]) if len(ap_val) > 0 else None
+            ap50_95 = float(ap_val[-1]) if len(ap_val) > 1 else None
+        else:
+            ap50 = float(ap_val) if ap_val is not None else None
+            ap50_95 = float(ap_val) if ap_val is not None else None
         per_class.append({
             "class_id": int(class_id),
             "class_name": class_name,
