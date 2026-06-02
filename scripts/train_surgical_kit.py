@@ -7,26 +7,27 @@ from typing import Sequence
 from micro_design_project.training import train as train_module
 
 
-DEFAULT_STAGES: tuple[str, ...] = (
-    "brightest_train_darker_test",
-    "darkest_train_brighter_test",
-    "bright_train_dim_test",
-    "dim_train_bright_test",
+LIGHTING_STAGES: tuple[str, ...] = (
     "matte_train_reflective_test",
     "reflective_train_matte_test",
-    "separated_train_overlay_test",
 )
+
+SHAPE_STAGES: tuple[str, ...] = (
+    "shape_similarity_real_proxy",
+)
+
+DEFAULT_STAGES: tuple[str, ...] = LIGHTING_STAGES + SHAPE_STAGES
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Train one or more brightness-order YOLO experiment stages."
+        description="Train surgical-kit proxy YOLO experiments: lighting transfer and shape similarity."
     )
     parser.add_argument(
         "--datasets-dir",
         type=Path,
-        default=Path("data/cv/brightness_experiment"),
-        help="Directory containing exported brightness YOLO stages.",
+        default=Path("data/cv/surgical_kit_proxy"),
+        help="Directory containing exported surgical-kit proxy YOLO stages.",
     )
     parser.add_argument(
         "--weights-dir",
@@ -51,8 +52,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--epochs",
         type=int,
-        default=None,
-        help="Optional trainer.epochs override. Leave unset to use the project default.",
+        default=100,
+        help="Training epochs. Surgical kit experiments need more epochs.",
     )
     parser.add_argument(
         "--dry-run",
@@ -60,6 +61,16 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Print the underlying trayguard train arguments without starting training.",
     )
     return parser.parse_args(argv)
+
+
+def stage_data_yaml(stage: str, datasets_dir: Path) -> Path:
+    if stage in SHAPE_STAGES:
+        return datasets_dir / stage / "data.yaml"
+    return datasets_dir / "lighting" / stage / "data.yaml"
+
+
+def export_weight_path(stage: str, weights_dir: Path) -> Path:
+    return weights_dir / f"surgical_kit_{stage}.pt"
 
 
 def stage_train_args(
@@ -73,21 +84,21 @@ def stage_train_args(
     device: str | None,
     epochs: int | None,
 ) -> list[str]:
-    stage_dir = datasets_dir / stage
-    data_yaml = stage_dir / "data.yaml"
-    export_weights = weights_dir / f"{stage}.pt"
+    data_yaml = stage_data_yaml(stage, datasets_dir)
+    export_weights = export_weight_path(stage, weights_dir)
 
     args = [
         "--export-weights",
         str(export_weights),
         f"model={model}",
-        f"data.name={stage}",
-        f"data.root={stage_dir}",
+        f"data.name=surgical_kit_{stage}",
+        f"data.root={data_yaml.parent}",
         f"data.yolo_data={data_yaml}",
-        f"trainer.name={stage}",
+        f"trainer.name=surgical_kit_{stage}",
         f"trainer.imgsz={imgsz}",
         f"trainer.batch={batch}",
         "trainer.deterministic=true",
+        "trainer.patience=40",
     ]
     if device:
         args.append(f"trainer.device={device}")
@@ -112,7 +123,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             device=args.device,
             epochs=args.epochs,
         )
-        print(f"=== {stage} ===")
+        print(f"=== surgical_kit_{stage} ===")
         print("uv run trayguard train " + " ".join(train_args))
         if args.dry_run:
             continue

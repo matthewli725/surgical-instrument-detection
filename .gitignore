@@ -111,7 +111,7 @@ checkpoints/
 
 # ---------------------------
 
-data/
+/data/
 datasets/
 *.csv
 *.tsv
@@ -161,3 +161,15 @@ htmlcov/
 *.cache
 tmp/
 temp/
+
+# ---------------------------
+
+# Project-specific
+
+# ---------------------------
+
+/purdue/
+/outputs/
+config/instrument_catalogs/
+src/trayguard/
+src/trayguard.egg-info/
