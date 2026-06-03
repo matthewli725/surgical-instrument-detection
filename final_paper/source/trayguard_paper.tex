@@ -327,6 +327,10 @@ organically on count sheets with no central nomenclature authority
 \cite{alfred-et-al-2021}. Count sheets encode tray-specific rules that exist
 only in that hospital's workflow \cite{nadeau-2024}.
 
+Local tray configurations operate at substantial scale. At Aarhus University Hospital, Denmark's largest hospital, a tray-optimization project catalogued 1,340 instrument trays across 12 surgical specialties and 74 operating rooms, averaging 30 instruments per tray \cite{rubak-et-al-2024}. No single tray design generalized across specialties or procedures; the hospital maintained 258 distinct tray types before optimization. A technician rotating between specialties encounters different tray rules, different instrument sets, and different quantities for each room.
+
+Even within a single tray type, usage varies by case and procedure. At Maastricht University Medical Center in the Netherlands, one Major General Surgery tray contained 94 reusable instruments used across 162 multi-disciplinary procedures \cite{eussen-et-al-2026}. On average only 19 instruments were used per case; 10 were never used across all 162 procedures, and the remaining 65 appeared in fewer than 20\% of cases. Observation-based optimization removed those rarely used instruments, reducing the tray's size and weight by 54\% \cite{eussen-et-al-2026}. A technician cannot rely on frequency of use to know a tray's content.
+
 Third, certification proves a starting point rather than local readiness.
 Neither HSPA nor CBSPD mandates recurring competency checks tied to local tray
 knowledge
@@ -938,7 +942,7 @@ resources.
 \section{Literature And Related Work \hfill {\normalfont\small (Matthew, Andy, Qiyu)}}
 \label{sec:literature-and-related-work}
 
-The CV-first attempt showed that automated verification is not buildable within the project's constraints. Returning to the root causes identified in the RCA (Section~\ref{sec:root-cause-analysis}), the training gap and local knowledge dependency point toward an education-centered solution. The following literature examines each relevant area and supports the training path.
+The CV-first attempt did not produce a deployable verification system within the project's constraints. Returning to the root causes identified in the RCA (Section~\ref{sec:root-cause-analysis}), the team revisited the solution space and identified seven intervention points. The following literature examines each relevant area and supports the selected path.
 
 \subsection{The Solution Landscape}
 \label{sec:solution-landscape}
@@ -991,9 +995,36 @@ institutional policy authority, or multi-stakeholder buy-in. Category 7 --
 training and simulated practice -- is the only category whose primary evidence
 can be collected with accessible participants (novices), low-cost materials
 (printed cards), and a bounded pre/post study design on a simulated local tray
-task. Section~\ref{sec:literature-and-related-work} examines the literature supporting each
-relevant area in depth.
-\subsection{SPD Training and Competency Gap}
+task. The following sections examine the literature supporting each relevant area in depth.
+\subsection{Why Existing Approaches Cannot Close the Gap}
+
+
+Categories 1 through 6 in Section~\ref{sec:solution-landscape} address real risks but each depends on resources this project cannot access: SPD deployment sites, real instrument inventories, hospital utilization data, institutional policy authority, or multi-stakeholder buy-in. Commercial tools in the same categories share the same constraints.
+
+\begin{table}[H]
+\centering
+\caption{Comparable tools and gap relative to TrayGuard}
+\label{tab:comparable-tools-and-gap-relative-to-trayguard}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}X|}
+\hline
+Tool or approach & Target user & Relevant features & Evidence strength & Gap relative to TrayGuard \\
+\hline
+Tray Pacer & SPD teams and managers & Count sheets, tray assembly support, photos, productivity and proficiency metrics. & Commercial product evidence. & Supports operations, but public materials do not establish the specific pre/post local tray learning study proposed here \cite{tray-pacer-accessed-2026}. \\
+\hline
+LayerJot SID & SPD and surgical instrument teams & Instrument documentation, photos, count sheets, and tray information. & Commercial product evidence. & Strong local-information precedent, but not a demonstrated tag-card novice learning loop \cite{layerjot-sid-accessed-2026}. \\
+\hline
+CensiTrac and similar tracking systems & Hospitals, SPD, OR inventory teams & Instrument and tray tracking, traceability, inventory visibility. & Commercial and operational precedent. & Addresses tracking and lifecycle visibility more than low-cost novice simulation and weak-item training \cite{censitrac-accessed-2026}. \\
+\hline
+Touch Surgery and surgical simulators & Medical trainees and clinicians & Repeated simulation attempts, performance logging, skill practice. & Published evaluation and commercial adoption. & Supports simulation logic, but focuses on surgical procedure skills rather than SPD tray reconstruction \cite{tulipan-et-al-2019}; \cite{medtronic-touch-surgery-accessed-2026}. \\
+\hline
+NeuroVase-style tangible cards & Health-professions learners & Physical cue cards, mobile AR, structured curriculum, pre/post testing, usability measures. & Emerging preprint evidence. & Strong design precedent for tangible medical learning, but not sterile-processing content \cite{jahani-et-al-2026-neurovase}. \\
+\hline
+
+\end{tabularx}
+\end{table}
+
+\subsection{Why Training is the Viable Path}
 
 
 SPD training in practice follows a blended pattern that combines coursework, hands-on practice, and clinical supervisor-led onboarding:
@@ -1019,93 +1050,23 @@ Simulation and skills assessment & AORN describes Penn Medicine's earn-to-learn 
 
 The common thread across patterns is that hands-on practice and clinical supervisor attention are the scarce resources. Several program examples show the gap between classroom preparation and clinical capacity. Penn Foster's online sterile processing program prepares learners for the CRCST exam but does not require the exam or the 400 hands-on hours \cite{penn-foster-sterile-processing-accessed-2026}. MedCerts states that full CRCST certification requires 400 hours of hands-on experience following provisional certification \cite{medcerts-catalog-2025}. AIMS Education requires a 400-hour clinical internship, but its schedules depend on clinical-site availability \cite{aims-education-sterile-processing-accessed-2026}. Central Sterilization Solutions states its classroom course has no hands-on training in the classroom and that hands-on training is conducted during externship \cite{central-sterilization-solutions-in-person-accessed-2026}. These examples illustrate the training-access gap: repeatable, feedback-rich practice with local instruments and tray rules is hard to scale before and during real SPD experience because it depends on site access, clinical scheduling, clinical supervisor attention, and available teaching materials.
 
-Structured training programs for sterile-processing staff have shown positive
-results. Hu et al. developed a CSSD training program using action research; after
-two rounds of training, CSSD nurses showed significant improvement in
-professional knowledge \cite{hu-et-al-2024}. Huang
-et al. similarly concluded that an action-research-based training program
-improved CSSD nurses' professional knowledge and skill, increased their
-enthusiasm for learning, and laid a foundation for talent development
-\cite{huang-et-al-2025}.
-
-Broader allied-health placement research supports treating clinical placements as capacity-constrained environments. A Queensland study found that placement-offer growth did not keep pace with student-program growth, and barriers centered on resourcing and increasing demand \cite{mcbride-et-al-2020}. A 2025 Greater Sacramento report identified shortage of clinical placement opportunities as a barrier to workforce pipeline growth, and highlighted student preparedness as part of successful placement partnerships \cite{north-greater-sacramento-coe-2025}.
-\subsection{Local Tray and Count-Sheet Evidence}
-
-
-As established in the RCA (Section~\ref{sec:root-cause-analysis}), incomplete count sheets and local tray variation are root causes that make general instrument knowledge insufficient across sites.
-
-Local tray configurations operate at substantial scale. At Aarhus University Hospital, Denmark's largest hospital, a tray-optimization project catalogued 1,340 instrument trays across 12 surgical specialties and 74 operating rooms, averaging 30 instruments per tray \cite{rubak-et-al-2024}. No single tray design generalized across specialties or procedures; the hospital maintained 258 distinct tray types before optimization. A technician rotating between specialties encounters different tray rules, different instrument sets, and different quantities for each room. The count sheet is the local document that captures each tray's specific composition.
-
-Even within a single tray type, usage varies by case and procedure. At Maastricht University Medical Center in the Netherlands, one Major General Surgery tray contained 94 reusable instruments used across 162 multi-disciplinary procedures \cite{eussen-et-al-2026}. On average only 19 instruments were used per case; 10 were never used across all 162 procedures, and the remaining 65 appeared in fewer than 20\% of cases---present because different surgeons and procedures call for different subsets of the tray. Observation-based optimization removed those rarely used instruments, reducing the tray's size and weight by 54\% \cite{eussen-et-al-2026}. This density of infrequently used instruments means a technician cannot rely on frequency of use to know a tray's content; the count sheet remains the authoritative source for what belongs, in what quantity, and where.
-\subsection{Learning Science and Simulation Evidence}
-
+Structured training programs for sterile-processing staff have shown positive results. Hu et al. developed a CSSD training program using action research; after two rounds of training, CSSD nurses showed significant improvement in professional knowledge \cite{hu-et-al-2024}. Huang et al. similarly concluded that an action-research-based training program improved CSSD nurses' professional knowledge and skill \cite{huang-et-al-2025}. Broader allied-health placement research supports treating clinical placements as capacity-constrained environments. A Queensland study found that placement-offer growth did not keep pace with student-program growth \cite{mcbride-et-al-2020}. A 2025 Greater Sacramento report identified shortage of clinical placement opportunities as a barrier to workforce pipeline growth \cite{north-greater-sacramento-coe-2025}.
 
 Simulation-based health-professions education with deliberate practice improves knowledge, skills, and behaviors compared with no intervention and outperforms traditional clinical education in meta-analysis \cite{cook-et-al-2011}; \cite{mcgaghie-et-al-2011}. Effective simulation includes feedback, repetitive practice, curriculum integration, and measurable outcomes \cite{issenberg-et-al-2005}.
 
-For sterile processing specifically, Ofstead et al. provide the closest direct precedent. Their borescope/endoscope visual-inspection training pilot used a pre-test, structured teaching, hands-on practice, image-based testing, confidence/satisfaction measures, workplace homework, and a delayed booster with certified sterile-processing professionals. Mean test scores improved from 41\% at pre-test to 84\% after the workshop, and remained at 90\% after two months, with surveyed trainees reporting greater confidence after the training \cite{ofstead-et-al-2023}.
+For sterile processing specifically, Ofstead et al. provide the closest direct precedent. Their borescope/endoscope visual-inspection training pilot used a pre-test, structured teaching, hands-on practice, image-based testing, confidence/satisfaction measures, workplace homework, and a delayed booster with certified sterile-processing professionals. Mean test scores improved from 41\% at pre-test to 84\% after the workshop, and remained at 90\% after two months \cite{ofstead-et-al-2023}.
 
-Barrison et al.'s 2025 scoping review found that electronic flashcards are widely used in health-professions education, that the research base grew rapidly from 2019 to 2024, and that many studies examine utilization and associated learning outcomes. The review cautions that development and delivery methods are less systematically studied \cite{barrison-et-al-2025}.
+Barrison et al.'s 2025 scoping review found that electronic flashcards are widely used in health-professions education and that the research base grew rapidly from 2019 to 2024, while cautioning that development and delivery methods are less systematically studied \cite{barrison-et-al-2025}. Meta-analytic evidence shows that organizational training improves learning, behavior, and operational results when it includes practice and feedback \cite{arthur-et-al-2003}. Salas et al. argue that effective training should be treated as a system: analyze the work, design instruction around target competencies, provide practice and feedback, and evaluate transfer \cite{salas-et-al-2012}.
 
-Meta-analytic evidence shows that organizational training improves learning, behavior, and operational results when it includes practice and feedback \cite{arthur-et-al-2003}. Salas et al. argue that effective training should be treated as a system: analyze the work, design instruction around target competencies, provide practice and feedback, and evaluate transfer \cite{salas-et-al-2012}.
-\subsection{Market and Comparable Tools}
+Medical training software already uses the same design pattern of simulation, guided practice, feedback, scoring, and progress tracking. Touch Surgery provides mobile surgical procedure simulations with repeated attempts and scoring, and a validation study found that users improved across repeated attempts while higher-experience cohorts outperformed lower-experience cohorts \cite{tulipan-et-al-2019}. Osso VR demonstrated in a randomized trial that VR-trained novices completed a downstream orthopedic procedure more often, made fewer incorrect steps, and finished faster than guide-only learners \cite{orland-et-al-2020}. Body Interact uses screen-based virtual patient scenarios with immediate feedback, auto-grading, and educator analytics \cite{wolters-kluwer-body-interact-accessed-2026}. Surgical Science and Simbionix provide commercial medical simulators across specialties, positioning simulation-based assessment as a credible healthcare training category \cite{surgical-science-simulators-accessed-2026}. These precedents support treating TrayGuard as a health-professions simulation tool that applies established learning mechanisms to a new domain: local SPD tray reconstruction.
 
+No existing study tests whether card-based tray training transfers to real-world SPD assembly. The closest precedents involve procedural skills rather than visual identification. Masoomi et al. (2021) reviewed 121 simulation-based training studies and found that even simpler training models that do not replicate full workplace realism still produced learning that transferred to real clinical settings; transfer did not depend on physical fidelity alone \cite{masoomi-et-al-2021}. Tanaka and Curran (2005) found that training participants to identify objects at a specific, fine-grained level (e.g., ``great blue heron'' rather than ``bird'') transferred to recognizing new examples and new categories, whereas training at a broad categorical level did not \cite{tanaka-and-curran-2005}. TrayGuard's card-based module trains the same fine-grained skill: identifying a specific instrument model and its tray position, not just ``clamp'' or ``retractor.'' These converging lines support the design rationale but do not replace a direct transfer study. A future experiment comparing card-trained and untrained novices on real tray assembly would measure the transfer effect directly.
 
-Comparable systems cluster into four groups: tray-management products,
-instrument tracking systems, surgical simulation tools, and emerging CV or
-robotic research systems. None of them eliminates the need for TrayGuard's
-bounded training claim.
-\begin{table}[H]
-\centering
-\caption{Comparable tools and gap relative to TrayGuard}
-\label{tab:comparable-tools-and-gap-relative-to-trayguard}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}X|}
-\hline
-Tool or approach & Target user & Relevant features & Evidence strength & Gap relative to TrayGuard \\
-\hline
-Tray Pacer & SPD teams and managers & Count sheets, tray assembly support, photos, productivity and proficiency metrics. & Commercial product evidence. & Supports operations, but public materials do not establish the specific pre/post local tray learning study proposed here \cite{tray-pacer-accessed-2026}. \\
-\hline
-LayerJot SID & SPD and surgical instrument teams & Instrument documentation, photos, count sheets, and tray information. & Commercial product evidence. & Strong local-information precedent, but not a demonstrated tag-card novice learning loop \cite{layerjot-sid-accessed-2026}. \\
-\hline
-CensiTrac and similar tracking systems & Hospitals, SPD, OR inventory teams & Instrument and tray tracking, traceability, inventory visibility. & Commercial and operational precedent. & Addresses tracking and lifecycle visibility more than low-cost novice simulation and weak-item training \cite{censitrac-accessed-2026}. \\
-\hline
-Touch Surgery and surgical simulators & Medical trainees and clinicians & Repeated simulation attempts, performance logging, skill practice. & Published evaluation and commercial adoption. & Supports simulation logic, but focuses on surgical procedure skills rather than SPD tray reconstruction \cite{tulipan-et-al-2019}; \cite{medtronic-touch-surgery-accessed-2026}. \\
-\hline
-NeuroVase-style tangible cards & Health-professions learners & Physical cue cards, mobile AR, structured curriculum, pre/post testing, usability measures. & Emerging preprint evidence. & Strong design precedent for tangible medical learning, but not sterile-processing content \cite{jahani-et-al-2026-neurovase}. \\
-\hline
-Surgical-instrument CV research & Researchers and future technical teams & Detection, counting, fine-grained classification, instrument-stand recognition. & Published research, usually bounded datasets. & Supports future camera assistance, but not deployment-ready SPD workflow claims \cite{deol-et-al-2024}; \cite{atabuzzaman-et-al-2025}; \cite{kienle-et-al-2025}. \\
-\hline
-Autonomous tray assembly research & Robotics researchers and future automation teams & Manipulation, sorting, and assembly concepts. & Early research. & Much higher hardware, sterility, safety, and integration burden than the project's training loop \cite{da-silva-et-al-2026}. \\
-\hline
-\end{tabularx}
-\end{table}
-TrayGuard's contribution is a low-cost local training loop that turns a tray
-module into retrieval-first study, applied tray sorting, immediate feedback,
-no-hints assessment, and exportable pre/post evidence.
-
-Medical training software already uses the same design pattern of simulation,
-guided practice, feedback, scoring, and progress tracking. Touch Surgery
-provides mobile surgical procedure simulations with repeated attempts and
-scoring, and a validation study found that users improved across repeated
-attempts while higher-experience cohorts outperformed lower-experience cohorts
-\cite{tulipan-et-al-2019}. Osso VR demonstrated in a randomized trial that
-VR-trained novices completed a downstream orthopedic procedure more often, made
-fewer incorrect steps, and finished faster than guide-only learners
-\cite{orland-et-al-2020}. Body Interact uses screen-based virtual patient
-scenarios with immediate feedback, auto-grading, and educator analytics
-\cite{wolters-kluwer-body-interact-accessed-2026}. Surgical Science and
-Simbionix provide commercial medical simulators across specialties,
-positioning simulation-based assessment as a credible healthcare training
-category \cite{surgical-science-simulators-accessed-2026}. These precedents
-support treating TrayGuard as a health-professions simulation tool that applies
-established learning mechanisms to a new domain: local SPD tray reconstruction.
-\subsection{Literature Gaps and System Response}
+\subsection{Remaining Gaps and TrayGuard's Contribution}
 
 
-The literature supports each design choice individually, but no existing work
-closes the specific gap that TrayGuard targets: a low-cost, repeatable,
-locally configurable training loop for SPD tray reconstruction that measures
-pre/post simulated improvement.
+The literature supports each design choice individually, but no existing work closes the specific gap that TrayGuard targets: a low-cost, repeatable, locally configurable training loop for SPD tray reconstruction that measures pre/post simulated improvement.
+
 \begin{table}[H]
 \centering
 \caption{Literature gaps and TrayGuard's system response}
@@ -1115,8 +1076,7 @@ pre/post simulated improvement.
 \hline
 Gap in the literature & System response & Stakeholder meaning \\
 \hline
-CV papers show instrument-detection feasibility while leaving manufacturer, site, tray, and workflow variation thinly tested \cite{deol-et-al-2024}; \cite{atabuzzaman-et-al-2025}; \cite{kienle-et-al-2025}. & Keep CV optional and locally verifiable. Use instructor-approved content as the source of truth for the training evidence. & The tool does not depend on deployment-grade CV. Camera support can be added later after site-specific validation. \\
-\hline
+
 SPD error papers document real defect rates while leaving the training-intervention mechanism unresolved \cite{alfred-et-al-2021}; \cite{nichol-et-al-2024}. & Run a pre/post simulated learning study with error-category breakdown. & Students can test novice learnability; SPD trainees remain the future validation group for workplace transfer. \\
 \hline
 Training literature supports retrieval practice, simulation, spacing, and feedback while leaving the SPD tray-module design open \cite{roediger-and-karpicke-2006}; \cite{cook-et-al-2011}; \cite{ofstead-et-al-2023}. & Build the module around local retrieval cards, quizzes, applied sorting, weak-item repetition, and error-specific feedback. & Trainees get repeatable practice; instructors get evidence about weak items. \\

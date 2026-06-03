@@ -1,7 +1,8 @@
 % !TEX program = pdflatex
+% This file is GENERATED from fdr_presentation_plan.md -- do not hand-edit.
 \documentclass[10pt,aspectratio=169]{beamer}
 
-% ── Theme ──────────────────────────────────────────────────────────────
+% -- Theme ---------------------------------------------------------------
 \usetheme{Madrid}
 \usecolortheme{default}
 \setbeamertemplate{navigation symbols}{}
@@ -10,7 +11,7 @@
 % Second-screen speaker notes (uncomment for presenting):
 % \setbeameroption{show notes on second screen}
 
-% ── Packages ───────────────────────────────────────────────────────────
+% -- Packages ------------------------------------------------------------
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -19,11 +20,12 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes}
 \usepackage{hyperref}
-% ── Citation (reuse paper's bib) ──────────────────────────────────────
 \usepackage[numbers]{natbib}
 \bibliographystyle{IEEEtran}
+\usepackage{pifont}
+\usepackage{amssymb}
 
-% ── Convenience macros ─────────────────────────────────────────────────
+% -- Convenience macros --------------------------------------------------
 \newcommand{\sectiondivider}[1]{%
   \begin{frame}[plain]
     \centering\vfill
@@ -33,9 +35,7 @@
 }
 \newcommand{\greencheck}{\textcolor{green!60!black}{\checkmark}}
 \newcommand{\redcross}{\textcolor{red}{\ding{55}}}
-\usepackage{pifont}
 
-% Figure placeholder fallback: if file doesn't exist, draw a labelled box.
 \newcommand{\incfig}[2][0.8\textwidth]{%
   \IfFileExists{#2}{%
     \includegraphics[width=#1]{#2}%
@@ -45,58 +45,52 @@
 }
 \newcommand{\incfigw}[2][\textwidth]{\incfig[#1]{#2}}
 
-% ── Title ──────────────────────────────────────────────────────────────
-\title{TrayGuard:\\What We Learned About Why Tray Errors Persist}
+
+\title{TrayGuard: What We Learned About Why Tray Errors Persist}
 \subtitle{EC ENGR 180DW --- Final Design Review}
 \author{Owen Fan, Matthew Li, Andy Ma, Jacob Moore, Qiyu Xin}
 \date{\today}
 
 \begin{document}
 
-% ── Title slide ────────────────────────────────────────────────────────
+% -- Title slide -------------------------------------------------
 \begin{frame}
   \titlepage
-  \note{We're TrayGuard. We spent two quarters looking at why surgical trays
-    arrive wrong or incomplete, and what a team like ours can actually do
-    about it. The answer turned out to be more interesting --- and more
-    frustrating --- than a camera-based fix.}
+  \note{We're TrayGuard. We spent two quarters looking at why surgical trays arrive wrong or incomplete, and what a team like ours can actually do about it. The answer turned out to be more interesting — and more frustrating — than a camera-based fix.}
 \end{frame}
 
-% ── Outline ────────────────────────────────────────────────────────────
+% -- Outline ----------------------------------------------------
 \begin{frame}{Roadmap}
   \tableofcontents
 \end{frame}
 
 % ======================================================================
-%  SECTION 1: INTRODUCTION
+%  SECTION 1: Introduction
 % ======================================================================
-\section{The Problem}
-\sectiondivider{The Problem}
+\section{Introduction}
+\sectiondivider{Introduction}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 2: The problem by the numbers
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 2: The Problem By The Numbers
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Problem By The Numbers}
   \begin{columns}[T]
     \column{0.32\textwidth}
-    \begin{block}{9 per 100 cases}
-      \centering\small
-      Alfred et al. (2021)\\
-      3,900 defects in 41,799 cases\\
+    \begin{block}{\centering\small}
+      \textbf{9 per 100 cases} — Alfred et al. \cite{alfred-et-al-2021}
+      3,900 defects in 41,799 cases
       \textbf{55\% at assembly}
     \end{block}
     \column{0.32\textwidth}
-    \begin{block}{10 min avg delay}
-      \centering\small
-      Nichol et al. (2024)\\
-      236 errors, 147 cases\\
+    \begin{block}{\centering\small}
+      \textbf{10 min avg delay} — Nichol et al. \cite{nichol-et-al-2024}
+      236 errors, 147 cases
       \textbf{\$6--9M/yr estimated cost}
     \end{block}
     \column{0.32\textwidth}
-    \begin{block}{44\% wrong spec}
-      \centering\small
-      Zhu et al. (2019)\\
-      398 errors in 33,839 packages\\
+    \begin{block}{\centering\small}
+      \textbf{44\% wrong spec} — Zhu et al. \cite{zhu-et-al-2019}
+      398 errors in 33,839 packages
       \textbf{largest single category}
     \end{block}
   \end{columns}
@@ -105,22 +99,18 @@
     \centering
     These are recurring, measured operational failures --- not isolated accidents.
   \end{alertblock}
-  \note{Three different methods --- tray defect analysis, direct OR observation,
-    package inspection --- all find the same thing: instruments are missing,
-    wrong, damaged, or swapped at rates that affect every shift, every hospital.
-    When delays happen, they average 10 minutes per affected case. That doesn't
-    sound huge until you multiply by thousands of cases a year.}
+  \note{Three different methods — tray defect analysis, direct OR observation, package inspection — all find the same thing: instruments are missing, wrong, damaged, or swapped at rates that affect every shift, every hospital. When delays happen, they average 10 minutes per affected case. That doesn't sound huge until you multiply by thousands of cases a year. The largest error category in Zhu's study is "wrong specification" — same instrument family, wrong size or variant. The total count was correct; the specific instrument was wrong. That's a visual discrimination problem, not a counting problem.}
 \end{frame}
 
 % ======================================================================
-%  SECTION 2: SYSTEMIC PROBLEM
+%  SECTION 2: The Problem is Deeper Than a Camera Can See
 % ======================================================================
-\section{Why It Persists}
-\sectiondivider{Why Tray Errors Persist}
+\section{The Problem is Deeper Than a Camera Can See}
+\sectiondivider{The Problem is Deeper Than a Camera Can See}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 3: What tray reconstruction requires
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 3: What Tray Reconstruction Actually Requires
+% ───────────────────────────────────────────────────────
 \begin{frame}{What Tray Reconstruction Actually Requires}
   \begin{columns}[T]
     \column{0.48\textwidth}
@@ -136,99 +126,81 @@
       \item All under \textbf{production pressure}
     \end{itemize}
   \end{columns}
-  \note{This is what tray reconstruction looks like. A technician gets a bin
-    of returned instruments mixed together from the last surgery and has to
-    identify each one, check for damage, match to a count sheet that may use
-    local names, and place it correctly. No labels. Local names. Time pressure.}
+  \note{This is what tray reconstruction looks like. A technician gets a bin of returned instruments — mixed together from the last surgery — and has to identify each one, check for damage, match it to a count sheet that may use local names or outdated photos, and place it in the right tray spot. There are no labels on the instruments. The count sheet might call something "Kelly clamp" when the actual instrument says "Crile" on the original package. And you're doing this under time pressure because the next case is waiting. This is a task that demands detailed visual memory, local knowledge, and sustained attention.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 4: Fishbone RCA + structural drivers
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 4: Six Root Causes
+% ───────────────────────────────────────────────────────
 \begin{frame}{Six Root Causes}
   \centering
   \incfigw{figures/fishbone_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{columns}[T]
     \column{0.32\textwidth}
     \textbf{Three structural drivers:}
     \begin{enumerate}
-      \item SPD evolved from materials management → \textbf{no licensure}
+      \item SPD evolved from materials management → \textbf{no licensure, weak professionalization}
     \end{enumerate}
     \column{0.32\textwidth}
     \begin{enumerate}
       \setcounter{enumi}{1}
-      \item Cost-center accounting → errors are \textbf{invisible}
+      \item Cost-center accounting → wage investment is visible, error cost is invisible
     \end{enumerate}
     \column{0.32\textwidth}
     \begin{enumerate}
       \setcounter{enumi}{2}
-      \item No information loop → errors \textbf{repeat}
+      \item No information architecture → downstream OR errors don't trigger upstream correction
     \end{enumerate}
   \end{columns}
-  \note{We built a fishbone RCA across six categories: Product, Knowledge,
-    Process, Information, Environment, Policy/Feedback. Underneath all six,
-    three structural drivers explain why these problems persist. SPD evolved
-    from materials management, not patient care, so there's no licensure.
-    Hospital accounting treats SPD as a cost center -- error costs are
-    invisible. And there's no information system to close the feedback loop.}
+  \note{We built a fishbone RCA across six categories. The quick version: the instrument itself is hard to identify because similar models differ only in subtle dimensions and markings wear off. The technician needs knowledge — but certification tests once, not repeatedly, and local names vary by hospital. The process has no double-check built in; you pick and check in one step. The count sheet might be outdated or use names nobody agrees on. The environment — production pressure, interruptions — makes detail work harder. And when an error does happen, the feedback loop to correct it is slow and manual.
+
+Underneath all six, three structural drivers explain why these problems persist year after year. Sterile processing evolved from materials management — think hospital supply closet — not from patient care. So there's no individual licensure, no board with enforcement authority, no recurring competency requirement. Hospital accounting treats SPD as a cost center: spending on staff or training shows up as expense, but the cost of errors is invisible. And there's no information system that connects a tray error discovered in the OR back to the specific tray, shift, and training gap that caused it. So the same errors repeat.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 5: Broken feedback loop
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 5: The Broken Feedback Loop
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Broken Feedback Loop}
   \centering
   \incfigw{figures/feedback_loop_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{quote}
     \small
-    ``Error reporting is cumbersome, human-dependent, delayed, and
-    incomplete.'' --- Nichol et al.
+    "Error reporting is cumbersome, human-dependent, delayed, and incomplete." --- Nichol et al.
   \end{quote}
-  \note{This is the feedback loop that doesn't close. An instrument is missing
-    during surgery. The scrub nurse fills an incident report on paper after the
-    case. It reaches SPD management weeks later. By then nobody can connect it
-    to the specific tray, shift, or training gap. So nothing changes. Even a
-    perfect detector wouldn't fix this gap.}
+  \note{This is the feedback loop that doesn't close. An instrument is missing during surgery. The scrub nurse fills out an incident report — on paper, after the case. That report filters through risk management and reaches SPD management weeks later. By then, nobody can say which tray, which shift, which technician, or which training gap caused it. So nothing changes. The same error repeats next week. Even a perfect detector — one that caught every error at the assembly station — wouldn't fix this broken feedback architecture. It would tell you something was wrong but not why, or who needs help, or whether the count sheet itself is wrong.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 6: Seven solution categories
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 6: We Evaluated Seven Solution Categories
+% ───────────────────────────────────────────────────────
 \begin{frame}{We Evaluated Seven Solution Categories}
   \centering
   \small
-  \begin{tabular}{lccc}
+  \begin{tabular}{cccc}
     \toprule
-    Solution & Buildable? & Validatable? & Infra? \\
+    Solution & Buildable? & Validatable? & Creates infra for future? \\
     \midrule
-    CV tray checker       & No  & No  & Maybe \\
-    Physical error-proofing & No  & No  & No \\
-    Workflow redesign     & No  & No  & No \\
-    Decision support      & Part & Part & Yes \\
-    Task simplification   & No  & No  & No \\
-    Accountability system & No  & No  & No \\
-    \textbf{Training}     & \textbf{Yes} & \textbf{Yes} & \textbf{Yes} \\
+    CV tray checker & No (needs SPD) & No & Maybe \\
+    Physical error-proofing & No (custom fab) & No & No \\
+    Workflow redesign & No (policy change) & No & No \\
+    Decision support & Partial & Partial & Yes (local content) \\
+    Task simplification & No (hospital data) & No & No \\
+    Accountability system & No (org policy) & No & No \\
+    \textbf{Training (selected)} & \textbf{Yes} & \textbf{Yes} & \textbf{Yes (module schema)} \\
     \bottomrule
-  \end{tabular}
-  \note{We mapped every intervention category in the literature and industry.
-    Every one requires something we don't have: SPD deployment, policy
-    authority, instrument inventory, or multi-stakeholder buy-in. Training is
-    the only category buildable with printed cards and a laptop, validatable
-    with a pre/post study, and creates durable infrastructure -- the local
-    content module -- that future solutions need.}
+\end{tabular}
+  \note{We mapped every intervention category we could find in the literature and industry. Automated tray checking, physical error-proofing like custom foam cutouts, workflow redesign with dual checks, decision-support kiosks at the workstation, tray rationalization, competency tracking systems — every one requires something we don't have. SPD deployment access, policy authority, instrument inventory, hospital utilization data, multi-stakeholder buy-in. Training is the only category that is buildable with printed cards and a laptop, that we can validate with a pre/post study, and that creates durable infrastructure — the local content module — that any future solution would need anyway.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 7: Training is not a cure
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{Training is a Buildable Entry Point --- Not a Cure}
+% ───────────────────────────────────────────────────────
+% Slide 7: Why Training, Not Because Training Is a Cure
+% ───────────────────────────────────────────────────────
+\begin{frame}{Why Training, Not Because Training Is a Cure}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{exampleblock}{What training addresses}
+    \begin{exampleblock}{\centering What training \textbf{addresses}}
       \begin{itemize}
         \item Measurable local tray knowledge
         \item Lookalike discrimination practice
@@ -236,7 +208,7 @@
       \end{itemize}
     \end{exampleblock}
     \column{0.48\textwidth}
-    \begin{alertblock}{What training does NOT fix}
+    \begin{alertblock}{\centering What training does \textbf{NOT} fix}
       \begin{itemize}
         \item Broken count sheets
         \item Staffing shortages
@@ -245,130 +217,116 @@
       \end{itemize}
     \end{alertblock}
   \end{columns}
-  \vspace{0.3cm}
   \begin{block}{}
     \centering
     Training is the one piece we can build and validate \textbf{now}.
   \end{block}
-  \note{We need to be clear about what training does and doesn't do. It helps
-    novices practice and produces measurable evidence. But it won't fix broken
-    count sheets, solve staffing shortages, or close the feedback loop. Those
-    are structural problems. Training is the one piece we can validate without
-    a hospital partnership.}
+  \note{We need to be clear about what training does and doesn't do. A training tool can help a novice practice instrument names, lookalike distinctions, and count-sheet rules. It can produce pre/post evidence of improvement. That's real and measurable. But it won't fix an outdated count sheet. It won't solve staffing shortages, raise wages, or close the feedback loop from the OR. These are structural problems that require organizational and policy change. Training is not a substitute for those. It's the one piece we can build and validate without a hospital partnership. If it works, it gives the next team a reason to tackle the harder pieces. If it doesn't, that's useful evidence too.}
 \end{frame}
 
 % ======================================================================
-%  SECTION 3: CV EXPERIMENTS
+%  SECTION 3: Why CV Alone Won't Work
 % ======================================================================
 \section{Why CV Alone Won't Work}
-\sectiondivider{Why Computer Vision\\Alone Won't Work}
+\sectiondivider{Why CV Alone Won't Work}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 8: Experiment summary
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 8: We Ran 7 Staged Detection Experiments
+% ───────────────────────────────────────────────────────
 \begin{frame}{We Ran 7 Staged Detection Experiments}
   \centering
   \small
-  \begin{tabular}{lrc}
+  \begin{tabular}{ccc}
     \toprule
-    Experiment & Test & Key result \\
+    Experiment & What it tested & Key result \\
     \midrule
-    Bright $\rightarrow$ dim   & Light tolerance & mAP50-95 = 0.781 \\
-    Matte $\rightarrow$ reflective & Background & mAP50-95 = 0.759 \\
-    Separated $\rightarrow$ overlay & Occlusion & \textbf{mAP50-95 = 0.389} \\
+    Bright→dim & Light tolerance & mAP50-95 = 0.781 \\
+    Matte→reflective & Background transfer & mAP50-95 = 0.759 \\
+    Separated→overlay & Occlusion & \textbf{mAP50-95 = 0.389} \\
     Real instruments & Shape vs position & Per-class AP: 0.000--0.862 \\
     \bottomrule
-  \end{tabular}
+\end{tabular}
   \vspace{0.3cm}
   \begin{block}{}
     \centering
-    Lavado baseline (clean data): \textbf{mAP50 = 0.990}\\
-    Pipeline works --- the data doesn't generalize.
+    Lavado baseline (clean data): \textbf{mAP50 = 0.990}. Pipeline works — the data doesn't generalize.
   \end{block}
-  \note{We built a complete YOLO training pipeline. On a clean dataset we got
-    mAP50 of 0.990. The pipeline works. The problem is what happens when you
-    test on conditions SPD workstations actually present. Every variation cost
-    accuracy. The biggest drop -- overlay layout -- produced mAP50-95 of 0.389.}
+  \note{We built a complete YOLO training pipeline. On a clean published dataset — Lavado surgical instruments — we got mAP50 of 0.990. The pipeline works fine. The problem is what happens when you test on conditions that SPD workstations actually present. We ran seven staged experiments isolating brightness, background reflectivity, and layout occlusion. Every variation cost accuracy. The biggest drop — overlay layout, which simulates instruments touching in a tray — produced mAP50-95 of 0.389.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 9: Brightness
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 9: Brightness Degradation
+% ───────────────────────────────────────────────────────
 \begin{frame}{Brightness Degradation}
   \centering
   \includegraphics[width=0.8\textwidth]{figures/brightness_map50_95_panels.png}
-  \note{This plot shows what happens as the light gap widens. Left: trained on
-    darkest, tested on brighter. Right: trained on brightest, tested on dimmer.
-    SPD lighting varies by workstation, time of day, fixture condition. Every
-    variation costs detection reliability.}
+  \note{This plot shows what happens as the light gap widens. Left panel: trained on darkest, tested on brighter levels. Right panel: trained on brightest, tested on dimmer. The farther the gap, the worse the accuracy. SPD lighting varies by workstation, time of day, fixture condition. Every variation costs you detection reliability. This is not a solvable problem with more training data alone — you'd need to characterize and cover every lighting condition at every workstation.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 10: Occlusion
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 10: Occlusion Is the Dealbreaker
+% ───────────────────────────────────────────────────────
 \begin{frame}{Occlusion Is the Dealbreaker}
   \begin{columns}[T]
     \column{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/separated_layout_example.jpg}\\
-    \tiny Separated layout (training)
+    \textbf{Separated layout (training)}\\
+    \incfig[\textwidth]{figures/separated_layout_example.jpg}
     \column{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/overlay_layout_example.jpg}\\
-    \tiny Overlay layout (test)
+    \textbf{Overlay layout (test)}\\
+    \incfig[\textwidth]{figures/overlay_layout_example.jpg}
   \end{columns}
   \vspace{0.2cm}
   \centering
-  \includegraphics[width=0.6\textwidth]{figures/overlay_map50_95.png}
-  \note{Left: separated layout -- what you'd train on. Right: overlay -- what
-    a real tray looks like. When we trained separated and tested on overlay,
-    mAP50-95 dropped from 0.995 to 0.389. You'd need to ask the technician to
-    rearrange before scanning, which defeats the purpose.}
+  \tiny Overlay degradation\\
+  \incfig[0.6\textwidth]{figures/overlay_map50_95.png}
+  \note{This is the most telling experiment. Left: separated layout — what you'd train on. Right: overlay — what a real tray looks like. Instruments in a tray touch and overlap. When we trained separated and tested on overlay, mAP50-95 dropped from 0.995 to 0.389. That means every time instruments overlap — which is most of the time in a real tray — the detector can't reliably tell what's there. You'd need to ask the technician to stop and rearrange before scanning, which defeats the purpose of an automated check.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 11: Position-cue confounding
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 11: Real Instruments: The Model Learned Position, Not Shape
+% ───────────────────────────────────────────────────────
 \begin{frame}{Real Instruments: The Model Learned Position, Not Shape}
   \begin{columns}[T]
-    \column{0.45\textwidth}
+    \column{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/confusion_matrix_normalized.png}
-    \column{0.45\textwidth}
+    \textbf{Confusion matrix}\\
+    \incfig[\textwidth]{figures/confusion_matrix_normalized.png}
+    \column{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/val_batch0_pred.jpg}
+    \textbf{Prediction example}\\
+    \incfig[\textwidth]{figures/val_batch0_pred.jpg}
   \end{columns}
   \vspace{0.2cm}
   \centering
   \small
-  \begin{tabular}{lcc}
+  \begin{tabular}{ccc}
     \toprule
-    Split & Surviving classes & Zero AP \\
+    Split & Surviving classes & Zero AP classes \\
     \midrule
-    Matte $\rightarrow$ reflective & scissor2, forcep, scalpel & scissor1/3/4 \\
-    Reflective $\rightarrow$ matte & \textbf{scalpel only} & all others \\
+    Matte→reflective & scissor2, forcep, scalpel & scissor1/3/4 \\
+    Reflective→matte & \textbf{scalpel only} & scissor1/2/3/4, forcep \\
     Shape similarity & scissor1, scissor4 & scissor2/3, forcep \\
     \bottomrule
-  \end{tabular}
-  \note{This is diagnostic. Per-class AP ranges from 0.000 to 0.862 depending
-    on the split. Different classes survive in different splits because the
-    model memorizes positions, not shapes. The only class that transfers is
-    scalpel -- the most visually distinct. This isn't fixable with more data
-    alone; you'd need randomized positions.}
+\end{tabular}
+  \note{This is the diagnostic result. We tested six real instrument classes — four scissors, a forcep, a scalpel. Per-class AP ranges from 0.000 to 0.862 depending on which split you look at. Different classes survive in different splits. The only class that transfers reliably is the scalpel — the most visually distinct instrument with a single blade versus multi-loop scissors.
+
+The pattern is caused by position-cue confounding. Each image has exactly one of each class at fixed positions per session. The model memorizes which class appears at which image location. When the position changes — which happens every time you process a different tray — the model fails. This isn't a problem you can fix with more data alone. You need randomized positions, which means a completely different data collection protocol.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 12: CV validation burden
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{The Cumulative Lesson}
-  \begin{block}{What a deployment-grade CV system still needs}
+% ───────────────────────────────────────────────────────
+% Slide 12: The Cumulative Lesson: CV Validation Burden
+% ───────────────────────────────────────────────────────
+\begin{frame}{The Cumulative Lesson: CV Validation Burden}
+  \begin{block}{\centering What a deployment-grade CV system still needs}
     \begin{itemize}
-      \item[$\times$] Site-specific training data (instruments, lighting, layouts)
-      \item[$\times$] Cross-manufacturer validation \cite{kienle-et-al-2025}
-      \item[$\times$] Open-set rejection (unknown objects = false positives)
-      \item[$\times$] Human-in-the-loop for every uncertain case
-      \item[$\times$] Workflow integration in live SPD
-      \item[$\times$] Regulatory / device policy / privacy review
+      \item[\textcolor{red}{\ding{55}}] Site-specific training data (instruments, lighting, layouts) 
+      \item[\textcolor{red}{\ding{55}}] Cross-manufacturer validation \cite{kienle-et-al-2025} (Kienle: major performance drop) 
+      \item[\textcolor{red}{\ding{55}}] Open-set rejection (unknown objects = false positives) 
+      \item[\textcolor{red}{\ding{55}}] Human-in-the-loop for every uncertain case 
+      \item[\textcolor{red}{\ding{55}}] Workflow integration in live SPD (never tested) 
+      \item[\textcolor{red}{\ding{55}}] Regulatory / device policy / privacy review 
     \end{itemize}
   \end{block}
   \vspace{0.3cm}
@@ -376,42 +334,33 @@
     \centering
     The training path doesn't need any of this for a first study.
   \end{exampleblock}
-  \note{CV works in matched controlled conditions and degrades under every SPD
-    variation. A deployment-grade system needs site-specific data for every
-    hospital, cross-manufacturer validation, open-set rejection, human review,
-    and regulatory clearance. We cannot responsibly build that in a quarter.
-    The pivot was driven by this evidence.}
+  \note{The cumulative evidence is clear: CV detection works in matched, controlled conditions and degrades under every variation that SPD workflows present. A deployment-grade system would need site-specific data for every hospital, cross-manufacturer validation because Kienle showed big drops between brands, open-set rejection for unknown objects, human-in-the-loop for every uncertain case, workflow integration testing, and regulatory review. We cannot responsibly build that in a one-quarter project. The pivot to a training path was driven by this evidence, not by convenience.}
 \end{frame}
 
 % ======================================================================
-%  SECTION 4: TRAINING DESIGN
+%  SECTION 4: Why Training Is the Best Entry Point
 % ======================================================================
-\section{The Training Path}
-\sectiondivider{Why Training Is the\\Best Entry Point}
+\section{Why Training Is the Best Entry Point}
+\sectiondivider{Why Training Is the Best Entry Point}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 13: CV and training are complementary
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{CV and Training Are Complementary, Not Competing}
+% ───────────────────────────────────────────────────────
+% Slide 13: CV and Training Are Complementary
+% ───────────────────────────────────────────────────────
+\begin{frame}{CV and Training Are Complementary}
   \centering
   \incfigw{figures/complementary_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{block}{}
     \centering
-    The module is the durable artifact. The training loop proves the module
-    works. The module then enables CV.
+    The module is the durable artifact. The training loop proves the module works. The module then enables CV.
   \end{block}
-  \note{Building a CV tray checker without a training layer means no ground
-    truth. You don't know the correct names, aliases, or lookalike pairs.
-    The training loop builds and validates all of that at low cost. Once you
-    have a validated module, that same data feeds any future CV system.}
+  \note{Here's the key insight. Building a CV tray checker without this training layer means you don't have ground truth. You don't know the correct instrument names, the correct aliases, the lookalike pairs, the tray-specific counts. The training loop builds and validates all of that at low cost, with printed cards and a laptop. Once you have a validated module — instructor-approved names, tested lookalike pairs, measured error categories — that same data feeds any future CV system. The training loop and CV are not competing approaches. The training loop creates the prerequisite infrastructure.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 14: Tray module schema
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}[fragile]{The Durable Artifact: Tray Module Schema}
+% ───────────────────────────────────────────────────────
+% Slide 14: The Durable Design Artifact: Tray Module Schema
+% ───────────────────────────────────────────────────────
+\begin{frame}[fragile]{The Durable Design Artifact: Tray Module Schema}
   \begin{columns}[T]
     \column{0.55\textwidth}
     \begin{lstlisting}
@@ -439,163 +388,135 @@
       \item \textbf{Schema survives.}
     \end{itemize}
   \end{columns}
-  \note{This is the durable output. The fields mirror real count-sheet
-    structure from Stryker's published sheets. The software prototype is
-    throwaway -- future teams will choose their own stack -- but this schema
-    captures the local tray knowledge that any solution needs.}
+  \note{This is the durable output. A file-backed tray module that defines what instruments belong in a tray, what they're called locally, what they're confused with, and how to assess them. The fields mirror real count-sheet structure — Stryker's published count sheets use tray name, reference number, description, location, quantity, check box. Our module adds learning-specific fields: aliases, lookalike pairs, study prompts, confidence tracking. The software prototype we built is throwaway — any future team will choose their own stack. But this schema captures the local tray knowledge that any solution needs. That's what survives.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 15: Printed cards
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 15: Printed Cards: How It Works Physically
+% ───────────────────────────────────────────────────────
 \begin{frame}{Printed Cards: How It Works Physically}
   \begin{columns}[T]
     \column{0.48\textwidth}
     \centering
     \textbf{Front (assessment)}\\
-    \incfig[0.5\textheight]{figures/card_front_placeholder.pdf}
+    \incfig[\textwidth]{figures/card_front_placeholder.pdf}
     \column{0.48\textwidth}
     \centering
     \textbf{Back (study)}\\
-    \incfig[0.5\textheight]{figures/card_back_placeholder.pdf}
+    \incfig[\textwidth]{figures/card_back_placeholder.pdf}
   \end{columns}
-  \vspace{0.2cm}
+  \vspace{0.3cm}
   \begin{block}{}
     \centering
     Neutral front prevents answer leakage. Tag ID maps to instrument ID.
   \end{block}
-  \note{Each instrument gets a printed card. The front has an AprilTag with no
-    text, so during a test the learner can't read the answer off the card. The
-    back has name, aliases, and features for study mode. The learner places
-    cards on a table, the camera detects them, and the scoring engine compares
-    against the tray template.}
+  \note{Each instrument gets a printed card. The front has an AprilTag marker — no text, so during a test the learner can't read the answer off the card. The back has the name, aliases, and features for study mode. The tag ID maps to an instrument ID through the module. The learner places cards on a table, the camera detects which tags are there, and the scoring engine compares their selection against the tray template.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 16: Scoring categories
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 16: The Scoring Architecture: 5 Error Categories
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Scoring Architecture: 5 Error Categories}
   \centering
   \small
-  \begin{tabular}{lll}
+  \begin{tabular}{ccc}
     \toprule
     Category & Definition & Example \\
     \midrule
-    Correct & Right item, right count & 1 scalpel handle \\
+    Correct & Right item, right count & 1 scalpel handle \checkmark \\
     Missing & Required item not selected & No Kelly clamp \\
     Wrong & Item not on tray list & Retractor not in this tray \\
     Extra & Distractor selected & Item from different tray \\
     Misidentified & Right class, wrong variant & Curved instead of straight \\
     Wrong count & Right item, wrong quantity & 2 Kellys, need 4 \\
     \bottomrule
-  \end{tabular}
+\end{tabular}
   \vspace{0.3cm}
   \begin{itemize}
-    \item Maps to literature error categories \cite{alfred-et-al-2021, zhu-et-al-2019, nichol-et-al-2024}
+    \item Maps to literature error categories \cite{alfred-et-al-2021,zhu-et-al-2019,nichol-et-al-2024}
     \item Can separate \textit{what} improved (fewer misses? fewer lookalikes?)
   \end{itemize}
-  \note{These six categories map directly to the literature. Zhu's 44\% wrong
-    specification -- that's misidentified. Alfred's missing, wrong, extra,
-    damaged -- we capture all of them. When a learner improves, we can say
-    which type of error they reduced.}
+  \note{The scoring engine classifies every selection into six categories. These map directly to the error categories in the literature. Zhu's packaging study found 44\% were wrong specification — that's our misidentified category. Alfred found missing, wrong, extra, and damaged — we have all of those. Nichol found that lookalike substitution is a distinct error pattern — our misidentified category captures that separately from generic "wrong." When a learner improves from pre-test to post-test, we can say which type of error they reduced. That's more informative than a single accuracy number.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 17: Confidence capture
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 17: Confidence Capture
+% ───────────────────────────────────────────────────────
 \begin{frame}{Confidence Capture}
   \centering
   \incfigw{figures/confidence_mockup_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{alertblock}{High-confidence error}
-      Learner was sure but wrong\\
-      Targeted feedback needed
+    \begin{alertblock}{\centering High-confidence error}
+      Learner was sure but wrong. Targeted feedback needed.
     \end{alertblock}
     \column{0.48\textwidth}
-    \begin{exampleblock}{Low-confidence correct}
-      Learner was unsure but right\\
-      Fragile knowledge, needs reinforcement
+    \begin{exampleblock}{\centering Low-confidence correct}
+      Learner was unsure but right. Fragile knowledge, needs reinforcement.
     \end{exampleblock}
   \end{columns}
-  \note{After each tray sort, the learner rates confidence. This separates
-    two failure modes: high-confidence errors (overconfidence, hardest to
-    correct) and low-confidence correct answers (fragile knowledge). Both
-    are visible in the export.}
+  \note{After each tray sort, the learner rates their confidence. This separates two very different failure modes. A high-confidence error means someone is confidently wrong — that's the hardest type to correct because the learner doesn't know they need help. Low-confidence correct means fragile knowledge that might not survive a week without review. Both are visible in the export.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 18: Learning loop
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{The 7-Step Learning Loop}
+% ───────────────────────────────────────────────────────
+% Slide 18: The Learning Loop (7 Steps)
+% ───────────────────────────────────────────────────────
+\begin{frame}{The Learning Loop (7 Steps)}
   \centering
   \incfigw{figures/learning_loop_placeholder.pdf}
-
-  \vspace{0.2cm}
+  \vspace{0.3cm}
   \begin{block}{}
-    Pre-test (baseline) $\rightarrow$ Study cards $\rightarrow$ Quiz
-    $\rightarrow$ Practice sort $\rightarrow$ Post-test $\rightarrow$ Export
+    \centering
+    Pre-test (baseline) → Study cards → Quiz → Practice sort → Post-test → Export
   \end{block}
-  \note{Each step has an evidence-based role. Pre/post use parallel variants
-    so learners can't memorize exact layouts. Study cards are prompt-before-
-    reveal -- retrieval practice, not passive review. Practice sort gives
-    immediate error feedback. The full loop takes 45-60 minutes.}
+  \note{This is the full learner loop. Each step has a specific evidence-based role. The pre-test and post-test use parallel variants — same instrument families, different specific items — so the learner can't memorize the exact layout. Study cards are prompt-before-reveal: the learner commits to an answer before seeing it, which is retrieval practice, not passive review. The practice sort gives immediate error-category feedback — "you missed the Kelly clamp," "you selected curved instead of straight Mayo." The whole loop takes about 45 to 60 minutes for a first module.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 19: Research question
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 19: The Research Question
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Research Question}
   \begin{center}
     \vfill
     \Large
-    How can a local tray training and assessment system help novice users
-    improve their ability to detect missing, wrong, extra, misidentified,
-    or miscounted instruments before supervised SPD work?
+    How can a local tray training and assessment system help novice users improve their ability to detect missing, wrong, extra, misidentified, or miscounted instruments before supervised SPD tray-reconstruction work?\\
     \vfill
   \end{center}
   \begin{exampleblock}{}
     \centering
     That question is narrow, testable, and honest about what we can claim.
   \end{exampleblock}
-  \note{That's the research question this design answers. Not "does TrayGuard
-    reduce OR delays." Not "does it certify competence." It's: can a novice
-    improve on a simulated tray task after retrieval-centered practice? That's
-    a question we can answer.}
+  \note{That's the research question this design answers. It's not "does TrayGuard reduce OR delays." It's not "does TrayGuard certify competence." It's: can a novice improve on a simulated local tray task after retrieval-centered practice? That's a question we can answer.}
 \end{frame}
 
 % ======================================================================
-%  SECTION 5: FUTURE WORK
+%  SECTION 5: What a Future Team Should Do
 % ======================================================================
-\section{Future Validation}
+\section{What a Future Team Should Do}
 \sectiondivider{What a Future Team Should Do}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 20: Study ladder
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 20: The Study Ladder
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Study Ladder}
   \centering
   \incfigw{figures/study_ladder_placeholder.pdf}
-
   \vspace{0.3cm}
-  \begin{alertblock}{}
+  \begin{block}{}
+    \centering
     Kirkpatrick Level 2 target. Level 3--4 require future validation.
-  \end{alertblock}
-  \note{Each step validates a different piece of the evidence chain. Step 1
-    ensures the measurement tool works. Step 2 tests learning mechanism. Step 3
-    checks retention at 7 days. Step 4 brings in an expert. Only after all four
-    should someone invest in an SPD pilot.}
+  \end{block}
+  \note{We designed a five-step study ladder. Each step validates a different piece of the evidence chain, and each step depends on the one before it. Step 1 — marker reliability — makes sure the cards scan correctly so app errors don't look like learner errors. Step 2 — the novice study — tests whether the learning mechanism works at all. Step 3 checks whether gains persist after 7 days — because same-day improvement is not retention. Step 4 brings in an expert to review whether our names, counts, and lookalike pairs make sense. Only after all four should someone invest in Step 5 — an SPD pilot. The current evidence supports starting at Step 1 and 2.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 21: Study 1 novice
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 21: Study 1: Novice Pre/Post Design
+% ───────────────────────────────────────────────────────
 \begin{frame}{Study 1: Novice Pre/Post Design}
   \centering
   \small
-  \begin{tabular}{lrl}
+  \begin{tabular}{ccc}
     \toprule
     Segment & Time & Activity \\
     \midrule
@@ -607,50 +528,41 @@
     Post-test & 5--8 min & Parallel variant, no hints \\
     Photo-ID test & 5--7 min & Convergent validity \\
     \bottomrule
-  \end{tabular}
+\end{tabular}
   \vspace{0.3cm}
   \begin{block}{}
-    $\mathbf{n = 8\text{--}12}$ novices, one 60-min session, within-subject
+    \centering
+    \textbf{n = 8--12} novices, one 60-min session, within-subject
   \end{block}
-  \note{The novice study uses a within-subject pre/post design. 8-12
-    participants with no SPD experience. Primary measures: pre/post accuracy,
-    error categories, duration, confidence. Convergent photo-ID test
-    correlates tray accuracy with photo identification (target r $\ge$ 0.50).}
+  \note{The novice study uses a within-subject pre/post design, 8--12 participants with no SPD experience. One 60-minute session per person. Primary measures are pre/post accuracy, error-category counts, duration, and confidence calibration. We also include a convergent photo-ID test — learners identify instruments from photos without the tray context. If tray-sort accuracy correlates with photo-ID accuracy at r $\ge$ 0.50, we have evidence that the tray scores reflect instrument knowledge, not task-specific familiarity.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 22: Delayed retention
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{Study 2: Delayed Retention}
+% ───────────────────────────────────────────────────────
+% Slide 22: Study 2: Delayed Retention (The Falsification Criterion)
+% ───────────────────────────────────────────────────────
+\begin{frame}{Study 2: Delayed Retention (The Falsification Criterion)}
   \centering
   \incfigw{figures/retention_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{columns}[T]
     \column{0.32\textwidth}
-    \textbf{Criterion 1}\\
-    $\ge$ 50\% of gain retained
+    \textbf{Criterion 1} — $\ge$ 50\% of gain retained
     \column{0.32\textwidth}
-    \textbf{Criterion 2}\\
-    Accuracy $>$ 5pp above baseline
+    \textbf{Criterion 2} — Accuracy > 5pp above baseline
     \column{0.32\textwidth}
-    \textbf{Criterion 3}\\
-    $\ge$ 70\% return rate
+    \textbf{Criterion 3} — $\ge$ 70\% return rate
   \end{columns}
   \vspace{0.2cm}
   \begin{alertblock}{}
-    If these fail, the claim reverts to ``immediate learning only.''
+    If these fail, the claim reverts to "immediate learning only."
   \end{alertblock}
-  \note{Same-day post-test can't be called retention. Bell et al. showed
-    medical gains decay measurably within 7 days. We require three
-    falsification criteria: retain half the gain, stay above baseline, and
-    70\% return rate. If these fail, we report immediate learning only.}
+  \note{A same-day post-test can't be called retention. Bell et al. showed medical-knowledge gains can decay measurably within 7 days. So we require a 7-day delayed check with explicit falsification criteria. The retention claim is supported only if three conditions are met: delayed accuracy retains at least half the immediate gain, it stays at least 5 percentage points above baseline, and at least 70\% of participants come back. If these fail, the project claim reverts to "immediate learning only." This is an honest go/no-go — we specify upfront what would falsify our claim.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 23: Expert review
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{Study 3: Expert Review}
+% ───────────────────────────────────────────────────────
+% Slide 23: Study 3: Expert Review (Closing the Content Gap)
+% ───────────────────────────────────────────────────────
+\begin{frame}{Study 3: Expert Review (Closing the Content Gap)}
   \begin{itemize}
     \item[\textbf{Q}] Are instrument names and aliases correct for local practice?
     \item[\textbf{Q}] Are counts and distractors plausible for training?
@@ -661,102 +573,82 @@
   \vspace{0.3cm}
   \begin{block}{}
     \centering
-    The main weakness of a student-built module is \textbf{content validity}.
-    Expert review closes that gap.
+    The main weakness of a student-built module is \textbf{content validity}. Expert review closes that gap.
   \end{block}
-  \note{We don't work in an SPD. An instructor or SPD educator needs to
-    review names, counts, distractors, and feedback. If they say the module
-    is plausible, we proceed to an SPD pilot. If they find problems, we fix
-    them first.}
+  \note{The main weakness of a student-built module is content validity. We don't work in an SPD. An instructor or SPD educator needs to review names, counts, distractors, lookalike pairs, and feedback language. If they say the module is plausible, we can proceed to an SPD pilot. If they find problems, we fix those before testing with real trainees.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 24: Go/no-go
-% ───────────────────────────────────────────────────────────────────────
-\begin{frame}{Go/No-Go Decision}
+% ───────────────────────────────────────────────────────
+% Slide 24: Go/No-Go Decision for Future Team
+% ───────────────────────────────────────────────────────
+\begin{frame}{Go/No-Go Decision for Future Team}
   \centering
   \incfigw{figures/gonogo_placeholder.pdf}
-
   \vspace{0.3cm}
   \begin{block}{}
     \centering
-    Study passes $\rightarrow$ SPD pilot is justified.\\
-    Study fails $\rightarrow$ problem may be harder than training alone.
+    Study passes → SPD pilot is justified. Study fails → problem may be harder than training alone.
   \end{block}
-  \note{If the novice study shows learning, retention persists, and content
-    is plausible, then investing in an SPD pilot is justified. If it fails,
-    the problem may be harder than training alone can solve -- and that's
-    useful evidence too.}
+  \note{This is the decision framework we leave the next team. If the novice study shows learning and the 7-day check shows retention, and an expert confirms the content is plausible, then investing in an SPD pilot is justified. If the novice study fails — if the measurement tool doesn't work, or novices don't improve — then the problem may be harder than training alone can solve, and that's a useful finding too.}
 \end{frame}
 
 % ======================================================================
-%  SECTION 6: CONCLUSION
+%  SECTION 6: Conclusion
 % ======================================================================
 \section{Conclusion}
 \sectiondivider{Conclusion}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 25: Know / don't know
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 25: What We Know and What We Don't
+% ───────────────────────────────────────────────────────
 \begin{frame}{What We Know and What We Don't}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{exampleblock}{What we know}
+    \begin{exampleblock}{\centering \textbf{What we know}}
       \begin{itemize}
-        \item Tray errors are systemic and well-documented
-        \item CV alone has too high a validation burden
+        \item Tray errors are systemic, recurring, and well-documented
+        \item CV alone can't solve this — the validation burden is too high
         \item Training is the buildable entry point
         \item The module schema is durable infrastructure
         \item The study ladder has falsification criteria
       \end{itemize}
     \end{exampleblock}
     \column{0.48\textwidth}
-    \begin{alertblock}{What we can't claim (yet)}
+    \begin{alertblock}{\centering \textbf{What we can't claim (yet)}}
       \begin{itemize}
         \item Training transfers to real SPD work
-        \item System works for experienced techs
+        \item System works for experienced technicians
         \item It reduces OR delays
         \item CV is deployment-ready
-        \item Same-day gains persist (Study 2)
+        \item Same-day gains persist (Study 2 tests this)
       \end{itemize}
     \end{alertblock}
   \end{columns}
-  \note{This sums up what we accomplished. We didn't build a deployable
-    product. We built an evidence-backed argument for the right starting
-    point, designed the measurement infrastructure, and left a testable
-    protocol.}
+  \note{This sums up what we actually accomplished. We did not build a deployable product. We built an evidence-backed argument for what the right starting point is, designed the measurement and validation infrastructure, and left the next team with a testable protocol.}
 \end{frame}
 
-% ───────────────────────────────────────────────────────────────────────
-% Slide 26: Honest handoff
-% ───────────────────────────────────────────────────────────────────────
+% ───────────────────────────────────────────────────────
+% Slide 26: The Honest Handoff
+% ───────────────────────────────────────────────────────
 \begin{frame}{The Honest Handoff}
   \begin{center}
     \vfill
     \Large
-    Our project found that this problem is harder and more systemic than\\
-    any single technical fix can address.\\
-    \vspace{0.5cm}
-    Our contribution is documenting \textit{why}, and giving the next team\\
-    a validated starting point --- not a finished product.
+    Our project found that this problem is harder and more systemic than any single technical fix can address. Our contribution is documenting \textit{why}, and giving the next team a validated starting point — not a finished product.\\
     \vfill
   \end{center}
-  \vspace{0.3cm}
-  \begin{block}{}
-    \centering\large
-    The study is designed. The schema is defined. The scoring is tested.\\
-    \textbf{Run the study.}
-  \end{block}
-  \note{We started thinking we'd build a camera that catches tray errors. We
-    ended up understanding that tray errors are a system problem rooted in how
-    the SPD workforce is structured, funded, and connected to the OR. A camera
-    can't fix that. Training alone can't fix wage stagnation or staffing gaps.
-    But a training loop can create the infrastructure every future solution
-    needs. Our honest recommendation: take the schema, protocol, and criteria.
-    Run the study.}
+  \begin{exampleblock}{}
+    \centering
+    The study is designed. The schema is defined. The scoring is tested. \textbf{Run the study.}
+  \end{exampleblock}
+  \note{We started this project thinking we'd build a camera that catches tray errors. We ended up understanding that tray errors are a system problem — rooted in how the SPD workforce is structured, funded, and connected to the OR. A camera can't fix a broken feedback loop. Training alone can't fix wage stagnation or staffing shortages. But a training loop can create the local content infrastructure that every future solution needs, and it can produce the first piece of measurable evidence.
+
+Our honest recommendation: take the module schema, the study protocol, and the falsification criteria we designed. Run the novice study. If it works, the SPD pilot is the next question. If it doesn't, the problem is even harder than we thought — and that's useful to know too.
+
+Thank you. Questions.}
 \end{frame}
 
-% ── References ─────────────────────────────────────────────────────────
+% -- References -------------------------------------------------
 \begin{frame}[allowframebreaks]{References}
   \bibliography{trayguard_refs}
 \end{frame}

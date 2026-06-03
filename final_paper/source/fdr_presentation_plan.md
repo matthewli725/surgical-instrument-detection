@@ -1,16 +1,16 @@
-# TrayGuard FDR Oral Presentation — Outline & Speaker Script
+# TrayGuard: What We Learned About Why Tray Errors Persist
 
-**Duration**: 20–25 min · **Speakers**: Matthew, Andy, Jacob, Owen, Qiyu (~4–5 min each)
+**Duration**: 20--25 min · **Speakers**: Matthew, Andy, Jacob, Owen, Qiyu (~4--5 min each)
 
 ## Rationale
 
 The presentation follows a defensive arc: establish the systemic problem → show why CV alone fails → narrow to what is buildable (training) → prove the prototype works as a feasibility argument → hand off a testable protocol.
 
-1. **Open with data** (slides 1–2) — the problem is real, measured, and recurrent. Establishes stakes.
-2. **Deepen the problem** (slides 3–7) — SPD's systemic causes and the broken feedback loop. Training isn't the only gap, but it's the only one a student team can address.
-3. **Show our attempt at a technical fix failed** (slides 8–11) — CV experiment results. Honest failure builds credibility and justifies the pivot.
-4. **Pivot to training** (slides 12–22) — why training is the right entry point, the prototype design, the measurement apparatus, the validation ladder, the empirical protocol. This is the core of the talk.
-5. **Close with the handoff** (slides 23–26) — what we built, what survives, what the next team needs to do. Honest delimitation, not overclaim.
+1. **Open with data** (slides 1--2) — the problem is real, measured, and recurrent. Establishes stakes.
+2. **Deepen the problem** (slides 3--7) — SPD's systemic causes and the broken feedback loop. Training isn't the only gap, but it's the only one a student team can address.
+3. **Show our attempt at a technical fix failed** (slides 8--11) — CV experiment results. Honest failure builds credibility and justifies the pivot.
+4. **Pivot to training** (slides 12--22) — why training is the right entry point, the prototype design, the measurement apparatus, the validation ladder, the empirical protocol. This is the core of the talk.
+5. **Close with the handoff** (slides 23--26) — what we built, what survives, what the next team needs to do. Honest delimitation, not overclaim.
 
 Every design choice in the talk serves one of these five moves. No slide exists for its own sake.
 
@@ -32,15 +32,21 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 2 — The Problem By The Numbers
 
-**Visual**: Three-number callout layout, left to right:
+**Visual**: [type: three-callout]
 
-> **9 per 100 cases** — Alfred et al. — 3,900 defects in 41,799 cases, 55% at assembly
->
-> **10 min avg delay** — Nichol et al. — 236 errors in 147 cases, $6–9M/yr estimated cost
->
-> **44% wrong spec** — Zhu et al. — 398 errors in 33,839 packages
+> **9 per 100 cases** — Alfred et al. [@alfred-et-al-2021]
+> 3,900 defects in 41,799 cases
+> **55% at assembly**
 
-Bottom bold line: *These are recurring, measured operational failures, not isolated accidents.*
+> **10 min avg delay** — Nichol et al. [@nichol-et-al-2024]
+> 236 errors, 147 cases
+> **$6--9M/yr estimated cost**
+
+> **44% wrong spec** — Zhu et al. [@zhu-et-al-2019]
+> 398 errors in 33,839 packages
+> **largest single category**
+
+> These are recurring, measured operational failures --- not isolated accidents.
 
 **Script** _(45 sec)_:
 
@@ -56,14 +62,16 @@ Bottom bold line: *These are recurring, measured operational failures, not isola
 
 ### Slide 3 — What Tray Reconstruction Actually Requires
 
-**Visual**: Split layout. Left — photo of an SPD assembly station (our surgical kit on a table or a search image). Right — bullet list:
+**Visual**: [type: image-bullets]
+
+![SPD workstation](figures/workstation_placeholder.pdf)
 
 - Identify each instrument by sight (no labels)
-- Match against a count sheet with local names
+- Match against a count sheet with **local names**
 - Distinguish lookalikes (straight vs curved Mayo)
 - Check for damage, wear, contamination
 - Count correct quantities
-- All under production pressure
+- All under **production pressure**
 
 **Script** _(45 sec)_:
 
@@ -73,21 +81,12 @@ Bottom bold line: *These are recurring, measured operational failures, not isola
 
 ### Slide 4 — Six Root Causes
 
-**Visual**: Fishbone diagram. Six branches off the spine labeled:
+**Visual**: [type: image-and-columns]
 
-| Branch | Key point |
-|--------|-----------|
-| Product | Lookalike instruments, no markings, wear hides differences |
-| Knowledge | No recurring competency check, general names ≠ local rules |
-| Process | Single-pass assembly with no backup check |
-| Information | Outdated count sheets, missing photos, local aliases |
-| Environment | Production pressure, interruptions |
-| Policy/Feedback | No one owns the standard, slow manual error reporting |
-
-Callout box below fishbone:
+![Fishbone diagram](figures/fishbone_placeholder.pdf)
 
 > **Three structural drivers:**
-> 1. SPD evolved from materials management → no licensure, weak professionalization
+> 1. SPD evolved from materials management → **no licensure, weak professionalization**
 > 2. Cost-center accounting → wage investment is visible, error cost is invisible
 > 3. No information architecture → downstream OR errors don't trigger upstream correction
 
@@ -101,15 +100,11 @@ Callout box below fishbone:
 
 ### Slide 5 — The Broken Feedback Loop
 
-**Visual**: Process flow, left to right:
+**Visual**: [type: image-and-quote]
 
-> **OR finds error** (missing instrument)
-> → **Paper incident report** (slow)
-> → **Received by SPD weeks later** (delayed)
-> → **No tie to specific tray/shift/training gap** (broken link)
-> → **Same error repeats**
+![Broken feedback loop](figures/feedback_loop_placeholder.pdf)
 
-Below: Quote — *Nichol et al.: "Error reporting is cumbersome, human-dependent, delayed, and incomplete."*
+> "Error reporting is cumbersome, human-dependent, delayed, and incomplete." --- Nichol et al.
 
 **Script** _(45 sec)_:
 
@@ -119,10 +114,10 @@ Below: Quote — *Nichol et al.: "Error reporting is cumbersome, human-dependent
 
 ### Slide 6 — We Evaluated Seven Solution Categories
 
-**Visual**: Table — 7 rows, 4 columns:
+**Visual**: [type: table]
 
 | Solution | Buildable? | Validatable? | Creates infra for future? |
-|----------|-----------|-------------|-------------------------|
+|---|---|---|---|
 | CV tray checker | No (needs SPD) | No | Maybe |
 | Physical error-proofing | No (custom fab) | No | No |
 | Workflow redesign | No (policy change) | No | No |
@@ -139,20 +134,20 @@ Below: Quote — *Nichol et al.: "Error reporting is cumbersome, human-dependent
 
 ### Slide 7 — Why Training, Not Because Training Is a Cure
 
-**Visual**: Two boxes.
+**Visual**: [type: two-column-block]
 
-Left box — *What training addresses*:
-- Measurable local tray knowledge
-- Lookalike discrimination practice
-- Pre/post learning evidence
+> What training **addresses**
+> - Measurable local tray knowledge
+> - Lookalike discrimination practice
+> - Pre/post learning evidence
 
-Right box — *What training does NOT address*:
-- Broken count sheets
-- Staffing shortages
-- Structural wage / investment problem
-- No feedback loop
+> What training does **NOT** fix
+> - Broken count sheets
+> - Staffing shortages
+> - Structural wage problems
+> - The broken feedback loop
 
-Bottom line: *Training is a buildable entry point. It is not a complete solution.*
+> Training is the one piece we can build and validate **now**.
 
 **Script** _(45 sec)_:
 
@@ -168,16 +163,16 @@ Bottom line: *Training is a buildable entry point. It is not a complete solution
 
 ### Slide 8 — We Ran 7 Staged Detection Experiments
 
-**Visual**: Summary table:
+**Visual**: [type: table-block]
 
 | Experiment | What it tested | Key result |
-|-----------|---------------|-----------|
+|---|---|---|
 | Bright→dim | Light tolerance | mAP50-95 = 0.781 |
 | Matte→reflective | Background transfer | mAP50-95 = 0.759 |
 | Separated→overlay | Occlusion | **mAP50-95 = 0.389** |
-| Real instruments | Shape vs position | Per-class AP: 0.000–0.862 |
+| Real instruments | Shape vs position | Per-class AP: 0.000--0.862 |
 
-Below: *Lavado baseline (clean dataset): mAP50 = 0.990. Pipeline works — the data doesn't generalize.*
+> Lavado baseline (clean data): **mAP50 = 0.990**. Pipeline works — the data doesn't generalize.
 
 **Script** _(40 sec)_:
 
@@ -187,7 +182,9 @@ Below: *Lavado baseline (clean dataset): mAP50 = 0.990. Pipeline works — the d
 
 ### Slide 9 — Brightness Degradation
 
-**Visual**: *brightness_map50_95_panels.png* (two-panel plot, dark→bright and bright→dark).
+**Visual**: [type: image-only]
+
+![Brightness degradation](figures/brightness_map50_95_panels.png)
 
 **Script** _(40 sec)_:
 
@@ -197,7 +194,11 @@ Below: *Lavado baseline (clean dataset): mAP50 = 0.990. Pipeline works — the d
 
 ### Slide 10 — Occlusion Is the Dealbreaker
 
-**Visual**: Side by side — *separated_layout_example.jpg* (left) and *overlay_layout_example.jpg* (right). Below: *overlay_map50_95.png* showing the drop.
+**Visual**: [type: two-image]
+
+![Separated layout (training)](figures/separated_layout_example.jpg)
+![Overlay layout (test)](figures/overlay_layout_example.jpg)
+![Overlay degradation](figures/overlay_map50_95.png)
 
 **Script** _(40 sec)_:
 
@@ -207,12 +208,13 @@ Below: *Lavado baseline (clean dataset): mAP50 = 0.990. Pipeline works — the d
 
 ### Slide 11 — Real Instruments: The Model Learned Position, Not Shape
 
-**Visual**: Two figures side by side. Left: *confusion_matrix_normalized.png*. Right: *val_batch0_pred.jpg* (only scalpel detected).
+**Visual**: [type: two-image-table]
 
-Below: per-class breakdown table:
+![Confusion matrix](figures/confusion_matrix_normalized.png)
+![Prediction example](figures/val_batch0_pred.jpg)
 
 | Split | Surviving classes | Zero AP classes |
-|-------|------------------|----------------|
+|---|---|---|
 | Matte→reflective | scissor2, forcep, scalpel | scissor1/3/4 |
 | Reflective→matte | **scalpel only** | scissor1/2/3/4, forcep |
 | Shape similarity | scissor1, scissor4 | scissor2/3, forcep |
@@ -227,16 +229,16 @@ Below: per-class breakdown table:
 
 ### Slide 12 — The Cumulative Lesson: CV Validation Burden
 
-**Visual**: List, each with red ✗:
+**Visual**: [type: itemize-block]
 
 - Site-specific training data (instruments, lighting, layouts) ✗
-- Cross-manufacturer validation (Kienle: major performance drop) ✗
+- Cross-manufacturer validation [@kienle-et-al-2025] (Kienle: major performance drop) ✗
 - Open-set rejection (unknown objects = false positives) ✗
 - Human-in-the-loop for every uncertain case ✗
 - Workflow integration in live SPD (never tested) ✗
 - Regulatory / device policy / privacy review ✗
 
-Bottom: *The training path doesn't need any of this for a first study.*
+> The training path doesn't need any of this for a first study.
 
 **Script** _(40 sec)_:
 
@@ -252,12 +254,11 @@ Bottom: *The training path doesn't need any of this for a first study.*
 
 ### Slide 13 — CV and Training Are Complementary
 
-**Visual**: Flow diagram. Center box: *Local Tray Module* (names, aliases, counts, lookalikes, photos, variants). Two arrows out:
+**Visual**: [type: image-block]
 
-- Left arrow → *Training loop (now)* → Pre-test → Study → Quiz → Practice → Post-test → Evidence
-- Right arrow → *Future CV system* — needs exactly the same data
+![CV + training complementary flow](figures/complementary_placeholder.pdf)
 
-Bottom: *The module is the durable artifact. Training proves the module works. The module then enables CV.*
+> The module is the durable artifact. The training loop proves the module works. The module then enables CV.
 
 **Script** _(45 sec)_:
 
@@ -267,24 +268,28 @@ Bottom: *The module is the durable artifact. Training proves the module works. T
 
 ### Slide 14 — The Durable Design Artifact: Tray Module Schema
 
-**Visual**: Snippet of JSON:
+**Visual**: [type: code-bullets]
 
-```json
-{
-  "id": "mayo_scissors_straight_55",
-  "display_name": "Straight Mayo scissors, 5.5 in",
-  "aliases": ["straight Mayo", "suture scissors"],
-  "distinguishing_features": ["Heavy straight blades"],
-  "common_confusions": ["mayo_scissors_curved_55"],
-  "apriltag_id": 12,
-  "study_prompts": [
-    {"prompt": "Name this instrument.", "answer": "Straight Mayo scissors"},
-    {"prompt": "Distinguishing feature?", "answer": "Heavier, broader blades"}
-  ]
-}
-```
+> {
+>   "id": "mayo_scissors_straight_55",
+>   "display_name": "Straight Mayo, 5.5 in",
+>   "aliases": ["straight Mayo",
+>               "suture scissors"],
+>   "distinguishing_features": [
+>     "Heavy straight blades"
+>   ],
+>   "common_confusions": [
+>     "mayo_scissors_curved_55"
+>   ],
+>   "apriltag_id": 12,
+>   "study_prompts": [ ... ]
+> }
 
-Callout: *Mirrors real count-sheet fields: reference number, description, location, quantity, check box.*
+- Mirrors real count-sheet fields
+- Adds aliases, lookalikes, prompts
+- File-backed, versioned
+- **Software is throwaway.**
+- **Schema survives.**
 
 **Script** _(45 sec)_:
 
@@ -294,12 +299,12 @@ Callout: *Mirrors real count-sheet fields: reference number, description, locati
 
 ### Slide 15 — Printed Cards: How It Works Physically
 
-**Visual**: Side-by-side card images (or physical prop held up):
+**Visual**: [type: two-image]
 
-- Left: card front — AprilTag pattern, no text (neutral assessment front)
-- Right: card back — instrument name, aliases, distinguishing features
+![Front (assessment)](figures/card_front_placeholder.pdf)
+![Back (study)](figures/card_back_placeholder.pdf)
 
-Below: *Neutral front prevents answer leakage during assessment. Tag ID maps to instrument ID in the module.*
+> Neutral front prevents answer leakage. Tag ID maps to instrument ID.
 
 **Script** _(30 sec)_:
 
@@ -309,16 +314,19 @@ Below: *Neutral front prevents answer leakage during assessment. Tag ID maps to 
 
 ### Slide 16 — The Scoring Architecture: 5 Error Categories
 
-**Visual**: Table with examples:
+**Visual**: [type: table-itemize]
 
 | Category | Definition | Example |
-|----------|-----------|---------|
-| Correct | Right item, right count | Selected 1 scalpel handle ✓ |
-| Missing | Required item not selected | Didn't select Kelly clamp |
-| Wrong | Item not on the tray list | Selected a retractor not in this tray |
-| Extra | Distractor selected | Selected an item from a different tray |
-| Misidentified | Right class, wrong variant | Curved Mayo instead of straight |
-| Wrong count | Right item, wrong quantity | 2 Kellys when tray needs 4 |
+|---|---|---|
+| Correct | Right item, right count | 1 scalpel handle ✓ |
+| Missing | Required item not selected | No Kelly clamp |
+| Wrong | Item not on tray list | Retractor not in this tray |
+| Extra | Distractor selected | Item from different tray |
+| Misidentified | Right class, wrong variant | Curved instead of straight |
+| Wrong count | Right item, wrong quantity | 2 Kellys, need 4 |
+
+- Maps to literature error categories [@alfred-et-al-2021; @zhu-et-al-2019; @nichol-et-al-2024]
+- Can separate *what* improved (fewer misses? fewer lookalikes?)
 
 **Script** _(50 sec)_:
 
@@ -328,10 +336,13 @@ Below: *Neutral front prevents answer leakage during assessment. Tag ID maps to 
 
 ### Slide 17 — Confidence Capture
 
-**Visual**: Mockup of a confidence slider (1–5 scale) with *Not sure* checkbox. Two callouts:
+**Visual**: [type: image-blocks]
 
-- *High-confidence error: learner was sure but wrong — overconfidence, needs targeted feedback*
-- *Low-confidence correct: learner was unsure but right — fragile knowledge, needs reinforcement*
+![Confidence mockup](figures/confidence_mockup_placeholder.pdf)
+
+> Learner was sure but wrong. Targeted feedback needed.
+
+> Learner was unsure but right. Fragile knowledge, needs reinforcement.
 
 **Script** _(30 sec)_:
 
@@ -341,15 +352,11 @@ Below: *Neutral front prevents answer leakage during assessment. Tag ID maps to 
 
 ### Slide 18 — The Learning Loop (7 Steps)
 
-**Visual**: Flow diagram, step by step:
+**Visual**: [type: image-block]
 
-> 1. Pre-test (no hints, no feedback) → baseline accuracy
-> 2. Study cards (prompt-before-reveal) → retrieval practice
-> 3. Quiz (timed, with confidence) → identify weak items
-> 4. Practice tray sort (with feedback) → deliberate practice
-> 5. Weak-item review (if needed) → targeted re-study
-> 6. Post-test (parallel variant, no hints) → learning evidence
-> 7. Export (CSV/JSON) → instructor-facing metrics
+![7-step learning loop](figures/learning_loop_placeholder.pdf)
+
+> Pre-test (baseline) → Study cards → Quiz → Practice sort → Post-test → Export
 
 **Script** _(45 sec)_:
 
@@ -359,11 +366,11 @@ Below: *Neutral front prevents answer leakage during assessment. Tag ID maps to 
 
 ### Slide 19 — The Research Question
 
-**Visual**: Centered, large text:
+**Visual**: [type: centered-text]
 
-> *How can a local tray training and assessment system help novice users improve their ability to detect missing, wrong, extra, misidentified, or miscounted instruments before supervised SPD tray-reconstruction work?*
+> How can a local tray training and assessment system help novice users improve their ability to detect missing, wrong, extra, misidentified, or miscounted instruments before supervised SPD tray-reconstruction work?
 
-Below: *That question is narrow, testable, and honest about what we can and cannot claim.*
+> That question is narrow, testable, and honest about what we can claim.
 
 **Script** _(15 sec)_:
 
@@ -379,17 +386,11 @@ Below: *That question is narrow, testable, and honest about what we can and cann
 
 ### Slide 20 — The Study Ladder
 
-**Visual**: Five-level staircase, simple labeled boxes:
+**Visual**: [type: image-block]
 
-| Level | Study | Participants | Validates |
-|-------|-------|-------------|-----------|
-| 5 | SPD pilot | SPD trainees/techs | Behavioral transfer |
-| 4 | Expert review | 1 SPD educator | Content validity |
-| 3 | Delayed retention | Same novices, 7d later | Temporal persistence |
-| 2 | Novice study | 8–12 novices | Learning mechanism |
-| 1 | Marker reliability | Project members | Measurement tool |
+![Study ladder](figures/study_ladder_placeholder.pdf)
 
-Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
+> Kirkpatrick Level 2 target. Level 3--4 require future validation.
 
 **Script** _(50 sec)_:
 
@@ -399,33 +400,37 @@ Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
 
 ### Slide 21 — Study 1: Novice Pre/Post Design
 
-**Visual**: Timeline table:
+**Visual**: [type: table-block]
 
 | Segment | Time | Activity |
-|---------|------|----------|
-| Consent + intake | 3–5 min | Background, explain study |
-| Pre-test tray sort | 5–8 min | No hints, no feedback |
-| Retrieval cards | 10–12 min | Prompt-before-reveal study |
-| Quiz | 5–8 min | With confidence capture |
-| Practice sort | 8–10 min | With error-category feedback |
-| Post-test | 5–8 min | Parallel variant, no hints |
-| Photo-ID test | 5–7 min | Convergent validity measure |
+|---|---|---|
+| Consent + intake | 3--5 min | Background |
+| Pre-test tray sort | 5--8 min | No hints, no feedback |
+| Retrieval cards | 10--12 min | Prompt-before-reveal |
+| Quiz | 5--8 min | With confidence |
+| Practice sort | 8--10 min | Error feedback |
+| Post-test | 5--8 min | Parallel variant, no hints |
+| Photo-ID test | 5--7 min | Convergent validity |
+
+> **n = 8--12** novices, one 60-min session, within-subject
 
 **Script** _(40 sec)_:
 
-> The novice study uses a within-subject pre/post design, 8–12 participants with no SPD experience. One 60-minute session per person. Primary measures are pre/post accuracy, error-category counts, duration, and confidence calibration. We also include a convergent photo-ID test — learners identify instruments from photos without the tray context. If tray-sort accuracy correlates with photo-ID accuracy at r ≥ 0.50, we have evidence that the tray scores reflect instrument knowledge, not task-specific familiarity.
+> The novice study uses a within-subject pre/post design, 8--12 participants with no SPD experience. One 60-minute session per person. Primary measures are pre/post accuracy, error-category counts, duration, and confidence calibration. We also include a convergent photo-ID test — learners identify instruments from photos without the tray context. If tray-sort accuracy correlates with photo-ID accuracy at r ≥ 0.50, we have evidence that the tray scores reflect instrument knowledge, not task-specific familiarity.
 
 ---
 
 ### Slide 22 — Study 2: Delayed Retention (The Falsification Criterion)
 
-**Visual**: Three-outcome diagram:
+**Visual**: [type: image-plus-columns-block]
 
-> Pre-test (30%) → Post-test (85%) → 7 days later → ???
->
-> ├─ ≥50% of gain retained → learning persists
-> ├─ ≤5 pp above baseline → practice effect only
-> └─ <50% of gain retained → partial decay
+![Retention outcomes](figures/retention_placeholder.pdf)
+
+- **Criterion 1** — ≥ 50% of gain retained
+- **Criterion 2** — Accuracy > 5pp above baseline
+- **Criterion 3** — ≥ 70% return rate
+
+> If these fail, the claim reverts to "immediate learning only."
 
 **Script** _(45 sec)_:
 
@@ -435,13 +440,15 @@ Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
 
 ### Slide 23 — Study 3: Expert Review (Closing the Content Gap)
 
-**Visual**: Checklist of what the expert reviews:
+**Visual**: [type: itemize-plus-block]
 
-- Instrument names and aliases — correct for local practice?
-- Required counts and distractors — plausible for training?
-- Lookalike pairs — educationally meaningful?
-- Feedback messages — misleading or safe?
-- Weak-item report — would it help target coaching?
+- Are instrument names and aliases correct for local practice?
+- Are counts and distractors plausible for training?
+- Are lookalike pairs educationally meaningful?
+- Are feedback messages misleading or safe?
+- Would the weak-item report help target coaching?
+
+> The main weakness of a student-built module is **content validity**. Expert review closes that gap.
 
 **Script** _(30 sec)_:
 
@@ -451,13 +458,11 @@ Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
 
 ### Slide 24 — Go/No-Go Decision for Future Team
 
-**Visual**: Decision flowchart (simplified):
+**Visual**: [type: image-block]
 
-> Study 1 + 2 pass? (learning + retention)
->
-> ├─ Yes → Study 3 (expert review) → positive? → SPD pilot warranted
-> └─ No → Report "learning mechanism works but retention fails"
->        → Reconsider whether single-session training is sufficient
+![Go/no-go decision flowchart](figures/gonogo_placeholder.pdf)
+
+> Study passes → SPD pilot is justified. Study fails → problem may be harder than training alone.
 
 **Script** _(30 sec)_:
 
@@ -473,15 +478,21 @@ Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
 
 ### Slide 25 — What We Know and What We Don't
 
-**Visual**: Two columns:
+**Visual**: [type: two-column-block]
 
-| What we know | What we can't claim (yet) |
-|-------------|--------------------------|
-| Tray errors are systemic, recurring, and well-documented | Training transfers to real SPD work |
-| CV alone can't solve this — the validation burden is too high | System works for experienced technicians |
-| Training is the buildable entry point | It reduces OR delays |
-| The module schema is durable infrastructure | CV is deployment-ready |
-| The study ladder has falsification criteria | Same-day gains persist (Study 2 tests this) |
+> **What we know**
+> - Tray errors are systemic, recurring, and well-documented
+> - CV alone can't solve this — the validation burden is too high
+> - Training is the buildable entry point
+> - The module schema is durable infrastructure
+> - The study ladder has falsification criteria
+
+> **What we can't claim (yet)**
+> - Training transfers to real SPD work
+> - System works for experienced technicians
+> - It reduces OR delays
+> - CV is deployment-ready
+> - Same-day gains persist (Study 2 tests this)
 
 **Script** _(40 sec)_:
 
@@ -491,11 +502,11 @@ Callout: *Kirkpatrick Level 2 target. Level 3 and 4 require future validation.*
 
 ### Slide 26 — The Honest Handoff
 
-**Visual**: Centered quote, large:
+**Visual**: [type: centered-text]
 
-> *Our project found that this problem is harder and more systemic than any single technical fix can address. Our contribution is documenting why, and giving the next team a validated starting point — not a finished product.*
+> Our project found that this problem is harder and more systemic than any single technical fix can address. Our contribution is documenting *why*, and giving the next team a validated starting point — not a finished product.
 
-Below: *The study is designed. The module schema is defined. The scoring is tested. Run the study.*
+> The study is designed. The schema is defined. The scoring is tested. **Run the study.**
 
 **Script** _(45 sec)_:
 
@@ -510,7 +521,7 @@ Below: *The study is designed. The module schema is defined. The scoring is test
 ## Appendix: Figure / Asset Checklist
 
 | Slide | Figure | Source | Status |
-|-------|--------|--------|--------|
+|---|---|---|---|
 | 2 | Error rate callout (3-number layout) | New — text slide | To create |
 | 3 | SPD workstation photo | Search image or our kit | To source |
 | 4 | Simplified fishbone diagram | New — diagram | To draw |
@@ -554,7 +565,7 @@ Below: *The study is designed. The module schema is defined. The scoring is test
 ### Timing summary
 
 | Section | Slides | Time | Speaker |
-|---------|--------|------|---------|
+|---|---|---|---|
 | 1. Introduction | 2 | 1:00 min | Matthew |
 | 2. Systemic problem | 7 | 6:00 min | Andy |
 | 3. CV experiments | 5 | 5:00 min | Jacob/Owen |

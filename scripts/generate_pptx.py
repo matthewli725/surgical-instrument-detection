@@ -9,11 +9,12 @@ from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 
 PDF_DIR = Path("final_paper")
+SRC_DIR = PDF_DIR / "source"
 SLIDE_DIR = Path("outputs/slides")
-OUT = PDF_DIR / "fdr_presentation.pptx"
+OUT = PDF_DIR / "output" / "fdr_presentation.pptx"
 
 # ── Extract speaker notes from .tex ─────────────────────────────────────
-TEX_FILE = PDF_DIR / "fdr_presentation.tex"
+TEX_FILE = SRC_DIR / "fdr_presentation.tex"
 tex = TEX_FILE.read_text()
 
 # Find all \note{...} blocks using a brace counter
