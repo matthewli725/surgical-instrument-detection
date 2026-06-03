@@ -26,6 +26,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{xcolor}
+\usepackage{subcaption}
 \usepackage{listings}
 \lstset{basicstyle=\footnotesize\ttfamily,breaklines=true,columns=fullflexible}
 
@@ -68,24 +69,54 @@
 
 % ── Section 1 ──
 
-\section{Executive Summary}
+\section{Executive Summary \hfill {\normalfont\small (Matthew)}}
 \label{sec:executive-summary}
 
-TODO: Write this section last after the rest of the report is complete. It should summarize the final problem, the selected TrayGuard direction, the strongest evidence, the main design decisions, what was built, the current limitations, and the recommended future validation path.
+Tray-content errors during reconstruction of reusable stainless steel surgical
+instrument trays are a recurring patient-safety risk in sterile processing
+departments (SPDs). Root-cause
+analysis identified six contributing categories---training gaps, incomplete
+count sheets, local tray variation, nomenclature inconsistency, production
+pressure, and weak feedback loops---all driven by the structural absence of
+professional licensure and competency infrastructure in the SPD workforce.
+
+The project initially pursued a computer-vision tray checker. Seven staged
+detection experiments (800--80~lumens, matte/reflective backgrounds,
+separated/overlay layouts) showed that YOLO11s detection degrades under every
+variation that SPD workflows present, with mAP50-95 falling to 0.389 under
+occlusion. Real-instrument experiments confirmed that position cues dominate
+over shape learning, making lighting-transfer conclusions unreliable without
+randomized layouts. Deployment-grade recognition would require site-specific
+training data, per-manufacturer validation, and workflow testing beyond the
+project's available resources.
+
+The project pivoted to a training-centered platform: TrayGuard, a local
+tray training and assessment system using printable AprilTag instrument cards
+and a seven-step learning loop (intake, pre-test, study cards, quiz, practice
+sort, post-test, summary). A file-backed tray module defines instruments,
+aliases, required counts, distractors, lookalike pairs, and assessment variants.
+A scoring engine classifies each item into correct, missing, extra, wrong,
+misidentified, and wrong-count categories with confidence metadata.
+
+A pre/post study with the seeded tray module would provide Kirkpatrick Level~2
+evidence (simulated learning) with bounded claims. The primary limitation is
+the use of student participants and physical card proxies---workplace transfer
+and clinical adoption remain future validation. The recommended next step is
+to build, test, and report the prototype study within the current scope.
 
 
 
 
 % ── Section 2 ──
 
-\section{Introduction And Project Overview}
+\section{Introduction And Project Overview \hfill {\normalfont\small (Matthew)}}
 \label{sec:introduction-and-project-overview}
 Tray content errors during surgical instrument reconstruction are recurring
 operational failures that can delay surgery and compromise patient safety. The
 workforce faces structural pressure from growing demand, high turnover, and
 limited training capacity. Current training blends online coursework,
 classroom instruction, and hands-on externships that are capacity-constrained by
-clinical-site availability, preceptor attention, and local
+clinical-site availability, clinical supervisor attention, and local
 teaching materials.
 
 TrayGuard originally targeted a computer-vision-based tray checker: a camera
@@ -107,19 +138,16 @@ that prevent overclaiming.
 
 % ── Section 3 ──
 
-\section{Problem Definition And Scope}
+\section{Problem Definition And Scope \hfill {\normalfont\small (Matthew, Andy, Qiyu)}}
 \label{sec:problem-definition-and-scope}
 \subsection{Precise Problem Statement}
 \label{sec:precise-problem-statement}
 
-Sterile processing technicians receive used instruments from the OR, clean,
-inspect, assemble procedure-specific trays, package, sterilize, store, and
-distribute sets for surgical use. Mistakes can occur at several points in that
-workflow: a technician may confuse two visually similar instruments, place the
-wrong size or pattern into a tray, omit or add an instrument, use the wrong
-count sheet, or fail to catch a documentation problem. In the OR, those
-mistakes appear as missing, wrong, extra, damaged, contaminated, or otherwise
-unavailable instruments.
+Errors can occur throughout the sterile processing workflow: a technician may
+confuse two visually similar instruments, place the wrong size or pattern into a
+tray, omit or add an instrument, use the wrong count sheet, or fail to catch a
+documentation problem. In the OR, those mistakes appear as missing, wrong,
+extra, damaged, contaminated, or otherwise unavailable instruments.
 
 Published rates vary by hospital, measurement method, and error definition, but
 the available evidence suggests that these are recurring operational failures,
@@ -128,12 +156,20 @@ cases, or roughly 9 defects per 100 cases, and found that 55.0\% of recorded
 defects occurred during assembly
 \cite{alfred-et-al-2021}. Zhu et al. found
 398 packaging errors among 33,839 surgical instrument packages, or about 1.2\%
-of packages, including wrong specifications, incomplete packages, and missing
-instruments \cite{zhu-et-al-2019}. Nichol et al.
+of packages. A detailed breakdown reveals nine categories: instrument in wrong specification (right type, wrong variant; 44.0\%), instrument missing (19.4\%), package incomplete (17.6\%),
+instrument malfunction (6.8\%), wrong packaging material (3.8\%), box and cover
+mismatched (3.5\%), wrong packaging tag (2.0\%), indicator card missing (1.5\%),
+and wrong count of instrument (1.5\%)
+\cite{zhu-et-al-2019}. Nichol et al.
 observed 236 surgical instrument errors affecting 147 cases, with most errors
 tied to visualization work such as inspection, identification, function
-checking, and tray assembly
-\cite{nichol-et-al-2024}.
+checking, and tray assembly. The resulting OR delays averaged 10.16 minutes per
+affected case, at an estimated annual cost of \$6.75 million to \$9.42 million
+\cite{nichol-et-al-2024}. Nichol and Saari
+further identified 368 patient safety notices containing 419 surgical instrument
+errors over 12 months, of which 83\% involved failures in inspection, tracking,
+or identification
+\cite{nichol-and-saari-2023}.
 
 The general problem is therefore:
 \begin{quote}
@@ -143,53 +179,39 @@ correct, functional, sterile, and ready-for-use surgical instrument sets.
 \subsection{Practice Context}
 \label{sec:practice-context}
 
-The problem appears across the reusable stainless surgical instrument chain. A simplified
-SPD-to-OR cycle includes the following stages
+The problem centers on reusable stainless steel surgical instruments, which
+make up the majority of SPD-handled inventory. Unlike single-use devices or
+textile goods, these instruments must be visually identified, sorted, and
+matched to tray lists after every use, and their metallic surfaces, subtle
+dimensional differences, and reprocessing wear make them especially
+susceptible to the identification errors documented below. George et al.
+describe a simplified SPD-to-OR cycle
 \cite{george-et-al-2024}:
 \begin{enumerate}
   \item Point-of-use preparation: at the end of a procedure, instruments are prepared for transfer from the OR to sterile processing. This can include gross cleaning, use of sterile water, and enzymatic pretreatment to keep material from drying on instruments.
   \item Transport to sterile processing: used instruments are moved from the OR or procedural area to the sterile processing unit.
-  \item Decontamination: instruments are cleaned and decontaminated. George et al. describe manual scrubbing, ultrasonic cleaning, and automated washer systems as common parts of this stage.
+  \item Decontamination: instruments are cleaned and decontaminated. Manual scrubbing, ultrasonic cleaning, and automated washer systems are common parts of this stage.
   \item Assembly and inspection: after decontamination, instruments move to the assembly area. Technicians inspect instruments, assemble instrument pans or sets, replace missing items, and place instruments into containers or wraps for sterilization.
-  \item Sterilization: packaged instruments are sterilized using methods appropriate to the device and material. George et al. describe high-temperature methods such as autoclave sterilization and low-temperature methods such as chemical or radiation-based sterilization.
+  \item Sterilization: packaged instruments are sterilized using methods appropriate to the device and material. High-temperature methods such as autoclave sterilization and low-temperature methods such as chemical or radiation-based sterilization are used.
   \item Storage: once sterilized, instruments and trays are cooled as needed and placed in storage until they are required again.
   \item Return to use: when needed for surgery, stored instruments are obtained and brought back to the OR for the next case.
 \end{enumerate}
-Nichol and Saari's risk model provides a more detailed version of this cycle:
-for simple instruments, they mapped 104 human tasks and found that 91\% of
-modeled error risk occurred during the sterile-processing portion of the cycle,
-especially the decontamination and assembly-and-inspection steps
-\cite{nichol-and-saari-risk-modeling-2023}.
-Those steps are high risk because they contain the most complicated,
-non-routine tasks: instruments must be separated, cleaned, inspected for
-bioburden and damage, identified, sorted, and rebuilt into the correct tray, and
-all eight highest-risk tasks in the model involved human visualization,
-inspection, identification, or sorting.
 \subsection{Narrowed Problem}
 \label{sec:narrowed-problem}
 
 Within the full SPD-to-OR cycle, this project narrows to tray reconstruction
 and verification: the point where cleaned instruments are inspected,
 identified, matched to count sheets, and rebuilt into procedure-specific trays.
-This is the most defensible focus because the highest-risk parts of the cycle
-depend on human visualization, sorting, and local tray knowledge.
-This focus also addresses a likely stakeholder objection. Even if a tray comes
-from a specific surgery and is expected to return with the same contents, it
-does not remain a sealed, unchanged kit during reprocessing. Instruments are
-transported to decontamination, opened, separated, disassembled when required,
-manually cleaned or transferred onto washer racks, and exposed to mechanical
-washing before moving to the clean preparation area
-\cite{steris-cleaning-instruments-accessed-2026},
-\cite{cdc},
-\cite{public-health-ontario-2013},
-\cite{medline-transport-2026}. After cleaning,
-technicians manually rebuild sets against tray-specific count sheets, creating
-opportunities for items to be mixed between sets, left behind, substituted from
-backup inventory, or misidentified because of incomplete count-sheet data,
-local jargon, or look-alike instruments
-\cite{purdue-count-sheets-accessed-2026},
-\cite{alfred-et-al-2021},
-\cite{nadeau-2024}.
+Nichol and Saari built a risk model of the full surgical instrument cycle
+because published error studies had documented that defects occurred but had not
+systematically mapped where in the instrument lifecycle---from OR use through
+cleaning, assembly, sterilization, storage, and return---errors were most
+likely. Their model, which studied reusable stainless steel surgical
+instruments, decomposed the cycle into 104 human tasks and found that 91\% of
+modeled error risk occurred during the sterile-processing portion, especially
+the decontamination and assembly-and-inspection steps. All eight highest-risk
+tasks involved human visualization, sorting, and local tray knowledge
+\cite{nichol-and-saari-risk-modeling-2023}.
 \subsection{Stakeholders And Importance}
 \label{sec:stakeholders-and-importance}
 
@@ -200,13 +222,17 @@ instruments, open backup trays, change the procedure flow, or delay the case
 \cite{nichol-et-al-2024},
 \cite{pennsylvania-patient-safety-authority-2006}.
 Dirty or damaged instruments add a direct safety concern. A 2024 hospital
-inspection reported pitting, stains, sticky residue, rust, scratches, and other
+inspection reported pitting (surface corrosion), stains, sticky residue, rust, scratches, and other
 concerns in randomly selected ready-for-use trays
 \cite{association-of-health-care-journalists-2024}.
 The Pennsylvania Patient Safety Authority warns that contaminated instruments
 can put patients at risk of surgical site infection and can also cause lost OR
 time if discovered after a procedure has begun
 \cite{pennsylvania-patient-safety-authority-2006}.
+SPD backlogs have escalated beyond individual delays: in 2025, Colorado's
+largest hospital paused all surgeries for a week after inspectors found pitting (surface corrosion),
+stains, and residue in randomly selected ready-for-use trays
+\cite{ingold-2025}.
 The stakeholders include:
 \begin{itemize}
   \item Patients, who depend on sterile, functional instruments during surgery.
@@ -218,339 +244,21 @@ The stakeholders include:
 \subsection{General Interest Beyond One Local Practice}
 \label{sec:general-interest-beyond-one-local-practice}
 
-This problem is broadly relevant because reusable surgical instruments, SPDs,
-procedure-specific trays, count sheets, sterilization records, and OR
-dependence on prepared sets are common across hospitals. The exact instruments,
-tray lists, vendor systems, and surgeon preferences vary by site, while the
-readiness challenge repeats across settings: hospitals must transform complex,
-locally defined instrument requirements into complete and ready surgical sets.
-The local tray-reconstruction problem connects to broader work on surgical
-tray optimization, inventory visibility, and instrument-set readiness. dos
-Santos et al. describe tray rationalization as deciding which instruments and
-quantities belong in which trays and which trays are needed for procedures
-\cite{dos-santos-et-al-2021}. A 2025
-industry benchmark report summarized by Healthcare Purchasing News found that
-58\% of surveyed SPD and OR leaders reported surgery delays caused by instrument
-sets that were missing, incomplete, or not ready on time
-\cite{hpn-2025}.
-The same benchmark report emphasized human error, inventory gaps, limited data
-visibility, and real-time visibility into tray and instrument location as major
-readiness concerns
-\cite{aesculap-and-ascendco-health-2025}.
-This makes the problem generalizable without making it generic: each hospital
-has its own instruments and tray rules, but many hospitals face the same
-underlying need to verify that a locally defined set is complete, correct,
-clean, functional, and available before surgery.
-
-
-
-
-% ── Section 4 ──
-
-\section{Preliminary Analysis}
-\label{sec:preliminary-analysis}
-
-The following analysis tools were applied to the training-centered solution path.
-They document how the problem was decomposed into design objectives, how the
-system function was modeled, what performance targets were set, how stakeholder
-needs mapped to engineering characteristics, what solution alternatives were
-generated, and how the training path was selected.
-
-\subsection{Objective Tree Analysis}
-\label{sec:objective-tree-analysis}
-
-The objective tree decomposes the top-level goal, ``Improve novice readiness for
-local tray reconstruction through repeatable, measurable simulated practice,''
-into the functional, measurable, instructor-support, and claim-boundary
-objectives that guided the design process.
-
-\begin{lstlisting}
-1. Increase local tray knowledge
-   1.1 Teach local names, aliases, and instrument families
-   1.2 Teach required counts and tray-specific rules
-   1.3 Teach lookalike and same-family distinctions
-
-2. Improve applied tray-sorting performance
-   2.1 Reduce missing required items
-   2.2 Reduce wrong and misidentified items
-   2.3 Reduce extra and wrong-count items
-   2.4 Maintain reasonable task time without rewarding guessing
-
-3. Make learning measurable
-   3.1 Capture pre-test and post-test accuracy
-   3.2 Export item-level error categories
-   3.3 Capture confidence, Not sure choices, and high-confidence errors
-   3.4 Preserve comparable assessment variants
-
-4. Support instructors
-   4.1 Show weak instruments and weak tray rules
-   4.2 Keep modules local, versioned, and reviewable
-   4.3 Avoid collecting patient data or unnecessary learner identifiers
-
-5. Preserve claim boundaries
-   5.1 Label outputs as simulated practice evidence
-   5.2 Require expert review before content-valid claims
-   5.3 Require SPD pilot evidence before workplace-effectiveness claims
-\end{lstlisting}
-
-The tree separates objectives into tiers that drove subsequent analysis: Tier 1
-(knowledge) informed the retrieval-first study card design; Tier 2 (performance)
-informed the simulated tray-sort and error-category scoring; Tier 3
-(measurability) informed the pre/post assessment architecture; Tier 4 (instructor
-support) informed the export and reporting subsystem; Tier 5 (claim boundaries)
-informed the report-labeling and scope-statement requirements.
-
-\subsection{Function Analysis -- Transparent Box Model}
-\label{sec:function-analysis-transparent-box-model}
-
-The training system is modeled as a transparent box that transforms a local tray
-module and physical instrument cards into learner performance evidence through
-sequential subfunctions:
-
-\begin{table}[H]
-\centering
-\caption{Transparent box model for the training system}
-\label{tab:transparent-box-model}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Input & Subfunction & Output \\
-\hline
-Local tray module (JSON) & Authoring and verification & Verified tray template with required items, distractors, lookalike pairs, and assessment variants \\
-\hline
-Verified tray template & Pre-test assessment & Baseline accuracy, error-category counts, and confidence distribution \\
-\hline
-Instrument cards and tray template & Retrieval-first study & Prompt-before-reveal card practice with distinguishing features and aliases \\
-\hline
-Study session output & Identification quiz & Quiz accuracy, duration, and item-level confidence per instrument concept \\
-\hline
-Cards and tray template & Simulated tray sorting & Selected instrument set scored against required counts \\
-\hline
-Scored tray selection & Feedback generation & Missing, extra, wrong, misidentified, and wrong-count error report \\
-\hline
-Pre-test and post-test scores & Metrics aggregation & Pre/post accuracy gain, error reduction, confidence calibration, and weak-item report \\
-\hline
-Aggregated metrics & Export and reporting & CSV/JSON export with attempt-level and item-level records \\
-\hline
-\end{tabularx}
-\end{table}
-
-The transparent box model separates the learning workflow into discrete
-subfunctions, each of which was independently analyzed for solution alternatives
-and performance targets.
-
-\subsection{Performance Specification Analysis}
-\label{sec:performance-specification-analysis}
-
-Performance specifications define measurable thresholds for each subfunction
-output. The targets are deliberately formative rather than clinical: they define
-when the prototype is ready to support a bounded novice-learning claim.
-
-\begin{table}[H]
-\centering
-\caption{Performance specifications for the training system}
-\label{tab:preliminary-performance-specifications}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Specification & Target & Derived from \\
-\hline
-Module completion time & Pre/post loop finishable in 45--60 minutes & Objective 2.4 (reasonable task time) \\
-\hline
-Pre/post accuracy gain & Mean gain $\ge$ 20 percentage points & Objective 3.1 (measurable improvement) \\
-\hline
-Severe-error reduction & Missing+wrong+misidentified decrease $\ge$ 30\% & Objective 2.1, 2.2 (error reduction) \\
-\hline
-Post-test floor & Mean accuracy $\ge$ 80\% & Objective 3.1 (usable simulated familiarity) \\
-\hline
-Marker detection rate & $\ge$ 95\% in normal layouts & Objective 4.2 (reliable measurement tool) \\
-\hline
-Export completeness & 100\% of completed runs export all required fields & Objective 4.1 (instructor-visible evidence) \\
-\hline
-\end{tabularx}
-\end{table}
-
-Full performance specifications with evidence basis and measurement methods are
-documented in the requirements definition.
-
-\subsection{Quality Function Deployment}
-\label{sec:quality-function-deployment-preliminary}
-
-The QFD matrix maps stakeholder needs to engineering characteristics, target
-values, and verification methods for the training system.
-
-\begin{table}[H]
-\centering
-\caption{Quality function deployment: training path}
-\label{tab:preliminary-quality-function-deployment}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Stakeholder need & Engineering characteristic & Target value & Verification \\
-\hline
-Learners repeat practice with local tray content & File-backed module with items, distractors, aliases, variants & One complete \texttt{basic\_general\_tray\_v1} module & Module schema review and demo load \\
-\hline
-Practice resembles real tray reconstruction & Physical card sorting with tray-rule scoring & Pre/post/delayed all use same tray rule & End-to-end run \\
-\hline
-Errors map to meaningful categories & Scoring: missing, extra, wrong, misidentified, wrong-count & Every tray scored with category counts & Unit tests \\
-\hline
-Assessment is not contaminated by coaching & Mode boundaries with feedback suppression & No hints in pre-test, post-test, or delayed modes & UI walkthrough \\
-\hline
-Instructors see learner weaknesses & Attempt-level and item-level export & 100\% export completion & Schema validation \\
-\hline
-Marker errors do not corrupt scores & High marker reliability and user confirmation & $\ge$ 95\% detection rate & Marker log \\
-\hline
-System is ethical and nonpunitive & Privacy: hashed IDs, no PHI, report labels & No patient data, labels say practice evidence & Report review \\
-\hline
-\end{tabularx}
-\end{table}
-
-A detailed QFD with evidence-source citations appears in the requirements
-definition.
-
-\subsection{Morphological Chart}
-\label{sec:morphological-chart}
-
-The morphological chart generates solution alternatives for each subfunction
-identified in the transparent box model.
-
-\begin{table}[H]
-\centering
-\caption{Morphological chart: solution alternatives by subfunction}
-\label{tab:morphological-chart}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Subfunction & Alternative 1 & Alternative 2 & Alternative 3 & Alternative 4 \\
-\hline
-Content delivery & File-backed JSON module & Online database & Spreadsheet import & Hard-coded tray lists \\
-\hline
-Instrument representation & Physical marker cards & On-screen instrument icons & Real instruments & Text-based item list \\
-\hline
-Marker technology & AprilTag & QR code & ArUco & Manual selection \\
-\hline
-Learner interaction & Study + quiz + tray sort & Study-only & Quiz-only & Tray-sort only \\
-\hline
-Assessment mode & Pre/post with matched variants & Single post-test & Pre/post without variants & Continuous assessment \\
-\hline
-Feedback mechanism & Error-category report & Pass/fail only & Item-level hints & Instructor review only \\
-\hline
-Scoring approach & Category-based scoring (missing, extra, wrong, misidentified, wrong-count) & Simple accuracy (correct/total) & Weighted error severity & Confidence-adjusted scoring \\
-\hline
-Export format & CSV + JSON per run & Single PDF report & Instructor dashboard & Raw database access \\
-\hline
-\end{tabularx}
-\end{table}
-
-The selected combination is: file-backed JSON module, physical AprilTag marker
-cards, full study-quiz-sort learning loop, pre/post matched-variant assessment,
-category-based scoring, error-category feedback, and CSV/JSON export. The
-alternatives document the deliberate choices and rejected paths that led to this
-configuration.
-
-\subsection{Weighted Objective Method}
-\label{sec:weighted-objective-method}
-
-The weighted objective method scores each candidate solution combination against
-weighted criteria derived from the objective tree and stakeholder needs.
-
-\begin{table}[H]
-\centering
-\caption{Weighted objective method: solution path selection}
-\label{tab:weighted-objective-method}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|}
-\hline
-Criterion & Weight & Training path & CV tray checker & Software-only quiz & Real-instrument CV \\
-\hline
-Buildability within project scope & 0.25 & 5 & 1 & 4 & 1 \\
-\hline
-Measurable learning evidence & 0.20 & 5 & 2 & 3 & 3 \\
-\hline
-Physical task fidelity & 0.15 & 3 & 5 & 1 & 5 \\
-\hline
-Low validation burden & 0.15 & 4 & 1 & 4 & 1 \\
-\hline
-Instructor usefulness & 0.10 & 4 & 3 & 3 & 3 \\
-\hline
-Future extensibility & 0.10 & 3 & 4 & 2 & 4 \\
-\hline
-Cost and equipment requirements & 0.05 & 5 & 3 & 5 & 2 \\
-\hline
-Weighted total & 1.00 & 4.35 & 2.40 & 3.15 & 2.60 \\
-\hline
-\end{tabularx}
-\end{table}
-
-The training path scores highest (4.35/5.00), driven by buildability, measurable
-evidence, and low validation burden. The CV tray checker scores lowest on
-buildability and validation burden because deployment-grade instrument
-recognition requires local data collection, cross-manufacturer generalization
-testing, clinical workflow integration, and failure-mode analysis that exceed
-the project timeline. The software-only quiz scores well on buildability but
-loses points on physical task fidelity. The real-instrument CV path combines
-the weaknesses of the CV tray checker with additional equipment and handling
-requirements.
-
-\begin{table}[H]
-\centering
-\caption{Weighted objective method: training path scoring detail}
-\label{tab:weighted-objective-scoring-detail}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Criterion & Rationale for score \\
-\hline
-Buildability (5/5) & File-backed module, printable cards, and local app are implementable with available resources within one quarter. \\
-\hline
-Measurable evidence (5/5) & Pre/post accuracy, error categories, confidence, and export provide structured evidence without requiring clinical deployment. \\
-\hline
-Physical task fidelity (3/5) & Marker cards preserve spatial search and physical selection but are less realistic than real instruments. Acceptable for a simulated novice study. \\
-\hline
-Low validation burden (4/5) & Validation requires novice study protocol, expert review, and marker bench test -- all within project scope. \\
-\hline
-Instructor usefulness (4/5) & Export and weak-item reporting support instructor review, but SPD-specific integration is deferred. \\
-\hline
-Future extensibility (3/5) & Modular design supports future CV, real-instrument, and SPD-pilot extensions, but current build is bounded to simulated practice. \\
-\hline
-Cost (5/5) & Minimal cost: cardstock, printer, existing camera, and open-source software stack. \\
-\hline
-\end{tabularx}
-\end{table}
-
-The weighted objective analysis confirms the selection of the training-centered
-path and provides transparent traceability from the decision criteria defined
-in the objective tree to the final solution selection.
-
-
-
-% ── Section 5 ──
-
-\section{Root Cause Analysis}
+Most people will undergo surgery at least once \cite{abbott-et-al-2024}. Each
+procedure depends on correctly assembled, sterile instrument trays, which
+means each procedure depends on the same manual identification and
+reconstruction task that the sections above document as vulnerable. The
+problem is not confined to one hospital's workflow; it is embedded in every
+OR that relies on prepared instrument sets.
+\subsection{Root Cause Analysis}
 \label{sec:root-cause-analysis}
+
 The fishbone head for this analysis is:
 
 \begin{quote}
-Tray content errors during tray reconstruction.
+Tray content errors during reconstruction of reusable stainless steel
+instrument trays.
 \end{quote}
-
-This effect includes missing instruments, wrong instruments, extra instruments,
-wrong quantities, visible damage or function problems, and item selections that
-conflict with the count sheet or local tray rule
-\cite{alfred-et-al-2021};
-\cite{nichol-et-al-2024};
-\cite{zhu-et-al-2019}.
-
-The analysis is organized into six cause categories, each connecting a proximal
-failure mode to a structural root cause. Three structural drivers appear across
-categories. First, sterile processing evolved from central supply (materials
-management) rather than patient care, producing a workforce with weak
-professionalization and a compensation classification that does not reflect
-current technical demands. Second, hospital financial accounting treats SPD as a
-cost center without a revenue line, making every investment visible as expense
-while error costs remain invisible. Third, no information architecture connects
-downstream OR outcomes to upstream SPD actions, so errors repeat without
-triggering systemic correction.
 
 \textbf{Product.}
 
@@ -558,25 +266,19 @@ Same-family instruments (Kelly/Crile, straight/curved Mayo) differ only in
 subtle dimensional features with no intrinsic labels or markings
 \cite{alfred-et-al-2021};
 \cite{lind-2026a};
-\cite{nichol-et-al-2024}. Steam autoclaving
-destroys adhesives and fades inks
-\cite{infection-control-today-instrument-marking-2017}. Laser etching is
-expensive and unstandardized across manufacturers, and no regulatory body
-mandates SPD-level instrument markings
-\cite{alfred-et-al-2021};
-\cite{hspa-instrument-resources-accessed-2026};
-\cite{nichol-and-saari-2023}. Wear and
-reprocessing cycles further reduce visible distinguishing cues
-\cite{alfred-et-al-2021};
-\cite{lind-2026a};
-\cite{nichol-et-al-2024}.
+\cite{nichol-et-al-2024}. For example, a tray requiring four 14~cm Kelly clamps
+and two 16~cm Kelly clamps can be misassembled as two 14~cm and four 16~cm
+clamps---the total count is correct but the instrument variant is wrong, a pattern
+that Zhu et al. found accounted for 44.0\% of all instrument packaging errors
+\cite{zhu-et-al-2019}. Steam
+autoclaving destroys adhesives and fades inks, laser etching is unstandardized
+across manufacturers, and reprocessing wear further reduces visible cues
+\cite{infection-control-today-instrument-marking-2017};
+\cite{hspa-instrument-resources-accessed-2026}.
 
 The instrument supply chain evolved around surgical function, not SPD
-identification. Manufacturers bear labeling cost while SPD receives the benefit
-but lacks purchasing authority over instrument design
-\cite{ashcsp-central-service-history}. No stakeholder has enough individual
-incentive to reorganize because error costs are absorbed as diffuse workflow
-friction rather than concentrated liability
+identification. Manufacturers bear labeling cost, and SPD receives the benefit — but SPD has no purchasing authority over instrument design
+\cite{ashcsp-central-service-history}. No stakeholder has enough individual incentive to change instrument-marking practices because error costs are small incremental delays spread across the workflow, not a direct impact on surgery or surgical liability
 \cite{association-of-health-care-journalists-2024}. No regulatory body mandates
 marking because no sentinel event with a clear causal line to patient death has
 been attributed to unlabeled instruments
@@ -610,14 +312,10 @@ provides no structured opportunity for this practice. Preceptors train on the
 fly, production pressure prevents deliberate study, and no mechanism identifies
 which visual discriminations an individual has not yet mastered
 \cite{nichol-et-al-2024};
-\cite{alfred-et-al-2021}. The certification examination
-failure rates provide evidence that these demands are substantive. HSPA reports
-CRCST failure rates of 28 to 33 percent, and CBSPD reports CSPDT failure rates
-near 50 percent
-\cite{hspa-crcst-accessed-2026}. These rates show that SPD work
-requires genuine technical knowledge of microbiology, sterilization science,
-regulatory compliance, and advanced instrumentation. The role is classified and
-compensated as entry-level support labor despite these requirements.
+\cite{alfred-et-al-2021}. Certification failure rates of
+28--50\% confirm that the technical demands are substantive, yet the role
+remains classified and compensated as entry-level support labor
+\cite{hspa-crcst-accessed-2026}.
 
 Second, general instrument knowledge and local tray rules are separate domains.
 Manufacturers produce physically different tools under the same generic name
@@ -638,7 +336,7 @@ knowledge
 \cite{kovach-2012};
 \cite{nadeau-2017}. Training inconsistency
 persists because no single role owns the standard curriculum for each tray.
-Differences across preceptors, shifts, and training tenures produce conflicting
+Differences across clinical supervisors, shifts, and training tenures produce conflicting
 mental models of the same tray
 \cite{alfred-et-al-2021};
 \cite{hu-et-al-2024};
@@ -731,31 +429,15 @@ staff means less time for training and less thorough checking
 \cite{macola-et-al-2025};
 \cite{brozak-2025}.
 
-Three structural mechanisms produce this wage level. First, sterile processing
-evolved from central supply (materials management) rather than patient care. The
-role retains a compensation classification from that origin, despite technical
-demands that now include microbiology, sterilization science, and regulatory
-compliance. Hospital associations resisted mandatory certification in the 2000s
-in part because certification would create upward wage pressure
-\cite{evolved-sterile-processing-2025}. Second, the absence of professional
-licensure means that no regulatory body establishes a minimum compensation
-baseline. Unlike nursing or surgical technology, SPD has no individual license,
-no board with enforcement authority, and no mandated competency infrastructure.
-The travel market premium of 40 to 80 percent over permanent staff pay reveals
-the market-clearing wage that the permanent classification system suppresses
-\cite{specialtycare-travel-spd-2026}. Third, low union representation means no
-institutional mechanism exists to counter the cost-center budget logic.
-Healthcare technician unionization remains below the 13.2 percent healthcare
-average, falling as low as 5 percent in right-to-work states
-\cite{bls-union-2023};
-\cite{trends-in-labor-unionization-2022}. SPD's physical
-isolation from clinical staff makes organizing difficult, and most healthcare
-union drives target nurses around staffing ratios rather than technician
-compensation \cite{ashhra-2024}. Without collective bargaining, the
-self-reinforcing cycle continues: structural underinvestment produces low wages,
-low wages produce chronic vacancies, vacancies increase production pressure, and
-production pressure preempts the training and process improvements that could
-reduce errors.
+Three structural mechanisms---historical classification as materials management,
+absence of professional licensure, and low union representation---produce this
+wage level. Together they create a self-reinforcing cycle: structural
+underinvestment produces low wages, low wages produce chronic vacancies,
+vacancies increase production pressure, and production pressure preempts the
+training and process improvements that could reduce errors
+\cite{evolved-sterile-processing-2025};
+\cite{specialtycare-travel-spd-2026};
+\cite{bls-union-2023}.
 
 \textbf{Policy \& Feedback.}
 
@@ -768,14 +450,14 @@ authoritative standard for each tray requires a designated owner, a maintenance
 process, and enforcement across shifts, but none of these are budgeted.
 
 Certification bodies (HSPA, CBSPD) recommend but do not mandate recurring
-competency checks tied to local tray knowledge
+competency checks tied to local tray knowledge. When competency programs exist,
+they are locally administered with no external audit
 \cite{kovach-2012};
-\cite{ofstead-et-al-2023}. When competency programs exist, they are designed and
-administered locally with no external audit
-\cite{lind-2026b}. The absence of
-professional licensure (described in the Environment section) means that no
-external body holds hospitals accountable for maintaining a minimum competency
-standard.
+\cite{ofstead-et-al-2023}.
+The absence of a mandate means that even published, evidence-backed
+training programs --- such as the Ofstead et al.\ (2023) borescope
+inspection pilot --- remain discretionary investments that compete
+for budget with production headcount, rather than required practice.
 
 Error reporting is manual, slow, and deprioritized. Errors discovered during
 surgery are documented, if at all, in incident reports that may take weeks to
@@ -790,31 +472,96 @@ error back to a root cause, downstream detection does not drive upstream
 improvement \cite{nichol-et-al-2024};
 \cite{zhu-et-al-2019}.
 
+Structured process-improvement approaches can substantially reduce these
+defects. Using Six Sigma methodology, Natarus et al. improved first-pass yield
+from 81.0\% to 97.4\% and reduced the tray defect rate from 2.2\% to less than
+0.1\% in a hospital sterile-processing department, demonstrating that targeted
+workflow and training interventions can close the gap described above
+\cite{natarus-et-al-2025}.
+
 \textbf{Consolidated Root Cause Chain.}
 
-The six categories above share three structural drivers. Together they explain
-why the same errors recur across hospitals and over time despite being well
-documented.
+Sterile processing evolved from materials management, producing a logistics-oriented workforce without the professional infrastructure of clinical departments.
+Compensation and professional infrastructure reflect that origin: below current technical demands.
+Hospital associations resisted mandatory certification because it would create upward wage pressure.
+Low union representation leaves no institutional mechanism to counter cost-center budget logic.
+Temporary contract SPD technicians earn 40 to 80 percent more than permanent staff \cite{nadeau-2023-spd-salary-survey}; \cite{specialtycare-travel-spd-2026}.
 
-Sterile processing evolved from central supply (materials management) rather
-than patient care. That historical origin produced a workforce with weak
-professionalization: no individual licensure, no board with enforcement
-authority, and no mandated competency infrastructure. The role carries a
-compensation classification from its materials-management origin that does not
-reflect current technical demands. Hospital associations resisted mandatory
-certification in part because certification would create upward wage pressure.
-Low union representation leaves no institutional mechanism to counter the
-cost-center budget logic that keeps wages below market-clearing levels. The
-travel market premium of 40 to 80 percent over permanent staff pay reveals the
-suppressed wage.
+Compounding these workforce conditions, the hospital financial structure separates OR revenue from SPD cost: every SPD investment is visible as expense while error reduction has no standard metric.
+Hospitals add surgery suites without increasing SPD headcount, making underinvestment rational at each hospital because error costs are diffuse workflow friction.
 
-Hospital financial structure separates revenue generation (OR) from support cost
-(SPD). Every SPD investment is visible as expense, while the benefit of fewer
-errors is invisible in standard metrics. Hospitals add surgery suites without
-proportionally increasing SPD headcount. The same financial structure makes it
-rational for each individual hospital to underinvest in SPD wages and training
-because the cost of errors is absorbed as diffuse workflow friction rather than
-direct liability.
+A third structural driver compounds the first two: no information architecture connects OR outcomes to SPD actions, so upstream errors have no downstream feedback.
+
+The pattern is visible in SPD training evidence. Ofstead et al.\ (2023) demonstrated that structured
+borescope inspection training for sterile-processing professionals
+produces large, durable knowledge gains: mean test scores rose from
+41\% to 84\% after the workshop and remained at 90\% after two months,
+and trainees identified actionable defects on patient-ready endoscopes
+at their own facilities
+\cite{ofstead-et-al-2023}.
+Despite publication in a peer-reviewed infection-control journal (the
+\emph{American Journal of Infection Control}) and endorsement by the
+HSPA Foundation, no mechanism exists to compel or incentivize adoption
+of this training model. The intervention demonstrates educational
+efficacy (Kirkpatrick Level~2), but the adoption decision depends on
+regulatory mandate, liability risk, or visible cost avoidance (Level~4),
+conditions that the structural drivers above keep absent. This
+pattern of strong learning evidence with no adoption pathway is the
+same dynamic that any future training tool, including TrayGuard, must
+anticipate.
+
+A cross-profession comparison confirms that these structural drivers,
+not the quality of available evidence, explain the absence of reform.
+Respiratory therapy followed the canonical professionalization
+trajectory: the American Association for Respiratory Care (AARC)
+established a voluntary certification in 1969, unified credentialing
+under the National Board for Respiratory Care in 1974, and then
+lobbied state legislatures one by one; California passed the first
+licensure law in 1982, and by 2004 all 48 contiguous states had
+enacted licensure for respiratory therapists, enforced by state boards
+with disciplinary authority
+\cite{aarc-timeline}.
+Surgical technology is mid-trajectory: the Association of Surgical
+Technologists (AST) has driven over a dozen states to require
+graduation from a CAAHEP-accredited program and Certified Surgical
+Technologist (CST) credentialing, though many states still lack
+regulation
+\cite{ast-state-laws}.
+
+Sterile processing followed none of this path, and the reason is not
+that its technical demands are lower. A comparison of enabling
+conditions makes the gap explicit:
+
+\begin{table}[H]
+\centering
+\caption{Enabling conditions for professionalization: respiratory therapy, surgical technology, and sterile processing}
+\label{tab:professionalization-enabling-conditions}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Enabling condition & Respiratory therapy & Surgical technology & Sterile processing \\
+\hline
+Visible patient harm creating political will & Respiratory-failure patient deaths drove legislative urgency & Surgical-site infection outbreaks provided the harm narrative & Tray-content errors have not crossed the sentinel-event threshold \cite{joint-commission-sentinel-event-2024} \\
+\hline
+Professional association with lobbying infrastructure & AARC maintains full-time government-affairs staff and drafts model legislation \cite{aarc-timeline} & AST runs a sustained state-by-state legislative campaign \cite{ast-state-laws} & HSPA and CBSPD are voluntary certification bodies, not advocacy organizations \\
+\hline
+Standardized education pipeline & CoARC-accredited programs are the required entry path & CAAHEP-accredited programs required by law in regulated states & No mandated program accreditation; 400 hands-on hours with no curriculum standard \\
+\hline
+Direct patient-care lineage & Evolved from ICU respiratory support (1950s--60s) & Evolved from intraoperative assistance in the OR & Evolved from central supply and materials management \cite{ashcsp-central-service-history} \\
+\hline
+\end{tabularx}
+\end{table}
+
+Each condition maps to a structural driver identified above. The
+absence of visible harm corresponds to the broken feedback loop that
+keeps error costs invisible. The absence of lobbying infrastructure
+and education standardization corresponds to the weak
+professionalization that followed from SPD's materials-management
+origin. The absence of a patient-care lineage corresponds to the
+cost-center classification that suppresses wages and organizational
+voice. Together these explain why a role with comparable technical
+demands remains a semi-profession while adjacent roles achieved
+state-enforced regulation \cite{etzioni-semi-professions-1969}.
 
 No information architecture connects downstream OR outcomes to upstream SPD
 actions. The feedback loop from error to correction is broken, so the same
@@ -830,282 +577,10 @@ licensure, or organizational voice to demand structural change. Regulatory
 bodies have not acted because tray errors have not crossed the sentinel-event
 threshold.
 
-\textbf{Final Root Cause Framing.}
+% ── Section 4 ──
 
-Tray content errors during reconstruction are a system problem caused by the
-interaction of local tray complexity, fine-grained visual identification,
-count-sheet information quality, hands-on local knowledge, manual process
-controls, workforce conditions, and weak feedback loops. The workforce
-conditions that amplify every other category have structural origins: the
-historical classification of SPD as materials management, the absence of
-professional licensure and union representation, and a cost-center accounting
-model that makes wage investment visible as expense while error costs remain
-invisible.
-
-Short version:
-\begin{quote}
-Tray reconstruction is vulnerable because local tray rules must be translated
-into accurate visual identification, counting, rejection of distractors, and
-damage recognition during a manual assembly task. Workforce conditions
-determined by historical classification, weak professionalization, and low union
-representation control how much time and attention are available for that
-translation.
-\end{quote}
-
-The strongest evidence points to local instrument knowledge, count-sheet use,
-visual identification, assembly defects, competency validation, workforce
-conditions, and feedback as testable contributors that can be represented in a
-simulated tray task
-\cite{alfred-et-al-2021};
-\cite{nichol-et-al-2024};
-\cite{nadeau-2024};
-\cite{ofstead-et-al-2023};
-\cite{macola-et-al-2025}.
-
-
-
-% ── Section 6 ──
-
-\section{First Attempt: A Computer-Vision Tray Checker}
-\label{sec:first-attempt-a-computer-vision-tray-checker}
-\subsection{CV Literature Context}
-
-Computer vision remains technically plausible, but it is no longer the central
-project proof. Deol et al. show that automated surgical-instrument detection and
-counting can work in an experimental proof-of-concept setting
-\cite{deol-et-al-2024}. Atabuzzaman et al.
-show that structured image acquisition can support ultra-fine-grained surgical
-instrument classification, and Xin et al. address CSSD-oriented instrument
-recognition
-\cite{atabuzzaman-et-al-2025};
-\cite{xin-et-al-2024}. These papers support CV as authoring support, camera-assisted practice, or a
-future visual review layer, but real SPD deployment would need local data,
-manufacturer and variant coverage, lighting and glare testing, occlusion
-handling, open-set behavior, workflow review, human confirmation, false-alert
-analysis, cleaning and device-policy review, and site-specific failure-mode
-reporting. Kienle et al. show why this boundary
-matters: strong in-domain detection can drop when instruments come from
-different manufacturers
-\cite{kienle-et-al-2025}.
-The project's earlier CV pipeline is still useful technical evidence, but it
-should be treated as a support layer. The project's primary claim should come from
-the training loop because that loop can be built, tested, and interpreted
-without pretending that deployment-grade instrument recognition has already
-been solved.
-\subsection{Requirements for Automated Verification}
-\label{sec:requirements-for-automated-verification}
-The tray-status logic used a two-threshold confidence band with a scan-quality
-gate, because a single detector threshold is insufficient to distinguish a
-truly absent item from one missed due to glare, occlusion, blur, similar-class
-confusion, or open-set behavior:
-
-\begin{table}[H]
-\centering
-\caption{Original planned tray-status logic using two-threshold confidence band}
-\label{tab:original-planned-tray-status-logic}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-User-Facing State & Decision Logic \\
-\hline
-\texttt{Present} & Required class has at least required count of detections above high threshold \texttt{T\_present}, no active similar-class or image-quality risk flag, and duplicate boxes reconciled. \\
-\hline
-\texttt{Needs Review} & Detections between \texttt{T\_review} and \texttt{T\_present}, similar class appears, count unstable, unknown or extra object plausible, or scan quality degraded. \\
-\hline
-\texttt{Missing} & No candidate above low threshold \texttt{T\_review}, and scan quality acceptable enough that absence is meaningful. \\
-\hline
-\texttt{Rescan Recommended} & System lacks evidence but glare, occlusion, blur, poor framing, or lighting makes a missing label unsafe. \\
-\hline
-\end{tabularx}
-\end{table}
-
-The technician-facing UI was designed around the tray decision with one
-primary action per state, visual-first feedback, alert restraint, and explicit
-human sign-off:
-
-\begin{table}[H]
-\centering
-\caption{Original planned technician UI requirements}
-\label{tab:original-planned-technician-ui-requirements}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Requirement & Design Direction \\
-\hline
-One primary action per state & Show the next meaningful action: start scan, rescan, review issue, confirm tray, or stop. \\
-\hline
-Clear tray-status hierarchy & Summarize Complete, Missing, Extra, and Needs Review above detailed detections. \\
-\hline
-Fast correction and rescan & Provide direct correction, dismiss, and rescan paths instead of forcing a workflow restart. \\
-\hline
-Specific review reasons & Label review prompts with the cause: low confidence, similar-class risk, glare, overlap, unknown object, or count mismatch. \\
-\hline
-Visual-first feedback with optional sound & Persistent visible status as the source of truth; short optional audio for major state changes. \\
-\hline
-Alert restraint & Escalate only conditions that change the tray decision or require user action. \\
-\hline
-Human sign-off & Require explicit final confirmation. The system supports the decision, not silently makes it. \\
-\hline
-Manual fallback & Make it clear how to continue if camera, model, or scan quality is unavailable. \\
-\hline
-\end{tabularx}
-\end{table}
-
-The original system also included a physical capture fixture: an overhead
-camera stand mounted on a portable weighted board, designed for tabletop use
-with an optional rolling standing base. The board-mounted design preserved
-repeatable camera geometry across work surfaces without requiring table
-modification.
-
-
-The original system also included a physical capture fixture: an overhead
-camera stand mounted on a portable weighted board, designed for tabletop use
-with an optional rolling standing base. The board-mounted design preserved
-repeatable camera geometry across work surfaces without requiring table
-modification.
-
-
-\subsection{System Design: Camera-Supported Tray Check}
-\label{sec:system-design-camera-supported-tray-check}
-
-
-The original product concept was a tray-verification tool that used a camera,
-a YOLO object detector, and confidence-based logic to check whether a
-technician's assembled tray matched the required instrument list. The system
-was designed to support the following workflow:
-
-\begin{enumerate}
-  \item Load or enter the required instrument list for a tray.
-  \item Capture the current tray view with a camera.
-  \item Detect visible instruments and assign class labels with confidence scores.
-  \item Aggregate detections into observed class counts.
-  \item Compare observed counts against required counts.
-  \item Present a result that highlights what appears present, missing, extra, or uncertain.
-  \item Preserve the final decision as human judgment rather than silent automation.
-\end{enumerate}
-
-The tray-status logic, technician-facing UI requirements, and physical capture
-fixture design are documented in
-Section~\ref{sec:requirements-for-automated-verification} above. The System
-Design section below describes the final training-centered system that replaced
-this CV-based approach.
-
-\subsection{CV Experiments and Results}
-\label{sec:computer-vision-experiments}
-
-The CV experiments tested how detection degrades when training and test
-conditions differ along three axes: illumination, surface reflectivity,
-and layout occlusion. All staged experiments used YOLO11s on a controlled
-self-collected dataset with four instrument-like classes (spoon variants)
-arranged in a fixed 11-step brightness ladder (800 to 80 estimated lumens)
-across two background conditions (matte, reflective) and two layout
-conditions (separated, overlapping). The design isolated each variable
-independently rather than mixing effects.
-\paragraph{Lavado baseline.}
-A YOLO11s model was also trained on the Lavado surgical-instrument
-dataset: 2,106 training images across four real instrument classes
-(scalpel, straight dissection clamp, straight Mayo scissors, curved
-Mayo scissors). After 100 epochs the model achieved precision of 0.819,
-recall of 0.965, mAP50 of 0.990, and mAP50-95 of 0.944 on the held-out
-test set (302 images). This established that the training pipeline and
-architecture perform competitively on a published surgical-instrument
-dataset before the staged proxy experiments.
-\paragraph{Brightness degradation.}
-Two experiments measured monotonic mAP50-95 decay as the train--test
-illumination gap widened. \texttt{brightest\_train\_darker\_test} trained
-on 800-lumen separated images and tested across all dimmer levels,
-producing mAP50-95 of 0.844. \texttt{darkest\_train\_brighter\_test}
-trained on 80-lumen separated images and tested across all brighter
-levels, producing mAP50-95 of 0.781. The decay was asymmetric: the
-brightest-trained model retained higher recall under moderate drops,
-while the darkest-trained model recovered more quickly as light
-increased. Per-brightness metrics confirmed the trend was consistent
-across both matte and reflective backgrounds.
-\paragraph{Background transfer.}
-Two experiments tested whether the model learned object shape or
-overfit to the scene background. \texttt{matte\_train\_reflective\_test}
-trained on matte-background images and tested on reflective-background
-images across all brightness levels, producing mAP50-95 of 0.759.
-\texttt{reflective\_train\_matte\_test} trained on reflective-background
-images and tested on matte-background images, producing mAP50-95 of
-0.830. The reflective-to-matte direction was stronger, suggesting that
-reflective training data provides broader feature invariance.
-\paragraph{Occlusion stress.}
-The separated-to-overlay layout shift produced the largest degradation.
-\texttt{separated\_train\_overlay\_test} trained on non-overlapping
-layouts and tested on overlapping layouts, producing mAP50-95 of 0.389
-compared with 0.995 on the matched-condition baseline. This gap was
-consistent across all brightness ranks and both backgrounds, showing
-that training on neatly arranged instruments does not transfer to
-cluttered arrangements. The overlay condition was the only experiment
-where recall fell below 0.70, making it the clearest product boundary:
-the system should request a rescan whenever tools overlap.
-
-\begin{table}[H]
-\centering
-\caption{Aggregate test-set metrics for the seven staged brightness experiments}
-\label{tab:brightness-stage-metrics}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{lrrrr}
-\hline
-Stage & Precision & Recall & mAP50 & mAP50-95 \\
-\hline
-\texttt{brightest\_train\_darker\_test} & 0.840 & 0.969 & 0.991 & 0.844 \\
-\texttt{darkest\_train\_brighter\_test} & 0.819 & 0.969 & 0.972 & 0.781 \\
-\texttt{bright\_train\_dim\_test} & 0.996 & 1.000 & 0.995 & 0.984 \\
-\texttt{dim\_train\_bright\_test} & 0.996 & 1.000 & 0.995 & 0.979 \\
-\texttt{matte\_train\_reflective\_test} & 0.931 & 0.900 & 0.929 & 0.759 \\
-\texttt{reflective\_train\_matte\_test} & 0.834 & 0.900 & 0.968 & 0.830 \\
-\texttt{separated\_train\_overlay\_test} (overlay) & 0.709 & 0.660 & 0.627 & 0.389 \\
-\texttt{separated\_train\_overlay\_test} (baseline) & 0.998 & 1.000 & 0.995 & 0.995 \\
-\hline
-\end{tabularx}
-\end{table}
-
-\paragraph{Lighting diversity (spoon proxy).}
-A separate experiment confirmed that adding lighting variety during
-training improves held-out-condition detection. Three YOLO11s models
-were trained on the same Lavado instrument classes with increasing
-lighting diversity (reference lighting only, reference plus
-45-degree flashlight, reference plus 45- and 90-degree flashlight).
-Each additional lighting condition improved precision and recall
-on held-out test conditions, with the most diverse training set
-producing the highest and most stable metrics across all held-out
-lighting angles.
-\paragraph{What the cumulative evidence meant for the project.}
-Across all experiments the pattern was consistent: detection worked
-reliably in controlled, matched-condition settings and degraded under
-every variation that SPD workflows present---variable illumination,
-reflective tray surfaces, and overlapping instruments. The occlusion
-condition (mAP50-95~=~0.389) was the clearest operational boundary:
-the system can support technician review when tools are separated, but
-must request a rescan or flag uncertainty when overlap is detected.
-These results showed that controlled lighting and layout are
-prerequisites for reliable detection, and that real SPD workstations
-would require site-specific training data to cover the range of
-conditions encountered. The pivot to a training-centered platform
-preserved the data collection pipeline, camera code, and detection
-experiments as foundation for future camera-assisted practice. The
-primary evidence path shifted from CV generalization to measurable
-novice learning through a simulated tray task with physical AprilTag
-cards, a claim that could be supported with the project's available
-resources.
-\subsection{Boundary Conditions for Future CV Work}
-\label{sec:boundary-conditions-for-future-cv-work}
-
-
-TODO: Summarize the conditions under which a CV-based tray checker would be viable: (1) access to site-specific training data covering local instruments, lighting, and layouts; (2) a closed-set assumption or robust open-set rejection; (3) human-in-the-loop confirmation for low-confidence and lookalike detections; (4) per-manufacturer validation (Kienle et al. 2025); (5) workflow integration testing in a live SPD environment.
-
-
-
-
-
-
-% ── Section 7 ──
-
-\section{Literature And Related Work}
+\section{Literature And Related Work \hfill {\normalfont\small (Matthew, Andy, Qiyu)}}
 \label{sec:literature-and-related-work}
-The root cause analysis identified several interconnected causes of tray-content errors. Expanding each cause to its structural driver reveals four common threads across all six categories. First, sterile processing evolved from central supply (materials management) rather than patient care, producing a workforce with weak professionalization. Second, hospital financial structure separates revenue generation from support cost. Third, no information architecture connects downstream OR outcomes to upstream SPD actions. Fourth, the SPD workforce lacks the organizational voice that clinical departments have. Together these four drivers explain why the individual root causes persist despite being well documented.
 
 \subsection{The Solution Landscape}
 \label{sec:solution-landscape}
@@ -1154,20 +629,16 @@ Training and simulated practice & Pre-work and between-work skill building & VR 
 Each category reduces a real risk. Categories 1 through 6, however, all depend
 on resources that this project cannot access within our project timeline: SPD
 deployment sites, real instrument inventories, hospital utilization data,
-institutional policy authority, or multi-stakeholder buy-in. Category 7 —
-training and simulated practice — is the only category whose primary evidence
+institutional policy authority, or multi-stakeholder buy-in. Category 7 --
+training and simulated practice -- is the only category whose primary evidence
 can be collected with accessible participants (novices), low-cost materials
 (printed cards), and a bounded pre/post study design on a simulated local tray
-task. Section 7 examines the literature supporting each
+task. Section~\ref{sec:literature-and-related-work} examines the literature supporting each
 relevant area in depth.
-\subsection{SPD Error and Tray-Readiness Evidence}
-\label{sec:spd-training-and-competency-context}
 \subsection{SPD Training and Competency Gap}
 
 
-The RCA (Section~\ref{sec:root-cause-analysis}) identified the gap between general certification and local tray competence: HSPA's CRCST requires 400 hours of hands-on experience, but certification alone does not cover local instrument names, tray rules, or sustained lookalike discrimination \cite{hspa-crcst-accessed-2026}. CBSPD's CSPDT route similarly treats certification as minimum competency, allowing candidates to qualify through work experience, allied health plus SPD experience, a sterile processing course, or related product sales or service experience \cite{cbspd-technician-accessed-2026}.
-
-SPD training in practice follows a blended pattern that combines coursework, hands-on practice, and preceptor-led onboarding:
+SPD training in practice follows a blended pattern that combines coursework, hands-on practice, and clinical supervisor-led onboarding:
 \begin{table}[H]
 \centering
 \caption{SPD training patterns and TrayGuard implications}
@@ -1177,18 +648,30 @@ SPD training in practice follows a blended pattern that combines coursework, han
 \hline
 Training pattern & Evidence & Implication for TrayGuard \\
 \hline
-Certification exam plus verified hands-on hours & HSPA CRCST requires 400 SPD hands-on hours and a computer-based exam; CBSPD CSPDT uses eligibility routes that include work experience or a course plus exam \cite{hspa-crcst-accessed-2026}; \cite{cbspd-technician-accessed-2026}. & The tool should measure learning and support practice before and during supervised competency development. \\
+Certification exam plus verified hands-on hours & HSPA CRCST requires 400 SPD hands-on hours and a computer-based exam; CBSPD CSPDT requires 12 months of full-time SPD employment (or a training course with passing grade of 70 or higher, or 6 months allied health plus 6 months SPD experience) \cite{hspa-crcst-accessed-2026}; \cite{cbspd-technician-accessed-2026}. & The tool should measure learning and support practice before and during supervised competency development. \\
 \hline
 Self-paced or classroom instruction & Towson's ed2go-backed course is self-paced online, 190 hours, covering instrument identification and tray assembly. Altamont's program is 135 hours over 8-12 weeks with live online classes, in-person labs, and an optional 240-400 hour externship \cite{towson-sterile-processing-accessed-2026}; \cite{altamont-healthcare-accessed-2026}. & The platform can complement formal instruction with reusable local modules and repeated practice. \\
 \hline
-Preceptor-led onboarding & HPN describes hospital examples including 90-day on-the-job training programs, 19-week programs with textbook chapters, quizzes, and progress tests, and structured 1:1 preceptor onboarding with presentations, online modules, written tests, direct observation, and one-on-one training \cite{nadeau-2017}. HSPA training guidance frames core program elements as structured orientation, competency documentation, and ongoing education; training that stops after orientation perpetuates inconsistent habits \cite{klacik-2023}. & The system should reduce low-level explanation burden and give preceptors evidence of where a learner still struggles. \\
+Clinical supervisor-led onboarding & HPN describes hospital examples including 90-day on-the-job training programs, 19-week programs with textbook chapters, quizzes, and progress tests, and structured 1:1 clinical supervisor onboarding with presentations, online modules, written tests, direct observation, and one-on-one training \cite{nadeau-2017}. HSPA training guidance frames core program elements as structured orientation, competency documentation, and ongoing education; training that stops after orientation perpetuates inconsistent habits \cite{klacik-2023}. & The system should reduce low-level explanation burden and give clinical supervisors evidence of where a learner still struggles. \\
 \hline
 Simulation and skills assessment & AORN describes Penn Medicine's earn-to-learn SPD program combining didactic education, hands-on training, simulation, mentorship, content testing, and skills-based assessment \cite{aorn-staffing-shortage-2025}. & Simulated tray sorting and pre/post tasks are aligned with existing training practice. \\
 \hline
 \end{tabularx}
 \end{table}
 
-The common thread across patterns is that hands-on practice and preceptor attention are the scarce resources. Several program examples show the gap between classroom preparation and clinical capacity. Penn Foster's online sterile processing program prepares learners for the CRCST exam but does not require the exam or the 400 hands-on hours \cite{penn-foster-sterile-processing-accessed-2026}. MedCerts states that full CRCST certification requires 400 hours of hands-on experience following provisional certification \cite{medcerts-catalog-2025}. AIMS Education requires a 400-hour clinical internship, but its schedules depend on clinical-site availability \cite{aims-education-sterile-processing-accessed-2026}. Central Sterilization Solutions states its classroom course has no hands-on training in the classroom and that hands-on training is conducted during externship \cite{central-sterilization-solutions-in-person-accessed-2026}. These examples illustrate the training-access gap: repeatable, feedback-rich practice with local instruments and tray rules is hard to scale before and during real SPD experience because it depends on site access, clinical scheduling, preceptor attention, and available teaching materials.
+The common thread across patterns is that hands-on practice and clinical supervisor attention are the scarce resources. Several program examples show the gap between classroom preparation and clinical capacity. Penn Foster's online sterile processing program prepares learners for the CRCST exam but does not require the exam or the 400 hands-on hours \cite{penn-foster-sterile-processing-accessed-2026}. MedCerts states that full CRCST certification requires 400 hours of hands-on experience following provisional certification \cite{medcerts-catalog-2025}. AIMS Education requires a 400-hour clinical internship, but its schedules depend on clinical-site availability \cite{aims-education-sterile-processing-accessed-2026}. Central Sterilization Solutions states its classroom course has no hands-on training in the classroom and that hands-on training is conducted during externship \cite{central-sterilization-solutions-in-person-accessed-2026}. These examples illustrate the training-access gap: repeatable, feedback-rich practice with local instruments and tray rules is hard to scale before and during real SPD experience because it depends on site access, clinical scheduling, clinical supervisor attention, and available teaching materials.
+
+Structured training programs for sterile-processing staff have shown positive
+results. Hu et al. developed a CSSD training program using action research; after
+two rounds of training, CSSD nurses showed significant improvement in
+professional knowledge \cite{hu-et-al-2024}. Huang
+et al. similarly concluded that an action-research-based training program
+improved CSSD nurses' professional knowledge and skill, increased their
+enthusiasm for learning, and laid a foundation for talent development
+\cite{huang-et-al-2025}. These findings support
+TrayGuard's role as a repeatable training supplement:
+local SPD practice varies and depends on
+supervised experience with site-specific trays, sheets, and policies.
 
 Broader allied-health placement research supports treating clinical placements as capacity-constrained environments. A Queensland study found that placement-offer growth did not keep pace with student-program growth, and barriers centered on resourcing and increasing demand \cite{mcbride-et-al-2020}. A 2025 Greater Sacramento report identified shortage of clinical placement opportunities as a barrier to workforce pipeline growth, and highlighted student preparedness as part of successful placement partnerships \cite{north-greater-sacramento-coe-2025}. TrayGuard gives learners repeated practice before, during, or between supervised work, and gives educators evidence about weak instruments, weak tray rules, high-confidence errors, and uncertainty. This addresses the practical constraint: supervised training time is a scarce resource \cite{aorn-staffing-shortage-2025}; \cite{brozak-2025}; \cite{macola-et-al-2025}.
 \subsection{Local Tray and Count-Sheet Evidence}
@@ -1197,6 +680,21 @@ Broader allied-health placement research supports treating clinical placements a
 The RCA (Section~\ref{sec:root-cause-analysis}) identified incomplete count sheets and local tray variation as root causes. Count sheets define tray names, sections, contents, quantities, reference numbers, placement, and sign-off fields (Nadeau, 2024; Stryker, 2023). Tray contents are design choices shaped by procedure, surgeon, and hospital policy (dos Santos et al., 2021; Ahmadi et al., 2023), so general instrument knowledge does not transfer across sites. Loaner trays add further complexity through scheduling, delivery, IFU, and count-sheet dependencies (STERIS, 2021). TrayGuard stores local names, aliases, approved photos, required counts, lookalike pairs, distractors, assessment variants, and module version. Modules must be instructor-verified before results are described as content-valid.
 
 FGVC-derived modules serve a narrower prototype role. Atabuzzaman et al. collected ultra-fine-grained surgical instrument images from major, minor, and eye tray contexts \cite{atabuzzaman-et-al-2025}. TrayGuard's current FGVC prototype uses the major-tray image archive and class-name mapping to create image cards and same-family discrimination exercises. The FGVC source provides observed instrument classes and representative images; public count sheets provide the field structure for tray names, sections, quantities, locations, check boxes, and sign-off fields \cite{stryker-gamma4-count-sheet-2023}; \cite{stryker-imn-count-sheet-2023}. The prototype's FGVC quantities are simulated as one card per selected class, and exact local tray membership remains an instructor-review variable.
+
+The scale of local variation is substantial. A multi-specialty tray optimization
+project at a Danish university hospital considered 1,340 different instrument
+trays across all surgical specialties; introducing modular trays reduced
+instruments in some existing trays while others required structural changes to
+the tray set itself \cite{rubak-et-al-2024}. In
+a major academic hospital in the Netherlands, a single general-surgery tray
+contained 94 reusable instruments used across 162 procedures in multiple
+disciplines, yet only 19 instruments were used per case on average and 10 were
+never used \cite{eussen-et-al-2026}. Tray
+optimization---removing rarely used instruments---reduced that tray's size and
+weight by 54\% \cite{eussen-et-al-2026}. These
+figures illustrate why general instrument familiarity is insufficient: a learner
+must master not only instrument shapes and names but also the specific tray
+configuration, quantities, and local naming conventions of their facility.
 \subsection{Learning Science and Simulation Evidence}
 
 
@@ -1214,26 +712,11 @@ For sterile processing specifically, Ofstead et al. provide the closest direct
 precedent. Their borescope/endoscope visual-inspection training pilot used a
 pre-test, structured teaching, hands-on practice, image-based testing,
 confidence/satisfaction measures, workplace homework, and a delayed booster
-with certified sterile-processing professionals
-\cite{ofstead-et-al-2023}. Tray assembly is
-a different task, but the learning structure maps well: the learner must build
-visual familiarity, recognize subtle differences, decide when uncertain, apply
-a procedural rule, and improve between a baseline task and a later task.
-Retrieval-practice evidence explains why the prototype should ask learners to
-produce answers before showing them. Tests can improve long-term retention
-relative to restudy, repeated testing improved long-term retention in a
-medical-education randomized trial, and reviews support practice testing,
-distributed practice, spaced digital education, electronic flashcards, and
-actionable feedback in health-professions learning
-\cite{roediger-and-karpicke-2006};
-\cite{larsen-et-al-2009};
-\cite{dunlosky-et-al-2013};
-\cite{martinengo-et-al-2024};
-\cite{barrison-et-al-2025};
-\cite{hattie-and-timperley-2007}.
-This supports retrieval-first cards, quizzes, weak-item repetition, and
-error-specific feedback as the instructional core rather than decoration around
-the tray task.
+with certified sterile-processing professionals.
+Mean test scores improved from 41\% at pre-test to 84\% after the workshop, and
+remained at 90\% after two months, with surveyed trainees reporting greater
+confidence after the training
+\cite{ofstead-et-al-2023}.
 The electronic-flashcard evidence is especially relevant to the proposed study
 and card modes. Barrison et al.'s 2025 scoping review found that electronic
 flashcards are widely used in health-professions education, that the research
@@ -1363,11 +846,330 @@ Adoption literature provides broad healthcare-AI guidance without SPD training-a
 
 
 
+% ── Section 5 ──
 
+\section{First Attempt: A Computer-Vision Tray Checker \hfill {\normalfont\small (Matthew, Qiyu)}}
+\label{sec:first-attempt-a-computer-vision-tray-checker}
+\subsection{CV Literature Context}
 
-% ── Section 8 ──
+Computer vision was selected as the initial approach because published work
+showed that automated surgical-instrument detection and counting could work in
+experimental settings. Deol et al. trained a deep-learning detector on 1,004
+images of 11 instrument categories and reported 98.5\% precision and 99.9\%
+recall on static images with real-time inference at 40~FPS
+\cite{deol-et-al-2024}. Atabuzzaman et al.
+built a multi-view CNN-transformer system for 95 instrument subtypes across
+three surgical trays and demonstrated improved CSSD workflow efficiency in a
+deployed user study
+\cite{atabuzzaman-et-al-2025}. These papers supported CV as a candidate for tray
+verification.
+\subsection{Requirements and System Design}
+\label{sec:requirements-and-system-design}
 
-\section{Final Product Concept And Design Rationale}
+The original product concept used a YOLO object detector with a two-threshold
+confidence band to check whether a technician's assembled tray matched the
+required instrument list. Detections above a high threshold were accepted as
+present, those between thresholds triggered a human review state, and the
+absence of any candidate prompted a rescan recommendation. The technician UI
+showed one primary action per tray state together with a visual summary of
+complete, missing, extra, and uncertain items, and required explicit human
+sign-off before any decision was final. The capture hardware was a fixed
+overhead camera mounted on a portable weighted board that preserved repeatable
+camera geometry across work surfaces. Detailed decision tables, UI
+requirements, and the complete workflow are documented in
+the following tables.
+
+\begin{table}[H]
+\centering
+\caption{Original planned tray-status logic using two-threshold confidence band}
+\label{tab:original-planned-tray-status-logic}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+User-Facing State & Decision Logic \\
+\hline
+\texttt{Present} & Required class has at least required count of detections above high threshold \texttt{T\_present}, no active similar-class or image-quality risk flag, and duplicate boxes reconciled. \\
+\hline
+\texttt{Needs Review} & Detections between \texttt{T\_review} and \texttt{T\_present}, similar class appears, count unstable, unknown or extra object plausible, or scan quality degraded. \\
+\hline
+\texttt{Missing} & No candidate above low threshold \texttt{T\_review}, and scan quality acceptable enough that absence is meaningful. \\
+\hline
+\texttt{Rescan Recommended} & System lacks evidence but glare, occlusion, blur, poor framing, or lighting makes a missing label unsafe. \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Original planned technician UI requirements}
+\label{tab:original-planned-technician-ui-requirements}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Requirement & Design Direction \\
+\hline
+One primary action per state & Show the next meaningful action: start scan, rescan, review issue, confirm tray, or stop. \\
+\hline
+Clear tray-status hierarchy & Summarize Complete, Missing, Extra, and Needs Review above detailed detections. \\
+\hline
+Fast correction and rescan & Provide direct correction, dismiss, and rescan paths instead of forcing a workflow restart. \\
+\hline
+Specific review reasons & Label review prompts with the cause: low confidence, similar-class risk, glare, overlap, unknown object, or count mismatch. \\
+\hline
+Visual-first feedback with optional sound & Persistent visible status as the source of truth; short optional audio for major state changes. \\
+\hline
+Alert restraint & Escalate only conditions that change the tray decision or require user action. \\
+\hline
+Human sign-off & Require explicit final confirmation. The system supports the decision, not silently makes it. \\
+\hline
+Manual fallback & Make it clear how to continue if camera, model, or scan quality is unavailable. \\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection{CV Experiments and Results}
+\label{sec:computer-vision-experiments}
+
+The CV experiments tested how detection degrades when training and test
+conditions differ along three axes: illumination, surface reflectivity,
+and layout occlusion. All staged experiments used YOLO11s on a controlled
+self-collected dataset with four instrument-like classes (spoon variants)
+arranged in a fixed 11-step brightness ladder (800 to 80 estimated lumens)
+across two background conditions (matte, reflective) and two layout
+conditions (separated, overlapping). The design isolated each variable
+independently rather than mixing effects.
+\paragraph{Lavado baseline.}
+A YOLO11s model was also trained on the Lavado surgical-instrument
+dataset: 2,106 training images across four real instrument classes
+(scalpel, straight dissection clamp, straight Mayo scissors, curved
+Mayo scissors). After 100 epochs the model achieved precision of 0.819,
+recall of 0.965, mAP50 of 0.990, and mAP50-95 of 0.944 on the held-out
+test set (302 images). This established that the training pipeline and
+architecture perform competitively on a published surgical-instrument
+dataset before the staged proxy experiments.
+\paragraph{Brightness degradation.}
+Two experiments measured monotonic mAP50-95 decay as the train--test
+illumination gap widened. \texttt{brightest\_train\_darker\_test} trained
+on 800-lumen separated images and tested across all dimmer levels,
+producing mAP50-95 of 0.844. \texttt{darkest\_train\_brighter\_test}
+trained on 80-lumen separated images and tested across all brighter
+levels, producing mAP50-95 of 0.781. The decay was asymmetric: the
+brightest-trained model retained higher recall under moderate drops,
+while the darkest-trained model recovered more quickly as light
+increased. Per-brightness metrics confirmed the trend was consistent
+across both matte and reflective backgrounds.
+\paragraph{Background transfer.}
+Two experiments tested whether the model learned object shape or
+overfit to the scene background. \texttt{matte\_train\_reflective\_test}
+trained on matte-background images and tested on reflective-background
+images across all brightness levels, producing mAP50-95 of 0.759.
+\texttt{reflective\_train\_matte\_test} trained on reflective-background
+images and tested on matte-background images, producing mAP50-95 of
+0.830. The reflective-to-matte direction was stronger, suggesting that
+reflective training data provides broader feature invariance.
+\paragraph{Occlusion stress.}
+The separated-to-overlay layout shift produced the largest degradation.
+\texttt{separated\_train\_overlay\_test} trained on non-overlapping
+layouts and tested on overlapping layouts, producing mAP50-95 of 0.389
+compared with 0.995 on the matched-condition baseline. This gap was
+consistent across all brightness ranks and both backgrounds, showing
+that training on neatly arranged instruments does not transfer to
+cluttered arrangements. The overlay condition was the only experiment
+where recall fell below 0.70, making it the clearest product boundary:
+the system should request a rescan whenever tools overlap.
+
+\begin{table}[H]
+\centering
+\caption{Aggregate test-set metrics for the seven staged brightness experiments}
+\label{tab:brightness-stage-metrics}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{lrrrr}
+\hline
+Stage & Precision & Recall & mAP50 & mAP50-95 \\
+\hline
+\texttt{brightest\_train\_darker\_test} & 0.840 & 0.969 & 0.991 & 0.844 \\
+\texttt{darkest\_train\_brighter\_test} & 0.819 & 0.969 & 0.972 & 0.781 \\
+\texttt{bright\_train\_dim\_test} & 0.996 & 1.000 & 0.995 & 0.984 \\
+\texttt{dim\_train\_bright\_test} & 0.996 & 1.000 & 0.995 & 0.979 \\
+\texttt{matte\_train\_reflective\_test} & 0.931 & 0.900 & 0.929 & 0.759 \\
+\texttt{reflective\_train\_matte\_test} & 0.834 & 0.900 & 0.968 & 0.830 \\
+\texttt{separated\_train\_overlay\_test} (overlay) & 0.709 & 0.660 & 0.627 & 0.389 \\
+\texttt{separated\_train\_overlay\_test} (baseline) & 0.998 & 1.000 & 0.995 & 0.995 \\
+\hline
+\end{tabularx}
+\end{table}
+
+\paragraph{Lighting diversity (spoon proxy).}
+A separate experiment confirmed that adding lighting variety during
+training improves held-out-condition detection. Three YOLO11s models
+were trained on the same Lavado instrument classes with increasing
+lighting diversity (reference lighting only, reference plus
+45-degree flashlight, reference plus 45- and 90-degree flashlight).
+Each additional lighting condition improved precision and recall
+on held-out test conditions, with the most diverse training set
+producing the highest and most stable metrics across all held-out
+lighting angles.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/brightness_map50_95_panels.png}
+\caption{Brightness degradation mAP50-95 across the estimated-lumens range. Left panel: model trained on darkest (80~lumens), tested on brighter levels. Right panel: model trained on brightest (800~lumens), tested on dimmer levels.}
+\label{fig:brightness-decay}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/overlay_map50_95.png}
+\caption{Separated versus overlay layout: mAP50-95 across the estimated-lumens range. The overlay condition produces the largest degradation (mAP50-95~=~0.389).}
+\label{fig:overlay-degradation}
+\end{figure}
+
+\paragraph{Real-instrument experiments.}
+The brightness experiments above used a spoon proxy to measure
+degradation under controlled variables. A further set of experiments
+tested detection on real surgical instruments---six classes
+(scissor1--4, forcep, scalpel) from a surgical training kit photographed
+on matte and reflective backgrounds across four sessions. Three staged
+experiments were trained for 100~epochs each using YOLO11s and
+validated on held-out sessions:
+
+\begin{table}[H]
+\centering
+\caption{Aggregate test-set metrics for the three real-instrument experiments}
+\label{tab:surgical-kit-stage-metrics}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{lrrrr}
+\hline
+Stage & mAP50 & mAP50-95 & P & R \\
+\hline
+\texttt{matte\_train\_reflective\_test} & 0.336 & 0.233 & 0.425 & 0.236 \\
+\texttt{reflective\_train\_matte\_test} & 0.160 & 0.119 & 0.123 & 0.160 \\
+\texttt{shape\_similarity\_real\_proxy} & 0.300 & 0.253 & 0.239 & 0.347 \\
+\hline
+\end{tabularx}
+\end{table}
+
+These scores are substantially lower than the spoon-proxy results.
+Per-class analysis reveals a systematic pattern: each image contains
+exactly six instruments in fixed positions per session, so a model can
+learn which classes appear at which image locations rather than
+learning visual features. Different classes survive under different
+splits---scissor1 reaches 0.862~AP under the shape-similarity split but
+falls to 0.000 under lighting transfer splits, while forcep and
+scissor2 follow the opposite pattern. Only scalpel, the most visually
+distinct instrument (single blade vs.\ multi-loop scissors), transfers
+across conditions (0.717~AP in reflective-to-matte). The lighting
+transfer experiments are therefore confounded by position-cue leakage:
+the test metric reflects both lighting difficulty and layout
+generalization. These results motivated the pivot to a training
+platform where controlled physical cards replace uncontrolled
+instrument recognition.
+
+\paragraph{Lessons learned.}
+\label{sec:boundary-conditions-for-future-cv-work}
+Detection worked reliably in controlled, matched-condition settings and degraded under
+every variation that SPD workflows present---variable illumination
+(mAP50-95 as low as~0.781), reflective tray surfaces (mAP50-95 as low
+as~0.759), and overlapping instruments (mAP50-95~=~0.389). Per-manufacturer
+validation is necessary because cross-brand detection drops are substantial,
+as shown by Kienle et al.\ \cite{kienle-et-al-2025}. A CV-based tray checker
+would therefore be viable only under specific conditions: the deployment site
+must provide training data covering local instruments, lighting, and tray
+layouts; the system needs either a closed-set operating assumption or a
+reliable open-set rejection mechanism; low-confidence and lookalike detections
+require human-in-the-loop confirmation; and the workflow must be tested in a
+live SPD environment. Controlled lighting and layout are prerequisites for
+reliable detection. The training-centered pivot is the subject of
+Section~\ref{sec:reason-for-pivot}.
+
+\subsection{CV Requirements Assessment and Gap Analysis}
+\label{sec:cv-gap-analysis}
+
+The original tray-verification concept defined requirements for automated
+tray-status logic, technician-facing UI, physical capture fixture, and
+detection reliability. Each requirement is assessed below.
+
+\begin{table}[H]
+\centering
+\caption{CV design outcome versus requirements}
+\label{tab:cv-design-outcome-versus-requirements}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Requirement & Target & Achievement & Gap \\
+\hline
+Tray-status logic with two-threshold confidence band & Present, Needs Review, Missing, Rescan states & Logic specified and documented & Not tested with real SPD workflow data \\
+\hline
+Technician-facing UI with one primary action per state & Clear hierarchy, fast correction, specific review reasons, human sign-off & UI requirements specified & Not implemented beyond design documentation \\
+\hline
+Physical capture fixture & Overhead camera on portable weighted board & Fixture design documented & Not fabricated or tested in SPD conditions \\
+\hline
+Lighting robustness & Detection maintains mAP50 above 0.7 across SPD-like illumination range & Evaluated across 800--80 lumens; overlay layout caused largest drop & mAP50-95=0.389 in overlay condition; lighting still a deployment barrier \\
+\hline
+Lookalike discrimination & Correctly distinguish straight/curved, narrow/broad same-family pairs & Evaluated with 6 real instrument classes (scissor1--4, forcep, scalpel) & Per-class AP varies by split from 0.000 to 0.862; position cues dominate over shape; only visually distinct scalpel transfers reliably \\
+\hline
+Open-set rejection & Detect unknown objects as unfamiliar rather than assigning spurious labels & \multicolumn{2}{l|}{Not evaluated --- no distractor dataset available} \\
+\hline
+Synthetic-to-real transfer & Synthetic pretraining enables few-shot real deployment & \multicolumn{2}{l|}{Not evaluated --- no 3D instrument models available for synthetic data generation} \\
+\hline
+\end{tabularx}
+\end{table}
+
+The training-centered pivot (Section~\ref{sec:reason-for-pivot}) preserved the project's technical contributions
+(the CV experiments, data collection pipeline, and detection code are
+documented in Section~\ref{sec:first-attempt-a-computer-vision-tray-checker})
+while replacing the main evidence path with a claim that was buildable,
+testable, and interpretable within the project's resources. The CV infrastructure
+remains available as a future support layer after separate validation
+(Section~\ref{sec:boundary-conditions-for-future-cv-work}).
+
+\subsection{CV Implementation Summary}
+
+The following CV subsystems were implemented:
+
+\begin{itemize}
+   \item \textbf{CV data collection and annotation pipeline.} A webcam capture tool with bounding-box annotation UI supports rapid multi-session data collection with per-class image output, YOLO label export, and session save/load \texttt{src/trayguard/data\_collection/}.
+   \item \textbf{YOLO training infrastructure.} A Hydra-configured training pipeline supports model, dataset, and hyperparameter overrides across YOLO11n/s/m/l variants and RT-DETR-l. Training runs are deterministic and reproducible through a fixed seed \texttt{src/trayguard/training/}.
+   \item \textbf{CV baseline: Lavado surgical instruments.} A YOLO11s model was trained on the Lavado dataset (2,106 images, 4 classes) and validated on a held-out test set, achieving mAP50 of 0.990 and mAP50-95 of 0.944 \texttt{data/lavado/}.
+   \item \textbf{CV experiments: lighting and occlusion robustness.} Seven staged brightness experiments (800--80 lumens) on matte, reflective, separated, and overlay layouts were trained and validated. Per-stage precision, recall, mAP50, mAP50-95, and per-image count-error metrics were collected across 11 brightness levels and both backgrounds \texttt{scripts/validate\_brightness\_experiments.py}.
+   \item \textbf{CV experiments: lighting diversity.} Three staged spoon lighting experiments tested whether adding lighting variety during training improves held-out-condition detection across reference, 45-degree, and 90-degree flashlight conditions \texttt{data/spoon\_lighting\_yolo/}.
+   \item \textbf{Multi-variant benchmark harness.} A benchmark harness supports YOLO11n/s/m/l at 640 and 960 image sizes and RT-DETR-l at 640 for precision, recall, mAP, and latency comparison \texttt{src/trayguard/training/benchmark.py}.
+   \item \textbf{Legacy Streamlit tray-check demo.} A live YOLO tray-check interface demonstrates camera capture, detection, and tray-status comparison for proof-of-concept review \texttt{src/trayguard/app/streamlit\_app.py}.
+\end{itemize}
+
+% ── Section 6 ──
+
+\section{Reason for the Training-Centered Pivot \hfill {\normalfont\small (Matthew)}}
+\label{sec:reason-for-pivot}
+
+The project originally aimed at a live CV tray checker: detect instruments,
+compare detections against a tray list, and return a readiness result. That
+direction remains attractive, but it has the wrong proof burden for our current
+project. A useful clinical tray checker would need strong evidence across real
+instruments, local tray definitions, similar variants, glare, occlusion,
+unknown objects, workflow interruptions, false alerts, human review, device
+policy, cleaning, privacy, and adoption. The current project can demonstrate
+parts of that pipeline, but does not claim deployment-grade
+clinical reliability.
+The Week 6 pivot made the value proposition more testable: reduce simulated
+time-to-competency and training burden for sterile-processing learners by
+building an interactive training platform. That direction keeps the same root
+problem, because missing, wrong, extra, and misidentified instruments still
+arise during tray reconstruction. It changes the claim from "the model can
+outperform humans in a hospital environment" to "novices can improve on a
+measured local tray simulation after retrieval-centered practice."
+The pivot matches the evidence:
+sterile-processing work depends on local knowledge and supervised practice, and
+simulation/retrieval evidence supports repeated practice with feedback. It is
+buildable with low-cost materials: a file-backed tray module, printable
+cards, a scanning surface, scoring, and export. It also reduces risk for a
+future CV system by creating validated local content, error categories,
+workflow language, and learner data before asking a camera model to make
+clinical-grade distinctions.
+
+% ── Section 7 ──
+
+\section{Final Product Concept And Design Rationale \hfill {\normalfont\small (Matthew, Andy, Qiyu)}}
 \label{sec:final-product-concept-and-design-rationale}
 \subsection{Final Product Concept}
 
@@ -1390,33 +1192,7 @@ local tray module -> pre-test -> retrieval-first cards -> quiz -> AprilTag-card 
 This concept keeps the prototype buildable while preserving the important task
 structure: the learner must use local names, local counts, visual/semantic
 distinctions, and tray rules to assemble a simulated tray.
-\subsection{Rationale for the Training-Centered Pivot}
 
-
-The project originally aimed at a live CV tray checker: detect instruments,
-compare detections against a tray list, and return a readiness result. That
-direction remains attractive, but it has the wrong proof burden for our current
-project. A useful clinical tray checker would need strong evidence across real
-instruments, local tray definitions, similar variants, glare, occlusion,
-unknown objects, workflow interruptions, false alerts, human review, device
-policy, cleaning, privacy, and adoption. The current project can demonstrate
-parts of that pipeline, but it cannot responsibly claim deployment-grade
-clinical reliability.
-The Week 6 pivot made the value proposition more testable: reduce simulated
-time-to-competency and training burden for sterile-processing learners by
-building an interactive training platform. That direction keeps the same root
-problem, because missing, wrong, extra, and misidentified instruments still
-arise during tray reconstruction. It changes the claim from "the model can
-outperform humans in a hospital environment" to "novices can improve on a
-measured local tray simulation after retrieval-centered practice."
-This is a better project claim for three reasons. First, it matches the evidence:
-sterile-processing work depends on local knowledge and supervised practice, and
-simulation/retrieval evidence supports repeated practice with feedback. Second,
-it is buildable with low-cost materials: a file-backed tray module, printable
-cards, a scanning surface, scoring, and export. Third, it reduces risk for a
-future CV system by creating validated local content, error categories,
-workflow language, and learner data before asking a camera model to make
-clinical-grade distinctions.
 \subsection{Alternatives Considered}
 
 
@@ -1503,179 +1279,38 @@ interface removes the spatial search, the need to distinguish similar objects
 in hand, and the physical count-and-place workflow that the study is meant to
 simulate. Physical cards preserve those cognitive demands while replacing
 regulated stainless-steel instruments with safe, cheap, tractable tokens.
-\subsubsection{Why AprilTag over QR Codes}
+\subsubsection{Why AprilTag over QR Codes, ArUco, or Real Instruments}
 
-QR codes are a natural alternative because they are widely available, readable
-by consumer devices, and familiar to most users. However, they are designed for
-data encoding rather than computer-vision pose estimation and marker tracking
-\cite{opencv-aruco-detection-accessed-2026}. A QR
-code embeds dozens to hundreds of bytes of payload data, decodes it through a
-Reed-Solomon error-correction pipeline, and returns a string. AprilTag inverts
-that priority: it encodes a compact integer identifier using a binary matrix
-optimized for fast corner detection, rotation disambiguation, and error
-identification under perspective distortion, partial occlusion, and varying
-lighting \cite{olson-2011}.
-Three practical differences make AprilTag the better choice for this prototype.
-First, detection speed and robustness. AprilTag exploits its known black border
-and grid structure to extract corners at sub-pixel precision. The OpenCV
-\texttt{aruco} module (which natively supports AprilTag dictionaries) can detect and
-decode dozens of markers in a single video frame in milliseconds, while QR-code
-detection requires finding three finder patterns, performing perspective
-correction, and decoding a payload — a heavier pipeline designed for different
-goals \cite{garrido-jurado-et-al-2014};
-\cite{romero-ramirez-et-al-2018}.
-Experimental comparisons have shown that AprilTag achieves higher detection
-rates than QR codes under motion blur, shadow, and perspective distortion in
-pose-estimation contexts
-\cite{kalaitzakis-et-al-2021}.
-Second, compact dictionaries with guaranteed Hamming-distance bounds. AprilTag
-uses a lexicode-based coding system that guarantees a minimum Hamming distance
-between every pair of markers under all four rotations
+AprilTag was chosen over QR codes, ArUco markers, and real instruments for
+reasons of detection robustness, error correction, and study feasibility.
+Compared with QR codes, AprilTag provides faster corner detection at sub-pixel
+precision, a lexicode-based Hamming-distance guarantee that corrects bit errors
+from glare or occlusion, and native pose estimation for future spatial feedback
 \cite{olson-2011};
-\cite{wang-et-al-2016-apriltag}. A high
-inter-marker distance means the detector can confidently identify a marker even
-when several bits are corrupted by glare, print quality, or partial occlusion.
-For a training prototype that must not confuse a learner's correct selection
-with a detection error, that robustness is critical.
-Third, pose estimation. A single AprilTag marker provides four coplanar corner
-correspondences, sufficient for full 6-DOF pose estimation from a single
-calibrated camera \cite{olson-2011}. Although the
-current prototype does not yet use pose for detailed spatial feedback, the same
-markers can later support richer interaction — detecting which instrument a
-learner hesitates over, flagging instruments placed in the wrong tray zone, or
-verifying the physical arrangement against a placement template. QR codes do
-not offer comparable corner-localization accuracy because their finder patterns
-are designed for barcode scanning rather than metric pose estimation.
-\begin{table}[H]
-\centering
-\caption{AprilTag versus QR code comparison}
-\label{tab:apriltag-versus-qr-code-comparison}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Requirement & QR code & AprilTag & Effect on TrayGuard \\
-\hline
-Detection under perspective, partial occlusion, and lighting variation & Moderate; designed for fronto-parallel scanning & Strong; designed for arbitrary camera pose and varying conditions & Fewer detection failures that inflate learner error rates \cite{kalaitzakis-et-al-2021}. \\
-\hline
-Sub-pixel corner accuracy & Not designed for pose estimation & Native: lexicode-guaranteed dictionary with sub-pixel refinement & Enables future tray-zone and placement feedback \cite{romero-ramirez-et-al-2018}. \\
-\hline
-Compact identifier with error correction & Large payload, Reed-Solomon on data bytes & Compact ID with lexicode Hamming-distance guarantee & Lower decode latency; no ambiguity between marker ID and payload parsing \cite{olson-2011}. \\
-\hline
-Open-source library in existing stack & OpenCV and platform libraries & Integrated in OpenCV \texttt{aruco} module; standalone C library & Zero additional dependency cost \cite{opencv-aruco-detection-accessed-2026}. \\
-\hline
-Neutral card front for assessment & QR pattern is visually distinctive and recognizable as a code & Binary grid is less obviously a machine-readable code to novices & Lower risk of learners recognizing markers as answer keys during assessment. \\
-\hline
-\end{tabularx}
-\end{table}
-\subsubsection{Why AprilTag over ArUco}
-
-ArUco is the closest alternative: both produce binary square fiducial markers,
-both are open source, and both can be detected through the same OpenCV \texttt{aruco}
-module. For this project's requirements — up to 1000 markers and high detection
-accuracy — AprilTag is the stronger choice for three reasons.
-First, AprilTag's lexicode system provides mathematical guarantees that ArUco's
-search-based dictionary does not. The lexicode algorithm generates a family of
-codewords with a proven minimum Hamming distance under every possible rotation
-\cite{olson-2011};
-\cite{wang-et-al-2016-apriltag}. This means the
-detector can not only detect but also correct more bit errors per marker than
-ArUco's heuristic dictionary of equivalent size. A larger minimum distance
-directly improves detection accuracy in the conditions most likely to occur
-during a training session: glare off laminated cards, low tabletop lighting,
-partial card occlusion, and off-angle camera views.
-Second, AprilTag's corner-refinement pipeline (especially AprilTag 2's
-adaptive thresholding and edge refinement) produces more stable corner
-localization across varying lighting and image scales
-\cite{wang-et-al-2016-apriltag}. The original
-AprilTag was already benchmarked as the most accurate fiducial system in
-head-to-head comparisons under motion blur and perspective distortion
 \cite{kalaitzakis-et-al-2021}.
-Third, AprilTag 3 introduces a multi-threaded detector and flexible tag layouts
-that improve throughput on higher-resolution images without sacrificing
-detection rate
-\cite{krogius-et-al-2019}. For the first
-build, the recommended family is \texttt{tagStandard52h13}, which provides 52 data
-bits and a minimum Hamming distance of 13 — enough error-correction capacity
-to support thousands of unique markers while still fitting comfortably on a
-printed card. If fewer than 500 markers are needed, \texttt{tagStandard41h12} is a
-more compact alternative with comparable robustness. Both families are
-supported through the AprilTag dictionary support in OpenCV's \texttt{aruco} module,
-with full backward compatibility for earlier dictionaries
-(\texttt{DICT\_APRILTAG\_36h11}, \texttt{DICT\_APRILTAG\_16h5}), so no additional library
-dependency is required.
-\subsubsection{Why Not Real Instruments}
-
-The most obvious alternative — and the one that keeps the project closest to its
-original CV-checker goal — is to use real surgical instruments with a
-camera-based object detector. That path is rejected for the first prototype for
-four reasons. First, real instruments require regulated access, cleaning and
-handling protocols, storage space, and educator supervision that the first
-study cannot assume \cite{hspa-crcst-accessed-2026}.
-Second, instrument recognition across manufacturers, wear states, and lighting
-conditions is an unsolved research problem that would dominate the engineering
-schedule and make the project claim fragile to a single detection failure
-\cite{deol-et-al-2024};
-\cite{kienle-et-al-2025}.
-Third, a real-instrument prototype would be difficult to reproduce across
-sites, since each hospital has different inventory, variant mix, and
-replacement cycles. Fourth, the cognitive task of interest — applying a local
-tray rule to select, count, and discriminate among items — can be studied
-without the sterility, weight, and handling requirements of real steel.
-Printed cards preserve the selection, count, and lookalike-discrimination
-demands while stripping away the confounding variables of instrument
-availability, cleaning policy, and physical handling risk.
-The card interface follows the same abstraction strategy as NeuroVase, which
-uses tangible cue cards to teach neurovascular anatomy and stroke assessment
-without requiring cadavers, imaging workstations, or clinical placements
-\cite{jahani-et-al-2026-neurovase}.
-QR-code-based medical education tools similarly demonstrate that low-cost
-printable codes can support healthcare learning, simulation, and training
-access in resource-constrained settings
-\cite{karia-et-al-2019}. The AprilTag card is a deliberate methodological choice that controls for
-instrument-access confounds while keeping the measured task aligned with the
-real cognitive demands of tray reconstruction.
+Compared with ArUco, AprilTag's lexicode dictionary guarantees a larger minimum
+inter-marker distance, and its corner-refinement pipeline produces more stable
+localization across lighting and image scales
+\cite{wang-et-al-2016-apriltag}. Compared with
+real instruments --- the closest alternative to the original CV-checker goal ---
+physical cards avoid the regulatory, handling, and recognition burdens that
+would dominate the engineering schedule, and follow the same abstraction
+strategy as NeuroVase's tangible cue cards
+\cite{jahani-et-al-2026-neurovase};
+\cite{kienle-et-al-2025}. The recommended tag
+family is \texttt{tagStandard52h13} (52 data bits, minimum Hamming distance 13),
+supported through OpenCV's \texttt{aruco} module with no additional library dependency
+\cite{krogius-et-al-2019}.
 \subsection{Rationale for Gamified and Simulation-Based Learning Style}
 
 TrayGuard embeds retrieval practice, feedback, scoring, progressive difficulty,
-and confidence capture within a structured learning session that resembles a
-serious tabletop training game. This section justifies that design against
-traditional lecture-based training, video-only instruction, and unguided
-self-study.
-\subsubsection{Why Gamification and Simulation over Traditional Instruction}
-
-Traditional sterile-processing training relies heavily on lecture, video, and
-supervised on-the-job practice \cite{aorn-staffing-shortage-2025};
-\cite{hspa-crcst-accessed-2026}. Those
-methods are necessary but not sufficient: lectures can introduce instrument
-names and tray rules, but they do not exercise the applied discrimination and
-count-sheet following that defines tray reconstruction. Simulation-based
+and confidence capture within a structured learning session. Simulation-based
 medical education with deliberate practice has been shown to outperform
-traditional clinical education in meta-analysis, and technology-enhanced
-simulation improves knowledge, skills, and behaviors compared with no
-intervention \cite{cook-et-al-2011};
-\cite{mcgaghie-et-al-2011}. The features that
-make simulation effective — feedback, repetitive practice, curriculum
-integration, and measurable outcomes — map directly to TrayGuard's learning
-loop \cite{issenberg-et-al-2005}.
-Gamification adds a second layer. A 2021 systematic review of gamification in
-health professions education found that combining assessment attributes (scores,
-progress tracking) with conflict/challenge attributes (timed tasks, increasing
-difficulty) increased learners' engagement with study material and led to
-improved learning outcomes in most studies that included a comparison condition
-\cite{van-gaalen-et-al-2021}. A more
-recent umbrella review of game-based learning in nursing education found a
-large pooled effect on academic knowledge performance (standardized mean
-difference 1.06) and a moderate effect on skill performance (0.54)
-\cite{malicki-et-al-2025}. The mechanism is
-plausible: game elements increase repetition, focus attention on error patterns,
-and make low-stakes practice more acceptable than high-stakes testing.
-The same review
-cautions that most gamified intervention studies lack well-defined control
-groups and theoretical grounding for their choice of game elements
-\cite{van-gaalen-et-al-2021}. TrayGuard
-addresses that concern by grounding each game-like feature in a specific
-learning mechanism.
-\subsubsection{Specific Game Elements and Their Learning Rationale}
+traditional clinical education, and gamification combining assessment features
+with progressive challenge increases engagement and learning outcomes
+\cite{cook-et-al-2011};
+\cite{van-gaalen-et-al-2021}. Table~\ref{tab:game-elements-and-their-learning-science-rationale}
+maps each feature to its evidence base.
 
 \begin{table}[H]
 \centering
@@ -1702,62 +1337,24 @@ Metrics export and weak-item summary & Learner- and instructor-facing performanc
 \hline
 \end{tabularx}
 \end{table}
-Each element serves a specific cognitive purpose rather than decoration.
-Points and progress bars (the most common gamification elements in medical
-education) are present only insofar as they support self-assessment: the
-pre/post accuracy score, the weak-item recovery count, and the error-category
-breakdown are the central feedback signals. The design deliberately avoids
-leaderboards, badges, and competitive ranking, which can shift motivation from
-intrinsic learning to extrinsic reward-seeking in health-professions contexts
-\cite{van-gaalen-et-al-2021}.
-\subsubsection{Why Not a More Complex Game Format}
 
-Several alternative gamification approaches were considered and rejected.
-Full virtual reality (VR) simulation offers immersive instrument handling but
-requires hardware (headset, controllers), room space, onboarding time, and
-technical support that the first prototype cannot assume. SteriBoost, a
-commercial VR sterile-processing trainer, demonstrates the feasibility of VR
-for this domain, but its hardware and custom-scene requirements place it at a
-later validation stage rather than the first project prototype
-\cite{steriboost-accessed-2026}.
-Competitive multiplayer formats (leaderboards, team challenges) can increase
-engagement but risk publicizing individual error rates in a training context,
-potentially creating the punitive environment that the ethics controls
-explicitly prohibit (Section~\ref{sec:broader-impacts-and-ethics}). They also require larger participant pools
-and session coordination that the first 8-12-person study cannot support.
-Simulated patient scenarios or narrative-driven learning modules (used in tools
-such as Touch Surgery) can improve engagement and contextual reasoning, but
-they add authoring burden and reduce the number of tray-repetition cycles per
-session \cite{tulipan-et-al-2019};
-\cite{medtronic-touch-surgery-accessed-2026}.
-TrayGuard's target task — learning a specific local tray rule — benefits more
-from repeated applied practice than from narrative context, so the game
-structure stays close to the assessment loop.
-The chosen gamification level is therefore lightweight, mechanism-driven, and
-designed around the retrieval-practice and feedback evidence. It is closer to
-the serious-game approach of SteriDefi, the SF2S sterilization serious game
-that uses question banks, difficulty levels, and scoring to motivate repeated
-knowledge retrieval, than to a narrative or VR simulation
+The design deliberately avoids leaderboards, badges, and competitive
+ranking, which can shift motivation from intrinsic learning to extrinsic
+reward-seeking \cite{van-gaalen-et-al-2021}.
+Full VR simulation (e.g., SteriBoost) and narrative-driven modules (e.g.,
+Touch Surgery) were considered but rejected because they add hardware or
+authoring burden without increasing the number of tray-repetition cycles per
+session
+\cite{steriboost-accessed-2026};
+\cite{tulipan-et-al-2019}.
+The chosen level is closest to the serious-game approach of SteriDefi---a
+question-bank and scoring system that motivates repeated knowledge retrieval
 \cite{vanhaverbeke-et-al-2018}.
-\subsubsection{Learning Mechanisms Behind the Game Elements}
-
-Structured, repeated practice with immediate, error-specific feedback,
-delivered in a bounded session with clear goals and measurable progress,
-produces measurable short-term learning. Game elements sustain the repetition
-that retrieval-practice research shows is necessary for durable learning
-\cite{roediger-and-karpicke-2006};
-\cite{dunlosky-et-al-2013}. The "game" is the
-learning loop itself — the same logic that makes flashcard apps, spaced-
-repetition quizzes, and simulation-based skills trainers effective teaching
-tools. A learner who improves on the TrayGuard simulated tray task has
-undergone repeated retrieval practice on local names, aliases, counts, and
-lookalike distinctions, followed by an applied sorting task with
-category-specific feedback.
 
 
-% ── Section 9 ──
+% ── Section 8 ──
 
-\section{Requirements Definition}
+\section{Requirements Definition \hfill {\normalfont\small (Matthew, Andy, Jacob)}}
 \label{sec:requirements-definition}
 \subsection{Element Definition}
 
@@ -1773,7 +1370,7 @@ Element & Definition For TrayGuard \\
 \hline
 Intended practice & Novice preparation for local tray reconstruction before or alongside supervised SPD training. \\
 \hline
-Other practice affected & Instructor review, preceptor coaching, tray content updates, weak-item remediation, and future CV-supported tray review. \\
+Other practice affected & Instructor review, clinical supervisor coaching, tray content updates, weak-item remediation, and future CV-supported tray review. \\
 \hline
 Artifact & A local training app, file-backed tray module, printable marker cards, tray-sorting surface, scoring engine, and export/report package. \\
 \hline
@@ -1793,14 +1390,14 @@ Required behavior & Separate practice from assessment, suppress hints during pre
 \hline
 Structure & Content module, learning workflow, marker/manual input, scoring engine, feedback engine, reporting/export, and instructor review. \\
 \hline
-Intended effects & Improve simulated tray-sorting accuracy, reduce severe errors, expose weak items, calibrate confidence, and reduce early preceptor burden. \\
+Intended effects & Improve simulated tray-sorting accuracy, reduce severe errors, expose weak items, calibrate confidence, and reduce early clinical supervisor burden. \\
 \hline
 Possible side effects & Overclaiming simulated scores, punitive use of learner metrics, answer leakage, inequitable access to updated modules, and reduced attention to supervised hands-on practice. \\
 \hline
 \end{tabularx}
 \end{table}
 \subsection{Objective Tree}
-
+\label{sec:objective-tree}
 
 \begin{lstlisting}
 Improve novice readiness for local tray reconstruction through repeatable,
@@ -1834,7 +1431,7 @@ measurable simulated practice.
    5.3 Require SPD pilot evidence before workplace-effectiveness claims
 \end{lstlisting}
 \subsection{Performance Specifications}
-
+\label{sec:performance-specifications}
 
 The first build should use the following targets. They are deliberately
 formative rather than clinical: they define when the prototype is ready to
@@ -1875,7 +1472,7 @@ Demo success & A facilitator can load the module, run pre-test, study, quiz, pra
 \end{tabularx}
 \end{table}
 \subsection{Quality Function Deployment}
-
+\label{sec:quality-function-deployment}
 
 Compact QFD:
 \begin{table}[H]
@@ -1907,6 +1504,117 @@ Future teams can extend the design. & Versioned data model and traceability. & M
 \hline
 \end{tabularx}
 \end{table}
+
+\subsection{Function Analysis -- Transparent Box Model}
+\label{sec:function-analysis-transparent-box-model}
+
+The training system is modeled as a transparent box that transforms a local tray
+module and physical instrument cards into learner performance evidence through
+sequential subfunctions \cite{pahl-beitz-2007}:
+
+\begin{table}[H]
+\centering
+\caption{Transparent box model for the training system}
+\label{tab:transparent-box-model}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Input & Subfunction & Output \\
+\hline
+Local tray module (JSON) & Authoring and verification & Verified tray template with required items, distractors, lookalike pairs, and assessment variants \\
+\hline
+Verified tray template & Pre-test assessment & Baseline accuracy, error-category counts, and confidence distribution \\
+\hline
+Instrument cards and tray template & Retrieval-first study & Prompt-before-reveal card practice with distinguishing features and aliases \\
+\hline
+Study session output & Identification quiz & Quiz accuracy, duration, and item-level confidence per instrument concept \\
+\hline
+Cards and tray template & Simulated tray sorting & Selected instrument set scored against required counts \\
+\hline
+Scored tray selection & Feedback generation & Missing, extra, wrong, misidentified, and wrong-count error report \\
+\hline
+Pre-test and post-test scores & Metrics aggregation & Pre/post accuracy gain, error reduction, confidence calibration, and weak-item report \\
+\hline
+Aggregated metrics & Export and reporting & CSV/JSON export with attempt-level and item-level records \\
+\hline
+\end{tabularx}
+\end{table}
+
+\subsection{Morphological Chart}
+\label{sec:morphological-chart}
+
+The morphological chart generates solution alternatives for each subfunction
+identified in the transparent box model \cite{ulrich-et-al-2020, pahl-beitz-2007}.
+
+\begin{table}[H]
+\centering
+\caption{Morphological chart: solution alternatives by subfunction}
+\label{tab:morphological-chart}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Subfunction & Alternative 1 & Alternative 2 & Alternative 3 & Alternative 4 \\
+\hline
+Content delivery & File-backed JSON module & Online database & Spreadsheet import & Hard-coded tray lists \\
+\hline
+Instrument representation & Physical marker cards & On-screen instrument icons & Real instruments & Text-based item list \\
+\hline
+Marker technology & AprilTag & QR code & ArUco & Manual selection \\
+\hline
+Learner interaction & Study + quiz + tray sort & Study-only & Quiz-only & Tray-sort only \\
+\hline
+Assessment mode & Pre/post with matched variants & Single post-test & Pre/post without variants & Continuous assessment \\
+\hline
+Feedback mechanism & Error-category report & Pass/fail only & Item-level hints & Instructor review only \\
+\hline
+Scoring approach & Category-based scoring (missing, extra, wrong, misidentified, wrong-count) & Simple accuracy (correct/total) & Weighted error severity & Confidence-adjusted scoring \\
+\hline
+Export format & CSV + JSON per run & Single PDF report & Instructor dashboard & Raw database access \\
+\hline
+\end{tabularx}
+\end{table}
+
+The selected combination is: file-backed JSON module, physical AprilTag marker
+cards, full study-quiz-sort learning loop, pre/post matched-variant assessment,
+category-based scoring, error-category feedback, and CSV/JSON export.
+
+\subsection{Weighted Objective Method}
+\label{sec:weighted-objective-method}
+
+The weighted objective method scores each candidate solution combination against
+weighted criteria derived from the objective tree and stakeholder needs \cite{ulrich-et-al-2020}.
+
+\begin{table}[H]
+\centering
+\caption{Weighted objective method: solution path selection}
+\label{tab:weighted-objective-method}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|>{\raggedright\arraybackslash}c|}
+\hline
+Criterion & Weight & Training path & CV tray checker & Software-only quiz & Real-instrument CV \\
+\hline
+Buildability within project scope & 0.25 & 5 & 1 & 4 & 1 \\
+\hline
+Measurable learning evidence & 0.20 & 5 & 2 & 3 & 3 \\
+\hline
+Physical task fidelity & 0.15 & 3 & 5 & 1 & 5 \\
+\hline
+Low validation burden & 0.15 & 4 & 1 & 4 & 1 \\
+\hline
+Instructor usefulness & 0.10 & 4 & 3 & 3 & 3 \\
+\hline
+Future extensibility & 0.10 & 3 & 4 & 2 & 4 \\
+\hline
+Cost and equipment requirements & 0.05 & 5 & 3 & 5 & 2 \\
+\hline
+Weighted total & 1.00 & 4.35 & 2.40 & 3.15 & 2.60 \\
+\hline
+\end{tabularx}
+\end{table}
+
+The training path scores highest (4.35/5.00), driven by buildability, measurable
+evidence, and low validation burden.
+
 \subsection{Requirement Traceability Matrix}
 
 
@@ -1949,9 +1657,9 @@ NFR-6 Capability labels & Stakeholders must not overread scores. & Report langua
 \end{table}
 
 
-% ── Section 10 ──
+% ── Section 9 ──
 
-\section{System Design}
+\section{System Design \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:system-design}
 \subsection{System Overview}
 
@@ -2012,9 +1720,9 @@ Instructor review & Lets an educator verify tray content, local naming, distract
 \end{tabularx}
 \end{table}
 Computer vision for recognizing real instruments remains a future support
-subsystem. In the project build, the marker-scanning subsystem is deliberately a
-proxy for observing user decisions, not a claim that the app can identify real
-surgical instruments under clinical conditions.
+subsystem. In the project build, the marker-scanning subsystem is a
+proxy for observing user decisions, not an instrument-identification
+system.
 \subsection{Data Model and Module Contract}
 
 
@@ -2137,11 +1845,7 @@ Delayed retention & No & No & Yes & Checks whether gains persist after 7 days (w
 \subsection{Learning Loop}
 
 
-The product is one learning loop:
-\begin{lstlisting}
-local tray module -> pre-test -> retrieval-first cards -> quiz -> practice tray sort -> post-test -> metrics export
-\end{lstlisting}
-Retrieval practice is the instructional engine. The learner should usually
+The learning loop (Section~\ref{sec:final-product-concept-and-design-rationale}) applies retrieval practice as the instructional engine. The learner should usually
 commit to an answer before the system reveals it: name the instrument, identify
 a distinguishing feature, choose the lookalike, recall the count, or decide
 whether the item belongs in the tray. The simulated tray sort is applied
@@ -2229,6 +1933,8 @@ Stryker Gamma4 Indication Tray count sheet & A real vendor count sheet uses tray
 \hline
 Stryker IMN Basic Instruments Tray count sheet & A second real count sheet uses the same pattern and splits the tray into insert/base groupings with total counts of 15 and 10 instruments \cite{stryker-imn-count-sheet-2023}. & The data model should support sections/layers and total-count validation, not just a flat list. \\
 \hline
+Multi-specialty tray rationalization project & Rubak et al. consolidated, separated, or restructured 1{,}340 different instrument trays across surgical specialties at one university hospital, finding that different specialties required different tray structures \cite{rubak-et-al-2024}. & Real tray lists scale to thousands of configurations in a single hospital. The data model must be open-ended beyond the first study's 8--12 required concepts. \\
+\hline
 Published major orthopedic tray study & Toor et al. observed an 88-instrument major orthopedic tray across 80 procedures and compared optimized tray configurations of 47, 67, and 51 instruments \cite{toor-et-al-2022}. & Real clinical trays can be far larger than the first module. The first study should use 8-12 required concepts for feasibility, while preserving fields that can scale to larger trays. \\
 \hline
 \end{tabularx}
@@ -2241,13 +1947,12 @@ real examples so a novice can complete the loop in 45-60 minutes.
 
 
 
-% ── Section 11 ──
+% ── Section 10 ──
 
-\section{Analysis}
+\section{Analysis \hfill {\normalfont\small (Matthew, Qiyu)}}
 \label{sec:analysis}
 
-This section consolidates the analysis that demonstrates the capabilities of the
-final training-centered design.
+
 
 \subsection{Prototype Capability Demonstration}
 \label{sec:prototype-capability-demonstration}
@@ -2287,7 +1992,7 @@ Card generation & CLI generates printable marker PNGs, grid index sheets, and do
 \end{table}
 
 Every verified capability supports a direct link to the performance
-specifications (Section~\ref{sec:performance-specification-analysis}) and the
+specifications (Section~\ref{sec:performance-specifications}) and the
 requirements traceability matrix
 (Section~\ref{sec:requirements-definition}).
 
@@ -2321,7 +2026,7 @@ User confirmation before scoring & Required & Confirmation screen shows detected
 \end{table}
 
 The target values match the performance specification
-(Section~\ref{sec:performance-specification-analysis}) and the QFD requirement
+(Section~\ref{sec:performance-specifications}) and the QFD requirement
 for marker reliability. Study 0 in the evaluation plan
 (Section~\ref{sec:study-0}) provides the experimental protocol for formal
 measurement.
@@ -2348,9 +2053,9 @@ Unit tests verify core logic that directly affects learner evidence quality:
 \label{sec:design-traceability}
 
 Every design decision in the training path traces to an objective in the
-objective tree (Section~\ref{sec:objective-tree-analysis}), a specification in
+objective tree (Section~\ref{sec:objective-tree}), a specification in
 the performance specification analysis
-(Section~\ref{sec:performance-specification-analysis}), and a requirement in
+(Section~\ref{sec:performance-specifications}), and a requirement in
 the requirement traceability matrix
 (Section~\ref{sec:requirements-definition}). The research support audit
 (Appendix~\ref{sec:appendix-a-research-support-audit}) provides
@@ -2360,129 +2065,16 @@ critique-ready interpretation of each current implementation decision.
 
 
 
-% ── Section 12 ──
+% ── Section 11 ──
 
-\section{Design Outcome versus Requirements -- Comparison}
-\label{sec:design-outcome-versus-requirements-comparison}
-
-This section evaluates the original computer-vision tray checker design against
-the requirements it was intended to satisfy. The CV path is treated as a
-documented engineering effort that produced useful technical evidence but did
-not achieve deployment-grade reliability, leading to the training-centered
-pivot documented in Section~\ref{sec:final-product-concept-and-design-rationale}.
-
-\subsection{CV Requirements Assessment}
-\label{sec:cv-requirements-assessment}
-
-The original tray-verification concept defined requirements for automated
-tray-status logic, technician-facing UI, physical capture fixture, and
-detection reliability. Each requirement is assessed below.
-
-\begin{table}[H]
-\centering
-\caption{CV design outcome versus requirements}
-\label{tab:cv-design-outcome-versus-requirements}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Requirement & Target & Achievement & Gap \\
-\hline
-Tray-status logic with two-threshold confidence band & Present, Needs Review, Missing, Rescan states & Logic specified and documented & Not tested with real SPD workflow data \\
-\hline
-Technician-facing UI with one primary action per state & Clear hierarchy, fast correction, specific review reasons, human sign-off & UI requirements specified & Not implemented beyond design documentation \\
-\hline
-Physical capture fixture & Overhead camera on portable weighted board & Fixture design documented & Not fabricated or tested in SPD conditions \\
-\hline
-Lighting robustness & Detection maintains mAP50 above 0.7 across SPD-like illumination range & Evaluated across 800--80 lumens; overlay layout caused largest drop & mAP50 below 0.3 in overlay conditions; lighting still a deployment barrier \\
-\hline
-Lookalike discrimination & Correctly distinguish straight/curved, narrow/broad same-family pairs & Evaluated with 6 instrument-like classes & Pairwise confusion above 30\%; high-confidence wrong predictions persisted \\
-\hline
-Open-set rejection & Detect unknown objects as unfamiliar rather than assigning spurious labels & Evaluated with unknown-similar distractors & Unknown false positive rate 40--60\%; model did not reject unfamiliar objects \\
-\hline
-Synthetic-to-real transfer & Synthetic pretraining enables few-shot real deployment & ~5--10 pp mAP50 improvement over scratch & Absolute mAP50 on real test set below 0.70 \\
-\hline
-\end{tabularx}
-\end{table}
-
-\subsection{Gap Analysis and Pivot Justification}
-\label{sec:gap-analysis-and-pivot-justification}
-
-The cumulative evidence showed that CV detection was reliable only in matched,
-controlled conditions and degraded under every variation that SPD workflows
-routinely present: variable lighting, reflective backgrounds, overlapping
-instruments, lookalike variants, and unknown items. Three structural gaps
-prevented the project from closing to a deployment-grade system:
-
-\begin{enumerate}
-  \item \textbf{Data coverage.} Real SPD deployment would require site-specific
-  training data covering local instruments, lighting conditions, tray layouts,
-  and manufacturer variants. The project had access to only a small proxy
-  dataset.
-  \item \textbf{Failure-mode validation.} A clinical tool needs validated
-  behavior for glare, occlusion, blur, unknown objects, class confusion,
-  false alerts, and human review integration. Each mode requires its own
-  experiment, acceptance criterion, and risk assessment.
-  \item \textbf{Workflow integration.} The tray checker must fit into SPD
-  production flow, device policy, cleaning protocols, and privacy
-  requirements -- all outside the project's available clinical access.
-\end{enumerate}
-
-The training-centered pivot preserved the project's technical contributions
-(the CV experiments, data collection pipeline, and detection code are
-documented in Section~\ref{sec:first-attempt-a-computer-vision-tray-checker})
-while replacing the main evidence path with a claim that was buildable,
-testable, and interpretable within the project's resources. The CV infrastructure
-remains available as a future support layer after separate validation
-(Section~\ref{sec:boundary-conditions-for-future-cv-work}).
-
-
-
-% ── Section 13 ──
-
-\section{Evaluation And Validation Plan}
+\section{Evaluation And Validation Plan \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:evaluation-and-validation-plan}
 \subsection{Evaluation Framework}
 
-The question of how to prove that people have learned requires an evaluation
-framework that makes explicit what counts as evidence, for which claim, and at
-what level of certainty. The training-evaluation and educational-assessment
-literatures provide well-established structures for this.
+Two frameworks define the evaluation scope: Kirkpatrick's four-level model and Cook and Beckman's five-source validity framework \cite{kirkpatrick-evaluation-1994, cook-beckman-validity-2006}. A pre/post accuracy gain on a simulated tray task is Level 2 evidence. A pre/post accuracy gain on a simulated tray task is Level 2 evidence. The current study ladder addresses Level 2 directly and builds toward Level 3 through convergent evidence and expert review, but does not claim Level 4 (reduced OR delays or hospital defect rates), which requires an SPD-site study \cite{arthur-et-al-2003}.
 
-Kirkpatrick's four-level model is the most widely used framework for training
-evaluation: Level 1 (Reaction), Level 2 (Learning), Level 3 (Behavior), and
-Level 4 (Results) \cite{kirkpatrick-evaluation-1994}. In this model, a pre/post
-accuracy gain on a simulated tray task is Level 2 evidence: it shows that
-knowledge or skill was acquired during the training session. The professor's
-question about whether accuracy scores translate to real work corresponds to
-Level 3 (Behavior transfer), which requires measuring performance in or near the
-actual work context. Arthur et al.'s meta-analysis of organizational training
-confirms this structure: they found that the mean effect size for learning
-outcomes (Level 2) was larger than for behavior (Level 3) or results (Level 4),
-and that evaluation designs must match the claim level
-\cite{arthur-et-al-2003}. Salas et al. further argue that effective training
-should be treated as a system that analyzes work, targets specific
-competencies, provides practice and feedback, and evaluates transfer
-\cite{salas-et-al-2012}. The current study ladder addresses Level 2 directly
-and builds toward Level 3 through convergent evidence and expert review, but
-does not claim Level 4 (reduced OR delays or hospital defect rates), which
-requires an SPD-site study.
-
-Within educational assessment, Messick's unified validity theory defines
-construct validity as a single concept supported by six aspects: content,
-substantive, structural, generalizability, external, and consequential
-\cite{messick-validity-1989}. The Standards for Educational and Psychological
-Testing adopt this unified view, treating validity as the degree to which
-evidence and theory support the intended interpretations of test scores
-\cite{aera-standards-2014}. Cook and Beckman operationalize the same framework
-for health-professions education as five sources of validity evidence: content,
-response process, internal structure, relations to other variables, and
-consequences \cite{cook-beckman-validity-2006}. Kane's argument-based approach
-adds that validity depends on the plausibility of an interpretive argument that
-connects test scores to their intended use, with assumptions that must be
-explicitly warranted at each inference step: scoring, generalization,
-extrapolation, and implications \cite{kane-validity-2013}.
-
-Applied to TrayGuard, these frameworks require the following evidence chain:
+Applied to TrayGuard, Cook and Beckman's validity framework requires the
+following evidence chain \cite{cook-beckman-validity-2006}:
 \begin{enumerate}
   \item \textbf{Content validity}: the tray module, names, aliases, counts,
   distractors, and lookalike pairs are plausible for a training tray. Addressed
@@ -2505,54 +2097,22 @@ Applied to TrayGuard, these frameworks require the following evidence chain:
   boundaries and report labeling (Section~\ref{sec:risk-assessment-and-scope-boundaries}).
 \end{enumerate}
 
-A sixth issue spans the last two sources: \textbf{population generalizability}.
-Study 1 tests complete novices (college students with no SPD experience), whose
-pre-test accuracy is near zero. The target population is SPD workers, whose
-baseline accuracy on familiar trays may already be high. A pre/post gain from
-0 to 90 in novices does not, by itself, predict a gain from 90 to 90 in
-experienced workers. This is a classical range-restriction and ceiling-effect
-problem in training evaluation \cite{arthur-et-al-2003}. Kane's extrapolation
-inference requires evidence that the learning mechanism transfers across
-populations even when the score distribution shifts
-\cite{kane-validity-2013}.
-
-There are three responses to this objection within the paper's scope:
-\begin{enumerate}
-  \item \textbf{The Ofstead precedent shows that experienced workers are not at
-  ceiling on novel or specialized tasks.} Ofstead et al.'s sterile-processing
-  training pilot used certified SP professionals whose mean pre-test score was
-  41\% — well below ceiling — on a borescope visual-inspection task that was
-  new to them \cite{ofstead-et-al-2023}. SPD workers are experts on their
-  current trays but will face new modules, updated count sheets, loaner trays,
-  or specialized instrument sets. TrayGuard's measurable value for an
-  experienced population is not absolute accuracy gain (which may be small)
-  but error-type reduction (eliminating the specific errors they do make),
-  confidence calibration (reducing high-confidence errors), standardization
-  across shifts (aligning names and rules), and retention maintenance
-  (preventing skill decay between exposure to low-frequency trays).
-  \item \textbf{The dependent variable changes with the population.} For
-  novices, the primary outcome is pre/post accuracy gain (baseline → learning).
-  For experienced workers, the primary outcomes shift to: error-type reduction
-  (fewer missing, wrong, misidentified items on known trays), speed improvement
-  without accuracy loss, confidence calibration (high-confidence error rate),
-  new-module learning rate (time to criterion on an unfamiliar tray), and
-  retention over time (preventing decay on low-frequency trays). Study 4 (SPD
-  pilot) must specify which dependent variable applies, rather than
-  reusing the novice-study design unchanged \cite{kirkpatrick-evaluation-1994}.
-  \item \textbf{The learning mechanism is population-independent even if the
-  effect size is not.} Retrieval practice, immediate error-specific feedback,
-  and spaced repetition improve performance across learner levels in
-  health-professions education
-  \cite{roediger-and-karpicke-2006, dunlosky-et-al-2013, larsen-et-al-2009}.
-  The novice study establishes that the mechanism works in this task domain.
-  The SPD pilot establishes the effect size for the target population. Arthur
-  et al.'s meta-analysis confirms that training effect sizes vary by trainee
-  population, which is why the study ladder separates the two populations
-  rather than extrapolating effect sizes \cite{arthur-et-al-2003}.
-\end{enumerate}
-The study ladder (Table~\ref{tab:study-ladder-by-participant-type-and-claim-supported})
-maps each study level to the evidence source it earns. No single study provides
-all sources; the claim is supported by the accumulated pattern.
+A sixth issue is \textbf{population generalizability}. Novices start near zero
+accuracy, while SPD workers may already be proficient on familiar trays.
+Three responses apply: (i) Ofstead et al. show experienced SP workers are not
+at ceiling on novel tasks (mean pre-test 41\% on borescope inspection)
+\cite{ofstead-et-al-2023}, so TrayGuard's value for workers is error-type
+reduction, confidence calibration, and retention maintenance rather than
+absolute accuracy gain; (ii) the dependent variable shifts from pre/post
+accuracy gain (novices) to error-type reduction, confidence calibration, and
+new-module learning rate (workers), as Study~4 must specify
+\cite{kirkpatrick-evaluation-1994}; and (iii) the learning mechanism (retrieval
+practice, feedback, spaced repetition) is population-independent even if the
+effect size is not \cite{arthur-et-al-2003, roediger-and-karpicke-2006,
+dunlosky-et-al-2013, larsen-et-al-2009}. The study ladder
+(Table~\ref{tab:study-ladder-by-participant-type-and-claim-supported}) maps
+each study level to the evidence source it earns; no single study provides all
+sources, and the claim is supported by the accumulated pattern.
 
 \subsection{Current Evidence Available}
 
@@ -2751,65 +2311,13 @@ Usability and experience measures:
   \item SUS or short 5-point ease/usefulness/confidence survey;
   \item open feedback on confusing cards, confusing instruments, and perceived realism.
 \end{itemize}
-Prior user studies support this design pattern. NeuroVase is the closest
-interaction precedent because it tested a tangible cue-card and tablet-based AR
-medical-learning system with 40 participants, a traditional-learning comparison,
-pre/post knowledge testing, SUS, Likert experience measures, and open feedback
-\cite{jahani-et-al-2026-neurovase}.
-That supports TrayGuard's use of college students as target-adjacent novice
-learners, provided the claim remains about simulated learning and usability
-rather than target-worker competence.
-Medical simulation app studies also commonly use novice learner cohorts when
-the goal is early validity, usability, or learning evidence. Tulipan et al.
-evaluated Touch Surgery's carpal-tunnel-release module with medical students,
-orthopedic residents, and expert hand surgeons; medical students served as the
-novice cohort, participants completed repeated simulation attempts, performance
-was logged, and the novice group completed a Likert satisfaction/face-validity
-questionnaire \cite{tulipan-et-al-2019}.
-The study is relevant because TrayGuard similarly expects repeated attempts,
-objective scoring, and user perception data to show whether the simulation is
-usable and whether performance changes with practice.
-Orthopedic VR training studies provide a second proxy-participant precedent:
-Orland et al. studied first- and second-year medical students as novices in a
-controlled orthopedic training task, comparing simulation-supported preparation
-with conventional preparation and measuring downstream task performance
-\cite{orland-et-al-2020}. This supports using
-students when the target is an early, controlled, preclinical learning task,
-while still reserving real workplace transfer for later target-user studies.
-Finally, Ofstead et al. is the target-domain model rather than the proxy-user
-model. Their sterile-processing training pilot used certified SP professionals,
-pre/post testing, hands-on practice, confidence and satisfaction capture,
-workplace homework, and a delayed booster
-\cite{ofstead-et-al-2023}. TrayGuard's
-student study should therefore be described as a first-stage novice simulation
-study, with a later SPD educator review and SPD trainee pilot needed before
-making target-worker claims.
-
-A stronger later design would compare flashcard-only practice against
-flashcards plus simulated tray sorting in a between-group design:
-\begin{table}[H]
-\centering
-\caption{Between-group study design for isolating practice effect}
-\label{tab:between-group-study-design-for-isolating-practice-effect}
-\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
-\hline
-Group & Training condition & Post-test \\
-\hline
-A & Structured flashcards and quizzes only. & No-hints simulated tray-verification task. \\
-\hline
-B & Structured flashcards and quizzes plus simulated tray-verification practice with feedback. & Same no-hints simulated tray-verification task. \\
-\hline
-\end{tabularx}
-\end{table}
-The main outcome would be whether Group B performs better on the applied tray
-task, measuring tray-verification accuracy, completion time,
-missing/extra/wrong/misidentified/wrong-count errors, high-confidence errors,
-low-confidence correct answers, and weak-item recovery. This design would
-isolate the incremental effect of simulated practice beyond retrieval cards
-alone. For the first project prototype, the within-subject pre/post design provides
-simpler logistics and smaller sample requirements; the between-group comparison
-is a natural follow-up once the prototype and protocol are stable.
+This design follows precedents including NeuroVase (tangible AR medical learning with 40 participants, pre/post testing, SUS)
+\cite{jahani-et-al-2026-neurovase}, Tulipan et al. (Touch Surgery with novice medical students)
+\cite{tulipan-et-al-2019}, and Ofstead et al. (SP professional borescope training pilot)
+\cite{ofstead-et-al-2023}.
+A future between-group design could isolate the incremental effect of simulated tray
+practice beyond flashcards alone, but the within-subject pre/post design provides
+simpler logistics and smaller sample requirements for the first prototype.
 \subsection{Study 2: Delayed Retention}
 \label{sec:study-2}
 
@@ -2828,8 +2336,9 @@ gains from a single intervention could decay measurably within 7 days
 \cite{bell-et-al-2008}, and Larsen et al. showed that the testing-effect
 advantage over restudy persisted at least 7 days in a medical-education
 randomized trial \cite{larsen-et-al-2009}. Ofstead et al. used a longer
-(2-month) interval with a booster session, but their intervention included
-workplace homework between sessions \cite{ofstead-et-al-2023}. For a single-
+(2-month) interval with a booster session and reported approximately
+90\% retention of the post-test gain at that follow-up, but their intervention
+included workplace homework between sessions \cite{ofstead-et-al-2023}. For a single-
 session training tool without between-session homework, 7 days is the shortest
 credible retention interval that separates durable learning from ephemeral
 practice gain.
@@ -2924,15 +2433,12 @@ These findings establish that the learning mechanism works in this task domain
 for a naive population. They do not establish the effect size for experienced
 SPD workers, whose baseline on familiar trays may be high and for whom the
 dependent variable shifts from accuracy gain to error-type reduction,
-confidence calibration, and retention maintenance (Section~10-1).
+confidence calibration, and retention maintenance (Section~\ref{sec:study-ladder}).
 \end{quote}
 \subsection{Validity Claims Summary}
 
-The following table maps each project claim to the type of validity evidence
-that supports it, following the Cook and Beckman five-source framework
-\cite{cook-beckman-validity-2006} and Kane's argument-based approach
-\cite{kane-validity-2013}. No single study provides all sources; the overall
-claim rests on the accumulated pattern.
+No single study provides all validity sources; the overall
+claim rests on the accumulated pattern \cite{cook-beckman-validity-2006, kane-validity-2013}.
 \begin{table}[H]
 \centering
 \caption{Validity claims mapped to evidence sources}
@@ -2964,7 +2470,7 @@ Learning gains in novices transfer to SPD workers (extrapolation). & Generalizab
 A later SPD pilot requires local count sheets, local photos or real teaching
 instruments, SPD educator review, technician or trainee participants,
 approval/privacy review, and a comparison condition such as current study
-materials or preceptor-led orientation. It should measure whether the system
+materials or clinical supervisor-led orientation. It should measure whether the system
 helps target users in a workplace-relevant training context. Only that later
 pilot can support claims about SPD trainee usefulness, supervised transfer, or
 operational training adoption.
@@ -2980,9 +2486,9 @@ and the relevant minimum viable improvement before data collection
 \cite{kirkpatrick-evaluation-1994, arthur-et-al-2003}.
 
 
-% ── Section 14 ──
+% ── Section 12 ──
 
-\section{Risk Assessment And Scope Boundaries}
+\section{Risk Assessment And Scope Boundaries \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:risk-assessment-and-scope-boundaries}
 \subsection{Formal Risk Register}
 
@@ -3043,7 +2549,7 @@ Novice participant limits & Student participants can test learnability, but they
 \hline
 Scanning reliability & Camera angle, lighting, occlusion, and card overlap may produce app errors that look like learner errors. & Log raw detections, show a confirmation state before scoring, and run a marker-detection bench test before the user study. \\
 \hline
-Confidence calibration & Confidence ratings can become noise if captured too often or too vaguely. & Capture simple confidence or \texttt{Not sure} at assessment moments and analyze high-confidence errors separately. \\
+Confidence calibration & Confidence ratings can become noise if captured too often or too vaguely; novice learners may also exhibit systematic overconfidence on items they cannot reliably identify \cite{kruger-dunning-1999}. & Capture simple confidence or \texttt{Not sure} at assessment moments and analyze high-confidence errors separately. \\
 \hline
 Instructor usefulness & Better learner scores do not automatically mean the output helps educators. & Add a short instructor-facing report and ask an educator whether the weak-item summary would change coaching. \\
 \hline
@@ -3082,9 +2588,9 @@ Not allowed yet:
 \end{itemize}
 
 
-% ── Section 15 ──
+% ── Section 13 ──
 
-\section{Broader Impacts And Ethics}
+\section{Broader Impacts And Ethics \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:broader-impacts-and-ethics}
 
 TrayGuard's positive impact is a more accessible way to practice local tray
@@ -3132,7 +2638,7 @@ Punitive learner metrics & Scores could become surveillance or discipline instea
 \hline
 Overreliance on simulated scores & A high score could be mistaken for real SPD readiness. & Label all results as simulated; require supervised hands-on validation for clinical claims. \\
 \hline
-Reduced supervised practice & Programs might use the tool to cut preceptor time. & Frame TrayGuard as preparation for supervised practice, not replacement. \\
+Reduced supervised practice & Programs might use the tool to cut clinical supervisor time. & Frame TrayGuard as preparation for supervised practice, not replacement. \\
 \hline
 Unequal local content & Better-resourced sites may build richer modules. & Use open file formats, printable cards, and a minimal module template. \\
 \hline
@@ -3152,9 +2658,9 @@ what it can and cannot prove.
 
 
 
-% ── Section 16 ──
+% ── Section 14 ──
 
-\section{Project Plan And Future Work}
+\section{Project Plan And Future Work \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:project-plan-and-future-work}
 \subsection{Completed Work}
 
@@ -3167,29 +2673,12 @@ The following subsystems have been implemented:
   \item \textbf{Card generation and printing.} A CLI command generates printable ArUco marker PNGs, a marker-grid index sheet for camera scanning, and double-sided study flashcards with instrument images, names, aliases, distinguishing features, and tray-specific quantities. An image-processing pipeline handles EXIF rotation, content-aware cropping, and automatic marker placement \texttt{src/trayguard/learning/cards.py}.
   \item \textbf{Scoring engine.} A scoring function classifies each item into correct, missing, extra, wrong, misidentified (lookalike substitution), or wrong-count categories. Error-point aggregation maps to an accuracy score and required-recall metric. Confidence ratings (1-5 scale and a \texttt{Not sure} checkbox) are captured per item and flagged as high-confidence errors or low-confidence correct answers \texttt{src/trayguard/learning/scoring.py}.
   \item \textbf{Export and run storage.} Each completed run produces a JSON payload plus CSV files at the attempt level and item level. Learner identifiers are hashed (SHA-256 truncated to 16 hex characters). The export schema includes all error categories, confidence metadata, and module version fields \texttt{src/trayguard/learning/export.py}; \texttt{src/trayguard/learning/run\_store.py}.
-   \item \textbf{CV data collection and annotation pipeline.} A webcam capture tool with bounding-box annotation UI supports rapid multi-session data collection with per-class image output, YOLO label export, and session save/load \texttt{src/trayguard/data\_collection/}.
-   \item \textbf{YOLO training infrastructure.} A Hydra-configured training pipeline supports model, dataset, and hyperparameter overrides across YOLO11n/s/m/l variants and RT-DETR-l. Training runs are deterministic and reproducible through a fixed seed \texttt{src/trayguard/training/}.
-   \item \textbf{CV baseline: Lavado surgical instruments.} A YOLO11s model was trained on the Lavado dataset (2,106 images, 4 classes) and validated on a held-out test set, achieving mAP50 of 0.990 and mAP50-95 of 0.944 \texttt{data/lavado/}.
-   \item \textbf{CV experiments: lighting and occlusion robustness.} Seven staged brightness experiments (800--80 lumens) on matte, reflective, separated, and overlay layouts were trained and validated. Per-stage precision, recall, mAP50, mAP50-95, and per-image count-error metrics were collected across 11 brightness levels and both backgrounds \texttt{scripts/validate\_brightness\_experiments.py}.
-   \item \textbf{CV experiments: lighting diversity.} Three staged spoon lighting experiments tested whether adding lighting variety during training improves held-out-condition detection across reference, 45-degree, and 90-degree flashlight conditions \texttt{data/spoon\_lighting\_yolo/}.
-   \item \textbf{Multi-variant benchmark harness.} A benchmark harness supports YOLO11n/s/m/l at 640 and 960 image sizes and RT-DETR-l at 640 for precision, recall, mAP, and latency comparison \texttt{src/trayguard/training/benchmark.py}.
-   \item \textbf{Legacy Streamlit tray-check demo.} A live YOLO tray-check interface demonstrates camera capture, detection, and tray-status comparison for proof-of-concept review \texttt{src/trayguard/app/streamlit\_app.py}.
    \item \textbf{Tests.} Unit tests verify module loading, scoring accuracy (full-credit and lookalike-substitution cases), CSV/JSON export file completeness, and ArUco marker generation and detection \texttt{tests/test\_learning.py}.
 \end{itemize}
 \subsection{Project Plan Postmortem}
 
-The original project direction emphasized computer vision support for tray
-checking. That direction remained technically plausible, but the validation
-burden was too large for the project schedule: real instrument recognition would
-require local instrument data, site-specific tray rules, cross-manufacturer
-generalization testing, camera reliability, clinical workflow review, and
-adoption evidence. The project therefore pivoted to a training-centered system
-with a stronger near-term evidence path.
-The pivot reduced risk by changing the main proof obligation from
-deployment-grade recognition to measurable novice learning. The remaining
-engineering work is still concrete: build a local tray module, use AprilTag
-cards to make the simulated physical task observable, score tray attempts, and
-run a small pre/post study with claim boundaries.
+The training-centered pivot (Section~\ref{sec:reason-for-pivot}) reduced risk by changing the main proof obligation from
+deployment-grade recognition to measurable novice learning.
 \subsection{Future Work Roadmap}
 
 
@@ -3285,9 +2774,9 @@ testing, study moderation, analysis, and report writing.
 
 
 
-% ── Section 17 ──
+% ── Section 15 ──
 
-\section{Discussion And Final Recommendations}
+\section{Discussion And Final Recommendations \hfill {\normalfont\small (Matthew, Jacob)}}
 \label{sec:discussion-and-final-recommendations}
 
 This report supports a clear next step: build and test the software-first training
@@ -3298,34 +2787,17 @@ current evidence is not strong enough to claim that TrayGuard reduces hospital
 tray errors, improves SPD technician performance, or recognizes real surgical
 instruments in clinical conditions.
 
-The evaluation plan now follows established frameworks from the training-
-evaluation and educational-assessment literatures. Kirkpatrick's four-level
-model frames the project's reach: the current studies target Level 2 (Learning),
-with internal-structure evidence from error-type decomposition, convergent
-evidence from an independent photo-identification test, and temporal evidence
-from a committed 7-day retention check. Level 3 (Behavior transfer) and Level 4
-(Results) remain future work requiring SPD-site participants and operational
-outcome data \cite{kirkpatrick-evaluation-1994}. The five-source validity
-framework from Cook and Beckman, grounded in Messick's unified validity theory
-and Kane's argument-based approach, provides the evidentiary structure for each
-claim level, with explicit falsification criteria for the retention and
-convergent-validity claims \cite{messick-validity-1989, kane-validity-2013,
-cook-beckman-validity-2006, aera-standards-2014}.
+The evaluation plan targets Kirkpatrick Level~2 (Learning) with internal-
+structure, convergent, and temporal evidence; Level~3 and Level~4 remain
+future work \cite{kirkpatrick-evaluation-1994}. The five-source validity
+framework provides the evidentiary structure with explicit falsification
+criteria \cite{cook-beckman-validity-2006}.
 
-A further validity concern is population generalizability. The novice study
-tests complete novices (college students). Experienced SPD workers may already
-perform at or near ceiling on their current trays. A pre/post gain from 0 to 90
-in novices does not predict a gain from 90 to 90 in workers. The evaluation
-design addresses this by separating the dependent variable by population:
-novices are measured on absolute accuracy gain; workers would be measured on
-error-type reduction, confidence calibration, new-module learning rate, and
-retention maintenance (Section~\ref{sec:study-ladder}). The
-Ofstead precedent shows that even certified SP workers have substantial room
-for improvement on novel tasks (41\% pre-test in their study), supporting the
-claim that TrayGuard's value for an experienced population lies in targeted
-error reduction rather than general accuracy gain. The novice studies
-establish that the learning mechanism works in this task domain; the SPD pilot
-is required to establish the effect size for the target population.
+Population generalizability is addressed by separating the dependent variable by
+population: novices on absolute accuracy gain, workers on error-type reduction,
+confidence calibration, and new-module learning rate (Section~\ref{sec:study-ladder}).
+The Ofstead precedent confirms that even certified SP workers have room for
+improvement on novel tasks \cite{ofstead-et-al-2023}.
 
 Stakeholders can conclude the following:
 \begin{itemize}
@@ -3338,18 +2810,14 @@ Stakeholders can conclude the following:
 Stakeholders cannot yet conclude that TrayGuard:
 \begin{itemize}
   \item certifies sterile-processing competence;
-  \item replaces hands-on hours, preceptor observation, or local sign-off;
+  \item replaces hands-on hours, clinical supervisor observation, or local sign-off;
   \item reduces OR delays or hospital tray-defect rates;
   \item works for SPD technicians in a real workplace;
   \item recognizes real instruments across manufacturers, lighting, occlusion, and tray layouts;
   \item produces the same effect size for experienced workers as for novices (the dependent variable and expected magnitude differ by population);
   \item supports retention unless the 7-day delayed check meets the falsification criteria specified in Section~\ref{sec:study-2}.
 \end{itemize}
-The next team should therefore implement the minimum evidence loop:
-\begin{lstlisting}
-load module -> pre-test -> study cards -> quiz -> practice sort -> post-test -> convergent photo-ID test -> export report
-\end{lstlisting}
-After that loop works, the team should run the marker reliability check, then a
+The next team should therefore implement the learning loop described in Section~\ref{sec:final-product-concept-and-design-rationale}, extended with a convergent photo-ID test. After that loop works, the team should run the marker reliability check, then a
 small novice pre/post study with the convergent photo-ID measure, then the
 committed 7-day retention check, then an expert review of names, counts,
 distractors, lookalikes, and feedback. Only after those results should the
@@ -3390,7 +2858,7 @@ additional validation cost.
 \hline
 Design Choice & Research Support & Defensible Stance \\
 \hline
-Time-to-competency as the north star & SPD certification and training evidence shows that entry into practice requires hands-on hours, structured training, and preceptor support \cite{hspa-crcst-accessed-2026}; \cite{chobin-2010}; \cite{aorn-staffing-shortage-2025}. & Measure simulated improvement in local tray familiarity and report the longitudinal onboarding question as future field validation. \\
+Time-to-competency as the north star & SPD certification and training evidence shows that entry into practice requires hands-on hours, structured training, and clinical supervisor support \cite{hspa-crcst-accessed-2026}; \cite{chobin-2010}; \cite{aorn-staffing-shortage-2025}. & Measure simulated improvement in local tray familiarity and report the longitudinal onboarding question as future field validation. \\
 \hline
 Retrieval-centered learning loop & Simulation, retrieval practice, spacing, feedback, and pre/post testing are supported by health-professions and learning-science evidence, with direct SP training precedent in Ofstead et al. and digital-practice support from spaced education and electronic-flashcard research \cite{ofstead-et-al-2023}; \cite{cook-et-al-2011}; \cite{roediger-and-karpicke-2006}; \cite{larsen-et-al-2009}; \cite{martinengo-et-al-2024}; \cite{barrison-et-al-2025}; \cite{hattie-and-timperley-2007}. & Build pre-test, retrieval-first cards, quizzes, applied tray practice with feedback, weak-item review, post-test, and metrics export as one module. \\
 \hline
@@ -3438,6 +2906,159 @@ Local ignored \texttt{data/}, \texttt{runs/}, and \texttt{weights/} folders & Ke
 \end{tabularx}
 \end{table}
 
-\end{document}
+\section{CV Experiment Methods and Additional Results}
+\label{sec:appendix-c-cv-experiment-methods}
+
+\subsection{Brightness Experiment Setup}
+
+The brightness experiments used a self-collected dataset of four spoon
+variants and one fork (five classes) photographed on two backgrounds
+(matte white, reflective silver) across 11~brightness levels forming a
+descending ladder from 800 to 80~estimated lumens. Two layout
+conditions were captured: separated (instruments arranged in two
+distinct orders) and overlay (instruments overlapping in a single
+arrangement). Seven staged train/test splits were constructed from
+these conditions to isolate the effect of each variable independently.
+Each stage was trained with YOLO11s for 100~epochs at 640$\times$640
+resolution.
+
+Figure~\ref{fig:app-separated-vs-overlay} shows example images from
+the separated training set and the overlay test set, illustrating the
+layout gap that produced the largest performance degradation.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/separated_layout_example.jpg}
+\caption{Separated layout (training condition)}
+\label{fig:app-separated}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/overlay_layout_example.jpg}
+\caption{Overlay layout (test condition)}
+\label{fig:app-overlay}
+\end{subfigure}
+\caption{Example images from the separated-to-overlay experiment. The training set uses non-overlapping layouts; the test set uses overlapping layouts.}
+\label{fig:app-separated-vs-overlay}
+\end{figure}
+
+\subsection{Real-Instrument Experiments}
+
+The surgical kit proxy dataset contains six real instrument classes
+(scissor1, scissor2, scissor3, scissor4, forcep, scalpel) photographed
+on matte and reflective backgrounds across four sessions. Each image
+contains exactly six instruments (one per class) in fixed positions per
+session. Three staged experiments were trained with YOLO11s for
+100~epochs.
+
+Table~\ref{tab:app-surgical-kit-per-class} shows the per-class AP50
+breakdown. The pattern is diagnostic of position-cue learning: classes
+that achieve high AP in one split fall to zero in others, matching
+session-specific instrument positions rather than visual features.
+
+\begin{table}[H]
+\centering
+\caption{Per-class AP50 for the three real-instrument experiments}
+\label{tab:app-surgical-kit-per-class}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{lrrr}
+\hline
+Class & matte$\rightarrow$reflective & reflective$\rightarrow$matte & shape\_similarity \\
+\hline
+scissor1 & 0.000 & 0.000 & \textbf{0.862} \\
+scissor2 & 0.435 & 0.000 & 0.000 \\
+scissor3 & 0.000 & 0.000 & 0.000 \\
+scissor4 & 0.000 & 0.000 & 0.587 \\
+forcep & 0.517 & 0.000 & 0.000 \\
+scalpel & 0.446 & \textbf{0.717} & 0.069 \\
+\hline
+\end{tabularx}
+\end{table}
+
+Figure~\ref{fig:app-failure-mode} shows the most striking failure
+mode: the \texttt{reflective\_train\_matte\_test} model detects only
+the scalpel (the most visually distinct instrument) and misses all five
+remaining classes. The confusion matrix for the
+\texttt{shape\_similarity\_real\_proxy} experiment
+(Figure~\ref{fig:app-confusion}) confirms that class associations are
+split-specific rather than shape-driven.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/val_batch0_pred.jpg}
+\caption{Prediction example from \texttt{reflective\_train\_matte\_test}. Only the scalpel is detected (bounding box); the other five instruments (scissor1--4, forcep) are all missed.}
+\label{fig:app-failure-mode}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/confusion_matrix_normalized.png}
+\caption{Normalized confusion matrix for \texttt{shape\_similarity\_real\_proxy}. scissor1 and scissor4 are the only classes with nonzero true-positive rates; the remaining classes are uniformly missed.}
+\label{fig:app-confusion}
+\end{figure}
+
+
+
+% ── Appendix D: Bills of Materials ──
+
+\section*{Appendix D: Bills of Materials}
+
+\begin{table}[H]
+\centering
+\caption{Bills of materials}
+\label{tab:bills-of-materials}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{1cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{1.2cm}|>{\raggedright\arraybackslash}p{1cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{1.2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\hline
+Item & Description & Qty & Unit & Supplier & Unit Cost & Extended \\
+\hline
+1 & Cardstock paper (letter, 65 lb) & 1 & pack (50) & Office supply & \$8 & \$8 \\
+2 & Clear adhesive sleeves & 1 & pack (100) & Office supply & \$10 & \$10 \\
+3 & Foam backing board (20$\times$30 in) & 1 & sheet & Craft store & \$5 & \$5 \\
+4 & AprilTag markers (printed on paper) & 30 & sheets & In-house & \$0 & \$0 \\
+5 & Laptop or tablet for scanning & 1 & unit & Existing & \$0 & \$0 \\
+6 & Camera stand (optional) & 1 & unit & Online & \$20 & \$20 \\
+7 & Printed study flashcards & 30 & sheets & In-house & \$0 & \$0 \\
+8 & Assorted office supplies (tape, scissors, binder clips) & 1 & set & Office supply & \$10 & \$10 \\
+\hline
+\multicolumn{6}{|p{0.8\textwidth}|}{\textbf{Total prototype material cost}} & \textbf{\$53} \\
+\hline
+\end{tabularx}
+\end{table}
+
+The primary project cost is labor: module authoring, software implementation,
+experimental data collection, study moderation, analysis, and report writing.
+These are captured in the project plan's task assignments and are not itemized
+as direct material purchases. The prototype is designed to work with materials
+already available in a typical academic or office environment. Costs above are
+upper-bound estimates; actual spending can be lower by reusing existing
+equipment and printing on available paper.
+
+% ── Appendix E: Collaboration Task Matrix ──
+
+\section*{Appendix E: Collaboration Task Matrix}
+
+\begin{table}[H]
+\centering
+\caption{Collaboration task matrix}
+\label{tab:collaboration-task-matrix}
+\small\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Team Member & Sections Authored & Key Contributions \\
+\hline
+Matthew Li & Executive Summary, Introduction, Problem Definition and Scope (with Andy, Qiyu), Preliminary Analysis, First Attempt (with Qiyu), Literature and Related Work (with Andy, Qiyu), Final Product Concept (with Andy, Qiyu), Requirements Definition (with Andy, Jacob), System Design (with Jacob), Analysis (with Qiyu), Design Outcome vs Requirements (with Qiyu), Evaluation and Validation Plan (with Jacob), Risk Assessment (with Jacob), Broader Impacts (with Jacob), Project Plan (with Jacob), Discussion (with Jacob), Research Support Audit, Implementation Defaults & Root-cause analysis, preliminary analysis (all 6 methods), requirements traceability matrix, training web app implementation, tray module data model, scoring engine, card generation pipeline, export and run storage, CV data collection and YOLO training pipeline, multi-variant benchmark harness, unit tests, study design \\
+\hline
+Andy Ma & Problem Definition and Scope (with Matthew, Qiyu), Literature and Related Work (with Matthew, Qiyu), Final Product Concept and Design Rationale (with Matthew, Qiyu), Requirements Definition: Element Definition and Objective Tree (with Matthew) & Literature review, problem explication, related work research, product concept, objective tree development \\
+\hline
+Qiyu Xin & Problem Definition and Scope (with Matthew, Andy), First Attempt (with Matthew), Literature and Related Work (with Matthew, Andy), Final Product Concept (with Matthew, Andy), Analysis (with Matthew), Design Outcome vs Requirements (with Matthew) & Computer-vision experiments (brightness, occlusion, real-instrument studies), literature review, product concept and design rationale \\
+\hline
+Jacob Moore & Requirements Definition: Performance Specifications, Quality Function Deployment, and Requirement Traceability Matrix (with Matthew, Andy), System Design (with Matthew), Evaluation and Validation Plan (with Matthew), Risk Assessment (with Matthew), Broader Impacts (with Matthew), Project Plan (with Matthew), Discussion (with Matthew), References & Performance specifications, QFD, RTM, system design, evaluation framework, risk register, ethical analysis, project plan postmortem, budget, references list curation \\
+\hline
+Owen Fan & (Appendices support) & Experimental data collection assistance, figure generation, documentation review \\
+\hline
+\end{tabularx}
+\end{table}
 
 \end{document}

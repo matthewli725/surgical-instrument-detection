@@ -1,14 +1,34 @@
-/mendeley_dataset/dataset
-/mendeley_dataset/seed_data
-/mendeley_dataset/seed_data_coarse
-/mendeley_dataset/yolo26n.pt
-/mendeley_dataset/yolov8n-seg.pt
-/mendeley_dataset/yolov8s-seg.pt
-/mendeley_dataset/yolov8m-seg.pt
+# ───────────────────────────────────────────────
+# TrayGuard .gitignore
+# Generated outputs & large artifacts not
+# intended for version control.
+# ───────────────────────────────────────────────
+
+# ─── Datasets & large data ────────────────────
+/mendeley_dataset/
 /dataset
 /datasets
-/purdue
-AGENTS.md
+/data/
+
+# ─── CV / ML experiment outputs ──────────────
+/reports/
+/demo
+/weights/
+/mlruns/
+/wandb/
+/tensorboard/
+/runs/
+models/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.onnx
+*.joblib
+*.pkl
+
+# ─── YOLO / RT-DETR model files ──────────────
 yolo11n.pt
 yolo11s.pt
 yolo11m.pt
@@ -16,42 +36,39 @@ yolo11l.pt
 yolo26n.pt
 rtdetr-l.pt
 rtdetr-x.pt
-/demo
-/reports
-/weights
-/assets
-/config/instrument_catalogs
-!/config/instrument_catalogs/
+
+# ─── Generated app assets ─────────────────────
+/outputs/
+/assets/
+
+# ─── Configuration (keep only specific files) ─
 /config/instrument_catalogs/*
 !/config/instrument_catalogs/fgvc12_major_tray_v1.json
-/config/tray_modules
-!/config/
-!/config/tray_modules/
 !/config/tray_modules/*.json
-/outputs
-/assets
-/tests
 
+# ─── Project scratch / teammates / docs ──────
+/purdue/
+/teammates/
+/instructions/
+/tests/
+AGENTS.md
+EXPERIMENTS.md
+TODO_CV_DATA.md
 
-# ---------------------------
+# ─── LaTeX build artifacts (final_paper/) ─────
+/final_paper/source/*.aux
+/final_paper/source/*.bbl
+/final_paper/source/*.blg
+/final_paper/source/*.log
+/final_paper/source/*.nav
+/final_paper/source/*.out
+/final_paper/source/*.snm
+/final_paper/source/*.toc
+/final_paper/source/*.vrb
+/final_paper/source/*.synctex.gz
+/final_paper/source/auto/
 
-# macOS system files
-
-# ---------------------------
-
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-.Spotlight-V100
-.Trashes
-
-# ---------------------------
-
-# Python
-
-# ---------------------------
-
+# ─── Python ───────────────────────────────────
 __pycache__/
 **/__pycache__/
 *.py[cod]
@@ -65,114 +82,47 @@ eggs/
 *.egg
 pip-wheel-metadata/
 
-# Virtual environments
-
+# ─── Virtual environments ─────────────────────
 .env
 .venv
 env/
 venv/
 ENV/
 
-# ---------------------------
-
-# Jupyter
-
-# ---------------------------
-
+# ─── Jupyter ──────────────────────────────────
 .ipynb_checkpoints
 
-# ---------------------------
-
-# Logs
-
-# ---------------------------
-
+# ─── Logs ─────────────────────────────────────
 logs/
 *.log
 
-# ---------------------------
-
-# ML experiment tracking
-
-# ---------------------------
-
-mlruns/
-wandb/
-tensorboard/
-/runs/
-
-# ---------------------------
-
-# Model artifacts
-
-# ---------------------------
-
-models/
-checkpoints/
-*.ckpt
-*.pt
-!/weights/
-!/weights/.gitkeep
-!/weights/trayguard.pt
-*.pth
-*.h5
-*.onnx
-*.joblib
-*.pkl
-
-# ---------------------------
-
-# Data (often large)
-
-# ---------------------------
-
-data/
-datasets/
-*.csv
-*.tsv
-*.parquet
-*.hdf5
-*.h5
-
-# ---------------------------
-
-# IDE / editor
-
-# ---------------------------
-
+# ─── IDE / editor ─────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# ---------------------------
-
-# Environment / secrets
-
-# ---------------------------
-
+# ─── Environment / secrets ────────────────────
 .env
 .env.*
 *.env
 
-# ---------------------------
-
-# Testing / coverage
-
-# ---------------------------
-
+# ─── Testing / coverage ───────────────────────
 .coverage
 coverage.xml
 htmlcov/
 .pytest_cache/
 
-# ---------------------------
-
-# Packaging / cache
-
-# ---------------------------
-
+# ─── Packaging / cache ────────────────────────
 .cache/
 *.cache
 tmp/
 temp/
+
+# ─── macOS system files ───────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
