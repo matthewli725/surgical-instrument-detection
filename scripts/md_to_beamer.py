@@ -30,12 +30,12 @@ def inline_md_to_tex(text: str) -> str:
     text = text.replace("✗", "")  # handled by item label in itemize-block
     text = text.replace("✓", "\\checkmark")
     text = text.replace("≥", "$\\ge$")
-    # Citation keys [@key] -- handles single and multi-key (; separated)
+    # Citation keys (cite: key) -- handles single and multi-key (; separated)
     def _replace_cite(m):
         keys = m.group(1)
-        cleaned = ",".join(k.strip().lstrip("@") for k in keys.split(";"))
+        cleaned = ",".join(k.strip() for k in keys.split(";"))
         return f"\\cite{{{cleaned}}}"
-    text = re.sub(r"\[@([^\]]+)\]", _replace_cite, text)
+    text = re.sub(r"\(cite:\s*([a-zA-Z0-9_-]+(?:\s*;\s*[a-zA-Z0-9_-]+)*)\)", _replace_cite, text)
     # Bold
     text = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", text)
     # Italic
@@ -181,13 +181,13 @@ def parse_md(filepath: Path) -> dict:
         # Visual / Script markers
         if stripped.startswith("**Visual**"):
             flush_slide()
-            type_m = re.search(r"\[type:\s*(\S+)\]", stripped)
+            type_m = re.search(r"\(type:\s*(\S+)\)", stripped)
             if type_m:
                 current_slide["type"] = type_m.group(1)
             in_visual = True
             in_script = False
             rest = re.sub(r"\*\*Visual\*\*\s*:\s*", "", stripped)
-            rest = re.sub(r"\s*\[type:\s*\S+\]", "", rest).strip()
+            rest = re.sub(r"\s*\(type:\s*\S+\)", "", rest).strip()
             if rest:
                 visual_lines.append(rest)
             continue
@@ -196,7 +196,7 @@ def parse_md(filepath: Path) -> dict:
             in_visual = False
             in_script = True
             if current_slide and not current_slide["type"]:
-                type_m = re.search(r"\[type:\s*(\S+)\]", line)
+                type_m = re.search(r"\(type:\s*(\S+)\)", line)
                 if type_m:
                     current_slide["type"] = type_m.group(1)
             continue
@@ -204,10 +204,10 @@ def parse_md(filepath: Path) -> dict:
         # Collect visual / script content
         if in_visual:
             if current_slide and not current_slide["type"]:
-                type_m = re.search(r"\[type:\s*(\S+)\]", stripped)
+                type_m = re.search(r"\(type:\s*(\S+)\)", stripped)
                 if type_m:
                     current_slide["type"] = type_m.group(1)
-                    line = re.sub(r"\s*\[type:\s*\S+\]", "", line).strip()
+                    line = re.sub(r"\s*\(type:\s*\S+\)", "", line).strip()
                     if not line:
                         continue
             visual_lines.append(line)
@@ -226,6 +226,10 @@ def parse_visual(lines: list[str], slide_type: str | None) -> list[dict]:
     while i < len(lines):
         line = lines[i]
         stripped = line.rstrip()
+
+        # Strip HTML comment markers (<!-- -->) for Google Docs compatibility
+        stripped = re.sub(r"^\s*<!--\s*", "", stripped)
+        stripped = re.sub(r"\s*-->\s*$", "", stripped)
 
         if not stripped.strip():
             i += 1

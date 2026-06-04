@@ -32,17 +32,17 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 2 — The Problem By The Numbers
 
-**Visual**: [type: three-callout]
+**Visual**: (type: three-callout)
 
-> **9 per 100 cases** — Alfred et al. [@alfred-et-al-2021]
+> **9 per 100 cases** — Alfred et al. (cite: alfred-et-al-2021)
 > 3,900 defects in 41,799 cases
 > **55% at assembly**
 
-> **10 min avg delay** — Nichol et al. [@nichol-et-al-2024]
+> **10 min avg delay** — Nichol et al. (cite: nichol-et-al-2024)
 > 236 errors, 147 cases
 > **$6--9M/yr estimated cost**
 
-> **44% wrong spec** — Zhu et al. [@zhu-et-al-2019]
+> **44% wrong spec** — Zhu et al. (cite: zhu-et-al-2019)
 > 398 errors in 33,839 packages
 > **largest single category**
 
@@ -62,10 +62,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 3 — What Tray Reconstruction Actually Requires
 
-**Visual**: [type: image-bullets]
+**Visual**: (type: image-bullets)
 
-![SPD workstation](figures/workstation_placeholder.pdf)
-
+<!-- ![SPD workstation](figures/workstation_placeholder.pdf)
+ -->
 - Identify each instrument by sight (no labels)
 - Match against a count sheet with **local names**
 - Distinguish lookalikes (straight vs curved Mayo)
@@ -81,10 +81,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 4 — Six Root Causes
 
-**Visual**: [type: image-and-columns]
+**Visual**: (type: image-and-columns)
 
-![Fishbone diagram](figures/fishbone_placeholder.pdf)
-
+<!-- ![Fishbone diagram](figures/fishbone_placeholder.pdf)
+ -->
 > **Three structural drivers:**
 > 1. SPD evolved from materials management → **no licensure, weak professionalization**
 > 2. Cost-center accounting → wage investment is visible, error cost is invisible
@@ -100,10 +100,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 5 — The Broken Feedback Loop
 
-**Visual**: [type: image-and-quote]
+**Visual**: (type: image-and-quote)
 
-![Broken feedback loop](figures/feedback_loop_placeholder.pdf)
-
+<!-- ![Broken feedback loop](figures/feedback_loop_placeholder.pdf)
+ -->
 > "Error reporting is cumbersome, human-dependent, delayed, and incomplete." --- Nichol et al.
 
 **Script** _(45 sec)_:
@@ -114,7 +114,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 6 — We Evaluated Seven Solution Categories
 
-**Visual**: [type: table]
+**Visual**: (type: table)
 
 | Solution | Buildable? | Validatable? | Creates infra for future? |
 |---|---|---|---|
@@ -134,7 +134,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 7 — Why Training, Not Because Training Is a Cure
 
-**Visual**: [type: two-column-block]
+**Visual**: (type: two-column-block)
 
 > What training **addresses**
 > - Measurable local tray knowledge
@@ -163,7 +163,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 8 — We Ran 7 Staged Detection Experiments
 
-**Visual**: [type: table-block]
+**Visual**: (type: table-block)
 
 | Experiment | What it tested | Key result |
 |---|---|---|
@@ -182,10 +182,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 9 — Brightness Degradation
 
-**Visual**: [type: image-only]
+**Visual**: (type: image-only)
 
-![Brightness degradation](figures/brightness_map50_95_panels.png)
-
+<!-- ![Brightness degradation](figures/brightness_map50_95_panels.png)
+ -->
 **Script** _(40 sec)_:
 
 > This plot shows what happens as the light gap widens. Left panel: trained on darkest, tested on brighter levels. Right panel: trained on brightest, tested on dimmer. The farther the gap, the worse the accuracy. SPD lighting varies by workstation, time of day, fixture condition. Every variation costs you detection reliability. This is not a solvable problem with more training data alone — you'd need to characterize and cover every lighting condition at every workstation.
@@ -194,12 +194,12 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 10 — Occlusion Is the Dealbreaker
 
-**Visual**: [type: two-image]
+**Visual**: (type: two-image)
 
-![Separated layout (training)](figures/separated_layout_example.jpg)
-![Overlay layout (test)](figures/overlay_layout_example.jpg)
-![Overlay degradation](figures/overlay_map50_95.png)
-
+<!-- ![Separated layout (training)](figures/separated_layout_example.jpg) -->
+<!-- ![Overlay layout (test)](figures/overlay_layout_example.jpg) -->
+<!-- ![Overlay degradation](figures/overlay_map50_95.png)
+ -->
 **Script** _(40 sec)_:
 
 > This is the most telling experiment. Left: separated layout — what you'd train on. Right: overlay — what a real tray looks like. Instruments in a tray touch and overlap. When we trained separated and tested on overlay, mAP50-95 dropped from 0.995 to 0.389. That means every time instruments overlap — which is most of the time in a real tray — the detector can't reliably tell what's there. You'd need to ask the technician to stop and rearrange before scanning, which defeats the purpose of an automated check.
@@ -208,11 +208,11 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 11 — Real Instruments: The Model Learned Position, Not Shape
 
-**Visual**: [type: two-image-table]
+**Visual**: (type: two-image-table)
 
-![Confusion matrix](figures/confusion_matrix_normalized.png)
-![Prediction example](figures/val_batch0_pred.jpg)
-
+<!-- ![Confusion matrix](figures/confusion_matrix_normalized.png) -->
+<!-- ![Prediction example](figures/val_batch0_pred.jpg)
+ -->
 | Split | Surviving classes | Zero AP classes |
 |---|---|---|
 | Matte→reflective | scissor2, forcep, scalpel | scissor1/3/4 |
@@ -229,10 +229,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 12 — The Cumulative Lesson: CV Validation Burden
 
-**Visual**: [type: itemize-block]
+**Visual**: (type: itemize-block)
 
 - Site-specific training data (instruments, lighting, layouts) ✗
-- Cross-manufacturer validation [@kienle-et-al-2025] (Kienle: major performance drop) ✗
+- Cross-manufacturer validation (cite: kienle-et-al-2025) (Kienle: major performance drop) ✗
 - Open-set rejection (unknown objects = false positives) ✗
 - Human-in-the-loop for every uncertain case ✗
 - Workflow integration in live SPD (never tested) ✗
@@ -254,10 +254,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 13 — CV and Training Are Complementary
 
-**Visual**: [type: image-block]
+**Visual**: (type: image-block)
 
-![CV + training complementary flow](figures/complementary_placeholder.pdf)
-
+<!-- ![CV + training complementary flow](figures/complementary_placeholder.pdf)
+ -->
 > The module is the durable artifact. The training loop proves the module works. The module then enables CV.
 
 **Script** _(45 sec)_:
@@ -268,7 +268,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 14 — The Durable Design Artifact: Tray Module Schema
 
-**Visual**: [type: code-bullets]
+**Visual**: (type: code-bullets)
 
 > {
 >   "id": "mayo_scissors_straight_55",
@@ -299,11 +299,11 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 15 — Printed Cards: How It Works Physically
 
-**Visual**: [type: two-image]
+**Visual**: (type: two-image)
 
-![Front (assessment)](figures/card_front_placeholder.pdf)
-![Back (study)](figures/card_back_placeholder.pdf)
-
+<!-- ![Front (assessment)](figures/card_front_placeholder.pdf) -->
+<!-- ![Back (study)](figures/card_back_placeholder.pdf)
+ -->
 > Neutral front prevents answer leakage. Tag ID maps to instrument ID.
 
 **Script** _(30 sec)_:
@@ -314,7 +314,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 16 — The Scoring Architecture: 5 Error Categories
 
-**Visual**: [type: table-itemize]
+**Visual**: (type: table-itemize)
 
 | Category | Definition | Example |
 |---|---|---|
@@ -325,7 +325,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 | Misidentified | Right class, wrong variant | Curved instead of straight |
 | Wrong count | Right item, wrong quantity | 2 Kellys, need 4 |
 
-- Maps to literature error categories [@alfred-et-al-2021; @zhu-et-al-2019; @nichol-et-al-2024]
+- Maps to literature error categories (cite: alfred-et-al-2021; zhu-et-al-2019; nichol-et-al-2024)
 - Can separate *what* improved (fewer misses? fewer lookalikes?)
 
 **Script** _(50 sec)_:
@@ -336,10 +336,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 17 — Confidence Capture
 
-**Visual**: [type: image-blocks]
+**Visual**: (type: image-blocks)
 
-![Confidence mockup](figures/confidence_mockup_placeholder.pdf)
-
+<!-- ![Confidence mockup](figures/confidence_mockup_placeholder.pdf)
+ -->
 > Learner was sure but wrong. Targeted feedback needed.
 
 > Learner was unsure but right. Fragile knowledge, needs reinforcement.
@@ -352,10 +352,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 18 — The Learning Loop (7 Steps)
 
-**Visual**: [type: image-block]
+**Visual**: (type: image-block)
 
-![7-step learning loop](figures/learning_loop_placeholder.pdf)
-
+<!-- ![7-step learning loop](figures/learning_loop_placeholder.pdf)
+ -->
 > Pre-test (baseline) → Study cards → Quiz → Practice sort → Post-test → Export
 
 **Script** _(45 sec)_:
@@ -366,7 +366,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 19 — The Research Question
 
-**Visual**: [type: centered-text]
+**Visual**: (type: centered-text)
 
 > How can a local tray training and assessment system help novice users improve their ability to detect missing, wrong, extra, misidentified, or miscounted instruments before supervised SPD tray-reconstruction work?
 
@@ -386,10 +386,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 20 — The Study Ladder
 
-**Visual**: [type: image-block]
+**Visual**: (type: image-block)
 
-![Study ladder](figures/study_ladder_placeholder.pdf)
-
+<!-- ![Study ladder](figures/study_ladder_placeholder.pdf)
+ -->
 > Kirkpatrick Level 2 target. Level 3--4 require future validation.
 
 **Script** _(50 sec)_:
@@ -400,7 +400,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 21 — Study 1: Novice Pre/Post Design
 
-**Visual**: [type: table-block]
+**Visual**: (type: table-block)
 
 | Segment | Time | Activity |
 |---|---|---|
@@ -422,10 +422,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 22 — Study 2: Delayed Retention (The Falsification Criterion)
 
-**Visual**: [type: image-plus-columns-block]
+**Visual**: (type: image-plus-columns-block)
 
-![Retention outcomes](figures/retention_placeholder.pdf)
-
+<!-- ![Retention outcomes](figures/retention_placeholder.pdf)
+ -->
 - **Criterion 1** — ≥ 50% of gain retained
 - **Criterion 2** — Accuracy > 5pp above baseline
 - **Criterion 3** — ≥ 70% return rate
@@ -440,7 +440,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 23 — Study 3: Expert Review (Closing the Content Gap)
 
-**Visual**: [type: itemize-plus-block]
+**Visual**: (type: itemize-plus-block)
 
 - Are instrument names and aliases correct for local practice?
 - Are counts and distractors plausible for training?
@@ -458,10 +458,10 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 24 — Go/No-Go Decision for Future Team
 
-**Visual**: [type: image-block]
+**Visual**: (type: image-block)
 
-![Go/no-go decision flowchart](figures/gonogo_placeholder.pdf)
-
+<!-- ![Go/no-go decision flowchart](figures/gonogo_placeholder.pdf)
+ -->
 > Study passes → SPD pilot is justified. Study fails → problem may be harder than training alone.
 
 **Script** _(30 sec)_:
@@ -478,7 +478,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 25 — What We Know and What We Don't
 
-**Visual**: [type: two-column-block]
+**Visual**: (type: two-column-block)
 
 > **What we know**
 > - Tray errors are systemic, recurring, and well-documented
@@ -502,7 +502,7 @@ Every design choice in the talk serves one of these five moves. No slide exists 
 
 ### Slide 26 — The Honest Handoff
 
-**Visual**: [type: centered-text]
+**Visual**: (type: centered-text)
 
 > Our project found that this problem is harder and more systemic than any single technical fix can address. Our contribution is documenting *why*, and giving the next team a validated starting point — not a finished product.
 
