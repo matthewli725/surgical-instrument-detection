@@ -1,5 +1,5 @@
 % !TEX program = pdflatex
-% This file is GENERATED from fdr_presentation_plan.md -- do not hand-edit.
+% Hand-edited source. fdr_presentation_script.md is a 1:1 reference for teammates.
 \documentclass[10pt,aspectratio=169]{beamer}
 
 % -- Theme ---------------------------------------------------------------
@@ -49,29 +49,30 @@
 \title{TrayGuard: What We Learned About Why Tray Errors Persist}
 \subtitle{EC ENGR 180DW --- Final Design Review}
 \author{Owen Fan, Matthew Li, Andy Ma, Jacob Moore, Qiyu Xin}
-\date{\today}
+\date{June 4, 2026}
 
 \begin{document}
 
-% -- Title slide -------------------------------------------------
+% -- Slide 1: Title ------------------------------------------------
 \begin{frame}
   \titlepage
   \note{We're TrayGuard. We spent two quarters looking at why surgical trays arrive wrong or incomplete, and what a team like ours can actually do about it. The answer turned out to be more interesting — and more frustrating — than a camera-based fix.}
 \end{frame}
 
-% -- Outline ----------------------------------------------------
+% -- Slide 2: Outline ------------------------------------------------
 \begin{frame}{Roadmap}
   \tableofcontents
 \end{frame}
 
 % ======================================================================
-%  SECTION 1: Introduction
+%  SECTION 1: The Problem
 % ======================================================================
-\section{Introduction}
-\sectiondivider{Introduction}
+\section{The Problem}
+\sectiondivider{The Problem}
 
+% Slide 3: The Problem (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 2: The Problem By The Numbers
+% Slide 4: The Problem By The Numbers
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Problem By The Numbers}
   \begin{columns}[T]
@@ -103,19 +104,43 @@
 \end{frame}
 
 % ======================================================================
-%  SECTION 2: The Problem is Deeper Than a Camera Can See
+%  SECTION 2: Why Tray Errors Persist
 % ======================================================================
-\section{The Problem is Deeper Than a Camera Can See}
-\sectiondivider{The Problem is Deeper Than a Camera Can See}
+\section{Why Tray Errors Persist}
+\sectiondivider{Why Tray Errors Persist}
+
+% Slide 5: Why Tray Errors Persist (section divider)
+% ───────────────────────────────────────────────────────
+% Slide 6: Lookalike Instruments: Kelly vs Crile
+% ───────────────────────────────────────────────────────
+\begin{frame}{Lookalike Instruments: Kelly vs Crile}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \centering
+    \textbf{Kelly and Crile forceps comparison}\\
+    \includegraphics[height=0.65\linewidth,keepaspectratio]{figures/teammate_kelly_crile.jpg}
+    \column{0.48\textwidth}
+    \centering
+    \textbf{Kelly Forceps sizing}\\
+    \includegraphics[height=0.65\linewidth,keepaspectratio]{figures/teammate_kelly_sizing.jpg}
+  \end{columns}
+  \vspace{0.5cm}
+  \begin{block}{}
+    \centering
+    Kelly and Crile: same family, different serration patterns. Sizes 6", 7", 8" — a staff might mix 14cm and 16cm clamps. Total count correct, specification wrong. \cite{ast-surgical-instrumentation-guide}
+  \end{block}
+  \note{This is the core of the lookalike problem. Kelly and Crile forceps are in the same family — both hemostatic clamps with transverse serrations. But they differ in where those serrations run: Crile serrations cover the entire jaw length; Kelly serrations only cover the distal half. You can't tell them apart at a glance. And within each type, sizes vary — 6 inch, 7 inch, 8 inch. In Zhu's study, the most common error category was "wrong specification": a package calling for four 14cm Kelly clamps and two 16cm Kelly clamps might end up with the counts swapped. Total number correct, specific instrument wrong. That's a visual discrimination failure that a camera can't reliably catch, and that training can directly address.}
+\end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 3: What Tray Reconstruction Actually Requires
+% Slide 7: What Tray Reconstruction Actually Requires
 % ───────────────────────────────────────────────────────
 \begin{frame}{What Tray Reconstruction Actually Requires}
   \begin{columns}[T]
     \column{0.48\textwidth}
     \centering
-    \incfig[0.7\textheight]{figures/workstation_placeholder.pdf}
+    \incfig[\textwidth]{figures/workstation.jpg}\\[2pt]
+    {\tiny SPD assembly workstation \cite{trayguard-workstation}}
     \column{0.48\textwidth}
     \begin{itemize}
       \item Identify each instrument by sight (no labels)
@@ -130,50 +155,168 @@
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 4: Six Root Causes
+% Slide 8: Common Surgical Instruments
 % ───────────────────────────────────────────────────────
-\begin{frame}{Six Root Causes}
+\begin{frame}{Common Surgical Instruments}
   \centering
-  \incfigw{figures/fishbone_placeholder.pdf}
-  \vspace{0.3cm}
-  \begin{columns}[T]
-    \column{0.32\textwidth}
-    \textbf{Three structural drivers:}
-    \begin{enumerate}
-      \item SPD evolved from materials management → \textbf{no licensure, weak professionalization}
-    \end{enumerate}
-    \column{0.32\textwidth}
-    \begin{enumerate}
-      \setcounter{enumi}{1}
-      \item Cost-center accounting → wage investment is visible, error cost is invisible
-    \end{enumerate}
-    \column{0.32\textwidth}
-    \begin{enumerate}
-      \setcounter{enumi}{2}
-      \item No information architecture → downstream OR errors don't trigger upstream correction
-    \end{enumerate}
-  \end{columns}
-  \note{We built a fishbone RCA across six categories. The quick version: the instrument itself is hard to identify because similar models differ only in subtle dimensions and markings wear off. The technician needs knowledge — but certification tests once, not repeatedly, and local names vary by hospital. The process has no double-check built in; you pick and check in one step. The count sheet might be outdated or use names nobody agrees on. The environment — production pressure, interruptions — makes detail work harder. And when an error does happen, the feedback loop to correct it is slow and manual.
-
-Underneath all six, three structural drivers explain why these problems persist year after year. Sterile processing evolved from materials management — think hospital supply closet — not from patient care. So there's no individual licensure, no board with enforcement authority, no recurring competency requirement. Hospital accounting treats SPD as a cost center: spending on staff or training shows up as expense, but the cost of errors is invisible. And there's no information system that connects a tray error discovered in the OR back to the specific tray, shift, and training gap that caused it. So the same errors repeat.}
+  \incfig[0.6\textwidth]{figures/instrument_category.png}\\[2pt]
+  {\tiny Source: ChatGPT 5.5}
+  \note{This figure shows a taxonomy of common surgical instruments grouped by category: clamps, forceps, scissors, retractors, needle holders, and other specialized instruments. Each category includes multiple sub-types that differ in jaw shape, serration pattern, length, and tip geometry — features that trained SPD technicians must discriminate by sight during tray reconstruction.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 5: The Broken Feedback Loop
+% Slide 9: Six Root Causes (fishbone diagram)
+% ───────────────────────────────────────────────────────
+\begin{frame}{Root Cause Analysis}
+  \centering
+  \incfig[0.85\textwidth]{figures/fishbone_rca.png}
+  \note{We built a fishbone RCA across six categories. The quick version: the instrument itself is hard to identify because similar models differ only in subtle dimensions and markings wear off. The technician needs knowledge — but certification tests once, not repeatedly, and local names vary by hospital. The process has no double-check built in; you pick and check in one step. The count sheet might be outdated or use names nobody agrees on. The environment — production pressure, interruptions — makes detail work harder. And when an error does happen, the feedback loop to correct it is slow and manual.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 10: Three Structural Drivers
+% ───────────────────────────────────────────────────────
+\begin{frame}{Root Cause Analysis}
+  \centering
+  \vspace{1cm}
+  \begin{enumerate}
+    \item SPD evolved from materials management → \textbf{no licensure, weak professionalization}
+    \vspace{0.5cm}
+    \item Cost-center accounting → wage investment is visible, error cost is invisible
+    \vspace{0.5cm}
+    \item No information architecture → downstream OR errors don't trigger upstream correction
+  \end{enumerate}
+  \note{Underneath all six, three structural drivers explain why these problems persist year after year. Sterile processing evolved from materials management — think hospital supply closet — not from patient care. So there's no individual licensure, no board with enforcement authority, no recurring competency requirement. Hospital accounting treats SPD as a cost center: spending on staff or training shows up as expense, but the cost of errors is invisible. And there's no information system that connects a tray error discovered in the OR back to the specific tray, shift, and training gap that caused it. So the same errors repeat.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 11: The Broken Feedback Loop
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Broken Feedback Loop}
+  \vfill
   \centering
-  \incfigw{figures/feedback_loop_placeholder.pdf}
+  \incfigw{figures/feedback_loop.png}
   \vspace{0.3cm}
   \begin{quote}
     \small
     "Error reporting is cumbersome, human-dependent, delayed, and incomplete." --- Nichol et al.
   \end{quote}
+  \vfill
   \note{This is the feedback loop that doesn't close. An instrument is missing during surgery. The scrub nurse fills out an incident report — on paper, after the case. That report filters through risk management and reaches SPD management weeks later. By then, nobody can say which tray, which shift, which technician, or which training gap caused it. So nothing changes. The same error repeats next week. Even a perfect detector — one that caught every error at the assembly station — wouldn't fix this broken feedback architecture. It would tell you something was wrong but not why, or who needs help, or whether the count sheet itself is wrong.}
 \end{frame}
 
+% ======================================================================
+%  SECTION 3: Why CV Alone Won't Work
+% ======================================================================
+\section{Why CV Alone Won't Work}
+\sectiondivider{Why CV Alone Won't Work}
+
+% Slide 12: Why CV Alone Won't Work (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 6: We Evaluated Seven Solution Categories
+% Slide 13: We Ran 7 Staged Detection Experiments
+% ───────────────────────────────────────────────────────
+\begin{frame}{We Ran 7 Staged Detection Experiments}
+  \centering
+  \small
+  \begin{tabular}{ccc}
+    \toprule
+    Experiment & What it tested & Key result \\
+    \midrule
+    Bright→dim & Light tolerance & mAP50-95 = 0.781 \\
+    Matte→reflective & Background transfer & mAP50-95 = 0.759 \\
+    Separated→overlay & Occlusion & \textbf{mAP50-95 = 0.389} \\
+    Real instruments & Shape vs position & Per-class AP: 0.000--0.862 \\
+    \bottomrule
+\end{tabular}
+  \vspace{0.3cm}
+  \begin{block}{}
+    \centering
+    Lavado baseline (clean data): \textbf{mAP50 = 0.990}. Pipeline works — the data doesn't generalize.
+  \end{block}
+  \note{We built a complete YOLO training pipeline. On a clean published dataset — Lavado surgical instruments — we got mAP50 of 0.990. The pipeline works fine. The problem is what happens when you test on conditions that SPD workstations actually present. We ran seven staged experiments isolating brightness, background reflectivity, and layout occlusion. Every variation cost accuracy. The biggest drop — overlay layout, which simulates instruments touching in a tray — produced mAP50-95 of 0.389.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 14: Brightness Degradation
+% ───────────────────────────────────────────────────────
+\begin{frame}{Brightness Degradation}
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/brightness_map50_95_panels.png}
+  \note{This plot shows what happens as the light gap widens. Left panel: trained on darkest, tested on brighter levels. Right panel: trained on brightest, tested on dimmer. The farther the gap, the worse the accuracy. SPD lighting varies by workstation, time of day, fixture condition. Every variation costs you detection reliability. This is not a solvable problem with more training data alone — you'd need to characterize and cover every lighting condition at every workstation.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 15: Occlusion Is the Dealbreaker (layout comparison)
+% ───────────────────────────────────────────────────────
+\begin{frame}{Occlusion Is the Dealbreaker}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \centering
+    \textbf{Separated layout (training)}\\
+    \incfig[0.75\textwidth]{figures/separated_layout_example.jpg}
+    \column{0.48\textwidth}
+    \centering
+    \textbf{Overlay layout (test)}\\
+    \incfig[0.75\textwidth]{figures/overlay_layout_example.jpg}
+  \end{columns}
+  \note{Left: separated layout — what you'd train on. Right: overlay — what a real tray looks like. Instruments in a tray touch and overlap.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 16: Overlay Degradation
+% ───────────────────────────────────────────────────────
+\begin{frame}{Overlay Degradation}
+  \centering
+  \incfig[0.85\textwidth]{figures/overlay_map50_95.png}
+  \note{When we trained separated and tested on overlay, mAP50-95 dropped from 0.995 to 0.389. That means every time instruments overlap — which is most of the time in a real tray — the detector can't reliably tell what's there. You'd need to ask the technician to stop and rearrange before scanning, which defeats the purpose of an automated check.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 17: Real Instruments: The Model Learned Position, Not Shape
+% ───────────────────────────────────────────────────────
+\begin{frame}{Real Instruments: The Model Learned Position, Not Shape}
+  \centering
+  \incfig[0.45\textwidth]{figures/val_batch0_pred.jpg}
+  \vspace{0.2cm}
+  \small
+  \begin{tabular}{ccc}
+    \toprule
+    Split & Surviving classes & Zero AP classes \\
+    \midrule
+    Matte→reflective & scissor2, forcep, scalpel & scissor1/3/4 \\
+    Reflective→matte & \textbf{scalpel only} & scissor1/2/3/4, forcep \\
+    Shape similarity & scissor1, scissor4 & scissor2/3, forcep \\
+    \bottomrule
+\end{tabular}
+  \note{This is the diagnostic result. We tested six real instrument classes — four scissors, a forcep, a scalpel. Per-class AP ranges from 0.000 to 0.862 depending on which split you look at. Different classes survive in different splits. The only class that transfers reliably is the scalpel — the most visually distinct instrument with a single blade versus multi-loop scissors.
+
+The pattern is caused by position-cue confounding. Each image has exactly one of each class at fixed positions per session. The model memorizes which class appears at which image location. When the position changes — which happens every time you process a different tray — the model fails. This isn't a problem you can fix with more data alone. You need randomized positions, which means a completely different data collection protocol.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 18: The Cumulative Lesson: CV Validation Burden
+% ───────────────────────────────────────────────────────
+\begin{frame}{The Cumulative Lesson: CV Validation Burden}
+  \begin{block}{\centering What a deployment-grade CV system still needs}
+    \begin{itemize}
+      \item[\textcolor{red}{\ding{55}}] Site-specific training data (instruments, lighting, layouts) 
+      \item[\textcolor{red}{\ding{55}}] Cross-manufacturer validation \cite{kienle-et-al-2025} (Kienle: major performance drop) 
+      \item[\textcolor{red}{\ding{55}}] Open-set rejection (unknown objects = false positives) 
+      \item[\textcolor{red}{\ding{55}}] Human-in-the-loop for every uncertain case 
+      \item[\textcolor{red}{\ding{55}}] Workflow integration in live SPD (never tested) 
+      \item[\textcolor{red}{\ding{55}}] Regulatory / device policy / privacy review 
+    \end{itemize}
+  \end{block}
+  \vspace{0.3cm}
+  \begin{exampleblock}{}
+    \centering
+    The training path doesn't need any of this for a first study.
+  \end{exampleblock}
+  \note{The cumulative evidence is clear: CV detection works in matched, controlled conditions and degrades under every variation that SPD workflows present. A deployment-grade system would need site-specific data for every hospital, cross-manufacturer validation because Kienle showed big drops between brands, open-set rejection for unknown objects, human-in-the-loop for every uncertain case, workflow integration testing, and regulatory review. We cannot responsibly build that in a one-quarter project. The pivot to a training path was driven by this evidence, not by convenience.}
+\end{frame}
+
+% ───────────────────────────────────────────────────────
+% Slide 19: We Evaluated Seven Solution Categories
 % ───────────────────────────────────────────────────────
 \begin{frame}{We Evaluated Seven Solution Categories}
   \centering
@@ -195,7 +338,7 @@ Underneath all six, three structural drivers explain why these problems persist 
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 7: Why Training, Not Because Training Is a Cure
+% Slide 20: Why Training, Not Because Training Is a Cure
 % ───────────────────────────────────────────────────────
 \begin{frame}{Why Training, Not Because Training Is a Cure}
   \begin{columns}[T]
@@ -225,126 +368,14 @@ Underneath all six, three structural drivers explain why these problems persist 
 \end{frame}
 
 % ======================================================================
-%  SECTION 3: Why CV Alone Won't Work
-% ======================================================================
-\section{Why CV Alone Won't Work}
-\sectiondivider{Why CV Alone Won't Work}
-
-% ───────────────────────────────────────────────────────
-% Slide 8: We Ran 7 Staged Detection Experiments
-% ───────────────────────────────────────────────────────
-\begin{frame}{We Ran 7 Staged Detection Experiments}
-  \centering
-  \small
-  \begin{tabular}{ccc}
-    \toprule
-    Experiment & What it tested & Key result \\
-    \midrule
-    Bright→dim & Light tolerance & mAP50-95 = 0.781 \\
-    Matte→reflective & Background transfer & mAP50-95 = 0.759 \\
-    Separated→overlay & Occlusion & \textbf{mAP50-95 = 0.389} \\
-    Real instruments & Shape vs position & Per-class AP: 0.000--0.862 \\
-    \bottomrule
-\end{tabular}
-  \vspace{0.3cm}
-  \begin{block}{}
-    \centering
-    Lavado baseline (clean data): \textbf{mAP50 = 0.990}. Pipeline works — the data doesn't generalize.
-  \end{block}
-  \note{We built a complete YOLO training pipeline. On a clean published dataset — Lavado surgical instruments — we got mAP50 of 0.990. The pipeline works fine. The problem is what happens when you test on conditions that SPD workstations actually present. We ran seven staged experiments isolating brightness, background reflectivity, and layout occlusion. Every variation cost accuracy. The biggest drop — overlay layout, which simulates instruments touching in a tray — produced mAP50-95 of 0.389.}
-\end{frame}
-
-% ───────────────────────────────────────────────────────
-% Slide 9: Brightness Degradation
-% ───────────────────────────────────────────────────────
-\begin{frame}{Brightness Degradation}
-  \centering
-  \includegraphics[width=0.8\textwidth]{figures/brightness_map50_95_panels.png}
-  \note{This plot shows what happens as the light gap widens. Left panel: trained on darkest, tested on brighter levels. Right panel: trained on brightest, tested on dimmer. The farther the gap, the worse the accuracy. SPD lighting varies by workstation, time of day, fixture condition. Every variation costs you detection reliability. This is not a solvable problem with more training data alone — you'd need to characterize and cover every lighting condition at every workstation.}
-\end{frame}
-
-% ───────────────────────────────────────────────────────
-% Slide 10: Occlusion Is the Dealbreaker
-% ───────────────────────────────────────────────────────
-\begin{frame}{Occlusion Is the Dealbreaker}
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-    \centering
-    \textbf{Separated layout (training)}\\
-    \incfig[\textwidth]{figures/separated_layout_example.jpg}
-    \column{0.48\textwidth}
-    \centering
-    \textbf{Overlay layout (test)}\\
-    \incfig[\textwidth]{figures/overlay_layout_example.jpg}
-  \end{columns}
-  \vspace{0.2cm}
-  \centering
-  \tiny Overlay degradation\\
-  \incfig[0.6\textwidth]{figures/overlay_map50_95.png}
-  \note{This is the most telling experiment. Left: separated layout — what you'd train on. Right: overlay — what a real tray looks like. Instruments in a tray touch and overlap. When we trained separated and tested on overlay, mAP50-95 dropped from 0.995 to 0.389. That means every time instruments overlap — which is most of the time in a real tray — the detector can't reliably tell what's there. You'd need to ask the technician to stop and rearrange before scanning, which defeats the purpose of an automated check.}
-\end{frame}
-
-% ───────────────────────────────────────────────────────
-% Slide 11: Real Instruments: The Model Learned Position, Not Shape
-% ───────────────────────────────────────────────────────
-\begin{frame}{Real Instruments: The Model Learned Position, Not Shape}
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-    \centering
-    \textbf{Confusion matrix}\\
-    \incfig[\textwidth]{figures/confusion_matrix_normalized.png}
-    \column{0.48\textwidth}
-    \centering
-    \textbf{Prediction example}\\
-    \incfig[\textwidth]{figures/val_batch0_pred.jpg}
-  \end{columns}
-  \vspace{0.2cm}
-  \centering
-  \small
-  \begin{tabular}{ccc}
-    \toprule
-    Split & Surviving classes & Zero AP classes \\
-    \midrule
-    Matte→reflective & scissor2, forcep, scalpel & scissor1/3/4 \\
-    Reflective→matte & \textbf{scalpel only} & scissor1/2/3/4, forcep \\
-    Shape similarity & scissor1, scissor4 & scissor2/3, forcep \\
-    \bottomrule
-\end{tabular}
-  \note{This is the diagnostic result. We tested six real instrument classes — four scissors, a forcep, a scalpel. Per-class AP ranges from 0.000 to 0.862 depending on which split you look at. Different classes survive in different splits. The only class that transfers reliably is the scalpel — the most visually distinct instrument with a single blade versus multi-loop scissors.
-
-The pattern is caused by position-cue confounding. Each image has exactly one of each class at fixed positions per session. The model memorizes which class appears at which image location. When the position changes — which happens every time you process a different tray — the model fails. This isn't a problem you can fix with more data alone. You need randomized positions, which means a completely different data collection protocol.}
-\end{frame}
-
-% ───────────────────────────────────────────────────────
-% Slide 12: The Cumulative Lesson: CV Validation Burden
-% ───────────────────────────────────────────────────────
-\begin{frame}{The Cumulative Lesson: CV Validation Burden}
-  \begin{block}{\centering What a deployment-grade CV system still needs}
-    \begin{itemize}
-      \item[\textcolor{red}{\ding{55}}] Site-specific training data (instruments, lighting, layouts) 
-      \item[\textcolor{red}{\ding{55}}] Cross-manufacturer validation \cite{kienle-et-al-2025} (Kienle: major performance drop) 
-      \item[\textcolor{red}{\ding{55}}] Open-set rejection (unknown objects = false positives) 
-      \item[\textcolor{red}{\ding{55}}] Human-in-the-loop for every uncertain case 
-      \item[\textcolor{red}{\ding{55}}] Workflow integration in live SPD (never tested) 
-      \item[\textcolor{red}{\ding{55}}] Regulatory / device policy / privacy review 
-    \end{itemize}
-  \end{block}
-  \vspace{0.3cm}
-  \begin{exampleblock}{}
-    \centering
-    The training path doesn't need any of this for a first study.
-  \end{exampleblock}
-  \note{The cumulative evidence is clear: CV detection works in matched, controlled conditions and degrades under every variation that SPD workflows present. A deployment-grade system would need site-specific data for every hospital, cross-manufacturer validation because Kienle showed big drops between brands, open-set rejection for unknown objects, human-in-the-loop for every uncertain case, workflow integration testing, and regulatory review. We cannot responsibly build that in a one-quarter project. The pivot to a training path was driven by this evidence, not by convenience.}
-\end{frame}
-
-% ======================================================================
 %  SECTION 4: Why Training Is the Best Entry Point
 % ======================================================================
 \section{Why Training Is the Best Entry Point}
 \sectiondivider{Why Training Is the Best Entry Point}
 
+% Slide 21: Why Training Is the Best Entry Point (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 13: CV and Training Are Complementary
+% Slide 22: CV and Training Are Complementary
 % ───────────────────────────────────────────────────────
 \begin{frame}{CV and Training Are Complementary}
   \centering
@@ -358,7 +389,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 14: The Durable Design Artifact: Tray Module Schema
+% Slide 23: The Durable Design Artifact: Tray Module Schema
 % ───────────────────────────────────────────────────────
 \begin{frame}[fragile]{The Durable Design Artifact: Tray Module Schema}
   \begin{columns}[T]
@@ -392,18 +423,18 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 15: Printed Cards: How It Works Physically
+% Slide 24: Printed Cards: How It Works Physically
 % ───────────────────────────────────────────────────────
 \begin{frame}{Printed Cards: How It Works Physically}
   \begin{columns}[T]
     \column{0.48\textwidth}
     \centering
     \textbf{Front (assessment)}\\
-    \incfig[\textwidth]{figures/card_front_placeholder.pdf}
+    \incfig[\textwidth]{figures/card_front_example.png}
     \column{0.48\textwidth}
     \centering
     \textbf{Back (study)}\\
-    \incfig[\textwidth]{figures/card_back_placeholder.pdf}
+    \incfig[\textwidth]{figures/card_back_example.png}
   \end{columns}
   \vspace{0.3cm}
   \begin{block}{}
@@ -414,7 +445,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 16: The Scoring Architecture: 5 Error Categories
+% Slide 25: The Scoring Architecture: 5 Error Categories
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Scoring Architecture: 5 Error Categories}
   \centering
@@ -440,7 +471,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 17: Confidence Capture
+% Slide 26: Confidence Capture
 % ───────────────────────────────────────────────────────
 \begin{frame}{Confidence Capture}
   \centering
@@ -449,18 +480,18 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
   \begin{columns}[T]
     \column{0.48\textwidth}
     \begin{alertblock}{\centering High-confidence error}
-      Learner was sure but wrong. Targeted feedback needed.
+      Learner was sure but wrong. Targeted feedback needed. — Kruger \& Dunning: "unskilled and unaware of it" \cite{kruger-dunning-1999}
     \end{alertblock}
     \column{0.48\textwidth}
     \begin{exampleblock}{\centering Low-confidence correct}
-      Learner was unsure but right. Fragile knowledge, needs reinforcement.
+      Learner was unsure but right. Fragile knowledge, needs reinforcement. — Dunlosky et al.: metacognitive calibration predicts retention \cite{dunlosky-et-al-2013}
     \end{exampleblock}
   \end{columns}
   \note{After each tray sort, the learner rates their confidence. This separates two very different failure modes. A high-confidence error means someone is confidently wrong — that's the hardest type to correct because the learner doesn't know they need help. Low-confidence correct means fragile knowledge that might not survive a week without review. Both are visible in the export.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 18: The Learning Loop (7 Steps)
+% Slide 27: The Learning Loop (7 Steps)
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Learning Loop (7 Steps)}
   \centering
@@ -470,11 +501,11 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
     \centering
     Pre-test (baseline) → Study cards → Quiz → Practice sort → Post-test → Export
   \end{block}
-  \note{This is the full learner loop. Each step has a specific evidence-based role. The pre-test and post-test use parallel variants — same instrument families, different specific items — so the learner can't memorize the exact layout. Study cards are prompt-before-reveal: the learner commits to an answer before seeing it, which is retrieval practice, not passive review. The practice sort gives immediate error-category feedback — "you missed the Kelly clamp," "you selected curved instead of straight Mayo." The whole loop takes about 45 to 60 minutes for a first module.}
+  \note{This is the full learner loop. Each step has a specific evidence-based role. The pre-test and post-test use parallel variants — same instrument families, different specific items — so the learner can't memorize the exact layout — Arthur et al. found that pre/post evaluation is the standard training assessment design \cite{arthur-et-al-2003}. Study cards are prompt-before-reveal: the learner commits to an answer before seeing it, which is retrieval practice, not passive review — Karpicke \& Blunt and Roediger \& Karpicke found retrieval practice doubles long-term retention over re-study \cite{karpicke-and-blunt-2011,roediger-and-karpicke-2006}. The practice sort gives immediate error-category feedback — "you missed the Kelly clamp," "you selected curved instead of straight Mayo" — Hattie \& Timperley found the most effective feedback is task-specific and immediate \cite{hattie-and-timperley-2007}. The whole loop takes about 45 to 60 minutes for a first module.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 19: The Research Question
+% Slide 28: The Research Question
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Research Question}
   \begin{center}
@@ -496,8 +527,9 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \section{What a Future Team Should Do}
 \sectiondivider{What a Future Team Should Do}
 
+% Slide 29: What a Future Team Should Do (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 20: The Study Ladder
+% Slide 30: The Study Ladder
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Study Ladder}
   \centering
@@ -505,13 +537,13 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
   \vspace{0.3cm}
   \begin{block}{}
     \centering
-    Kirkpatrick Level 2 target. Level 3--4 require future validation.
+    Kirkpatrick Level 2 target — Arthur et al.: learning gain is the standard training evaluation target \cite{arthur-et-al-2003}. Level 3--4 require future validation.
   \end{block}
   \note{We designed a five-step study ladder. Each step validates a different piece of the evidence chain, and each step depends on the one before it. Step 1 — marker reliability — makes sure the cards scan correctly so app errors don't look like learner errors. Step 2 — the novice study — tests whether the learning mechanism works at all. Step 3 checks whether gains persist after 7 days — because same-day improvement is not retention. Step 4 brings in an expert to review whether our names, counts, and lookalike pairs make sense. Only after all four should someone invest in Step 5 — an SPD pilot. The current evidence supports starting at Step 1 and 2.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 21: Study 1: Novice Pre/Post Design
+% Slide 31: Study 1: Novice Pre/Post Design
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 1: Novice Pre/Post Design}
   \centering
@@ -538,7 +570,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 22: Study 2: Delayed Retention (The Falsification Criterion)
+% Slide 32: Study 2: Delayed Retention (The Falsification Criterion)
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 2: Delayed Retention (The Falsification Criterion)}
   \centering
@@ -556,11 +588,11 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
   \begin{alertblock}{}
     If these fail, the claim reverts to "immediate learning only."
   \end{alertblock}
-  \note{A same-day post-test can't be called retention. Bell et al. showed medical-knowledge gains can decay measurably within 7 days. So we require a 7-day delayed check with explicit falsification criteria. The retention claim is supported only if three conditions are met: delayed accuracy retains at least half the immediate gain, it stays at least 5 percentage points above baseline, and at least 70\% of participants come back. If these fail, the project claim reverts to "immediate learning only." This is an honest go/no-go — we specify upfront what would falsify our claim.}
+  \note{A same-day post-test can't be called retention. Bell et al. found knowledge decay was detectable within 7 days in a physician online tutorial \cite{bell-et-al-2008}. So we require a 7-day delayed check with explicit falsification criteria. The retention claim is supported only if three conditions are met: delayed accuracy retains at least half the immediate gain, it stays at least 5 percentage points above baseline, and at least 70\% of participants come back. If these fail, the project claim reverts to "immediate learning only." This is an honest go/no-go — we specify upfront what would falsify our claim.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 23: Study 3: Expert Review (Closing the Content Gap)
+% Slide 33: Study 3: Expert Review (Closing the Content Gap)
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 3: Expert Review (Closing the Content Gap)}
   \begin{itemize}
@@ -579,7 +611,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 24: Go/No-Go Decision for Future Team
+% Slide 34: Go/No-Go Decision for Future Team
 % ───────────────────────────────────────────────────────
 \begin{frame}{Go/No-Go Decision for Future Team}
   \centering
@@ -598,8 +630,9 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \section{Conclusion}
 \sectiondivider{Conclusion}
 
+% Slide 35: Conclusion (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 25: What We Know and What We Don't
+% Slide 36: What We Know and What We Don't
 % ───────────────────────────────────────────────────────
 \begin{frame}{What We Know and What We Don't}
   \begin{columns}[T]
@@ -628,7 +661,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 26: The Honest Handoff
+% Slide 37: The Honest Handoff
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Honest Handoff}
   \begin{center}
@@ -648,7 +681,7 @@ Our honest recommendation: take the module schema, the study protocol, and the f
 Thank you. Questions.}
 \end{frame}
 
-% -- References -------------------------------------------------
+% -- Slide 38: References -------------------------------------------------
 \begin{frame}[allowframebreaks]{References}
   \bibliography{trayguard_refs}
 \end{frame}

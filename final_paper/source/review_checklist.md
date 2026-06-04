@@ -1,0 +1,86 @@
+# Review Checklist
+
+- [ ] 1. Executive Summary (Matthew)
+- [x] 2. Introduction And Project Overview (Matthew)
+- [x] 3. Problem Definition And Scope (Matthew, Andy, Qiyu)
+  - [x] 3.1 Precise Problem Statement
+  - [x] 3.2 Practice Context
+  - [x] 3.3 Narrowed Problem
+  - [x] 3.4 Stakeholders And Importance
+  - [x] 3.5 General Interest Beyond One Local Practice
+  - [x] 3.6 Root Cause Analysis
+- [ ] 4. First Attempt: A Computer-Vision Tray Checker (Matthew, Qiyu)
+  - [ ] 4.1 CV Literature Context
+  - [ ] 4.2 Requirements and System Design
+  - [ ] 4.3 CV Experiments and Results
+  - [ ] 4.4 CV Requirements Assessment and Gap Analysis
+  - [ ] 4.5 CV Implementation Summary
+  - [x] 4.6 Limitations of the CV Experiments
+- [x] 5. Limitations of the Computer-Vision Approach (Matthew)
+- [x] 6. Literature And Related Work (Matthew, Andy, Qiyu)
+  - [x] 6.1 The Solution Landscape
+  - [x] 6.2 Why Existing Approaches Cannot Close the Gap
+  - [x] 6.3 Why Training is the Viable Path
+  - [x] 6.4 Remaining Gaps and TrayGuard's Contribution
+- [ ] 7. Final Product Concept And Design Rationale (Matthew, Andy, Qiyu)
+  - [ ] 7.1 Final Product Concept
+  - [ ] 7.2 Alternatives Considered
+  - [ ] 7.3 Selected Candidate and Backup Paths
+  - [ ] 7.4 Rationale for AprilTag Marker Choice
+    - [ ] 7.4.1 Why Physical Markers at All
+    - [ ] 7.4.2 Why AprilTag over QR Codes, ArUco, or Real Instruments
+  - [ ] 7.5 Rationale for Gamified and Simulation-Based Learning Style
+- [ ] 8. Requirements Definition (Matthew, Andy, Jacob)
+  - [ ] 8.1 Element Definition
+  - [ ] 8.2 Objective Tree
+  - [ ] 8.3 Performance Specifications
+  - [ ] 8.4 Quality Function Deployment
+  - [ ] 8.5 Function Analysis -- Transparent Box Model
+  - [ ] 8.6 Morphological Chart
+  - [ ] 8.7 Weighted Objective Method
+  - [ ] 8.8 Requirement Traceability Matrix
+- [ ] 9. System Design (Matthew, Jacob)
+  - [ ] 9.1 System Overview
+  - [ ] 9.2 Subsystem Breakdown
+  - [ ] 9.3 Data Model and Module Contract
+  - [ ] 9.4 Mode Behavior
+  - [ ] 9.5 Learning Loop
+  - [ ] 9.6 Module Scope
+  - [ ] 9.7 FGVC-Derived Module Plausibility
+  - [ ] 9.8 Real Tray List Examples
+- [ ] 10. Analysis (Matthew, Qiyu)
+  - [ ] 10.1 Prototype Capability Demonstration
+  - [ ] 10.2 Marker Reliability Analysis
+  - [ ] 10.3 Unit Test Results
+  - [ ] 10.4 Design Traceability
+- [ ] 11. Evaluation And Validation Plan (Matthew, Jacob)
+  - [ ] 11.1 Evaluation Framework
+  - [ ] 11.2 Current Evidence Available
+  - [ ] 11.3 Formative Novice Study Plan
+  - [ ] 11.4 Study Ladder
+  - [ ] 11.5 Study 0: Marker Reliability
+  - [ ] 11.6 Study 1: Novice Simulated Learning
+  - [ ] 11.7 Study 2: Delayed Retention
+  - [ ] 11.8 Study 3: Expert Review
+  - [ ] 11.9 Analysis and Acceptance Bar
+  - [ ] 11.10 Validity Claims Summary
+  - [ ] 11.11 Future SPD Workplace Pilot
+- [ ] 12. Risk Assessment And Scope Boundaries (Matthew, Jacob)
+  - [ ] 12.1 Formal Risk Register
+  - [ ] 12.2 Unknowns and Concerns
+  - [ ] 12.3 Scope Boundaries
+- [ ] 13. Broader Impacts And Ethics (Matthew, Jacob)
+- [ ] 14. Project Plan And Future Work (Matthew, Jacob)
+  - [ ] 14.1 Completed Work
+  - [ ] 14.2 Project Plan Postmortem
+  - [ ] 14.3 Future Work Roadmap
+  - [ ] 14.4 GitLab Epic / Issue Map
+  - [ ] 14.5 Next Team Priorities
+  - [ ] 14.6 Budget
+- [ ] 15. Discussion And Final Recommendations (Matthew, Jacob)
+- [ ] References
+- [ ] Research Support Audit
+- [ ] Implementation Defaults
+- [ ] Appendix: CV Experiment Methods and Additional Results
+  - [ ] A.1 Brightness Experiment Setup
+  - [ ] A.2 Real-Instrument Experiments
