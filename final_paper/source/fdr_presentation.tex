@@ -38,7 +38,7 @@
 
 \newcommand{\incfig}[2][0.8\textwidth]{%
   \IfFileExists{#2}{%
-    \includegraphics[width=#1]{#2}%
+    \includegraphics[width=#1, height=0.6\textheight, keepaspectratio]{#2}%
   }{%
     \fbox{\makebox[#1][c]{\shortstack{\small FIGURE TBD\\\tiny\detokenize{#2}}}}%
   }%
@@ -159,8 +159,8 @@
 % ───────────────────────────────────────────────────────
 \begin{frame}{Common Surgical Instruments}
   \centering
-  \incfig[0.6\textwidth]{figures/instrument_category.png}\\[2pt]
-  {\tiny Source: ChatGPT 5.5}
+  \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{figures/instrument_category.png}\\[2pt]
+  {\tiny ENT: Hartman Mosquito Forcep on the right of the Mosquito clamp. Source: ChatGPT 5.5}
   \note{This figure shows a taxonomy of common surgical instruments grouped by category: clamps, forceps, scissors, retractors, needle holders, and other specialized instruments. Each category includes multiple sub-types that differ in jaw shape, serration pattern, length, and tip geometry — features that trained SPD technicians must discriminate by sight during tray reconstruction.}
 \end{frame}
 
@@ -169,7 +169,7 @@
 % ───────────────────────────────────────────────────────
 \begin{frame}{Root Cause Analysis}
   \centering
-  \incfig[0.85\textwidth]{figures/fishbone_rca.png}
+  \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{figures/fishbone_rca.png}
   \note{We built a fishbone RCA across six categories. The quick version: the instrument itself is hard to identify because similar models differ only in subtle dimensions and markings wear off. The technician needs knowledge — but certification tests once, not repeatedly, and local names vary by hospital. The process has no double-check built in; you pick and check in one step. The count sheet might be outdated or use names nobody agrees on. The environment — production pressure, interruptions — makes detail work harder. And when an error does happen, the feedback loop to correct it is slow and manual.}
 \end{frame}
 
@@ -206,15 +206,252 @@
 \end{frame}
 
 % ======================================================================
-%  SECTION 3: Why CV Alone Won't Work
+%  SECTION 3: CV Attempt
+% ======================================================================
+\section{CV Attempt}
+\sectiondivider{CV Attempt}
+
+% Slide 12: CV Attempt (section divider)
+% ───────────────────────────────────────────────────────
+% Slide 13: First CV Attempt: One Detector Did Everything
+% ───────────────────────────────────────────────────────
+\begin{frame}{First CV Attempt: One Detector Did Everything}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{1-stage pipeline}
+      \small
+      \begin{enumerate}
+        \item Overhead image of tray
+        \item YOLO detects every fine class directly
+        \item Count detections against the tray list
+        \item Flag missing, wrong, extra, or uncertain items
+      \end{enumerate}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{alertblock}{Why this was brittle}
+      \small
+      \begin{itemize}
+        \item Localization and fine ID were coupled
+        \item Similar tools shared shape and metal texture
+        \item One wrong subtype became a tray error
+        \item Overlay and lighting shifts reduced reliability
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}
+  \vspace{0.35cm}
+  \centering
+  \begin{tikzpicture}[node distance=0.45cm, every node/.style={font=\scriptsize}]
+    \node[draw, rounded corners, minimum width=2.6cm, minimum height=0.75cm] (img) {tray image};
+    \node[draw, rounded corners, right=of img, minimum width=3.0cm, minimum height=0.75cm] (yolo) {YOLO fine-class detector};
+    \node[draw, rounded corners, right=of yolo, minimum width=3.0cm, minimum height=0.75cm] (logic) {tray-status logic};
+    \draw[-{Latex[length=2mm]}] (img) -- (yolo);
+    \draw[-{Latex[length=2mm]}] (yolo) -- (logic);
+  \end{tikzpicture}
+  \note{Our first CV design was a flat one-stage detector. One YOLO model had
+    to localize the instrument and also decide whether it was, for example,
+    straight Mayo scissors or curved Mayo scissors. That was attractive because
+    the pipeline was simple, but it put the hardest fine-grained decision inside
+    the detector itself. When the detector made a subtype mistake, the tray
+    logic immediately turned that into a wrong-instrument error.}
+\end{frame}
+
+
+% ───────────────────────────────────────────────────────
+% Slide 14: The Problem Was Fine-Grained Confusion, Not Just Detection
+% ───────────────────────────────────────────────────────
+\begin{frame}{The Problem Was Fine-Grained Confusion, Not Just Detection}
+  \begin{columns}[T]
+    \column{0.44\textwidth}
+    \begin{block}{Flat fine labels}
+      \small
+      \begin{tabular}{ll}
+        \toprule
+        Fine class & Visual family \\
+        \midrule
+        Scalpel n4 & scalpel \\
+        Straight dissection clamp & clamp \\
+        Straight Mayo scissor & scissors \\
+        Curved Mayo scissor & scissors \\
+        \bottomrule
+      \end{tabular}
+    \end{block}
+    \column{0.52\textwidth}
+    \begin{alertblock}{What the tests showed}
+      \small
+      \begin{itemize}
+        \item Clean matched data: high mAP was achievable
+        \item Layout shift: separated $\rightarrow$ overlay dropped sharply
+        \item Real instruments: per-class AP depended on split
+        \item Lookalikes needed a narrower decision context
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}
+  \vspace{0.25cm}
+  \begin{exampleblock}{}
+    \centering
+    The detector should first answer \textbf{``what family is this?''}\quad
+    The classifier should answer \textbf{``which subtype?''}
+  \end{exampleblock}
+  \note{The one-stage model was not failing because YOLO could not find objects
+    at all. It was failing because the model had to learn small subtype
+    differences while also handling lighting, background, and layout variation.
+    The real-instrument experiments made this clear: the most visually distinct
+    class transferred best, while lookalike classes were unstable. That pushed
+    us toward a coarse-to-fine abstraction.}
+\end{frame}
+
+
+% ───────────────────────────────────────────────────────
+% Slide 15: Second CV Attempt: Coarse-to-Fine 2-Stage Pipeline
+% ───────────────────────────────────────────────────────
+\begin{frame}{Second CV Attempt: Coarse-to-Fine 2-Stage Pipeline}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+    \begin{block}{Stage 1: general detector}
+      \small
+      YOLO predicts broad families only:
+      \begin{itemize}
+        \item \texttt{scalpel}
+        \item \texttt{clamp}
+        \item \texttt{scissors}
+      \end{itemize}
+    \end{block}
+    \column{0.45\textwidth}
+    \begin{block}{Stage 2: specific classifier}
+      \small
+      Only runs when a family has variants:
+      \begin{itemize}
+        \item \texttt{scissors} $\rightarrow$ straight vs curved
+        \item \texttt{scalpel} $\rightarrow$ pass-through
+        \item \texttt{clamp} $\rightarrow$ pass-through
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{0.3cm}
+  \centering
+  \begin{tikzpicture}[node distance=0.35cm, every node/.style={font=\scriptsize}]
+    \node[draw, rounded corners, minimum width=2.0cm, minimum height=0.7cm] (img) {image};
+    \node[draw, rounded corners, right=of img, minimum width=2.4cm, minimum height=0.7cm] (det) {general YOLO};
+    \node[draw, rounded corners, right=of det, minimum width=2.0cm, minimum height=0.7cm] (crop) {crop box};
+    \node[draw, rounded corners, right=of crop, minimum width=2.9cm, minimum height=0.7cm] (clf) {scissors classifier};
+    \node[draw, rounded corners, below=0.45cm of clf, minimum width=2.9cm, minimum height=0.7cm] (pass) {pass-through};
+    \draw[-{Latex[length=2mm]}] (img) -- (det);
+    \draw[-{Latex[length=2mm]}] (det) -- (crop);
+    \draw[-{Latex[length=2mm]}] (crop) -- node[above]{\tiny if scissors} (clf);
+    \draw[-{Latex[length=2mm]}] (crop) |- node[below left]{\tiny if scalpel/clamp} (pass);
+  \end{tikzpicture}
+  \note{The second attempt separates the problem. The general detector only
+    learns broad families. After it finds a scissors box, we crop that region
+    and send it to a scissors-specific classifier. Scalpel and clamp currently
+    have one variant in our dataset, so they do not need a classifier yet; they
+    are pass-through classes. This makes the system modular: future instrument
+    families can get their own specialized classifier when multiple variants
+    are added.}
+\end{frame}
+
+
+% ───────────────────────────────────────────────────────
+% Slide 16: Testing the 2-Stage Demo on Separated Images
+% ───────────────────────────────────────────────────────
+\begin{frame}{Testing the 2-Stage Demo on Separated Images}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Dataset builder}
+      \small
+      \begin{itemize}
+        \item Remap fine labels into general classes
+        \item Reuse ground-truth boxes for YOLO labels
+        \item Crop boxes into ImageFolder classifier data
+        \item Train one selected specific classifier
+      \end{itemize}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{End-of-training}
+      \small
+      \begin{itemize}
+        \item Run on all \texttt{separado*.jpg} images
+        \item Draw general boxes and confidence
+        \item Classify cropped scissors as straight/curved
+        \item Export annotated images, crops, CSV, HTML report
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{0.25cm}
+  \begin{exampleblock}{What the training shows}
+    \centering
+    General detection and fine-grained scissors classification can be tested
+    together while keeping their failure modes separate.
+  \end{exampleblock}
+  \note{The final script creates the two datasets, trains the general YOLO model,
+    trains only the selected specific classifier, and then runs an end-to-end
+    demo on every separated-layout test image. The output is visual: annotated
+    images, cropped detections, a CSV, and an HTML report. This makes the
+    pipeline easy to inspect during the presentation while still preserving the
+    important distinction between stage-one detection errors and stage-two
+    subtype classification errors.}
+\end{frame}
+
+
+% ───────────────────────────────────────────────────────
+% Slide 17: 2-Stage Helped, But Scissor ID Still Failed
+% ───────────────────────────────────────────────────────
+\begin{frame}[t]{2-Stage Helped, But Scissor ID Still Failed}
+  \vspace{-0.15cm}
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.49\textwidth}
+    \begin{block}{Helped}
+      \centering{\small\textit{[figure placeholder]}}
+      \vspace{0.1cm}
+      \scriptsize
+      \begin{itemize}
+        \setlength\itemsep{0cm}
+        \item Broad family detection worked.
+        \item Scissors crops routed to classifier.
+      \end{itemize}
+    \end{block}
+
+    \column{0.49\textwidth}
+    \begin{alertblock}{Still failed}
+      \centering{\small\textit{[figure placeholder]}}
+      \vspace{0.1cm}
+      \scriptsize
+      \begin{itemize}
+        \setlength\itemsep{0cm}
+        \item Both scissors predicted as \texttt{Straight\_Mayo}.
+        \item Fine-grained lookalike ID remained unreliable.
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}
+
+  \vfill
+
+  \begin{exampleblock}{Takeaway}
+    \centering
+    \footnotesize
+    The 2-stage design separated detection from subtype classification, but it
+    was still not reliable enough for deployment.
+  \end{exampleblock}
+
+  \note{This is the honest result of the second CV attempt. The two-stage
+    pipeline helped because the first model no longer had to do everything. It
+    could find scissors as a family and hand the crop to a specialized scissor
+    classifier. But the demo also showed the remaining failure mode: both
+    scissors were still classified as straight Mayo scissors. So the
+    architecture improved the debugging path, but the system still was not
+    reliable enough to claim deployment readiness.}
+\end{frame}
+
+
+% ======================================================================
+%  SECTION 4: Why CV Alone Won't Work
 % ======================================================================
 \section{Why CV Alone Won't Work}
 \sectiondivider{Why CV Alone Won't Work}
 
-% Slide 12: Why CV Alone Won't Work (section divider)
+% Slide 18: Why CV Alone Won't Work (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 13: We Ran 7 Staged Detection Experiments
-% ───────────────────────────────────────────────────────
+% Slide 19: We Ran 7 Staged Detection Experiments
 \begin{frame}{We Ran 7 Staged Detection Experiments}
   \centering
   \small
@@ -237,16 +474,16 @@
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 14: Brightness Degradation
+% Slide 20: Brightness Degradation
 % ───────────────────────────────────────────────────────
 \begin{frame}{Brightness Degradation}
   \centering
-  \includegraphics[width=0.8\textwidth]{figures/brightness_map50_95_panels.png}
+  \includegraphics[width=0.8\textwidth, height=0.6\textheight, keepaspectratio]{figures/brightness_map50_95_panels.png}
   \note{This plot shows what happens as the light gap widens. Left panel: trained on darkest, tested on brighter levels. Right panel: trained on brightest, tested on dimmer. The farther the gap, the worse the accuracy. SPD lighting varies by workstation, time of day, fixture condition. Every variation costs you detection reliability. This is not a solvable problem with more training data alone — you'd need to characterize and cover every lighting condition at every workstation.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 15: Occlusion Is the Dealbreaker (layout comparison)
+% Slide 21: Occlusion Is the Dealbreaker (layout comparison)
 % ───────────────────────────────────────────────────────
 \begin{frame}{Occlusion Is the Dealbreaker}
   \begin{columns}[T]
@@ -263,7 +500,7 @@
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 16: Overlay Degradation
+% Slide 22: Overlay Degradation
 % ───────────────────────────────────────────────────────
 \begin{frame}{Overlay Degradation}
   \centering
@@ -272,7 +509,7 @@
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 17: Real Instruments: The Model Learned Position, Not Shape
+% Slide 23: Real Instruments: The Model Learned Position, Not Shape
 % ───────────────────────────────────────────────────────
 \begin{frame}{Real Instruments: The Model Learned Position, Not Shape}
   \centering
@@ -294,7 +531,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 18: The Cumulative Lesson: CV Validation Burden
+% Slide 24: The Cumulative Lesson: CV Validation Burden
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Cumulative Lesson: CV Validation Burden}
   \begin{block}{\centering What a deployment-grade CV system still needs}
@@ -307,16 +544,11 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
       \item[\textcolor{red}{\ding{55}}] Regulatory / device policy / privacy review 
     \end{itemize}
   \end{block}
-  \vspace{0.3cm}
-  \begin{exampleblock}{}
-    \centering
-    The training path doesn't need any of this for a first study.
-  \end{exampleblock}
   \note{The cumulative evidence is clear: CV detection works in matched, controlled conditions and degrades under every variation that SPD workflows present. A deployment-grade system would need site-specific data for every hospital, cross-manufacturer validation because Kienle showed big drops between brands, open-set rejection for unknown objects, human-in-the-loop for every uncertain case, workflow integration testing, and regulatory review. We cannot responsibly build that in a one-quarter project. The pivot to a training path was driven by this evidence, not by convenience.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 19: We Evaluated Seven Solution Categories
+% Slide 25: We Evaluated Seven Solution Categories
 % ───────────────────────────────────────────────────────
 \begin{frame}{We Evaluated Seven Solution Categories}
   \centering
@@ -338,7 +570,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 20: Why Training, Not Because Training Is a Cure
+% Slide 26: Why Training, Not Because Training Is a Cure
 % ───────────────────────────────────────────────────────
 \begin{frame}{Why Training, Not Because Training Is a Cure}
   \begin{columns}[T]
@@ -368,18 +600,18 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ======================================================================
-%  SECTION 4: Why Training Is the Best Entry Point
+%  SECTION 5: Why Training Is the Best Entry Point
 % ======================================================================
 \section{Why Training Is the Best Entry Point}
 \sectiondivider{Why Training Is the Best Entry Point}
 
-% Slide 21: Why Training Is the Best Entry Point (section divider)
+% Slide 27: Why Training Is the Best Entry Point (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 22: CV and Training Are Complementary
+% Slide 28: CV and Training Are Complementary
 % ───────────────────────────────────────────────────────
 \begin{frame}{CV and Training Are Complementary}
   \centering
-  \incfigw{figures/complementary_placeholder.pdf}
+  \incfigw{figures/complementary.png}
   \vspace{0.3cm}
   \begin{block}{}
     \centering
@@ -389,7 +621,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 23: The Durable Design Artifact: Tray Module Schema
+% Slide 29: The Durable Design Artifact: Tray Module Schema
 % ───────────────────────────────────────────────────────
 \begin{frame}[fragile]{The Durable Design Artifact: Tray Module Schema}
   \begin{columns}[T]
@@ -412,7 +644,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
     \end{lstlisting}
     \column{0.42\textwidth}
     \begin{itemize}
-      \item Mirrors real count-sheet fields
+      \item Mirrors real count-sheet fields \cite{stryker-gamma4-count-sheet-2023}
       \item Adds aliases, lookalikes, prompts
       \item File-backed, versioned
       \item \textbf{Software is throwaway.}
@@ -423,7 +655,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 24: Printed Cards: How It Works Physically
+% Slide 30: Printed Cards: How It Works Physically
 % ───────────────────────────────────────────────────────
 \begin{frame}{Printed Cards: How It Works Physically}
   \begin{columns}[T]
@@ -436,7 +668,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
     \textbf{Back (study)}\\
     \incfig[\textwidth]{figures/card_back_example.png}
   \end{columns}
-  \vspace{0.3cm}
+  \vspace{0.1cm}
   \begin{block}{}
     \centering
     Neutral front prevents answer leakage. Tag ID maps to instrument ID.
@@ -445,7 +677,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 25: The Scoring Architecture: 5 Error Categories
+% Slide 31: The Scoring Architecture: 5 Error Categories
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Scoring Architecture: 5 Error Categories}
   \centering
@@ -471,31 +703,31 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 26: Confidence Capture
+% Slide 32: Confidence Capture
 % ───────────────────────────────────────────────────────
 \begin{frame}{Confidence Capture}
   \centering
-  \incfigw{figures/confidence_mockup_placeholder.pdf}
-  \vspace{0.3cm}
+  \incfigw{figures/confidence_mockup.png}
+  \vspace{0.1cm}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{alertblock}{\centering High-confidence error}
-      Learner was sure but wrong. Targeted feedback needed. — Kruger \& Dunning: "unskilled and unaware of it" \cite{kruger-dunning-1999}
+    \begin{alertblock}{\centering\scriptsize High-confidence error}
+      Learner was sure but wrong. — Kruger \& Dunning \cite{kruger-dunning-1999}
     \end{alertblock}
     \column{0.48\textwidth}
-    \begin{exampleblock}{\centering Low-confidence correct}
-      Learner was unsure but right. Fragile knowledge, needs reinforcement. — Dunlosky et al.: metacognitive calibration predicts retention \cite{dunlosky-et-al-2013}
+    \begin{exampleblock}{\centering\scriptsize Low-confidence correct}
+      Learner was unsure but right. — Dunlosky et al. \cite{dunlosky-et-al-2013}
     \end{exampleblock}
   \end{columns}
   \note{After each tray sort, the learner rates their confidence. This separates two very different failure modes. A high-confidence error means someone is confidently wrong — that's the hardest type to correct because the learner doesn't know they need help. Low-confidence correct means fragile knowledge that might not survive a week without review. Both are visible in the export.}
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 27: The Learning Loop (7 Steps)
+% Slide 33: The Learning Loop (7 Steps)
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Learning Loop (7 Steps)}
   \centering
-  \incfigw{figures/learning_loop_placeholder.pdf}
+  \incfigw{figures/learning_loop.png}
   \vspace{0.3cm}
   \begin{block}{}
     \centering
@@ -505,7 +737,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 28: The Research Question
+% Slide 34: The Research Question
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Research Question}
   \begin{center}
@@ -522,18 +754,18 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ======================================================================
-%  SECTION 5: What a Future Team Should Do
+%  SECTION 6: What a Future Team Should Do
 % ======================================================================
 \section{What a Future Team Should Do}
 \sectiondivider{What a Future Team Should Do}
 
-% Slide 29: What a Future Team Should Do (section divider)
+% Slide 35: What a Future Team Should Do (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 30: The Study Ladder
+% Slide 36: The Study Ladder
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Study Ladder}
   \centering
-  \incfigw{figures/study_ladder_placeholder.pdf}
+  \incfigw{figures/study_ladder.png}
   \vspace{0.3cm}
   \begin{block}{}
     \centering
@@ -543,7 +775,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 31: Study 1: Novice Pre/Post Design
+% Slide 37: Study 1: Novice Pre/Post Design
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 1: Novice Pre/Post Design}
   \centering
@@ -570,12 +802,12 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 32: Study 2: Delayed Retention (The Falsification Criterion)
+% Slide 38: Study 2: Delayed Retention (The Falsification Criterion)
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 2: Delayed Retention (The Falsification Criterion)}
   \centering
-  \incfigw{figures/retention_placeholder.pdf}
-  \vspace{0.3cm}
+  \incfigw{figures/retention.png}
+  \vspace{0.1cm}
   \begin{columns}[T]
     \column{0.32\textwidth}
     \textbf{Criterion 1} — $\ge$ 50\% of gain retained
@@ -584,7 +816,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
     \column{0.32\textwidth}
     \textbf{Criterion 3} — $\ge$ 70\% return rate
   \end{columns}
-  \vspace{0.2cm}
+  \vspace{0.1cm}
   \begin{alertblock}{}
     If these fail, the claim reverts to "immediate learning only."
   \end{alertblock}
@@ -592,7 +824,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 33: Study 3: Expert Review (Closing the Content Gap)
+% Slide 39: Study 3: Expert Review (Closing the Content Gap)
 % ───────────────────────────────────────────────────────
 \begin{frame}{Study 3: Expert Review (Closing the Content Gap)}
   \begin{itemize}
@@ -611,11 +843,11 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 34: Go/No-Go Decision for Future Team
+% Slide 40: Go/No-Go Decision for Future Team
 % ───────────────────────────────────────────────────────
 \begin{frame}{Go/No-Go Decision for Future Team}
   \centering
-  \incfigw{figures/gonogo_placeholder.pdf}
+  \incfigw{figures/gonogo.png}
   \vspace{0.3cm}
   \begin{block}{}
     \centering
@@ -625,14 +857,14 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ======================================================================
-%  SECTION 6: Conclusion
+%  SECTION 7: Conclusion
 % ======================================================================
 \section{Conclusion}
 \sectiondivider{Conclusion}
 
-% Slide 35: Conclusion (section divider)
+% Slide 41: Conclusion (section divider)
 % ───────────────────────────────────────────────────────
-% Slide 36: What We Know and What We Don't
+% Slide 42: What We Know and What We Don't
 % ───────────────────────────────────────────────────────
 \begin{frame}{What We Know and What We Don't}
   \begin{columns}[T]
@@ -661,7 +893,7 @@ The pattern is caused by position-cue confounding. Each image has exactly one of
 \end{frame}
 
 % ───────────────────────────────────────────────────────
-% Slide 37: The Honest Handoff
+% Slide 43: The Honest Handoff
 % ───────────────────────────────────────────────────────
 \begin{frame}{The Honest Handoff}
   \begin{center}
@@ -681,7 +913,7 @@ Our honest recommendation: take the module schema, the study protocol, and the f
 Thank you. Questions.}
 \end{frame}
 
-% -- Slide 38: References -------------------------------------------------
+% -- Slide 44: References -------------------------------------------------
 \begin{frame}[allowframebreaks]{References}
   \bibliography{trayguard_refs}
 \end{frame}

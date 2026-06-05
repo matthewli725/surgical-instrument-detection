@@ -77,11 +77,35 @@
 
 ---
 
-### Slide 12 — Why CV Alone Won't Work - Andy
+### Slide 12 — CV Attempt - Andy
 
 ---
 
-### Slide 13 — We Ran 7 Staged Detection Experiments - Andy
+### Slide 13 — First CV Attempt: One Detector Did Everything - Andy
+
+---
+
+### Slide 14 — The Problem Was Fine-Grained Confusion, Not Just Detection - Andy
+
+---
+
+### Slide 15 — Second CV Attempt: Coarse-to-Fine 2-Stage Pipeline - Andy
+
+---
+
+### Slide 16 — Testing the 2-Stage Demo on Separated Images - Andy
+
+---
+
+### Slide 17 — 2-Stage Helped, But Scissor ID Still Failed - Andy
+
+---
+
+### Slide 18 — Why CV Alone Won't Work - Andy
+
+---
+
+### Slide 19 — We Ran 7 Staged Detection Experiments - Andy
 
 **Script** _(40 sec)_:
 
@@ -89,7 +113,7 @@
 
 ---
 
-### Slide 14 — Brightness Degradation - Andy
+### Slide 20 — Brightness Degradation - Andy
 
 **Script** _(40 sec)_:
 
@@ -97,7 +121,7 @@
 
 ---
 
-### Slide 15 — Occlusion Is the Dealbreaker (layout comparison) - Andy
+### Slide 21 — Occlusion Is the Dealbreaker (layout comparison) - Andy
 
 **Script** _(20 sec)_:
 
@@ -105,7 +129,7 @@
 
 ---
 
-### Slide 16 — Overlay Degradation - Andy
+### Slide 22 — Overlay Degradation - Andy
 
 **Script** _(20 sec)_:
 
@@ -113,7 +137,7 @@
 
 ---
 
-### Slide 17 — Real Instruments: The Model Learned Position, Not Shape - Andy
+### Slide 23 — Real Instruments: The Model Learned Position, Not Shape - Andy
 
 **Script** _(60 sec)_:
 
@@ -121,7 +145,7 @@
 
 ---
 
-### Slide 18 — The Cumulative Lesson: CV Validation Burden - Andy
+### Slide 24 — The Cumulative Lesson: CV Validation Burden - Andy
 
 **Script** _(40 sec)_:
 
@@ -129,7 +153,7 @@
 
 ---
 
-### Slide 19 — We Evaluated Seven Solution Categories - Jacob
+### Slide 25 — We Evaluated Seven Solution Categories - Jacob
 
 **Script** _(60 sec)_:
 
@@ -137,7 +161,7 @@
 
 ---
 
-### Slide 20 — Why Training, Not Because Training Is a Cure - Jacob
+### Slide 26 — Why Training, Not Because Training Is a Cure - Jacob
 
 **Script** _(45 sec)_:
 
@@ -145,11 +169,11 @@
 
 ---
 
-### Slide 21 — Why Training Is the Best Entry Point - Matthew
+### Slide 27 — Why Training Is the Best Entry Point - Matthew
 
 ---
 
-### Slide 22 — CV and Training Are Complementary - Matthew
+### Slide 28 — CV and Training Are Complementary - Matthew
 
 **Script** _(45 sec)_:
 
@@ -157,7 +181,7 @@
 
 ---
 
-### Slide 23 — The Durable Design Artifact: Tray Module Schema - Matthew
+### Slide 29 — The Durable Design Artifact: Tray Module Schema - Matthew
 
 **Script** _(45 sec)_:
 
@@ -165,7 +189,7 @@
 
 ---
 
-### Slide 24 — Printed Cards: How It Works Physically - Matthew
+### Slide 30 — Printed Cards: How It Works Physically - Matthew
 
 **Script** _(30 sec)_:
 
@@ -173,7 +197,7 @@
 
 ---
 
-### Slide 25 — The Scoring Architecture: 5 Error Categories - Matthew
+### Slide 31 — The Scoring Architecture: 5 Error Categories - Matthew
 
 **Script** _(50 sec)_:
 
@@ -181,7 +205,7 @@
 
 ---
 
-### Slide 26 — Confidence Capture - Matthew
+### Slide 32 — Confidence Capture - Matthew
 
 **Script** _(30 sec)_:
 
@@ -189,7 +213,7 @@
 
 ---
 
-### Slide 27 — The Learning Loop (7 Steps) - Matthew
+### Slide 33 — The Learning Loop (7 Steps) - Matthew
 
 **Script** _(45 sec)_:
 
@@ -197,7 +221,7 @@
 
 ---
 
-### Slide 28 — The Research Question - Matthew
+### Slide 34 — The Research Question - Matthew
 
 **Script** _(15 sec)_:
 
@@ -205,11 +229,11 @@
 
 ---
 
-### Slide 29 — What a Future Team Should Do - Matthew
+### Slide 35 — What a Future Team Should Do - Matthew
 
 ---
 
-### Slide 30 — The Study Ladder - Matthew
+### Slide 36 — The Study Ladder - Matthew
 
 **Script** _(50 sec)_:
 
@@ -217,7 +241,7 @@
 
 ---
 
-### Slide 31 — Study 1: Novice Pre/Post Design - Matthew
+### Slide 37 — Study 1: Novice Pre/Post Design - Matthew
 
 **Script** _(40 sec)_:
 
@@ -225,7 +249,7 @@
 
 ---
 
-### Slide 32 — Study 2: Delayed Retention (The Falsification Criterion) - Matthew
+### Slide 38 — Study 2: Delayed Retention (The Falsification Criterion) - Matthew
 
 **Script** _(45 sec)_:
 
@@ -233,7 +257,7 @@
 
 ---
 
-### Slide 33 — Study 3: Expert Review (Closing the Content Gap) - Matthew
+### Slide 39 — Study 3: Expert Review (Closing the Content Gap) - Matthew
 
 **Script** _(30 sec)_:
 
@@ -241,7 +265,7 @@
 
 ---
 
-### Slide 34 — Go/No-Go Decision for Future Team - Matthew
+### Slide 40 — Go/No-Go Decision for Future Team - Matthew
 
 **Script** _(30 sec)_:
 
@@ -253,11 +277,11 @@
 
 ---
 
-### Slide 35 — Conclusion - Matthew
+### Slide 41 — Conclusion - Matthew
 
 ---
 
-### Slide 36 — What We Know and What We Don't - Matthew
+### Slide 42 — What We Know and What We Don't - Matthew
 
 **Script** _(40 sec)_:
 
@@ -265,7 +289,7 @@
 
 ---
 
-### Slide 37 — The Honest Handoff - Matthew
+### Slide 43 — The Honest Handoff - Matthew
 
 **Script** _(45 sec)_:
 
@@ -277,17 +301,17 @@
 
 ---
 
-### Slide 38 — References
+### Slide 44 — References
 
 **Script** _(30 sec)_:
 
 > References cited in this presentation, with slide numbers:
-> - Alfred et al. (2021) — Sl. 25
-> - Arthur et al. (2003) — Sl. 27
-> - Bell et al. (2008) — Sl. 32
-> - Hattie & Timperley (2007) — Sl. 27
-> - Karpicke & Blunt (2011) — Sl. 27
-> - Kienle et al. (2025) — Sl. 19
-> - Nichol et al. (2024) — Sl. 4, 25
-> - Roediger & Karpicke (2006) — Sl. 27
-> - Zhu et al. (2019) — Sl. 4, 6, 25
+> - Alfred et al. (2021) — Sl. 31
+> - Arthur et al. (2003) — Sl. 33
+> - Bell et al. (2008) — Sl. 38
+> - Hattie & Timperley (2007) — Sl. 33
+> - Karpicke & Blunt (2011) — Sl. 33
+> - Kienle et al. (2025) — Sl. 25
+> - Nichol et al. (2024) — Sl. 4, 31
+> - Roediger & Karpicke (2006) — Sl. 33
+> - Zhu et al. (2019) — Sl. 4, 6, 31

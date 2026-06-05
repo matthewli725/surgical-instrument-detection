@@ -208,34 +208,38 @@ def feedback_loop() -> Diagram:
 
 # ── Diagram 3: CV + training complementary (Slide 13) ──────────────────
 def complementary() -> Diagram:
-    d = Diagram("CV and Training Complementary", w=700, h=350)
+    d = Diagram("CV and Training Complementary", w=700, h=300)
 
-    # Center: module
-    module = d.vertex(280, 120, 140, 60, "Local Tray\nModule", ORANGE + "fontStyle=1;")
-
-    # Left path: training
-    train_boxes = ["Pre-test", "Study cards", "Quiz", "Practice sort", "Post-test", "Export"]
-    train_ids = []
-    lx = 20
-    for b in train_boxes:
-        train_ids.append(d.vertex(lx, 40, 90, 36, b, BLUE, fontSize="10"))
-        lx += 100
-
-    # Right path: future CV
-    cv_ids = []
-    cv_items = ["Needs same data", "Names, aliases,", "lookalike pairs,", "counts, variants..."]
-    cy = 202
-    cv_ids.append(d.vertex(470, cy, 120, 40, cv_items[0], GREEN, fontSize="10"))
-    cv_ids.append(d.vertex(470, cy+46, 120, 36, cv_items[1]+"\n"+cv_items[2]+"\n"+cv_items[3], GREEN, fontSize="9"))
-
-    # Curved arrows from module to left and right
-    a1 = d.arrow(module, train_ids[0], entryX="1", entryY="0.5")
-    a2 = d.arrow(module, cv_ids[0], entryX="0", entryY="0.5")
-
-    # Label above
-    d.label(200, 5, 300, 25,
+    # Title
+    d.label(100, 2, 500, 20,
             "The module is the durable artifact. Training proves it. CV consumes it.",
-            "text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;")
+            "text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;")
+
+    # Training row (6 boxes, compact, centered)
+    train_labels = ["Pre-test", "Study cards", "Quiz", "Practice sort", "Post-test", "Export"]
+    # 78w x 28h, gaps=5, step=83, center ~350
+    xs = [104, 187, 270, 353, 436, 519]
+    train_ids = []
+    for i, x_l in enumerate(xs):
+        tid = d.vertex(x_l, 25, 78, 28, train_labels[i], BLUE, fontSize="9")
+        train_ids.append(tid)
+        if i > 0:
+            d.arrow(train_ids[i - 1], train_ids[i])
+
+    # Module (centered below training row)
+    module = d.vertex(270, 105, 160, 44, "Local Tray\nModule", ORANGE + "fontStyle=1;")
+
+    # Arrow: module UP → Quiz (center box, index 2)
+    d.arrow(module, train_ids[2], style="", exitX="0.5", exitY="0", entryX="0.5", entryY="1")
+
+    # CV boxes (centered below module)
+    cv1 = d.vertex(275, 195, 150, 36, "Needs same data", GREEN, fontSize="10")
+    cv2 = d.vertex(275, 236, 150, 42,
+                   "Names, aliases,\nlookalike pairs,\ncounts, variants...",
+                   GREEN, fontSize="9")
+
+    # Arrow: module DOWN → CV
+    d.arrow(module, cv1, style="", exitX="0.5", exitY="1", entryX="0.5", entryY="0")
 
     return d
 
