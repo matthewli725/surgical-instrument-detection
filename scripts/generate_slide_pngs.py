@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-PDF_DIR = Path("final_paper/source")
+PDF_DIR = Path("fdr/source")
 OUT_DIR = Path("outputs/slides")
 PDF = PDF_DIR / "fdr_presentation.pdf"
 

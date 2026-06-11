@@ -6,7 +6,7 @@ through retrieval-first study, quiz prompts, simulated tray sorting, immediate
 feedback, confidence capture, and pre/post error analysis.
 
 The consolidated final report is at
-[final_paper/trayguard_paper.pdf](final_paper/trayguard_paper.pdf).
+[fdr/trayguard_paper.pdf](fdr/trayguard_paper.pdf).
 
 ## 1. Install
 
@@ -36,7 +36,7 @@ uv sync
 ## 2. Active Evaluation Path
 
 The active project work is consolidated in the
-[final\_paper/](final_paper/). Use the FDR PDF to defend the
+[final\_paper/](fdr/). Use the FDR PDF to defend the
 current claim: TrayGuard tests whether a local training module improves novice
 simulated tray familiarity. Camera and YOLO utilities support future authoring
 or visual-review extensions; the active
@@ -192,5 +192,5 @@ config/                         training config
 data/                           local datasets, ignored by git
 runs/                           training outputs, ignored by git
 weights/                        local model weights
-final_paper/                    FDR paper and bibliography
+fdr/                    FDR paper and bibliography
 ```

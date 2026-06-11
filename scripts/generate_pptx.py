@@ -8,7 +8,7 @@ from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 
-PDF_DIR = Path("final_paper")
+PDF_DIR = Path("fdr")
 SRC_DIR = PDF_DIR / "source"
 SLIDE_DIR = Path("outputs/slides")
 OUT = PDF_DIR / "output" / "fdr_presentation.pptx"

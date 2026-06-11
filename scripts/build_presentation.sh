@@ -6,8 +6,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
-SRC_DIR="$REPO_DIR/final_paper/source"
-OUT_DIR="$REPO_DIR/final_paper/output"
+SRC_DIR="$REPO_DIR/fdr/source"
+OUT_DIR="$REPO_DIR/fdr/output"
 
 echo "=== Step 1: .tex → .pdf ==="
 cd "$SRC_DIR"
@@ -42,4 +42,4 @@ uv run python "$SCRIPT_DIR/generate_pptx.py"
 echo ""
 echo "=== Done ==="
 echo "  PDF:  $OUT_DIR/fdr_presentation.pdf"
-echo "  PPTX: final_paper/output/fdr_presentation.pptx"
+echo "  PPTX: fdr/output/fdr_presentation.pptx"

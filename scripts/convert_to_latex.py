@@ -463,7 +463,7 @@ def _make_bib_entry(key, short_title, cite_text):
 # ── Main ────────────────────────────────────────────────────────────────
 
 def main():
-    md_path = os.path.join(DOCS_DIR, 'final_paper_fdr.md')
+    md_path = os.path.join(DOCS_DIR, 'fdr_fdr.md')
     with open(md_path, 'r', encoding='utf-8') as f:
         md_text = f.read()
 

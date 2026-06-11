@@ -363,7 +363,7 @@ def gonogo() -> Diagram:
 
 
 # ── Generate all ────────────────────────────────────────────────────────
-OUT = "/Users/matthewli/Projects/trayguard/final_paper/figures"
+OUT = "/Users/matthewli/Projects/trayguard/fdr/figures"
 FUNCS = [
     ("fishbone_placeholder.drawio", fishbone),
     ("feedback_loop_placeholder.drawio", feedback_loop),

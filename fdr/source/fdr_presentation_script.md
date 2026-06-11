@@ -165,7 +165,7 @@
 
 **Script** _(45 sec)_:
 
-> We need to be clear about what training does and doesn't do. A training tool can help a novice practice instrument names, lookalike distinctions, and count-sheet rules. It can produce pre/post evidence of improvement. That's real and measurable. But it won't fix an outdated count sheet. It won't solve staffing shortages, raise wages, or close the feedback loop from the OR. These are structural problems that require organizational and policy change. Training is not a substitute for those. It's the one piece we can build and validate without a hospital partnership. If it works, it gives the next team a reason to tackle the harder pieces. If it doesn't, that's useful evidence too.
+> We need to be clear about what training does and doesn't do. A training tool can help a technician — even one who passed certification — practice the local instrument names, lookalike distinctions, and count-sheet rules that no exam covers. It can produce pre/post evidence of improvement. That's real and measurable. But it won't fix an outdated count sheet. It won't solve staffing shortages, raise wages, or close the feedback loop from the OR. These are structural problems that require organizational and policy change. Training is not a substitute for those. It's the one piece we can build and validate without a hospital partnership. If it works, it gives the next team a reason to tackle the harder pieces. If it doesn't, that's useful evidence too.
 
 ---
 
@@ -225,7 +225,7 @@
 
 **Script** _(15 sec)_:
 
-> That's the research question this design answers. It's not "does TrayGuard reduce OR delays." It's not "does TrayGuard certify competence." It's: can a novice improve on a simulated local tray task after retrieval-centered practice? That's a question we can answer.
+> That's the research question this design answers. It's not "does TrayGuard reduce OR delays." It's not "does TrayGuard certify competence." It's: can a technician who holds certification — but has never seen this hospital's specific trays — improve on a simulated local tray task after retrieval-centered practice? That's a question we can answer.
 
 ---
 
@@ -237,7 +237,7 @@
 
 **Script** _(50 sec)_:
 
-> We designed a five-step study ladder. Each step validates a different piece of the evidence chain, and each step depends on the one before it. Step 1 — marker reliability — makes sure the cards scan correctly so app errors don't look like learner errors. Step 2 — the novice study — tests whether the learning mechanism works at all. Step 3 checks whether gains persist after 7 days — because same-day improvement is not retention. Step 4 brings in an expert to review whether our names, counts, and lookalike pairs make sense. Only after all four should someone invest in Step 5 — an SPD pilot. The current evidence supports starting at Step 1 and 2.
+> We designed a five-step study ladder. Each step validates a different piece of the evidence chain, and each step depends on the one before it. Step 1 — marker reliability — makes sure the cards scan correctly so app errors don't look like learner errors. Step 2 — the baseline study — validates the measurement instrument before we invest in a technician pilot. Step 3 checks whether gains persist after 7 days — because same-day improvement is not retention. Step 4 brings in an expert to review whether our names, counts, and lookalike pairs make sense. Only after all four should someone invest in Step 5 — an SPD pilot. The current evidence supports starting at Step 1 and 2.
 
 ---
 
@@ -245,7 +245,7 @@
 
 **Script** _(40 sec)_:
 
-> The novice study uses a within-subject pre/post design, 8--12 participants with no SPD experience. One 60-minute session per person. Primary measures are pre/post accuracy, error-category counts, duration, and confidence calibration. We also include a convergent photo-ID test — learners identify instruments from photos without the tray context. If tray-sort accuracy correlates with photo-ID accuracy at r $\ge$ 0.50, we have evidence that the tray scores reflect instrument knowledge, not task-specific familiarity.
+> The baseline study uses a within-subject pre/post design with 8--12 participants as a conservative proxy. One 60-minute session per person. Primary measures are pre/post accuracy, error-category counts, duration, and confidence calibration. We also include a convergent photo-ID test — learners identify instruments from photos without the tray context. If tray-sort accuracy correlates with photo-ID accuracy at r $\ge$ 0.50, we have evidence that the tray scores reflect instrument knowledge, not task-specific familiarity.
 
 ---
 
@@ -269,7 +269,7 @@
 
 **Script** _(30 sec)_:
 
-> This is the decision framework we leave the next team. If the novice study shows learning and the 7-day check shows retention, and an expert confirms the content is plausible, then investing in an SPD pilot is justified. If the novice study fails — if the measurement tool doesn't work, or novices don't improve — then the problem may be harder than training alone can solve, and that's a useful finding too.
+> This is the decision framework we leave the next team. If the baseline study validates the measurement instrument and the 7-day check shows retention, and an expert confirms the content is plausible, then investing in an SPD technician pilot is justified. If the baseline study fails — if the measurement tool doesn't work, or participants don't improve — then the problem may be harder than training alone can solve, and that's a useful finding too.
 
 ---
 
@@ -295,7 +295,7 @@
 
 > We started this project thinking we'd build a camera that catches tray errors. We ended up understanding that tray errors are a system problem — rooted in how the SPD workforce is structured, funded, and connected to the OR. A camera can't fix a broken feedback loop. Training alone can't fix wage stagnation or staffing shortages. But a training loop can create the local content infrastructure that every future solution needs, and it can produce the first piece of measurable evidence.
 >
-> Our honest recommendation: take the module schema, the study protocol, and the falsification criteria we designed. Run the novice study. If it works, the SPD pilot is the next question. If it doesn't, the problem is even harder than we thought — and that's useful to know too.
+> Our honest recommendation: take the module schema, the study protocol, and the falsification criteria we designed. Run the baseline study. If it validates the instrument, the SPD technician pilot is the next question. If it doesn't, the problem is even harder than we thought — and that's useful to know too.
 >
 > Thank you. Questions.
 

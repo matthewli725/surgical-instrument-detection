@@ -1661,6 +1661,39 @@ Object & Required Fields & Why It Matters \\
 \hline
 \end{tabularx}
 \end{table}
+This format follows the same trajectory as annotation standards in computer
+vision. The Pascal VOC dataset was introduced in 2005 by a university research
+group as a standardized benchmark for object detection
+\cite{everingham-et-al-2010-voc}. It defined a common annotation
+format --- bounding boxes, class labels, train/val/test splits --- that allowed
+researchers to compare methods on a shared task. That format was not an official
+standard; it gained acceptance because the annotation schema mapped cleanly to
+the detection problem, the evaluation protocol was consistent, and the tooling
+(evaluation scripts, visualization code) made it usable across research groups.
+COCO followed the same model in 2014, extending the format to segmentation,
+captioning, and keypoint detection with a richer annotation structure and a
+public evaluation server \cite{lin-et-al-2014-coco}. Both
+formats succeeded because they captured correct domain semantics, enforced
+structural constraints, and came with tools that validated and consumed the
+format --- not because a standards body approved them.
+
+The tray module schema follows the same pattern. Required-item references are
+validated against instrument definitions. Lookalike pairs must resolve to valid
+instrument IDs. Assessment variants must reference existing items, and the
+scoring engine enforces these constraints at load time. The schema maps real
+count-sheet fields (reference number, description, location, quantity) while
+adding learning-specific fields for aliases, lookalike pairs, and confidence
+capture. The specific instrument data remains provisional --- every instrument
+carries \texttt{local\_verification\_status: "pending\_review"} --- but the
+format itself is a well-specified hypothesis about how to represent local tray
+knowledge. Expert review (Study~3 in
+Section~\ref{sec:evaluation-and-validation-plan}) tests that hypothesis, the
+same way VOC and COCO validation studies tested whether their annotation schemes
+captured the task correctly. If Study~3 identifies structural gaps --- missing
+fields, incorrect relationships, wrong constraints --- the schema is revised.
+That is how formats gain credibility: through iterative validation against the
+domain, not through the creator's institutional credentials.
+
 The first implementation can store these objects in JSON files and export CSV
 for analysis. The important constraint is schema stability: pre-test, post-test,
 and delayed retention must produce comparable rows.

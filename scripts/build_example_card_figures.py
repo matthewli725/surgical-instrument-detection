@@ -6,8 +6,8 @@ Usage:
 Reads:  config/tray_modules/fgvc12_combined_tray_v1.json
         outputs/cards/fgvc12_combined_tray_v1/markers/aruco_053_fgvc12_major_clamp_kelly_8in_fgvc12.png
         data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_8in_view_a.jpg
-Writes: final_paper/source/figures/card_front_example.png
-        final_paper/source/figures/card_back_example.png
+Writes: fdr/source/figures/card_front_example.png
+        fdr/source/figures/card_back_example.png
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ PHOTO_PATH = (
     / "fgvc12_major_tray_v1"
     / "fgvc12_major_clamp_kelly_8in_view_a.jpg"
 )
-OUT_DIR = REPO_ROOT / "final_paper" / "source" / "figures"
+OUT_DIR = REPO_ROOT / "fdr" / "source" / "figures"
 FRONT_OUT = OUT_DIR / "card_front_example.png"
 BACK_OUT = OUT_DIR / "card_back_example.png"
 
