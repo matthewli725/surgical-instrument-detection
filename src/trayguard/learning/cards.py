@@ -125,52 +125,6 @@ def _features(instrument: Instrument) -> str:
     return "".join(f"<li>{html.escape(feature)}</li>" for feature in instrument.distinguishing_features)
 
 
-def _flashcard_html(
-    instruments: dict[str, Instrument],
-    marker_cards: list[MarkerCard],
-    output_dir: Path,
-) -> str:
-    cards: list[str] = []
-    marker_ids = _marker_by_instrument(marker_cards)
-    for instrument in instruments.values():
-        marker_id = marker_ids.get(instrument.id)
-        marker_src = ""
-        marker_path = None
-        if marker_id is not None:
-            marker_dir = output_dir / "markers"
-            marker_dir.mkdir(parents=True, exist_ok=True)
-            marker_path = marker_dir / f"aruco_{marker_id:03d}_{instrument.id}_flashcard.png"
-            generate_marker_png(marker_id, marker_path)
-            marker_src = f"markers/{marker_path.name}"
-        image_src, attribution = _copy_flashcard_image(instrument, output_dir, marker_path)
-        image_html = (
-            f"<img src='{html.escape(image_src)}' alt='{html.escape(instrument.display_name)}'>"
-            if image_src
-            else "<div class='image-placeholder'>Image pending</div>"
-        )
-        marker_html = (
-            f"<img class='marker-small' src='{html.escape(marker_src)}' alt='ArUco marker {marker_id}'>"
-            if marker_src and not image_src
-            else ""
-        )
-        cards.append(
-            "<section class='flashcard'>"
-            "<div class='front'>"
-            f"{image_html}"
-            f"{marker_html}"
-            "</div>"
-            "<div class='back'>"
-            f"<h2>{html.escape(instrument.display_name)}</h2>"
-            f"<p><strong>Family:</strong> {html.escape(instrument.family)}</p>"
-            f"<p><strong>Aliases:</strong> {html.escape(', '.join(instrument.aliases) or '-')}</p>"
-            f"<ul>{_features(instrument)}</ul>"
-            f"<p class='source'><strong>Image/license:</strong> {html.escape(attribution or 'Pending source')}</p>"
-            "</div>"
-            "</section>"
-        )
-    return "\n".join(cards)
-
-
 def _write_flashcard_deck(
     title: str,
     instruments: dict[str, Instrument],
@@ -178,26 +132,83 @@ def _write_flashcard_deck(
     output_dir: Path,
 ) -> Path:
     flashcard_path = output_dir / "flashcards.html"
+
+    marker_ids = _marker_by_instrument(marker_cards)
+    instrument_list = list(instruments.values())
+
+    image_cache: dict[str, tuple[str, str]] = {}
+    for instrument in instrument_list:
+        marker_id = marker_ids.get(instrument.id)
+        marker_path = None
+        if marker_id is not None:
+            marker_dir = output_dir / "markers"
+            marker_dir.mkdir(parents=True, exist_ok=True)
+            marker_path = marker_dir / f"aruco_{marker_id:03d}_{instrument.id}_flashcard.png"
+            generate_marker_png(marker_id, marker_path)
+        image_src, attribution = _copy_flashcard_image(instrument, output_dir, marker_path)
+        image_cache[instrument.id] = (image_src, attribution)
+
+    pages: list[str] = []
+
+    for i in range(0, len(instrument_list), 4):
+        chunk = instrument_list[i:i+4]
+        while len(chunk) < 4:
+            chunk.append(None)
+
+        image_cells: list[str] = []
+        text_cells: list[str] = []
+
+        for instrument in chunk:
+            if instrument is None:
+                image_cells.append("<div class='empty'></div>")
+                text_cells.append("<div class='empty'></div>")
+                continue
+
+            image_src, attribution = image_cache[instrument.id]
+
+            if image_src:
+                image_cells.append(
+                    f"<img src='{html.escape(image_src)}' alt='{html.escape(instrument.display_name)}'>"
+                )
+            else:
+                image_cells.append("<div class='placeholder'>Image pending</div>")
+
+            text_cells.append(
+                "<div class='text-card'>"
+                f"<h2>{html.escape(instrument.display_name)}</h2>"
+                f"<p><strong>Family:</strong> {html.escape(instrument.family)}</p>"
+                f"<p><strong>Aliases:</strong> {html.escape(', '.join(instrument.aliases) or '-')}</p>"
+                f"<ul>{_features(instrument)}</ul>"
+                f"<p class='source'><strong>Image:</strong> {html.escape(attribution or 'Pending source')}</p>"
+                "</div>"
+            )
+
+        pages.append("<div class='page'><div class='image-grid'>" + "".join(image_cells) + "</div></div>")
+        pages.append("<div class='page'><div class='text-grid'>" + "".join(text_cells) + "</div></div>")
+
     flashcard_path.write_text(
         "\n".join(
             [
                 "<!doctype html>",
                 "<html><head><meta charset='utf-8'><title>TrayGuard Flashcards</title>",
                 "<style>",
-                "body{font-family:Arial,sans-serif;margin:24px;color:#111}",
-                ".deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}",
-                ".flashcard{border:1px solid #222;display:grid;grid-template-columns:1fr 1fr;min-height:390px;break-inside:avoid}",
-                ".front,.back{padding:10px}.front{border-right:1px solid #ddd;display:flex;align-items:stretch}",
-                ".front img{width:100%;height:100%;min-height:360px;object-fit:contain;background:#f7f7f7}",
-                ".marker-small{height:108px;justify-self:end;background:#fff}",
-                ".image-placeholder{height:360px;width:100%;display:flex;align-items:center;justify-content:center;background:#f7f7f7;color:#555;border:1px dashed #999}",
-                "h1{margin:0 0 16px}h2{font-size:17px;margin:0 0 8px}p{font-size:12px;margin:5px 0}li{font-size:12px;margin:3px 0}.source{font-size:9px;color:#555}",
-                "@media print{body{margin:10mm}.deck{gap:10px}.flashcard{page-break-inside:avoid}}",
-                "</style></head><body>",
-                f"<h1>{html.escape(title)} Flashcards</h1>",
-                "<div class='deck'>",
-                _flashcard_html(instruments, marker_cards, output_dir),
-                "</div></body></html>",
+                "@page{margin:0}",
+                "body{margin:0;font-family:Arial,sans-serif;color:#111}",
+                ".page{page-break-after:always}",
+                ".image-grid,.text-grid{display:grid;grid-template-columns:50% 50%;grid-template-rows:50% 50%;width:100vw;height:100vh}",
+                ".image-grid>*,.text-grid>*{outline:0.5px dashed #ccc;box-sizing:border-box}",
+                ".image-grid>.empty,.text-grid>.empty{outline:none}",
+                ".image-grid img{width:100%;height:100%;object-fit:contain;background:#f7f7f7}",
+                ".text-card{padding:16px;box-sizing:border-box;overflow:hidden}",
+                ".text-card h2{font-size:17px;margin:0 0 8px}",
+                ".text-card p{font-size:12px;margin:5px 0}",
+                ".text-card li{font-size:12px;margin:3px 0}",
+                ".placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f7f7f7;color:#555}",
+                ".source{font-size:9px;color:#555}",
+                "</style>",
+                "</head><body>",
+                *pages,
+                "</body></html>",
             ]
         ),
         encoding="utf-8",

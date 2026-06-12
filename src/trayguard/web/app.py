@@ -16,7 +16,7 @@ from trayguard.learning.scoring import score_tray
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_MODULE = PROJECT_ROOT / "config" / "tray_modules" / "basic_general_tray_v1.json"
+DEFAULT_MODULE = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
 DEFAULT_RUNS_DIR = PROJECT_ROOT / "data" / "cv" / "training_runs"
 STATIC_DIR = Path(__file__).with_name("static")
 

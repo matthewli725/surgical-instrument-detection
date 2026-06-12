@@ -9,9 +9,9 @@ from trayguard.learning.catalog import load_instrument_catalog
 from trayguard.learning.module import load_tray_module
 
 
-DEFAULT_MODULE = Path("config/tray_modules/basic_general_tray_v1.json")
+DEFAULT_MODULE = Path("config/tray_modules/fgvc12_major_focused_v1.json")
 DEFAULT_CATALOG = Path("config/instrument_catalogs/hospitools_dslr_v1.json")
-DEFAULT_OUTPUT_DIR = Path("outputs/cards/basic_general_tray_v1")
+DEFAULT_OUTPUT_DIR = Path("outputs/cards/fgvc12_major_focused_v1")
 DEFAULT_CATALOG_OUTPUT_DIR = Path("outputs/cards/hospitools_dslr_v1")
 
 

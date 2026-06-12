@@ -42,7 +42,27 @@ simulated tray familiarity. Camera and YOLO utilities support future authoring
 or visual-review extensions; the active
 evidence path is the pre/post training workflow.
 
-## 3. Legacy/Future CV Utilities
+## 3. Training Module
+
+Generate printable ArUco marker cards for a tray module:
+
+```bash
+uv run trayguard print-cards
+```
+
+Launch the training web app (FastAPI + camera-enabled UI):
+
+```bash
+uv run trayguard train-app
+```
+
+Open the app at `http://127.0.0.1:8000`.
+
+The learner loop: pre-test → study cards → quiz → practice sort → post-test → summary.
+Use the camera to detect printed ArUco cards, or the manual fallback controls.
+Results export to `data/cv/training_runs/` by default.
+
+## 4. Legacy/Future CV Utilities
 
 The commands below support camera capture, annotation, model demos, and future
 visual-support work. The active experiment plan is the training workflow in
@@ -96,11 +116,13 @@ Data collection rules:
 Collected data is saved here:
 
 ```text
-data/cv/collected/classes.txt
-data/cv/collected/sessions/<session_id>/images/
-data/cv/collected/sessions/<session_id>/labels/
-data/cv/collected/sessions/<session_id>/metadata.json
+data/cv/collected_matthew/classes.txt
+data/cv/collected_matthew/sessions/<session_id>/images/
+data/cv/collected_matthew/sessions/<session_id>/labels/
+data/cv/collected_matthew/sessions/<session_id>/metadata.json
 ```
+
+(The default root is `data/cv/collected_matthew`; use `--output-dir` to override.)
 
 For rapid single-instrument capture into one folder per class, run:
 
@@ -128,6 +150,12 @@ Open the latest non-empty session with boxes drawn:
 
 ```bash
 uv run python scripts/visualize_collected_session.py
+```
+
+Override the collected root if needed:
+
+```bash
+uv run python scripts/visualize_collected_session.py --collected-dir data/cv/collected_andy1
 ```
 
 Open a specific session:
@@ -183,7 +211,7 @@ Export one run's weights into the default demo path:
 uv run trayguard export-weights runs/detect/spoons_reference_plus_45_90/weights/best.pt
 ```
 
-## 4. Project Layout
+## 5. Project Layout
 
 ```text
 src/trayguard/       main Python package

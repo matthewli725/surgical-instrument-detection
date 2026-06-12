@@ -1,0 +1,3 @@
+ultralytics
+hydra-core
+omegaconf

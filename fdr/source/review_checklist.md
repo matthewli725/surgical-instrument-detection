@@ -9,12 +9,12 @@
   - [x] 3.4 Stakeholders And Importance
   - [x] 3.5 General Interest Beyond One Local Practice
   - [x] 3.6 Root Cause Analysis
-- [ ] 4. First Attempt: A Computer-Vision Tray Checker (Matthew, Qiyu)
-  - [ ] 4.1 CV Literature Context
-  - [ ] 4.2 Requirements and System Design
-  - [ ] 4.3 CV Experiments and Results
-  - [ ] 4.4 CV Requirements Assessment and Gap Analysis
-  - [ ] 4.5 CV Implementation Summary
+- [x] 4. First Attempt: A Computer-Vision Tray Checker (Matthew, Qiyu)
+  - [x] 4.1 CV Literature Context
+  - [x] 4.2 Requirements and System Design
+  - [x] 4.3 CV Experiments and Results
+  - [x] 4.4 CV Requirements Assessment and Gap Analysis
+  - [x] 4.5 CV Implementation Summary
   - [x] 4.6 Limitations of the CV Experiments
 - [x] 5. Limitations of the Computer-Vision Approach (Matthew)
 - [x] 6. Literature And Related Work (Matthew, Andy, Qiyu)
@@ -22,23 +22,23 @@
   - [x] 6.2 Why Existing Approaches Cannot Close the Gap
   - [x] 6.3 Why Training is the Viable Path
   - [x] 6.4 Remaining Gaps and TrayGuard's Contribution
-- [ ] 7. Final Product Concept And Design Rationale (Matthew, Andy, Qiyu)
-  - [ ] 7.1 Final Product Concept
-  - [ ] 7.2 Alternatives Considered
-  - [ ] 7.3 Selected Candidate and Backup Paths
-  - [ ] 7.4 Rationale for AprilTag Marker Choice
-    - [ ] 7.4.1 Why Physical Markers at All
-    - [ ] 7.4.2 Why AprilTag over QR Codes, ArUco, or Real Instruments
-  - [ ] 7.5 Rationale for Gamified and Simulation-Based Learning Style
-- [ ] 8. Requirements Definition (Matthew, Andy, Jacob)
-  - [ ] 8.1 Element Definition
-  - [ ] 8.2 Objective Tree
-  - [ ] 8.3 Performance Specifications
-  - [ ] 8.4 Quality Function Deployment
-  - [ ] 8.5 Function Analysis -- Transparent Box Model
-  - [ ] 8.6 Morphological Chart
-  - [ ] 8.7 Weighted Objective Method
-  - [ ] 8.8 Requirement Traceability Matrix
+- [ ] 7. Requirements Definition (Matthew, Andy, Jacob)
+  - [ ] 7.1 Element Definition
+  - [ ] 7.2 Objective Tree
+  - [ ] 7.3 Performance Specifications
+  - [ ] 7.4 Quality Function Deployment
+  - [ ] 7.5 Function Analysis -- Transparent Box Model
+  - [ ] 7.6 Morphological Chart
+  - [ ] 7.7 Weighted Objective Method
+  - [ ] 7.8 Requirement Traceability Matrix
+- [x] 8. Final Product Concept And Design Rationale (Matthew, Andy, Qiyu)
+  - [x] 8.1 Final Product Concept
+  - [x] 8.2 Alternatives Considered
+  - [x] 8.3 Selected Candidate and Backup Paths
+  - [x] 8.4 Rationale for AprilTag Marker Choice
+    - [x] 8.4.1 Why Physical Markers at All
+    - [x] 8.4.2 Why AprilTag over QR Codes, ArUco, or Real Instruments
+  - [x] 8.5 Rationale for Gamified and Simulation-Based Learning Style
 - [ ] 9. System Design (Matthew, Jacob)
   - [ ] 9.1 System Overview
   - [ ] 9.2 Subsystem Breakdown
@@ -79,8 +79,9 @@
   - [ ] 14.6 Budget
 - [ ] 15. Discussion And Final Recommendations (Matthew, Jacob)
 - [ ] References
-- [ ] Research Support Audit
-- [ ] Implementation Defaults
-- [ ] Appendix: CV Experiment Methods and Additional Results
-  - [ ] A.1 Brightness Experiment Setup
-  - [ ] A.2 Real-Instrument Experiments
+- [x] Appendix C: CV Experiment Methods and Additional Results
+  - [x] C.1 Brightness Experiment Setup
+  - [x] C.2 Real-Instrument Experiments
+  - [x] C.3 Lighting Diversity Experiment
+- [ ] Appendix D: Bills of Materials
+- [ ] Appendix E: Collaboration Task Matrix
