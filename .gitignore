@@ -96,9 +96,6 @@ models/
 checkpoints/
 *.ckpt
 *.pt
-!/weights/
-!/weights/.gitkeep
-!/weights/trayguard.pt
 *.pth
 *.h5
 *.onnx
