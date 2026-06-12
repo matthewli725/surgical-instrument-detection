@@ -149,7 +149,7 @@
         {
           "id": "name",
           "prompt": "Name this major-tray instrument.",
-          "answer": "Scissors Metz Curved 7\""
+          "answer": "Scissors Metzenbaum Curved 7\""
         },
         {
           "id": "source_class",
@@ -195,7 +195,7 @@
         {
           "id": "name",
           "prompt": "Name this major-tray instrument.",
-          "answer": "Scissors Metz Curved 10\""
+          "answer": "Scissors Metzenbaum Curved 10\""
         },
         {
           "id": "source_class",
@@ -471,7 +471,7 @@
         {
           "id": "name",
           "prompt": "Name this major-tray instrument.",
-          "answer": "Needleholder Mayo Hegar 7\""
+          "answer": "Needleholder Mayo-Hegar 7\""
         },
         {
           "id": "source_class",
@@ -517,7 +517,7 @@
         {
           "id": "name",
           "prompt": "Name this major-tray instrument.",
-          "answer": "Needleholder Mayo Hegar 8\""
+          "answer": "Needleholder Mayo-Hegar 8\""
         },
         {
           "id": "source_class",
@@ -563,7 +563,7 @@
         {
           "id": "name",
           "prompt": "Name this major-tray instrument.",
-          "answer": "Forcep Adson W/ Teeth"
+          "answer": "Forcep Adson w/ Teeth"
         },
         {
           "id": "source_class",

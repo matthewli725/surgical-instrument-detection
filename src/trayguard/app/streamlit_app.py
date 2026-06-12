@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "basic_general_tray_v1.json"
+DEFAULT_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "weights" / "trayguard.pt"
 FALLBACK_MODEL_PATH = PROJECT_ROOT / "yolo11s.pt"
 DEFAULT_CAMERA_INDEX = 0

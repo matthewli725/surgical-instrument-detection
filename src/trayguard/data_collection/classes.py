@@ -5,7 +5,7 @@ from pathlib import Path
 from trayguard.learning.module import load_tray_module
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_TRAY_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "basic_general_tray_v1.json"
+DEFAULT_TRAY_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
 
 
 def module_class_names(module_path: Path = DEFAULT_TRAY_MODULE_PATH) -> list[str]:

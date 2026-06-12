@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
@@ -17,7 +18,7 @@ from trayguard.learning.scoring import score_tray
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_MODULE = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
-DEFAULT_RUNS_DIR = PROJECT_ROOT / "data" / "cv" / "training_runs"
+DEFAULT_RUNS_DIR = PROJECT_ROOT / "data" / "learning" / "runs"
 STATIC_DIR = Path(__file__).with_name("static")
 
 
@@ -108,5 +109,23 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
             raise HTTPException(status_code=404, detail="Unknown run_id") from exc
         run_dir = Path(store.root) / run_id
         return {"run": str(run_dir / "run.json"), "attempts": str(run_dir / "attempts.csv"), "items": str(run_dir / "items.csv")}
+
+    @app.get("/api/instrument-image/{instrument_id}")
+    def get_instrument_image(instrument_id: str):
+        digest = hashlib.sha1(instrument_id.encode("utf-8")).hexdigest()[:10]
+        safe_id = instrument_id[:70]
+        filename = f"{safe_id}_{digest}_standardized.jpg"
+        cards_dir = PROJECT_ROOT / "outputs" / "cards"
+        for image_dir in cards_dir.glob("*/images"):
+            candidate = image_dir / filename
+            if candidate.exists():
+                return FileResponse(candidate)
+        instrument = module.instruments.get(instrument_id)
+        if instrument:
+            for ref in instrument.image_refs:
+                source = Path(str(ref.get("path", "")))
+                if source.exists():
+                    return FileResponse(source)
+        raise HTTPException(status_code=404, detail="Image not found")
 
     return app

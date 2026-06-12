@@ -8,6 +8,13 @@ const state = {
   quizItems: [],
   studyIndex: 0,
   stream: null,
+  autoDetectInterval: null,
+  detectionInFlight: false,
+  lastDetection: null,
+  stableFrameCount: 0,
+  stableCounts: {},
+  audioCtx: null,
+  overlayBoxes: {},
 };
 
 const steps = [
@@ -34,11 +41,297 @@ async function api(path, options = {}) {
 }
 
 function setStep(step) {
+  if (state.currentStep !== step && ["pre", "practice", "post"].includes(state.currentStep)) {
+    cleanupCamera();
+  }
   state.currentStep = step;
   modeStatus.textContent = steps.find(([id]) => id === step)?.[1] || step;
   renderSteps();
   render();
 }
+
+function normalizeAnswer(str) {
+  return str
+    .toLowerCase()
+    .replace(/w\//g, "with")
+    .replace(/[-/.,#]/g, "")
+    .replace(/\s+/g, "")
+    .trim();
+}
+
+function levenshteinDistance(a, b) {
+  const matrix = [];
+  for (let i = 0; i <= b.length; i += 1) matrix[i] = [i];
+  for (let j = 0; j <= a.length; j += 1) matrix[0][j] = j;
+  for (let i = 1; i <= b.length; i += 1) {
+    for (let j = 1; j <= a.length; j += 1) {
+      matrix[i][j] = b[i - 1] === a[j - 1]
+        ? matrix[i - 1][j - 1]
+        : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+function similarityScore(a, b) {
+  const maxLen = Math.max(a.length, b.length);
+  if (maxLen === 0) return 1;
+  const distance = levenshteinDistance(a, b);
+  return (maxLen - distance) / maxLen;
+}
+
+function getValidAnswers(instrument) {
+  const answers = new Set();
+  answers.add(instrument.display_name);
+  for (const alias of instrument.aliases || []) {
+    answers.add(alias);
+  }
+  return Array.from(answers);
+}
+
+function isAnswerCorrect(instrument, promptAnswer, userAnswer) {
+  const normalizedUser = normalizeAnswer(userAnswer);
+  if (normalizedUser.length === 0) return false;
+
+  const allAnswers = [promptAnswer, ...getValidAnswers(instrument)];
+
+  for (const expected of allAnswers) {
+    const normalizedExpected = normalizeAnswer(expected);
+    if (normalizedExpected.length === 0) continue;
+
+    if (normalizedUser === normalizedExpected) return true;
+    if (normalizedExpected.includes(normalizedUser)) return true;
+    if (normalizedUser.includes(normalizedExpected)) return true;
+
+    const similarity = similarityScore(normalizedUser, normalizedExpected);
+    if (similarity >= 0.7) return true;
+  }
+
+  return false;
+}
+
+function initAudio() {
+  if (!state.audioCtx) {
+    state.audioCtx = new AudioContext();
+  }
+  if (state.audioCtx.state === "suspended") {
+    state.audioCtx.resume();
+  }
+}
+
+function playBeep() {
+  if (!state.audioCtx) return;
+  if (state.audioCtx.state === "suspended") {
+    state.audioCtx.resume();
+  }
+  const oscillator = state.audioCtx.createOscillator();
+  const gain = state.audioCtx.createGain();
+  oscillator.frequency.value = 440;
+  oscillator.type = "sine";
+  gain.gain.value = 0.5;
+  oscillator.connect(gain);
+  gain.connect(state.audioCtx.destination);
+  oscillator.start();
+  oscillator.stop(state.audioCtx.currentTime + 0.1);
+}
+
+function updateFullscreenList(counts) {
+  const container = document.querySelector("#fullscreenListContent");
+  if (!container) return;
+
+  const sortedIds = Object.keys(counts).sort((a, b) => {
+    const nameA = state.module.instruments[a]?.display_name || a;
+    const nameB = state.module.instruments[b]?.display_name || b;
+    return nameA.localeCompare(nameB);
+  });
+
+  if (sortedIds.length === 0) {
+    container.innerHTML = "<p class='muted'>No cards detected</p>";
+    return;
+  }
+
+  container.innerHTML = sortedIds.map((id) => {
+    const instrument = state.module.instruments[id];
+    const name = instrument ? instrument.display_name : id;
+    const count = counts[id];
+    return `<div class="fullscreen-list-item"><span>${name}</span><span class="fullscreen-list-count">${count}</span></div>`;
+  }).join("");
+}
+
+function drawOverlay(detections) {
+  const video = document.querySelector("#video");
+  const svg = document.querySelector("#overlaySvg");
+  if (!video || !svg || !video.videoWidth) return;
+
+  const container = video.parentElement;
+  const containerWidth = container.clientWidth;
+  const containerHeight = container.clientHeight;
+  const videoWidth = video.videoWidth;
+  const videoHeight = video.videoHeight;
+
+  // Calculate object-fit: cover scaling
+  const scale = Math.max(containerWidth / videoWidth, containerHeight / videoHeight);
+  const displayedWidth = videoWidth * scale;
+  const displayedHeight = videoHeight * scale;
+  const offsetX = (containerWidth - displayedWidth) / 2;
+  const offsetY = (containerHeight - displayedHeight) / 2;
+
+  svg.setAttribute("viewBox", `0 0 ${containerWidth} ${containerHeight}`);
+  svg.removeAttribute("preserveAspectRatio");
+
+  const now = Date.now();
+  const currentIds = new Set();
+
+  const counts = {};
+  for (const detection of detections) {
+    if (!detection.instrument_id) continue;
+    counts[detection.instrument_id] = (counts[detection.instrument_id] || 0) + 1;
+  }
+
+  for (const detection of detections) {
+    if (!detection.instrument_id || !detection.corners) continue;
+    const id = detection.instrument_id;
+    currentIds.add(id);
+    state.overlayBoxes[id] = {
+      corners: detection.corners,
+      lastSeen: now,
+      count: counts[id] || 1,
+      name: state.module.instruments[id]?.display_name || "Unknown",
+    };
+  }
+
+  svg.innerHTML = "";
+
+  const BOX_TTL = 2000;
+  for (const [id, box] of Object.entries(state.overlayBoxes)) {
+    if (now - box.lastSeen > BOX_TTL) {
+      delete state.overlayBoxes[id];
+      continue;
+    }
+
+    const corners = box.corners;
+    const transformedCorners = corners.map(([x, y]) => [
+      x * scale + offsetX,
+      y * scale + offsetY,
+    ]);
+    const points = transformedCorners.map(([x, y]) => `${x},${y}`).join(" ");
+
+    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    polygon.setAttribute("points", points);
+    polygon.setAttribute("stroke", "#00ff00");
+    polygon.setAttribute("stroke-width", "3");
+    polygon.setAttribute("fill", "none");
+    svg.appendChild(polygon);
+
+    const label = `${box.name} (${box.count})`;
+    const x = transformedCorners[0][0];
+    const y = transformedCorners[0][1] - 8;
+
+    const textBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    textBg.setAttribute("x", x);
+    textBg.setAttribute("y", y - 14);
+    textBg.setAttribute("width", label.length * 8 + 8);
+    textBg.setAttribute("height", 18);
+    textBg.setAttribute("fill", "rgba(0,0,0,0.6)");
+    svg.appendChild(textBg);
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", x + 4);
+    text.setAttribute("y", y);
+    text.setAttribute("fill", "#ffffff");
+    text.setAttribute("font-size", "14");
+    text.setAttribute("font-weight", "bold");
+    text.setAttribute("font-family", "Inter, sans-serif");
+    text.textContent = label;
+    svg.appendChild(text);
+  }
+
+  updateFullscreenList(counts);
+}
+
+function startAutoDetection() {
+  if (state.autoDetectInterval) return;
+  state.autoDetectInterval = setInterval(() => {
+    if (state.detectionInFlight) return;
+    const video = document.querySelector("#video");
+    if (!video || !video.srcObject) return;
+    detectCards(true);
+  }, 1000);
+}
+
+function stopAutoDetection() {
+  if (state.autoDetectInterval) {
+    clearInterval(state.autoDetectInterval);
+    state.autoDetectInterval = null;
+  }
+  state.detectionInFlight = false;
+  state.lastDetection = null;
+  state.stableFrameCount = 0;
+  state.overlayBoxes = {};
+}
+
+function cleanupCamera() {
+  stopAutoDetection();
+  const svg = document.querySelector("#overlaySvg");
+  if (svg) svg.innerHTML = "";
+  state.overlayBoxes = {};
+  if (state.stream) {
+    state.stream.getTracks().forEach((track) => track.stop());
+    state.stream = null;
+  }
+  const video = document.querySelector("#video");
+  if (video) video.srcObject = null;
+}
+
+function handleVisibilityChange() {
+  if (document.hidden) {
+    stopAutoDetection();
+  } else if (state.stream && state.stream.active) {
+    startAutoDetection();
+  }
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
+
+function toggleFullscreen() {
+  const panel = document.querySelector(".camera-panel");
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    panel.requestFullscreen();
+  }
+}
+
+function setupFloatingControls() {
+  const panel = document.querySelector(".camera-panel");
+  const controls = document.querySelector("#floatingControls");
+  let timeout;
+
+  if (!panel || !controls) return;
+
+  panel.addEventListener("mousemove", () => {
+    if (document.fullscreenElement) {
+      controls.style.opacity = "1";
+      controls.style.pointerEvents = "auto";
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        controls.style.opacity = "0";
+        controls.style.pointerEvents = "none";
+      }, 2000);
+    }
+  });
+}
+
+document.addEventListener("fullscreenchange", () => {
+  const btn = document.querySelector("#fullscreenBtn");
+  const exitBtn = document.querySelector("#exitFullscreenBtn");
+  if (btn) {
+    btn.style.display = document.fullscreenElement ? "none" : "block";
+  }
+  if (exitBtn) {
+    exitBtn.style.display = document.fullscreenElement ? "block" : "none";
+  }
+});
 
 function renderSteps() {
   stepsNav.innerHTML = "";
@@ -150,21 +443,31 @@ function renderIntake() {
 
 function renderTraySort({ mode, variantId, title, copy, feedback }) {
   const startedAt = new Date();
-  const variant = state.module.assessment_variants[variantId];
   const template = document.querySelector("#tray-sort-template").content.cloneNode(true);
   template.querySelector("[data-title]").textContent = title;
-  template.querySelector("[data-copy]").textContent = variant?.photo_view ? `${copy} Photo set: ${variant.photo_view}.` : copy;
+  template.querySelector("[data-copy]").textContent = copy;
   const controls = template.querySelector("#manualControls");
-  for (const instrument of instrumentsForVariant(variantId)) {
+  const sortedInstruments = [...instrumentsForVariant(variantId)].sort((a, b) =>
+    a.display_name.localeCompare(b.display_name)
+  );
+  for (const instrument of sortedInstruments) {
     const row = document.createElement("div");
     row.className = "manual-row";
-    row.innerHTML = `<span>${instrument.display_name}</span><input type="number" min="0" value="0" data-instrument-id="${instrument.id}">`;
+    row.innerHTML = `<span class="manual-name">${instrument.display_name}</span><input type="number" min="0" value="0" data-instrument-id="${instrument.id}">`;
     controls.appendChild(row);
   }
   app.innerHTML = "";
   app.appendChild(template);
-  document.querySelector("#startCamera").onclick = startCamera;
-  document.querySelector("#detectCards").onclick = detectCards;
+  const startBtn = document.querySelector("#startCamera");
+  if (startBtn) {
+    startBtn.textContent = state.stream ? "Stop camera" : "Start camera";
+    startBtn.onclick = startCamera;
+  }
+  const fullscreenBtn = document.querySelector("#fullscreenBtn");
+  if (fullscreenBtn) fullscreenBtn.onclick = toggleFullscreen;
+  const exitFullscreenBtn = document.querySelector("#exitFullscreenBtn");
+  if (exitFullscreenBtn) exitFullscreenBtn.onclick = toggleFullscreen;
+  setupFloatingControls();
   document.querySelector("#submitSort").onclick = async () => {
     const selectedCounts = selectedCountsFromInputs();
     const result = await api(`/api/runs/${state.run.run_id}/score`, {
@@ -176,7 +479,6 @@ function renderTraySort({ mode, variantId, title, copy, feedback }) {
         started_at: startedAt.toISOString(),
         duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
         overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
-        not_sure: document.querySelector("#notSure").checked,
       }),
     });
     state.attempts[mode] = result;
@@ -187,15 +489,21 @@ function renderTraySort({ mode, variantId, title, copy, feedback }) {
 async function startCamera() {
   const video = document.querySelector("#video");
   const summary = document.querySelector("#detectionSummary");
+  const startBtn = document.querySelector("#startCamera");
+
+  if (state.stream) {
+    cleanupCamera();
+    if (startBtn) startBtn.textContent = "Start camera";
+    summary.textContent = "Camera stopped.";
+    return false;
+  }
+
   summary.textContent = "Requesting camera access...";
   if (!navigator.mediaDevices?.getUserMedia) {
     summary.textContent = "Camera API is not available in this browser. Use Chrome/Safari on http://127.0.0.1 or use manual fallback.";
     return false;
   }
   try {
-    if (state.stream) {
-      state.stream.getTracks().forEach((track) => track.stop());
-    }
     try {
       state.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
     } catch (_error) {
@@ -206,25 +514,72 @@ async function startCamera() {
     return false;
   }
   video.srcObject = state.stream;
+  video.onstalled = () => {
+    stopAutoDetection();
+    summary.textContent = "Camera paused. Click Stop then Start to resume.";
+  };
   await video.play();
-  summary.textContent = "Camera is live. Place cards in view, then detect visible cards.";
+  initAudio();
+  startAutoDetection();
+  if (startBtn) startBtn.textContent = "Stop camera";
+  summary.textContent = "Camera is live. Auto-detecting cards...";
   return true;
 }
 
-async function detectCards() {
+async function detectCards(skipStart = false) {
   const video = document.querySelector("#video");
-  if (!video.srcObject) {
+  if (!video.srcObject && !skipStart) {
     const started = await startCamera();
-    if (!started) return;
+    if (!started) return false;
   }
+  if (state.detectionInFlight) return false;
+  state.detectionInFlight = true;
+
   const canvas = document.querySelector("#snapshotCanvas");
   canvas.width = video.videoWidth || 1280;
   canvas.height = video.videoHeight || 720;
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const image = canvas.toDataURL("image/png");
-  const result = await api("/api/detect-cards", { method: "POST", body: JSON.stringify({ image }) });
-  setManualCounts(result.selected_counts);
-  document.querySelector("#detectionSummary").textContent = `${result.detections.length} marker(s) detected. Review quantities before submitting.`;
+
+  let result;
+  try {
+    result = await api("/api/detect-cards", { method: "POST", body: JSON.stringify({ image }) });
+  } catch (error) {
+    const summary = document.querySelector("#detectionSummary");
+    summary.textContent = "Detection failed. Using manual fallback.";
+    summary.classList.add("error");
+    state.detectionInFlight = false;
+    return false;
+  }
+
+  const summary = document.querySelector("#detectionSummary");
+  summary.classList.remove("error");
+  drawOverlay(result.detections);
+
+  const currentCounts = result.selected_counts || {};
+  const countsChanged = JSON.stringify(currentCounts) !== JSON.stringify(state.lastDetection?.counts);
+
+  if (countsChanged) {
+    state.stableFrameCount = 0;
+    state.lastDetection = { counts: currentCounts, detections: result.detections };
+  } else {
+    state.stableFrameCount += 1;
+  }
+
+  if (state.stableFrameCount >= 2) {
+    const previousStable = JSON.stringify(state.stableCounts);
+    const newStable = JSON.stringify(currentCounts);
+    if (previousStable !== newStable) {
+      const added = Object.keys(currentCounts).filter((id) => !state.stableCounts[id] || currentCounts[id] > state.stableCounts[id]);
+      setManualCounts(currentCounts);
+      state.stableCounts = currentCounts;
+      if (added.length > 0) playBeep();
+    }
+  }
+
+  summary.textContent = `Scanning... ${result.detections.length} card(s) detected${state.stableFrameCount >= 2 ? " (stable)" : ""}.`;
+  state.detectionInFlight = false;
+  return true;
 }
 
 function renderAttemptResult(result, showFeedback, mode) {
@@ -258,12 +613,8 @@ function renderAttemptResult(result, showFeedback, mode) {
 }
 
 function studyImage(instrument) {
-  const refs = instrument.image_refs || [];
-  const approved = refs.find((r) => r.approved_for_study);
-  const ref = approved || refs[0];
-  if (!ref) return `<div class="image-placeholder">No image</div>`;
-  const path = ref.path.replace(/^data\/instruments\//, "");
-  return `<img src="/instrument-images/${path}" alt="${instrument.display_name}" class="study-img" onerror="this.parentElement.innerHTML='<div class=image-placeholder>Image not found</div>'">`;
+  if (!instrument || !instrument.id) return `<div class="image-placeholder">No image</div>`;
+  return `<img src="/api/instrument-image/${instrument.id}" alt="${instrument.display_name}" class="study-img" onerror="this.parentElement.innerHTML='<div class=image-placeholder>Image not found</div>'">`;
 }
 
 function renderStudy() {
@@ -294,7 +645,7 @@ function renderStudy() {
   document.querySelector("#prevCard").onclick = () => { state.studyIndex = Math.max(0, state.studyIndex - 1); renderStudy(); };
   document.querySelector("#nextCard").onclick = () => { state.studyIndex = Math.min(cards.length - 1, state.studyIndex + 1); renderStudy(); };
   document.querySelector("#goQuiz").onclick = () => {
-    state.quizItems = cards.flatMap((item) => (item.study_prompts || []).map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
+    state.quizItems = cards.flatMap((item) => (item.study_prompts || []).filter((prompt) => prompt.id === "name").map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
     state.quizIndex = 0;
     setStep("quiz");
   };
@@ -302,7 +653,7 @@ function renderStudy() {
 
 function renderQuiz() {
   if (!state.quizItems.length) {
-    state.quizItems = instrumentsForTray().flatMap((item) => (item.study_prompts || []).map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
+    state.quizItems = instrumentsForTray().flatMap((item) => (item.study_prompts || []).filter((prompt) => prompt.id === "name").map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
   }
   if (state.quizIndex >= state.quizItems.length) {
     setStep("practice");
@@ -312,17 +663,17 @@ function renderQuiz() {
   app.innerHTML = `
     <section class="panel">
       <h2>Quiz ${state.quizIndex + 1} of ${state.quizItems.length}</h2>
-      <p class="muted">${item.prompt.prompt}</p>
+      <div class="study-image">${studyImage(item.instrument)}</div>
+      <p class="muted">Name this instrument.</p>
       <label>Your answer <input id="quizAnswer" autocomplete="off"></label>
       <label>Confidence <input id="quizConfidence" type="range" min="1" max="5" value="3"></label>
-      <label class="check"><input id="quizNotSure" type="checkbox"> Not sure</label>
       <div class="button-row"><button class="primary" id="submitQuiz">Submit</button></div>
       <div id="quizFeedback"></div>
     </section>
   `;
   document.querySelector("#submitQuiz").onclick = async () => {
     const answer = document.querySelector("#quizAnswer").value;
-    const correct = answer.trim().length > 0 && item.prompt.answer.toLowerCase().includes(answer.trim().toLowerCase());
+    const correct = answer.trim().length > 0 && isAnswerCorrect(item.instrument, item.prompt.answer, answer);
     await api(`/api/runs/${state.run.run_id}/quiz`, {
       method: "POST",
       body: JSON.stringify({
@@ -331,7 +682,6 @@ function renderQuiz() {
         answer,
         correct,
         confidence: Number.parseInt(document.querySelector("#quizConfidence").value, 10),
-        not_sure: document.querySelector("#quizNotSure").checked,
       }),
     });
     document.querySelector("#quizFeedback").innerHTML = `<div class="feedback ${correct ? "" : "error"}">${correct ? "Correct." : `Review: ${item.prompt.answer}`}</div><div class="button-row"><button class="primary" id="nextQuiz">Next</button></div>`;

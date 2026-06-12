@@ -6,12 +6,19 @@ import sys
 from trayguard.data_collection import class_folder_collect, collect
 from trayguard.app import streamlit_runner
 from trayguard.dataset_tools import (
+    auto_annotate_class_folders,
     download_lavado,
     export_collected_yolo,
     plan_shape_similarity_synthetic,
 )
 from trayguard.learning import card_cli
-from trayguard.training import benchmark, export_weights, train
+from trayguard.training import (
+    benchmark,
+    export_weights,
+    train,
+    train_class_folders_classification,
+    train_class_folders_detection,
+)
 from trayguard.web import runner as web_runner
 
 
@@ -36,6 +43,18 @@ COMMANDS: dict[str, tuple[Command, str]] = {
     "app": (streamlit_runner.main, "Launch the Streamlit tray detection UI."),
     "train-app": (web_runner.main, "Launch the TrayGuard educational training web app."),
     "print-cards": (card_cli.main, "Generate printable ArUco card assets for a tray module."),
+    "auto-annotate-class-folders": (
+        auto_annotate_class_folders.main,
+        "Auto-annotate class-folder images with bounding boxes via background subtraction.",
+    ),
+    "train-class-folders-detection": (
+        train_class_folders_detection.main,
+        "Train detection model on auto-annotated class-folder dataset.",
+    ),
+    "train-class-folders-classification": (
+        train_class_folders_classification.main,
+        "Train classification model on auto-annotated class-folder dataset.",
+    ),
 }
 
 

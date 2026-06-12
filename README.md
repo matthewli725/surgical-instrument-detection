@@ -60,7 +60,7 @@ Open the app at `http://127.0.0.1:8000`.
 
 The learner loop: pre-test → study cards → quiz → practice sort → post-test → summary.
 Use the camera to detect printed ArUco cards, or the manual fallback controls.
-Results export to `data/cv/training_runs/` by default.
+Results export to `data/learning/runs/` by default. Use `--runs-dir` to override.
 
 ## 4. Legacy/Future CV Utilities
 
