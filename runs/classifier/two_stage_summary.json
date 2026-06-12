@@ -1,0 +1,7 @@
+{
+  "detector_weights": "C:\\Users\\Owenr\\Downloads\\TrayGuard\\runs\\detect\\runs\\yolo11s_imgsz640_batch16\\weights\\best.pt",
+  "classifier_model": "resnet18",
+  "classifier_arch": "resnet18",
+  "classifier_weights": "C:\\Users\\Owenr\\Downloads\\TrayGuard\\runs\\classifier\\resnet18_surgical_classifier\\best.pt",
+  "classifier_run_dir": "runs/classifier/resnet18_surgical_classifier"
+}

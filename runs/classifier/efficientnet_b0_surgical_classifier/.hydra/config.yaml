@@ -1,0 +1,37 @@
+project_name: trayguard_classifier
+task: classify
+classifier_data:
+  name: surgical_classifier
+  root: datasets/dataset_classifier
+  train_dir: ${classifier_data.root}/train
+  val_dir: ${classifier_data.root}/val
+  test_dir: ${classifier_data.root}/test
+  num_classes: 4
+  class_names:
+  - curved_mayo_scissor
+  - scalpel_n4
+  - straight_dissection_clamp
+  - straight_mayo_scissor
+classifier_model:
+  name: efficientnet_b0
+  arch: efficientnet_b0
+  pretrained: true
+  image_size: 224
+  dropout: 0.2
+  freeze_backbone: false
+classifier_trainer:
+  epochs: 40
+  batch_size: 32
+  num_workers: 8
+  device: cuda
+  seed: 42
+  lr: 0.001
+  weight_decay: 0.0001
+  optimizer: adamw
+  project: runs/classifier
+  name: ${classifier_model.name}_${classifier_data.name}
+  save_best_only: true
+  resume: false
+  use_amp: true
+  pin_memory: true
+  early_stopping_patience: 10
