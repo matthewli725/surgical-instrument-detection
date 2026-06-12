@@ -51,7 +51,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--padding",
         type=int,
-        default=10,
+        default=0,
         help="Pixels to add around each detected bounding box.",
     )
     parser.add_argument(
@@ -98,28 +98,44 @@ def discover_images(class_dir: Path) -> list[Path]:
     return sorted(images)
 
 
-def find_bounding_box(image_path: Path, padding: int = 10) -> tuple[int, int, int, int] | None:
-    """Return (x1, y1, x2, y2) for the largest contour, or None if none found."""
+def find_bounding_box(image_path: Path, padding: int = 0) -> tuple[int, int, int, int] | None:
+    """Return (x1, y1, x2, y2) for the largest contour (background sampling), or None."""
     img = cv2.imread(str(image_path))
     if img is None:
         return None
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-    _, thresh = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    h, w = gray.shape
+
+    corner = 10
+    bg_patches = [
+        gray[:corner, :corner].ravel(),
+        gray[:corner, -corner:].ravel(),
+        gray[-corner:, :corner].ravel(),
+        gray[-corner:, -corner:].ravel(),
+    ]
+    bg_pixels = np.concatenate(bg_patches)
+    bg_mean = np.mean(bg_pixels)
+    bg_std = np.std(bg_pixels)
+
+    thresh_val = max(int(bg_mean + bg_std * 2), int(bg_mean * 1.08))
+    _, thresh = cv2.threshold(gray, thresh_val, 255, cv2.THRESH_BINARY)
+
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=2)
+    thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
 
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if not contours:
         return None
 
     largest = max(contours, key=cv2.contourArea)
-    x, y, w, h = cv2.boundingRect(largest)
+    x, y, bw, bh = cv2.boundingRect(largest)
 
-    height, width = img.shape[:2]
     x1 = max(0, x - padding)
     y1 = max(0, y - padding)
-    x2 = min(width, x + w + padding)
-    y2 = min(height, y + h + padding)
+    x2 = min(w, x + bw + padding)
+    y2 = min(h, y + bh + padding)
 
     if x2 <= x1 or y2 <= y1:
         return None

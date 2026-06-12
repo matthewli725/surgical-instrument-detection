@@ -2014,55 +2014,55 @@ and delayed retention must produce comparable rows.
 Sample instrument JSON:
 \begin{lstlisting}
 {
-  "id": "mayo_scissors_straight_55",
-  "display_name": "Straight Mayo scissors, 5.5 in",
-  "family": "cutting_dissecting",
+  "id": "fgvc12_major_scissors_mayo_straight_7in",
+  "display_name": "Scissors Mayo Straight 7\"",
+  "family": "Cutting/dissecting",
   "aliases": [
-    "straight Mayo",
-    "suture scissors"
+    "SCISSORS MAYO STRAIGHT 7\"",
+    "JARIT_101-220"
   ],
   "distinguishing_features": [
-    "Heavy straight blades",
-    "Broader blade profile than Metzenbaum scissors",
+    "Heavy straight blades, semi-blunt tips",
+    "Heavier, broader blade profile than Metzenbaum scissors",
     "Ring-handled cutting instrument"
   ],
   "common_confusions": [
-    "mayo_scissors_curved_55",
-    "metzenbaum_scissors_curved_55"
+    "fgvc12_major_scissors_mayo_curved_7in",
+    "fgvc12_major_scissors_metz_curved_7in"
   ],
   "image_refs": [
     {
       "id": "view_a",
-      "path": "data/instruments/mayo_scissors_straight_55_view_a.jpg",
-      "source": "local_photo",
+      "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_a.jpg",
+      "source": "fgvc12_google_drive_major_tray",
       "approved_for_study": true,
-      "approved_for_assessment": true,
-      "attribution": "Local TrayGuard photo"
+      "approved_for_assessment": false,
+      "attribution": "FGVC12 shared Google Drive major tray image"
     },
     {
-      "id": "card_front_neutral",
-      "path": "outputs/cards/mayo_scissors_straight_55_neutral_front.png",
-      "source": "generated_card",
-      "approved_for_study": false,
-      "approved_for_assessment": true,
-      "attribution": "TrayGuard AprilTag card"
+      "id": "view_b",
+      "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_b.jpg",
+      "source": "fgvc12_google_drive_major_tray",
+      "approved_for_study": true,
+      "approved_for_assessment": false,
+      "attribution": "FGVC12 shared Google Drive major tray image"
     }
   ],
-  "apriltag_id": 12,
+  "apriltag_id": 0,
   "card_front_policy": "neutral_assessment_front",
   "study_prompts": [
     {
-      "id": "name_recall",
-      "prompt": "Name this instrument.",
-      "answer": "Straight Mayo scissors, 5.5 in"
+      "id": "name",
+      "prompt": "Name this major-tray instrument.",
+      "answer": "Scissors Mayo Straight 7\""
     },
     {
-      "id": "feature_recall",
-      "prompt": "What feature helps distinguish this from Metzenbaum scissors?",
-      "answer": "Straight Mayo scissors have heavier, broader blades."
+      "id": "distinguishing_feature",
+      "prompt": "What feature distinguishes this from Metzenbaum scissors?",
+      "answer": "Heavier, broader blade profile."
     }
   ],
-  "notes": "Use local photos before pilot. Do not rely on vendor images for assessed study content.",
+  "notes": "FGVC12 major tray class JARIT_101-220. Expert review pending before assessment use.",
   "local_verification_status": "pending_review"
 }
 \end{lstlisting}
@@ -2162,9 +2162,64 @@ location or layer, total count, and check status
 study constraint: 8-12 required concepts, 3-6 distractors, and 2-4 lookalike
 pairs, so novices can complete pre-test, practice, post-test, and delayed
 retention tasks in a single session. The FGVC-derived quantities are simulated
-as one card per selected class. Expert review sets the final clinical wording,
-counts, substitutes, and local tray membership before an SPD pilot uses the
-module as content-valid tray material.
+as one card per selected class. The FGVC12 subset provides 16 instruments
+across four families (cutting/dissecting, clamping/occluding, grasping/holding,
+suturing), with six documented lookalike discriminations
+(Table~\ref{tab:fgvc12-module-instruments}). Each instrument in the tray module
+schema carries a \texttt{distinguishing\_features} array and participates in
+\texttt{lookalike\_pairs} that encode clinical feedback messages at the pair
+level:
+\begin{itemize}
+  \item Mayo curved vs Metzenbaum curved: ``Mayo scissors have heavier, broader blades; Metzenbaum are slimmer and lighter for delicate tissue.''
+  \item Kelly vs Crile: ``Check serration pattern: Kelly serrations are distal half; Crile serrations run the full jaw.''
+  \item Allis vs Babcock: ``Allis has multiple interlocking teeth; Babcock has smooth fenestrated jaws.''
+  \item Adson vs DeBakey: ``Adson is short with 1$\times$2 teeth; DeBakey is long with atraumatic longitudinal serrations.''
+  \item Kelly 6'' vs 8'': ``Compare overall length: 6'' vs 8''.''
+  \item Metzenbaum 7'' vs 10'': ``Compare overall length: 7'' vs 10''.''
+\end{itemize}
+These feedback messages, the \texttt{distinguishing\_features} arrays, and the
+lookalike pair structure are encoded in the module configuration
+(Section~\ref{sec:data-model-and-module-contract}) and govern the feedback shown
+during quiz and sort modes.
+\begin{table}[H]
+\centering
+\caption{FGVC12 module instrument set, by family, with distinguishing features and lookalike relationships}
+\label{tab:fgvc12-module-instruments}
+\small\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+Instrument & Distinguishing features & Lookalike(s) \\
+\hline
+\multicolumn{3}{|>{\centering\arraybackslash}X|}{\textbf{Cutting / dissecting}} \\
+\hline
+Mayo scissors straight 7'' & Heavy straight blades, semi-blunt tips & Mayo curved 7'' \\
+Mayo scissors curved 7'' & Heavy curved blades, broader than Metzenbaum & Metzenbaum curved 7'' \\
+Metzenbaum scissors curved 7'' & Slim lightweight blades for delicate tissue & Mayo curved 7'', Metz curved 10'' \\
+Metzenbaum scissors curved 10'' (distractor) & Same slim design, longer shaft & Metzenbaum curved 7'' \\
+Knife handle \#3 short & Short handle, accepts \#3 blade & --- \\
+\hline
+\multicolumn{3}{|>{\centering\arraybackslash}X|}{\textbf{Clamping / occluding}} \\
+\hline
+Kelly clamp 6'' & Serrations on distal half of jaw & Crile curved, Kelly 8'' \\
+Crile clamp curved 5.5'' & Serrations run full jaw length & Kelly 6'' \\
+Kocher clamp 6'' & Single tooth at tip, full serrations & --- \\
+Allis clamp 6'' & Multiple interlocking teeth & Babcock 6'' \\
+Babcock clamp 6'' & Smooth fenestrated jaws & Allis 6'' \\
+Kelly clamp 8'' (distractor) & Distal-half serrations, longer overall & Kelly 6'' \\
+Babcock clamp 9.5'' (distractor) & Larger smooth fenestrated jaws & --- \\
+\hline
+\multicolumn{3}{|>{\centering\arraybackslash}X|}{\textbf{Grasping / holding}} \\
+\hline
+Adson forceps w/ teeth & Short, 1$\times$2 teeth at tip & DeBakey 8'' \\
+DeBakey forceps 8'' thoracic tip & Long, atraumatic longitudinal serrations & Adson w/ teeth \\
+\hline
+\multicolumn{3}{|>{\centering\arraybackslash}X|}{\textbf{Suturing}} \\
+\hline
+Mayo-Hegar needle holder 7'' & Short heavy jaws, cross-serration & Mayo-Hegar 8'' \\
+Mayo-Hegar needle holder 8'' (distractor) & Same, longer shaft & Mayo-Hegar 7'' \\
+\hline
+\end{tabularx}
+\end{table}
 \subsection{Real Tray List Examples}
 \label{sec:real-tray-list-examples}
 

@@ -161,13 +161,17 @@ function updateFullscreenList(counts) {
 function drawOverlay(detections) {
   const video = document.querySelector("#video");
   const svg = document.querySelector("#overlaySvg");
-  if (!video || !svg || !video.videoWidth) return;
+  if (!video || !svg || !video.videoWidth) {
+    console.log("drawOverlay early return:", { video: !!video, svg: !!svg, videoWidth: video?.videoWidth });
+    return;
+  }
 
   const container = video.parentElement;
   const containerWidth = container.clientWidth;
   const containerHeight = container.clientHeight;
   const videoWidth = video.videoWidth;
   const videoHeight = video.videoHeight;
+  console.log("drawOverlay", { detections: detections.length, containerWidth, containerHeight, videoWidth, videoHeight });
 
   // Calculate object-fit: cover scaling
   const scale = Math.max(containerWidth / videoWidth, containerHeight / videoHeight);
@@ -181,10 +185,14 @@ function drawOverlay(detections) {
 
   const now = Date.now();
   const currentIds = new Set();
+  const previousIds = new Set(Object.keys(state.overlayBoxes));
 
   const counts = {};
   for (const detection of detections) {
-    if (!detection.instrument_id) continue;
+    if (!detection.instrument_id) {
+      console.log("Skipped detection (no instrument_id):", detection);
+      continue;
+    }
     counts[detection.instrument_id] = (counts[detection.instrument_id] || 0) + 1;
   }
 
@@ -202,9 +210,11 @@ function drawOverlay(detections) {
 
   svg.innerHTML = "";
 
-  const BOX_TTL = 2000;
+  const BOX_TTL = 1500;
+  console.log("overlayBoxes:", Object.keys(state.overlayBoxes), "currentIds:", [...currentIds]);
   for (const [id, box] of Object.entries(state.overlayBoxes)) {
     if (now - box.lastSeen > BOX_TTL) {
+      console.log("Expired box:", id);
       delete state.overlayBoxes[id];
       continue;
     }
@@ -247,6 +257,9 @@ function drawOverlay(detections) {
   }
 
   updateFullscreenList(counts);
+
+  const newlyAppeared = [...currentIds].filter((id) => !previousIds.has(id));
+  if (newlyAppeared.length > 0) playBeep();
 }
 
 function startAutoDetection() {
@@ -554,6 +567,11 @@ async function detectCards(skipStart = false) {
 
   const summary = document.querySelector("#detectionSummary");
   summary.classList.remove("error");
+  console.log("detectCards result:", result);
+  if (result.detections && result.detections.length > 0) {
+    console.log("Detected marker_ids:", result.detections.map(d => d.marker_id));
+    console.log("Module marker_cards:", (state.module.marker_cards || []).map(c => c.marker_id));
+  }
   drawOverlay(result.detections);
 
   const currentCounts = result.selected_counts || {};
@@ -566,18 +584,15 @@ async function detectCards(skipStart = false) {
     state.stableFrameCount += 1;
   }
 
-  if (state.stableFrameCount >= 2) {
-    const previousStable = JSON.stringify(state.stableCounts);
-    const newStable = JSON.stringify(currentCounts);
-    if (previousStable !== newStable) {
-      const added = Object.keys(currentCounts).filter((id) => !state.stableCounts[id] || currentCounts[id] > state.stableCounts[id]);
-      setManualCounts(currentCounts);
-      state.stableCounts = currentCounts;
-      if (added.length > 0) playBeep();
-    }
+  const previousStable = JSON.stringify(state.stableCounts);
+  const newStable = JSON.stringify(currentCounts);
+  if (previousStable !== newStable) {
+    console.log("Updating manual counts:", currentCounts);
+    setManualCounts(currentCounts);
+    state.stableCounts = currentCounts;
   }
 
-  summary.textContent = `Scanning... ${result.detections.length} card(s) detected${state.stableFrameCount >= 2 ? " (stable)" : ""}.`;
+  summary.textContent = `Scanning... ${result.detections.length} card(s) detected.`;
   state.detectionInFlight = false;
   return true;
 }

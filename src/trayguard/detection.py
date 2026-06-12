@@ -6,6 +6,8 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+from trayguard.data_collection.classes import resolve_class_name
+
 
 def process_image(
     model: YOLO,
@@ -36,7 +38,7 @@ def process_image(
             detections.append(
                 {
                     "class_id": int(cls_id),
-                    "class_name": model.names[int(cls_id)],
+                    "class_name": resolve_class_name(model.names[int(cls_id)]),
                     "confidence": float(score),
                     "bbox_xyxy": [int(x1), int(y1), int(x2), int(y2)],
                 }

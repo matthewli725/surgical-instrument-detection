@@ -12,6 +12,7 @@ from trayguard.dataset_tools import (
     plan_shape_similarity_synthetic,
 )
 from trayguard.learning import card_cli
+from trayguard import classification as classification_module
 from trayguard.training import (
     benchmark,
     export_weights,
@@ -54,6 +55,10 @@ COMMANDS: dict[str, tuple[Command, str]] = {
     "train-class-folders-classification": (
         train_class_folders_classification.main,
         "Train classification model on auto-annotated class-folder dataset.",
+    ),
+    "classify-image": (
+        classification_module.main,
+        "Classify a single image using a trained YOLO classification model.",
     ),
 }
 

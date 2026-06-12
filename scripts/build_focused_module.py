@@ -48,7 +48,7 @@ required_items = [
     for i, inst_id in enumerate(required_ids)
 ]
 
-# Build lookalike pairs based on evidence from the basic_general_tray module
+# Build lookalike pairs based on clinical evidence
 lookalike_pairs = [
     {
         "id": "lookalike_mayo_curved_metz_7in",

@@ -125,11 +125,28 @@ def _features(instrument: Instrument) -> str:
     return "".join(f"<li>{html.escape(feature)}</li>" for feature in instrument.distinguishing_features)
 
 
+def _lookalike_lines(instrument_id: str, instruments: dict[str, Instrument], lookalikes: list[LookalikePair]) -> str:
+    lines: list[str] = []
+    for pair in lookalikes:
+        partner_id = None
+        if pair.expected_id == instrument_id:
+            partner_id = pair.selected_id
+        elif pair.selected_id == instrument_id:
+            partner_id = pair.expected_id
+        if partner_id and partner_id in instruments:
+            partner = instruments[partner_id]
+            lines.append(f"{html.escape(partner.display_name)} — {html.escape(pair.feedback_message)}")
+    if not lines:
+        lines.append("No documented lookalikes for this module.")
+    return "".join(f"<li>{line}</li>" for line in lines)
+
+
 def _write_flashcard_deck(
     title: str,
     instruments: dict[str, Instrument],
     marker_cards: list[MarkerCard],
     output_dir: Path,
+    lookalikes: list[LookalikePair] | None = None,
 ) -> Path:
     flashcard_path = output_dir / "flashcards.html"
 
@@ -173,16 +190,25 @@ def _write_flashcard_deck(
             else:
                 image_cells.append("<div class='placeholder'>Image pending</div>")
 
+            first_alias = instrument.aliases[0] if instrument.aliases else instrument.id
+            features_html = _features(instrument)
+            lookalike_html = _lookalike_lines(instrument.id, instruments, lookalikes or [])
+
             text_cells.append(
                 "<div class='text-card'>"
                 f"<h2>{html.escape(instrument.display_name)}</h2>"
-                f"<p><strong>Family:</strong> {html.escape(instrument.family)}</p>"
-                f"<p><strong>Aliases:</strong> {html.escape(', '.join(instrument.aliases) or '-')}</p>"
-                f"<ul>{_features(instrument)}</ul>"
-                f"<p class='source'><strong>Image:</strong> {html.escape(attribution or 'Pending source')}</p>"
+                f"<p class='subtitle'>Family: {html.escape(instrument.family)} · Catalog: {html.escape(first_alias)}</p>"
+                f"<h3>Key identification features</h3>"
+                f"<ul>{features_html}</ul>"
+                f"<h3>Common lookalikes</h3>"
+                f"<ul>{lookalike_html}</ul>"
+                f"<p class='aka'>Also known as: {html.escape(', '.join(instrument.aliases))}</p>"
+                f"<p class='source'>{html.escape(attribution or 'Pending source')}</p>"
                 "</div>"
             )
 
+        if len(text_cells) == 4:
+            text_cells = [text_cells[2], text_cells[3], text_cells[0], text_cells[1]]
         pages.append("<div class='page'><div class='image-grid'>" + "".join(image_cells) + "</div></div>")
         pages.append("<div class='page'><div class='text-grid'>" + "".join(text_cells) + "</div></div>")
 
@@ -193,18 +219,21 @@ def _write_flashcard_deck(
                 "<html><head><meta charset='utf-8'><title>TrayGuard Flashcards</title>",
                 "<style>",
                 "@page{margin:0}",
-                "body{margin:0;font-family:Arial,sans-serif;color:#111}",
+                "body{margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a1a;background:#f5f5f0}",
                 ".page{page-break-after:always}",
                 ".image-grid,.text-grid{display:grid;grid-template-columns:50% 50%;grid-template-rows:50% 50%;width:100vw;height:100vh}",
-                ".image-grid>*,.text-grid>*{outline:0.5px dashed #ccc;box-sizing:border-box}",
-                ".image-grid>.empty,.text-grid>.empty{outline:none}",
+                ".image-grid>*,.text-grid>*{box-sizing:border-box}",
+                ".image-grid>.empty,.text-grid>.empty{}",
                 ".image-grid img{width:100%;height:100%;object-fit:contain;background:#f7f7f7}",
-                ".text-card{padding:16px;box-sizing:border-box;overflow:hidden}",
-                ".text-card h2{font-size:17px;margin:0 0 8px}",
-                ".text-card p{font-size:12px;margin:5px 0}",
-                ".text-card li{font-size:12px;margin:3px 0}",
+                ".text-card{padding:32px 36px;box-sizing:border-box;overflow:hidden;background:#f5f5f0}",
+                ".text-card h2{font-size:30px;font-weight:700;margin:0 0 4px;color:#111}",
+                ".text-card .subtitle{font-size:15px;color:#666;margin:0 0 20px}",
+                ".text-card h3{font-size:17px;font-weight:600;color:#2563eb;margin:16px 0 6px}",
+                ".text-card ul{margin:4px 0 0;padding-left:18px}",
+                ".text-card li{font-size:15px;margin:4px 0;line-height:1.4}",
+                ".text-card .aka{font-size:14px;color:#888;font-style:italic;margin:14px 0 0}",
                 ".placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f7f7f7;color:#555}",
-                ".source{font-size:9px;color:#555}",
+                ".source{font-size:12px;color:#888;margin:16px 0 0;border-top:1px solid #ddd;padding-top:8px}",
                 "</style>",
                 "</head><body>",
                 *pages,
@@ -246,6 +275,7 @@ def print_cards(module: TrayModule, output_dir: Path) -> list[Path]:
         module.instruments,
         module.marker_cards,
         output_dir,
+        lookalikes=module.lookalike_pairs,
     )
     paths.append(flashcard_path)
     return paths

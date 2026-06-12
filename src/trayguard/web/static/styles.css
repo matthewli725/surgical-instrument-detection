@@ -52,7 +52,7 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 .split { display: grid; grid-template-columns: minmax(0, 2fr) 360px; gap: 1rem; }
 .muted { color: var(--muted); }
 .button-row { display: flex; gap: 0.65rem; flex-wrap: wrap; margin: 0.9rem 0; }
-.camera-panel { background: #17211d; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; display: grid; place-items: center; position: relative; }
+.camera-panel { background: #17211d; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; display: grid; grid-template-rows: minmax(0, 1fr); place-items: center; position: relative; }
 video { width: 100%; height: 100%; object-fit: cover; }
 #snapshotCanvas { display: none; }
 #overlaySvg {

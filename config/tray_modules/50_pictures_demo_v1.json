@@ -1,0 +1,37 @@
+{
+  "module_id": "50_pictures_demo_v1",
+  "version": "2026.06-class-folder-demo",
+  "name": "50 Pictures Demo Tray",
+  "procedure_family": "demo",
+  "source_note": "11 instrument classes collected via class-folder capture on uniform gray background.",
+  "instruments": [
+    {"id": "thumb_tissue_forceps_straight", "display_name": "Thumb Tissue Forceps, Straight", "family": "demo", "aliases": []},
+    {"id": "thumb_tissue_forceps_angled", "display_name": "Thumb Tissue Forceps, Angled", "family": "demo", "aliases": []},
+    {"id": "probing_rod", "display_name": "Probing Rod", "family": "demo", "aliases": []},
+    {"id": "butterfly_probe", "display_name": "Butterfly Probe", "family": "demo", "aliases": []},
+    {"id": "scalpel_handle_3", "display_name": "Scalpel Handle #3", "family": "demo", "aliases": []},
+    {"id": "scalpel_handle_4", "display_name": "Scalpel Handle #4", "family": "demo", "aliases": []},
+    {"id": "straight_pean_hemostat", "display_name": "Straight Pean Hemostat", "family": "demo", "aliases": []},
+    {"id": "mayo_hegar_needle_holder", "display_name": "Mayo-Hegar Needle Holder", "family": "demo", "aliases": []},
+    {"id": "lister_bandage_scissors", "display_name": "Lister Bandage Scissors", "family": "demo", "aliases": []},
+    {"id": "straight_dissecting_scissors", "display_name": "Straight Dissecting Scissors", "family": "demo", "aliases": []},
+    {"id": "curved_pean_hemostat", "display_name": "Curved Pean Hemostat", "family": "demo", "aliases": []}
+  ],
+  "required_items": [
+    {"instrument_id": "thumb_tissue_forceps_straight", "quantity": 1},
+    {"instrument_id": "thumb_tissue_forceps_angled", "quantity": 1},
+    {"instrument_id": "probing_rod", "quantity": 1},
+    {"instrument_id": "butterfly_probe", "quantity": 1},
+    {"instrument_id": "scalpel_handle_3", "quantity": 1},
+    {"instrument_id": "scalpel_handle_4", "quantity": 1},
+    {"instrument_id": "straight_pean_hemostat", "quantity": 1},
+    {"instrument_id": "mayo_hegar_needle_holder", "quantity": 1},
+    {"instrument_id": "lister_bandage_scissors", "quantity": 1},
+    {"instrument_id": "straight_dissecting_scissors", "quantity": 1},
+    {"instrument_id": "curved_pean_hemostat", "quantity": 1}
+  ],
+  "distractor_item_ids": [],
+  "lookalike_pairs": [],
+  "assessment_variants": [],
+  "marker_cards": []
+}

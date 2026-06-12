@@ -28,3 +28,22 @@ def load_class_names(classes_path: Path) -> list[str]:
 def write_class_names(classes_path: Path, class_names: list[str]) -> None:
     classes_path.parent.mkdir(parents=True, exist_ok=True)
     classes_path.write_text("\n".join(class_names) + "\n", encoding="utf-8")
+
+
+INSTRUMENT_NAME_MAP: dict[str, str] = {
+    "forcep_1": "Thumb tissue forceps, straight",
+    "forcep_2": "Thumb tissue forceps, angled",
+    "probe": "Probing rod",
+    "retractor": "Butterfly probe",
+    "scalpel_1": "Scalpel handle #3",
+    "scalpel_2": "Scalpel handle #4",
+    "scissor_1": "Straight Pean hemostat",
+    "scissor_2": "Mayo-Hegar needle holder",
+    "scissor_3": "Lister bandage scissors",
+    "scissor_4": "Straight dissecting scissors",
+    "scissor_5": "Curved Pean hemostat",
+}
+
+
+def resolve_class_name(raw_name: str) -> str:
+    return INSTRUMENT_NAME_MAP.get(raw_name, raw_name)

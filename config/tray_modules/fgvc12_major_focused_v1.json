@@ -30,8 +30,8 @@
         "JARIT_101-220"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_101-220",
-        "FGVC12 major tray image count: 12"
+        "Heavy straight blades, semi-blunt tips",
+        "Ring-handled cutting instrument"
       ],
       "image_refs": [
         {
@@ -76,8 +76,8 @@
         "JARIT_101-222"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_101-222",
-        "FGVC12 major tray image count: 12"
+        "Heavy curved blades, broader profile than Metzenbaum",
+        "Ring-handled cutting instrument"
       ],
       "image_refs": [
         {
@@ -122,8 +122,9 @@
         "JARIT_101-258"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_101-258",
-        "FGVC12 major tray image count: 12"
+        "Slim lightweight blades for delicate tissue",
+        "Narrower profile than Mayo scissors",
+        "Ring-handled cutting instrument"
       ],
       "image_refs": [
         {
@@ -168,8 +169,8 @@
         "JARIT_101-267"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_101-267",
-        "FGVC12 major tray image count: 14"
+        "Slim lightweight blades for delicate tissue",
+        "Longer than 7\" version, same shaft design"
       ],
       "image_refs": [
         {
@@ -214,8 +215,8 @@
         "JARIT_106-121"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_106-121",
-        "FGVC12 major tray image count: 13"
+        "Serrations run full jaw length",
+        "Curved profile"
       ],
       "image_refs": [
         {
@@ -260,8 +261,8 @@
         "JARIT_106-171"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_106-171",
-        "FGVC12 major tray image count: 12"
+        "Serrations on distal half of jaw only",
+        "Available in 6\" and 8\" lengths"
       ],
       "image_refs": [
         {
@@ -306,8 +307,8 @@
         "JARIT_106-191"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_106-191",
-        "FGVC12 major tray image count: 12"
+        "Serrations on distal half of jaw only",
+        "Longer overall than 6\" version"
       ],
       "image_refs": [
         {
@@ -352,8 +353,8 @@
         "JARIT_106-200"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_106-200",
-        "FGVC12 major tray image count: 12"
+        "Single tooth at tip plus full serrations",
+        "Available in 6\" and 8\" lengths"
       ],
       "image_refs": [
         {
@@ -398,8 +399,8 @@
         "JARIT_110-165"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_110-165",
-        "FGVC12 major tray image count: 14"
+        "Short handle for #3 blade",
+        "Also available in long version"
       ],
       "image_refs": [
         {
@@ -444,8 +445,8 @@
         "JARIT_121-140"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_121-140",
-        "FGVC12 major tray image count: 12"
+        "Short heavy jaws with cross-serration",
+        "Also available in 8\" version"
       ],
       "image_refs": [
         {
@@ -490,8 +491,8 @@
         "JARIT_121-145"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_121-145",
-        "FGVC12 major tray image count: 12"
+        "Same heavy-jaw design as 7\" version",
+        "Longer shaft for deeper access"
       ],
       "image_refs": [
         {
@@ -536,8 +537,8 @@
         "JARIT_130-234"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_130-234",
-        "FGVC12 major tray image count: 13"
+        "Short forceps with 1x2 teeth at tip",
+        "Used for fine tissue handling"
       ],
       "image_refs": [
         {
@@ -582,8 +583,8 @@
         "JARIT_135-195"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_135-195",
-        "FGVC12 major tray image count: 12"
+        "Smooth fenestrated jaws",
+        "Atraumatic tissue grasping"
       ],
       "image_refs": [
         {
@@ -628,8 +629,8 @@
         "JARIT_136-100"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_136-100",
-        "FGVC12 major tray image count: 12"
+        "Multiple interlocking teeth at tip",
+        "Used for grasping tissue that must be removed"
       ],
       "image_refs": [
         {
@@ -674,8 +675,8 @@
         "JARIT_136-181"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_136-181",
-        "FGVC12 major tray image count: 13"
+        "Smooth fenestrated jaws",
+        "Shorter and smaller than 9.5\" version"
       ],
       "image_refs": [
         {
@@ -720,8 +721,8 @@
         "JARIT_320-101"
       ],
       "distinguishing_features": [
-        "Source class: JARIT_320-101",
-        "FGVC12 major tray image count: 10"
+        "Long forceps with atraumatic longitudinal serrations",
+        "Thoracic tip design for gentle vessel handling"
       ],
       "image_refs": [
         {

@@ -15,8 +15,8 @@ if TYPE_CHECKING:
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
-DEFAULT_MODEL_PATH = PROJECT_ROOT / "weights" / "trayguard.pt"
+DEFAULT_MODULE_PATH = PROJECT_ROOT / "config" / "tray_modules" / "50_pictures_demo_v1.json"
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "weights" / "50_pictures_detection.pt"
 FALLBACK_MODEL_PATH = PROJECT_ROOT / "yolo11s.pt"
 DEFAULT_CAMERA_INDEX = 0
 
@@ -192,13 +192,13 @@ def main() -> None:
     module_path = st.sidebar.text_input("Tray module", value=str(DEFAULT_MODULE_PATH))
     try:
         module = get_tray_module(str(Path(module_path).expanduser()))
+        st.sidebar.caption(f"Loaded {module.name} ({module.module_id}, {module.total_required_units} required units)")
     except (OSError, ValueError) as exc:
-        st.error(f"Tray module could not be loaded: {exc}")
-        return
+        st.sidebar.warning(f"Tray module not loaded — running in detection-only mode: {exc}")
+        module = None
 
-    st.sidebar.caption(f"Loaded {module.name} ({module.module_id}, {module.total_required_units} required units)")
     model_path, camera_index = render_controls(state)
-    requirements = module_requirements(module)
+    requirements = module_requirements(module) if module else []
 
     model_file = Path(model_path).expanduser()
     with state.lock:

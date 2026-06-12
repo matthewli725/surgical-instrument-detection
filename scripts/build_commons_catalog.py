@@ -355,7 +355,7 @@ def main() -> None:
     existing = load_existing_names(
         [
             Path("config/instrument_catalogs/hospitools_dslr_v1.json"),
-            Path("config/tray_modules/basic_general_tray_v1.json"),
+            Path("config/tray_modules/fgvc12_major_focused_v1.json"),
         ]
     )
     duplicates = duplicate_rows(instruments, existing)
