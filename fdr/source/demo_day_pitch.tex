@@ -1,8 +1,8 @@
 % !TEX program = pdflatex
 % Demo Day pitch deck — 3 sequential sections:
 %   Passerby  (1--6):   60-second hook, self-contained
-%   Professor (7--23):  full story, self-contained
-%   Extra     (24--30): deep-dive Q\&A, flip here from anywhere
+%   Professor (7--25):  full story, self-contained
+%   Extra     (26--32): deep-dive Q\&A, flip here from anywhere
 % Reuses FDR presentation conventions.
 \documentclass[10pt,aspectratio=169]{beamer}
 
@@ -100,20 +100,20 @@
   \begin{columns}[T]
     \column{0.55\textwidth}
     \begin{itemize}
-      \item[\textbf{--}] Seven staged experiments: brightness, background, layout occlusion
+      \item[\textbf{--}] Seven staged experiments tested lighting, background, and tray layout
 
-      \item[\textbf{--}] \textbf{Every real condition} degraded detection
+      \item[\textbf{--}] The camera worked best only in clean lab conditions
 
-      \item[\textbf{--}] Occlusion: \textbf{mAP50--95 dropped to 0.389}
+      \item[\textbf{--}] When instruments touched, detection quality dropped sharply
 
       \item[\textbf{--}] The model learned \textbf{positions, not shapes}
 
-      \item[\textbf{--}] Site-specific data needed per hospital --- not feasible for one project
+      \item[\textbf{--}] Each hospital would need its own labeled image dataset
     \end{itemize}
     \vspace{0.4cm}
     \begin{alertblock}{}
       \centering
-      The data told us no.
+      The camera failed under the conditions trays actually create.
     \end{alertblock}
     \column{0.45\textwidth}
     \incfig{figures/overlay_map50_95.png}
@@ -142,9 +142,9 @@
       The real bottleneck is training the people who build trays.
     \end{exampleblock}
     \column{0.45\textwidth}
-    \incfig{figures/card_front_example.png}
+    \incfig[0.38\textwidth]{figures/card_front_example.png}
     \vspace{0.15cm}
-    \incfig{figures/card_back_example.png}
+    \incfig[0.38\textwidth]{figures/card_back_example.png}
   \end{columns}
 \end{frame}
 
@@ -194,9 +194,8 @@
 \end{frame}
 
 % ======================================================================
-%  SECTION 2: PROFESSOR PATH (slides 7--23, ~4--5 min)
-%  Add repeats of slides 2--6 here to make this section self-contained.
-%  See duplication instructions in the preamble comments.
+%  SECTION 2: PROFESSOR PATH (slides 7--25, ~4--5 min)
+%  Repeats of slides 2--6 included to make this section self-contained.
 % ======================================================================
 
 % -- Slide 7: Error by the Numbers ----------------------------------------
@@ -265,18 +264,20 @@
   \incfigw{figures/fishbone_rca.png}
   \vspace{0.2cm}
   \begin{center}
-    \footnotesize Six categories: instrument design, knowledge, process,
-    information, environment, policy.\\[0.1cm]
-    \footnotesize Three structural drivers: SPD as cost center, no licensure,
-    no OR→SPD information system.
+    \footnotesize Tray errors come from instrument similarity, learner knowledge,
+    process gaps, information flow, workspace conditions, and policy constraints.\\[0.1cm]
+    \footnotesize Three recurring drivers: SPD as cost center, no licensure,
+    no OR-to-SPD information system.
   \end{center}
-  \takeaway{Six causes. Three structural drivers.}
+  \takeaway{Tray errors come from a system, not a single mistake.}
 \end{frame}
 
 % -- Slide 10: Broken Feedback Loop ----------------------------------------
 \begin{frame}{The Broken Feedback Loop}
   \centering
   \incfigw{figures/feedback_loop.png}
+  \vspace{0.2cm}
+  \takeaway{SPD workers often receive delayed or incomplete feedback after tray errors.}
 \end{frame}
 
 % -- Slide 11: 7 CV Experiments --------------------------------------------
@@ -287,17 +288,17 @@
     \toprule
     Experiment & Condition & Impact \\
     \midrule
-    Brightness (train dark, test bright) & 80 → 800 lumens & mAP degrades with gap \\
-    Brightness (train bright, test dark) & 800 → 80 lumens & Same pattern, symmetric \\
+    Brightness (dark to bright) & 80 to 800 lumens & Accuracy dropped \\
+    Brightness (bright to dark) & 800 to 80 lumens & Same pattern \\
     Background reflectivity & Matte vs reflective & Matte best, reflective worst \\
-    Layout: separated → separated & Clean lab layout & mAP50 = 0.990 \\
-    Layout: separated → overlay & Instruments touching & mAP50--95 = 0.389 \\
-    Real instruments (kitchen proxy) & 6 classes, fixed positions & Per-class AP 0.000--0.862 \\
-    Real instruments (position check) & Split-1 vs Split-2 & Classes survive different splits \\
+    Clean layout & Instruments separated & Near-perfect detection \\
+    Overlap layout & Instruments touching & Detection dropped sharply \\
+    Real instruments & 6 classes, fixed positions & Mixed class accuracy \\
+    Position check & Different data splits & Position effects appeared \\
     \bottomrule
   \end{tabularx}
   \vspace{0.3cm}
-  \takeaway{Every real condition degraded detection.}
+  \takeaway{The closer the setup got to a real tray, the worse detection became.}
 \end{frame}
 
 % -- Slide 12: Occlusion Before / After ------------------------------------
@@ -321,7 +322,7 @@
 % -- Slide 13: Position vs Shape -------------------------------------------
 \begin{frame}{Evidence: Position vs Shape Learning}
   \begin{itemize}
-    \item[\textbf{--}] Per-class AP ranged from \textbf{0.000 to 0.862} depending on data split
+    \item[\textbf{--}] Accuracy changed by class depending on how the data was split
 
     \item[\textbf{--}] Different instrument classes survived in different splits
 
@@ -337,7 +338,60 @@
   \takeaway{The model memorized positions, not shapes.}
 \end{frame}
 
-% -- Slide 14: The Pivot: TrayGuard -------------------------------
+% -- Slide 14: The Problem ------------------------------------------------
+\begin{frame}{The Problem}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \begin{itemize}
+      \item[\textbf{--}] \textbf{9 defects per 100} surgical cases
+
+      \item[\textbf{--}] \textbf{55\%} occur during tray assembly
+
+      \item[\textbf{--}] \textbf{10 min} average delay per affected case
+
+      \item[\textbf{--}] \textbf{\$6.75--9.42M} estimated annual cost per hospital
+
+      \item[\textbf{--}] \textbf{44\%} of packaging errors: wrong specification
+    \end{itemize}
+    \vspace{0.4cm}
+    \begin{alertblock}{}
+      \centering
+      \emph{``The total count was correct. The specific instrument was wrong.''}
+    \end{alertblock}
+    \column{0.45\textwidth}
+    \incfig{figures/teammate_kelly_crile.jpg}
+    \vspace{0.1cm}
+    {\tiny Kelly vs Crile --- same family, different serration pattern}
+  \end{columns}
+\end{frame}
+
+% -- Slide 15: Why Cameras Failed -----------------------------------------
+\begin{frame}{Why Cameras Failed}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \begin{itemize}
+      \item[\textbf{--}] Seven staged experiments tested lighting, background, and tray layout
+
+      \item[\textbf{--}] The camera worked best only in clean lab conditions
+
+      \item[\textbf{--}] When instruments touched, detection quality dropped sharply
+
+      \item[\textbf{--}] The model learned \textbf{positions, not shapes}
+
+      \item[\textbf{--}] Each hospital would need its own labeled image dataset
+    \end{itemize}
+    \vspace{0.4cm}
+    \begin{alertblock}{}
+      \centering
+      The camera failed under the conditions trays actually create.
+    \end{alertblock}
+    \column{0.45\textwidth}
+    \incfig{figures/overlay_map50_95.png}
+    {\tiny mAP50--95 degradation under occlusion}
+  \end{columns}
+\end{frame}
+
+% -- Slide 16: The Pivot: TrayGuard -------------------------------
 \begin{frame}{The Pivot: TrayGuard}
   \begin{columns}[T]
     \column{0.55\textwidth}
@@ -358,13 +412,13 @@
       The real bottleneck is training the people who build trays.
     \end{exampleblock}
     \column{0.45\textwidth}
-    \incfig{figures/card_front_example.png}
+    \incfig[0.38\textwidth]{figures/card_front_example.png}
     \vspace{0.15cm}
-    \incfig{figures/card_back_example.png}
+    \incfig[0.38\textwidth]{figures/card_back_example.png}
   \end{columns}
 \end{frame}
 
-% -- Slide 15: Error Categories -------------------------------------------
+% -- Slide 17: Error Categories -------------------------------------------
 \begin{frame}{Design: Error Categories}
   \begin{columns}[T]
     \column{0.55\textwidth}
@@ -375,7 +429,7 @@
 
       \item[\textbf{--}] \textbf{Extra} --- selected item not required
 
-      \item[\textbf{--}] \textbf{Wrong} --- wrong instrument family
+      \item[\textbf{--}] \textbf{Wrong family} --- selected item is the wrong type
 
       \item[\textbf{--}] \textbf{Misidentified} --- lookalike substitution
 
@@ -400,7 +454,7 @@
   \takeaway{Same categories hospitals already track.}
 \end{frame}
 
-% -- Slide 16: Confidence Capture -----------------------------------------
+% -- Slide 18: Confidence Capture -----------------------------------------
 \begin{frame}{Design: Confidence Capture}
   \begin{columns}[T]
     \column{0.55\textwidth}
@@ -411,16 +465,10 @@
       \item Plus a \textbf{``Not sure''} flag
 
       \item \textbf{High-confidence error}: confidently wrong
-      \begin{itemize}
-        \item Hardest to correct --- learner doesn't know they need help
-      \end{itemize}
 
       \item \textbf{Low-confidence correct}: fragile knowledge
-      \begin{itemize}
-        \item May not survive a week without review
-      \end{itemize}
 
-      \item Both are exported in CSV/JSON
+      \item Both are flagged for review in CSV/JSON exports
     \end{itemize}
     \column{0.45\textwidth}
     \incfig{figures/confidence_mockup.png}
@@ -429,12 +477,12 @@
   \takeaway{Confidently wrong is not the same as fragile knowledge.}
 \end{frame}
 
-% -- Slide 17: Scope Boundaries --------------------------------------------
-\begin{frame}{Scope Boundaries}
+% -- Slide 19: Scope Boundaries --------------------------------------------
+\begin{frame}{TrayGuard Scope}
   \vspace{0.3cm}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{block}{\centering What TrayGuard Does}
+    \begin{block}{\centering Current Scope}
       \begin{itemize}
         \item Local tray familiarization
         \item Lookalike discrimination practice
@@ -443,12 +491,12 @@
       \end{itemize}
     \end{block}
     \column{0.48\textwidth}
-    \begin{alertblock}{\centering What It Does NOT Do}
+    \begin{alertblock}{\centering Outside Current Scope}
       \begin{itemize}
-        \item Replace CRCST certification
-        \item Inspect instrument damage or wear
-        \item Fix staffing shortages or wages
-        \item Close the OR→SPD feedback loop
+        \item CRCST certification
+        \item Instrument damage or wear inspection
+        \item Staffing and wage policy
+        \item OR-to-SPD feedback infrastructure
       \end{itemize}
     \end{alertblock}
   \end{columns}
@@ -456,13 +504,13 @@
   \takeaway{Claim bounded to: improvement on a simulated task in one session.}
 \end{frame}
 
-% -- Slide 18: Alternatives Considered -------------------------------------
-\begin{frame}{Alternatives Considered}
+% -- Slide 20: Alternatives Considered -------------------------------------
+\begin{frame}{Why Training Was the Buildable Path}
   \vspace{0.2cm}
   \footnotesize
   \begin{tabularx}{\textwidth}{l X}
     \toprule
-    Approach & Why not buildable by a student team \\
+    Approach & What it required \\
     \midrule
     Automated tray checking (CV) & Per-hospital datasets, cross-manufacturer
     validation, regulatory review \\
@@ -484,7 +532,7 @@
   \takeaway{Training was the only buildable path.}
 \end{frame}
 
-% -- Slide 19: How It Works (repeat of slide 5) ----------------------------
+% -- Slide 21: How It Works (repeat of slide 5) ----------------------------
 \begin{frame}{Design: How It Works}
   \centering
   \incfigw[0.88\textwidth]{figures/learning_loop.png}
@@ -514,7 +562,7 @@
   \end{columns}
 \end{frame}
 
-% -- Slide 20: Study Ladder -----------------------------------------------
+% -- Slide 22: Study Ladder -----------------------------------------------
 \begin{frame}{Evaluation: The Study Ladder}
   \centering
   \incfigw{figures/study_ladder.png}
@@ -530,27 +578,27 @@
   \takeaway{Each step validates the next.}
 \end{frame}
 
-% -- Slide 21: Falsification Criteria -------------------------------------
-\begin{frame}{Evaluation: Falsification Criteria}
+% -- Slide 23: Falsification Criteria -------------------------------------
+\begin{frame}{Evaluation: 7-Day Success Criteria}
   \centering
-  \vspace{0.8cm}
-  {\large For the 7-day retention check (Study 2):}\\[1cm]
+  \vspace{0.6cm}
+  {\large What counts as success after one week?}\\[0.8cm]
   \begin{enumerate}
     \item \textbf{Delayed accuracy retains at least half} of the immediate gain
-    \vspace{0.6cm}
+    \vspace{0.5cm}
     \item \textbf{At least 5 percentage points above baseline}
-    \vspace{0.6cm}
+    \vspace{0.5cm}
     \item \textbf{At least 70\% of participants return} for the follow-up
   \end{enumerate}
-  \vspace{0.8cm}
+  \vspace{0.6cm}
   \begin{alertblock}{}
     \centering
-    If any criterion fails: the claim reverts to \textbf{``immediate learning only.''}
+    If any criterion fails, the result supports \textbf{immediate learning only.}
   \end{alertblock}
-  \takeaway{We specify upfront what would falsify our claim.}
+  \takeaway{The retention claim has a predefined threshold.}
 \end{frame}
 
-% -- Slide 22: What We Accomplished ----------------------------------------
+% -- Slide 24: What We Accomplished ----------------------------------------
 \begin{frame}{What We Accomplished}
   \vspace{0.2cm}
   \begin{itemize}
@@ -570,7 +618,7 @@
   \takeaway{A rigorous no on CV is a real finding.}
 \end{frame}
 
-% -- Slide 23: What We Need (repeat of slide 6) ----------------------------
+% -- Slide 25: What We Need (repeat of slide 6) ----------------------------
 \begin{frame}{What We Need}
   \centering
   \vspace{0.8cm}
@@ -586,10 +634,10 @@
 \end{frame}
 
 % ======================================================================
-%  SECTION 3: EXTRA Q\&A (slides 24--30)
+%  SECTION 3: EXTRA Q\&A (slides 26--32)
 % ======================================================================
 
-% -- Slide 24: Not Just Flashcards -----------------------------------------
+% -- Slide 26: Not Just Flashcards -----------------------------------------
 \begin{frame}{Q\&A: How Is This Different from Flashcards?}
   \vspace{0.2cm}
   \footnotesize
@@ -608,7 +656,7 @@
   \takeaway{The applied task, not just memorization.}
 \end{frame}
 
-% -- Slide 25: Why AprilTags -----------------------------------------------
+% -- Slide 27: Why AprilTags -----------------------------------------------
 \begin{frame}{Q\&A: Why AprilTags?}
   \vspace{0.2cm}
   \begin{itemize}
@@ -626,7 +674,7 @@
   \takeaway{Designed for tabletop cameras, not phones.}
 \end{frame}
 
-% -- Slide 26: Anti-Memorization Design ------------------------------------
+% -- Slide 28: Anti-Memorization Design ------------------------------------
 \begin{frame}{Q\&A: Anti-Memorization Design}
   \begin{columns}[T]
     \column{0.40\textwidth}
@@ -649,29 +697,28 @@
   \takeaway{You cannot pass by memorizing card positions.}
 \end{frame}
 
-% -- Slide 27: Customizable Tray Module ------------------------------------
-\begin{frame}[fragile]{Q\&A: Customizable Tray Module}
+% -- Slide 29: Customizable Tray Module ------------------------------------
+\begin{frame}{Q\&A: Customizable Tray Module}
   \begin{columns}[T]
     \column{0.52\textwidth}
-    \begin{verbatim}
-{
-  "instrument_id": "hospital_kelly_6in",
-  "display_name": "Clamp Kelly 6\"",
-  "family": "Clamping/occluding",
-  "aliases": ["KELLY 6\"",
-              "Kelly clamp 6"],
-  "lookalike_pairs": [
-    { "expected": "kelly_6in",
-      "selected": "crile_5_5",
-      "feedback": "Check serration
-                    pattern..." }
-  ],
-  "required_items": [
-    { "instrument": "kelly_6in",
-      "quantity": 2 }
-  ]
-}
-    \end{verbatim}
+    \footnotesize
+    \begin{tabularx}{\columnwidth}{l X}
+      \toprule
+      Field & Example \\
+      \midrule
+      Instrument ID & \texttt{hospital\_kelly\_6in} \\
+      Display name & Clamp Kelly 6'' \\
+      Local aliases & KELLY 6'', Kelly clamp 6 \\
+      Required count & 2 \\
+      Lookalike pair & Kelly 6'' vs Crile 5.5'' \\
+      Feedback text & Check serration pattern \\
+      \bottomrule
+    \end{tabularx}
+    \vspace{0.35cm}
+    \begin{block}{}
+      \centering
+      \small One tray module stores the local names, counts, and lookalike feedback.
+    \end{block}
     \column{0.48\textwidth}
     \begin{itemize}
       \item[\textbf{--}] Single editable JSON file per hospital tray
@@ -691,7 +738,7 @@
   \takeaway{Edit the file. Reprint the cards.}
 \end{frame}
 
-% -- Slide 28: Per-Hospital Data Burden ------------------------------------
+% -- Slide 30: Per-Hospital Data Burden ------------------------------------
 \begin{frame}{Q\&A: Per-Hospital Data Burden}
   \vspace{0.2cm}
   \begin{itemize}
@@ -711,7 +758,7 @@
   \takeaway{Not a one-project problem.}
 \end{frame}
 
-% -- Slide 29: Cost \& Next Steps ------------------------------------------
+% -- Slide 31: Cost \& Next Steps ------------------------------------------
 \begin{frame}{Q\&A: Cost \& Next Steps}
   \begin{columns}[T]
     \column{0.50\textwidth}
@@ -750,7 +797,7 @@
   \takeaway{\$53 in materials. Clinical validation first.}
 \end{frame}
 
-% -- Slide 30: End ---------------------------------------------------------
+% -- Slide 32: End ---------------------------------------------------------
 \begin{frame}
   \centering
   \vfill

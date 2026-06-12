@@ -286,25 +286,84 @@ function stopAutoDetection() {
 function cleanupCamera() {
   stopAutoDetection();
   const svg = document.querySelector("#overlaySvg");
-  if (svg) svg.innerHTML = "";
+  if (svg) {
+    svg.innerHTML = "";
+    svg.style.display = "";
+  }
   state.overlayBoxes = {};
   if (state.stream) {
     state.stream.getTracks().forEach((track) => track.stop());
     state.stream = null;
   }
   const video = document.querySelector("#video");
-  if (video) video.srcObject = null;
+  if (video) {
+    video.srcObject = null;
+    video.style.display = "";
+  }
+  const canvas = document.querySelector("#snapshotCanvas");
+  if (canvas) {
+    canvas.classList.remove("snapshot-visible");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
 }
 
 function handleVisibilityChange() {
   if (document.hidden) {
     stopAutoDetection();
-  } else if (state.stream && state.stream.active) {
+  } else if (state.stream && state.stream.active && state.currentStep === "practice") {
     startAutoDetection();
   }
 }
 
 document.addEventListener("visibilitychange", handleVisibilityChange);
+
+function drawSnapshot(canvas, detections) {
+  const ctx = canvas.getContext("2d");
+  for (const detection of detections) {
+    if (!detection.instrument_id || !detection.corners) continue;
+    const corners = detection.corners;
+    const name = state.module.instruments[detection.instrument_id]?.display_name || "Unknown";
+    ctx.beginPath();
+    ctx.moveTo(corners[0][0], corners[0][1]);
+    for (let i = 1; i < corners.length; i += 1) {
+      ctx.lineTo(corners[i][0], corners[i][1]);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = "#00ff00";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    const x = corners[0][0];
+    const y = corners[0][1] - 8;
+    ctx.font = "bold 14px Inter, sans-serif";
+    const textWidth = ctx.measureText(name).width;
+    ctx.fillStyle = "rgba(0,0,0,0.6)";
+    ctx.fillRect(x, y - 18, textWidth + 8, 20);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(name, x + 4, y);
+  }
+}
+
+async function captureAndDetect() {
+  const video = document.querySelector("#video");
+  const canvas = document.querySelector("#snapshotCanvas");
+  canvas.width = video.videoWidth || 1280;
+  canvas.height = video.videoHeight || 720;
+  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+  const image = canvas.toDataURL("image/png");
+  const result = await api("/api/detect-cards", { method: "POST", body: JSON.stringify({ image }) });
+  return result;
+}
+
+async function takeSnapshot() {
+  const canvas = document.querySelector("#snapshotCanvas");
+  const result = await captureAndDetect();
+  drawSnapshot(canvas, result.detections);
+  canvas.classList.add("snapshot-visible");
+  const currentCounts = result.selected_counts || {};
+  setManualCounts(currentCounts);
+  return result;
+}
 
 function toggleFullscreen() {
   const panel = document.querySelector(".camera-panel");
@@ -313,26 +372,6 @@ function toggleFullscreen() {
   } else {
     panel.requestFullscreen();
   }
-}
-
-function setupFloatingControls() {
-  const panel = document.querySelector(".camera-panel");
-  const controls = document.querySelector("#floatingControls");
-  let timeout;
-
-  if (!panel || !controls) return;
-
-  panel.addEventListener("mousemove", () => {
-    if (document.fullscreenElement) {
-      controls.style.opacity = "1";
-      controls.style.pointerEvents = "auto";
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        controls.style.opacity = "0";
-        controls.style.pointerEvents = "none";
-      }, 2000);
-    }
-  });
 }
 
 document.addEventListener("fullscreenchange", () => {
@@ -346,8 +385,75 @@ document.addEventListener("fullscreenchange", () => {
   }
 });
 
+function setupResizableSplit() {
+  const split = document.querySelector(".split");
+  const divider = document.querySelector(".divider");
+  if (!split || !divider) return;
+
+  let isDragging = false;
+  const minLeft = 300;
+  const minRight = 280;
+
+  const getContainerWidth = () => split.parentElement?.clientWidth || split.clientWidth;
+
+  const setLeftWidth = (px) => {
+    const containerWidth = getContainerWidth();
+    const maxLeft = containerWidth - minRight - 4; // 4px divider
+    const clamped = Math.max(minLeft, Math.min(px, maxLeft));
+    split.style.gridTemplateColumns = `${clamped}px 4px 1fr`;
+    return clamped;
+  };
+
+  divider.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    divider.classList.add("dragging");
+    e.preventDefault();
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    const rect = split.getBoundingClientRect();
+    const relativeX = e.clientX - rect.left;
+    setLeftWidth(relativeX);
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    divider.classList.remove("dragging");
+    const currentWidth = parseInt(split.style.gridTemplateColumns, 10);
+    if (currentWidth) {
+      localStorage.setItem("trayguard_split_width", `${currentWidth}px`);
+    }
+  });
+}
+
 function renderSteps() {
+  const isCollapsed = stepsNav.classList.contains("collapsed");
   stepsNav.innerHTML = "";
+  if (isCollapsed) {
+    const restoreBtn = document.createElement("button");
+    restoreBtn.className = "toggle-steps-restore";
+    restoreBtn.textContent = "▶";
+    restoreBtn.title = "Expand sidebar";
+    restoreBtn.onclick = () => {
+      stepsNav.classList.remove("collapsed");
+      localStorage.setItem("trayguard_steps_collapsed", "false");
+      renderSteps();
+    };
+    stepsNav.appendChild(restoreBtn);
+    return;
+  }
+  const toggleBtn = document.createElement("button");
+  toggleBtn.className = "toggle-steps";
+  toggleBtn.textContent = "◀";
+  toggleBtn.title = "Collapse sidebar";
+  toggleBtn.onclick = () => {
+    stepsNav.classList.add("collapsed");
+    localStorage.setItem("trayguard_steps_collapsed", "true");
+    renderSteps();
+  };
+  stepsNav.appendChild(toggleBtn);
   for (const [id, label] of steps) {
     const button = document.createElement("button");
     button.className = `step ${state.currentStep === id ? "active" : ""}`;
@@ -471,6 +577,12 @@ function renderTraySort({ mode, variantId, title, copy, feedback }) {
   }
   app.innerHTML = "";
   app.appendChild(template);
+  const split = document.querySelector(".split");
+  const savedWidth = localStorage.getItem("trayguard_split_width");
+  if (savedWidth && split) {
+    split.style.gridTemplateColumns = `${savedWidth} 4px 1fr`;
+  }
+  setupResizableSplit();
   const startBtn = document.querySelector("#startCamera");
   if (startBtn) {
     startBtn.textContent = state.stream ? "Stop camera" : "Start camera";
@@ -480,22 +592,65 @@ function renderTraySort({ mode, variantId, title, copy, feedback }) {
   if (fullscreenBtn) fullscreenBtn.onclick = toggleFullscreen;
   const exitFullscreenBtn = document.querySelector("#exitFullscreenBtn");
   if (exitFullscreenBtn) exitFullscreenBtn.onclick = toggleFullscreen;
-  setupFloatingControls();
-  document.querySelector("#submitSort").onclick = async () => {
-    const selectedCounts = selectedCountsFromInputs();
-    const result = await api(`/api/runs/${state.run.run_id}/score`, {
-      method: "POST",
-      body: JSON.stringify({
-        mode,
-        variant_id: variantId,
-        selected_counts: selectedCounts,
-        started_at: startedAt.toISOString(),
-        duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
-        overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
-      }),
-    });
-    state.attempts[mode] = result;
-    renderAttemptResult(result, feedback, mode);
+  const submitBtn = document.querySelector("#submitSort");
+  submitBtn.onclick = async () => {
+    if (mode === "practice") {
+      const selectedCounts = selectedCountsFromInputs();
+      const result = await api(`/api/runs/${state.run.run_id}/score`, {
+        method: "POST",
+        body: JSON.stringify({
+          mode,
+          variant_id: variantId,
+          selected_counts: selectedCounts,
+          started_at: startedAt.toISOString(),
+          duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
+          overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
+        }),
+      });
+      state.attempts[mode] = result;
+      renderAttemptResult(result, feedback, mode);
+      return;
+    }
+
+    const video = document.querySelector("#video");
+    const summary = document.querySelector("#detectionSummary");
+    if (!video.srcObject) {
+      summary.textContent = "Please start the camera first.";
+      summary.classList.add("error");
+      return;
+    }
+
+    const detectResult = await takeSnapshot();
+    if (!detectResult) {
+      summary.textContent = "Snapshot failed. You can still use manual fallback.";
+      summary.classList.add("error");
+      return;
+    }
+
+    stopAutoDetection();
+    video.style.display = "none";
+    const svg = document.querySelector("#overlaySvg");
+    if (svg) svg.style.display = "none";
+
+    summary.textContent = "Snapshot taken. Review detected cards.";
+    summary.classList.remove("error");
+    submitBtn.textContent = "Next";
+    submitBtn.onclick = async () => {
+      const selectedCounts = selectedCountsFromInputs();
+      const result = await api(`/api/runs/${state.run.run_id}/score`, {
+        method: "POST",
+        body: JSON.stringify({
+          mode,
+          variant_id: variantId,
+          selected_counts: selectedCounts,
+          started_at: startedAt.toISOString(),
+          duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
+          overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
+        }),
+      });
+      state.attempts[mode] = result;
+      renderAttemptResult(result, feedback, mode);
+    };
   };
 }
 
@@ -533,9 +688,14 @@ async function startCamera() {
   };
   await video.play();
   initAudio();
-  startAutoDetection();
+  if (state.currentStep === "practice") {
+    startAutoDetection();
+  }
   if (startBtn) startBtn.textContent = "Stop camera";
-  summary.textContent = "Camera is live. Auto-detecting cards...";
+  summary.textContent = "Camera is live.";
+  if (state.currentStep === "practice") {
+    summary.textContent += " Auto-detecting cards...";
+  }
   return true;
 }
 
@@ -548,15 +708,9 @@ async function detectCards(skipStart = false) {
   if (state.detectionInFlight) return false;
   state.detectionInFlight = true;
 
-  const canvas = document.querySelector("#snapshotCanvas");
-  canvas.width = video.videoWidth || 1280;
-  canvas.height = video.videoHeight || 720;
-  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-  const image = canvas.toDataURL("image/png");
-
   let result;
   try {
-    result = await api("/api/detect-cards", { method: "POST", body: JSON.stringify({ image }) });
+    result = await captureAndDetect();
   } catch (error) {
     const summary = document.querySelector("#detectionSummary");
     summary.textContent = "Detection failed. Using manual fallback.";
@@ -741,6 +895,9 @@ function render() {
 
 async function init() {
   state.module = await api("/api/module");
+  if (localStorage.getItem("trayguard_steps_collapsed") === "true") {
+    stepsNav.classList.add("collapsed");
+  }
   renderSteps();
   setStep("intake");
 }
