@@ -16,11 +16,11 @@ DEFAULT_CATALOG_OUTPUT_DIR = Path("outputs/cards/hospitools_dslr_v1")
 
 
 def main(argv: Sequence[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(prog="trayguard print-cards", description="Generate neutral printable ArUco card assets.")
+    parser = argparse.ArgumentParser(prog="trayguard print-cards", description="Generate neutral printable AprilTag card assets.")
     parser.add_argument("--module", type=Path, default=DEFAULT_MODULE, help="Tray module JSON file.")
     parser.add_argument("--catalog", type=Path, help="Instrument catalog JSON file. When set, prints catalog flashcards instead of tray cards.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Output directory for marker PNGs and index.html.")
-    parser.add_argument("--marker-start", type=int, default=100, help="First ArUco marker ID for catalog flashcards.")
+    parser.add_argument("--marker-start", type=int, default=100, help="First AprilTag marker ID for catalog flashcards.")
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     if args.catalog:

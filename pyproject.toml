@@ -37,3 +37,6 @@ where = ["src"]
 dev = [
     "pytest>=9.0.3",
 ]
+fdr = [
+    "playwright>=1.52.0",
+]

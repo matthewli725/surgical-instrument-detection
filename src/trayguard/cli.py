@@ -43,7 +43,7 @@ COMMANDS: dict[str, tuple[Command, str]] = {
     "benchmark": (benchmark.main, "Train and evaluate standard model variants."),
     "app": (streamlit_runner.main, "Launch the Streamlit tray detection UI."),
     "train-app": (web_runner.main, "Launch the TrayGuard educational training web app."),
-    "print-cards": (card_cli.main, "Generate printable ArUco card assets for a tray module."),
+    "print-cards": (card_cli.main, "Generate printable AprilTag card assets for a tray module."),
     "auto-annotate-class-folders": (
         auto_annotate_class_folders.main,
         "Auto-annotate class-folder images with bounding boxes via background subtraction.",

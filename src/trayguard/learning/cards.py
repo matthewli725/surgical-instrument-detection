@@ -160,7 +160,7 @@ def _write_flashcard_deck(
         if marker_id is not None:
             marker_dir = output_dir / "markers"
             marker_dir.mkdir(parents=True, exist_ok=True)
-            marker_path = marker_dir / f"aruco_{marker_id:03d}_{instrument.id}_flashcard.png"
+            marker_path = marker_dir / f"apriltag_{marker_id:03d}_{instrument.id}_flashcard.png"
             generate_marker_png(marker_id, marker_path)
         image_src, attribution = _copy_flashcard_image(instrument, output_dir, marker_path)
         image_cache[instrument.id] = (image_src, attribution)
@@ -252,17 +252,17 @@ def print_cards(module: TrayModule, output_dir: Path) -> list[Path]:
         "<!doctype html>",
         "<html><head><meta charset='utf-8'><title>TrayGuard Cards</title>",
         "<style>body{font-family:Arial,sans-serif}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{border:1px solid #222;padding:16px;break-inside:avoid}.marker{width:180px;height:180px}.meta{font-size:12px;color:#555}</style>",
-        "</head><body><h1>TrayGuard Neutral ArUco Cards</h1><div class='grid'>",
+        "</head><body><h1>TrayGuard Neutral AprilTag Cards</h1><div class='grid'>",
     ]
     marker_dir = output_dir / "markers"
     marker_dir.mkdir(parents=True, exist_ok=True)
     for card in module.marker_cards:
-        marker_path = marker_dir / f"aruco_{card.marker_id:03d}_{card.card_id}.png"
+        marker_path = marker_dir / f"apriltag_{card.marker_id:03d}_{card.card_id}.png"
         generate_marker_png(card.marker_id, marker_path)
         paths.append(marker_path)
         rows.append(
             "<section class='card'>"
-            f"<img class='marker' src='markers/{marker_path.name}' alt='ArUco marker {card.marker_id}'>"
+            f"<img class='marker' src='markers/{marker_path.name}' alt='AprilTag marker {card.marker_id}'>"
             f"<p class='meta'>Card {card.card_id} | Marker {card.marker_id}</p>"
             "</section>"
         )
