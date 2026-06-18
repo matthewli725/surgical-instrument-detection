@@ -1,18 +1,18 @@
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
 import sys
+from collections.abc import Callable, Sequence
 
-from trayguard.data_collection import class_folder_collect, collect
+from trayguard import classification as classification_module
 from trayguard.app import streamlit_runner
+from trayguard.data_collection import class_folder_collect, collect
 from trayguard.dataset_tools import (
     auto_annotate_class_folders,
     download_lavado,
     export_collected_yolo,
     plan_shape_similarity_synthetic,
 )
-from trayguard.learning import card_cli
-from trayguard import classification as classification_module
+from trayguard.learning import card_cli, smoke
 from trayguard.training import (
     benchmark,
     export_weights,
@@ -21,7 +21,6 @@ from trayguard.training import (
     train_class_folders_detection,
 )
 from trayguard.web import runner as web_runner
-
 
 Command = Callable[[Sequence[str]], None]
 
@@ -32,18 +31,34 @@ COMMANDS: dict[str, tuple[Command, str]] = {
         class_folder_collect.main,
         "Rapidly capture single-instrument images into one folder per class.",
     ),
-    "export-yolo": (export_collected_yolo.main, "Flatten collected sessions into a YOLO dataset."),
+    "export-yolo": (
+        export_collected_yolo.main,
+        "Flatten collected sessions into a YOLO dataset.",
+    ),
     "plan-shape-similarity-synthetic": (
         plan_shape_similarity_synthetic.main,
         "Plan Blender-ready synthetic renders and emit the shape-similarity source manifest.",
     ),
-    "download-lavado": (download_lavado.main, "Download the Lavado Kaggle dataset and export YOLO data."),
-    "export-weights": (export_weights.main, "Copy trained best.pt weights into the TrayGuard demo path."),
+    "download-lavado": (
+        download_lavado.main,
+        "Download the Lavado Kaggle dataset and export YOLO data.",
+    ),
+    "export-weights": (
+        export_weights.main,
+        "Copy trained best.pt weights into the TrayGuard demo path.",
+    ),
     "train": (train.main, "Train one object detection model."),
     "benchmark": (benchmark.main, "Train and evaluate standard model variants."),
     "app": (streamlit_runner.main, "Launch the Streamlit tray detection UI."),
-    "train-app": (web_runner.main, "Launch the TrayGuard educational training web app."),
-    "print-cards": (card_cli.main, "Generate printable AprilTag card assets for a tray module."),
+    "train-app": (
+        web_runner.main,
+        "Launch the TrayGuard educational training web app.",
+    ),
+    "print-cards": (
+        card_cli.main,
+        "Generate printable AprilTag card assets for a tray module.",
+    ),
+    "smoke-learning": (smoke.main, "Run a fast smoke test for the learning workflow."),
     "auto-annotate-class-folders": (
         auto_annotate_class_folders.main,
         "Auto-annotate class-folder images with bounding boxes via background subtraction.",
@@ -84,7 +99,9 @@ def main(argv: Sequence[str] | None = None) -> None:
     command_name = args[0]
     if command_name not in COMMANDS:
         available = ", ".join(COMMANDS)
-        raise SystemExit(f"Unknown command '{command_name}'. Available commands: {available}")
+        raise SystemExit(
+            f"Unknown command '{command_name}'. Available commands: {available}"
+        )
 
     command, _description = COMMANDS[command_name]
     command(args[1:])

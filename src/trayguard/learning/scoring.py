@@ -1,9 +1,15 @@
 from __future__ import annotations
 
 from collections import Counter
+from collections.abc import Mapping
 from datetime import datetime, timezone
 
-from trayguard.learning.models import AttemptResult, ItemResult, LookalikePair, TrayModule
+from trayguard.learning.models import (
+    AttemptResult,
+    ItemResult,
+    LookalikePair,
+    TrayModule,
+)
 
 
 def _now() -> str:
@@ -18,10 +24,26 @@ def _instrument_name(module: TrayModule, instrument_id: str) -> str:
 
 
 def _lookalike_lookup(module: TrayModule) -> dict[tuple[str, str], LookalikePair]:
-    return {(pair.expected_id, pair.selected_id): pair for pair in module.lookalike_pairs}
+    return {
+        (pair.expected_id, pair.selected_id): pair for pair in module.lookalike_pairs
+    }
 
 
-def _pop_pair(missing: list[str], surplus: list[str], lookup: dict[tuple[str, str], LookalikePair]) -> tuple[str, str, LookalikePair] | None:
+def _required_for_variant(module: TrayModule, variant_id: str) -> Counter[str]:
+    variant = module.assessment_variants.get(variant_id)
+    if variant and variant.required_item_ids:
+        return Counter(
+            {
+                instrument_id: module.required_items[instrument_id].quantity
+                for instrument_id in variant.required_item_ids
+            }
+        )
+    return Counter({key: item.quantity for key, item in module.required_items.items()})
+
+
+def _pop_pair(
+    missing: list[str], surplus: list[str], lookup: dict[tuple[str, str], LookalikePair]
+) -> tuple[str, str, LookalikePair] | None:
     for expected_id in list(missing):
         for selected_id in list(surplus):
             pair = lookup.get((expected_id, selected_id))
@@ -57,8 +79,14 @@ def score_tray(
     blocking_help_requests: int = 0,
     completed_full_flow: bool = False,
 ) -> AttemptResult:
-    selected = Counter({key: max(0, int(value)) for key, value in selected_counts.items() if int(value) > 0})
-    required = Counter({key: item.quantity for key, item in module.required_items.items()})
+    selected = Counter(
+        {
+            key: max(0, int(value))
+            for key, value in selected_counts.items()
+            if int(value) > 0
+        }
+    )
+    required = _required_for_variant(module, variant_id)
 
     missing_units: list[str] = []
     surplus_units: list[str] = []
@@ -97,6 +125,7 @@ def score_tray(
         item_results.append(
             _item_result(
                 module,
+                required,
                 expected_id,
                 selected_id,
                 selected[selected_id],
@@ -105,6 +134,7 @@ def score_tray(
                 overall_confidence,
                 not_sure,
                 lookalike.id,
+                lookalike.feedback_message,
             )
         )
 
@@ -116,16 +146,56 @@ def score_tray(
         wrong_count += 1
         paired_expected.add(expected_id)
         item_results.append(
-            _item_result(module, expected_id, selected_id, selected[selected_id], "wrong", "", overall_confidence, not_sure, "wrong")
+            _item_result(
+                module,
+                required,
+                expected_id,
+                selected_id,
+                selected[selected_id],
+                "wrong",
+                "",
+                overall_confidence,
+                not_sure,
+                "wrong",
+                "Selected instrument does not match the required item.",
+            )
         )
 
     for expected_id in missing_units:
         missing_count += 1
-        item_results.append(_item_result(module, expected_id, "", 0, "missing", "", overall_confidence, not_sure, "missing"))
+        item_results.append(
+            _item_result(
+                module,
+                required,
+                expected_id,
+                "",
+                0,
+                "missing",
+                "",
+                overall_confidence,
+                not_sure,
+                "missing",
+                "Required instrument was not selected.",
+            )
+        )
 
     for selected_id in surplus_units:
         extra_count += 1
-        item_results.append(_item_result(module, "", selected_id, selected[selected_id], "extra", "", overall_confidence, not_sure, "extra"))
+        item_results.append(
+            _item_result(
+                module,
+                required,
+                "",
+                selected_id,
+                selected[selected_id],
+                "extra",
+                "",
+                overall_confidence,
+                not_sure,
+                "extra",
+                "Selected instrument is not required for this tray.",
+            )
+        )
 
     for instrument_id, required_qty in required.items():
         selected_qty = selected[instrument_id]
@@ -135,6 +205,7 @@ def score_tray(
                 item_results.append(
                     _item_result(
                         module,
+                        required,
                         instrument_id,
                         instrument_id,
                         selected_qty,
@@ -143,19 +214,42 @@ def score_tray(
                         overall_confidence,
                         not_sure,
                         "wrong_count",
+                        "Selected quantity does not match the required count.",
                     )
                 )
         elif instrument_id not in paired_expected:
             item_results.append(
-                _item_result(module, instrument_id, instrument_id, selected_qty, "correct", "", overall_confidence, not_sure, "")
+                _item_result(
+                    module,
+                    required,
+                    instrument_id,
+                    instrument_id,
+                    selected_qty,
+                    "correct",
+                    "",
+                    overall_confidence,
+                    not_sure,
+                    "",
+                    "",
+                )
             )
 
     error_points = missing_count + extra_count + wrong_count + misidentified_count
-    total_required_units = module.total_required_units
-    accuracy_score = max(0.0, 100 * (1 - error_points / total_required_units)) if total_required_units else 0.0
-    required_recall = 100 * (correct_units / total_required_units) if total_required_units else 0.0
-    high_confidence_error_count = sum(1 for item in item_results if item.is_high_confidence_error)
-    low_confidence_correct_count = sum(1 for item in item_results if item.is_low_confidence_correct)
+    total_required_units = sum(required.values())
+    accuracy_score = (
+        max(0.0, 100 * (1 - error_points / total_required_units))
+        if total_required_units
+        else 0.0
+    )
+    required_recall = (
+        100 * (correct_units / total_required_units) if total_required_units else 0.0
+    )
+    high_confidence_error_count = sum(
+        1 for item in item_results if item.is_high_confidence_error
+    )
+    low_confidence_correct_count = sum(
+        1 for item in item_results if item.is_low_confidence_correct
+    )
 
     return AttemptResult(
         run_id=run_id,
@@ -194,6 +288,7 @@ def score_tray(
 
 def _item_result(
     module: TrayModule,
+    required: Mapping[str, int],
     expected_id: str,
     selected_id: str,
     selected_quantity: int,
@@ -202,9 +297,12 @@ def _item_result(
     confidence: int | None,
     not_sure: bool,
     feedback_message_id: str,
+    feedback_message: str,
 ) -> ItemResult:
-    required_qty = module.required_items[expected_id].quantity if expected_id in module.required_items else 0
-    correct_qty = min(selected_quantity, required_qty) if expected_id == selected_id else 0
+    required_qty = required.get(expected_id, 0)
+    correct_qty = (
+        min(selected_quantity, required_qty) if expected_id == selected_id else 0
+    )
     is_error = category != "correct"
     return ItemResult(
         expected_instrument_id=expected_id,
@@ -218,7 +316,12 @@ def _item_result(
         lookalike_pair_id=lookalike_pair_id,
         item_confidence=confidence,
         item_uncertainty=not_sure,
-        is_high_confidence_error=bool(is_error and confidence is not None and confidence >= 4),
-        is_low_confidence_correct=bool(category == "correct" and confidence is not None and confidence <= 2),
+        is_high_confidence_error=bool(
+            is_error and confidence is not None and confidence >= 4
+        ),
+        is_low_confidence_correct=bool(
+            category == "correct" and confidence is not None and confidence <= 2
+        ),
         feedback_message_id=feedback_message_id,
+        feedback_message=feedback_message,
     )

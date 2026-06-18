@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
@@ -16,15 +17,36 @@ from trayguard.learning.run_store import RunStore, utc_now
 from trayguard.learning.scoring import score_tray
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_MODULE = PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
+def default_project_root() -> Path:
+    cwd = Path.cwd()
+    if (cwd / "config" / "tray_modules").is_dir():
+        return cwd
+    return Path(__file__).resolve().parents[3]
+
+
+PROJECT_ROOT = default_project_root()
+DEFAULT_MODULE = (
+    PROJECT_ROOT / "config" / "tray_modules" / "fgvc12_major_focused_v1.json"
+)
 DEFAULT_RUNS_DIR = PROJECT_ROOT / "data" / "learning" / "runs"
 STATIC_DIR = Path(__file__).with_name("static")
 
 
-def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = DEFAULT_RUNS_DIR) -> FastAPI:
-    module = load_tray_module(module_path)
-    store = RunStore(module, Path(runs_dir))
+def create_app(
+    module_path: str | Path | None = None, runs_dir: str | Path | None = None
+) -> FastAPI:
+    resolved_module_path = Path(
+        module_path or os.environ.get("TRAYGUARD_MODULE_PATH") or DEFAULT_MODULE
+    )
+    resolved_runs_dir = Path(
+        runs_dir or os.environ.get("TRAYGUARD_RUNS_DIR") or DEFAULT_RUNS_DIR
+    )
+    if not resolved_module_path.exists():
+        raise FileNotFoundError(
+            f"Tray module not found: {resolved_module_path}. Pass --module path/to/module.json or run from the repository root."
+        )
+    module = load_tray_module(resolved_module_path)
+    store = RunStore(module, resolved_runs_dir)
     app = FastAPI(title="TrayGuard Training Prototype")
     app.state.module = module
     app.state.store = store
@@ -32,7 +54,11 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
     instruments_dir = PROJECT_ROOT / "data" / "instruments"
     if instruments_dir.is_dir():
-        app.mount("/instrument-images", StaticFiles(directory=str(instruments_dir)), name="instrument-images")
+        app.mount(
+            "/instrument-images",
+            StaticFiles(directory=str(instruments_dir)),
+            name="instrument-images",
+        )
 
     @app.get("/")
     def index():
@@ -62,7 +88,9 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
 
         started_at = payload.get("started_at") or utc_now()
         completed_at = utc_now()
-        selected_counts = {key: int(value) for key, value in payload.get("selected_counts", {}).items()}
+        selected_counts = {
+            key: int(value) for key, value in payload.get("selected_counts", {}).items()
+        }
         attempt = score_tray(
             module,
             payload.get("variant_id", ""),
@@ -82,7 +110,11 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
             completed_full_flow=bool(run.get("completed_full_flow", False)),
         )
         paths = store.add_attempt(run_id, attempt)
-        return {"attempt": attempt.attempt_row(), "items": [asdict(item) for item in attempt.item_results], "export_paths": paths}
+        return {
+            "attempt": attempt.attempt_row(),
+            "items": [asdict(item) for item in attempt.item_results],
+            "export_paths": paths,
+        }
 
     @app.post("/api/detect-cards")
     def detect_cards(payload: dict[str, Any]):
@@ -91,8 +123,15 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
         except (KeyError, ValueError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         detections = detect_aruco_cards(frame, module.marker_map)
-        counts = Counter(detection.instrument_id for detection in detections if detection.instrument_id)
-        return {"detections": [asdict(detection) for detection in detections], "selected_counts": dict(counts)}
+        counts = Counter(
+            detection.instrument_id
+            for detection in detections
+            if detection.instrument_id
+        )
+        return {
+            "detections": [asdict(detection) for detection in detections],
+            "selected_counts": dict(counts),
+        }
 
     @app.post("/api/runs/{run_id}/complete")
     def complete_run(run_id: str):
@@ -108,7 +147,11 @@ def create_app(module_path: str | Path = DEFAULT_MODULE, runs_dir: str | Path = 
         except KeyError as exc:
             raise HTTPException(status_code=404, detail="Unknown run_id") from exc
         run_dir = Path(store.root) / run_id
-        return {"run": str(run_dir / "run.json"), "attempts": str(run_dir / "attempts.csv"), "items": str(run_dir / "items.csv")}
+        return {
+            "run": str(run_dir / "run.json"),
+            "attempts": str(run_dir / "attempts.csv"),
+            "items": str(run_dir / "items.csv"),
+        }
 
     @app.get("/api/instrument-image/{instrument_id}")
     def get_instrument_image(instrument_id: str):

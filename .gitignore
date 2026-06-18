@@ -172,6 +172,3 @@ config/instrument_catalogs/
 # Instructions and agents
 /instructions/
 AGENTS.md
-
-# Tests
-/tests/

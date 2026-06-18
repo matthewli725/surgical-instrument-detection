@@ -17,6 +17,12 @@ const state = {
   overlayBoxes: {},
 };
 
+const DEBUG = localStorage.getItem("trayguard_debug") === "true";
+
+function debugLog(...args) {
+  if (DEBUG) console.log(...args);
+}
+
 const steps = [
   ["intake", "Intake"],
   ["pre", "Pre-test"],
@@ -41,7 +47,10 @@ async function api(path, options = {}) {
 }
 
 function setStep(step) {
-  if (state.currentStep !== step && ["pre", "practice", "post"].includes(state.currentStep)) {
+  if (
+    state.currentStep !== step &&
+    ["pre", "practice", "post"].includes(state.currentStep)
+  ) {
     cleanupCamera();
   }
   state.currentStep = step;
@@ -65,9 +74,14 @@ function levenshteinDistance(a, b) {
   for (let j = 0; j <= a.length; j += 1) matrix[0][j] = j;
   for (let i = 1; i <= b.length; i += 1) {
     for (let j = 1; j <= a.length; j += 1) {
-      matrix[i][j] = b[i - 1] === a[j - 1]
-        ? matrix[i - 1][j - 1]
-        : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1,
+            );
     }
   }
   return matrix[b.length][a.length];
@@ -150,19 +164,25 @@ function updateFullscreenList(counts) {
     return;
   }
 
-  container.innerHTML = sortedIds.map((id) => {
-    const instrument = state.module.instruments[id];
-    const name = instrument ? instrument.display_name : id;
-    const count = counts[id];
-    return `<div class="fullscreen-list-item"><span>${name}</span><span class="fullscreen-list-count">${count}</span></div>`;
-  }).join("");
+  container.innerHTML = sortedIds
+    .map((id) => {
+      const instrument = state.module.instruments[id];
+      const name = instrument ? instrument.display_name : id;
+      const count = counts[id];
+      return `<div class="fullscreen-list-item"><span>${name}</span><span class="fullscreen-list-count">${count}</span></div>`;
+    })
+    .join("");
 }
 
 function drawOverlay(detections) {
   const video = document.querySelector("#video");
   const svg = document.querySelector("#overlaySvg");
   if (!video || !svg || !video.videoWidth) {
-    console.log("drawOverlay early return:", { video: !!video, svg: !!svg, videoWidth: video?.videoWidth });
+    debugLog("drawOverlay early return:", {
+      video: !!video,
+      svg: !!svg,
+      videoWidth: video?.videoWidth,
+    });
     return;
   }
 
@@ -171,10 +191,19 @@ function drawOverlay(detections) {
   const containerHeight = container.clientHeight;
   const videoWidth = video.videoWidth;
   const videoHeight = video.videoHeight;
-  console.log("drawOverlay", { detections: detections.length, containerWidth, containerHeight, videoWidth, videoHeight });
+  debugLog("drawOverlay", {
+    detections: detections.length,
+    containerWidth,
+    containerHeight,
+    videoWidth,
+    videoHeight,
+  });
 
   // Calculate object-fit: cover scaling
-  const scale = Math.max(containerWidth / videoWidth, containerHeight / videoHeight);
+  const scale = Math.max(
+    containerWidth / videoWidth,
+    containerHeight / videoHeight,
+  );
   const displayedWidth = videoWidth * scale;
   const displayedHeight = videoHeight * scale;
   const offsetX = (containerWidth - displayedWidth) / 2;
@@ -190,10 +219,11 @@ function drawOverlay(detections) {
   const counts = {};
   for (const detection of detections) {
     if (!detection.instrument_id) {
-      console.log("Skipped detection (no instrument_id):", detection);
+      debugLog("Skipped detection (no instrument_id):", detection);
       continue;
     }
-    counts[detection.instrument_id] = (counts[detection.instrument_id] || 0) + 1;
+    counts[detection.instrument_id] =
+      (counts[detection.instrument_id] || 0) + 1;
   }
 
   for (const detection of detections) {
@@ -211,10 +241,12 @@ function drawOverlay(detections) {
   svg.innerHTML = "";
 
   const BOX_TTL = 1500;
-  console.log("overlayBoxes:", Object.keys(state.overlayBoxes), "currentIds:", [...currentIds]);
+  debugLog("overlayBoxes:", Object.keys(state.overlayBoxes), "currentIds:", [
+    ...currentIds,
+  ]);
   for (const [id, box] of Object.entries(state.overlayBoxes)) {
     if (now - box.lastSeen > BOX_TTL) {
-      console.log("Expired box:", id);
+      debugLog("Expired box:", id);
       delete state.overlayBoxes[id];
       continue;
     }
@@ -226,7 +258,10 @@ function drawOverlay(detections) {
     ]);
     const points = transformedCorners.map(([x, y]) => `${x},${y}`).join(" ");
 
-    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    const polygon = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "polygon",
+    );
     polygon.setAttribute("points", points);
     polygon.setAttribute("stroke", "#00ff00");
     polygon.setAttribute("stroke-width", "3");
@@ -237,7 +272,10 @@ function drawOverlay(detections) {
     const x = transformedCorners[0][0];
     const y = transformedCorners[0][1] - 8;
 
-    const textBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    const textBg = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect",
+    );
     textBg.setAttribute("x", x);
     textBg.setAttribute("y", y - 14);
     textBg.setAttribute("width", label.length * 8 + 8);
@@ -311,7 +349,11 @@ function cleanupCamera() {
 function handleVisibilityChange() {
   if (document.hidden) {
     stopAutoDetection();
-  } else if (state.stream && state.stream.active && state.currentStep === "practice") {
+  } else if (
+    state.stream &&
+    state.stream.active &&
+    state.currentStep === "practice"
+  ) {
     startAutoDetection();
   }
 }
@@ -323,7 +365,9 @@ function drawSnapshot(canvas, detections) {
   for (const detection of detections) {
     if (!detection.instrument_id || !detection.corners) continue;
     const corners = detection.corners;
-    const name = state.module.instruments[detection.instrument_id]?.display_name || "Unknown";
+    const name =
+      state.module.instruments[detection.instrument_id]?.display_name ||
+      "Unknown";
     ctx.beginPath();
     ctx.moveTo(corners[0][0], corners[0][1]);
     for (let i = 1; i < corners.length; i += 1) {
@@ -351,7 +395,10 @@ async function captureAndDetect() {
   canvas.height = video.videoHeight || 720;
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const image = canvas.toDataURL("image/png");
-  const result = await api("/api/detect-cards", { method: "POST", body: JSON.stringify({ image }) });
+  const result = await api("/api/detect-cards", {
+    method: "POST",
+    body: JSON.stringify({ image }),
+  });
   return result;
 }
 
@@ -394,7 +441,8 @@ function setupResizableSplit() {
   const minLeft = 300;
   const minRight = 280;
 
-  const getContainerWidth = () => split.parentElement?.clientWidth || split.clientWidth;
+  const getContainerWidth = () =>
+    split.parentElement?.clientWidth || split.clientWidth;
 
   const setLeftWidth = (px) => {
     const containerWidth = getContainerWidth();
@@ -467,11 +515,15 @@ function renderSteps() {
 function instrumentsForTray() {
   const required = Object.keys(state.module.required_items);
   const distractors = state.module.distractor_item_ids;
-  return [...required, ...distractors].map((id) => state.module.instruments[id]);
+  return [...required, ...distractors].map(
+    (id) => state.module.instruments[id],
+  );
 }
 
 function variantByMode(mode) {
-  return Object.values(state.module.assessment_variants).find((variant) => variant.mode === mode);
+  return Object.values(state.module.assessment_variants).find(
+    (variant) => variant.mode === mode,
+  );
 }
 
 function seededRandom(seed) {
@@ -503,7 +555,9 @@ function instrumentsForVariant(variantId) {
   const variant = state.module.assessment_variants[variantId];
   if (!variant) return instrumentsForTray();
   const ids = [...variant.required_item_ids, ...variant.distractor_item_ids];
-  return shuffled(ids, variant.random_seed).map((id) => state.module.instruments[id]);
+  return shuffled(ids, variant.random_seed).map(
+    (id) => state.module.instruments[id],
+  );
 }
 
 function selectedCountsFromInputs() {
@@ -548,7 +602,8 @@ function renderIntake() {
         body: JSON.stringify({
           learner_id: document.querySelector("#learnerId").value,
           participant_group: document.querySelector("#participantGroup").value,
-          prior_experience_level: document.querySelector("#priorExperience").value,
+          prior_experience_level:
+            document.querySelector("#priorExperience").value,
         }),
       });
       setStep("pre");
@@ -562,12 +617,14 @@ function renderIntake() {
 
 function renderTraySort({ mode, variantId, title, copy, feedback }) {
   const startedAt = new Date();
-  const template = document.querySelector("#tray-sort-template").content.cloneNode(true);
+  const template = document
+    .querySelector("#tray-sort-template")
+    .content.cloneNode(true);
   template.querySelector("[data-title]").textContent = title;
   template.querySelector("[data-copy]").textContent = copy;
   const controls = template.querySelector("#manualControls");
   const sortedInstruments = [...instrumentsForVariant(variantId)].sort((a, b) =>
-    a.display_name.localeCompare(b.display_name)
+    a.display_name.localeCompare(b.display_name),
   );
   for (const instrument of sortedInstruments) {
     const row = document.createElement("div");
@@ -592,65 +649,53 @@ function renderTraySort({ mode, variantId, title, copy, feedback }) {
   if (fullscreenBtn) fullscreenBtn.onclick = toggleFullscreen;
   const exitFullscreenBtn = document.querySelector("#exitFullscreenBtn");
   if (exitFullscreenBtn) exitFullscreenBtn.onclick = toggleFullscreen;
+  const snapshotBtn = document.querySelector("#takeSnapshot");
+  if (snapshotBtn) {
+    snapshotBtn.onclick = async () => {
+      const video = document.querySelector("#video");
+      const summary = document.querySelector("#detectionSummary");
+      if (!video.srcObject) {
+        summary.textContent =
+          "Start the camera to take a snapshot, or submit manual counts directly.";
+        summary.classList.add("error");
+        return;
+      }
+      const detectResult = await takeSnapshot();
+      if (!detectResult) {
+        summary.textContent =
+          "Snapshot failed. You can still submit manual counts.";
+        summary.classList.add("error");
+        return;
+      }
+      stopAutoDetection();
+      video.style.display = "none";
+      const svg = document.querySelector("#overlaySvg");
+      if (svg) svg.style.display = "none";
+      summary.textContent =
+        "Snapshot taken. Review or edit the counts, then submit the tray.";
+      summary.classList.remove("error");
+    };
+  }
   const submitBtn = document.querySelector("#submitSort");
   submitBtn.onclick = async () => {
-    if (mode === "practice") {
-      const selectedCounts = selectedCountsFromInputs();
-      const result = await api(`/api/runs/${state.run.run_id}/score`, {
-        method: "POST",
-        body: JSON.stringify({
-          mode,
-          variant_id: variantId,
-          selected_counts: selectedCounts,
-          started_at: startedAt.toISOString(),
-          duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
-          overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
-        }),
-      });
-      state.attempts[mode] = result;
-      renderAttemptResult(result, feedback, mode);
-      return;
-    }
-
-    const video = document.querySelector("#video");
-    const summary = document.querySelector("#detectionSummary");
-    if (!video.srcObject) {
-      summary.textContent = "Please start the camera first.";
-      summary.classList.add("error");
-      return;
-    }
-
-    const detectResult = await takeSnapshot();
-    if (!detectResult) {
-      summary.textContent = "Snapshot failed. You can still use manual fallback.";
-      summary.classList.add("error");
-      return;
-    }
-
-    stopAutoDetection();
-    video.style.display = "none";
-    const svg = document.querySelector("#overlaySvg");
-    if (svg) svg.style.display = "none";
-
-    summary.textContent = "Snapshot taken. Review detected cards.";
-    summary.classList.remove("error");
-    submitBtn.textContent = "Next";
-    submitBtn.onclick = async () => {
-      const selectedCounts = selectedCountsFromInputs();
-      const result = await api(`/api/runs/${state.run.run_id}/score`, {
-        method: "POST",
-        body: JSON.stringify({
-          mode,
-          variant_id: variantId,
-          selected_counts: selectedCounts,
-          started_at: startedAt.toISOString(),
-          duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
-          overall_confidence: Number.parseInt(document.querySelector("#confidence").value, 10),
-        }),
-      });
-      state.attempts[mode] = result;
-      renderAttemptResult(result, feedback, mode);
-    };
+    const selectedCounts = selectedCountsFromInputs();
+    const result = await api(`/api/runs/${state.run.run_id}/score`, {
+      method: "POST",
+      body: JSON.stringify({
+        mode,
+        variant_id: variantId,
+        selected_counts: selectedCounts,
+        started_at: startedAt.toISOString(),
+        duration_seconds: (Date.now() - startedAt.getTime()) / 1000,
+        overall_confidence: Number.parseInt(
+          document.querySelector("#confidence").value,
+          10,
+        ),
+      }),
+    });
+    state.attempts[mode] = result;
+    cleanupCamera();
+    renderAttemptResult(result, feedback, mode);
   };
 }
 
@@ -668,14 +713,21 @@ async function startCamera() {
 
   summary.textContent = "Requesting camera access...";
   if (!navigator.mediaDevices?.getUserMedia) {
-    summary.textContent = "Camera API is not available in this browser. Use Chrome/Safari on http://127.0.0.1 or use manual fallback.";
+    summary.textContent =
+      "Camera API is not available in this browser. Use Chrome/Safari on http://127.0.0.1 or use manual fallback.";
     return false;
   }
   try {
     try {
-      state.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
+      state.stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: "environment" } },
+        audio: false,
+      });
     } catch (_error) {
-      state.stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+      state.stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
+      });
     }
   } catch (error) {
     summary.textContent = `Camera could not start: ${error.name || "Error"}${error.message ? ` - ${error.message}` : ""}. You can still use manual fallback.`;
@@ -721,19 +773,30 @@ async function detectCards(skipStart = false) {
 
   const summary = document.querySelector("#detectionSummary");
   summary.classList.remove("error");
-  console.log("detectCards result:", result);
+  debugLog("detectCards result:", result);
   if (result.detections && result.detections.length > 0) {
-    console.log("Detected marker_ids:", result.detections.map(d => d.marker_id));
-    console.log("Module marker_cards:", (state.module.marker_cards || []).map(c => c.marker_id));
+    debugLog(
+      "Detected marker_ids:",
+      result.detections.map((d) => d.marker_id),
+    );
+    debugLog(
+      "Module marker_cards:",
+      (state.module.marker_cards || []).map((c) => c.marker_id),
+    );
   }
   drawOverlay(result.detections);
 
   const currentCounts = result.selected_counts || {};
-  const countsChanged = JSON.stringify(currentCounts) !== JSON.stringify(state.lastDetection?.counts);
+  const countsChanged =
+    JSON.stringify(currentCounts) !==
+    JSON.stringify(state.lastDetection?.counts);
 
   if (countsChanged) {
     state.stableFrameCount = 0;
-    state.lastDetection = { counts: currentCounts, detections: result.detections };
+    state.lastDetection = {
+      counts: currentCounts,
+      detections: result.detections,
+    };
   } else {
     state.stableFrameCount += 1;
   }
@@ -741,7 +804,7 @@ async function detectCards(skipStart = false) {
   const previousStable = JSON.stringify(state.stableCounts);
   const newStable = JSON.stringify(currentCounts);
   if (previousStable !== newStable) {
-    console.log("Updating manual counts:", currentCounts);
+    debugLog("Updating manual counts:", currentCounts);
     setManualCounts(currentCounts);
     state.stableCounts = currentCounts;
   }
@@ -753,14 +816,18 @@ async function detectCards(skipStart = false) {
 
 function renderAttemptResult(result, showFeedback, mode) {
   const attempt = result.attempt;
-  const rows = result.items.map((item) => `
+  const rows = result.items
+    .map(
+      (item) => `
     <tr>
       <td>${item.error_category}</td>
       <td>${item.expected_instrument_name || "-"}</td>
       <td>${item.selected_instrument_name || "-"}</td>
-      <td>${item.feedback_message_id || "-"}</td>
+      <td>${item.feedback_message || item.feedback_message_id || "-"}</td>
     </tr>
-  `).join("");
+  `,
+    )
+    .join("");
   app.innerHTML = `
     <section class="panel">
       <h2>${mode === "practice" ? "Practice feedback" : "Attempt submitted"}</h2>
@@ -782,7 +849,8 @@ function renderAttemptResult(result, showFeedback, mode) {
 }
 
 function studyImage(instrument) {
-  if (!instrument || !instrument.id) return `<div class="image-placeholder">No image</div>`;
+  if (!instrument || !instrument.id)
+    return `<div class="image-placeholder">No image</div>`;
   return `<img src="/api/instrument-image/${instrument.id}" alt="${instrument.display_name}" class="study-img" onerror="this.parentElement.innerHTML='<div class=image-placeholder>Image not found</div>'">`;
 }
 
@@ -811,10 +879,22 @@ function renderStudy() {
       </div>
     </section>
   `;
-  document.querySelector("#prevCard").onclick = () => { state.studyIndex = Math.max(0, state.studyIndex - 1); renderStudy(); };
-  document.querySelector("#nextCard").onclick = () => { state.studyIndex = Math.min(cards.length - 1, state.studyIndex + 1); renderStudy(); };
+  document.querySelector("#prevCard").onclick = () => {
+    state.studyIndex = Math.max(0, state.studyIndex - 1);
+    renderStudy();
+  };
+  document.querySelector("#nextCard").onclick = () => {
+    state.studyIndex = Math.min(cards.length - 1, state.studyIndex + 1);
+    renderStudy();
+  };
   document.querySelector("#goQuiz").onclick = () => {
-    state.quizItems = cards.flatMap((item) => (item.study_prompts || []).filter((prompt) => prompt.id === "name").map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
+    state.quizItems = cards
+      .flatMap((item) =>
+        (item.study_prompts || [])
+          .filter((prompt) => prompt.id === "name")
+          .map((prompt) => ({ instrument: item, prompt })),
+      )
+      .slice(0, 12);
     state.quizIndex = 0;
     setStep("quiz");
   };
@@ -822,7 +902,13 @@ function renderStudy() {
 
 function renderQuiz() {
   if (!state.quizItems.length) {
-    state.quizItems = instrumentsForTray().flatMap((item) => (item.study_prompts || []).filter((prompt) => prompt.id === "name").map((prompt) => ({ instrument: item, prompt }))).slice(0, 12);
+    state.quizItems = instrumentsForTray()
+      .flatMap((item) =>
+        (item.study_prompts || [])
+          .filter((prompt) => prompt.id === "name")
+          .map((prompt) => ({ instrument: item, prompt })),
+      )
+      .slice(0, 12);
   }
   if (state.quizIndex >= state.quizItems.length) {
     setStep("practice");
@@ -842,7 +928,9 @@ function renderQuiz() {
   `;
   document.querySelector("#submitQuiz").onclick = async () => {
     const answer = document.querySelector("#quizAnswer").value;
-    const correct = answer.trim().length > 0 && isAnswerCorrect(item.instrument, item.prompt.answer, answer);
+    const correct =
+      answer.trim().length > 0 &&
+      isAnswerCorrect(item.instrument, item.prompt.answer, answer);
     await api(`/api/runs/${state.run.run_id}/quiz`, {
       method: "POST",
       body: JSON.stringify({
@@ -850,16 +938,26 @@ function renderQuiz() {
         instrument_id: item.instrument.id,
         answer,
         correct,
-        confidence: Number.parseInt(document.querySelector("#quizConfidence").value, 10),
+        confidence: Number.parseInt(
+          document.querySelector("#quizConfidence").value,
+          10,
+        ),
       }),
     });
-    document.querySelector("#quizFeedback").innerHTML = `<div class="feedback ${correct ? "" : "error"}">${correct ? "Correct." : `Review: ${item.prompt.answer}`}</div><div class="button-row"><button class="primary" id="nextQuiz">Next</button></div>`;
-    document.querySelector("#nextQuiz").onclick = () => { state.quizIndex += 1; renderQuiz(); };
+    document.querySelector("#quizFeedback").innerHTML =
+      `<div class="feedback ${correct ? "" : "error"}">${correct ? "Correct." : `Review: ${item.prompt.answer}`}</div><div class="button-row"><button class="primary" id="nextQuiz">Next</button></div>`;
+    document.querySelector("#nextQuiz").onclick = () => {
+      state.quizIndex += 1;
+      renderQuiz();
+    };
   };
 }
 
 async function renderSummary() {
-  await api(`/api/runs/${state.run.run_id}/complete`, { method: "POST", body: "{}" });
+  await api(`/api/runs/${state.run.run_id}/complete`, {
+    method: "POST",
+    body: "{}",
+  });
   const exports = await api(`/api/runs/${state.run.run_id}/export`);
   const pre = state.attempts.pre_test?.attempt;
   const post = state.attempts.post_test?.attempt;
@@ -885,11 +983,32 @@ function render() {
   const preVariantId = preVariant ? preVariant.id : "full_tray";
   const postVariantId = postVariant ? postVariant.id : "full_tray";
   if (state.currentStep === "intake") renderIntake();
-  if (state.currentStep === "pre") renderTraySort({ mode: "pre_test", variantId: preVariantId, title: "Pre-test tray sort", copy: "No hints. Use cards and the count sheet task to assemble the tray.", feedback: false });
+  if (state.currentStep === "pre")
+    renderTraySort({
+      mode: "pre_test",
+      variantId: preVariantId,
+      title: "Pre-test tray sort",
+      copy: "No hints. Use cards and the count sheet task to assemble the tray.",
+      feedback: false,
+    });
   if (state.currentStep === "study") renderStudy();
   if (state.currentStep === "quiz") renderQuiz();
-  if (state.currentStep === "practice") renderTraySort({ mode: "practice", variantId: preVariantId, title: "Practice tray sort", copy: "Use the same physical-card workflow. Feedback appears after submission.", feedback: true });
-  if (state.currentStep === "post") renderTraySort({ mode: "post_test", variantId: postVariantId, title: "Post-test tray sort", copy: "No hints. This uses the matched post-test variant.", feedback: false });
+  if (state.currentStep === "practice")
+    renderTraySort({
+      mode: "practice",
+      variantId: preVariantId,
+      title: "Practice tray sort",
+      copy: "Use the same physical-card workflow. Feedback appears after submission.",
+      feedback: true,
+    });
+  if (state.currentStep === "post")
+    renderTraySort({
+      mode: "post_test",
+      variantId: postVariantId,
+      title: "Post-test tray sort",
+      copy: "No hints. This uses the matched post-test variant.",
+      feedback: false,
+    });
   if (state.currentStep === "summary") renderSummary();
 }
 

@@ -73,11 +73,17 @@ class TrayModule:
             "name": self.name,
             "procedure_family": self.procedure_family,
             "source_note": self.source_note,
-            "instruments": {key: asdict(value) for key, value in self.instruments.items()},
-            "required_items": {key: asdict(value) for key, value in self.required_items.items()},
+            "instruments": {
+                key: asdict(value) for key, value in self.instruments.items()
+            },
+            "required_items": {
+                key: asdict(value) for key, value in self.required_items.items()
+            },
             "distractor_item_ids": self.distractor_item_ids,
             "lookalike_pairs": [asdict(pair) for pair in self.lookalike_pairs],
-            "assessment_variants": {key: asdict(value) for key, value in self.assessment_variants.items()},
+            "assessment_variants": {
+                key: asdict(value) for key, value in self.assessment_variants.items()
+            },
             "marker_cards": [asdict(card) for card in self.marker_cards],
         }
 
@@ -104,7 +110,9 @@ class InstrumentCatalog:
             "version": self.version,
             "name": self.name,
             "source_note": self.source_note,
-            "instruments": {key: asdict(value) for key, value in self.instruments.items()},
+            "instruments": {
+                key: asdict(value) for key, value in self.instruments.items()
+            },
         }
 
 
@@ -131,6 +139,7 @@ class ItemResult:
     is_high_confidence_error: bool
     is_low_confidence_correct: bool
     feedback_message_id: str
+    feedback_message: str
 
 
 @dataclass(frozen=True)

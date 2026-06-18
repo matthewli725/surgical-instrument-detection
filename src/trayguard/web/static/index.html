@@ -1,62 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TrayGuard Training</title>
-    <link rel="stylesheet" href="/static/styles.css">
-  </head>
-  <body>
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">TrayGuard</p>
-        <h1>Training Prototype</h1>
-      </div>
-      <div class="status" id="modeStatus">Loading</div>
-    </header>
-
-    <main class="shell">
-      <nav class="steps" id="steps">
-        <button id="toggleSteps" class="toggle-steps" aria-label="Collapse sidebar" title="Collapse sidebar">◀</button>
-      </nav>
-      <section class="workspace" id="app"></section>
-    </main>
-
-    <template id="tray-sort-template">
-      <div class="split">
-        <section>
-          <h2 data-title></h2>
-          <p class="muted" data-copy></p>
-          <div class="camera-panel">
-            <video id="video" autoplay playsinline muted></video>
-            <svg id="overlaySvg" xmlns="http://www.w3.org/2000/svg"></svg>
-            <canvas id="snapshotCanvas"></canvas>
-            <button class="fullscreen-btn" id="fullscreenBtn">⛶</button>
-            <div class="fullscreen-list" id="fullscreenList">
-              <h3>Detected Instruments</h3>
-              <div id="fullscreenListContent"></div>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TrayGuard Training</title>
+        <link rel="stylesheet" href="/static/styles.css" />
+    </head>
+    <body>
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">TrayGuard</p>
+                <h1>Training Prototype</h1>
             </div>
-            <div class="floating-controls" id="floatingControls">
-              <div class="button-row">
-                <button id="startCamera">Start camera</button>
-                <button id="submitSort" class="primary">Submit tray</button>
-                <button id="exitFullscreenBtn">✕</button>
-              </div>
-              <label>Confidence
-                <input id="confidence" type="range" min="1" max="5" value="3">
-              </label>
-              <div id="detectionSummary" class="notice"></div>
-            </div>
-          </div>
-        </section>
-        <div class="divider"></div>
-        <aside>
-          <h3>Manual fallback</h3>
-          <div id="manualControls"></div>
-        </aside>
-      </div>
-    </template>
+            <div class="status" id="modeStatus">Loading</div>
+        </header>
 
-    <script type="module" src="/static/app.js"></script>
-  </body>
+        <main class="shell">
+            <nav class="steps" id="steps">
+                <button
+                    id="toggleSteps"
+                    class="toggle-steps"
+                    aria-label="Collapse sidebar"
+                    title="Collapse sidebar"
+                >
+                    ◀
+                </button>
+            </nav>
+            <section class="workspace" id="app"></section>
+        </main>
+
+        <template id="tray-sort-template">
+            <div class="split">
+                <section>
+                    <h2 data-title></h2>
+                    <p class="muted" data-copy></p>
+                    <div class="camera-panel">
+                        <video id="video" autoplay playsinline muted></video>
+                        <svg
+                            id="overlaySvg"
+                            xmlns="http://www.w3.org/2000/svg"
+                        ></svg>
+                        <canvas id="snapshotCanvas"></canvas>
+                        <button class="fullscreen-btn" id="fullscreenBtn">
+                            ⛶
+                        </button>
+                        <div class="fullscreen-list" id="fullscreenList">
+                            <h3>Detected Instruments</h3>
+                            <div id="fullscreenListContent"></div>
+                        </div>
+                        <div class="floating-controls" id="floatingControls">
+                            <div class="button-row">
+                                <button id="startCamera">Start camera</button>
+                                <button id="takeSnapshot">Take snapshot</button>
+                                <button id="submitSort" class="primary">
+                                    Submit tray
+                                </button>
+                                <button id="exitFullscreenBtn">✕</button>
+                            </div>
+                            <label
+                                >Confidence
+                                <input
+                                    id="confidence"
+                                    type="range"
+                                    min="1"
+                                    max="5"
+                                    value="3"
+                                />
+                            </label>
+                            <div id="detectionSummary" class="notice"></div>
+                        </div>
+                    </div>
+                </section>
+                <div class="divider"></div>
+                <aside>
+                    <h3>Manual fallback</h3>
+                    <div id="manualControls"></div>
+                </aside>
+            </div>
+        </template>
+
+        <script type="module" src="/static/app.js"></script>
+    </body>
 </html>

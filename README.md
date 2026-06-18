@@ -14,7 +14,7 @@ in [CV_ATTEMPT.md](CV_ATTEMPT.md).
 
 ### Install `uv`
 
-We use `uv` for dependency management.
+We use `uv` for dependency management. Dependencies are defined in `pyproject.toml` and locked in `uv.lock`; `requirements.txt` mirrors the runtime dependencies for pip-based environments.
 
 - [Install uv](https://docs.astral.sh/uv/)
 - [Recommended uv tutorial](https://youtu.be/AMdG7IjgSPM?si=35yro7e7aX2WCrTN)
@@ -144,8 +144,8 @@ removed from the frame before submitting. A snapshot is taken on submit.
 
 ### Manual Fallback
 
-If camera detection is unavailable, each sort step provides manual dropdown
-controls for selecting instruments and quantities.
+Each sort step includes manual quantity controls. Camera detection can populate
+the controls automatically; learners can also submit the manual counts directly.
 
 ### Results Export
 
@@ -344,16 +344,18 @@ required_recall = 100 x correct_units / total_required_units
 
 ```bash
 uv run pytest
+uv run trayguard smoke-learning
 ```
 
-Tests cover tray module loading, scoring logic (correct, misidentified, missing),
-and AprilTag marker detection.
+Tests cover tray module loading, variant-aware scoring, run persistence,
+CSV/JSON export, FastAPI endpoints, and AprilTag marker utilities when OpenCV
+ArUco support is available.
 
 ## Project Layout
 
 ```text
 src/trayguard/             main Python package
-  cli.py                   CLI entry point (14 commands)
+  cli.py                   CLI entry point
   learning/                educational training module
     aruco.py               AprilTag marker detection
     card_cli.py            print-cards CLI
