@@ -1,0 +1,3 @@
+name: surgical_kit_proxy
+root: data/cv/surgical_kit_proxy
+yolo_data: ${data.root}/shape_similarity_real_proxy/data.yaml

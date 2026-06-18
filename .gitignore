@@ -1,6 +1,4 @@
 /mendeley_dataset/dataset
-/DS_Store
-/README.md
 /mendeley_dataset/seed_data
 /mendeley_dataset/seed_data_coarse
 /mendeley_dataset/yolo26n.pt
@@ -17,6 +15,8 @@ yolo26n.pt
 rtdetr-l.pt
 rtdetr-x.pt
 /demo
+/reports
+/weights
 
 # ---------------------------
 
@@ -37,7 +37,8 @@ rtdetr-x.pt
 
 # ---------------------------
 
-**pycache**/
+__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -83,6 +84,7 @@ logs/
 mlruns/
 wandb/
 tensorboard/
+/runs/
 
 # ---------------------------
 
@@ -106,7 +108,7 @@ checkpoints/
 
 # ---------------------------
 
-data/
+/data/
 datasets/
 multi_bbox_3000/
 single_bbox_6000/
@@ -161,8 +163,14 @@ temp/
 
 # ---------------------------
 
-# Outputs
+# Project-specific
 
 # ---------------------------
 
-outputs/
+/purdue/
+/outputs/
+config/instrument_catalogs/
+
+# Instructions and agents
+/instructions/
+AGENTS.md

@@ -1,0 +1,153 @@
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=0.9in}
+\usepackage{setspace}
+\setstretch{0.95}
+\usepackage{parskip}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries TrayGuard --- Executive Summary}\\[4pt]
+{\small Final Design Review \hfill EC ENGR 180DW --- Systems Design}\\[2pt]
+{\small Prepared by: Owen Fan, Matthew Li, Andy Ma, Jacob Moore, Qiyu Xin}\\[2pt]
+{\small \today}
+\end{center}
+
+\section*{Requirements}
+
+\paragraph{Problem.}
+Tray-content errors during surgical instrument reconstruction are a recurring
+patient-safety risk in sterile processing departments (SPDs). Every hospital
+with reusable surgical instruments depends on manual tray assembly: technicians
+inspect, identify, sort, and build procedure-specific sets against tray-specific
+count sheets. Published evidence reports roughly 9 defects per 100 surgical
+cases, with 55\% originating during the assembly step and 44\% of packaging
+errors involving wrong instrument specifications. The resulting OR delays
+average 10~minutes per affected case, at an estimated annual cost of
+\$6.75--9.42~million at a single hospital.
+
+\paragraph{Stakeholders.}
+Patients rely on sterile, functional instruments during surgery. Surgeons and OR
+teams need complete sets to maintain procedure flow. SPD technicians perform
+high-volume, detail-intensive work under production pressure. SPD supervisors
+and educators manage training, quality assurance, staffing, and competency
+programs. Hospitals absorb financial losses from delayed cases and instrument
+rework.
+
+\paragraph{Root cause analysis.}
+Root-cause analysis identified six contributing categories --- instrument
+design and nomenclature (Product), insufficient structured training
+(Knowledge), single-pass assembly with no independent check (Process),
+incomplete count sheets and loaner-tray information gaps (Information),
+production pressure and ergonomic constraints (Environment), and decentralized
+governance with weak error feedback loops (Policy \& Feedback). Three
+structural drivers amplify every category: SPD evolved from materials
+management rather than patient care, hospital accounting treats SPD as a cost
+center without revenue visibility, and no information architecture connects
+downstream OR outcomes to upstream SPD actions.
+
+\paragraph{Quantified value.}
+TrayGuard targets the training gap among the six root causes.
+The study's acceptance bar is a 20~percentage-point pre/post improvement
+in simulated tray-assembly accuracy --- consistent with Ofstead et al.~(2023),
+who found a \~{}43~point gain (41\% to 84\%) in a structured SP training pilot
+with certified professionals. TrayGuard's self-directed simulation is expected
+to produce a smaller but visible effect, making 20~points a reasonable
+formative threshold. Meeting this bar would provide a replicable preparation
+step before supervised clinical training --- reducing clinical supervisor burden
+and improving first-pass assembly quality.
+
+\paragraph{Negative externalities.}
+Printed AprilTag cards and study flashcards are consumable physical media;
+discarded cards contribute to material waste. Accrediting bodies that rely on
+documented supervised practice hours may face questions about whether simulated
+scores satisfy competency documentation requirements, creating administrative
+burden for hospitals that choose not to adopt the system. Controls include
+reusable card materials, open module formats, and explicit labeling of results
+as simulated practice evidence rather than competency determinations.
+
+\section*{System Design}
+
+\paragraph{Final system.}
+TrayGuard is a local tray training and assessment platform. The core product
+combines a web application with a file-backed tray module defining instruments,
+aliases, required counts, distractors, lookalike pairs, distinguishing
+features, and assessment variants for one local tray.
+
+\paragraph{Learning loop.}
+The seven-step learner flow is: intake $\rightarrow$ pre-test $\rightarrow$
+retrieval-first study cards $\rightarrow$ identification quiz $\rightarrow$
+AprilTag-card simulated tray sort $\rightarrow$ post-test $\rightarrow$ metrics
+export. The pre-test and study-card phases use browser-based recall; the
+simulated tray sort uses physical AprilTag cards placed on a tabletop, scanned
+by the device camera, and scored against the tray template.
+
+\paragraph{Subsystems.}
+The content module defines each tray as a structured YAML file. The learning
+workflow engine orchestrates the seven-step sequence. Retrieval-practice cards
+show instrument images with aliases, quantities, and distinguishing features.
+The AprilTag scanner detects marker identities and positions from a camera
+frame. The scoring engine classifies each item into correct, missing, extra,
+wrong, misidentified (lookalike substitution), or wrong-count categories.
+Confidence ratings (1--5 scale and ``not sure'' flag) are captured per item.
+The export subsystem produces JSON and CSV outputs with hashed learner
+identifiers, error categories, and module version fields.
+
+\paragraph{Costs and benefits.}
+Direct material costs are \$5--55 for printed cards and a tray surface. The
+primary cost is labor: module authoring, prototype implementation, study
+moderation, and analysis. The benefit to stakeholders is a repeatable, low-cost
+simulated practice environment that surfaces weak-item evidence for instructors
+and reduces the number of clinical supervisor hours needed for basic tray familiarization.
+
+\section*{Project Plan}
+
+\paragraph{Original plan versus actual execution.}
+The PDR proposed a computer-vision tray checker that would detect instruments
+on a tray and compare results against a digital count sheet. Seven staged
+detection experiments (800--80~lumens, matte and reflective backgrounds,
+separated and overlay layouts) demonstrated that YOLO11s detection degrades
+under every variation SPD workflows present, with occlusion mAP50-95 falling to
+0.389. Real-instrument experiments confirmed position-cue dominance over shape
+learning.
+
+\paragraph{Pivot.}
+At Week~6 the project pivoted to a training-centered system with a stronger
+near-term evidence path. The new direction changed the proof obligation from
+deployment-grade recognition to measurable learning on a simulated local
+tray --- a claim that matches the available resources and produces actionable
+evidence for a future CV support layer.
+
+\paragraph{Delivered.}
+The current prototype includes: a FastAPI web app implementing the full
+seven-step learning loop, eight file-backed tray modules, a card-generation
+pipeline with AprilTag markers and double-sided study flashcards, a scoring
+engine with six error categories, JSON/CSV export with hashed identifiers, and
+a GitLab-organized project plan with epics, issues, and milestones.
+
+\paragraph{Deferred.}
+Deployment-grade CV recognition, clinical workflow integration, and SPD-site
+validation remain out of scope. These are future work items that depend on
+validated local content, site-specific training data, and institutional
+approval.
+
+\paragraph{FDR placement.}
+This Final Design Review documents the complete design process from the
+original CV concept through the training pivot to the current prototype,
+including experimental evidence for both the abandoned direction and the
+selected path. The report captures the engineering rationale, subsystem design,
+analysis, evaluation plan, and bounded claims that position TrayGuard as a
+validated competency-maintenance tool within the SPD training ecosystem.
+
+\end{document}

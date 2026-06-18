@@ -1,0 +1,366 @@
+<mxfile host="app.diagrams.net" modified="2026-01-01T00:00:00.000Z" agent="OpenCode" version="22.1.0" etag="dependency_diagram" type="device">
+  <diagram id="dependency_diagram" name="Dependency Diagram">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ==================== EXTERNAL INPUTS (LEFT) ==================== -->
+        <mxCell id="expert" value="Expert" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e0e0e0;strokeColor=#333333;fontSize=12;arcSize=50" vertex="1" parent="1">
+          <mxGeometry x="20" y="120" width="80" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="camera" value="Camera" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e0e0e0;strokeColor=#333333;fontSize=12;arcSize=50" vertex="1" parent="1">
+          <mxGeometry x="20" y="300" width="80" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="computing" value="Computing" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e0e0e0;strokeColor=#333333;fontSize=12;arcSize=50" vertex="1" parent="1">
+          <mxGeometry x="20" y="480" width="80" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== 3×3 GRID OF SUBSYSTEMS ==================== -->
+        <!-- Row 1 -->
+        <mxCell id="content" value="Local content\ntray module" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="80" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="workflow" value="Learning\nworkflow" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="instructor" value="Instructor\nreview" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1f5fe;strokeColor=#01579b;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="460" y="80" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Row 2 -->
+        <mxCell id="retrieval" value="Retrieval\npractice" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e8f5e9;strokeColor=#1b5e20;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="200" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="scanning" value="AprilTag card\nscanning" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e8f5e9;strokeColor=#1b5e20;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="300" y="200" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="scoring" value="Simulated tray\nscoring" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e8f5e9;strokeColor=#1b5e20;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="460" y="200" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Row 3 -->
+        <mxCell id="feedback" value="Feedback\nengine" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="320" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="confidence" value="Confidence\nuncertainty\ncapture" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="300" y="320" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="reporting" value="Reporting\nexport" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#fff3e0;strokeColor=#e65100;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="460" y="320" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== RIGHT-SIDE AGGREGATORS ==================== -->
+        <mxCell id="sum_storage" value="Σ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#c62828;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="80" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sum_storage_label" value="Storage\n[MB]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="60" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sum_expert" value="Σ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#c62828;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="140" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sum_expert_label" value="Expert time\n[hours]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="680" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sum_hardware" value="Σ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#c62828;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sum_hardware_label" value="Hardware\n[px]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sum_compute" value="Σ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#c62828;fontSize=16;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="260" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sum_compute_label" value="Computation\n[ops/s]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="680" y="260" width="70" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== VALUE ARROWS (GREEN, SOLID) ==================== -->
+        <!-- Expert → Content -->
+        <mxCell id="v_expert_content" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="expert" target="content">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_expert_content_label" value="instrument knowledge" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_expert_content">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Camera → Scanning -->
+        <mxCell id="v_camera_scanning" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="camera" target="scanning">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_camera_scanning_label" value="camera frames" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_camera_scanning">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Computing → Scanning -->
+        <mxCell id="v_computing_scanning" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="computing" target="scanning">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_computing_scanning_label" value="computation" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_computing_scanning">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Content → Workflow -->
+        <mxCell id="v_content_workflow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="content" target="workflow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_content_workflow_label" value="instrument definitions" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_content_workflow">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Content → Retrieval -->
+        <mxCell id="v_content_retrieval" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="content" target="retrieval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_content_retrieval_label" value="study card content" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_content_retrieval">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Content → Scoring -->
+        <mxCell id="v_content_scoring" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="content" target="scoring">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_content_scoring_label" value="tray templates" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_content_scoring">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Workflow → Retrieval -->
+        <mxCell id="v_workflow_retrieval" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="workflow" target="retrieval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_workflow_retrieval_label" value="mode config" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_workflow_retrieval">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Retrieval → Scanning -->
+        <mxCell id="v_retrieval_scanning" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="retrieval" target="scanning">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_retrieval_scanning_label" value="card prompts" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_retrieval_scanning">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scanning → Scoring -->
+        <mxCell id="v_scanning_scoring" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="scanning" target="scoring">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_scanning_scoring_label" value="detected card IDs" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_scanning_scoring">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring → Feedback -->
+        <mxCell id="v_scoring_feedback" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="scoring" target="feedback">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_scoring_feedback_label" value="comparison results" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_scoring_feedback">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring → Confidence -->
+        <mxCell id="v_scoring_confidence" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="scoring" target="confidence">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_scoring_confidence_label" value="scored results" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_scoring_confidence">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Confidence → Scoring -->
+        <mxCell id="v_confidence_scoring" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="confidence" target="scoring">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_confidence_scoring_label" value="confidence ratings" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_confidence_scoring">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Feedback → Reporting -->
+        <mxCell id="v_feedback_reporting" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="feedback" target="reporting">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_feedback_reporting_label" value="error summaries" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_feedback_reporting">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Reporting → Instructor -->
+        <mxCell id="v_reporting_instructor" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;" edge="1" parent="1" source="reporting" target="instructor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v_reporting_instructor_label" value="evidence packages" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_reporting_instructor">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Instructor → Content (feedback loop) -->
+        <mxCell id="v_instructor_content" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2e7d32;strokeWidth=2;dashed=1;" edge="1" parent="1" source="instructor" target="content">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="60" />
+              <mxPoint x="200" y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v_instructor_content_label" value="content revisions" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="v_instructor_content">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== COST ARROWS (RED, DASHED) ==================== -->
+        <!-- Expert → Content (cost) -->
+        <mxCell id="c_expert_content" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="expert" target="content">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="160" />
+              <mxPoint x="60" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_expert_content_label" value="expert time [h]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_expert_content">
+          <mxGeometry x="0.5" y="10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Expert → Instructor (cost) -->
+        <mxCell id="c_expert_instructor" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="expert" target="instructor">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="160" />
+              <mxPoint x="60" y="95" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_expert_instructor_label" value="expert time [h]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_expert_instructor">
+          <mxGeometry x="0.5" y="10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Content → Σ Storage -->
+        <mxCell id="c_content_storage" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="content" target="sum_storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_content_storage_label" value="storage [MB]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_content_storage">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Content → Σ Expert -->
+        <mxCell id="c_content_expert" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="content" target="sum_expert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_content_expert_label" value="expert time [h]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_content_expert">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Camera → Scanning (cost) -->
+        <mxCell id="c_camera_scanning" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="camera" target="scanning">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="340" />
+              <mxPoint x="60" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_camera_scanning_label" value="camera resolution [px]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_camera_scanning">
+          <mxGeometry x="0.5" y="10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scanning → Σ Hardware -->
+        <mxCell id="c_scanning_hardware" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="scanning" target="sum_hardware">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_scanning_hardware_label" value="camera resolution [px]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_scanning_hardware">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scanning → Σ Computation -->
+        <mxCell id="c_scanning_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="scanning" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_scanning_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_scanning_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Computing → Σ Computation -->
+        <mxCell id="c_computing_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="computing" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_computing_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_computing_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring → Σ Computation -->
+        <mxCell id="c_scoring_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="scoring" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_scoring_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_scoring_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Feedback → Σ Computation -->
+        <mxCell id="c_feedback_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="feedback" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_feedback_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_feedback_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Confidence → Σ Computation -->
+        <mxCell id="c_confidence_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="confidence" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_confidence_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_confidence_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Workflow → Σ Computation -->
+        <mxCell id="c_workflow_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="workflow" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_workflow_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_workflow_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Retrieval → Σ Computation -->
+        <mxCell id="c_retrieval_compute" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="retrieval" target="sum_compute">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_retrieval_compute_label" value="computation [ops/s]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_retrieval_compute">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Reporting → Σ Storage -->
+        <mxCell id="c_reporting_storage" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="reporting" target="sum_storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_reporting_storage_label" value="storage [MB]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_reporting_storage">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Instructor → Σ Expert -->
+        <mxCell id="c_instructor_expert" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c62828;strokeWidth=2;dashed=1;" edge="1" parent="1" source="instructor" target="sum_expert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_instructor_expert_label" value="expert time [h]" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" connectable="0" parent="c_instructor_expert">
+          <mxGeometry x="0.5" y="-10" relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== CONSTRAINT ICONS ==================== -->
+        <mxCell id="con1" value="≥" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#333333;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="260" y="235" width="16" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="con2" value="≤" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#333333;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="165" width="16" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="con3" value="≤" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#333333;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="16" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="con4" value="≥" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;strokeColor=#333333;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="420" y="235" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LEGEND ==================== -->
+        <mxCell id="legend" value="Green solid = value/capability flow  |  Red dashed = resource cost flow  |  ≤/≥ = constraint icons" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="140" y="420" width="500" height="15" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

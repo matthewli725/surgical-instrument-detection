@@ -1,0 +1,87 @@
+{
+  "seed": 42,
+  "render_resolution": {
+    "width": 1024,
+    "height": 1024
+  },
+  "scene_defaults": {
+    "tray_size_m": [0.28, 0.18],
+    "xy_jitter_m": [0.04, 0.03],
+    "rotation_deg_range": [0.0, 360.0],
+    "camera_distance_range": [0.78, 1.08],
+    "light_energy_range": [350.0, 950.0],
+    "material_roughness_range": [0.12, 0.42],
+    "tray_color_options": [
+      "matte_blue",
+      "matte_gray",
+      "brushed_steel",
+      "dark_graphite"
+    ]
+  },
+  "stage_generation": {
+    "synthetic_seen_condition": {
+      "split_column": "stage_seen_split",
+      "train_per_asset": 24,
+      "val_per_asset": 8,
+      "test_per_asset": 8,
+      "train_condition_ids": [
+        "seen_overhead_neutral",
+        "seen_cool_brushed"
+      ],
+      "test_condition_ids": [
+        "seen_overhead_neutral",
+        "seen_cool_brushed"
+      ],
+      "train_mesh_splits": [
+        "shared"
+      ],
+      "test_mesh_splits": [
+        "shared"
+      ]
+    },
+    "synthetic_heldout_condition": {
+      "split_column": "stage_heldout_split",
+      "train_per_asset": 20,
+      "val_per_asset": 8,
+      "test_per_asset": 12,
+      "train_condition_ids": [
+        "seen_overhead_neutral",
+        "seen_cool_brushed"
+      ],
+      "test_condition_ids": [
+        "heldout_warm_graphite",
+        "heldout_dim_gray"
+      ],
+      "train_mesh_splits": [
+        "shared"
+      ],
+      "test_mesh_splits": [
+        "heldout",
+        "shared"
+      ]
+    },
+    "synthetic_to_real_transfer_pretrain": {
+      "split_column": "transfer_pretrain_split",
+      "train_per_asset": 32,
+      "val_per_asset": 8,
+      "test_per_asset": 8,
+      "train_condition_ids": [
+        "seen_overhead_neutral",
+        "seen_cool_brushed",
+        "heldout_warm_graphite"
+      ],
+      "test_condition_ids": [
+        "heldout_warm_graphite",
+        "heldout_dim_gray"
+      ],
+      "train_mesh_splits": [
+        "shared",
+        "heldout"
+      ],
+      "test_mesh_splits": [
+        "heldout",
+        "shared"
+      ]
+    }
+  }
+}

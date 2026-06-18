@@ -1,0 +1,84 @@
+{
+  "known_classes": [
+    "straight_scissors",
+    "curved_scissors",
+    "straight_clamp",
+    "curved_clamp",
+    "narrow_tip_tweezer_plier",
+    "broad_tip_tweezer_plier"
+  ],
+  "pair_families": [
+    {
+      "name": "scissors_curve",
+      "members": ["straight_scissors", "curved_scissors"],
+      "distractor_role": "unknown_similar_distractor",
+      "description": "Straight versus curved scissor-like tools under tray-like overhead rendering."
+    },
+    {
+      "name": "clamp_curve",
+      "members": ["straight_clamp", "curved_clamp"],
+      "distractor_role": "unknown_similar_distractor",
+      "description": "Straight versus curved clamp or hemostat-like tools with similar handles and shafts."
+    },
+    {
+      "name": "tip_width",
+      "members": ["narrow_tip_tweezer_plier", "broad_tip_tweezer_plier"],
+      "distractor_role": "unknown_similar_distractor",
+      "description": "Narrow-tip versus broad-tip tweezer or plier-like tools with subtle jaw differences."
+    }
+  ],
+  "stages": [
+    {
+      "name": "synthetic_seen_condition",
+      "stage_group": "synthetic_seen_condition",
+      "description": "Train and test inside the same synthetic domain while holding out rendered scene instances only.",
+      "split_column": "stage_seen_split",
+      "allowed_source_types": ["synthetic"],
+      "include_open_set_roles": ["known"],
+      "rationale": "This is the floor stage. It asks whether the detector can separate the target similar classes at all inside one simulator setup.",
+      "what_it_proves": "Success here means interpolation within the simulator, not robustness beyond it.",
+      "mesh_policy": "Meshes may overlap between train and test unless separate mesh variants are explicitly annotated.",
+      "instance_policy": "Synthetic scene instances are held out between train, val, and test.",
+      "condition_policy": "Lighting, roughness, and tray conditions are drawn from the same seen synthetic condition pool."
+    },
+    {
+      "name": "synthetic_heldout_condition",
+      "stage_group": "synthetic_heldout_condition",
+      "description": "Train on one synthetic condition subset and test on held-out lighting, material, or background settings.",
+      "split_column": "stage_heldout_split",
+      "allowed_source_types": ["synthetic"],
+      "include_open_set_roles": ["known"],
+      "rationale": "This stage isolates synthetic robustness by withholding rendering conditions rather than only scene instances.",
+      "what_it_proves": "Success here means the model learned more than one rendering setup and can generalize to held-out synthetic conditions.",
+      "mesh_policy": "Use shared or held-out mesh variants according to the source manifest; record mesh_split in samples.csv for auditability.",
+      "instance_policy": "Synthetic scene instances remain held out between train, val, and test.",
+      "condition_policy": "Test examples come from held-out lighting, material, background, or camera-condition buckets."
+    },
+    {
+      "name": "synthetic_to_real_transfer_pretrain",
+      "stage_group": "synthetic_to_real_transfer",
+      "description": "Synthetic pretraining source used before fine-tuning on the matched small real dataset.",
+      "split_column": "transfer_pretrain_split",
+      "allowed_source_types": ["synthetic"],
+      "include_open_set_roles": ["known"],
+      "rationale": "This stage provides the synthetic initialization for the transfer comparison and should stay visually simple and tray-like in v1.",
+      "what_it_proves": "By itself this stage does not prove transfer. It is only the pretraining source for the matched fine-tuning comparison.",
+      "mesh_policy": "Prefer multiple mesh variants per class. Record held-out mesh variants when available.",
+      "instance_policy": "Synthetic scene instances are held out between train, val, and test splits.",
+      "condition_policy": "Domain randomization should vary lighting, roughness, camera distance, rotation, and tray texture without aiming for full OR realism."
+    },
+    {
+      "name": "synthetic_to_real_transfer_real_small",
+      "stage_group": "synthetic_to_real_transfer",
+      "description": "Small real proxy dataset used for both real-only training and synthetic-pretrain-plus-real fine-tuning, with unknown distractors reserved for evaluation.",
+      "split_column": "transfer_real_split",
+      "allowed_source_types": ["real"],
+      "include_open_set_roles": ["known", "unknown_similar_distractor"],
+      "rationale": "This stage holds the small real dataset constant so the only intended difference is whether synthetic pretraining happened first.",
+      "what_it_proves": "Improvement of synthetic_pretrain_plus_real_small over real_small_from_scratch is the main evidence that simulation is useful when real data is scarce.",
+      "mesh_policy": "Meshes do not apply directly; record proxy-family or asset identifiers if available.",
+      "instance_policy": "Prefer holding out physical instances. If unavailable, hold out sessions and conditions and document the limitation.",
+      "condition_policy": "Keep the real proxy set tray-like, modest in size, and paired with unknown similar distractor images in the test split."
+    }
+  ]
+}

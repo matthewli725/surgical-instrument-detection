@@ -1,0 +1,1018 @@
+{
+  "module_id": "fgvc12_major_focused_v1",
+  "version": "2026.06-fgvc12-subset",
+  "name": "FGVC12 Major Laparotomy Focused Tray",
+  "procedure_family": "major_laparotomy",
+  "source_note": "Evidence-based subset of fgvc12_major_laparotomy_tray_v1. Selected instruments cover four primary families (cutting, clamping, grasping, suturing) and include documented lookalike pairs from the TrayGuard FDR requirements. Instructor verification required before pilot claims.",
+  "evidence_sources": [
+    {
+      "label": "FGVC12 shared Google Drive major.zip",
+      "url": "https://drive.google.com/file/d/1X3iO-FXL_7aOeOrdMNb3_oib0Les7lKD/view",
+      "supports": [
+        "Major tray images grouped by instrument class."
+      ]
+    },
+    {
+      "label": "TrayGuard FDR lookalike pairs",
+      "url": "fdr/trayguard_paper.pdf",
+      "supports": [
+        "Mayo vs Metzenbaum, Kelly vs Crile, Allis vs Babcock, Adson vs DeBakey confusion documented in training literature."
+      ]
+    }
+  ],
+  "instruments": [
+    {
+      "id": "fgvc12_major_scissors_mayo_straight_7in",
+      "display_name": "Scissors Mayo Straight 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS MAYO STRAIGHT 7\"",
+        "JARIT_101-220"
+      ],
+      "distinguishing_features": [
+        "Heavy straight blades, semi-blunt tips",
+        "Ring-handled cutting instrument"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-220: SCISSORS MAYO STRAIGHT 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_straight_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-220: SCISSORS MAYO STRAIGHT 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Mayo Straight 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-220"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_scissors_mayo_curved_7in",
+      "display_name": "Scissors Mayo Curved 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS MAYO CURVED 7\"",
+        "JARIT_101-222"
+      ],
+      "distinguishing_features": [
+        "Heavy curved blades, broader profile than Metzenbaum",
+        "Ring-handled cutting instrument"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_curved_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-222: SCISSORS MAYO CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_mayo_curved_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-222: SCISSORS MAYO CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Mayo Curved 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-222"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_scissors_metz_curved_7in",
+      "display_name": "Scissors Metzenbaum Curved 7\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS METZ CURVED 7\"",
+        "JARIT_101-258"
+      ],
+      "distinguishing_features": [
+        "Slim lightweight blades for delicate tissue",
+        "Narrower profile than Mayo scissors",
+        "Ring-handled cutting instrument"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-258: SCISSORS METZ CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-258: SCISSORS METZ CURVED 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Metzenbaum Curved 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-258"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_scissors_metz_curved_10in",
+      "display_name": "Scissors Metzenbaum Curved 10\"",
+      "family": "Cutting/dissecting",
+      "aliases": [
+        "SCISSORS METZ CURVED 10\"",
+        "JARIT_101-267"
+      ],
+      "distinguishing_features": [
+        "Slim lightweight blades for delicate tissue",
+        "Longer than 7\" version, same shaft design"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_10in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-267: SCISSORS METZ CURVED 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_scissors_metz_curved_10in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_101-267: SCISSORS METZ CURVED 10\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Scissors Metzenbaum Curved 10\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_101-267"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_crile_curved_5_1_2",
+      "display_name": "Clamp Crile Curved 5 1/2",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP CRILE CURVED 5 1/2",
+        "JARIT_106-121"
+      ],
+      "distinguishing_features": [
+        "Serrations run full jaw length",
+        "Curved profile"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_crile_curved_5_1_2_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-121: CLAMP CRILE CURVED 5 1/2",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_crile_curved_5_1_2_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-121: CLAMP CRILE CURVED 5 1/2",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Crile Curved 5 1/2"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-121"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_kelly_6in",
+      "display_name": "Clamp Kelly 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KELLY 6\"",
+        "JARIT_106-171"
+      ],
+      "distinguishing_features": [
+        "Serrations on distal half of jaw only",
+        "Available in 6\" and 8\" lengths"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-171: CLAMP KELLY 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-171: CLAMP KELLY 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kelly 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-171"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_kelly_8in",
+      "display_name": "Clamp Kelly 8\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KELLY 8\"",
+        "JARIT_106-191"
+      ],
+      "distinguishing_features": [
+        "Serrations on distal half of jaw only",
+        "Longer overall than 6\" version"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_8in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-191: CLAMP KELLY 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kelly_8in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-191: CLAMP KELLY 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kelly 8\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-191"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_kocher_6in",
+      "display_name": "Clamp Kocher 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP KOCHER 6\"",
+        "JARIT_106-200"
+      ],
+      "distinguishing_features": [
+        "Single tooth at tip plus full serrations",
+        "Available in 6\" and 8\" lengths"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-200: CLAMP KOCHER 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_kocher_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_106-200: CLAMP KOCHER 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Kocher 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_106-200"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_knife_handle_number_3_short",
+      "display_name": "Knife Handle #3 Short",
+      "family": "Cutting",
+      "aliases": [
+        "KNIFE HANDLE #3 SHORT",
+        "JARIT_110-165"
+      ],
+      "distinguishing_features": [
+        "Short handle for #3 blade",
+        "Also available in long version"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_short_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-165: KNIFE HANDLE #3 SHORT",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_knife_handle_number_3_short_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_110-165: KNIFE HANDLE #3 SHORT",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Knife Handle #3 Short"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_110-165"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_needleholder_mayo_hegar_7in",
+      "display_name": "Needleholder Mayo-Hegar 7\"",
+      "family": "Suturing",
+      "aliases": [
+        "NEEDLEHOLDER MAYO HEGAR 7\"",
+        "JARIT_121-140"
+      ],
+      "distinguishing_features": [
+        "Short heavy jaws with cross-serration",
+        "Also available in 8\" version"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_7in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-140: NEEDLEHOLDER MAYO HEGAR 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_7in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-140: NEEDLEHOLDER MAYO HEGAR 7\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Needleholder Mayo-Hegar 7\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_121-140"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_needleholder_mayo_hegar_8in",
+      "display_name": "Needleholder Mayo-Hegar 8\"",
+      "family": "Suturing",
+      "aliases": [
+        "NEEDLEHOLDER MAYO HEGAR 8\"",
+        "JARIT_121-145"
+      ],
+      "distinguishing_features": [
+        "Same heavy-jaw design as 7\" version",
+        "Longer shaft for deeper access"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_8in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-145: NEEDLEHOLDER MAYO HEGAR 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_needleholder_mayo_hegar_8in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_121-145: NEEDLEHOLDER MAYO HEGAR 8\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Needleholder Mayo-Hegar 8\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_121-145"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_forcep_adson_w_teeth",
+      "display_name": "Forcep Adson w/ Teeth",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP ADSON W/ TEETH",
+        "JARIT_130-234"
+      ],
+      "distinguishing_features": [
+        "Short forceps with 1x2 teeth at tip",
+        "Used for fine tissue handling"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_adson_w_teeth_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-234: FORCEP ADSON W/ TEETH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_adson_w_teeth_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_130-234: FORCEP ADSON W/ TEETH",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Adson w/ Teeth"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_130-234"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_babcock_9_5in",
+      "display_name": "Clamp Babcock 9.5\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BABCOCK 9.5\"",
+        "JARIT_135-195"
+      ],
+      "distinguishing_features": [
+        "Smooth fenestrated jaws",
+        "Atraumatic tissue grasping"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_9_5in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-195: CLAMP BABCOCK 9.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_9_5in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_135-195: CLAMP BABCOCK 9.5\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Babcock 9.5\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_135-195"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_allis_6in",
+      "display_name": "Clamp Allis 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP ALLIS 6\"",
+        "JARIT_136-100"
+      ],
+      "distinguishing_features": [
+        "Multiple interlocking teeth at tip",
+        "Used for grasping tissue that must be removed"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-100: CLAMP ALLIS 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_allis_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-100: CLAMP ALLIS 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Allis 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_136-100"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_clamp_babcock_6in",
+      "display_name": "Clamp Babcock 6\"",
+      "family": "Clamping/occluding",
+      "aliases": [
+        "CLAMP BABCOCK 6\"",
+        "JARIT_136-181"
+      ],
+      "distinguishing_features": [
+        "Smooth fenestrated jaws",
+        "Shorter and smaller than 9.5\" version"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_6in_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-181: CLAMP BABCOCK 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_clamp_babcock_6in_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_136-181: CLAMP BABCOCK 6\"",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Clamp Babcock 6\""
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_136-181"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    },
+    {
+      "id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+      "display_name": "Forcep Debakey 8\" Thoracic Tip",
+      "family": "Grasping/holding",
+      "aliases": [
+        "FORCEP DEBAKEY 8\" THORACIC TIP",
+        "JARIT_320-101"
+      ],
+      "distinguishing_features": [
+        "Long forceps with atraumatic longitudinal serrations",
+        "Thoracic tip design for gentle vessel handling"
+      ],
+      "image_refs": [
+        {
+          "id": "view_a",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_8in_thoracic_tip_view_a.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-101: FORCEP DEBAKEY 8\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        },
+        {
+          "id": "view_b",
+          "path": "data/instruments/fgvc12_major_tray_v1/fgvc12_major_forcep_debakey_8in_thoracic_tip_view_b.jpg",
+          "source": "fgvc12_google_drive_major_tray",
+          "approved_for_study": true,
+          "approved_for_assessment": false,
+          "attribution": "FGVC12 shared Google Drive major tray image, class JARIT_320-101: FORCEP DEBAKEY 8\" THORACIC TIP",
+          "url": "https://drive.google.com/drive/folders/1a5VyCCUCKTAQJ4Y57ZIDmf8HufVxYQiC"
+        }
+      ],
+      "study_prompts": [
+        {
+          "id": "name",
+          "prompt": "Name this major-tray instrument.",
+          "answer": "Forcep Debakey 8\" Thoracic Tip"
+        },
+        {
+          "id": "source_class",
+          "prompt": "Which source class produced this card?",
+          "answer": "JARIT_320-101"
+        }
+      ],
+      "local_verification_status": "external_dataset_unverified"
+    }
+  ],
+  "required_items": [
+    {
+      "instrument_id": "fgvc12_major_scissors_mayo_straight_7in",
+      "quantity": 1,
+      "reference_number": "TG-001",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_scissors_mayo_curved_7in",
+      "quantity": 1,
+      "reference_number": "TG-002",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_scissors_metz_curved_7in",
+      "quantity": 1,
+      "reference_number": "TG-003",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_clamp_kelly_6in",
+      "quantity": 1,
+      "reference_number": "TG-004",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_clamp_crile_curved_5_1_2",
+      "quantity": 1,
+      "reference_number": "TG-005",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_clamp_kocher_6in",
+      "quantity": 1,
+      "reference_number": "TG-006",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_clamp_allis_6in",
+      "quantity": 1,
+      "reference_number": "TG-007",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_clamp_babcock_6in",
+      "quantity": 1,
+      "reference_number": "TG-008",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_forcep_adson_w_teeth",
+      "quantity": 1,
+      "reference_number": "TG-009",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+      "quantity": 1,
+      "reference_number": "TG-010",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_needleholder_mayo_hegar_7in",
+      "quantity": 1,
+      "reference_number": "TG-011",
+      "location_or_layer": "main"
+    },
+    {
+      "instrument_id": "fgvc12_major_knife_handle_number_3_short",
+      "quantity": 1,
+      "reference_number": "TG-012",
+      "location_or_layer": "main"
+    }
+  ],
+  "distractor_item_ids": [
+    "fgvc12_major_clamp_kelly_8in",
+    "fgvc12_major_scissors_metz_curved_10in",
+    "fgvc12_major_needleholder_mayo_hegar_8in",
+    "fgvc12_major_clamp_babcock_9_5in"
+  ],
+  "lookalike_pairs": [
+    {
+      "id": "lookalike_mayo_curved_metz_7in",
+      "expected_id": "fgvc12_major_scissors_mayo_curved_7in",
+      "selected_id": "fgvc12_major_scissors_metz_curved_7in",
+      "feedback_message": "Mayo scissors have heavier, broader blades; Metzenbaum are slimmer and lighter for delicate tissue."
+    },
+    {
+      "id": "lookalike_kelly_crile",
+      "expected_id": "fgvc12_major_clamp_kelly_6in",
+      "selected_id": "fgvc12_major_clamp_crile_curved_5_1_2",
+      "feedback_message": "Check serration pattern: Kelly serrations are distal half; Crile serrations run the full jaw."
+    },
+    {
+      "id": "lookalike_allis_babcock",
+      "expected_id": "fgvc12_major_clamp_allis_6in",
+      "selected_id": "fgvc12_major_clamp_babcock_6in",
+      "feedback_message": "Allis has multiple interlocking teeth; Babcock has smooth fenestrated jaws."
+    },
+    {
+      "id": "lookalike_adson_debakey",
+      "expected_id": "fgvc12_major_forcep_adson_w_teeth",
+      "selected_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+      "feedback_message": "Adson is short with 1x2 teeth; DeBakey is long with atraumatic longitudinal serrations."
+    },
+    {
+      "id": "lookalike_kelly_6_8in",
+      "expected_id": "fgvc12_major_clamp_kelly_6in",
+      "selected_id": "fgvc12_major_clamp_kelly_8in",
+      "feedback_message": "Compare overall length: 6\" vs 8\"."
+    },
+    {
+      "id": "lookalike_metz_7_10in",
+      "expected_id": "fgvc12_major_scissors_metz_curved_7in",
+      "selected_id": "fgvc12_major_scissors_metz_curved_10in",
+      "feedback_message": "Compare overall length: 7\" vs 10\"."
+    }
+  ],
+  "assessment_variants": [
+    {
+      "id": "fgvc12_major_focused_v1_pre_a",
+      "mode": "pre_test",
+      "required_item_ids": [
+        "fgvc12_major_scissors_mayo_straight_7in",
+        "fgvc12_major_scissors_mayo_curved_7in",
+        "fgvc12_major_scissors_metz_curved_7in",
+        "fgvc12_major_clamp_kelly_6in",
+        "fgvc12_major_clamp_crile_curved_5_1_2",
+        "fgvc12_major_clamp_kocher_6in",
+        "fgvc12_major_clamp_allis_6in",
+        "fgvc12_major_clamp_babcock_6in",
+        "fgvc12_major_forcep_adson_w_teeth",
+        "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+        "fgvc12_major_needleholder_mayo_hegar_7in",
+        "fgvc12_major_knife_handle_number_3_short"
+      ],
+      "distractor_item_ids": [
+        "fgvc12_major_clamp_kelly_8in",
+        "fgvc12_major_scissors_metz_curved_10in",
+        "fgvc12_major_needleholder_mayo_hegar_8in",
+        "fgvc12_major_clamp_babcock_9_5in"
+      ],
+      "random_seed": "pre_a_2026_06",
+      "feedback_enabled": false,
+      "photo_view": "view_a"
+    },
+    {
+      "id": "fgvc12_major_focused_v1_post_b",
+      "mode": "post_test",
+      "required_item_ids": [
+        "fgvc12_major_scissors_mayo_straight_7in",
+        "fgvc12_major_scissors_mayo_curved_7in",
+        "fgvc12_major_scissors_metz_curved_7in",
+        "fgvc12_major_clamp_kelly_6in",
+        "fgvc12_major_clamp_crile_curved_5_1_2",
+        "fgvc12_major_clamp_kocher_6in",
+        "fgvc12_major_clamp_allis_6in",
+        "fgvc12_major_clamp_babcock_6in",
+        "fgvc12_major_forcep_adson_w_teeth",
+        "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+        "fgvc12_major_needleholder_mayo_hegar_7in",
+        "fgvc12_major_knife_handle_number_3_short"
+      ],
+      "distractor_item_ids": [
+        "fgvc12_major_clamp_kelly_8in",
+        "fgvc12_major_scissors_metz_curved_10in",
+        "fgvc12_major_needleholder_mayo_hegar_8in",
+        "fgvc12_major_clamp_babcock_9_5in"
+      ],
+      "random_seed": "post_b_2026_06",
+      "feedback_enabled": false,
+      "photo_view": "view_b"
+    }
+  ],
+  "marker_cards": [
+    {
+      "marker_id": 0,
+      "instrument_id": "fgvc12_major_scissors_mayo_straight_7in",
+      "card_id": "fgvc12_major_scissors_mayo_straight_7in_fgvc12"
+    },
+    {
+      "marker_id": 1,
+      "instrument_id": "fgvc12_major_scissors_mayo_curved_7in",
+      "card_id": "fgvc12_major_scissors_mayo_curved_7in_fgvc12"
+    },
+    {
+      "marker_id": 2,
+      "instrument_id": "fgvc12_major_scissors_metz_curved_7in",
+      "card_id": "fgvc12_major_scissors_metz_curved_7in_fgvc12"
+    },
+    {
+      "marker_id": 3,
+      "instrument_id": "fgvc12_major_scissors_metz_curved_10in",
+      "card_id": "fgvc12_major_scissors_metz_curved_10in_fgvc12"
+    },
+    {
+      "marker_id": 5,
+      "instrument_id": "fgvc12_major_clamp_crile_curved_5_1_2",
+      "card_id": "fgvc12_major_clamp_crile_curved_5_1_2_fgvc12"
+    },
+    {
+      "marker_id": 6,
+      "instrument_id": "fgvc12_major_clamp_kelly_6in",
+      "card_id": "fgvc12_major_clamp_kelly_6in_fgvc12"
+    },
+    {
+      "marker_id": 7,
+      "instrument_id": "fgvc12_major_clamp_kelly_8in",
+      "card_id": "fgvc12_major_clamp_kelly_8in_fgvc12"
+    },
+    {
+      "marker_id": 8,
+      "instrument_id": "fgvc12_major_clamp_kocher_6in",
+      "card_id": "fgvc12_major_clamp_kocher_6in_fgvc12"
+    },
+    {
+      "marker_id": 12,
+      "instrument_id": "fgvc12_major_knife_handle_number_3_short",
+      "card_id": "fgvc12_major_knife_handle_number_3_short_fgvc12"
+    },
+    {
+      "marker_id": 15,
+      "instrument_id": "fgvc12_major_needleholder_mayo_hegar_7in",
+      "card_id": "fgvc12_major_needleholder_mayo_hegar_7in_fgvc12"
+    },
+    {
+      "marker_id": 16,
+      "instrument_id": "fgvc12_major_needleholder_mayo_hegar_8in",
+      "card_id": "fgvc12_major_needleholder_mayo_hegar_8in_fgvc12"
+    },
+    {
+      "marker_id": 18,
+      "instrument_id": "fgvc12_major_forcep_adson_w_teeth",
+      "card_id": "fgvc12_major_forcep_adson_w_teeth_fgvc12"
+    },
+    {
+      "marker_id": 20,
+      "instrument_id": "fgvc12_major_clamp_babcock_9_5in",
+      "card_id": "fgvc12_major_clamp_babcock_9_5in_fgvc12"
+    },
+    {
+      "marker_id": 23,
+      "instrument_id": "fgvc12_major_clamp_allis_6in",
+      "card_id": "fgvc12_major_clamp_allis_6in_fgvc12"
+    },
+    {
+      "marker_id": 24,
+      "instrument_id": "fgvc12_major_clamp_babcock_6in",
+      "card_id": "fgvc12_major_clamp_babcock_6in_fgvc12"
+    },
+    {
+      "marker_id": 28,
+      "instrument_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip",
+      "card_id": "fgvc12_major_forcep_debakey_8in_thoracic_tip_fgvc12"
+    }
+  ]
+}
